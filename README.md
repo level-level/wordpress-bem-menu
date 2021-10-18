@@ -1,55 +1,19 @@
-[![GitHub Actions status](https://github.com/level-level/clarkson-theme-dawn/workflows/Build%20%26%20test/badge.svg)](https://github.com/level-level/clarkson-theme-dawn/actions)
+[![GitHub Actions status](https://github.com/level-level/impact-investor/workflows/Build%20%26%20test/badge.svg)](https://github.com/level-level/impact-investor/actions)
 
-# Clarkson Theme Dawn
+# Impact Investor
 Clarkson Theme is a modern set of tools to rocket WordPress theme development into the 21st century without losing touch with WordPress platform conventions. It uses [Clarkson Core](https://github.com/level-level/Clarkson-Core) to integrate Twig as the preferred templating engine.
-
-## Starting a new project ✨
-Use [the clarkson-theme-dawn repository](https://github.com/level-level/clarkson-theme-dawn) as the [template for your new project](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-
-Then follow these steps:
-
-1. Clone the new repository locally.
-
-2. Replace `clarkson-theme-dawn` with the GitHub repository name in the entire project.
-**Example:**
-`https://github.com/level-level/`**`my-project`** replaces `clarkson-theme-dawn` with **`my-project`**.
-
-3. Rename the folder `clarkson-theme-dawn` in `wp-content/themes` to the same as above (i.e. `my-project`).
-**Example**: `https://github.com/level-level/`**`my-project`** renames the  `/themes/clarkson-theme-dawn/` folder to  **`/themes/my-project/`**.
-
-4. Replace `Clarkson Theme Dawn` (case sensitive) throughout the entire project with your project name (i.e. `My Theme`).
-
-5. Run `composer update --lock` from the repo root
-
-6. Set up the Github Actions secrets (see below).
-
-7. In the repository settings on GitHub set the following:
-
-    1. Disable the wiki.
-    2. Disable issues.
-    3. Disable projects.
-    4. Automatically delete head branches after merge.
-    5. Protect the master branch, requiring at least 1 approved code review. Disallow direct commits to master.
-
-8. Set up envoyer based on [zzz. Deploy template](https://envoyer.io/projects/63092/). Don't forget to change the theme directory name in all hooks.
-
-9. Set the default language in the Localization section in the readme. 
-
-10. Remove the section *'Starting a new project'* from the readme (it's this section that you are reading right now 🤯).
-
-11. Commit everything and push.
 
 ## Local install
 Setup a new WordPress install with [VVV](https://varyingvagrantvagrants.org/) (for example my-site)
 Remove the existing `wp-content` folder and from the WordPress install root run the following commands:
 ```
-git clone git@github.com:level-level/clarkson-theme-dawn.git wp-content
+git clone git@github.com:level-level/impact-investor.git wp-content
 cd wp-content
 composer install -o
 ```
 
 ### Install dependencies and build theme assets
-In the theme directory clarkson-theme-dawn run in the command line:
+In the theme directory impact-investor run in the command line:
 
 ```bash
 npm ci
@@ -69,10 +33,10 @@ Default text language for this repo is:
 - [ ] English
 
 ### Text domain
-The default text domain for this project is `clarkson-theme-dawn`.
+The default text domain for this project is `impact-investor`.
 
 ### Slugs
-We use a different textdomain specific for custom post type slugs for example: `clarkson-theme-dawn-slugs`.
+We use a different textdomain specific for custom post type slugs for example: `impact-investor-slugs`.
 
 ### Javascript translations
 Add new Javascript string translations via `ScriptTranslations.php`, all string will be available with the `i18n` javascript variable.

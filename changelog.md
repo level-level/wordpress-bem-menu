@@ -1,5 +1,5 @@
 # Changelog
-All notable changes for Clarkson Theme Dawn will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+All notable changes for Impact Investor will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## October 18, 2021
 ### Fixed
@@ -184,7 +184,7 @@ All notable changes for Clarkson Theme Dawn will be documented in this file. The
 
 ### Changed
 - Updated clarkson-core v0.4.3 to v1.0.0
-  - Moved WordPress Object from `themes/clarkson-theme-dawn/wordpress-objects` to `themes/clarkson-theme-dawn/app/WordPress_Objects/`
+  - Moved WordPress Object from `themes/impact-investor/wordpress-objects` to `themes/impact-investor/app/WordPress_Objects/`
   - Use new object hierarcy and changed `ACFBlock` to `base_block` and `Base_Object` to `base_object`
   - Use new `clarkson_core_template_context` filter for Assets context args
 - Updated clarkson-wp-cli-twig-translations v0.2.0 to v1.0.0

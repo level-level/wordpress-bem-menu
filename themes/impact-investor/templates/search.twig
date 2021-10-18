@@ -1,0 +1,46 @@
+{% extends 'layouts/full-width.twig' %}
+
+{% block content %}
+	<div class="section">
+		<div class="container">
+			<h1>{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}</h1>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			{% include 'partials/components/search.twig' %}
+		</div>
+	</div>
+
+	{% if objects %}
+		<div class="section">
+			<div class="container">
+				<h2 class="screen-reader-text">{{ __('Overview of search results', 'impact-investor') }}</h2>
+				<ul class="row row--spacing">
+					{% for object in objects %}
+						<li class="col-12">
+							{% include 'styleguide/components/teasers/teaser-search.twig' with {
+								title: object.get_title(),
+								url: object.get_permalink(),
+								excerpt: object.get_excerpt(),
+							} %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="container">
+				{% include 'partials/components/pagination.twig' %}
+			</div>
+		</div>
+	{% else %}
+		<div class="section">
+			<div class="container">
+				<p>{{ __('No search results found', 'impact-investor') }}</p>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

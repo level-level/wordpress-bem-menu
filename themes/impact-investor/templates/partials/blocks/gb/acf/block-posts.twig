@@ -1,0 +1,49 @@
+{% set objects = block.get_posts() %}
+{% set title = data.title %}
+
+{% if objects %}
+	<div class="align{{ align }}">
+		{% if not title %}
+			<h2 class="screen-reader-text">{{ __('A list of posts', 'impact-investor') }}</h2>
+		{% endif %}
+
+		<div class="group">
+
+			{% if title %}
+				<div class="group__item">
+					<h2>{{ title }}</h2>
+				</div>
+			{% endif %}
+
+			<div class="group__item">
+				<ul class="row row--spacing">
+					{% set date_format = get_option('date_format') %}
+
+					{% for object in objects %}
+
+						{% set image_id = object.get_thumbnail_id() %}
+						{% set terms = object.get_terms('category') %}
+
+						<li class="col-12 col-sm-6 col-md-4">
+							{% include 'styleguide/components/teasers/teaser-post.twig' with {
+								image: image_id ? wp_get_attachment_image(image_id, 'large'),
+								title: object.get_title(),
+								url: object.get_permalink(),
+								excerpt: object.get_excerpt(),
+								date: object.get_date_i18n(date_format),
+								datetime: object.get_date_i18n('Y-m-d'),
+								terms: terms ? terms|map(term => {
+									name: term.get_name(),
+								})
+							} %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Posts']
+	} %}
+{% endif %}

@@ -1,5 +1,5 @@
 {
-    "name": "level-level/clarkson-theme-dawn",
+    "name": "level-level/impact-investor",
     "type": "project",
     "license": "proprietary",
     "description": "Level Level starter theme",
@@ -19,10 +19,10 @@
     ],
     "autoload": {
         "psr-4":{
-            "Hooks\\": "themes/clarkson-theme-dawn/app/Hooks",
-            "Clarkson\\": "themes/clarkson-theme-dawn/app/Clarkson",
-            "Gutenberg\\Blocks\\": "themes/clarkson-theme-dawn/app/Gutenberg/",
-            "Clarkson_Core\\WordPress_Object\\": "themes/clarkson-theme-dawn/app/WordPress_Objects/"
+            "Hooks\\": "themes/impact-investor/app/Hooks",
+            "Clarkson\\": "themes/impact-investor/app/Clarkson",
+            "Gutenberg\\Blocks\\": "themes/impact-investor/app/Gutenberg/",
+            "Clarkson_Core\\WordPress_Object\\": "themes/impact-investor/app/WordPress_Objects/"
         }
     },
     "require": {
@@ -64,7 +64,7 @@
             "phpcs"
         ],
         "test:twigcs": [
-            "twigcs themes/clarkson-theme-dawn/templates --severity error"
+            "twigcs themes/impact-investor/templates --severity error"
         ],
         "test:psalm": [
             "./vendor/bin/psalm.phar"
@@ -83,12 +83,12 @@
             "codecept run wpunit"
         ],
         "test:docs": [
-            "php-doc-check ./themes/clarkson-theme-dawn/app -x vendor"
+            "php-doc-check ./themes/impact-investor/app -x vendor"
         ],
         "make-pot": [
-            "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/clarkson-theme-dawn/templates --output-dir=./themes/clarkson-theme-dawn/dist/rendered-templates",
-            "wp i18n make-pot ./themes/clarkson-theme-dawn --path=./themes/clarkson-theme-dawn/ --slug=clarkson-theme-dawn",
-            "wp i18n make-pot ./themes/clarkson-theme-dawn --path=./themes/clarkson-theme-dawn/ --slug=clarkson-theme-dawn-slugs --domain=clarkson-theme-dawn-slugs"
+            "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/impact-investor/templates --output-dir=./themes/impact-investor/dist/rendered-templates",
+            "wp i18n make-pot ./themes/impact-investor --path=./themes/impact-investor/ --slug=impact-investor",
+            "wp i18n make-pot ./themes/impact-investor --path=./themes/impact-investor/ --slug=impact-investor-slugs --domain=impact-investor-slugs"
         ]
     },
     "extra": {

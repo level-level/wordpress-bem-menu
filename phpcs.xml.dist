@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <ruleset name="clarkson_core">
-	<description>Level Level Clarkson Theme dawn ruleset</description>
+	<description>Level Level Impact Investor ruleset</description>
 	<config name="testVersion" value="7.0-"/>
-	<file>./themes/clarkson-theme-dawn/app</file>
-	<file>./themes/clarkson-theme-dawn/functions.php</file>
+	<file>./themes/impact-investor/app</file>
+	<file>./themes/impact-investor/functions.php</file>
 	<file>./tests/acceptance/</file>
 	<file>./tests/functional/</file>
 	<file>./tests/unit/</file>

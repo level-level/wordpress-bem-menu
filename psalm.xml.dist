@@ -11,7 +11,7 @@
     errorBaseline="psalm.baseline.xml"
 >
     <projectFiles>
-        <directory name="./themes/clarkson-theme-dawn/app" />
+        <directory name="./themes/impact-investor/app" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>

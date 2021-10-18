@@ -1,0 +1,257 @@
+{% extends 'layouts/full-width.twig' %}
+
+{% block content %}
+
+	<div class="section">
+		<div class="container">
+			<h1>{{ get_bloginfo('name')|raw }} styleguide</h1>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Example JS module</h2>
+				</div>
+				<div class="group__item">
+					<div
+						data-module="hello"
+						data-config='{"greetings": ["Hey", "Hi", "Hola", "Hello"]}' style="border: 1px solid #eee; padding: 30px;">
+						<span class="random-greeting"></span> {{ __('I\'m an example JS module, don\'t forget to remove me 👋🏻', 'impact-investor') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Buttons (links)</h2>
+					<code>styleguide/components/buttons/button-link.twig</code>
+				</div>
+				<div class="group__item">
+					<ul class="row row--spacing">
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('Button primary', 'impact-investor'),
+								url: '#',
+								class: 'btn--primary',
+								is_external: false,
+								aria_label: __('Example aria label', 'impact-investor'),
+								icon: '',
+								icon_left: false,
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('Button secondary', 'impact-investor'),
+								url: '#',
+								class: 'btn--secondary',
+								is_external: false,
+								aria_label: __('Example aria label', 'impact-investor'),
+								icon: '',
+								icon_left: false,
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('Button ghost', 'impact-investor'),
+								url: '#',
+								class: 'btn--ghost',
+								is_external: false,
+								aria_label: __('Example aria label', 'impact-investor'),
+								icon: '',
+								icon_left: false,
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('Button link', 'impact-investor'),
+								url: '#',
+								class: 'btn--link',
+								is_external: false,
+								aria_label: __('Example aria label', 'impact-investor'),
+								icon: '',
+								icon_left: false,
+							} %}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Buttons (button elements)</h2>
+					<code>styleguide/components/buttons/button-element.twig</code>
+				</div>
+				<div class="group__item">
+					<ul class="row row--spacing">
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: __('Primary (type = submit)', 'impact-investor'),
+								aria_expanded_support: false,
+								class: 'btn--primary',
+								aria_label: __('Click me to submit', 'impact-investor'),
+								aria_expanded_text: '',
+								aria_collapsed_text: '',
+								icon: '',
+								icon_left: false,
+								type: 'submit'
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: __('Click me! (JS module)', 'impact-investor'),
+								aria_expanded_support: false,
+								class: 'btn--secondary',
+								aria_label: '',
+								aria_expanded_text: '',
+								aria_collapsed_text: '',
+								icon: '',
+								icon_left: false,
+								data_module: 'hello',
+								data_config: '{"clicked": "You clicked me!"}'
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: __('Button ghost (full)', 'impact-investor'),
+								aria_expanded_support: false,
+								class: 'btn--ghost btn--full',
+								aria_label: '',
+								aria_expanded_text: '',
+								aria_collapsed_text: '',
+								icon: '',
+								icon_left: false
+							} %}
+						</li>
+						<li class="col-12 col-sm-3">
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: __('Button link (full)', 'impact-investor'),
+								aria_expanded_support: false,
+								class: 'btn--link btn--full',
+								aria_label: '',
+								aria_expanded_text: '',
+								aria_collapsed_text: '',
+								icon: '',
+								icon_left: false
+							} %}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Call to action</h2>
+					<code>styleguide/components/cta/cta.twig</code>
+				</div>
+
+				{% set button = {
+					title: 'Button',
+					url: '#',
+				} %}
+
+				<div class="group__item">
+					{% include 'styleguide/components/cta/cta.twig' with {
+						title: __('Example call to action', 'impact-investor'),
+						text: __('<p>Saepe tempus incididunt aliquet totam laboris mollis.</p>', 'impact-investor'),
+						button: button,
+					} %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Social share</h2>
+					<code>styleguide/components/social-share.twig</code>
+				</div>
+
+				<div class="group__item">
+					{% include 'styleguide/components/social-share.twig' with {
+						socials: [
+							{
+								title: 'Facebook',
+								type: 'facebook',
+							},
+							{
+								title: 'Twitter',
+								type: 'twitter',
+							},
+							{
+								title: 'Google Plus',
+								type: 'googleplus',
+							},
+							{
+								title: 'LinkedIn',
+								type: 'linkedin',
+							},
+							{
+								title: 'E-mail',
+								type: 'email',
+							},
+							{
+								title: 'WhatsApp',
+								type: 'whatsapp',
+							},
+						]
+					} %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section">
+		<div class="container">
+			<div class="group">
+				<div class="group__item">
+					<h2>Social links (Yoast WPSEO)</h2>
+					<code>styleguide/components/social-media-links.twig</code>
+				</div>
+
+				<div class="group__item">
+					{% include 'styleguide/components/social-media-links.twig' with {
+						socials: [
+							{
+								title: 'Facebook',
+								url: socials.facebook_site,
+								icon: 'facebook',
+							},
+							{
+								title: 'Twitter',
+								url: socials.twitter ? 'https://twitter.com/' ~ socials.twitter_site,
+								icon: 'twitter',
+							},
+							{
+								title: 'LinkedIn',
+								url: socials.linkedin_url,
+								icon: 'linkedin',
+							},
+							{
+								title: 'YouTube',
+								url: socials.youtube_url,
+								icon: 'youtube',
+							}
+						]
+					} %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

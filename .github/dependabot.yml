@@ -24,7 +24,7 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "npm"
-    directory: "/themes/clarkson-theme-dawn"
+    directory: "/themes/impact-investor"
     registries:
       - npm-github
     versioning-strategy: lockfile-only

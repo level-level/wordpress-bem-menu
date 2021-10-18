@@ -1,0 +1,16 @@
+{% if is_admin() %}
+	<div class="gb-placeholder">
+		{{ text ? text : __('%s. This block is empty. <strong>Click here to edit this block.</strong>', 'impact-investor')|format(block.title)|raw }}
+
+		{% if required_fields %}
+			<div class="gb-placeholder__required">
+				<p><strong>{{ __('Required fields:', 'impact-investor') }}</strong></p>
+				<ul>
+					{% for field in required_fields %}
+						<li>{{ field }}</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

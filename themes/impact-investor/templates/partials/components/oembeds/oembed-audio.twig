@@ -1,0 +1,22 @@
+<div class="oembed-audio">
+	<div class="oembed-audio__content">
+		<div class="oembed-audio__placeholder">
+
+			<div class="oembed-audio__button">
+				{% include 'partials/components/oembeds/play-button.twig' with {
+					text: '',
+					aria_label: __('Play audio', 'impact-investor'),
+					class: 'btn--primary btn--js-audio-play',
+					type: 'audio'
+				} %}
+			</div>
+
+			<div class="oembed-audio__title oembed-audio--js-title">
+				{{ source }}
+				{# Gets populated via JS and replaces current content #}
+			</div>
+		</div>
+
+		{{ html|raw }}
+	</div>
+</div>

@@ -21,4 +21,4 @@ params:
 coverage:
     enabled: true
     include:
-        - themes/clarkson-theme-dawn/app/*
+        - themes/impact-investor/app/*

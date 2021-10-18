@@ -74,7 +74,7 @@ jobs:
           wp config set WP_DEBUG true --allow-root
           wp core install --allow-root  --url=localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@test.test
           wp plugin activate gravityforms --allow-root
-          wp theme activate clarkson-theme-dawn --allow-root
+          wp theme activate impact-investor --allow-root
       - name: test:psalm
         run: |
           cd wp-content/
@@ -92,7 +92,7 @@ jobs:
         if: ${{ failure() }}
         with:
           name: acceptance-tests-errors
-          path: /home/runner/work/clarkson-theme-dawn/clarkson-theme-dawn/wp-content/tests/_output/
+          path: /home/runner/work/impact-investor/impact-investor/wp-content/tests/_output/
       - name: test:docs
         run: |
           cd wp-content/
@@ -117,15 +117,15 @@ jobs:
           scope: '@level-level'
       - name: Clean install dependencies
         run: |
-          cd themes/clarkson-theme-dawn
+          cd themes/impact-investor
           npm ci
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - name: Lint
         run: |
-          cd themes/clarkson-theme-dawn
+          cd themes/impact-investor
           npm run lint
       - name: Build
         run: |
-          cd themes/clarkson-theme-dawn
+          cd themes/impact-investor
           npm run build
