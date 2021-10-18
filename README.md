@@ -30,7 +30,7 @@ Text and slug localization via Loco Translate.
 Default text language for this repo is:
 
 - [ ] Dutch
-- [ ] English
+- [x] English
 
 ### Text domain
 The default text domain for this project is `impact-investor`.
