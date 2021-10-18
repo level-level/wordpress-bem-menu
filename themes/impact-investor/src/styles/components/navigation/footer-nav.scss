@@ -1,0 +1,13 @@
+.footer-nav {
+	@include list-unstyled;
+
+	& > * + * {
+		margin-top: 10px;
+	}
+
+	&__link {
+		@include font-size(14px);
+		display: block;
+		text-decoration: none;
+	}
+}

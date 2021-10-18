@@ -1,22 +1,51 @@
 	<footer>
 		<div class="footer">
-			<div class="container">
-
-			</div>
-		</div>
-		<div class="copyright">
-			<div class="container">
-				<div class="row row--spacing row--space-between">
-
-					{% if has_nav_menu('legal_navigation') %}
-						<div class="col-12 col--md-order-2 col-md-auto">
-							{{ bem_menu('legal_navigation', 'legal-nav') }}
-						</div>
-					{% endif %}
-
-					<div class="col-12 col-- col-md-auto">
-						&copy; {{ get_bloginfo('name')|raw }} {{ 'now'|date('Y') }}
+			<nav aria-labelledby="footer-heading">
+				<h2 class="screen-reader-text" id="footer-heading">{{ __('Important links', 'impact-investor') }}</h2>
+				<div class="container">
+					<div class="row row--spacing">
+						{% if has_nav_menu('first_footer_navigation') %}
+							<div class="col-12 col-sm-6 col-md-3">
+								<div class="footer__group">
+									{{ bem_menu('first_footer_navigation', 'footer-nav') }}
+								</div>
+							</div>
+						{% endif %}
+						{% if has_nav_menu('second_footer_navigation') %}
+							<div class="col-12 col-sm-6 col-md-3">
+								<div class="footer__group">
+									{{ bem_menu('second_footer_navigation', 'footer-nav') }}
+								</div>
+							</div>
+						{% endif %}
+						{% if has_nav_menu('third_footer_navigation') %}
+							<div class="col-12 col-sm-6 col-md-3">
+								<div class="footer__group">
+									{{ bem_menu('third_footer_navigation', 'footer-nav') }}
+								</div>
+							</div>
+						{% endif %}
+						{% if has_nav_menu('fourth_footer_navigation') %}
+							<div class="col-12 col-sm-6 col-md-3">
+								<div class="footer__group">
+									{{ bem_menu('fourth_footer_navigation', 'footer-nav') }}
+								</div>
+							</div>
+						{% endif %}
 					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="feed">
+			<div class="container">
+				<div class="feed__inner">
+					{% include 'styleguide/components/buttons/button-link.twig' with {
+						text: __('RSS Home', 'impact-investor'),
+						url: get_bloginfo('rss2_url'),
+						class: 'btn--link',
+						icon: 'icon-whatsapp',
+						icon_left: true,
+					} %}
 				</div>
 			</div>
 		</div>

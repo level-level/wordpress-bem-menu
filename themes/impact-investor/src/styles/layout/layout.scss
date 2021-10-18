@@ -1,0 +1,19 @@
+.layout-row {
+	@include breakpoint-md {
+		display: flex;
+		flex-wrap: nowrap;
+	}
+}
+
+.layout-large {
+	@include breakpoint-md {
+		flex-grow: 1;
+		margin-right: $default-padding;
+	}
+}
+
+.layout-small {
+	@include breakpoint-md {
+		width: 300px;
+	}
+}

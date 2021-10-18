@@ -1,0 +1,24 @@
+{% include 'defaults/head.twig' %}
+
+<main class="main" id="main-content">
+	<div class="section section--no-top">
+		<div class="container">
+			<div class="layout-row">
+				<div class="layout-large">
+					<div class="section-wrapper">
+						{% block content %}{% endblock %}
+					</div>
+				</div>
+				<div class="layout-small">
+					<div class="sidebar">
+						<div class="section-wrapper">
+							{% block sidebar %}{% endblock %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+{% include 'defaults/footer.twig' %}

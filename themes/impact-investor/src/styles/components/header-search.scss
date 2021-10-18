@@ -1,29 +1,59 @@
 .header-search {
 	&__dropdown {
-		position: fixed;
+		display: flex;
+		align-items: center;
+		position: absolute;
+		top: 0;
 		left: 0;
 		right: 0;
-		top: calc(80px + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
-		background-color: $white;
-		z-index: 10;
-		padding: $default-padding*0.5 0;
-		border-bottom: 1px solid $grey;
-
-		@include breakpoint-md {
-			position: absolute;
-			top: 50%;
-			transform: translateY(-50%);
-			left: auto;
-			right: 55px;
-			width: calc(100% - 55px);
-			min-width: 300px;
-			padding: 0;
-			background-color: $primary;
-			border: 0;
-		}
+		bottom: 0;
+		padding: 0;
+		background-color: $black;
+		z-index: 2;
 
 		&[aria-hidden='true'] {
 			display: none;
+		}
+
+		.search-component {
+			input[type='search'] {
+				background-color: transparent;
+				color: $white;
+				border: 0;
+
+				@include placeholder {
+					color: $white;
+					opacity: 0.6;
+				}
+			}
+		}
+
+		&,
+		body.user-is-tabbing & {
+			* {
+				&:focus {
+					@include focus-style($white);
+				}
+			}
+		}
+	}
+
+	&__backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: '';
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: -1;
+		visibility: hidden;
+		opacity: 0;
+		transition: $time;
+
+		&--active {
+			visibility: visible;
+			opacity: 1;
 		}
 	}
 }

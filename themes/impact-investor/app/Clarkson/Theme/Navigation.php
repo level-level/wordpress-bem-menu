@@ -14,8 +14,11 @@ class Navigation {
 	public function register_custom_nav_menus(): void {
 		register_nav_menus(
 			array(
-				'primary_navigation' => __( 'Primary Navigation', 'impact-investor' ),
-				'legal_navigation'   => __( 'Legal Navigation', 'impact-investor' ),
+				'primary_navigation'       => __( 'Primary navigation', 'impact-investor' ),
+				'first_footer_navigation'  => __( 'First footer navigation', 'impact-investor' ),
+				'second_footer_navigation' => __( 'Second footer navigation', 'impact-investor' ),
+				'third_footer_navigation'  => __( 'Third footer navigation', 'impact-investor' ),
+				'fourth_footer_navigation' => __( 'Fourth footer navigation', 'impact-investor' ),
 			)
 		);
 	}

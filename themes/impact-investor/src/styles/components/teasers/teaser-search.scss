@@ -4,11 +4,11 @@
 	transition: border $time;
 
 	&:focus-within {
-		border-color: $primary;
+		border-color: $quaternary;
 	}
 
 	@include hover {
-		border-color: $primary;
+		border-color: $quaternary;
 	}
 
 	&__inner {
@@ -17,7 +17,7 @@
 
 	&__link {
 		@include absolute-link;
-		color: $primary;
+		color: $quaternary;
 		text-decoration: none;
 	}
 }
