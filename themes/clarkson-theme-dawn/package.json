@@ -1,0 +1,30 @@
+{
+  "name": "clarkson-theme-dawn",
+  "version": "0.0.1",
+  "description": "clarkson-theme-dawn",
+  "author": "Level Level",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/level-level/clarkson-theme-dawn.git"
+  },
+  "scripts": {
+    "build": "dawn build",
+    "start": "dawn start",
+    "lint": "dawn lint",
+    "fix": "dawn lint --fix",
+    "optimize-images": "dawn optimize-images",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
+  },
+  "dependencies": {
+    "@level-level/recyclops": "^1.0.0",
+    "normalize.css": "^8.0.1"
+  },
+  "devDependencies": {
+    "@level-level/eslint-config-level-level": "^1.0.1",
+    "@level-level/storybook-config": "^1.0.0",
+    "@level-level/stylelint-config-level-level": "^1.0.0",
+    "@level-level/webpack-config": "^1.2.1"
+  }
+}

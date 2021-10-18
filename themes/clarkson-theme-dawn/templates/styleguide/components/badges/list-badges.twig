@@ -1,0 +1,11 @@
+{% if badges %}
+	<ul class="list-badges">
+		{% for badge in badges %}
+			<li class="list-badges__item">
+				{% include 'styleguide/components/badges/badge.twig' with {
+					title: badge.name,
+				} %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}

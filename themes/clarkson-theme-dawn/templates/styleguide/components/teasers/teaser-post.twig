@@ -1,0 +1,45 @@
+<div class="teaser-post">
+
+	{% if image %}
+		<div class="teaser-post__thumbnail">
+			{{ image|raw }}
+		</div>
+	{% endif %}
+
+	<div class="teaser-post__inner">
+		<div class="group group--small">
+
+			<div class="group__item">
+				<h3 class="teaser-post__title">
+					<a href="{{ url }}" class="teaser-post__link">
+						{{ title|raw }}
+					</a>
+				</h3>
+			</div>
+
+			{% if terms %}
+				<div class="group__item">
+					<span class="screen-reader-text">
+						{{ __('Posted in category:', 'clarkson-theme-dawn') }}
+					</span>
+					{% include 'styleguide/components/badges/list-badges.twig' with {
+						badges: terms,
+					} %}
+				</div>
+			{% endif %}
+
+			{% if excerpt %}
+				<div class="group__item">
+					{{ excerpt|raw }}
+				</div>
+			{% endif %}
+
+			<div class="group__item">
+				<div class="teaser-post__date">
+					<span class="screen-reader-text">{{ __('Published on:', 'clarkson-theme-dawn') }}</span>
+					<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

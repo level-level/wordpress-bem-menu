@@ -1,0 +1,13 @@
+{% if socials %}
+	<ul class="list-social">
+		{% for social in socials %}
+			{% if social.url %}
+				<li class="list-social__item">
+					<a href="{{ social.url }}" class="list-social__link" aria-label="{{ social.label ? social.label : social.title }}">
+						<span class="icon icon-{{ social.icon }}" aria-hidden="true"></span>
+					</a>
+				</li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+{% endif %}

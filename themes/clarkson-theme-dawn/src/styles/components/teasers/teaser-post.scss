@@ -1,0 +1,36 @@
+.teaser-post {
+	position: relative;
+	border: 1px solid $grey;
+	height: 100%;
+	transition: border $time;
+
+	&:focus-within {
+		border-color: $primary;
+	}
+
+	@include hover {
+		border-color: $primary;
+	}
+
+	&__inner {
+		padding: $default-padding*0.5;
+	}
+
+	&__thumbnail {
+		@include image-ratio(16,9);
+
+		img {
+			@include center-element;
+		}
+	}
+
+	&__link {
+		@include absolute-link;
+		color: $primary;
+		text-decoration: none;
+	}
+
+	&__date {
+		@include font-size(14px);
+	}
+}

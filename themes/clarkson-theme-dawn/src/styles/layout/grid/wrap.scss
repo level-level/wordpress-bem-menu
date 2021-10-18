@@ -1,0 +1,55 @@
+// For example:
+// .row--nowrap
+// .row--md-wrap
+// .row--sm-nowrap
+.row {
+	&--nowrap {
+		flex-wrap: nowrap;
+	}
+
+	&--wrap {
+		flex-wrap: wrap;
+	}
+
+	@each $state in $states {
+		&--#{$state}-nowrap {
+			@if $state == 'sm' {
+				@include breakpoint-sm {
+					flex-wrap: nowrap;
+				}
+			}
+
+			@if $state == 'md' {
+				@include breakpoint-md {
+					flex-wrap: nowrap;
+				}
+			}
+
+			@if $state == 'lg' {
+				@include breakpoint-lg {
+					flex-wrap: nowrap;
+				}
+			}
+		}
+
+		&--#{$state}-wrap {
+			@if $state == 'sm' {
+				@include breakpoint-sm {
+					flex-wrap: wrap;
+				}
+			}
+
+			@if $state == 'md' {
+				@include breakpoint-md {
+					flex-wrap: wrap;
+				}
+			}
+
+			@if $state == 'lg' {
+				@include breakpoint-lg {
+					flex-wrap: wrap;
+				}
+			}
+		}
+	}
+}

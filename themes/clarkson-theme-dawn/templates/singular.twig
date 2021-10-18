@@ -1,0 +1,47 @@
+{% extends 'layouts/full-width.twig' %}
+{% set object = objects|first %}
+{% set title = object.get_title() %}
+
+{% block content %}
+	<div class="section">
+		<div class="entry-content">
+			<h1 class="entry-title">{{ title|raw }}</h1>
+			{{ object.get_content()|raw }}
+		</div>
+	</div>
+
+
+	<div class="section">
+		<div class="aligncenter">
+			{% include 'styleguide/components/social-share.twig' with {
+				share_text: title,
+				socials: [
+					{
+						title: 'Facebook',
+						type: 'facebook',
+					},
+					{
+						title: 'Twitter',
+						type: 'twitter',
+					},
+					{
+						title: 'Google Plus',
+						type: 'googleplus',
+					},
+					{
+						title: 'LinkedIn',
+						type: 'linkedin',
+					},
+					{
+						title: 'E-mail',
+						type: 'email',
+					},
+					{
+						title: 'WhatsApp',
+						type: 'whatsapp',
+					},
+				]
+			} %}
+		</div>
+	</div>
+{% endblock %}

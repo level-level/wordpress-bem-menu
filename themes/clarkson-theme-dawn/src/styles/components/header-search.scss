@@ -1,0 +1,29 @@
+.header-search {
+	&__dropdown {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: calc(80px + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
+		background-color: $white;
+		z-index: 10;
+		padding: $default-padding*0.5 0;
+		border-bottom: 1px solid $grey;
+
+		@include breakpoint-md {
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			left: auto;
+			right: 55px;
+			width: calc(100% - 55px);
+			min-width: 300px;
+			padding: 0;
+			background-color: $primary;
+			border: 0;
+		}
+
+		&[aria-hidden='true'] {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,58 @@
+<div class="section">
+	<div class="container">
+		<div class="entry-content">
+
+			{% set lists = [
+				{
+					'title': 'Unordered',
+					'type': 'ul',
+				},
+				{
+					'title': 'Ordered',
+					'type': 'ol',
+				},
+			] %}
+
+			{% for list in lists %}
+				<h2>{{ list.title }}</h2>
+				<{{ list.type }}>
+					{% for i in 1..2 %}
+						<li>{{ content|raw }} {{ i }}
+
+							{% if loop.index == 2 %}
+								<ul>
+									{% for x in 1..2 %}
+										<li>{{ content|raw }} {{ x }}</li>
+									{% endfor %}
+										<ul>
+											{% for y in 1..2 %}
+												<li>{{ content|raw }} {{ y }}</li>
+											{% endfor %}
+										</ul>
+									</li>
+								</ul>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</li>
+					{% for i in 1..3 %}
+						<li>{{ content|raw }} {{ i }}
+
+							{% if loop.index == 3 %}
+								<ol>
+									{% for i in 1..3 %}
+										<li>{{ content|raw }} {{ i }}</li>
+									{% endfor %}
+								</ol>
+							{% endif %}
+						</li>
+					{% endfor %}
+					</li>
+					{% for i in 1..2 %}
+						<li>{{ content|raw }} {{ i }}</li>
+					{% endfor %}
+				</{{ list.type }}>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,22 @@
+:root {
+	--primary: #1c304a;
+	--secondary: #6635df;
+
+	// Greyscale
+	--white: #fff;
+	--grey: #efefef;
+	--black: #000;
+
+	// Form validation
+	--error: #ffecb3;
+	--outline: #14a1c8;
+}
+
+// Use these variables in the scss files
+$primary: var(--primary);
+$secondary: var(--secondary);
+$white: var(--white);
+$grey: var(--grey);
+$black: var(--black);
+$error: var(--error);
+$outline: var(--outline);

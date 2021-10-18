@@ -1,0 +1,38 @@
+import Terms from '../data/Terms.js';
+
+export default {
+	title: 'Components/Teasers/Post',
+	parameters: {
+		server: {
+			id: 'styleguide/components/teasers/teaser-post.twig',
+		},
+	},
+	argTypes: {
+		title: {
+			control: 'text'
+		},
+		excerpt: {
+			control: 'text'
+		},
+		terms: {
+			control: 'array'
+		},
+		date: {
+			control: 'text'
+		},
+	},
+	args: {
+		image: '<img src="https://place-hold.it/1048x680" loading="lazy" class="teaser-post__image" width="1024" height="680" alt="">',
+		title: 'Example Post teaser',
+		url: '#',
+		excerpt: '<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
+		terms: Terms,
+		date: 'April 21, 2021',
+		datetime: '2021-04-21',
+	},
+};
+
+const Template = () => {};
+
+export const Default = Template.bind( {} );
+Default.args = {};

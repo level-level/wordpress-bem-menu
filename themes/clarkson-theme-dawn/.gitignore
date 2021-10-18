@@ -1,0 +1,6 @@
+/dist/
+/node_modules/
+bundle-analyzer.json
+config.local.json
+/languages/*
+storybook-static

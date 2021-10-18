@@ -1,0 +1,30 @@
+<div class="cta align{{ align }}">
+	<div class="cta__inner">
+
+		<div class="group group--small">
+
+			{% if title %}
+				<div class="group__item">
+					<h2 class="color-white">{{ title }}</h2>
+				</div>
+			{% endif %}
+
+			{% if text %}
+				<div class="group__item">
+					{{ text|raw }}
+				</div>
+			{% endif %}
+
+			{% if button.url %}
+				<div class="group__item">
+					{% include 'styleguide/components/buttons/button-link.twig' with {
+						text: button.title,
+						url: button.url,
+						class: 'btn--primary',
+						is_external: button.target ? true,
+					} %}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>

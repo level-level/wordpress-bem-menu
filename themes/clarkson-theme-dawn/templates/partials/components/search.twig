@@ -1,0 +1,28 @@
+{% set random_id = uniqid('searchbar-') %}
+<form class="search-component" method="get" action="{{ get_home_url() }}" role="search">
+	<div class="row row--small row--spacing row--align-center row--nowrap">
+		<div class="col-auto col--grow-1">
+			<label for="{{ random_id }}" class="screen-reader-text">{{ __('Search', 'clarkson-theme-dawn') }}</label>
+			<input
+				type="search"
+				name="s"
+				value="{{ the_search_query() }}"
+				id="{{ random_id }}"
+				placeholder="{{ __('Search by keyword', 'clarkson-theme-dawn') }}"
+				autocomplete="off"
+				autocapitalize="off"
+				spellcheck="false"
+			>
+		</div>
+		<div class="col-auto">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				text: '',
+				class: 'btn--secondary',
+				aria_label: __('Search', 'clarkson-theme-dawn'),
+				icon: 'icon-search',
+				icon_left: true,
+				type: 'submit'
+			} %}
+		</div>
+	</div>
+</form>

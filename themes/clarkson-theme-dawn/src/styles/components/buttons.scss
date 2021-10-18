@@ -1,0 +1,156 @@
+@mixin btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: $default-padding*0.5;
+	font-weight: bold;
+	background-color: transparent;
+	text-decoration: none;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	line-height: 1;
+	user-select: none;
+	color: $black;
+	cursor: pointer;
+	transition: $time;
+	-webkit-appearance: none;
+
+	&:focus,
+	&:active {
+	}
+
+	@include hover {
+	}
+
+	// Button disabled
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
+
+@mixin btn--primary {
+	background-color: $primary;
+	color: $white;
+}
+
+@mixin btn--secondary {
+	background-color: $secondary;
+	color: $white;
+}
+
+@mixin btn--ghost {
+	background-color: transparent;
+	border: 2px solid $black;
+}
+
+@mixin btn--link {
+	padding-left: 0;
+	padding-right: 0;
+	text-decoration: underline;
+}
+
+@mixin btn--share {
+	@include font-size(18px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-decoration: none;
+	background-color: $grey;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+// Styles to reset a styled button
+@mixin reset-button-styles {
+	background-color: transparent;
+	padding: 0;
+}
+
+button,
+input[type='submit'],
+input[type='button'] {
+	@include btn;
+	@include btn--primary;
+	line-height: inherit;
+}
+
+// Color variations
+.btn {
+	@include btn;
+
+	&--primary {
+		@include btn--primary;
+	}
+
+	&--secondary {
+		@include btn--secondary;
+	}
+
+	&--ghost {
+		@include btn--ghost;
+	}
+
+	&--link {
+		@include btn--link;
+	}
+
+	&--share {
+		@include btn--share;
+	}
+
+	&--search {
+		&[aria-expanded='true'] {
+			.icon {
+				&:before {
+					content: $icon-close;
+				}
+			}
+		}
+	}
+}
+
+// Button utilities
+.btn {
+	// Force full width
+	&--full {
+		width: 100%;
+	}
+
+	&--mobile-full {
+		width: 100%;
+
+		@include breakpoint-sm {
+			width: auto;
+		}
+	}
+
+	&--small {
+		padding: 8px;
+	}
+
+	// To make sure the button and icon(s) are always on top when working with psuedo elements
+	&__text,
+	&__icon {
+		position: relative;
+		z-index: 1;
+	}
+
+	// Adds padding to the icon on the right
+	&__text {
+		& + * {
+			padding-left: 10px;
+		}
+	}
+
+	// Adds padding to the text after the first icon
+	&__icon {
+		display: flex;
+		align-items: center;
+
+		& + * {
+			padding-left: 10px;
+		}
+	}
+}

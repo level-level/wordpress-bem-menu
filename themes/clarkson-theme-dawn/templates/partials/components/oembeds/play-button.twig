@@ -1,0 +1,23 @@
+{% if aria_label %}
+	{% set aria_label = 'aria-label="%s"'|format(aria_label) %}
+{% endif %}
+
+{% if type %}
+	{% set type = 'type="%s"'|format(type) %}
+{% endif %}
+
+<button class="btn {{ class|raw }}" {{ aria_label|raw }} {{ type|raw }}>
+
+	<span class="btn__icon">
+		<svg viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; color: currentColor; max-width: 24px;">
+			<path d="M7.712 22.04a.732.732 0 0 1-.806.007.767.767 0 0 1-.406-.703V4.656c0-.31.135-.544.406-.703.271-.16.54-.157.806.006l14.458 8.332c.266.163.4.4.4.709 0 .31-.134.546-.4.71L7.712 22.04z" fill="currentColor" fill-rule="evenodd"></path>
+		</svg>
+	</span>
+
+	{% if text %}
+		<span class="btn__text">
+			{{ text|raw }}
+		</span>
+	{% endif %}
+
+</button>

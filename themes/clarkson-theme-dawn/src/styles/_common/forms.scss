@@ -1,0 +1,180 @@
+// Forms
+//
+// @include form-control;
+//
+// Applies default form styling
+@mixin form-control {
+	position: relative;
+	box-sizing: border-box;
+	display: block;
+	width: 100%;
+	border-radius: 0;
+	padding: 0 $default-padding*0.5;
+	border: 1px solid $black;
+	min-width: 90px;
+	height: $input-height;
+	line-height: $input-height;
+	-webkit-appearance: none;
+
+	&:focus,
+	&:active {
+		@include focus-style;
+	}
+
+	@include placeholder {
+		color: $black;
+		opacity: 0.8;
+	}
+}
+
+@mixin textarea {
+	@include form-control;
+	height: 150px;
+	padding: $default-padding*0.5;
+	line-height: inherit;
+
+	@include breakpoint-sm {
+		height: 150px;
+		line-height: inherit;
+	}
+}
+
+@mixin label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+@mixin radiobutton {
+	position: absolute;
+	top: auto;
+	left: -9999px;
+	opacity: 0;
+
+	&:checked + label {
+		&:after {
+			display: block;
+		}
+	}
+
+	&:focus + label:before {
+		@include focus-style;
+	}
+}
+
+@mixin radiobutton-label {
+	position: relative;
+	padding-left: $default-padding;
+	font-weight: normal;
+	margin: 0;
+
+	&:before {
+		position: absolute;
+		left: 0;
+		top: 2px;
+		width: 16px;
+		height: 16px;
+		border: 1px solid $black;
+		border-radius: 50%;
+		content: '';
+	}
+
+	&:after {
+		display: none;
+		position: absolute;
+		left: 3px;
+		top: 5px;
+		width: 12px;
+		height: 12px;
+		background-color: $black;
+		border-radius: 50%;
+		content: '';
+	}
+}
+
+@mixin checkbox {
+	@include radiobutton;
+}
+
+@mixin checkbox-label {
+	@include radiobutton-label;
+
+	&:before,
+	&:after {
+		border-radius: 0;
+	}
+}
+
+@mixin select {
+	@include form-control;
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
+	background-size: 12px;
+	background-position: calc(100% - #{$default-padding*0.5}) calc(50% + 3px);
+	background-repeat: no-repeat;
+	background-color: $white;
+	padding-right: $default-padding + $default-padding*0.5;
+
+	// Removes the IE dropdown arrow
+	&::-ms-expand {
+		display: none;
+	}
+
+	&[multiple] {
+		min-height: 100px;
+		background-image: none;
+		padding: $default-padding*0.5;
+	}
+}
+
+input[type='text'],
+input[type='password'],
+input[type='number'],
+input[type='email'],
+input[type='tel'],
+input[type='url'],
+input[type='search'] {
+	@include form-control;
+}
+
+select {
+	@include select;
+}
+
+textarea {
+	@include textarea;
+}
+
+label,
+legend {
+	@include label;
+}
+
+input[type='radio'] {
+	@include radiobutton;
+}
+
+input[type='radio'] + label {
+	@include radiobutton-label;
+}
+
+input[type='checkbox'] {
+	@include checkbox;
+}
+
+input[type='checkbox'] + label {
+	@include checkbox-label;
+}
+
+fieldset {
+	padding: 0;
+	border: 0;
+	margin: 0;
+}
+
+.woocommerce-form__input-checkbox[type='checkbox'] {
+	position: relative;
+	top: auto;
+	left: auto;
+	opacity: 1;
+}

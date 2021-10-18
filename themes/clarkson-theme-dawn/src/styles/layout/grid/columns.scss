@@ -1,0 +1,68 @@
+@use 'sass:math';
+
+[class^='col-'] {
+	padding-left: $gutter*0.5;
+	padding-right: $gutter*0.5;
+}
+
+.col-auto {
+	width: auto;
+}
+
+// For example:
+// .col-3
+// .col-12
+@for $i from 1 through $columns {
+	.col-#{$i} {
+		width: math.percentage(math.div($i, $columns));
+	}
+}
+
+// For example:
+// .col-sm-1
+// .col-lg-6
+@each $state in $states {
+	.col-#{$state}-auto {
+		@if $state == 'sm' {
+			@include breakpoint-sm {
+				width: auto;
+			}
+		}
+
+		@if $state == 'md' {
+			@include breakpoint-md {
+				width: auto;
+			}
+		}
+
+		@if $state == 'lg' {
+			@include breakpoint-lg {
+				width: auto;
+			}
+		}
+	}
+
+	@for $i from 1 through $columns {
+		$width: math.percentage(math.div($i, $columns));
+
+		.col-#{$state}-#{$i} {
+			@if $state == 'sm' {
+				@include breakpoint-sm {
+					width: $width;
+				}
+			}
+
+			@if $state == 'md' {
+				@include breakpoint-md {
+					width: $width;
+				}
+			}
+
+			@if $state == 'lg' {
+				@include breakpoint-lg {
+					width: $width;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,86 @@
+// Main column width
+.wp-block {
+	max-width: $content-width;
+
+	&.is-reusable {
+		max-width: none;
+	}
+}
+
+// Width of 'wide' blocks
+.wp-block[data-align='wide'] {
+	@include alignwide;
+}
+
+// Width of 'full-wide' blocks
+.wp-block[data-align='full'] {
+	max-width: none;
+}
+
+// Post/Page title
+.editor-post-title {
+	.editor-post-title__input {
+	}
+}
+
+// Text styling in gutenberg core blocks
+.block-editor {
+	.editor-styles-wrapper {
+		@include body-styles;
+
+		*[data-type='core/heading'] {
+		}
+
+		*[data-type='core/quote'] {
+			@include blockquote;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		ol[data-type='core/list'],
+		ul[data-type='core/list'] {
+		}
+
+		p {
+			&.has-intro-font-size {
+			}
+		}
+	}
+}
+
+// Resets gutenbergs box-sizing style
+.editor-styles-wrapper ol,
+.editor-styles-wrapper ul {
+	box-sizing: border-box;
+}
+
+.gb-placeholder,
+.gb-invalid {
+	position: relative;
+	padding: $default-padding;
+	background-color: $error;
+
+	&__required {
+		margin-top: 15px;
+
+		ul {
+			margin: 0;
+		}
+	}
+}
+
+.block-editor-block-list {
+	&__layout {
+		> * + * {
+			margin-top: $default-padding*0.5;
+
+			@include breakpoint-sm {
+				margin-top: $default-padding;
+			}
+
+			@include breakpoint-md {
+				margin-top: $default-padding*1.5;
+			}
+		}
+	}
+}

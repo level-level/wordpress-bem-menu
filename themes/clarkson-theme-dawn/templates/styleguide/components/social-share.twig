@@ -1,0 +1,15 @@
+{% if socials %}
+	<ul class="list-social-share" data-module="socials">
+		{% for social in socials %}
+			<li class="list-social-share__item">
+				{% include 'styleguide/components/buttons/button-element.twig' with {
+					text: '',
+					class: 'btn--share js--share',
+					icon: 'icon-' ~ social.type,
+					data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
+					aria_label: __('Share via %1$s — This button opens a share-on-%1$s dialog in a new window.', 'clarkson-theme-dawn')|format(social.title),
+				} only %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}

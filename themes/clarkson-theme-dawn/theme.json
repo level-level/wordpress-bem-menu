@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "settings": {
+    "color": {
+        "custom": false,
+        "customDuotone": false,
+        "customGradient": false,
+        "duotone": [],
+        "gradients": [],
+        "link": false,
+        "palette": []
+    },
+    "layout": {
+        "contentSize": "800px",
+        "wideSize": "1000px"
+    },
+    "typography": {
+      "customFontSize": false,
+      "customLineHeight": false,
+      "dropCap": false
+    }
+  }
+}

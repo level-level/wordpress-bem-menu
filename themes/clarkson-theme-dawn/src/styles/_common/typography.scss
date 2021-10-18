@@ -1,0 +1,121 @@
+body {
+	@include body-styles;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	display: block;
+	margin: 0;
+	padding: 0;
+	color: $primary;
+}
+
+h1,
+.h1 {
+	@include font-size(24px, 36px);
+
+	@include breakpoint-sm {
+		@include font-size(32px, 48px);
+	}
+
+	@include breakpoint-lg {
+		@include font-size(42px, 60px);
+	}
+}
+
+h2,
+.h2 {
+	@include font-size(21px, 28px);
+
+	@include breakpoint-sm {
+		@include font-size(30px, 40px);
+	}
+}
+
+h3,
+.h3 {
+	@include font-size(18px, 27px);
+
+	@include breakpoint-sm {
+		@include font-size(24px, 36px);
+	}
+}
+
+h4,
+.h4 {
+	@include font-size(16px, 24px);
+
+	@include breakpoint-sm {
+		@include font-size(20px, 30px);
+	}
+}
+
+.color-white {
+	color: $white;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	text-decoration: underline;
+	color: $black;
+}
+
+strong {
+	font-weight: bold;
+}
+
+figure {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+dl {
+	margin: 0;
+}
+
+dt,
+dd {
+	line-height: inherit;
+}
+
+dt {
+	font-weight: bold;
+}
+
+dd {
+	margin-left: 0; // Undo browser default
+}
+
+address {
+	font-style: normal;
+}
+
+// Focus style
+* {
+	&:focus {
+		@include focus-style;
+	}
+
+	&:not(input),
+	&:not(textarea),
+	&:not(select) {
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+body.user-is-tabbing {
+	* {
+		&:focus {
+			@include focus-style;
+		}
+	}
+}

@@ -1,0 +1,35 @@
+// For example:
+// .col--order-1
+// .col--md-order-2
+// .col--sm-order-3
+.col {
+	@for $i from 1 through 10 {
+		&--order-#{$i} {
+			order: #{$i};
+		}
+	}
+
+	@each $state in $states {
+		@for $i from 1 through 3 {
+			&--#{$state}-order-#{$i} {
+				@if $state == 'sm' {
+					@include breakpoint-sm {
+						order: #{$i};
+					}
+				}
+
+				@if $state == 'md' {
+					@include breakpoint-md {
+						order: #{$i};
+					}
+				}
+
+				@if $state == 'lg' {
+					@include breakpoint-lg {
+						order: #{$i};
+					}
+				}
+			}
+		}
+	}
+}

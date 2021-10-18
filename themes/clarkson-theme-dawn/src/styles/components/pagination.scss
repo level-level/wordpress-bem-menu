@@ -1,0 +1,55 @@
+// Pagination styling for the default WordPress styling and the FacetWP Pager
+.pagination {
+	ul {
+		@include list-unstyled;
+		display: flex;
+		align-items: center;
+
+		li {
+			display: block;
+			margin-right: 5px;
+
+			&:last-child {
+				margin-right: 0;
+			}
+		}
+
+		a {
+			display: block;
+			padding: 10px 15px;
+			border: 1px solid black;
+			cursor: pointer;
+
+			&.prev,
+			&.next {
+				text-decoration: none;
+			}
+		}
+
+		span {
+			&.current {
+				display: block;
+				padding: 10px 15px;
+				border: 1px solid black;
+				font-weight: bold;
+			}
+
+			&.dots {
+				display: block;
+				padding: 10px 15px;
+			}
+		}
+	}
+
+	&__icon {
+		&:before {
+			content: '<';
+		}
+
+		&--next {
+			&:before {
+				content: '>';
+			}
+		}
+	}
+}

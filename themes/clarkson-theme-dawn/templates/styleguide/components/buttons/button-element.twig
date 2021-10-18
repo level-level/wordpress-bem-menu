@@ -1,0 +1,69 @@
+{#
+	Button element
+
+	Options:
+	text: text in the button
+	class: button class
+	icon: class of an icon
+	icon_left: bool
+	aria_expanded_support: bool
+	aria_label: aria label on the link
+	aria_collapsed_text: string e.g. 'Open the search'
+	aria_expanded_text: string e.g. 'Close the search'
+	type: string e.g. 'submit'
+	data_module: string e.g. when wanting to add a js module on the button
+	data_config: object e.g. adds the data-config property
+	id: string as an id
+#}
+
+{% if aria_expanded_support %}
+	{% set aria_expanded = 'aria-expanded="false"' %}
+{% endif %}
+
+{% if aria_label %}
+	{% set aria_label = 'aria-label="%s"'|format(aria_label) %}
+{% endif %}
+
+{% if type %}
+	{% set type = 'type="%s"'|format(type) %}
+{% endif %}
+
+{% if aria_collapsed_text %}
+	{% set aria_collapsed_text = 'data-collapsed="%s"'|format(aria_collapsed_text) %}
+{% endif %}
+
+{% if aria_expanded_text %}
+	{% set aria_expanded_text = 'data-expanded="%s"'|format(aria_expanded_text) %}
+{% endif %}
+
+{% if data_module %}
+	{% set data_module = 'data-module="%s"'|format(data_module) %}
+{% endif %}
+
+{% if data_config %}
+	{% set data_config = "data-config='%s'"|format(data_config) %}
+{% endif %}
+
+{% if id %}
+	{% set id = 'id="%s"'|format(id) %}
+{% endif %}
+
+<button class="btn {{ class|raw }}" {{ id|raw }} {{ data_module|raw }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }}>
+	{% if icon and icon_left %}
+		<span class="btn__icon">
+			<span class="icon {{ icon|raw }}" aria-hidden="true"></span>
+		</span>
+	{% endif %}
+
+	{% if text %}
+		<span class="btn__text">
+			{{ text|raw }}
+		</span>
+	{% endif %}
+
+	{% if icon and not icon_left %}
+		<span class="btn__icon">
+			<span class="icon {{ icon|raw }}" aria-hidden="true"></span>
+		</span>
+	{% endif %}
+</button>

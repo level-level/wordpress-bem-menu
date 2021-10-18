@@ -1,0 +1,24 @@
+/.idea/
+/themes/twenty*
+/plugins/
+/mu-plugins/
+/uploads/
+/languages/
+/cache/
+/vendor/
+/ewww/
+/wflogs/
+/wonolog/
+/debug.log
+/.phpunit.result.cache
+/tests/coverage
+
+.secrets
+
+codeception.yml
+.env.testing.local
+
+# Ignore Mac OSX related files
+.DS_Store
+.AppleDouble
+.LSOverride

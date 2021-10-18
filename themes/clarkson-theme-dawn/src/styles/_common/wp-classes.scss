@@ -1,0 +1,46 @@
+/* Block alignments */
+.alignleft {
+	@include alignleft;
+}
+
+.alignright {
+	@include alignright;
+}
+
+.alignfull {
+	@include alignfull;
+}
+
+.aligncenter {
+	@include aligncenter;
+}
+
+.alignwide {
+	@include alignwide;
+}
+
+/* Overwrite some default wp classes */
+.wp-block-table,
+.wp-block-image,
+.wp-block-embed {
+	figcaption {
+		@include font-size(14px);
+		color: $black;
+		text-align: center;
+		margin: 0;
+		margin-top: 5px;
+	}
+}
+
+.wp-block-columns {
+	margin-top: -#{$default-padding};
+	margin-bottom: 0;
+
+	+ .wp-block-columns {
+		padding-top: $default-padding;
+	}
+}
+
+.wp-block-column {
+	margin-top: $default-padding;
+}

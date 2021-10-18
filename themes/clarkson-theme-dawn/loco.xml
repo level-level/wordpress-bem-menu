@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="Clarkson Theme Dawn">
+	<domain name="clarkson-theme-dawn">
+		<project name="Clarkson Theme" slug="clarkson-theme-dawn">
+			<source>
+				<directory>.</directory>
+			</source>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template locked="true">
+				<file>languages/clarkson-theme-dawn.pot</file>
+			</template>
+		</project>
+	</domain>
+	<domain name="clarkson-theme-dawn-slugs">
+		<project name="Clarkson Theme slugs" slug="clarkson-theme-dawn-slugs">
+			<source>
+				<directory>.</directory>
+			</source>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template locked="true">
+				<file>languages/clarkson-theme-dawn-slugs.pot</file>
+			</template>
+		</project>
+	</domain>
+</bundle>

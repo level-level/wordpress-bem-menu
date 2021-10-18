@@ -1,0 +1,43 @@
+/*
+ * Offset default
+ */
+
+@use 'sass:math';
+
+// For example:
+// .offset-2
+// .offset-6
+@for $i from 0 through $columns {
+	.offset-#{$i} {
+		margin-left: math.percentage(math.div($i, $columns));
+	}
+}
+
+// For example:
+// .offset-sm-2
+// .offset-lg-6
+@each $state in $states {
+	@for $i from 0 through $columns {
+		$offset: math.percentage(math.div($i, $columns));
+
+		.offset-#{$state}-#{$i} {
+			@if $state == 'sm' {
+				@include breakpoint-sm {
+					margin-left: $offset;
+				}
+			}
+
+			@if $state == 'md' {
+				@include breakpoint-md {
+					margin-left: $offset;
+				}
+			}
+
+			@if $state == 'lg' {
+				@include breakpoint-lg {
+					margin-left: $offset;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,9 @@
+.badge {
+	@include font-size(12px);
+	position: relative;
+	background-color: $primary;
+	color: $white;
+	padding: 2px 10px;
+	font-weight: bold;
+	border-radius: 3px;
+}

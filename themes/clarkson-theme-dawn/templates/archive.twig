@@ -1,0 +1,45 @@
+{% extends 'layouts/archive.twig' %}
+
+{% block header %}
+	<div class="section">
+		<div class="container">
+			<h1>{{ post_type.get_archive_title() }}</h1>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	{% if objects %}
+		<div class="section">
+			<div class="container">
+				<ul class="row row--spacing">
+					{% set date_format = get_option('date_format') %}
+
+					{% for object in objects %}
+
+						{% set image_id = object.get_thumbnail_id() %}
+						{% set terms = object.get_terms('category') %}
+
+						<li class="col-12 col-sm-6 col-md-4">
+							{% include 'styleguide/components/teasers/teaser-post.twig' with {
+								image: image_id ? wp_get_attachment_image(image_id, 'large'),
+								title: object.get_title(),
+								url: object.get_permalink(),
+								excerpt: object.get_excerpt(),
+								date: object.get_date_i18n(date_format),
+								datetime: object.get_date_i18n('Y-m-d'),
+								terms: terms ? terms|map(term => {
+									name: term.get_name(),
+								})
+							} %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block pagination %}
+	{% include 'partials/components/pagination.twig' %}
+{% endblock %}

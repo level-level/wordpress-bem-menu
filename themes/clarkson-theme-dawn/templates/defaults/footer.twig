@@ -1,0 +1,26 @@
+	<footer>
+		<div class="footer">
+			<div class="container">
+
+			</div>
+		</div>
+		<div class="copyright">
+			<div class="container">
+				<div class="row row--spacing row--space-between">
+
+					{% if has_nav_menu('legal_navigation') %}
+						<div class="col-12 col--md-order-2 col-md-auto">
+							{{ bem_menu('legal_navigation', 'legal-nav') }}
+						</div>
+					{% endif %}
+
+					<div class="col-12 col-- col-md-auto">
+						&copy; {{ get_bloginfo('name')|raw }} {{ 'now'|date('Y') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+{{ wp_footer() }}
+</body>
+</html>

@@ -1,0 +1,4 @@
+# This file should be symlinked from the webroot.
+
+User-Agent: *
+Disallow:

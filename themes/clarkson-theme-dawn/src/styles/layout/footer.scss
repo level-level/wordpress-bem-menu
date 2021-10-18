@@ -1,0 +1,10 @@
+.footer {
+	position: relative;
+	background-color: $primary;
+	padding: $default-padding 0;
+}
+
+.copyright {
+	@include font-size(14px);
+	padding: $default-padding*0.5 0;
+}

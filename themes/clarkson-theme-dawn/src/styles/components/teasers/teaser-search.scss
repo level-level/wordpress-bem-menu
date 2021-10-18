@@ -1,0 +1,23 @@
+.teaser-search {
+	position: relative;
+	border: 1px solid $grey;
+	transition: border $time;
+
+	&:focus-within {
+		border-color: $primary;
+	}
+
+	@include hover {
+		border-color: $primary;
+	}
+
+	&__inner {
+		padding: $default-padding*0.5;
+	}
+
+	&__link {
+		@include absolute-link;
+		color: $primary;
+		text-decoration: none;
+	}
+}

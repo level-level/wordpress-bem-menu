@@ -1,0 +1,39 @@
+.hidden-xs {
+	display: none;
+}
+
+.hidden-sm {
+	@include breakpoint-sm {
+		display: none;
+	}
+}
+
+.visible-sm {
+	@include breakpoint-sm {
+		display: block;
+	}
+}
+
+.hidden-md {
+	@include breakpoint-md {
+		display: none;
+	}
+}
+
+.visible-md {
+	@include breakpoint-md {
+		display: block;
+	}
+}
+
+.hidden-lg {
+	@include breakpoint-lg {
+		display: none;
+	}
+}
+
+.visible-lg {
+	@include breakpoint-lg {
+		display: block;
+	}
+}

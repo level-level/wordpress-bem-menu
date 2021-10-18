@@ -1,0 +1,145 @@
+@mixin responsive-table {
+	border-spacing: 0;
+	border-collapse: collapse;
+	width: 100%;
+
+	thead,
+	tbody,
+	tfoot {
+		tr {
+			border: 1px solid $black;
+			border-bottom: 0;
+
+			&:last-child {
+				border-bottom: 1px solid $black;
+			}
+		}
+
+		td {
+			padding-bottom: 0;
+
+			@include breakpoint-md {
+				padding-bottom: 10px;
+			}
+
+			&:last-child {
+				padding-bottom: 10px;
+			}
+		}
+	}
+
+	tfoot {
+		tr {
+			border-top: 0;
+		}
+	}
+
+	td,
+	th {
+		position: relative;
+		z-index: 0;
+		padding: 10px;
+		vertical-align: top;
+	}
+
+	th {
+		font-weight: bold;
+	}
+
+	@media (max-width: 992px) {
+		thead {
+			position: absolute;
+			left: -9999px;
+			overflow: hidden;
+			width: 0;
+			height: 0;
+		}
+
+		tr,
+		td,
+		th,
+		thead,
+		tbody,
+		table {
+			display: block;
+		}
+
+		tbody td,
+		tfoot td {
+			&:before {
+				display: block;
+				content: attr(data-th);
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+th {
+	font-weight: bold;
+	text-align: left;
+}
+
+$excluded_tables: '.acf-table, .CalendarMonth_table';
+
+table:not(#{$excluded_tables}) {
+	@include responsive-table;
+}
+
+.table-vertical:not(#{$excluded_tables}) {
+	td,
+	th {
+		padding: 10px;
+
+		&:last-child {
+			padding-bottom: 10px;
+		}
+
+		@include breakpoint-sm {
+			display: table-cell;
+		}
+	}
+
+	th {
+		font-weight: normal;
+		padding-bottom: 0;
+
+		@include breakpoint-sm {
+			padding-bottom: 10px;
+			min-width: 170px;
+		}
+	}
+
+	td {
+		padding-top: 0;
+
+		@include breakpoint-sm {
+			padding-top: 10px;
+		}
+	}
+
+	tr {
+		border: 0;
+
+		@include breakpoint-sm {
+			display: table-row;
+		}
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		&:nth-child(odd) {
+			background-color: $grey;
+		}
+	}
+}
+
+.wp-block-table {
+	overflow-x: initial;
+	margin: 0;
+
+	&.is-style-stripes {
+		border-bottom: 0;
+	}
+}

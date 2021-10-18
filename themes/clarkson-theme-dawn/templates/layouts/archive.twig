@@ -1,0 +1,11 @@
+{% include 'defaults/head.twig' %}
+
+<main class="main" id="main-content">
+	<div class="section-wrapper">
+		{% block header %}{% endblock %}
+		{% block content %}{% endblock %}
+		{% block pagination %}{% endblock %}
+	</div>
+</main>
+
+{% include 'defaults/footer.twig' %}

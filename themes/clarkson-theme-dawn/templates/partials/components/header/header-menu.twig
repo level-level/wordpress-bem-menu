@@ -1,0 +1,32 @@
+<div
+	class="header-menu hidden-md"
+	data-module="toggle"
+	data-config='{
+		"trigger": ".js-header-menu",
+		"target": ".header-menu__dropdown",
+		"disableScroll": true
+}'>
+	{% include 'styleguide/components/buttons/button-element.twig' with {
+		text: __('Menu', 'clarkson-theme-dawn'),
+		aria_expanded_support: true,
+		class: 'btn--secondary js-header-menu',
+		aria_label: __('Open menu', 'clarkson-theme-dawn'),
+		aria_expanded_text: __('Open menu', 'clarkson-theme-dawn'),
+		aria_collapsed_text: __('Close menu', 'clarkson-theme-dawn'),
+		icon: '',
+		icon_left: false,
+	} %}
+	<div class="header-menu__dropdown" aria-hidden="true">
+		<div class="container">
+			<nav class="navigation" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+				{{ bem_menu('primary_navigation', 'primary-nav') }}
+			</nav>
+		</div>
+	</div>
+</div>
+
+<div class="hidden-xs visible-md">
+	<nav class="navigation" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+		{{ bem_menu('primary_navigation', 'primary-nav') }}
+	</nav>
+</div>

@@ -1,0 +1,29 @@
+// don't use theme variables to avoid potential a11y-issues
+.skip-to-content {
+	@include screen-reader-text;
+	@include font-size(22px);
+	background: #fff;
+	border: 3px solid #000;
+	color: #000;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	padding: 15px 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 101;
+
+	&:active,
+	&:focus {
+		transition: 0s;
+		clip: auto !important;
+		height: auto;
+		width: auto;
+		margin: auto;
+		overflow: auto;
+		clip-path: inherit;
+	}
+
+	&:hover {
+		text-decoration: underline;
+	}
+}

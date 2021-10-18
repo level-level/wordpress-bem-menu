@@ -1,0 +1,21 @@
+<div class="teaser-search">
+	<div class="teaser-search__inner">
+		<div class="group group--small">
+
+			<div class="group__item">
+				<h3 class="teaser-search__title">
+					<a href="{{ url }}" class="teaser-search__link">
+						{{ title|raw }}
+					</a>
+				</h3>
+			</div>
+
+			{% if excerpt %}
+				<div class="group__item">
+					{{ excerpt|raw }}
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+</div>

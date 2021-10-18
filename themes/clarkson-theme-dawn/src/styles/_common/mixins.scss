@@ -1,0 +1,240 @@
+// Breakpoint Small
+//
+// @include breakpoint-sm { code.. }
+//
+// Breakpoint for small devices (breakpoint-sm) (min-width: 768px)
+@use 'sass:math';
+
+@mixin breakpoint-sm {
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
+// Breakpoint Medium
+//
+// @include breakpoint-md { code.. }
+//
+// Breakpoint for medium devices (md) (min-width: 992px)
+@mixin breakpoint-md {
+	@media (min-width: 992px) {
+		@content;
+	}
+}
+
+// Breakpoint Large
+//
+// @include breakpoint-lg { code.. }
+//
+// Breakpoint for large devices (lg) (min-width: 1200px)
+@mixin breakpoint-lg {
+	@media (min-width: 1200px) {
+		@content;
+	}
+}
+
+// Placeholder
+//
+// @include placeholder { code.. }
+//
+// Set the placehold styling for a input element
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		/* Firefox 18- */
+		@content;
+	}
+
+	&::-moz-placeholder {
+		/* Firefox 19+ */
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+}
+
+@function calculaterem($size) {
+	$remSize: math.div($size, 16px);
+
+	@return $remSize * 1rem;
+}
+
+@function line-height($font-size, $line-height) {
+	@return math.div($line-height, $font-size) * 1em;
+}
+
+// Font Size + line height
+//
+// @include font-size($font-size, $line-height);
+//
+// Set the font-size in pixels and it will calculate the font-size in rem.
+// Optional: set the line-height based on the font-size and line-height in pixels
+//
+// $font-size = 16px - Font size in pixels.
+// $line-height = 32px - Line-height in pixels.
+@mixin font-size($font-size, $line-height: false) {
+	font-size: $font-size;
+	font-size: calculaterem($font-size);
+
+	@if $line-height {
+		line-height: line-height($font-size, $line-height);
+	}
+}
+
+// Image ratio
+//
+// @include image-ratio($x, $y);
+//
+// Calculating the padding-bottom based on image ratio
+// For example X:Y
+// 4:3 ratio
+// 16:9 ratio
+// 21:9 ratio
+//
+// $x (int) 16 - Width of the ratio
+// $y (int) 9 - Height of the ratio
+@mixin image-ratio($x, $y) {
+	position: relative;
+	height: 0;
+	padding-bottom: calc(#{$y} / #{$x} * 100%);
+	overflow: hidden;
+
+	@if type-of($x) != 'number' {
+		@error ' Variable `$x` should be a integer.';
+	}
+
+	@if type-of($y) != 'number' {
+		@error ' Variable `$y` should be a integer.';
+	}
+}
+
+// Center element
+//
+// @include center-element();
+//
+// Enables perfect centering on the X and Y axis
+// Can be used for any element like images, icons etc
+@mixin center-element() {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateY(-50%) translateX(-50%);
+}
+
+// Hover
+//
+// @include hover { ..code }
+//
+// For hover styling that will not apply on real devices (phones, tablet etc)
+@mixin hover {
+	@media not all and (hover: none), (-ms-high-contrast: none) {
+		&:hover {
+			@content;
+		}
+	}
+}
+
+// Focus style
+//
+// @include focus-style { ..code }
+//
+// Adds properties of focus styling
+@mixin focus-style() {
+	outline: 2px solid;
+	outline-color: $outline;
+	outline-offset: 2px;
+	transition: none;
+}
+
+// Body styles
+//
+// @include body-styles;
+//
+// Adds properties for default body styling
+@mixin body-styles {
+	@include font-normal;
+	@include font-size(16px, 24px);
+}
+
+// Blockquote
+//
+// @include blockquote;
+//
+// Adds properties for blockquote styling
+@mixin blockquote {
+	position: relative;
+	border: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	padding: 0;
+
+	& > * + * {
+		margin-top: $default-padding*0.5;
+	}
+
+	p {
+		@include font-size(20px);
+		font-weight: bold;
+		font-style: italic;
+	}
+
+	cite,
+	.wp-block-quote__citation {
+		@include font-size(14px);
+		display: block;
+		font-style: normal;
+	}
+}
+
+@mixin absolute-link {
+	&:before {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: '';
+		z-index: 1;
+	}
+}
+
+// WP Alignments
+@mixin alignleft {
+	float: left;
+	margin-right: 2em;
+}
+
+@mixin alignright {
+	float: right;
+	margin-right: 2em;
+}
+
+@mixin alignfull {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@mixin aligncenter {
+	max-width: $container;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+
+	@include breakpoint-sm {
+		max-width: $content-width;
+	}
+}
+
+@mixin alignwide {
+	max-width: $container;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}

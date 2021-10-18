@@ -1,0 +1,83 @@
+// For example:
+// .align-self-start
+// .align-self-center-md
+// .align-self-end-lg
+.align-self-start {
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+}
+
+.align-self-center {
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+}
+
+.align-self-end {
+	display: flex;
+	flex-direction: column;
+	align-self: flex-end;
+}
+
+@each $state in $states {
+	.align-self-start-#{$state} {
+		@if $state == 'sm' {
+			@include breakpoint-sm {
+				align-self: flex-start;
+			}
+		}
+
+		@if $state == 'md' {
+			@include breakpoint-md {
+				align-self: flex-start;
+			}
+		}
+
+		@if $state == 'lg' {
+			@include breakpoint-lg {
+				align-self: flex-start;
+			}
+		}
+	}
+
+	.align-self-center-#{$state} {
+		@if $state == 'sm' {
+			@include breakpoint-sm {
+				align-self: flex-center;
+			}
+		}
+
+		@if $state == 'md' {
+			@include breakpoint-md {
+				align-self: flex-center;
+			}
+		}
+
+		@if $state == 'lg' {
+			@include breakpoint-lg {
+				align-self: flex-center;
+			}
+		}
+	}
+
+	.align-self-end-#{$state} {
+		@if $state == 'sm' {
+			@include breakpoint-sm {
+				align-self: flex-end;
+			}
+		}
+
+		@if $state == 'md' {
+			@include breakpoint-md {
+				align-self: flex-end;
+			}
+		}
+
+		@if $state == 'lg' {
+			@include breakpoint-lg {
+				align-self: flex-end;
+			}
+		}
+	}
+}

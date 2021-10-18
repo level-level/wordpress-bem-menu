@@ -1,0 +1,55 @@
+// Lists
+//
+// @include list-unstyled;
+//
+// Reset default list styling
+@mixin list-unstyled {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+@mixin list-horizontal( $margin: $default-padding*0.5 ) {
+	@include list-unstyled;
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: -#{$margin};
+
+	&__item {
+		margin-right: $margin;
+		margin-top: $margin;
+
+		&:last-child {
+			margin-right: 0;
+		}
+	}
+}
+
+.list-unstyled {
+	@include list-unstyled;
+}
+
+.list-badges {
+	@include list-horizontal(10px);
+}
+
+.list-social {
+	@include list-horizontal();
+
+	&__link {
+		@include font-size(18px);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-decoration: none;
+		background-color: $secondary;
+		color: $white;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
+}
+
+.list-social-share {
+	@include list-horizontal();
+}

@@ -1,0 +1,19 @@
+.header-menu {
+	position: relative;
+
+	&__dropdown {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: calc(80px + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
+		bottom: 0;
+		background-color: $primary;
+		z-index: 10;
+		overflow-y: auto;
+		-webkit-overflow-scrolling: touch;
+
+		&[aria-hidden='true'] {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,14 @@
+{% set cta = data.cta %}
+
+{% if cta.title and cta.button %}
+	{% include 'styleguide/components/cta/cta.twig' with {
+		title: cta.title,
+		text: cta.text,
+		button: cta.button,
+		align: align,
+	} %}
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Title', 'Button']
+	} %}
+{% endif %}

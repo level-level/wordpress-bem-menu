@@ -1,0 +1,7 @@
+{% if not is_front_page() and function_exists('yoast_breadcrumb') %}
+	<div class="section section--no-bottom">
+		<div class="container">
+			<div class="breadcrumbs">{{ yoast_breadcrumb()|raw }}</div>
+		</div>
+	</div>
+{% endif %}

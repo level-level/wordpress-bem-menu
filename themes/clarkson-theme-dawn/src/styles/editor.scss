@@ -1,0 +1,43 @@
+// WP editor
+@import '_common/mixins';
+@import '_common/variables';
+@import '_common/icons/_style';
+@import '_common/fonts';
+@import '_common/colors';
+@import '_common/wp-classes';
+@import 'editor/editor';
+
+.wp-block[data-type*='gravityforms'],
+.clarkson-acf-preview-block {
+	// Common
+	@import '_common/typography';
+	@import '_common/lists';
+	@import '_common/entry-content';
+
+	// Components
+	@import 'components/buttons';
+	@import 'components/cta/cta';
+	@import 'components/teasers/teaser-post';
+	@import 'components/badge';
+
+	// Layout
+	@import 'layout/container';
+	@import 'layout/section';
+	@import 'layout/group';
+	@import 'layout/grid/_grid';
+
+	@extend .entry-content;
+
+	// Make everything not clickable in the backend
+	.btn,
+	.entry-content a {
+		pointer-events: none !important;
+		cursor: default !important;
+	}
+
+	// Form styles for the gravity forms embed plugin (ll-premium/gravityformsgutenberg)
+	.gform_wrapper {
+		@import '_common/forms';
+		@import 'components/gravity-forms';
+	}
+}

@@ -1,0 +1,41 @@
+.entry-content {
+	> * {
+		margin: 0 auto;
+	}
+
+	> *:not(.alignwide):not(.alignfull) {
+		max-width: $container;
+
+		@include breakpoint-sm {
+			max-width: $content-width;
+		}
+	}
+
+	& > * + * {
+		margin-top: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			margin-top: $default-padding;
+		}
+	}
+
+	> h2 + *:not([class*=' has-']),
+	> h3 + *:not([class*=' has-']),
+	> h4 + *:not([class*=' has-']),
+	> h5 + *:not([class*=' has-']) {
+		margin-top: 10px;
+	}
+
+	> *:not(h2):not(h3):not(h4):not(h5) + *:not([class]) {
+		margin-top: $default-padding;
+	}
+
+	p {
+		&.has-intro-font-size {}
+	}
+
+	ul,
+	ol {
+		margin-bottom: 0;
+	}
+}

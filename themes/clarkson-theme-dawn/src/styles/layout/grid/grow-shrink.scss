@@ -1,0 +1,59 @@
+// For example:
+// .col--grow-1
+// .col--md-shrink-1
+// .col--sm-grow-1
+.col {
+	@for $i from 1 through 1 {
+		&--grow-#{$i} {
+			flex-grow: #{$i};
+		}
+
+		&--shrink-#{$i} {
+			flex-shrink: #{$i};
+		}
+	}
+
+	@each $state in $states {
+		@for $i from 1 through 1 {
+			&--#{$state}-grow-#{$i} {
+				@if $state == 'sm' {
+					@include breakpoint-sm {
+						flex-grow: #{$i};
+					}
+				}
+
+				@if $state == 'md' {
+					@include breakpoint-md {
+						flex-grow: #{$i};
+					}
+				}
+
+				@if $state == 'lg' {
+					@include breakpoint-lg {
+						flex-grow: #{$i};
+					}
+				}
+			}
+
+			&--#{$state}-shrink-#{$i} {
+				@if $state == 'sm' {
+					@include breakpoint-sm {
+						flex-shrink: #{$i};
+					}
+				}
+
+				@if $state == 'md' {
+					@include breakpoint-md {
+						flex-shrink: #{$i};
+					}
+				}
+
+				@if $state == 'lg' {
+					@include breakpoint-lg {
+						flex-shrink: #{$i};
+					}
+				}
+			}
+		}
+	}
+}

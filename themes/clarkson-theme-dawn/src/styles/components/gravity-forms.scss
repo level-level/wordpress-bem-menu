@@ -1,0 +1,236 @@
+.gravity-forms {
+	form {
+		& > * + * {
+			margin-top: $default-padding;
+		}
+	}
+
+	ul {
+		@include list-unstyled;
+	}
+
+	.gform_fields {
+		& > * + * {
+			margin-top: $default-padding;
+		}
+	}
+
+	.gfield {
+		& > * + * {
+			margin-top: $default-padding*0.5;
+		}
+	}
+
+	.gfield_radio,
+	.gfield_checkbox {
+		& > * + * {
+			margin-top: $default-padding*0.5;
+		}
+	}
+
+	.ginput_complex {
+		display: flex;
+		flex-direction: column;
+
+		@include breakpoint-sm {
+			flex-direction: row;
+			flex-wrap: nowrap;
+
+			// Represents every item (span) in a complex element
+			& > * + * {
+				margin-left: $default-padding;
+			}
+
+			span {
+				width: 100%;
+			}
+		}
+
+		& > * + * {
+			margin-top: $default-padding*0.5;
+
+			@include breakpoint-sm {
+				margin-top: 0;
+			}
+		}
+
+		&.ginput_container_address {
+			@include breakpoint-sm {
+				flex-wrap: wrap;
+				justify-content: space-between;
+
+				& > * + * {
+					margin-left: 0;
+				}
+			}
+
+			span {
+				&.ginput_full + .ginput_full {
+					margin-top: $default-padding*0.5;
+
+					@include breakpoint-sm {
+						margin-top: $default-padding;
+					}
+				}
+
+				&.ginput_left,
+				&.ginput_right {
+					@include breakpoint-sm {
+						width: calc(50% - #{$default-padding*0.5});
+						margin-top: $default-padding;
+					}
+				}
+			}
+		}
+
+		.gf_clear_complex {
+			display: none;
+		}
+	}
+
+	.ginput_container_time {
+		i {
+			display: none;
+		}
+	}
+
+	.clear-multi {
+		display: flex;
+		flex-direction: column;
+
+		& > * {
+			@include breakpoint-sm {
+				align-self: flex-end;
+			}
+		}
+
+		// Represents every item in a date element
+		& > * + * {
+			margin-top: $default-padding*0.5;
+
+			@include breakpoint-sm {
+				margin-top: 0;
+				margin-left: $default-padding;
+			}
+		}
+
+		@include breakpoint-sm {
+			flex-direction: row;
+			flex-wrap: nowrap;
+		}
+	}
+
+	.ginput_container_fileupload {
+		border: 2px dashed $grey;
+		padding: $default-padding*0.5;
+	}
+
+	.gform_drop_area {
+		display: flex;
+		align-items: center;
+
+		.gform_drop_instructions {
+			display: block;
+			margin-right: $default-padding*0.5;
+		}
+
+		button {
+			padding: 5px 10px;
+		}
+	}
+
+	.gform_fileupload_rules {
+		@include font-size(14px);
+	}
+
+	// Upload items in the file field (multi-upload enabled)
+	div[id^='gform_preview'] {
+		& > * + * {
+			margin-top: 15px;
+		}
+
+		& > * {
+			display: flex;
+			align-items: center;
+		}
+
+		button {
+			padding: 5px;
+
+			& + * {
+				margin-left: 10px;
+			}
+		}
+	}
+
+	.gfield_required {
+		color: $primary;
+
+		&.gfield_required_custom {
+			margin-left: 5px;
+		}
+	}
+
+	.gsection,
+	.gform_heading {
+		& > * + * {
+			margin-top: $default-padding*0.5;
+		}
+
+		.gform_description {
+			display: block;
+		}
+	}
+
+	.gform_heading {
+		margin-bottom: $default-padding*0.5;
+	}
+
+	.gfield_consent_description {
+		padding-left: $default-padding;
+	}
+
+	.hidden_label {
+		.gfield_label,
+		.gfield_required {
+			display: none;
+		}
+	}
+
+	.gfield_error {
+		position: relative;
+		padding: $default-padding*0.5;
+		background-color: $error;
+
+		.validation_message {
+			@include font-size(14px);
+			margin-top: 10px;
+			border-top: 1px solid $black;
+			padding-top: 10px;
+		}
+	}
+
+	.gform_validation_errors,
+	.validation_error {
+		position: relative;
+		padding: $default-padding*0.5;
+		background-color: $error;
+		margin: $default-padding*0.5 0;
+
+		ol {
+			margin-bottom: 0;
+		}
+	}
+
+	.gform_submission_error {
+		@include font-size(20px);
+	}
+
+	// Honeypot hidden input
+	.gform_validation_container,
+	.gfield_visibility_hidden,
+	.gform_hidden,
+	.hour_minute_colon {
+		display: none !important;
+	}
+}
