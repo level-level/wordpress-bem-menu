@@ -27,6 +27,7 @@
 .block-editor {
 	.editor-styles-wrapper {
 		@include body-styles;
+		background-color: $secondary;
 
 		*[data-type='core/heading'] {
 		}

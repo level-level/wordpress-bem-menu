@@ -1,19 +1,13 @@
 .teaser-post {
 	position: relative;
-	border: 1px solid $grey;
 	height: 100%;
-	transition: border $time;
-
-	&:focus-within {
-		border-color: $quaternary;
-	}
-
-	@include hover {
-		border-color: $quaternary;
-	}
+	display: flex;
+	flex-direction: column;
+	background-color: $white;
+	border-bottom: 2px solid $tertiary;
 
 	&__inner {
-		padding: $default-padding*0.5;
+		padding: $default-padding;
 	}
 
 	&__thumbnail {
@@ -24,13 +18,43 @@
 		}
 	}
 
+	&__footer {
+		@include font-size(14px);
+		position: relative;
+		z-index: 2;
+		border-top: 1px solid $border;
+		padding: 10px $default-padding;
+		margin-top: auto;
+
+		.btn {
+			&__text {
+				text-decoration: none;
+			}
+		}
+	}
+
+	&__title {
+		@include font-size(25px);
+
+		@include breakpoint-sm {
+			@include font-size(29px);
+		}
+	}
+
 	&__link {
 		@include absolute-link;
-		color: $quaternary;
 		text-decoration: none;
 	}
 
 	&__date {
 		@include font-size(14px);
+	}
+
+	&__excerpt {
+		p {
+			@include breakpoint-sm {
+				@include font-size(17px);
+			}
+		}
 	}
 }

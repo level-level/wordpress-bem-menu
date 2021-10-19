@@ -1,8 +1,13 @@
 @use 'sass:math';
 
 [class^='col-'] {
-	padding-left: $gutter*0.5;
-	padding-right: $gutter*0.5;
+	padding-left: $gutter;
+	padding-right: $gutter;
+
+	@include breakpoint-sm {
+		padding-left: $gutter*0.5;
+		padding-right: $gutter*0.5;
+	}
 }
 
 .col-auto {

@@ -12,11 +12,7 @@
 	}
 
 	& > * + * {
-		margin-top: $default-padding*0.5;
-
-		@include breakpoint-sm {
-			margin-top: $default-padding;
-		}
+		margin-top: $default-padding;
 	}
 
 	> h2 + *:not([class*=' has-']),

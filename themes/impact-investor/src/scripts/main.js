@@ -7,6 +7,7 @@ import './modules/cookiebot.js';
 import './modules/oembed.js';
 import './modules/table.js';
 import './modules/social-share.js';
+import './modules/social-share-dropdown.js';
 
 ( function( app, $ ) {
 	'use strict';

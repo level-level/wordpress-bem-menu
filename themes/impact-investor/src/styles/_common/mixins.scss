@@ -234,8 +234,11 @@
 }
 
 @mixin alignwide {
-	max-width: $container;
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+
+	@include breakpoint-sm {
+		max-width: $container;
+	}
 }

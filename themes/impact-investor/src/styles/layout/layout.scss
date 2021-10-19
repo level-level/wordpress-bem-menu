@@ -14,6 +14,7 @@
 
 .layout-small {
 	@include breakpoint-md {
-		width: 300px;
+		width: $sidebar-width;
+		flex-shrink: 0;
 	}
 }

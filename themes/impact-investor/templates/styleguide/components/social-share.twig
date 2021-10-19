@@ -1,14 +1,32 @@
+{#
+	Types:
+		- Dialog: the social share buttons inside the dialog dropdown
+#}
+
 {% if socials %}
-	<ul class="list-social-share" data-module="socials">
+	<ul class="list-social-share {{ dialog ? 'list-social-share--dialog' }}" data-module="socials">
 		{% for social in socials %}
 			<li class="list-social-share__item">
-				{% include 'styleguide/components/buttons/button-element.twig' with {
-					text: '',
-					class: 'btn--share js--share',
-					icon: 'icon-' ~ social.type,
-					data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
-					aria_label: __('Share via %1$s — This button opens a share-on-%1$s dialog in a new window.', 'impact-investor')|format(social.title),
-				} only %}
+				{% if social.type == 'email' %}
+					{% include 'styleguide/components/buttons/button-link.twig' with {
+						text: dialog ? social.title,
+						url: 'javascript:void(0);',
+						class: 'btn--share js--share',
+						icon: 'icon-' ~ social.type,
+						data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '", "shareUrl": "' ~ share_url ~ '", "shareTitle": "' ~ post_title ~ '"}',
+						aria_label: __('Share via %1$s — This button opens your e-mail client.', 'impact-investor')|format(social.title),
+						icon_left: true,
+					} %}
+				{% else %}
+					{% include 'styleguide/components/buttons/button-element.twig' with {
+						text: dialog ? social.title,
+						class: 'btn--share js--share',
+						icon: 'icon-' ~ social.type,
+						data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '", "shareUrl": "' ~ share_url ~ '", "shareTitle": "' ~ post_title ~ '"}',
+						aria_label: __('Share via %1$s — This button opens a share-on-%1$s dialog in a new window.', 'impact-investor')|format(social.title),
+						icon_left: true,
+					} only %}
+				{% endif %}
 			</li>
 		{% endfor %}
 	</ul>

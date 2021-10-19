@@ -1,6 +1,6 @@
 {
     "key": "group_607fe6ec214d3",
-    "title": "[Block] Posts",
+    "title": "[Block] Two column articles",
     "fields": [
         {
             "key": "field_607feb7bba1f8",
@@ -15,32 +15,13 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This block displays posts based on multiple options.",
+            "message": "This block displays articles in a two column layout based on multiple options.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
         {
-            "key": "field_6080018352be1",
-            "label": "The title above the posts (optional)",
-            "name": "title",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
-        },
-        {
             "key": "field_607fec20ed911",
-            "label": "Select posts to be sticky (optional)",
+            "label": "Select articles to be sticky (optional)",
             "name": "selected_posts",
             "type": "relationship",
             "instructions": "",
@@ -68,7 +49,7 @@
         },
         {
             "key": "field_607fed05ed912",
-            "label": "Allow this block to automatically fill with the latest posts",
+            "label": "Allow this block to automatically fill with the latest articles",
             "name": "is_fill_enabled",
             "type": "true_false",
             "instructions": "",
@@ -87,7 +68,7 @@
         },
         {
             "key": "field_607fef3dcd8ae",
-            "label": "Select one or more categories to show posts from (optional)",
+            "label": "Select one or more categories to show articles from (optional)",
             "name": "terms",
             "type": "taxonomy",
             "instructions": "",
@@ -117,7 +98,7 @@
         },
         {
             "key": "field_607feff1cd8af",
-            "label": "Select the maximum amount of posts to be shown",
+            "label": "Select the maximum amount of articles to be shown",
             "name": "amount",
             "type": "number",
             "instructions": "",
@@ -136,10 +117,10 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 3,
+            "default_value": 2,
             "placeholder": "",
             "prepend": "",
-            "append": "posts",
+            "append": "articles",
             "min": 1,
             "max": "",
             "step": 1
@@ -150,7 +131,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-posts"
+                "value": "acf\/block-column-articles"
             }
         ]
     ],
@@ -162,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1619010440
+    "modified": 1634634120
 }

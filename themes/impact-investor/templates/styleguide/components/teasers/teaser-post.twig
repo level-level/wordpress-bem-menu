@@ -10,34 +10,65 @@
 		<div class="group group--small">
 
 			<div class="group__item">
-				<h3 class="teaser-post__title">
+				<div class="row row--space-between row--nowrap row--align-center">
+					<div class="col-auto">
+						{% if terms %}
+							<span class="screen-reader-text">
+								{{ __('Posted in category:', 'impact-investor') }}
+							</span>
+							{% include 'styleguide/components/badges/list-badges.twig' with {
+								badges: terms,
+							} %}
+						{% endif %}
+					</div>
+					<div class="col-auto">
+						<div class="teaser-post__date">
+							<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="group__item">
+				<h2 class="teaser-post__title">
 					<a href="{{ url }}" class="teaser-post__link">
 						{{ title|raw }}
 					</a>
-				</h3>
+				</h2>
 			</div>
-
-			{% if terms %}
-				<div class="group__item">
-					<span class="screen-reader-text">
-						{{ __('Posted in category:', 'impact-investor') }}
-					</span>
-					{% include 'styleguide/components/badges/list-badges.twig' with {
-						badges: terms,
-					} %}
-				</div>
-			{% endif %}
 
 			{% if excerpt %}
 				<div class="group__item">
-					{{ excerpt|raw }}
+					<div class="teaser-post__excerpt">
+						{{ excerpt|raw }}
+					</div>
 				</div>
 			{% endif %}
-
-			<div class="group__item">
-				<div class="teaser-post__date">
-					<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-					<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+		</div>
+	</div>
+	<div class="teaser-post__footer">
+		<div class="row row--space-between row--nowrap row--align-center">
+			<div class="col-auto">
+				{% if author.name %}
+					<span class="screen-reader-text">
+						{{ __('Written by:', 'impact-investor') }}
+					</span>
+					{% include 'styleguide/components/buttons/button-link.twig' with {
+						text: author.name,
+						url: author.url,
+						class: 'btn--link',
+					} %}
+				{% endif %}
+			</div>
+			<div class="col-auto">
+				<div class="row row--space-between row--nowrap row--align-center">
+					<div class="col-auto">
+						{% include 'styleguide/components/social-share-dropdown.twig' with {
+							post_title: title,
+							url: url,
+						} %}
+					</div>
 				</div>
 			</div>
 		</div>

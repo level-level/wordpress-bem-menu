@@ -18,7 +18,7 @@ class ACFBlocks {
 	 * Available supports settings: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/
 	 */
 	public function set_default_block_type_args( array $block ): array {
-		$block['category']                    = 'level-level';
+		$block['category']                    = 'impact-investor';
 		$block['mode']                        = 'auto'; // auto, preview, edit
 		$block['render_callback']             = array( $this, 'block_render_callback' );
 		$block['supports']['customClassName'] = false;
@@ -37,29 +37,23 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'block-cta',
-				'title'       => _x( 'Call to action', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a call to action. use it to draw the attention of your users.', 'Block', 'impact-investor' ),
-				'icon'        => 'megaphone',
+				'name'        => 'block-column-articles',
+				'title'       => _x( 'Two column articles', 'Block', 'impact-investor' ),
+				'description' => _x( 'Displays a list of posts based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'        => 'columns',
 				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'call to action', 'cta' ),
-				'post_types'  => array( 'post', 'page' ),
+				'keywords'    => array( 'posts', 'post', 'news', 'articles', 'column' ),
 				'supports'    => array(
-					'align'    => array( 'wide', 'center' ),
+					'align'    => array( 'wide' ),
 					'multiple' => true,
 				),
 				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'cta'             => array(
-								'text'   => _x( 'Call to action text', 'Block', 'impact-investor' ),
-								'title'  => _x( 'Call to action title', 'Block', 'impact-investor' ),
-								'button' => array(
-									'url'   => '#',
-									'title' => 'Button',
-								),
-							),
+							'title'           => _x( 'Blog posts', 'Block', 'impact-investor' ),
+							'is_fill_enabled' => true,
+							'amount'          => 1,
 						),
 					),
 				),
@@ -68,21 +62,20 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'block-posts',
-				'title'       => _x( 'Posts', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a list of posts based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'        => 'admin-post',
+				'name'        => 'block-featured-article',
+				'title'       => _x( 'Featured article', 'Block', 'impact-investor' ),
+				'description' => _x( 'Displays a single featured article.', 'Block', 'impact-investor' ),
+				'icon'        => 'welcome-view-site',
 				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'post', 'news' ),
+				'keywords'    => array( 'featured article', 'post' ),
 				'supports'    => array(
 					'align'    => array( 'wide' ),
-					'multiple' => false,
+					'multiple' => true,
 				),
 				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'title'           => _x( 'Blog posts', 'Block', 'impact-investor' ),
 							'is_fill_enabled' => true,
 							'amount'          => 1,
 						),

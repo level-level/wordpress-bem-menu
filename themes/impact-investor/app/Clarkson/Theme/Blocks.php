@@ -18,8 +18,8 @@ class Blocks {
 			$categories,
 			array(
 				array(
-					'slug'  => 'level-level',
-					'title' => _x( 'Level Level', 'Block', 'impact-investor' ),
+					'slug'  => 'impact-investor',
+					'title' => _x( 'Impact Investor', 'Block', 'impact-investor' ),
 				),
 			)
 		);
