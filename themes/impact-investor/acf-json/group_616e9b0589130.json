@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This block displays articles in a two column layout based on multiple options.",
+            "message": "This block displays articles based on multiple options.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -143,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634638631
+    "modified": 1634646260
 }
