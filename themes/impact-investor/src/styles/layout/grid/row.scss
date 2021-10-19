@@ -7,8 +7,13 @@
 	@include list-unstyled;
 	display: flex;
 	flex-wrap: wrap;
-	margin-left: (-$gutter*0.5);
-	margin-right: (-$gutter*0.5);
+	margin-left: (-$gutter);
+	margin-right: (-$gutter);
+
+	@include breakpoint-sm {
+		margin-left: (-$gutter*0.5);
+		margin-right: (-$gutter*0.5);
+	}
 
 	// Add space when a row class is followed by a row class
 	& + .row {
@@ -32,7 +37,7 @@
 
 	// Modifier to add spacing to the columns inside
 	&--spacing {
-		margin-top: (-$gutter*0.5);
+		margin-top: (-$gutter);
 
 		@include breakpoint-sm {
 			margin-top: (-$gutter);
@@ -40,7 +45,7 @@
 
 		> .col,
 		> [class*='col-'] {
-			margin-top: $gutter*0.5;
+			margin-top: $gutter;
 
 			@include breakpoint-sm {
 				margin-top: $gutter;

@@ -3,6 +3,7 @@
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--container: calc(100vw - 30px);
 	--header-height: 60px;
+	--sidebar-width: 100%;
 
 	@include breakpoint-sm {
 		--container: 720px;
@@ -12,6 +13,7 @@
 	@include breakpoint-md {
 		--container: 1064px;
 		--content-width: 770px;
+		--sidebar-width: 300px;
 	}
 }
 
@@ -20,6 +22,7 @@ $content-width: var(--content-width);
 $admin-bar: var(--admin-bar);
 $admin-bar-offset: var(--admin-bar-offset);
 $header-height: var(--header-height);
+$sidebar-width: var(--sidebar-width);
 
 $states: 'sm', 'md', 'lg';
 $columns: 12;
@@ -28,7 +31,7 @@ $columns: 12;
 $default-padding: 15px;
 
 // The default gutter variable, used for the grid
-$gutter: 30px;
+$gutter: 15px;
 
 // The default animation time variable
 $time: 150ms;

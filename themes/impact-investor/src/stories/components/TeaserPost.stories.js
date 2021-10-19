@@ -27,8 +27,12 @@ export default {
 		url: '#',
 		excerpt: '<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
 		terms: Terms,
-		date: 'April 21, 2021',
+		date: 'Apr 21, 2021',
 		datetime: '2021-04-21',
+		author: {
+			name: 'Kevinio',
+			url: '#',
+		}
 	},
 };
 

@@ -4,7 +4,7 @@
 	display: inline-flex;
 	align-items: center;
 	padding: 6px 8px;
-	font-weight: bold;
+	font-weight: normal;
 	background-color: transparent;
 	text-decoration: none;
 	border: 2px solid transparent;
@@ -32,6 +32,7 @@
 @mixin btn--primary {
 	background-color: $primary;
 	color: $white;
+	font-weight: bold;
 }
 
 @mixin btn--ghost {
@@ -40,8 +41,8 @@
 }
 
 @mixin btn--link {
-	padding-left: 0;
-	padding-right: 0;
+	@include font-size(14px);
+	padding: 0;
 
 	.btn__text {
 		text-decoration: underline;
@@ -49,16 +50,12 @@
 }
 
 @mixin btn--share {
-	@include font-size(18px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	text-decoration: none;
 	background-color: $quaternary;
 	color: $white;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
 }
 
 // Styles to reset a styled button

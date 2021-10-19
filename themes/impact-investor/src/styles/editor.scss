@@ -16,9 +16,9 @@
 
 	// Components
 	@import 'components/buttons';
-	@import 'components/cta/cta';
 	@import 'components/teasers/teaser-post';
 	@import 'components/badge';
+	@import 'components/social-share-dropdown';
 
 	// Layout
 	@import 'layout/container';
@@ -29,6 +29,7 @@
 	@extend .entry-content;
 
 	// Make everything not clickable in the backend
+	a,
 	.btn,
 	.entry-content a {
 		pointer-events: none !important;

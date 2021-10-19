@@ -52,4 +52,22 @@
 
 .list-social-share {
 	@include list-horizontal();
+
+	&--dialog {
+		display: block;
+
+		.list-social-share {
+			&__item {
+				margin-right: 0;
+			}
+		}
+
+		.btn--share {
+			width: 100%;
+			justify-content: flex-start;
+			height: auto;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
 }
