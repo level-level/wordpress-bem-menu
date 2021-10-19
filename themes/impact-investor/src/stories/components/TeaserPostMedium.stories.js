@@ -1,10 +1,10 @@
 import Terms from '../data/Terms.js';
 
 export default {
-	title: 'Components/Teasers/Post',
+	title: 'Components/Teasers/Post/Medium',
 	parameters: {
 		server: {
-			id: 'styleguide/components/teasers/teaser-post.twig',
+			id: 'styleguide/components/teasers/teaser-post-medium.twig',
 		},
 	},
 	argTypes: {
@@ -20,6 +20,9 @@ export default {
 		date: {
 			control: 'text'
 		},
+		comments: {
+			control: 'number'
+		}
 	},
 	args: {
 		image: '<img src="https://place-hold.it/1048x680" loading="lazy" class="teaser-post__image" width="1024" height="680" alt="">',
@@ -32,7 +35,8 @@ export default {
 		author: {
 			name: 'Kevinio',
 			url: '#',
-		}
+		},
+		comments: 2,
 	},
 };
 

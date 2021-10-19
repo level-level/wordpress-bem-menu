@@ -15,7 +15,7 @@
 						{% set author = object.get_author() %}
 
 						<li class="col-12">
-							{% include 'styleguide/components/teasers/teaser-post.twig' with {
+							{% include 'styleguide/components/teasers/teaser-post-large.twig' with {
 								image: image_id ? wp_get_attachment_image(image_id, 'large'),
 								title: object.get_title(),
 								url: object.get_permalink(),
@@ -28,7 +28,8 @@
 								author: {
 									name: author.get_display_name(),
 									url: get_author_posts_url(author.get_id())
-								}
+								},
+								comments: 1,
 							} %}
 						</li>
 					{% endfor %}

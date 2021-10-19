@@ -1,0 +1,13 @@
+.teaser-post {
+	&--large {
+		.teaser-post {
+			&__title {
+				@include font-size(25px);
+
+				@include breakpoint-sm {
+					@include font-size(29px);
+				}
+			}
+		}
+	}
+}

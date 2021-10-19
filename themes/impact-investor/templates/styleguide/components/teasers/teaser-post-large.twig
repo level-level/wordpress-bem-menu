@@ -1,4 +1,4 @@
-<div class="teaser-post">
+<div class="teaser-post teaser-post--large">
 
 	{% if image %}
 		<div class="teaser-post__thumbnail">
@@ -57,18 +57,32 @@
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: author.name,
 						url: author.url,
-						class: 'btn--link',
+						class: 'btn--link btn--author',
 					} %}
 				{% endif %}
 			</div>
 			<div class="col-auto">
 				<div class="row row--space-between row--nowrap row--align-center">
 					<div class="col-auto">
-						{% include 'styleguide/components/social-share-dropdown.twig' with {
+						{% include 'styleguide/components/social-share-button.twig' with {
+							show_button_title: true,
 							post_title: title,
 							url: url,
 						} %}
 					</div>
+
+					{% if comments > 0 %}
+						<div class="col-auto">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: _n('%s comment', '%s comments', comments, 'impact-investor')|format(comments),
+								url: url ~ '#comments',
+								class: 'btn--link',
+								aria_label: __('View comments in this article', 'impact-investor'),
+								icon: 'icon-whatsapp',
+								icon_left: true,
+							} %}
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>

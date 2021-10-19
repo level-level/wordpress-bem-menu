@@ -3,7 +3,7 @@
 // .col--md-shrink-1
 // .col--sm-grow-1
 .col {
-	@for $i from 1 through 1 {
+	@for $i from 0 through 1 {
 		&--grow-#{$i} {
 			flex-grow: #{$i};
 		}
@@ -14,7 +14,7 @@
 	}
 
 	@each $state in $states {
-		@for $i from 1 through 1 {
+		@for $i from 0 through 1 {
 			&--#{$state}-grow-#{$i} {
 				@if $state == 'sm' {
 					@include breakpoint-sm {

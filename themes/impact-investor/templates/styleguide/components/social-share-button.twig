@@ -8,14 +8,14 @@
 		"target": ".{{ target }}"
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
-		text: __('Share', 'impact-investor'),
+		text: show_button_title ? __('Share', 'impact-investor'),
 		aria_expanded_support: true,
 		class: 'btn--link js-share-dropdown ' ~ trigger,
 		aria_label: __('Share, open share options', 'impact-investor'),
 		aria_expanded_text: __('Share, close share options', 'impact-investor'),
 		aria_collapsed_text: __('Share, open share options', 'impact-investor'),
 		icon: 'icon-whatsapp',
-		icon_left: false,
+		icon_left: true,
 	} %}
 	<div class="social-share-dropdown__block {{ target }}" aria-hidden="true">
 		<div class="social-share-dialog">
