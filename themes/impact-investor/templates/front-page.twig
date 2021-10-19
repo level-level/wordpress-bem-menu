@@ -1,0 +1,20 @@
+{% extends 'layouts/sidebar-layout.twig' %}
+{% set object = objects|first %}
+{% set title = object.get_title() %}
+
+{% block content %}
+	<h1 class="screen-reader-text">{{ title|raw }}</h1>
+	<div class="section">
+		<div class="entry-content">
+			{{ object.get_content()|raw }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+	<div class="section">
+		<div class="entry-content">
+			<p>hoi</p>
+		</div>
+	</div>
+{% endblock %}

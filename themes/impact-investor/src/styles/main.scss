@@ -26,6 +26,7 @@
 @import 'layout/section';
 @import 'layout/group';
 @import 'layout/grid/_grid';
+@import 'layout/layout';
 
 // Components
 @import 'components/buttons';
@@ -35,7 +36,7 @@
 @import 'components/gravity-forms';
 @import 'components/pagination';
 @import 'components/navigation/primary-nav';
-@import 'components/navigation/legal-nav';
+@import 'components/navigation/footer-nav';
 @import 'components/header-menu';
 @import 'components/header-search';
 @import 'components/cta/cta';

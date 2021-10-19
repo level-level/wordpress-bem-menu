@@ -1,21 +1,13 @@
 .section-wrapper {
 	& > * {
 		&:last-child {
-			padding-bottom: $default-padding*0.5;
-
-			@include breakpoint-sm {
-				padding-bottom: $default-padding;
-			}
+			padding-bottom: $default-padding;
 		}
 	}
 }
 
 .section {
-	padding-top: $default-padding*0.5;
-
-	@include breakpoint-sm {
-		padding-top: $default-padding;
-	}
+	padding-top: $default-padding;
 
 	&--no-top {
 		padding-top: 0;

@@ -9,10 +9,6 @@
 
 	&__item {
 		display: block;
-
-		@include breakpoint-md {
-			display: inline-block;
-		}
 	}
 
 	&__item--parent {
@@ -33,15 +29,25 @@
 	}
 
 	&__link {
-		display: block;
-		padding: $default-padding*0.5 0;
+		@include font-size(16px);
+		display: flex;
+		align-items: center;
+		padding: 10px 0;
 		color: $white;
-		font-weight: bold;
 		text-decoration: none;
+		height: $header-height;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
+		&:focus {
+			background-color: $tertiary;
+		}
+
+		@include hover {
+			background-color: $tertiary;
+		}
+
 		@include breakpoint-md {
-			padding: $default-padding*0.5;
+			padding: 0 10px;
 			border-bottom: 0;
 		}
 	}
@@ -84,7 +90,7 @@
 		@extend .primary-nav__link;
 
 		@include breakpoint-md {
-			color: $primary;
+			color: $quaternary;
 		}
 	}
 
@@ -106,7 +112,7 @@
 
 		.primary-nav__arrow {
 			transform: rotate(-90deg);
-			color: $primary;
+			color: $quaternary;
 			right: 10px;
 		}
 	}

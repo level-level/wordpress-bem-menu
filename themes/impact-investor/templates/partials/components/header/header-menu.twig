@@ -9,16 +9,16 @@
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: __('Menu', 'impact-investor'),
 		aria_expanded_support: true,
-		class: 'btn--secondary js-header-menu',
+		class: 'btn--menu js-header-menu',
 		aria_label: __('Open menu', 'impact-investor'),
-		aria_expanded_text: __('Open menu', 'impact-investor'),
-		aria_collapsed_text: __('Close menu', 'impact-investor'),
+		aria_expanded_text: __('Close menu', 'impact-investor'),
+		aria_collapsed_text: __('Open menu', 'impact-investor'),
 		icon: '',
 		icon_left: false,
 	} %}
 	<div class="header-menu__dropdown" aria-hidden="true">
 		<div class="container">
-			<nav class="navigation" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+			<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
 				{{ bem_menu('primary_navigation', 'primary-nav') }}
 			</nav>
 		</div>
@@ -26,7 +26,7 @@
 </div>
 
 <div class="hidden-xs visible-md">
-	<nav class="navigation" aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+	<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
 		{{ bem_menu('primary_navigation', 'primary-nav') }}
 	</nav>
 </div>

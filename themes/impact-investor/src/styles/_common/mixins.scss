@@ -144,9 +144,9 @@
 // @include focus-style { ..code }
 //
 // Adds properties of focus styling
-@mixin focus-style() {
+@mixin focus-style($color: $outline) {
 	outline: 2px solid;
-	outline-color: $outline;
+	outline-color: $color;
 	outline-offset: 2px;
 	transition: none;
 }
@@ -159,6 +159,7 @@
 @mixin body-styles {
 	@include font-normal;
 	@include font-size(16px, 24px);
+	color: $black;
 }
 
 // Blockquote

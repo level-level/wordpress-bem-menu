@@ -2,6 +2,7 @@
 	--admin-bar: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--container: calc(100vw - 30px);
+	--header-height: 60px;
 
 	@include breakpoint-sm {
 		--container: 720px;
@@ -9,12 +10,8 @@
 	}
 
 	@include breakpoint-md {
-		--container: 960px;
+		--container: 1064px;
 		--content-width: 770px;
-	}
-
-	@include breakpoint-lg {
-		--container: 1170px;
 	}
 }
 
@@ -22,21 +19,22 @@ $container: var(--container);
 $content-width: var(--content-width);
 $admin-bar: var(--admin-bar);
 $admin-bar-offset: var(--admin-bar-offset);
+$header-height: var(--header-height);
 
 $states: 'sm', 'md', 'lg';
 $columns: 12;
 
 // The default padding variable
-$default-padding: 30px;
+$default-padding: 15px;
 
 // The default gutter variable, used for the grid
 $gutter: 30px;
 
 // The default animation time variable
-$time: 300ms;
+$time: 150ms;
 
 // The default height of an input element
-$input-height: 50px;
+$input-height: 40px;
 
 // admin bar height
 // even the zero has to be set in pixels so you can use it in calc() operations

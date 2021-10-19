@@ -6,33 +6,45 @@
 	<div class="container">
 		<div class="row row--space-between row--align-center row--nowrap">
 			<div class="col-auto">
-				<a
-					class="brand"
-					href="{{ esc_url(home_url('/')) }}"
-					aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
-					>
-					<img
-						src="https://place-hold.it/175x50"
-						width="175"
-						height="50"
-						alt=""
-						class="brand__logo"
-					/>
-				</a>
+				<div class="row row--align-center row--nowrap row--small">
+					<div class="col-auto">
+						<div class="header__brand">
+							<a
+								class="brand"
+								href="{{ esc_url(home_url('/')) }}"
+								aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
+								>
+								<img
+									src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.png"
+									width="164"
+									height="30"
+									alt=""
+									class="brand__logo"
+								/>
+							</a>
+						</div>
+					</div>
+					{% if has_nav_menu('primary_navigation') %}
+						<div class="col-auto">
+							{% include 'partials/components/header/header-menu.twig' %}
+						</div>
+					{% endif %}
+				</div>
 			</div>
 
-
 			<div class="col-auto">
-				<div class="header__content">
-					<div class="row row--small row--align-center row--nowrap">
-						{% if has_nav_menu('primary_navigation') %}
-							<div class="col-auto">
-								{% include 'partials/components/header/header-menu.twig' %}
-							</div>
-						{% endif %}
-						<div class="col-auto">
-							{% include 'partials/components/header/header-search.twig' %}
-						</div>
+				<div class="row row--small row--align-center row--nowrap">
+					<div class="col-auto">
+						{% include 'partials/components/header/header-search.twig' %}
+					</div>
+					<div class="col-auto hidden-xs visible-sm">
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: __('Sign up', 'impact-investor'),
+							url: '#',
+							class: 'btn--primary btn--small',
+							is_external: true,
+							aria_label: __('Sign up for the newsletter', 'impact-investor'),
+						} %}
 					</div>
 				</div>
 			</div>

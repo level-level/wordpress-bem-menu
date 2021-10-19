@@ -1,10 +1,22 @@
 .footer {
 	position: relative;
-	background-color: $primary;
-	padding: $default-padding 0;
+
+	&__group {
+		border-top: 1px solid $border;
+		padding-top: $default-padding;
+	}
 }
 
-.copyright {
+.feed {
 	@include font-size(14px);
-	padding: $default-padding*0.5 0;
+	margin-top: $default-padding;
+
+	&__inner {
+		border-top: 1px solid $border;
+		padding: $default-padding 0;
+
+		.btn {
+			@include font-size(14px);
+		}
+	}
 }

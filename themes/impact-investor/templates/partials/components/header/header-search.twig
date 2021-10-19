@@ -1,24 +1,38 @@
 <div
 	class="header-search"
-	data-module="toggle"
+	data-module="headerSearch"
 	data-config='{
 		"trigger": ".js-header-search",
 		"target": ".header-search__dropdown",
-		"focusInput": true
+		"focusInput": true,
+		"disableScroll": true
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: '',
 		aria_expanded_support: true,
-		class: 'btn--primary btn--search js-header-search',
+		class: 'btn--search js-header-search js-header-search-open',
 		aria_label: __('Open search', 'impact-investor'),
-		aria_expanded_text: __('Open search', 'impact-investor'),
-		aria_collapsed_text: __('Close search', 'impact-investor'),
+		aria_expanded_text: __('Close search', 'impact-investor'),
+		aria_collapsed_text: __('Open search', 'impact-investor'),
 		icon: 'icon-search',
 		icon_left: false,
 	} %}
 	<div class="header-search__dropdown" aria-hidden="true">
 		<div class="container">
-			{% include 'partials/components/search.twig' %}
+			<div class="row row--align-center">
+				<div class="col-auto col--grow-1">
+					{% include 'partials/components/search.twig' %}
+				</div>
+				<div class="col-auto">
+					{% include 'styleguide/components/buttons/button-element.twig' with {
+						text: __('Close', 'impact-investor'),
+						aria_expanded_support: true,
+						class: 'btn--search btn--small js-header-search',
+						aria_label: __('Close search', 'impact-investor'),
+					} %}
+				</div>
+			</div>
 		</div>
 	</div>
+	<div class="header-search__backdrop"></div>
 </div>

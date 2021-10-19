@@ -48,7 +48,7 @@
 }
 
 .ui-datepicker-current-day {
-	background-color: $primary;
+	background-color: $quaternary;
 
 	a {
 		color: $white;
@@ -102,7 +102,7 @@
 .ui-timepicker-div {
 	button {
 		@include btn;
-		@include btn--secondary;
+		@include btn--primary;
 		padding: 6px 10px;
 	}
 }
