@@ -34,11 +34,7 @@
 	}
 
 	&__title {
-		@include font-size(25px);
-
-		@include breakpoint-sm {
-			@include font-size(29px);
-		}
+		@include font-size(22px);
 	}
 
 	&__link {

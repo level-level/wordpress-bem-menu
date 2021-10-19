@@ -39,10 +39,10 @@ class ACFBlocks {
 			array(
 				'name'        => 'block-column-articles',
 				'title'       => _x( 'Two column articles', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a list of posts based on multiple options.', 'Block', 'impact-investor' ),
+				'description' => _x( 'Displays a list of articles in a two column layout based on multiple options.', 'Block', 'impact-investor' ),
 				'icon'        => 'columns',
 				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'post', 'news', 'articles', 'column' ),
+				'keywords'    => array( 'posts', 'articles', 'column', 'post' ),
 				'supports'    => array(
 					'align'    => array( 'wide' ),
 					'multiple' => true,
@@ -51,9 +51,8 @@ class ACFBlocks {
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'title'           => _x( 'Blog posts', 'Block', 'impact-investor' ),
 							'is_fill_enabled' => true,
-							'amount'          => 1,
+							'amount'          => 2,
 						),
 					),
 				),
@@ -68,6 +67,30 @@ class ACFBlocks {
 				'icon'        => 'welcome-view-site',
 				'align'       => 'wide', // full, wide, left, center, right
 				'keywords'    => array( 'featured article', 'post' ),
+				'supports'    => array(
+					'align'    => array( 'wide' ),
+					'multiple' => true,
+				),
+				'example'     => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'is_fill_enabled' => true,
+							'amount'          => 1,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'        => 'block-horizontal-articles',
+				'title'       => _x( 'Horizontal articles', 'Block', 'impact-investor' ),
+				'description' => _x( 'Displays a list of articles in a horizontal layout based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'        => 'align-right',
+				'align'       => 'wide', // full, wide, left, center, right
+				'keywords'    => array( 'articles', 'horizontal', 'post' ),
 				'supports'    => array(
 					'align'    => array( 'wide' ),
 					'multiple' => true,
