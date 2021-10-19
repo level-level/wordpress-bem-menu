@@ -14,7 +14,7 @@ import { MrToggle } from '@level-level/recyclops';
 
 			const toggle = new MrToggle( $element, options );
 
-			// Close dropdwon when clicking outside of it
+			// Close dropdown when clicking outside of it
 			$( document ).on( 'click', ( e ) => {
 				if ( ! $element.is( e.target ) && $element.has( e.target ).length === 0 ) {
 					toggle.closeAllToggles();
