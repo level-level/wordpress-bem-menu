@@ -39,12 +39,13 @@ class post extends base_object {
 	 */
 	public function get_comment_form() {
 		$args = array(
-			'class_form'    => 'form-group',
-			'format'        => 'html5',
-			'label_submit'  => __( 'Add comment', 'impact-investor' ),
-			'title_reply'   => __( 'Leave a comment', 'impact-investor' ),
-			'comment_field' => '<div class="form-group__item">
-									<label for="comment">' . _x( 'Comment', 'noun', 'impact-investor' ) . '</label>
+			'class_form'           => 'form-group',
+			'format'               => 'html5',
+			'label_submit'         => __( 'Add comment', 'impact-investor' ),
+			'title_reply'          => __( 'Leave a comment', 'impact-investor' ),
+			'comment_notes_before' => '<p>' . __( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'impact-investor' ) . '</p>',
+			'comment_field'        => '<div class="form-group__item">
+									<label for="comment">' . _x( 'Comment', 'noun', 'impact-investor' ) . '<span class="required">*</span></label>
 									<textarea id="comment" name="comment" aria-required="true"></textarea>
 								</div>',
 		);

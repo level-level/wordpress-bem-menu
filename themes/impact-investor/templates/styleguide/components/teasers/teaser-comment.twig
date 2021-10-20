@@ -3,7 +3,7 @@
 		<div class="row row--space-between row--align-center row--nowrap">
 			<div class="col-auto">
 				<div class="teaser-comment__author">
-					{{ author|raw }}
+					{{ author }}
 				</div>
 			</div>
 			<div class="col-auto">
@@ -14,6 +14,8 @@
 		</div>
 	</div>
 	<div class="teaser-comment__content">
-		{{ content|raw }}
+		<p>
+			{{ content }}
+		</p>
 	</div>
 </div>

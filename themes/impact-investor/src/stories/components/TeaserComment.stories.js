@@ -19,7 +19,7 @@ export default {
 	args: {
 		author: 'Kevinio',
 		time: '20 minutes ago',
-		content: '<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
+		content: 'Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.',
 	},
 };
 
