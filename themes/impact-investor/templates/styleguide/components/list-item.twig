@@ -1,0 +1,13 @@
+<div class="list-item">
+
+	{% if datetime and date %}
+		<div class="list-item__meta">
+			<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+			<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+		</div>
+	{% endif %}
+
+	<a href="{{ url }}" class="list-item__link">
+		{{ title|raw }}
+	</a>
+</div>

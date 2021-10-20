@@ -8,6 +8,7 @@ import './modules/oembed.js';
 import './modules/table.js';
 import './modules/social-share.js';
 import './modules/social-share-dropdown.js';
+import './modules/tabs.js';
 
 ( function( app, $ ) {
 	'use strict';

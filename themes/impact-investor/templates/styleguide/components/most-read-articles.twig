@@ -1,0 +1,12 @@
+{% if objects %}
+	<ol class="list-styled-ordered">
+		{% for object in objects %}
+			<li class="list-styled-ordered__item">
+				{% include 'styleguide/components/list-item.twig' with {
+					title: object.title,
+					url: object.url,
+				} %}
+			</li>
+		{% endfor %}
+	</ol>
+{% endif %}

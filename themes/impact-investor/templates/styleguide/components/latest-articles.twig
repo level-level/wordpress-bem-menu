@@ -1,0 +1,14 @@
+{% if objects %}
+	<ul class="list-bordered">
+		{% for object in objects %}
+			<li class="list-bordered__item">
+				{% include 'styleguide/components/list-item.twig' with {
+					title: object.title,
+					url: object.url,
+					date: object.date,
+					datetime: object.datetime,
+				} %}
+			</li>
+		{% endfor %}
+	</ul>
+{% endif %}
