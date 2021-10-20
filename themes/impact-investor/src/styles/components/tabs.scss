@@ -1,0 +1,40 @@
+.tab-list {
+	@include list-unstyled;
+	display: flex;
+	flex-wrap: nowrap;
+	border-bottom: 1px solid $border;
+
+	&__item {
+		flex-grow: 1;
+	}
+
+	&__link {
+		position: relative;
+		display: block;
+		padding: 15px $default-padding;
+		padding-bottom: calc(15px - 4px);
+		background-color: #fff;
+		font-weight: bold;
+		text-decoration: none;
+		border-bottom: 4px solid transparent;
+		color: $grey-light;
+
+		&[aria-selected='true'] {
+			border-color: $primary;
+			color: $black;
+		}
+	}
+
+	&__section {
+		display: none;
+		background-color: $white;
+
+		&[aria-hidden='false'] {
+			display: block;
+		}
+	}
+}
+
+.tablist {
+	border-bottom: 2px solid $primary;
+}

@@ -1,0 +1,23 @@
+.list-item {
+	position: relative;
+
+	&__meta {
+		@include font-size(14px);
+		color: $grey-light;
+		margin-bottom: 3px;
+	}
+
+	&__link {
+		@include absolute-link;
+		display: block;
+		text-decoration: none;
+
+		&:focus {
+			color: $primary;
+		}
+
+		@include hover {
+			color: $primary;
+		}
+	}
+}

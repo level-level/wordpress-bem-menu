@@ -71,3 +71,42 @@
 		}
 	}
 }
+
+.list-styled-ordered {
+	@include list-unstyled;
+	counter-reset: counter;
+
+	& > * + * {
+		border-top: 1px solid $border;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		counter-increment: counter;
+		padding: 10px 0;
+		padding-right: 10px;
+
+		&:before {
+			@include font-size(28px);
+			font-weight: bold;
+			content: counter(counter);
+			color: $primary;
+			text-align: center;
+			width: 50px;
+			flex-shrink: 0;
+		}
+	}
+}
+
+.list-bordered {
+	@include list-unstyled;
+
+	& > * + * {
+		border-top: 1px solid $border;
+	}
+
+	&__item {
+		padding: 10px $default-padding;
+	}
+}
