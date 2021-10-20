@@ -1,12 +1,14 @@
 <?php
 namespace Clarkson\Theme;
 
-use Clarkson\Theme\PostTypes\Example;
+use Clarkson\Theme\PostTypes\Team;
+use Clarkson\Theme\PostTypes\Vacancy;
 
 class PostTypes {
 
 	protected const POST_TYPES = array(
-		Example::class,
+		Team::class,
+		Vacancy::class,
 	);
 
 	public function register_hooks(): void {
