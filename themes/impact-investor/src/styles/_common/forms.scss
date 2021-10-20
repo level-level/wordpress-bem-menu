@@ -65,14 +65,14 @@
 
 @mixin radiobutton-label {
 	position: relative;
-	padding-left: $default-padding;
+	padding-left: $default-padding*2;
 	font-weight: normal;
 	margin: 0;
 
 	&:before {
 		position: absolute;
 		left: 0;
-		top: 2px;
+		top: 0;
 		width: 16px;
 		height: 16px;
 		border: 1px solid $black;
@@ -84,7 +84,7 @@
 		display: none;
 		position: absolute;
 		left: 3px;
-		top: 5px;
+		top: 3px;
 		width: 12px;
 		height: 12px;
 		background-color: $black;
@@ -177,4 +177,10 @@ fieldset {
 	top: auto;
 	left: auto;
 	opacity: 1;
+}
+
+.form-group {
+	& > * + * {
+		margin-top: $default-padding;
+	}
 }

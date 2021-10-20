@@ -22,7 +22,8 @@
             "Hooks\\": "themes/impact-investor/app/Hooks",
             "Clarkson\\": "themes/impact-investor/app/Clarkson",
             "Gutenberg\\Blocks\\": "themes/impact-investor/app/Gutenberg/",
-            "Clarkson_Core\\WordPress_Object\\": "themes/impact-investor/app/WordPress_Objects/"
+            "Clarkson_Core\\WordPress_Object\\": "themes/impact-investor/app/WordPress_Objects/",
+            "ImpactInvestor\\": "themes/impact-investor/app/ImpactInvestor/"
         }
     },
     "require": {

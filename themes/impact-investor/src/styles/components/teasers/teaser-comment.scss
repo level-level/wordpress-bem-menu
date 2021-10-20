@@ -1,0 +1,18 @@
+.teaser-comment {
+	position: relative;
+	background-color: $white;
+	border-bottom: 2px solid $primary;
+	padding: $default-padding;
+
+	&__author {
+		font-weight: bold;
+	}
+
+	&__meta {
+		@include font-size(14px);
+	}
+
+	&__content {
+		margin-top: $default-padding;
+	}
+}

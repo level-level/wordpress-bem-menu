@@ -8,7 +8,6 @@
 
 // Clarkson WPAdmin
 ( new \Clarkson\WPadmin\Capabilities() )->register_hooks();
-( new \Clarkson\WPadmin\Comments() )->register_hooks();
 ( new \Clarkson\WPadmin\Gutenberg() )->register_hooks();
 ( new \Clarkson\WPadmin\Plugins() )->register_hooks();
 ( new \Clarkson\WPadmin\Tools\Base() )->register_hooks();
@@ -30,3 +29,6 @@
 ( new \Clarkson\Theme\Taxonomies() )->register_hooks();
 ( new \Clarkson\Theme\Options() )->register_hooks();
 ( new \Clarkson\Theme\ImageSizes() )->register_hooks();
+
+// Impact Investor
+( new \ImpactInvestor\Comments\Comments() )->register_hooks();

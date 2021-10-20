@@ -110,3 +110,11 @@
 		padding: 10px $default-padding;
 	}
 }
+
+.list-comments {
+	@include list-unstyled;
+
+	& > * + * {
+		margin-top: $default-padding;
+	}
+}

@@ -6,6 +6,22 @@
 	background-color: $white;
 	border-bottom: 2px solid $primary;
 
+	&:focus-within {
+		.teaser-post {
+			&__link {
+				color: $primary;
+			}
+		}
+	}
+
+	@include hover {
+		.teaser-post {
+			&__link {
+				color: $primary;
+			}
+		}
+	}
+
 	&__inner {
 		padding: $default-padding;
 	}
