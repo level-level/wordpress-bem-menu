@@ -40,8 +40,8 @@
 }
 
 @mixin label {
+	@include font-bold;
 	display: block;
-	font-weight: bold;
 	margin-bottom: 5px;
 	cursor: pointer;
 }

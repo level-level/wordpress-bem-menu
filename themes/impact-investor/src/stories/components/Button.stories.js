@@ -31,11 +31,6 @@ Primary.args = {
 	class: 'btn--primary',
 };
 
-export const Ghost = Template.bind( {} );
-Ghost.args = {
-	class: 'btn--ghost',
-};
-
 export const Link = Template.bind( {} );
 Link.args = {
 	class: 'btn--link',

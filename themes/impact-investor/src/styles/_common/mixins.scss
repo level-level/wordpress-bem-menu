@@ -100,8 +100,7 @@
 // $y (int) 9 - Height of the ratio
 @mixin image-ratio($x, $y) {
 	position: relative;
-	height: 0;
-	padding-bottom: calc(#{$y} / #{$x} * 100%);
+	aspect-ratio: #{$x} / #{$y};
 	overflow: hidden;
 
 	@if type-of($x) != 'number' {
@@ -160,6 +159,10 @@
 	@include font-normal;
 	@include font-size(16px, 20px);
 	color: $black;
+
+	@include breakpoint-sm {
+		@include font-size(17px, 22px);
+	}
 }
 
 // Blockquote
@@ -181,7 +184,7 @@
 
 	p {
 		@include font-size(20px);
-		font-weight: bold;
+		@include font-bold;
 		font-style: italic;
 	}
 
