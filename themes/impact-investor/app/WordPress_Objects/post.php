@@ -2,6 +2,7 @@
 
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson_Core\Templates;
 use ImpactInvestor\Comments\CommentWalker;
 
 class post extends base_object {
@@ -38,16 +39,18 @@ class post extends base_object {
 	 * @return mixed
 	 */
 	public function get_comment_form() {
+		$twig = Templates::get_instance();
+
 		$args = array(
 			'class_form'           => 'form-group',
 			'format'               => 'html5',
 			'label_submit'         => __( 'Add comment', 'impact-investor' ),
 			'title_reply'          => __( 'Leave a comment', 'impact-investor' ),
 			'comment_notes_before' => '<p>' . __( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'impact-investor' ) . '</p>',
-			'comment_field'        => '<div class="form-group__item">
-									<label for="comment">' . _x( 'Comment', 'noun', 'impact-investor' ) . '<span class="required">*</span></label>
-									<textarea id="comment" name="comment" aria-required="true"></textarea>
-								</div>',
+			'comment_field'        => $twig->render_twig(
+				'styleguide/components/comments/form-fields/textarea.twig',
+				array(), true
+			),
 		);
 
 		return comment_form( $args );
