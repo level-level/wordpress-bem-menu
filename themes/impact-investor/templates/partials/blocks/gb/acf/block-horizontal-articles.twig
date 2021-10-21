@@ -30,7 +30,7 @@
 									name: author.get_display_name(),
 									url: get_author_posts_url(author.get_id())
 								},
-								comments: 12,
+								comments: object.get_comments_count(),
 							} %}
 						</li>
 					{% endfor %}
