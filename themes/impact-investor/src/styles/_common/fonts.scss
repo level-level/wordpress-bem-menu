@@ -2,21 +2,59 @@
 //
 // Include font styles
 @mixin font-normal {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'ProximaNovaRegular', sans-serif;
+	font-weight: normal;
 }
 
-/* open-sans-regular - latin */
+@mixin font-bold {
+	font-family: 'ProximaNovaBold', sans-serif;
+	font-weight: normal;
+}
+
+@mixin font-heading {
+	font-family: 'ProximaNovaBold', sans-serif;
+	font-weight: normal;
+}
+
+@mixin font-heading-normal {
+	font-family: 'ProximaNovaBold', sans-serif;
+	font-weight: normal;
+}
+
 // @font-face {
-// 	font-family: 'Open Sans';
+// 	font-family: 'ArnhemProBold';
+// 	src: url('../fonts/arnhempro-bold.woff2') format('woff2'),
+// 		url('../fonts/arnhempro-bold.woff') format('woff');
 // 	font-style: normal;
-// 	font-weight: 400;
+// 	font-weight: normal;
 // 	font-display: swap;
-// 	src: url('../fonts/open-sans-v18-latin-regular.eot'); /* IE9 Compat Modes */
-// 	src:
-// 		local(''),
-// 		url('../fonts/open-sans-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-// 		url('../fonts/open-sans-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
-// 		url('../fonts/open-sans-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
-// 		url('../fonts/open-sans-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
-// 		url('../fonts/open-sans-v18-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
 // }
+
+// @font-face {
+// 	font-family: 'ArnhemProBlond';
+// 	src: url('../fonts/arnhempro-blond.woff2') format('woff2'),
+// 		url('../fonts/arnhempro-blond.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// 	font-display: swap;
+// }
+
+@font-face {
+	font-family: 'ProximaNovaRegular';
+	src:
+		url('../fonts/proxima-nova-regular.woff2') format('woff2'),
+		url('../fonts/proxima-nova-regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'ProximaNovaBold';
+	src:
+		url('../fonts/proxima-nova-bold.woff2') format('woff2'),
+		url('../fonts/proxima-nova-bold.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}

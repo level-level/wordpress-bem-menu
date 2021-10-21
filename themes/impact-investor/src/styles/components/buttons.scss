@@ -1,13 +1,13 @@
 @mixin btn {
+	@include font-bold;
 	@include font-size(16px);
 	position: relative;
 	display: inline-flex;
 	align-items: center;
-	padding: 6px 8px;
-	font-weight: normal;
+	padding: 6px 10px;
 	background-color: transparent;
 	text-decoration: none;
-	border: 2px solid transparent;
+	border: 0;
 	line-height: 1;
 	user-select: none;
 	color: $black;
@@ -32,15 +32,10 @@
 @mixin btn--primary {
 	background-color: $primary;
 	color: $white;
-	font-weight: bold;
-}
-
-@mixin btn--ghost {
-	background-color: transparent;
-	border: 2px solid $black;
 }
 
 @mixin btn--link {
+	@include font-normal;
 	@include font-size(14px);
 	padding: 0;
 
@@ -78,10 +73,6 @@ input[type='button'] {
 
 	&--primary {
 		@include btn--primary;
-	}
-
-	&--ghost {
-		@include btn--ghost;
 	}
 
 	&--link {
