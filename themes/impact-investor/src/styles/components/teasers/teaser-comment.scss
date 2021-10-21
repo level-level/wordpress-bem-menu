@@ -5,7 +5,7 @@
 	padding: $default-padding;
 
 	&__author {
-		font-weight: bold;
+		@include font-bold;
 	}
 
 	&__meta {
