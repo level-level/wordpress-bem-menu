@@ -9,12 +9,12 @@
 	}
 
 	&__link {
+		@include font-bold;
 		position: relative;
 		display: block;
 		padding: 15px $default-padding;
 		padding-bottom: calc(15px - 4px);
 		background-color: #fff;
-		font-weight: bold;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
 		color: $grey-light;

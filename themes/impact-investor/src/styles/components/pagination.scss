@@ -28,10 +28,10 @@
 
 		span {
 			&.current {
+				@include font-bold;
 				display: block;
 				padding: 10px 15px;
 				border: 1px solid black;
-				font-weight: bold;
 			}
 
 			&.dots {

@@ -88,8 +88,8 @@
 		padding-right: 10px;
 
 		&:before {
+			@include font-bold;
 			@include font-size(28px);
-			font-weight: bold;
 			content: counter(counter);
 			color: $primary;
 			text-align: center;

@@ -43,7 +43,7 @@
 	}
 
 	th {
-		font-weight: bold;
+		@include font-bold;
 	}
 
 	@media (max-width: 992px) {
@@ -67,16 +67,16 @@
 		tbody td,
 		tfoot td {
 			&:before {
+				@include font-bold;
 				display: block;
 				content: attr(data-th);
-				font-weight: bold;
 			}
 		}
 	}
 }
 
 th {
-	font-weight: bold;
+	@include font-bold;
 	text-align: left;
 }
 

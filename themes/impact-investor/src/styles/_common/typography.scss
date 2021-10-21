@@ -9,6 +9,7 @@ h3,
 h4,
 h5,
 h6 {
+	@include font-heading;
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -17,23 +18,23 @@ h6 {
 
 h1,
 .h1 {
-	@include font-size(24px, 36px);
+	@include font-size(25px, 27px);
 
 	@include breakpoint-sm {
-		@include font-size(32px, 48px);
+		@include font-size(45px, 48px);
 	}
 
 	@include breakpoint-lg {
-		@include font-size(42px, 60px);
+		@include font-size(52px, 56px);
 	}
 }
 
 h2,
 .h2 {
-	@include font-size(21px, 28px);
+	@include font-size(25px, 27px);
 
 	@include breakpoint-sm {
-		@include font-size(30px, 40px);
+		@include font-size(29px, 31px);
 	}
 }
 
@@ -65,7 +66,7 @@ a {
 }
 
 strong {
-	font-weight: bold;
+	@include font-bold;
 }
 
 figure {
@@ -83,7 +84,7 @@ dd {
 }
 
 dt {
-	font-weight: bold;
+	@include font-bold;
 }
 
 dd {
