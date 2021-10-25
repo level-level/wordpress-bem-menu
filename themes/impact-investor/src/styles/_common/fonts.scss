@@ -12,32 +12,30 @@
 }
 
 @mixin font-heading {
-	font-family: 'ProximaNovaBold', sans-serif;
+	font-family: 'ArnhemProBold', sans-serif;
 	font-weight: normal;
 }
 
 @mixin font-heading-normal {
-	font-family: 'ProximaNovaBold', sans-serif;
+	font-family: 'ArnhemProBlond', sans-serif;
 	font-weight: normal;
 }
 
-// @font-face {
-// 	font-family: 'ArnhemProBold';
-// 	src: url('../fonts/arnhempro-bold.woff2') format('woff2'),
-// 		url('../fonts/arnhempro-bold.woff') format('woff');
-// 	font-style: normal;
-// 	font-weight: normal;
-// 	font-display: swap;
-// }
+@font-face {
+	font-family: 'ArnhemProBold';
+	src: url('../fonts/ArnhemPro-Bold.woff') format('woff');
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+}
 
-// @font-face {
-// 	font-family: 'ArnhemProBlond';
-// 	src: url('../fonts/arnhempro-blond.woff2') format('woff2'),
-// 		url('../fonts/arnhempro-blond.woff') format('woff');
-// 	font-weight: normal;
-// 	font-style: normal;
-// 	font-display: swap;
-// }
+@font-face {
+	font-family: 'ArnhemProBlond';
+	src: url('../fonts/ArnhemPro-Blond.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 @font-face {
 	font-family: 'ProximaNovaRegular';

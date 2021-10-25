@@ -1,14 +1,18 @@
-{% extends 'layouts/full-width.twig' %}
+{% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
 {% set title = object.get_title() %}
 
 {% block content %}
-	<div class="section">
+	<article class="section section--large">
 		<div class="entry-content">
 			<h1 class="entry-title">{{ title|raw }}</h1>
 			{{ object.get_content()|raw }}
 		</div>
-	</div>
+	</article>
 
 	{% include 'styleguide/components/comments/comment-section.twig' %}
+{% endblock %}
+
+{% block sidebar %}
+	{% include 'styleguide/components/tabbed-posts.twig' %}
 {% endblock %}

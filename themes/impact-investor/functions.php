@@ -32,3 +32,4 @@
 
 // Impact Investor
 ( new \ImpactInvestor\Comments\Comments() )->register_hooks();
+( new \ImpactInvestor\Search\Search() )->register_hooks();

@@ -21,7 +21,9 @@
 		<div class="container">
 			<div class="row row--align-center">
 				<div class="col-auto col--grow-1">
-					{% include 'partials/components/search.twig' %}
+					{% include 'partials/components/search.twig' with {
+						in_header: true,
+					} %}
 				</div>
 				<div class="col-auto">
 					{% include 'styleguide/components/buttons/button-element.twig' with {

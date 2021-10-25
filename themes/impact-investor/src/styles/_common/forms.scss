@@ -137,6 +137,10 @@ input[type='search'] {
 	@include form-control;
 }
 
+input[type='search'] {
+	border: 0;
+}
+
 select {
 	@include select;
 }

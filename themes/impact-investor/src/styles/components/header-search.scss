@@ -21,6 +21,10 @@
 				color: $white;
 				border: 0;
 
+				&:focus {
+					@include focus-style($white);
+				}
+
 				@include placeholder {
 					color: $white;
 					opacity: 0.6;
