@@ -23,7 +23,7 @@ class Gutenberg {
 			array(
 				array(
 					'name' => _x( 'Intro', 'Block', 'impact-investor' ),
-					'size' => 24,
+					'size' => 28,
 					'slug' => 'intro',
 				),
 			)

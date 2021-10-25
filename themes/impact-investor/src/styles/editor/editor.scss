@@ -20,6 +20,7 @@
 // Post/Page title
 .editor-post-title {
 	.editor-post-title__input {
+		@include font-heading;
 	}
 }
 
@@ -30,6 +31,7 @@
 		background-color: $secondary;
 
 		*[data-type='core/heading'] {
+			@include font-heading;
 		}
 
 		*[data-type='core/quote'] {
