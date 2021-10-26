@@ -1,5 +1,6 @@
 .primary-nav {
 	@include list-unstyled;
+	@include font-normal;
 	display: flex;
 	flex-direction: column;
 
@@ -29,11 +30,12 @@
 	}
 
 	&__link {
+		@include font-bold;
 		@include font-size(16px);
 		display: flex;
 		align-items: center;
 		padding: 10px 0;
-		color: $white;
+		color: $senary;
 		text-decoration: none;
 		height: $header-height;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.1);

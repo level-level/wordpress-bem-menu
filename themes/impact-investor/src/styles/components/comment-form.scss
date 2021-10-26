@@ -1,6 +1,37 @@
 .comment-form-container {
 	position: relative;
-	background-color: $white;
-	padding: $default-padding;
-	border-bottom: 2px solid $primary;
+	background-color: $quaternary;
+	border-bottom: 2px solid $quinary;
+
+	.comment-reply-title {
+		@include font-bold;
+		@include font-size(18px, 26px);
+		color: $primary;
+		border-bottom: 1px solid $quinary;
+		padding: 11px $default-padding;
+	}
+
+	.form-group {
+		@include font-normal;
+		@include font-size(16px);
+		padding: 11px $default-padding;
+		padding-bottom: $default-padding;
+	}
+}
+
+.comments-area {
+	position: relative;
+	background-color: $quaternary;
+	border-bottom: 2px solid $quinary;
+
+	&__header {
+		border-bottom: 1px solid $quinary;
+		padding: 11px $default-padding;
+	}
+
+	&__title {
+		@include font-bold;
+		@include font-size(24px, 32px);
+		color: $primary;
+	}
 }

@@ -1,3 +1,15 @@
 .badge {
 	@include font-size(14px);
+	position: relative;
+
+	&--rich {
+		@include font-bold;
+		@include font-size(12px);
+		background-color: $primary;
+		color: $white;
+		text-transform: uppercase;
+		text-decoration: none;
+		padding: 5px 10px;
+		letter-spacing: 2.5px;
+	}
 }

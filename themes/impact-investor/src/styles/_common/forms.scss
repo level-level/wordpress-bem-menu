@@ -4,17 +4,23 @@
 //
 // Applies default form styling
 @mixin form-control {
+	@include font-normal;
 	position: relative;
 	box-sizing: border-box;
 	display: block;
 	width: 100%;
 	border-radius: 0;
 	padding: 0 $default-padding*0.5;
-	border: 1px solid $black;
+	border: 0;
+	border-bottom: 1px solid $quinary;
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
 	-webkit-appearance: none;
+
+	@include breakpoint-sm {
+		@include font-size(16px);
+	}
 
 	&:focus,
 	&:active {
@@ -64,18 +70,19 @@
 }
 
 @mixin radiobutton-label {
+	@include font-normal;
 	position: relative;
 	padding-left: $default-padding*2;
-	font-weight: normal;
 	margin: 0;
 
 	&:before {
 		position: absolute;
 		left: 0;
-		top: 0;
+		top: 5px;
 		width: 16px;
 		height: 16px;
-		border: 1px solid $black;
+		border: 2px solid $quinary;
+		background-color: $white;
 		border-radius: 50%;
 		content: '';
 	}
@@ -83,11 +90,11 @@
 	&:after {
 		display: none;
 		position: absolute;
-		left: 3px;
-		top: 3px;
+		left: 4px;
+		top: 9px;
 		width: 12px;
 		height: 12px;
-		background-color: $black;
+		background-color: $primary;
 		border-radius: 50%;
 		content: '';
 	}

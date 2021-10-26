@@ -1,30 +1,26 @@
 {% if object.has_comments_enabled() %}
 	<div class="section">
-		<div class="entry-content">
-			<div class="group">
+		<div class="group">
 
-				{% set comment_count = object.get_comments_count() %}
-				{% if comment_count > 0 %}
-					<div class="group__item">
-						<div id="comments">
-							<div class="group group--small">
-								<div class="group__item">
-									<h2>{{ __('Comments', 'impact-investor') }}</h2>
-								</div>
-								<div class="group__item">
-									<ol class="list-comments">
-										{{ object.get_comments() }}
-									</ol>
-								</div>
-							</div>
-						</div>
-					</div>
-				{% endif %}
-
+			{% set comment_count = object.get_comments_count() %}
+			{% if comment_count > 0 %}
 				<div class="group__item">
-					<div class="comment-form-container">
-						{{ object.get_comment_form() }}
+					<div id="comments" class="comments-area">
+						<div class="comments-area__header">
+							<h2 class="comments-area__title">
+								{{ _n('%s Comment', '%s Comments', comment_count, 'impact-investor')|format(comment_count) }}
+							</h2>
+						</div>
+						<ol class="list-comments">
+							{{ object.get_comments() }}
+						</ol>
 					</div>
+				</div>
+			{% endif %}
+
+			<div class="group__item">
+				<div class="comment-form-container">
+					{{ object.get_comment_form() }}
 				</div>
 			</div>
 		</div>
