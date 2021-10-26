@@ -1,4 +1,8 @@
-{% if title %}
+{% if title and url %}
+	<a href="{{ url }}" class="badge {{ rich ? 'badge--rich' }}">
+		{{ title|raw }}
+	</a>
+{% elseif title %}
 	<div class="badge">
 		{{ title|raw }}
 	</div>

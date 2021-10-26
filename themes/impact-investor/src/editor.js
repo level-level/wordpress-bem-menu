@@ -13,14 +13,15 @@ wp.domReady( () => {
 
 	// Disable default WordPress style for core block(s)
 	wp.blocks.unregisterBlockStyle( 'core/table', 'stripes' );
+	wp.blocks.unregisterBlockStyle( 'core/image', 'rounded' );
 
 	// Define specific Gutenberg embeds blocks
-	const enabledEmbeds = [ 'youtube', 'twitter', 'vimeo', 'spotify', 'soundcloud' ];
+	const enabledEmbeds = [ 'youtube', 'twitter', 'vimeo' ];
 	const embedBlock = wp.blocks.getBlockVariations( 'core/embed' );
 
 	if ( embedBlock ) {
 		embedBlock.forEach( ( el ) => {
-			if ( !enabledEmbeds.includes( el.name ) ) {
+			if ( ! enabledEmbeds.includes( el.name ) ) {
 				wp.blocks.unregisterBlockVariation( 'core/embed', el.name );
 			}
 		} );

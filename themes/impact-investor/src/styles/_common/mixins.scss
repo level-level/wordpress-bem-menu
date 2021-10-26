@@ -156,12 +156,12 @@
 //
 // Adds properties for default body styling
 @mixin body-styles {
-	@include font-normal;
-	@include font-size(16px, 20px);
+	@include font-heading-normal;
+	@include font-size(18px, 28px);
 	color: $black;
 
 	@include breakpoint-sm {
-		@include font-size(17px, 22px);
+		@include font-size(21px, 31px);
 	}
 }
 

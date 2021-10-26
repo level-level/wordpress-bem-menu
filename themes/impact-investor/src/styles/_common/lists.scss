@@ -74,6 +74,8 @@
 
 .list-styled-ordered {
 	@include list-unstyled;
+	@include font-normal;
+	@include font-size(17px, 22px);
 	counter-reset: counter;
 
 	& > * + * {
@@ -101,6 +103,8 @@
 
 .list-bordered {
 	@include list-unstyled;
+	@include font-normal;
+	@include font-size(17px, 22px);
 
 	& > * + * {
 		border-top: 1px solid $border;
@@ -114,7 +118,11 @@
 .list-comments {
 	@include list-unstyled;
 
-	& > * + * {
-		margin-top: $default-padding;
+	&__item {
+		border-bottom: 1px solid $quinary;
+
+		&:last-child {
+			border-bottom: 0;
+		}
 	}
 }

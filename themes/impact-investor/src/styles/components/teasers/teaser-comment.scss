@@ -1,18 +1,26 @@
 .teaser-comment {
+	@include font-normal;
 	position: relative;
-	background-color: $white;
-	border-bottom: 2px solid $primary;
+	background-color: $quaternary;
 	padding: $default-padding;
 
 	&__author {
 		@include font-bold;
+		@include font-size(16px);
+		color: $senary;
 	}
 
 	&__meta {
-		@include font-size(14px);
+		@include font-size(16px);
+		color: $senary;
 	}
 
 	&__content {
-		margin-top: $default-padding;
+		@include font-size(16px);
+		margin-top: 5px;
+
+		@include breakpoint-sm {
+			@include font-size(18px, 26px);
+		}
 	}
 }

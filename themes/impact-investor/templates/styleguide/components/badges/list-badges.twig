@@ -4,6 +4,8 @@
 			<li class="list-badges__item">
 				{% include 'styleguide/components/badges/badge.twig' with {
 					title: badge.name,
+					url: badge.url,
+					rich: true,
 				} %}
 			</li>
 		{% endfor %}

@@ -10,6 +10,7 @@
 
 	&__link {
 		@include font-bold;
+		@include font-size(17px, 22px);
 		position: relative;
 		display: block;
 		padding: 15px $default-padding;
