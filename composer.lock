@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3dd2aeb6881801a4aae4cc000972edf",
+    "content-hash": "43976b5750cf23e31bdf2d9626efc345",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3571,6 +3571,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/disable-emojis/"
+        },
+        {
+            "name": "wpackagist-plugin/koko-analytics",
+            "version": "1.0.28",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/koko-analytics/",
+                "reference": "tags/1.0.28"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.28.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/koko-analytics/"
         },
         {
             "name": "wpackagist-plugin/loco-translate",
