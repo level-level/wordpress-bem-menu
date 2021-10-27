@@ -1,13 +1,17 @@
 <div class="section">
 	<div class="tablist" data-module="tabs">
 		<ul class="tab-list" role="tablist">
+
+			{% if most_read_articles %}
+				<li role="presentation" class="tab-list__item">
+					<a role="tab" href="#most-read" id="tab1" class="tab-list__link" aria-selected="true">
+						{{ __('Most read', 'impact-investor') }}
+					</a>
+				</li>
+			{% endif %}
+
 			<li role="presentation" class="tab-list__item">
-				<a role="tab" href="#most-read" id="tab1" class="tab-list__link" aria-selected="true">
-					{{ __('Most read', 'impact-investor') }}
-				</a>
-			</li>
-			<li role="presentation" class="tab-list__item">
-				<a role="tab" href="#latest_articles" id="tab2" class="tab-list__link" tabindex="-1">
+				<a role="tab" href="#latest_articles" id="tab2" class="tab-list__link" tabindex="-1" {{ not most_read_articles ? 'aria-selected="true"' }}>
 					{{ __('Latest articles', 'impact-investor') }}
 				</a>
 			</li>
@@ -47,12 +51,15 @@
 			}
 		] %}
 
-		<div id="most-read" class="tab-list__section" aria-hidden="false">
-			{% include 'styleguide/components/most-read-articles.twig' with {
-				objects: posts,
-			} %}
-		</div>
-		<div id="latest_articles" class="tab-list__section">
+		{% if most_read_articles %}
+			<div id="most-read" class="tab-list__section" aria-hidden="false">
+				{% include 'styleguide/components/most-read-articles.twig' with {
+					objects: most_read_articles,
+				} %}
+			</div>
+		{% endif %}
+
+		<div id="latest_articles" class="tab-list__section" {{ not most_read_articles ? 'aria-hidden="false"' }}>
 			{% include 'styleguide/components/latest-articles.twig' with {
 				objects: posts,
 			} %}
