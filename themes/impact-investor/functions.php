@@ -34,3 +34,4 @@
 ( new \ImpactInvestor\Comments\Comments() )->register_hooks();
 ( new \ImpactInvestor\Search\Search() )->register_hooks();
 ( new \ImpactInvestor\KokoAnalytics\KokoAnalytics() )->register_hooks();
+( new \ImpactInvestor\Articles\Articles() )->register_hooks();
