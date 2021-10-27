@@ -12,5 +12,8 @@
 {% endblock %}
 
 {% block sidebar %}
-	{% include 'styleguide/components/tabbed-posts.twig' %}
+	{% include 'styleguide/components/tabbed-posts.twig' with {
+		latest: latest_articles,
+		most_read: most_read_articles,
+	} %}
 {% endblock %}
