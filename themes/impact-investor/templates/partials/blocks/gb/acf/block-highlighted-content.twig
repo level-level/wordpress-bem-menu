@@ -1,0 +1,31 @@
+{% set title = data.title ? data.title : __('In short', 'impact-investor') %}
+{% set content = data.content %}
+
+{% if content %}
+	<div class="align{{ align }}">
+		<div class="highlighted-content">
+			<div class="group">
+
+				{% if title %}
+					<div class="group__item">
+						<div class="highlighted-content__title">
+							<h2>
+								{{ title|raw }}
+							</h2>
+						</div>
+					</div>
+				{% endif %}
+
+				<div class="group__item">
+					<div class="highlighted-content__content">
+						{{ content|raw }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Content']
+	} %}
+{% endif %}

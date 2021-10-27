@@ -12,14 +12,9 @@
 			<div class="group__item">
 				<div class="row row--space-between row--nowrap row--align-center">
 					<div class="col-auto">
-						{% if terms %}
-							<span class="screen-reader-text">
-								{{ __('Posted in category:', 'impact-investor') }}
-							</span>
-							{% include 'styleguide/components/badges/list-badges.twig' with {
-								badges: terms,
-							} %}
-						{% endif %}
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
 					</div>
 					<div class="col-auto">
 						<div class="teaser-post__date">
@@ -50,16 +45,10 @@
 	<div class="teaser-post__footer">
 		<div class="row row--space-between row--nowrap row--align-center">
 			<div class="col-auto">
-				{% if author.name %}
-					<span class="screen-reader-text">
-						{{ __('Written by:', 'impact-investor') }}
-					</span>
-					{% include 'styleguide/components/buttons/button-link.twig' with {
-						text: author.name,
-						url: author.url,
-						class: 'btn--link btn--author',
-					} %}
-				{% endif %}
+				{% include 'styleguide/components/post-author.twig' with {
+					name: author.name,
+					url: author.url,
+				} %}
 			</div>
 			<div class="col-auto">
 				<div class="row row--space-between row--nowrap row--align-center">

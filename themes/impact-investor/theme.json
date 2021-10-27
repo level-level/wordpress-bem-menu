@@ -11,8 +11,8 @@
         "palette": []
     },
     "layout": {
-        "contentSize": "800px",
-        "wideSize": "1000px"
+        "contentSize": "var(--content-width)",
+        "wideSize": "var(--container)"
     },
     "typography": {
       "customFontSize": false,

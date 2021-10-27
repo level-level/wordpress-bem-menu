@@ -27,9 +27,9 @@
 		@include font-normal;
 		@include font-size(14px, 18px);
 		color: $black;
-		text-align: center;
 		margin: 0;
-		margin-top: 5px;
+		padding: 10px;
+		background-color: $quaternary;
 	}
 }
 

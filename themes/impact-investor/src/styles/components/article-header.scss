@@ -1,0 +1,26 @@
+.article-header {
+	position: relative;
+	margin-bottom: $default-padding*2;
+
+	&__terms {
+		margin-bottom: $default-padding*1.5;
+	}
+
+	&__meta {
+		margin-top: $default-padding*0.5;
+
+		time,
+		.btn {
+			@include font-bold;
+			@include font-size(17px);
+		}
+
+		.btn {
+			color: $primary;
+
+			&__text {
+				text-decoration: none;
+			}
+		}
+	}
+}

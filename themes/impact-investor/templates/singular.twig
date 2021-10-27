@@ -4,23 +4,23 @@
 {% set terms = object.get_terms('category') %}
 
 {% block content %}
+
 	<article class="section section--large">
+		{% include 'styleguide/components/article-header.twig' with {
+			title: title,
+			terms: terms ? terms|map(term => {
+				name: term.get_name(),
+				url: term.get_permalink(),
+			}),
+			date: object.get_date_i18n(get_option('date_format')),
+			datetime: object.get_date_i18n('Y-m-d'),
+			author: {
+				name: object.get_author().get_display_name(),
+				url: get_author_posts_url(object.get_author().get_id())
+			},
+		} %}
+
 		<div class="entry-content">
-
-
-			{% if terms %}
-				<span class="screen-reader-text">
-					{{ __('Posted in category:', 'impact-investor') }}
-				</span>
-				{% include 'styleguide/components/badges/list-badges.twig' with {
-					badges: terms ? terms|map(term => {
-						name: term.get_name(),
-						url: term.get_permalink(),
-					}),
-				} %}
-			{% endif %}
-
-			<h1 class="entry-title">{{ title|raw }}</h1>
 			{{ object.get_content()|raw }}
 		</div>
 	</article>

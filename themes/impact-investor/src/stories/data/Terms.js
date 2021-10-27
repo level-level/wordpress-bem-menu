@@ -1,5 +1,6 @@
 export default [
 	{
-		name: 'Interview'
+		name: 'Interview',
+		url: '#interview',
 	},
 ];

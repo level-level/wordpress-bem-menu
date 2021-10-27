@@ -19,8 +19,7 @@ class ACFBlocks {
 	 */
 	public function set_default_block_type_args( array $block ): array {
 		$block['category']                    = 'impact-investor';
-		$block['mode']                        = 'auto'; // auto, preview, edit
-		$block['render_callback']             = array( $this, 'block_render_callback' );
+		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['supports']['customClassName'] = false;
 
 		return $block;
@@ -37,17 +36,18 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'block-column-articles',
-				'title'       => _x( 'Two column articles', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a list of articles in a two column layout based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'        => 'columns',
-				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'articles', 'column', 'post' ),
-				'supports'    => array(
-					'align'    => array( 'wide' ),
+				'name'            => 'block-column-articles',
+				'title'           => _x( 'Two column articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of articles in a two column layout based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'columns',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'posts', 'articles', 'column', 'post' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'example'     => array(
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
@@ -61,17 +61,18 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'block-featured-article',
-				'title'       => _x( 'Featured article', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a single featured article.', 'Block', 'impact-investor' ),
-				'icon'        => 'welcome-view-site',
-				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'featured article', 'post' ),
-				'supports'    => array(
-					'align'    => array( 'wide' ),
+				'name'            => 'block-featured-article',
+				'title'           => _x( 'Featured article', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a single featured article.', 'Block', 'impact-investor' ),
+				'icon'            => 'welcome-view-site',
+				'align'           => 'wide', // full, wide, left, center, right
+				'keywords'        => array( 'featured article', 'post' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'example'     => array(
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
@@ -85,22 +86,47 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'        => 'block-horizontal-articles',
-				'title'       => _x( 'Horizontal articles', 'Block', 'impact-investor' ),
-				'description' => _x( 'Displays a list of articles in a horizontal layout based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'        => 'align-right',
-				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'articles', 'horizontal', 'post' ),
-				'supports'    => array(
-					'align'    => array( 'wide' ),
+				'name'            => 'block-horizontal-articles',
+				'title'           => _x( 'Horizontal articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of articles in a horizontal layout based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'align-right',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'articles', 'horizontal', 'post' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'example'     => array(
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
 							'is_fill_enabled' => true,
 							'amount'          => 1,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-highlighted-content',
+				'title'           => _x( 'Highlighted content', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays content in a box to make it stand out more.', 'Block', 'impact-investor' ),
+				'icon'            => 'text-page',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'highlight', 'summary', 'in short', 'content' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'content'         => '<p>Example feature content</p>',
 						),
 					),
 				),

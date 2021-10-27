@@ -1,0 +1,38 @@
+<div class="article-header">
+
+	{% if terms %}
+		<div class="article-header__terms">
+			{% include 'styleguide/components/post-terms.twig' with {
+				terms: terms,
+			} %}
+		</div>
+	{% endif %}
+
+	<div class="article-header__title">
+		<h1>{{ title|raw }}</h1>
+	</div>
+
+	{% if author or date and datetime %}
+		<div class="article-header__meta">
+			<div class="row">
+
+				{% if author %}
+					<div class="col-auto">
+						{% include 'styleguide/components/post-author.twig' with {
+							name: author.name,
+							url: author.url,
+						} %}
+					</div>
+				{% endif %}
+
+				{% if date and datetime %}
+					<div class="col-auto">
+						<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+						<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+					</div>
+				{% endif %}
+
+			</div>
+		</div>
+	{% endif %}
+</div>
