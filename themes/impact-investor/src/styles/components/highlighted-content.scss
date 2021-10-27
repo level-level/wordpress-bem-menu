@@ -1,0 +1,16 @@
+.highlighted-content {
+	position: relative;
+	border-top: 3px solid $primary;
+	border-bottom: 1px solid $black;
+	padding: $default-padding 0;
+
+	&__title {
+		padding-bottom: $default-padding;
+		border-bottom: 1px solid $black;
+	}
+
+	&__content {
+		@include font-normal;
+		@include font-size(17px);
+	}
+}
