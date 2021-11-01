@@ -1,0 +1,20 @@
+{% if title or subtitle %}
+	<div class="author-header">
+		<div class="group group--small">
+
+			{% if subtitle %}
+				<div class="group__item">
+					<div class="author-header__subtitle">
+						{{ subtitle|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if title %}
+				<div class="group__item">
+					<h1>{{ title|raw }}</h1>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

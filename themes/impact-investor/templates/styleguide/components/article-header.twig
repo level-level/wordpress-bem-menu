@@ -12,16 +12,26 @@
 		<h1>{{ title|raw }}</h1>
 	</div>
 
-	{% if author or date and datetime %}
+	{% if authors or date and datetime %}
 		<div class="article-header__meta">
 			<div class="row">
 
-				{% if author %}
+				{% if authors %}
 					<div class="col-auto">
-						{% include 'styleguide/components/post-author.twig' with {
-							name: author.name,
-							url: author.url,
-						} %}
+						<span class="screen-reader-text">
+							{{ __('Written by:', 'impact-investor') }}
+						</span>
+						<ul class="list-authors">
+							{% for object in authors %}
+								<li class="list-authors__item">
+									{% include 'styleguide/components/buttons/button-link.twig' with {
+										text: not loop.last ? object.name ~ ',' : object.name,
+										url: object.url,
+										class: 'btn--secondary',
+									} %}
+								</li>
+							{% endfor %}
+						</ul>
 					</div>
 				{% endif %}
 

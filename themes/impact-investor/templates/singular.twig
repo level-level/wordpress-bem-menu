@@ -5,7 +5,8 @@
 
 {% block content %}
 
-	<article class="section section--large">
+	<article class="section">
+		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
 			title: title,
 			terms: terms ? terms|map(term => {
@@ -14,10 +15,10 @@
 			}),
 			date: object.get_date_i18n(get_option('date_format')),
 			datetime: object.get_date_i18n('Y-m-d'),
-			author: {
-				name: object.get_author().get_display_name(),
-				url: get_author_posts_url(object.get_author().get_id())
-			},
+			authors: authors ? authors|map(author => {
+				name: author.get_title(),
+				url: author.get_permalink(),
+			}),
 		} %}
 
 		<div class="entry-content">

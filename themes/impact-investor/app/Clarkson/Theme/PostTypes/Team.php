@@ -40,7 +40,7 @@ class Team {
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'has_archive'           => true,
-			'rewrite'               => array( 'slug' => __( 'team', 'impact-investor-slugs' ) ),
+			'rewrite'               => array( 'slug' => __( 'author', 'impact-investor-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,
 			'menu_icon'             => 'dashicons-groups',

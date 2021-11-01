@@ -9,7 +9,7 @@
 	list-style-type: none;
 }
 
-@mixin list-horizontal( $margin: $default-padding*0.5 ) {
+@mixin list-horizontal( $margin: $default-padding ) {
 	@include list-unstyled;
 	display: flex;
 	flex-wrap: wrap;
@@ -29,8 +29,20 @@
 	@include list-unstyled;
 }
 
+.list-authors {
+	@include list-horizontal(5px);
+}
+
 .list-badges {
-	@include list-horizontal(10px);
+	@include list-horizontal(5px);
+}
+
+.list-vertical-buttons {
+	@include list-unstyled;
+
+	& > * + * {
+		margin-top: 10px;
+	}
 }
 
 .list-social {

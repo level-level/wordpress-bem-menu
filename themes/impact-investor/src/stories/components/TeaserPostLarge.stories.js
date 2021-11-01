@@ -1,4 +1,5 @@
 import Terms from '../data/Terms.js';
+import Authors from '../data/Authors.js';
 
 export default {
 	title: 'Components/Teasers/Post/Large',
@@ -17,6 +18,9 @@ export default {
 		terms: {
 			control: 'array'
 		},
+		authors: {
+			control: 'array'
+		},
 		date: {
 			control: 'text'
 		},
@@ -32,10 +36,7 @@ export default {
 		terms: Terms,
 		date: 'Apr 21, 2021',
 		datetime: '2021-04-21',
-		author: {
-			name: 'Kevinio',
-			url: '#',
-		},
+		authors: Authors,
 		comments: 2,
 	},
 };

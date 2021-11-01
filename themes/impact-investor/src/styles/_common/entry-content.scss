@@ -43,6 +43,11 @@
 
 	a:not([class]) {
 		color: $primary;
+		hyphens: auto;
+
+		@include breakpoint-sm {
+			hyphens: none;
+		}
 
 		&:focus {
 			text-decoration: none;
