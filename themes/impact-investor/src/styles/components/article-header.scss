@@ -9,18 +9,13 @@
 	&__meta {
 		margin-top: $default-padding*0.5;
 
-		time,
-		.btn {
+		time {
 			@include font-bold;
 			@include font-size(17px);
 		}
 
 		.btn {
-			color: $primary;
-
-			&__text {
-				text-decoration: none;
-			}
+			@include font-size(17px);
 		}
 	}
 }

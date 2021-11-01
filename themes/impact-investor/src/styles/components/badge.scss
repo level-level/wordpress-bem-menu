@@ -1,5 +1,5 @@
 .badge {
-	@include font-size(14px);
+	@include font-size(14px, 16px);
 	position: relative;
 
 	&--rich {

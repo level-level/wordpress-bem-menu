@@ -34,6 +34,16 @@
 	color: $white;
 }
 
+@mixin btn--secondary {
+	@include font-bold;
+	padding: 0;
+	color: $primary;
+
+	.btn__text {
+		text-decoration: none;
+	}
+}
+
 @mixin btn--link {
 	@include font-normal;
 	@include font-size(14px);
@@ -75,6 +85,10 @@ input[type='button'] {
 		@include btn--primary;
 	}
 
+	&--secondary {
+		@include btn--secondary;
+	}
+
 	&--link {
 		@include btn--link;
 	}
@@ -92,15 +106,6 @@ input[type='button'] {
 					content: $icon-close;
 				}
 			}
-		}
-	}
-
-	&--author {
-		.btn__text {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 120px;
 		}
 	}
 }

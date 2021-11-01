@@ -16,7 +16,7 @@
 							terms: terms,
 						} %}
 					</div>
-					<div class="col-auto">
+					<div class="col-auto col--shrink-0">
 						<div class="teaser-post__date">
 							<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
 							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
@@ -30,11 +30,11 @@
 					<div class="col-auto">
 						<div class="group--small">
 							<div class="group__item">
-								<h2 class="teaser-post__title">
+								<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
 									<a href="{{ url }}" class="teaser-post__link">
 										{{ title|raw }}
 									</a>
-								</h2>
+								</{{ useH3 ? 'h3' : 'h2' }}>
 							</div>
 
 							{% if excerpt %}
@@ -80,13 +80,25 @@
 	</div>
 	<div class="teaser-post__footer">
 		<div class="row row--space-between row--nowrap row--align-center">
-			<div class="col-auto">
-				{% include 'styleguide/components/post-author.twig' with {
-					name: author.name,
-					url: author.url,
-				} %}
-			</div>
-			<div class="col-auto">
+			{% if authors %}
+				<div class="col-auto">
+					<span class="screen-reader-text">
+						{{ __('Written by:', 'impact-investor') }}
+					</span>
+					<ul class="list-authors">
+						{% for object in authors %}
+							<li class="list-authors__item">
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: not loop.last ? object.name ~ ',' : object.name,
+									url: object.url,
+									class: 'btn--link',
+								} %}
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+			<div class="col-auto ml-auto col--shrink-0">
 				<div class="row row--space-between row--nowrap row--align-center">
 					<div class="col-auto">
 						{% include 'styleguide/components/social-share-button.twig' with {

@@ -39,8 +39,9 @@
 		@include font-size(14px);
 		position: relative;
 		z-index: 2;
+		line-height: 1;
 		border-top: 1px solid $border;
-		padding: 6px $default-padding;
+		padding: 14px $default-padding;
 		margin-top: auto;
 
 		.btn {
@@ -51,7 +52,7 @@
 	}
 
 	&__title {
-		@include font-size(22px);
+		@include font-size(22px, 27px);
 	}
 
 	&__link {

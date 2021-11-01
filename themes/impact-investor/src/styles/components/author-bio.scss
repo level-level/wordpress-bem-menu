@@ -1,0 +1,32 @@
+.author-bio {
+	@include font-normal;
+	@include font-size(16px, 21px);
+	position: relative;
+	background-color: $white;
+	border-bottom: 2px solid $primary;
+
+	@include breakpoint-sm {
+		@include font-size(17px, 22px);
+	}
+
+	&__inner {
+		padding: $default-padding;
+	}
+
+	&__footer {
+		border-top: 1px solid $border;
+	}
+
+	&__thumbnail {
+		img {
+			border-radius: 50%;
+			max-width: 80px;
+		}
+	}
+
+	&__title {
+		@include font-bold;
+		@include font-size(18px, 24px);
+		color: $primary;
+	}
+}
