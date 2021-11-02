@@ -31,6 +31,10 @@
 
 {% block sidebar %}
 	<div class="section">
+		{% include 'partials/components/advertisement.twig' %}
+	</div>
+
+	<div class="section">
 		{% include 'styleguide/components/latest-articles.twig' with {
 			heading: __('Latest news', 'impact-investor'),
 			objects: latest_articles ? latest_articles|map(post => {
