@@ -54,6 +54,37 @@
 		}
 	}
 
+	&--sm-spacing {
+		@include breakpoint-sm {
+			margin-top: (-$gutter);
+		}
+
+		> .col,
+		> [class*='col-'] {
+			@include breakpoint-sm {
+				margin-top: $gutter;
+			}
+		}
+
+		// Add space when a row class is followed by a row class
+		// Since the row--spacing sets a negative margin on itself, we reset it.
+		& + .row {
+			margin-top: 0;
+		}
+	}
+
+	// Row with no padding between the columns
+	&--no-padding {
+		margin-left: 0;
+		margin-right: 0;
+
+		> .col,
+		> [class*='col-'] {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
 	// Align columns vertically centered
 	&--align-center {
 		> .col,

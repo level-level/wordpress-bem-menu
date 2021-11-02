@@ -45,8 +45,12 @@
 		z-index: 2;
 		line-height: 1;
 		border-top: 1px solid $border;
-		padding: 14px $default-padding;
+		padding: 14px $default-padding*0.5;
 		margin-top: auto;
+
+		@include breakpoint-sm {
+			padding: 14px $default-padding;
+		}
 
 		.btn {
 			&__text {
