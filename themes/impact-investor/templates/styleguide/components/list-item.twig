@@ -1,9 +1,24 @@
 <div class="list-item">
 
-	{% if datetime and date %}
+	{% if datetime and date or terms %}
 		<div class="list-item__meta">
-			<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-			<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+			<div class="row row--nowrap">
+
+				{% if terms %}
+					<div class="col-auto col--grow-1">
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
+					</div>
+				{% endif %}
+
+				{% if datetime and date %}
+					<div class="col-auto col--shrink-0">
+						<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+						<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+					</div>
+				{% endif %}
+			</div>
 		</div>
 	{% endif %}
 

@@ -103,8 +103,8 @@
 		display: flex;
 		align-items: center;
 		counter-increment: counter;
-		padding: 10px 0;
-		padding-right: 10px;
+		padding: $default-padding*0.5 0;
+		padding-right: $default-padding*0.5;
 
 		&:before {
 			@include font-bold;
@@ -128,7 +128,23 @@
 	}
 
 	&__item {
-		padding: 10px $default-padding;
+		padding: $default-padding*0.5;
+	}
+
+	&__heading {
+		@include font-bold;
+		@include font-size(18px, 26px);
+		color: $primary;
+	}
+
+	&--dark {
+		background-color: $quaternary;
+
+		.list-bordered {
+			&__item {
+				border-color: $quinary;
+			}
+		}
 	}
 }
 

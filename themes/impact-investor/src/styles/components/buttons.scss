@@ -51,6 +51,28 @@
 	}
 }
 
+@mixin btn--tertiary {
+	@include font-bold;
+	color: $senary;
+	padding: 0;
+
+	.btn__text {
+		text-decoration: none;
+	}
+
+	&:focus {
+		.btn__text {
+			text-decoration: underline;
+		}
+	}
+
+	@include hover {
+		.btn__text {
+			text-decoration: underline;
+		}
+	}
+}
+
 @mixin btn--link {
 	@include font-normal;
 	@include font-size(14px);
@@ -114,6 +136,10 @@ input[type='button'] {
 		@include btn--secondary;
 	}
 
+	&--tertiary {
+		@include btn--tertiary;
+	}
+
 	&--link {
 		@include btn--link;
 	}
@@ -158,7 +184,7 @@ input[type='button'] {
 	// Adds padding to the icon on the right
 	&__text {
 		& + * {
-			padding-left: 10px;
+			padding-left: $default-padding*0.5;
 		}
 	}
 
@@ -168,7 +194,18 @@ input[type='button'] {
 		align-items: center;
 
 		& + * {
-			padding-left: 10px;
+			padding-left: $default-padding*0.5;
+		}
+
+		&--highlight {
+			background-color: $primary;
+			color: $white;
+			width: 34px;
+			height: 34px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 		}
 	}
 }

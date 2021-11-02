@@ -22,7 +22,10 @@
 		{% if most_read %}
 			<div id="most-read" class="tab-list__section" aria-hidden="false">
 				{% include 'styleguide/components/most-read-articles.twig' with {
-					objects: most_read,
+					objects: most_read ? most_read|map(post => {
+						title: post.get_title(),
+						url: post.get_permalink(),
+					}),
 				} %}
 			</div>
 		{% endif %}
@@ -30,7 +33,17 @@
 		{% if latest %}
 			<div id="latest" class="tab-list__section" {{ not most_read ? 'aria-hidden="false"' }}>
 				{% include 'styleguide/components/latest-articles.twig' with {
-					objects: latest,
+					objects: latest ? latest|map(post => {
+						title: post.get_title(),
+						url: post.get_permalink(),
+						terms: post.get_terms('category')|map(term => {
+							name: term.get_name(),
+						}),
+						date: post.get_date_i18n(get_option('date_format')),
+						datetime: post.get_date_i18n('Y-m-d'),
+					}),
+					button_text: __('More articles', 'impact-investor'),
+					button_link: get_post_type_archive_link('post'),
 				} %}
 			</div>
 		{% endif %}
