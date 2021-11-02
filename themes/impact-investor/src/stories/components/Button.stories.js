@@ -16,11 +16,13 @@ export default {
 			name: 'icon left',
 			control: 'boolean'
 		},
+		highlight_icon: false,
 	},
 	args: {
 		url: '#',
 		text: 'Button',
 		icon_left: false,
+		highlight_icon: false,
 	}
 };
 

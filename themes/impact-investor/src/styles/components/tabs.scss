@@ -18,11 +18,11 @@
 		background-color: #fff;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: $grey-light;
+		color: $senary;
 
 		&[aria-selected='true'] {
 			border-color: $primary;
-			color: $black;
+			color: $primary;
 		}
 	}
 
