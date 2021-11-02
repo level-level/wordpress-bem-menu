@@ -1,0 +1,8 @@
+.author-header {
+	position: relative;
+
+	&__subtitle {
+		@include font-bold;
+		color: $senary;
+	}
+}

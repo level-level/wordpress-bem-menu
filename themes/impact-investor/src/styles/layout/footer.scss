@@ -1,24 +1,57 @@
 .footer {
 	@include font-normal;
 	position: relative;
-	padding-top: $default-padding;
+	padding: $default-padding*1.5 0;
+	background-color: $tertiary;
+
+	@include breakpoint-lg {
+		padding: $default-padding*2 0;
+	}
+
+	&__brand {
+		margin-bottom: $default-padding;
+
+		@include breakpoint-sm {
+			margin-bottom: $default-padding*2;
+		}
+	}
+
+	&__heading {
+		margin-bottom: $default-padding*0.5;
+	}
 
 	&__group {
-		border-top: 1px solid $border;
-		padding-top: $default-padding;
+		margin-bottom: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			margin-bottom: 0;
+		}
+	}
+
+	h3 {
+		@include font-bold;
+		@include font-size(22px, 24px);
+		color: $senary;
 	}
 }
 
-.feed {
-	@include font-size(14px);
-	margin-top: $default-padding;
+.footer-socials {
+	padding: $default-padding 0;
+	background-color: $tertiary;
+	border-top: 1px solid $quinary;
 
-	&__inner {
-		border-top: 1px solid $border;
-		padding: $default-padding 0;
+	@include breakpoint-lg {
+		padding: $default-padding*1.5 0;
+	}
 
-		.btn {
-			@include font-size(14px);
+	&__heading {
+		@include font-bold;
+		@include font-size(18px, 26px);
+		color: $senary;
+		margin-bottom: $default-padding*0.5;
+
+		@include breakpoint-lg {
+			@include font-size(22px, 26px);
 		}
 	}
 }

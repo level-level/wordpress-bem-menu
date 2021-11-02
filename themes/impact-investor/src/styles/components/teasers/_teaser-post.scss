@@ -24,7 +24,11 @@
 	}
 
 	&__inner {
-		padding: $default-padding;
+		padding: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			padding: $default-padding;
+		}
 	}
 
 	&__thumbnail {
@@ -69,6 +73,6 @@
 	}
 
 	&__date {
-		@include font-size(14px);
+		@include font-size(14px, 16px);
 	}
 }

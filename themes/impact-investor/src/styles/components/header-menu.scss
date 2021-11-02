@@ -5,7 +5,7 @@
 		position: fixed;
 		left: 0;
 		right: 0;
-		top: calc(80px + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
+		top: calc(#{$header-height} + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
 		bottom: 0;
 		background-color: $quaternary;
 		z-index: 10;

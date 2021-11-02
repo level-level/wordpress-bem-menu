@@ -27,6 +27,7 @@
 @import 'layout/group';
 @import 'layout/grid/_grid';
 @import 'layout/layout';
+@import 'layout/sidebar';
 
 // Components
 @import 'components/buttons';
@@ -50,3 +51,4 @@
 @import 'components/highlighted-content';
 @import 'components/article-header';
 @import 'components/author-bio';
+@import 'components/author-header';
