@@ -61,12 +61,12 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-two-column-articles',
-				'title'           => _x( 'Two (2) column articles', 'Block', 'impact-investor' ),
-				'description'     => _x( 'Displays a list of articles in a two (2) column layout based on multiple options.', 'Block', 'impact-investor' ),
+				'name'            => 'block-articles-in-columns',
+				'title'           => _x( 'Articles in columns', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Block', 'impact-investor' ),
 				'icon'            => 'columns',
 				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'articles', 'column', 'two', '2', 'post' ),
+				'keywords'        => array( 'posts', 'articles', 'column', 'two', '2', 'three', '3', 'post' ),
 				'supports'        => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -78,31 +78,6 @@ class ACFBlocks {
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
 							'is_fill_enabled' => true,
 							'amount'          => 2,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-three-column-articles',
-				'title'           => _x( 'Three (3) column articles', 'Block', 'impact-investor' ),
-				'description'     => _x( 'Displays a list of articles in a three (3) column layout based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'            => 'columns',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'articles', 'column', 'three', '3', 'post' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 3,
 						),
 					),
 				),

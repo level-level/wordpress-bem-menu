@@ -1,7 +1,18 @@
 {% set objects = block.get_posts() %}
+{% set columns = data.columns %}
+
+{# Based on column amount (2 or 3) use a different teaser and column width #}
+{% if columns is same as('2') %}
+	{% set class = 'col-sm-6' %}
+	{% set teaser_size = 'medium' %}
+{% elseif columns is same as('3') %}
+	{% set class = 'col-lg-4' %}
+	{% set teaser_size = 'small' %}
+{% endif %}
 
 {% if objects %}
 	<div class="align{{ align }}">
+
 		<ul class="row row--spacing">
 			{% set date_format = get_option('date_format') %}
 
@@ -11,10 +22,9 @@
 				{% set terms = object.get_terms('category') %}
 				{% set authors = object.get_authors() %}
 
-				<li class="col-12">
-					{% include 'styleguide/components/teasers/teaser-post-small.twig' with {
+				<li class="col-12 {{ class }}">
+					{% include 'styleguide/components/teasers/teaser-post-' ~ teaser_size ~ '.twig' with {
 						image: image_id ? wp_get_attachment_image(image_id, 'large'),
-						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 						title: object.get_title(),
 						url: object.get_permalink(),
 						excerpt: object.get_excerpt(),
