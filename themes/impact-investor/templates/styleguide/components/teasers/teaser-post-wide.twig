@@ -60,11 +60,11 @@
 			<div class="group__item hidden-sm">
 				<div class="group--small">
 					<div class="group__item">
-						<h2 class="teaser-post__title">
+						<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
 							<a href="{{ url }}" class="teaser-post__link">
 								{{ title|raw }}
 							</a>
-						</h2>
+						</{{ useH3 ? 'h3' : 'h2' }}>
 					</div>
 
 					{% if excerpt %}
