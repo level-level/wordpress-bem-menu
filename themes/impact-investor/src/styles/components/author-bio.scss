@@ -3,7 +3,7 @@
 	@include font-size(16px, 21px);
 	position: relative;
 	background-color: $white;
-	border-bottom: 2px solid $primary;
+	border-bottom: 2px solid $quinary;
 
 	@include breakpoint-sm {
 		@include font-size(17px, 22px);

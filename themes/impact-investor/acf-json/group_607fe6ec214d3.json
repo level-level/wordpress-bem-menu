@@ -4,7 +4,7 @@
     "fields": [
         {
             "key": "field_607feb7bba1f8",
-            "label": "Explanation",
+            "label": "Usage",
             "name": "",
             "type": "message",
             "instructions": "",
@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This block displays articles in a two column layout based on multiple options.",
+            "message": "Displays a list of articles in a two (2) column layout based on multiple options.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -131,7 +131,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-column-articles"
+                "value": "acf\/block-two-column-articles"
             }
         ]
     ],
@@ -143,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634634120
+    "modified": 1635845213
 }

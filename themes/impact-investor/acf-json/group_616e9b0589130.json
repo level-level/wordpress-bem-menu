@@ -1,10 +1,10 @@
 {
     "key": "group_616e9b0589130",
-    "title": "[Block] Horizontal articles",
+    "title": "[Block] Three column articles",
     "fields": [
         {
             "key": "field_616e9b058dd88",
-            "label": "Explanation",
+            "label": "Usage",
             "name": "",
             "type": "message",
             "instructions": "",
@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This block displays articles based on multiple options.",
+            "message": "Displays a list of articles in a three (3) column layout based on multiple options.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -131,7 +131,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-horizontal-articles"
+                "value": "acf\/block-three-column-articles"
             }
         ]
     ],
@@ -143,5 +143,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634646260
+    "modified": 1635845195
 }

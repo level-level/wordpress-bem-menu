@@ -1,0 +1,120 @@
+<div class="teaser-post teaser-post--wide">
+
+	{% if image %}
+		<div class="teaser-post__thumbnail hidden-sm">
+			{{ image|raw }}
+		</div>
+	{% endif %}
+
+	<div class="teaser-post__inner">
+		<div class="group group--small">
+
+			<div class="group__item">
+				<div class="row row--space-between row--nowrap row--align-center">
+					<div class="col-auto">
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
+					</div>
+					<div class="col-auto col--shrink-0">
+						<div class="teaser-post__date">
+							<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="group__item hidden-xs visible-sm">
+				<div class="row row--space-between row--nowrap">
+					<div class="col-auto">
+						<div class="group--small">
+							<div class="group__item">
+								<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
+									<a href="{{ url }}" class="teaser-post__link">
+										{{ title|raw }}
+									</a>
+								</{{ useH3 ? 'h3' : 'h2' }}>
+							</div>
+
+							{% if excerpt %}
+								<div class="group__item">
+									<div class="teaser-post__excerpt">
+										{{ excerpt|raw }}
+									</div>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+
+					{% if image_square %}
+						<div class="col-auto col--shrink-0">
+							<div class="visible-sm">
+								{{ image_square|raw }}
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="group__item hidden-sm">
+				<div class="group--small">
+					<div class="group__item">
+						<h2 class="teaser-post__title">
+							<a href="{{ url }}" class="teaser-post__link">
+								{{ title|raw }}
+							</a>
+						</h2>
+					</div>
+
+					{% if excerpt %}
+						<div class="group__item">
+							<div class="teaser-post__excerpt">
+								{{ excerpt|raw }}
+							</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="teaser-post__footer">
+		<div class="row row--space-between row--nowrap row--align-center">
+			{% if authors %}
+				<div class="col-auto">
+					<span class="screen-reader-text">
+						{{ __('Written by:', 'impact-investor') }}
+					</span>
+					<ul class="list-authors">
+						{% for object in authors %}
+							<li class="list-authors__item">
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: not loop.last ? object.name ~ ',' : object.name,
+									url: object.url,
+									class: 'btn--link',
+								} %}
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+
+			{% if comments > 0 %}
+				<div class="col-auto ml-auto col--shrink-0">
+					<div class="row row--space-between row--nowrap row--align-center">
+						<div class="col-auto">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: comments,
+								url: url ~ '#comments',
+								class: 'btn--link',
+								aria_label: _n('See %s comment in this article', 'See %s comments in this article', comments, 'impact-investor')|format(comments),
+								icon: 'icon-whatsapp',
+								icon_left: true,
+							} %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
