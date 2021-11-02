@@ -31,6 +31,11 @@ Primary.args = {
 	class: 'btn--primary',
 };
 
+export const Secondary = Template.bind( {} );
+Secondary.args = {
+	class: 'btn--secondary',
+};
+
 export const Link = Template.bind( {} );
 Link.args = {
 	class: 'btn--link',

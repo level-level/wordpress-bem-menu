@@ -3,51 +3,56 @@
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ __('Straight to content', 'impact-investor') }}</a>
 
-	<div class="container">
-		<div class="row row--space-between row--align-center row--nowrap">
-			<div class="col-auto">
-				<div class="row row--align-center row--nowrap row--small">
-					<div class="col-auto">
-						<div class="header__brand">
-							<a
-								class="brand"
-								href="{{ esc_url(home_url('/')) }}"
-								aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
-								>
-								<img
-									src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.png"
-									width="164"
-									height="30"
-									alt=""
-									class="brand__logo"
-								/>
-							</a>
-						</div>
-					</div>
-					{% if has_nav_menu('primary_navigation') %}
+	<div class="header__top">
+		<div class="container">
+			<div class="row row--space-between row--align-center row--nowrap">
+				<div class="col-auto">
+					<div class="row row--align-center row--nowrap row--small">
 						<div class="col-auto">
-							{% include 'partials/components/header/header-menu.twig' %}
+							<div class="header__brand">
+								<a
+									class="brand"
+									href="{{ esc_url(home_url('/')) }}"
+									aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
+									>
+									<img
+										src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.png"
+										width="170"
+										height="30"
+										alt=""
+										class="brand__logo"
+									/>
+								</a>
+							</div>
 						</div>
-					{% endif %}
-				</div>
-			</div>
-
-			<div class="col-auto">
-				<div class="row row--small row--align-center row--nowrap">
-					<div class="col-auto">
-						{% include 'partials/components/header/header-search.twig' %}
 					</div>
-					<div class="col-auto hidden-xs visible-sm">
-						{% include 'styleguide/components/buttons/button-link.twig' with {
-							text: __('Sign up', 'impact-investor'),
-							url: '#',
-							class: 'btn--primary btn--small',
-							is_external: true,
-							aria_label: __('Sign up for the newsletter', 'impact-investor'),
-						} %}
+				</div>
+
+				<div class="col-auto col--shrink-0">
+					<div class="row row--small row--align-center row--nowrap">
+						<div class="col-auto">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('Sign up', 'impact-investor'),
+								url: '#',
+								class: 'btn--primary',
+								is_external: true,
+								aria_label: __('Sign up for the newsletter', 'impact-investor'),
+							} %}
+						</div>
+						<div class="col-auto">
+							{% include 'partials/components/header/header-search.twig' %}
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	{% if has_nav_menu('primary_navigation') %}
+		<div class="header__bottom">
+			<div class="container">
+				{% include 'partials/components/header/header-menu.twig' %}
+			</div>
+		</div>
+	{% endif %}
 </header>

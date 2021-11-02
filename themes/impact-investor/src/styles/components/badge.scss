@@ -1,9 +1,10 @@
 .badge {
-	@include font-size(14px, 16px);
+	@include font-bold;
+	@include font-size(16px, 20px);
 	position: relative;
+	color: $primary;
 
 	&--rich {
-		@include font-bold;
 		@include font-size(12px);
 		background-color: $primary;
 		color: $white;

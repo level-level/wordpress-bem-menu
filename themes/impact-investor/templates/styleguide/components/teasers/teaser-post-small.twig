@@ -98,30 +98,23 @@
 					</ul>
 				</div>
 			{% endif %}
-			<div class="col-auto ml-auto col--shrink-0">
-				<div class="row row--space-between row--nowrap row--align-center">
-					<div class="col-auto">
-						{% include 'styleguide/components/social-share-button.twig' with {
-							show_button_title: true,
-							post_title: title,
-							url: url,
-						} %}
-					</div>
 
-					{% if comments > 0 %}
+			{% if comments > 0 %}
+				<div class="col-auto ml-auto col--shrink-0">
+					<div class="row row--space-between row--nowrap row--align-center">
 						<div class="col-auto">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: _n('%s comment', '%s comments', comments, 'impact-investor')|format(comments),
+								text: comments,
 								url: url ~ '#comments',
 								class: 'btn--link',
-								aria_label: __('View comments in this article', 'impact-investor'),
+								aria_label: _n('See %s comment in this article', 'See %s comments in this article', comments, 'impact-investor')|format(comments),
 								icon: 'icon-whatsapp',
 								icon_left: true,
 							} %}
 						</div>
-					{% endif %}
+					</div>
 				</div>
-			</div>
+			{% endif %}
 		</div>
 	</div>
 </div>

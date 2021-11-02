@@ -33,6 +33,17 @@
 	}
 }
 
+// Breakpoint Extra Large
+//
+// @include breakpoint-xl { code.. }
+//
+// Breakpoint for large devices (xl) (min-width: 1400px)
+@mixin breakpoint-xl {
+	@media (min-width: 1400px) {
+		@content;
+	}
+}
+
 // Placeholder
 //
 // @include placeholder { code.. }

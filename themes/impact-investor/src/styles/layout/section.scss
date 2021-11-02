@@ -4,6 +4,16 @@
 			padding-bottom: $default-padding;
 		}
 	}
+
+	.section {
+		&:first-of-type {
+			padding-top: $default-padding*0.5;
+
+			@include breakpoint-sm {
+				padding-top: $default-padding;
+			}
+		}
+	}
 }
 
 .section {

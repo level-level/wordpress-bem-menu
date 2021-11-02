@@ -46,19 +46,24 @@
 }
 
 .list-social {
-	@include list-horizontal();
+	@include list-horizontal(30px);
 
 	&__link {
-		@include font-size(18px);
+		@include font-size(20px);
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		background-color: $quaternary;
-		color: $white;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
+		color: $senary;
+		transition: color $time;
+
+		&:focus {
+			color: $primary;
+		}
+
+		@include hover {
+			color: $primary;
+		}
 	}
 }
 

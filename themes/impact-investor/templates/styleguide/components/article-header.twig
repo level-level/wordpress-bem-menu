@@ -27,7 +27,7 @@
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: not loop.last ? object.name ~ ',' : object.name,
 										url: object.url,
-										class: 'btn--secondary',
+										class: 'btn--secondary btn--no-padding',
 									} %}
 								</li>
 							{% endfor %}

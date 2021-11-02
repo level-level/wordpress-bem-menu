@@ -1,19 +1,33 @@
+// The default gutter variable, used for the grid
+$gutter: 24px;
+
 :root {
 	--admin-bar: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
-	--container: calc(100vw - 30px);
-	--header-height: 60px;
+	--container: calc(100vw - #{$gutter});
+	--header-height: 100px;
+	--menu-height: 50px;
 	--sidebar-width: 100%;
 
 	@include breakpoint-sm {
 		--container: 720px;
 		--content-width: 720px;
+		--header-height: 120px;
+		--menu-height: 52px;
 	}
 
 	@include breakpoint-md {
-		--container: 1064px;
-		--content-width: 770px;
+		--container: 960px;
+		--content-width: 895px;
 		--sidebar-width: 300px;
+	}
+
+	@include breakpoint-lg {
+		--container: 1170px;
+	}
+
+	@include breakpoint-xl {
+		--container: 1224px;
 	}
 }
 
@@ -23,15 +37,13 @@ $admin-bar: var(--admin-bar);
 $admin-bar-offset: var(--admin-bar-offset);
 $header-height: var(--header-height);
 $sidebar-width: var(--sidebar-width);
+$menu-height: var(--menu-height);
 
-$states: 'sm', 'md', 'lg';
+$states: 'sm', 'md', 'lg', 'xl';
 $columns: 12;
 
 // The default padding variable
-$default-padding: 15px;
-
-// The default gutter variable, used for the grid
-$gutter: 15px;
+$default-padding: 24px;
 
 // The default animation time variable
 $time: 150ms;
