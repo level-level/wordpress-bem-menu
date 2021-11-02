@@ -144,10 +144,6 @@ input[type='button'] {
 		}
 	}
 
-	&--small {
-		@include font-size(14px);
-	}
-
 	&--no-padding {
 		padding: 0;
 	}
