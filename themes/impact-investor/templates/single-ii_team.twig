@@ -40,7 +40,7 @@
 					{% set authors = object.get_authors() %}
 
 					<li class="col-12">
-						{% include 'styleguide/components/teasers/teaser-post-small.twig' with {
+						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
 							image: image_id ? wp_get_attachment_image(image_id, 'large'),
 							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 							title: object.get_title(),

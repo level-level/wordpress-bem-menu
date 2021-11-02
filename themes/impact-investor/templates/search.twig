@@ -18,6 +18,8 @@
 			<div class="container">
 				<h2 class="screen-reader-text">{{ __('Search results', 'impact-investor') }}</h2>
 				<ul class="row row--spacing">
+					{% set date_format = get_option('date_format') %}
+
 					{% for object in objects %}
 
 						{% set image_id = object.get_thumbnail_id() %}
@@ -25,7 +27,7 @@
 						{% set authors = object.get_authors() %}
 
 						<li class="col-12">
-							{% include 'styleguide/components/teasers/teaser-post-small.twig' with {
+							{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
 								image: image_id ? wp_get_attachment_image(image_id, 'large'),
 								image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 								title: object.get_title(),
