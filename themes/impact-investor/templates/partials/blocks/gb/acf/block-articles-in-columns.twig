@@ -24,6 +24,8 @@
 				{% set terms = object.get_terms('category') %}
 				{% set authors = object.get_authors() %}
 
+				{# twigcs use-var teaser_size, date_format, image_id, terms, authors #}
+
 				<li class="col-12 {{ class }}">
 					{% include 'styleguide/components/teasers/teaser-post-' ~ teaser_size ~ '.twig' with {
 						image: image_id ? wp_get_attachment_image(image_id, 'large'),
