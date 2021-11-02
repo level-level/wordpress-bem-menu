@@ -1,7 +1,56 @@
-{% extends 'archive.twig' %}
+{% extends 'layouts/sidebar-layout-with-header.twig' %}
 
 {% block header %}
 	<div class="section">
-		<h1>{{ single_cat_title() }}</h1>
+		<div class="container">
+			<h1>{{ single_cat_title() }}</h1>
+		</div>
 	</div>
+{% endblock %}
+
+{% block content %}
+	{% if objects %}
+		<div class="section">
+			<ul class="row row--spacing">
+				{% set date_format = get_option('date_format') %}
+
+				{% for object in objects %}
+
+					{% set image_id = object.get_thumbnail_id() %}
+					{% set terms = object.get_terms('category') %}
+					{% set authors = object.get_authors() %}
+
+					<li class="col-12">
+						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'large'),
+							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							title: object.get_title(),
+							url: object.get_permalink(),
+							excerpt: object.get_excerpt(),
+							date: object.get_date_i18n(date_format),
+							datetime: object.get_date_i18n('Y-m-d'),
+							terms: terms ? terms|map(term => {
+								name: term.get_name(),
+							}),
+							authors: authors ? authors|map(author => {
+								name: author.get_title(),
+								url: author.get_permalink(),
+							}),
+							comments: object.get_comments_count(),
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+	<div class="section">
+		{% include 'partials/components/advertisement.twig' %}
+	</div>
+{% endblock %}
+
+{% block pagination %}
+	{% include 'partials/components/pagination.twig' %}
 {% endblock %}

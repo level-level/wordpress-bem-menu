@@ -43,6 +43,12 @@
 	{% endif %}
 {% endblock %}
 
+{% block sidebar %}
+	<div class="section">
+		{% include 'partials/components/advertisement.twig' %}
+	</div>
+{% endblock %}
+
 {% block pagination %}
 	{% include 'partials/components/pagination.twig' %}
 {% endblock %}
