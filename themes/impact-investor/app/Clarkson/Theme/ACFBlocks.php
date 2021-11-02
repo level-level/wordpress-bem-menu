@@ -107,6 +107,29 @@ class ACFBlocks {
 				),
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-advertisement',
+				'title'           => _x( 'Advertisement', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays an advertisement.', 'Block', 'impact-investor' ),
+				'icon'            => 'schedule',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'advertisement', 'ad' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
 	}
 
 	/**
