@@ -24,6 +24,8 @@ $gutter: 24px;
 
 	@include breakpoint-lg {
 		--container: 1170px;
+		--article-width: 690px;
+		--article-offset: 100px;
 	}
 
 	@include breakpoint-xl {
@@ -38,6 +40,8 @@ $admin-bar-offset: var(--admin-bar-offset);
 $header-height: var(--header-height);
 $sidebar-width: var(--sidebar-width);
 $menu-height: var(--menu-height);
+$article-width: var(--article-width);
+$article-offset: var(--article-offset);
 
 $states: 'sm', 'md', 'lg', 'xl';
 $columns: 12;

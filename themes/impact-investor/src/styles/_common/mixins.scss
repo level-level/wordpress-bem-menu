@@ -83,17 +83,22 @@
 //
 // @include font-size($font-size, $line-height);
 //
+// If important is needed:
+// @include font-size($font-size, $line-height, true);
+//
 // Set the font-size in pixels and it will calculate the font-size in rem.
 // Optional: set the line-height based on the font-size and line-height in pixels
 //
 // $font-size = 16px - Font size in pixels.
 // $line-height = 32px - Line-height in pixels.
-@mixin font-size($font-size, $line-height: false) {
-	font-size: $font-size;
-	font-size: calculaterem($font-size);
+// $important = bool whether statement should have the !important property
+@mixin font-size($font-size, $line-height: false, $important: false) {
+	$important-flag: if($important, !important, null);
+	font-size: $font-size $important-flag;
+	font-size: calculaterem($font-size) $important-flag;
 
 	@if $line-height {
-		line-height: line-height($font-size, $line-height);
+		line-height: line-height($font-size, $line-height) $important-flag;
 	}
 }
 
@@ -167,12 +172,12 @@
 //
 // Adds properties for default body styling
 @mixin body-styles {
-	@include font-heading-normal;
+	@include font-normal;
 	@include font-size(18px, 28px);
 	color: $black;
 
 	@include breakpoint-sm {
-		@include font-size(21px, 31px);
+		@include font-size(20px, 28px);
 	}
 }
 

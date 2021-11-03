@@ -22,6 +22,24 @@
 	</div>
 
 	<div class="section">
+		Jobs
+	</div>
+
+	<div class="section">
 		{% include 'partials/components/advertisement.twig' %}
+	</div>
+
+	{% set newsletter = options.newsletter %}
+	<div class="section">
+		{% include 'styleguide/components/newsletter.twig' with {
+			title: newsletter.title,
+			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium'),
+			content: newsletter.content,
+			button: {
+				title: newsletter.button.title,
+				url: newsletter.button.url,
+				target: newsletter.button.target,
+			}
+		} %}
 	</div>
 {% endblock %}
