@@ -213,7 +213,7 @@ class base_block extends Block_Type {
 				$field_object = get_field_object( $key, false, false, false );
 				if ( $field_object ) {
 					acf_validate_value( $attribute, $field_object, $key );
-					$acf_errors = acf_get_validation_errors();
+					$acf_errors = acf_get_validation_errors() ?: array();
 					foreach ( $acf_errors as $acf_error ) {
 						$matches = array();
 						preg_match_all( '/field_[a-z0-9]+/', $acf_error['input'], $matches );

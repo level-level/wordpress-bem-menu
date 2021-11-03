@@ -5,28 +5,16 @@ use Clarkson_Core\Objects;
 
 class KokoAnalytics {
 
-	public function register_hooks(): void {
-		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
-	}
-
-	/**
-	* Make most read articles available in the theme
-	*/
-	public function add_context_args( array $context ): array {
-		$context['most_read_articles'] = $this->get_most_viewed_articles();
-		return $context;
-	}
-
 	/**
 	 * Returns 5 (five) most read posts from the last 7 (seven) days via Koko Analytics
 	 */
-	public function get_most_viewed_articles(): array {
+	public static function get_most_viewed_articles( int $amount = 5 ): array {
 		if ( ! is_plugin_active( 'koko-analytics/koko-analytics.php' ) ) {
 			return array();
 		}
 
 		$args = array(
-			'number'    => 5,
+			'number'    => $amount,
 			'post_type' => 'post',
 			'days'      => 7,
 		);

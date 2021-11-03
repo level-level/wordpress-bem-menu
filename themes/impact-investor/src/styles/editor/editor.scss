@@ -97,3 +97,22 @@
 		}
 	}
 }
+
+// Widget area styling
+.blocks-widgets-container {
+	.block-editor-block-list {
+		&__layout {
+			@include body-styles;
+			background-color: $secondary;
+		}
+	}
+
+	.wp-block-widget-area__inner-blocks {
+		max-width: calc(#{$sidebar-width} + 32px);
+		margin: 0 auto !important;
+	}
+
+	.wp-block-widget-area__panel-body-content {
+		background-color: $secondary;
+	}
+}
