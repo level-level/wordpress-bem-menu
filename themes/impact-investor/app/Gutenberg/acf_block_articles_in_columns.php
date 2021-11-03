@@ -4,6 +4,7 @@ namespace Gutenberg\Blocks;
 
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use ImpactInvestor\Articles\ArticleBlockRegister;
 use WP_Post;
 use WP_Query;
 
@@ -16,6 +17,7 @@ class acf_block_articles_in_columns extends base_block {
 	* Get latest posts based on user defined options
 	*/
 	public function get_posts(): array {
+		$register        = ArticleBlockRegister::get_instance();
 		$selected_posts  = $this->content_attributes['selected_posts'] ?? null;
 		$is_fill_enabled = $this->content_attributes['is_fill_enabled'] ?? null;
 
@@ -30,6 +32,15 @@ class acf_block_articles_in_columns extends base_block {
 			}
 		);
 
+		$ids = array_map(
+			function( $post ): int {
+				return $post->get_id();
+			},
+			$selected_posts
+		);
+
+		$register->add_ids( $ids );
+
 		if ( ! $is_fill_enabled ) {
 			return $selected_posts;
 		}
@@ -40,18 +51,33 @@ class acf_block_articles_in_columns extends base_block {
 		$amount  = $this->content_attributes['amount'] ?? null;
 
 		$query_args = $this->get_query_args( $terms, self::POST_TYPES, $selected_posts, (int) $amount, self::TAX_RELATION );
-		$wp_query   = new WP_Query( $query_args );
 
-		if ( ! empty( $wp_query->posts ) ) {
-			$posts = array_filter(
-				$wp_query->posts, function( $post ): bool {
-					return $post instanceof WP_Post;
-				}
-			);
+		if ( ! empty( $query_args ) ) {
+			$query_args = $register->maybe_add_id_exclude_to_query_args( $query_args );
+			$wp_query   = new WP_Query( $query_args );
 
-			$objects = Objects::get_instance()->get_objects( $posts );
+			if ( ! empty( $wp_query->posts ) ) {
+				$posts = array_filter(
+					$wp_query->posts, function( $post ): bool {
+						return $post instanceof WP_Post;
+					}
+				);
+
+				$objects = Objects::get_instance()->get_objects( $posts );
+			}
 		}
 
-		return array_merge( $selected_posts, $objects );
+		$posts = array_merge( $selected_posts, $objects );
+
+		$ids = array_map(
+			function( $post ) {
+				return $post->get_id();
+			},
+			$posts
+		);
+
+		$register->add_ids( $ids );
+
+		return $posts;
 	}
 }
