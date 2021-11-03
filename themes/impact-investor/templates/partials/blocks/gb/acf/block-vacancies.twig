@@ -1,0 +1,22 @@
+{% set objects = block.get_posts() %}
+
+{% if objects %}
+	<div class="align{{ align }}">
+		{% include 'styleguide/components/latest-articles.twig' with {
+			heading: __('Jobs', 'impact-investor'),
+			objects: objects ? objects|map(post => {
+				title: post.get_title(),
+				url: post.get_permalink(),
+				date: post.get_date_i18n(get_option('date_format')),
+				datetime: post.get_date_i18n('Y-m-d'),
+			}),
+			button_text: __('More jobs', 'impact-investor'),
+			button_link: get_post_type_archive_link('ii_vacancy'),
+			style: 'light',
+		} %}
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Vacancies']
+	} %}
+{% endif %}

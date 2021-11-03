@@ -7,7 +7,7 @@
 	<div class="section section--no-top">
 		<div class="container">
 			<div class="layout-row">
-				<div class="layout-large {{ is_singular('post') ? 'layout-large--indent' }}">
+				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}
 						{% block content %}{% endblock %}

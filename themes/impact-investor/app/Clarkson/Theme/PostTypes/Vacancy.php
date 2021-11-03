@@ -39,7 +39,7 @@ class Vacancy {
 			'show_ui'               => true,
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-			'has_archive'           => true,
+			'has_archive'           => false,
 			'rewrite'               => array( 'slug' => __( 'vacancies', 'impact-investor-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,

@@ -19,6 +19,7 @@ h6 {
 h1,
 .h1 {
 	@include font-size(26px, 36px);
+	color: $senary;
 
 	@include breakpoint-sm {
 		@include font-size(40px, 56px);

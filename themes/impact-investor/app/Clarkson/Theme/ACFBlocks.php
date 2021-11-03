@@ -130,6 +130,31 @@ class ACFBlocks {
 				),
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-vacancies',
+				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'money',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'vacancies', 'jobs' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'is_fill_enabled' => true,
+							'amount'          => 2,
+						),
+					),
+				),
+			)
+		);
 	}
 
 	/**
