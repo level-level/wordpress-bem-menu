@@ -18,14 +18,14 @@ h6 {
 
 h1,
 .h1 {
-	@include font-size(25px, 27px);
+	@include font-size(26px, 36px);
 
 	@include breakpoint-sm {
-		@include font-size(45px, 48px);
+		@include font-size(40px, 56px);
 	}
 
 	@include breakpoint-lg {
-		@include font-size(52px, 56px);
+		@include font-size(48px, 62px);
 	}
 }
 

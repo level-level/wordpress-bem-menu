@@ -2,7 +2,11 @@
 	@include font-normal;
 	position: relative;
 	background-color: $quaternary;
-	padding: $default-padding;
+	padding: $default-padding*0.5;
+
+	@include breakpoint-sm {
+		padding: $default-padding;
+	}
 
 	&__author {
 		@include font-bold;

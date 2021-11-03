@@ -16,7 +16,25 @@
 		position: relative;
 
 		.primary-nav__link {
-			padding-right: $default-padding*0.5;
+			padding-right: calc(#{$default-padding} + 10px);
+		}
+
+		&:focus-within {
+			background-color: $quinary;
+
+			.primary-nav__link,
+			.primary-nav__arrow {
+				color: $white;
+			}
+		}
+
+		@include hover {
+			background-color: $quinary;
+
+			.primary-nav__link,
+			.primary-nav__arrow {
+				color: $white;
+			}
 		}
 	}
 
@@ -45,7 +63,6 @@
 		padding: 10px 0;
 		color: $senary;
 		text-decoration: none;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 		transition: background-color $time, color $time;
 
 		&:focus {
@@ -73,19 +90,20 @@
 		background-color: transparent;
 		line-height: inherit;
 		padding: 0 $default-padding*0.5;
-		height: 54px; // based on the height of the menu item
-		color: $white;
+		height: $menu-height;
+		color: $senary;
 		border: 0;
 		transform: scaleY(1);
-		transition: none;
+		transition: $time;
 
 		&[aria-expanded='true'] {
 			transform: scaleY(-1);
+			color: $white;
 		}
 
 		@include breakpoint-sm {
 			padding: 0;
-			right: 0;
+			right: 20px;
 		}
 	}
 }
@@ -100,24 +118,44 @@
 		display: block;
 	}
 
+	& > * + * {
+		margin-top: $default-padding*0.5;
+	}
+
 	&__link {
-		@extend .primary-nav__link;
+		@include font-normal;
+		text-decoration: none;
+
+		&:focus {
+			color: $senary;
+			text-decoration: underline;
+			background-color: transparent;
+		}
+
+		@include hover {
+			color: $senary;
+			text-decoration: underline;
+			background-color: transparent;
+		}
 
 		@include breakpoint-sm {
-			color: $quaternary;
+			@include font-size(18px);
+			color: $senary;
+			height: auto;
+			padding: 0;
 		}
 	}
 
 	@include breakpoint-sm {
 		position: absolute;
-		top: 44px; // based on the height of the menu item minus 2px border
+		top: $menu-height;
 		left: 0;
-		min-width: 230px;
-		border: 1px solid #f4f4f4;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+		min-width: 300px;
+		border-bottom: 2px solid $quinary;
 		z-index: 2;
 		background-color: $white;
-		padding-left: 0;
+		padding: calc(#{$default-padding} - 5px) $default-padding;
+		box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
 
 		.primary-nav-sub {
 			left: 100%;

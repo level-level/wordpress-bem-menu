@@ -10,6 +10,14 @@
 		flex-grow: 1;
 		margin-right: $default-padding;
 	}
+
+	&--indent {
+		@include breakpoint-lg {
+			max-width: $article-width;
+			margin-right: auto;
+			margin-left: $article-offset;
+		}
+	}
 }
 
 .layout-small {

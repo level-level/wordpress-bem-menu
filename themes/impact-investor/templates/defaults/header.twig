@@ -30,13 +30,14 @@
 
 				<div class="col-auto col--shrink-0">
 					<div class="row row--small row--align-center row--nowrap">
+						{% set newsletter = options.newsletter %}
 						<div class="col-auto">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: __('Sign up', 'impact-investor'),
-								url: '#',
+								text: newsletter.button.title,
+								url: newsletter.button.url,
 								class: 'btn--primary',
-								is_external: true,
-								aria_label: __('Sign up for the newsletter', 'impact-investor'),
+								is_external: newsletter.button.target ? true,
+								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
 							} %}
 						</div>
 						<div class="col-auto">
