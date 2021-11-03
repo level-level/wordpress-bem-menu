@@ -28,9 +28,9 @@
 {% endblock %}
 
 {% block sidebar %}
-	<div class="section">
-		{% include 'partials/components/advertisement.twig' %}
-	</div>
+	{% if is_active_sidebar('widget-area-article') %}
+		{{ sidebar.get_widgetarea('widget-area-article')|raw }}
+	{% endif %}
 
 	<div class="section">
 		{% include 'styleguide/components/latest-articles.twig' with {
