@@ -207,7 +207,6 @@ class ACFBlocks {
 	 * @param string $content
 	 * @param mixed  $is_preview (WP_Block $block or with acf it is a bool $is_preview)
 	 * @param mixed  $post_id
-	 * @return string
 	 */
 	public function block_render_callback( $block, $content, $is_preview = false, $post_id = 0 ): void {
 		$block_object = WP_Block_Type_Registry::get_instance()->get_registered( $block['name'] );

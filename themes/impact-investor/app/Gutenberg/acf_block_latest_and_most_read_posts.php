@@ -10,7 +10,7 @@ class acf_block_latest_and_most_read_posts extends base_block {
 	/**
 	* Get latest posts
 	*/
-	public function get_latest_articles( $amount = 5 ): array {
+	public function get_latest_articles( int $amount = 5 ): array {
 		$args = array(
 			'posts_per_page' => $amount,
 		);
@@ -21,7 +21,7 @@ class acf_block_latest_and_most_read_posts extends base_block {
 	/**
 	 * Returns most read posts via Koko Analytics
 	 */
-	public function get_most_read_articles( $amount = 5 ): array {
+	public function get_most_read_articles( int $amount = 5 ): array {
 		return KokoAnalytics::get_most_viewed_articles( $amount );
 	}
 }
