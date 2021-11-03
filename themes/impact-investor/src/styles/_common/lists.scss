@@ -146,6 +146,16 @@
 			}
 		}
 	}
+
+	&--light {
+		border: 1px solid $quinary;
+
+		.list-bordered {
+			&__item {
+				border-color: $quinary;
+			}
+		}
+	}
 }
 
 .list-comments {

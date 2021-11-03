@@ -1,5 +1,17 @@
 <div class="article-header">
 
+	{% if label %}
+		<div class="article-header__label">
+			<ul class="list-badges">
+				<li class="list-badges__item">
+					<div class="badge badge--rich">
+						{{ label|raw }}
+					</div>
+				</li>
+			</ul>
+		</div>
+	{% endif %}
+
 	{% if terms %}
 		<div class="article-header__terms">
 			{% include 'styleguide/components/post-terms.twig' with {

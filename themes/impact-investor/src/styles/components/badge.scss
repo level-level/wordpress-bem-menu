@@ -10,9 +10,9 @@
 
 	&--rich {
 		@include font-size(14px, 18px);
+		display: block;
 		background-color: $primary;
 		color: $white;
-		text-transform: uppercase;
 		text-decoration: none;
 		padding: 8px 10px;
 

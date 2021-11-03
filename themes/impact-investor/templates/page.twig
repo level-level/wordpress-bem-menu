@@ -1,0 +1,49 @@
+{% extends 'layouts/sidebar-layout.twig' %}
+{% set object = objects|first %}
+
+{% block content %}
+	<div class="section">
+		{% include 'styleguide/components/article-header.twig' with {
+			title: object.get_title(),
+		} %}
+
+		<div class="entry-content">
+			{{ object.get_content()|raw }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+	{% if is_active_sidebar('widget-area-page') %}
+		{{ sidebar.get_widgetarea('widget-area-page')|raw }}
+	{% endif %}
+
+	<div class="section">
+		{% include 'styleguide/components/latest-articles.twig' with {
+			heading: __('Latest news', 'impact-investor'),
+			objects: latest_articles ? latest_articles|map(post => {
+				title: post.get_title(),
+				url: post.get_permalink(),
+				date: post.get_date_i18n('H:i'),
+				datetime: post.get_date_i18n('H:i'),
+			}),
+			button_text: __('More articles', 'impact-investor'),
+			button_link: get_post_type_archive_link('post'),
+			style: 'dark',
+		} %}
+	</div>
+
+	{% set newsletter = options.newsletter %}
+	<div class="section">
+		{% include 'styleguide/components/newsletter.twig' with {
+			title: newsletter.title,
+			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium'),
+			content: newsletter.content,
+			button: {
+				title: newsletter.button.title,
+				url: newsletter.button.url,
+				target: newsletter.button.target,
+			}
+		} %}
+	</div>
+{% endblock %}

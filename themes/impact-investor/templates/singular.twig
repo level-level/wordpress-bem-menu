@@ -1,14 +1,12 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
-{% set title = object.get_title() %}
 {% set terms = object.get_terms('category') %}
 
 {% block content %}
-
 	<article class="section">
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
-			title: title,
+			title: object.get_title(),
 			terms: terms ? terms|map(term => {
 				name: term.get_name(),
 				url: term.get_permalink(),
@@ -30,9 +28,9 @@
 {% endblock %}
 
 {% block sidebar %}
-	<div class="section">
-		{% include 'partials/components/advertisement.twig' %}
-	</div>
+	{% if is_active_sidebar('widget-area-article') %}
+		{{ sidebar.get_widgetarea('widget-area-article')|raw }}
+	{% endif %}
 
 	<div class="section">
 		{% include 'styleguide/components/latest-articles.twig' with {

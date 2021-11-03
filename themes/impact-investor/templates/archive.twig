@@ -1,8 +1,10 @@
-{% extends 'layouts/sidebar-layout.twig' %}
+{% extends 'layouts/sidebar-layout-with-header.twig' %}
 
 {% block header %}
 	<div class="section">
-		<h1>{{ post_type.get_archive_title() }}</h1>
+		<div class="container">
+			<h1>{{ post_type.get_archive_title() }}</h1>
+		</div>
 	</div>
 {% endblock %}
 
@@ -44,9 +46,7 @@
 {% endblock %}
 
 {% block sidebar %}
-	<div class="section">
-		{% include 'partials/components/advertisement.twig' %}
-	</div>
+
 {% endblock %}
 
 {% block pagination %}

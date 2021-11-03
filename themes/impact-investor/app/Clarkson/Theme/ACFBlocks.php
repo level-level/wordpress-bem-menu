@@ -130,6 +130,54 @@ class ACFBlocks {
 				),
 			)
 		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-vacancies',
+				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'money',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'vacancies', 'jobs' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'is_fill_enabled' => true,
+							'amount'          => 2,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-latest-and-most-read-posts',
+				'title'           => _x( 'Latest and most read posts', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'impact-investor' ),
+				'icon'            => 'star-filled',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'posts', 'latest', 'most read', 'popular' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => false,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
 	}
 
 	/**
@@ -155,8 +203,12 @@ class ACFBlocks {
 
 	/**
 	 * @psalm-suppress InvalidStringClass
+	 * @param array  $block
+	 * @param string $content
+	 * @param mixed  $is_preview (WP_Block $block or with acf it is a bool $is_preview)
+	 * @param mixed  $post_id
 	 */
-	public function block_render_callback( array $block, string $content, bool $is_preview = false, int $post_id = 0 ): void {
+	public function block_render_callback( $block, $content, $is_preview = false, $post_id = 0 ): void {
 		$block_object = WP_Block_Type_Registry::get_instance()->get_registered( $block['name'] );
 		if ( ! $block_object instanceof WP_Block_Type ) {
 			return;
