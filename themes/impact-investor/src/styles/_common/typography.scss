@@ -32,28 +32,29 @@ h1,
 
 h2,
 .h2 {
-	@include font-size(25px, 27px);
+	@include font-size(24px, 32px);
 
 	@include breakpoint-sm {
-		@include font-size(29px, 31px);
+		@include font-size(28px, 40px);
 	}
 }
 
 h3,
 .h3 {
-	@include font-size(18px, 27px);
+	@include font-size(22px, 32px);
 
 	@include breakpoint-sm {
-		@include font-size(24px, 36px);
+		@include font-size(24px, 32px);
 	}
 }
 
 h4,
 .h4 {
-	@include font-size(16px, 24px);
+	@include font-bold;
+	@include font-size(16px, 22px);
 
 	@include breakpoint-sm {
-		@include font-size(20px, 30px);
+		@include font-size(18px, 26px);
 	}
 }
 

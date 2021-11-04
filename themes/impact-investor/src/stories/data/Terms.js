@@ -1,6 +1,5 @@
 export default [
 	{
-		name: 'Interview',
-		url: '#interview',
+		name: 'Circular economy',
 	},
 ];

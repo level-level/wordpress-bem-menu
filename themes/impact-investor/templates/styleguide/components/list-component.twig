@@ -30,5 +30,19 @@
 				} %}
 			</li>
 		{% endfor %}
+
+		{% if button_text and button_link %}
+			<li class="list-bordered__item">
+				{% include 'styleguide/components/buttons/button-link.twig' with {
+					text: button_text,
+					url: button_link,
+					class: 'btn--tertiary',
+					is_external: false,
+					icon: 'icon-arrow-right',
+					icon_left: true,
+					highlight_icon: true,
+				} %}
+			</li>
+		{% endif %}
 	</ul>
 {% endif %}

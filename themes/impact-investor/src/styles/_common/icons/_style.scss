@@ -27,15 +27,9 @@
 	@include icon;
 }
 
-.icon-youtube {
+.icon-close {
 	&:before {
-		content: $icon-youtube;
-	}
-}
-
-.icon-whatsapp {
-	&:before {
-		content: $icon-whatsapp;
+		content: $icon-close;
 	}
 }
 
@@ -45,33 +39,21 @@
 	}
 }
 
-.icon-linkedin {
+.icon-arrow-left {
 	&:before {
-		content: $icon-linkedin;
+		content: $icon-arrow-left;
 	}
 }
 
-.icon-googleplus {
+.icon-arrow-right {
 	&:before {
-		content: $icon-googleplus;
+		content: $icon-arrow-right;
 	}
 }
 
-.icon-facebook {
+.icon-chevron-down {
 	&:before {
-		content: $icon-facebook;
-	}
-}
-
-.icon-instagram {
-	&:before {
-		content: $icon-instagram;
-	}
-}
-
-.icon-twitter {
-	&:before {
-		content: $icon-twitter;
+		content: $icon-chevron-down;
 	}
 }
 
@@ -81,8 +63,74 @@
 	}
 }
 
-.icon-close {
+.icon-carrot-left {
 	&:before {
-		content: $icon-close;
+		content: $icon-carrot-left;
+	}
+}
+
+.icon-carrot-right {
+	&:before {
+		content: $icon-carrot-right;
+	}
+}
+
+.icon-user {
+	&:before {
+		content: $icon-user;
+	}
+}
+
+.icon-menu {
+	&:before {
+		content: $icon-menu;
+	}
+}
+
+.icon-bookmark {
+	&:before {
+		content: $icon-bookmark;
+	}
+}
+
+.icon-comment {
+	&:before {
+		content: $icon-comment;
+	}
+}
+
+.icon-carrot-down {
+	&:before {
+		content: $icon-carrot-down;
+	}
+}
+
+.icon-external-link {
+	&:before {
+		content: $icon-external-link;
+	}
+}
+
+.icon-twitter {
+	&:before {
+		content: $icon-twitter;
+	}
+}
+
+.icon-facebook {
+	&:before {
+		content: $icon-facebook;
+	}
+}
+
+.icon-linkedin {
+	&:before {
+		content: $icon-linkedin;
+	}
+}
+
+.icon-instagram {
+	&:before {
+		content: $icon-instagram;
 	}
 }

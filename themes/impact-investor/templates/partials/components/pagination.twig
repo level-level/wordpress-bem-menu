@@ -12,8 +12,10 @@
 
 {% set pagination = paginate_links(args) %}
 {% if pagination %}
-	<nav class="pagination" aria-label="{{ __('Pagination', 'impact-investor') }}">
-		<h2 class="screen-reader-text">{{ __('Pagination', 'impact-investor') }}</h2>
-		{{ pagination|raw }}
-	</nav>
+	<div class="section">
+		<nav class="pagination" aria-label="{{ __('Pagination', 'impact-investor') }}">
+			<h2 class="screen-reader-text">{{ __('Pagination', 'impact-investor') }}</h2>
+			{{ pagination|raw }}
+		</nav>
+	</div>
 {% endif %}

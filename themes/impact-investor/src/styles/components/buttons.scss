@@ -22,11 +22,9 @@
 	}
 
 	&:focus,
-	&:active {
-	}
+	&:active {}
 
-	@include hover {
-	}
+	@include hover {}
 
 	// Button disabled
 	&:disabled {
@@ -46,8 +44,10 @@
 	@include font-bold;
 	color: $primary;
 
-	.btn__text {
-		text-decoration: none;
+	.btn {
+		&__text {
+			text-decoration: none;
+		}
 	}
 }
 
@@ -56,19 +56,39 @@
 	color: $senary;
 	padding: 0;
 
-	.btn__text {
-		text-decoration: none;
+	.btn {
+		&__text {
+			text-decoration: none;
+		}
 	}
 
 	&:focus {
-		.btn__text {
-			text-decoration: underline;
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+
+			&__icon {
+				&--highlight {
+					background-color: $quinary;
+					color: $senary;
+				}
+			}
 		}
 	}
 
 	@include hover {
-		.btn__text {
-			text-decoration: underline;
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+
+			&__icon {
+				&--highlight {
+					background-color: $quinary;
+					color: $senary;
+				}
+			}
 		}
 	}
 }
@@ -77,9 +97,36 @@
 	@include font-normal;
 	@include font-size(14px);
 	padding: 0;
+	text-decoration: none;
 
-	.btn__text {
-		text-decoration: underline;
+	&:focus {
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	@include hover {
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.btn {
+		&__icon {
+			@include font-size(18px);
+
+			& + * {
+				padding-left: 5px;
+			}
+		}
+
+		&__text {
+			top: 2px;
+		}
 	}
 }
 
@@ -97,8 +144,10 @@
 	border-radius: 3px;
 	border: 1px solid $black;
 
-	.btn__icon {
-		color: $primary;
+	.btn {
+		&__icon {
+			color: $primary;
+		}
 	}
 
 	&[aria-expanded='true'] {
@@ -206,6 +255,7 @@ input[type='button'] {
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			transition: background-color $time, color $time;
 		}
 	}
 }

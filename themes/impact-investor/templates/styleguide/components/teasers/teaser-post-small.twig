@@ -40,6 +40,7 @@
 	{# Tablet only #}
 	<div class="hidden-xs visible-sm hidden-lg">
 		<div class="row row--no-padding row--nowrap">
+
 			{% if image %}
 				<div class="col-auto col--shrink-0">
 					<div class="teaser-post__thumbnail">
@@ -47,6 +48,7 @@
 					</div>
 				</div>
 			{% endif %}
+
 			<div class="col-auto col--grow-1">
 				<div class="teaser-post__inner">
 					<div class="group group--small">
@@ -129,49 +131,13 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 
-			<div class="teaser-post__footer">
-				<div class="row row--space-between row--nowrap row--align-center">
-					{% if authors %}
-						<div class="col-auto">
-							<span class="screen-reader-text">
-								{{ __('Written by:', 'impact-investor') }}
-							</span>
-							<ul class="list-authors">
-								{% for object in authors %}
-									<li class="list-authors__item">
-										{% include 'styleguide/components/buttons/button-link.twig' with {
-											text: not loop.last ? object.name ~ ',' : object.name,
-											url: object.url,
-											class: 'btn--link',
-										} %}
-									</li>
-								{% endfor %}
-							</ul>
-						</div>
-					{% endif %}
-
-					{% if comments > 0 %}
-						<div class="col-auto ml-auto col--shrink-0">
-							<div class="row row--space-between row--nowrap row--align-center">
-								<div class="col-auto">
-									{% include 'styleguide/components/buttons/button-link.twig' with {
-										text: comments,
-										url: url ~ '#comments',
-										class: 'btn--link',
-										aria_label: _n('See %s comment in this article', 'See %s comments in this article', comments, 'impact-investor')|format(comments),
-										icon: 'icon-whatsapp',
-										icon_left: true,
-									} %}
-								</div>
-							</div>
-						</div>
-					{% endif %}
-				</div>
-			</div>
+			{% include 'styleguide/components/teasers/post/footer.twig' with {
+				authors: authors,
+				comments: comments,
+			} %}
 		</div>
 	</div>
 </div>

@@ -47,6 +47,10 @@
 				color: $white;
 			}
 		}
+
+		.primary-nav__arrow {
+			color: $white;
+		}
 	}
 
 	&__item--parent--active {
@@ -103,7 +107,7 @@
 
 		@include breakpoint-sm {
 			padding: 0;
-			right: 20px;
+			right: 15px;
 		}
 	}
 }
