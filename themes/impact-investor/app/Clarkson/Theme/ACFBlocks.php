@@ -18,6 +18,7 @@ class ACFBlocks {
 	 * Available supports settings: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/
 	 */
 	public function set_default_block_type_args( array $block ): array {
+		$block['category']                    = 'impact-investor';
 		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['supports']['customClassName'] = false;
 
@@ -39,7 +40,6 @@ class ACFBlocks {
 				'title'           => _x( 'Featured article', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a single featured article.', 'Block', 'impact-investor' ),
 				'icon'            => 'welcome-view-site',
-				'category'        => 'impact-investor',
 				'align'           => 'wide', // full, wide, left, center, right
 				'keywords'        => array( 'featured article', 'post' ),
 				'supports'        => array(
@@ -65,7 +65,6 @@ class ACFBlocks {
 				'title'           => _x( 'Articles in columns', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Block', 'impact-investor' ),
 				'icon'            => 'columns',
-				'category'        => 'impact-investor',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'posts', 'articles', 'column', 'two', '2', 'three', '3', 'post' ),
 				'supports'        => array(
@@ -91,7 +90,6 @@ class ACFBlocks {
 				'title'           => _x( 'Highlighted content', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays content in a box to make it stand out more.', 'Block', 'impact-investor' ),
 				'icon'            => 'text-page',
-				'category'        => 'impact-investor',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'highlight', 'summary', 'in short', 'content' ),
 				'supports'        => array(
@@ -116,7 +114,6 @@ class ACFBlocks {
 				'title'           => _x( 'Advertisement', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays an advertisement.', 'Block', 'impact-investor' ),
 				'icon'            => 'schedule',
-				'category'        => 'widgets',
 				'align'           => 'full', // full, wide, left, center, right
 				'keywords'        => array( 'advertisement', 'ad' ),
 				'supports'        => array(
@@ -136,11 +133,10 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-vacancies',
+				'name'            => 'widget-vacancies',
 				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
 				'icon'            => 'money',
-				'category'        => 'widgets',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'vacancies', 'jobs' ),
 				'supports'        => array(
@@ -162,11 +158,10 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-latest-and-most-read-posts',
+				'name'            => 'widget-latest-and-most-read-posts',
 				'title'           => _x( 'Latest and most read posts', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'impact-investor' ),
 				'icon'            => 'star-filled',
-				'category'        => 'widgets',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'posts', 'latest', 'most read', 'popular' ),
 				'supports'        => array(
@@ -186,11 +181,10 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-newsletter',
+				'name'            => 'widget-newsletter',
 				'title'           => _x( 'Newsletter', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'impact-investor' ),
 				'icon'            => 'email-alt',
-				'category'        => 'widgets',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'newsletter', 'subscribe', 'signup', 'call to action', 'cta' ),
 				'supports'        => array(
@@ -210,11 +204,10 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-latest-articles',
+				'name'            => 'widget-latest-articles',
 				'title'           => _x( 'Latest articles', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'impact-investor' ),
 				'icon'            => 'list-view',
-				'category'        => 'widgets',
 				'align'           => 'center', // full, wide, left, center, right
 				'keywords'        => array( 'latest', 'posts', 'articles' ),
 				'supports'        => array(

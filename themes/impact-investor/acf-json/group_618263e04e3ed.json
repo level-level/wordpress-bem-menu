@@ -1,6 +1,6 @@
 {
     "key": "group_618263e04e3ed",
-    "title": "[Widget-Block] Vacancies\/Jobs",
+    "title": "[Widget] Vacancies\/Jobs",
     "fields": [
         {
             "key": "field_618263e092dcd",
@@ -98,7 +98,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-vacancies"
+                "value": "acf\/widget-vacancies"
             }
         ]
     ],
@@ -110,5 +110,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636018019
+    "modified": 1636024903
 }

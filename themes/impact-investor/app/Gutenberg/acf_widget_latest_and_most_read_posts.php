@@ -5,7 +5,7 @@ namespace Gutenberg\Blocks;
 use Clarkson_Core\WordPress_Object\post;
 use ImpactInvestor\KokoAnalytics\KokoAnalytics;
 
-class acf_block_latest_and_most_read_posts extends base_block {
+class acf_widget_latest_and_most_read_posts extends base_block {
 
 	/**
 	* Get latest posts

@@ -7,7 +7,7 @@ use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use WP_Post;
 use WP_Query;
 
-class acf_block_vacancies extends base_block {
+class acf_widget_vacancies extends base_block {
 
 	public const POST_TYPES   = array( 'ii_vacancy' );
 	public const TAX_RELATION = 'OR';

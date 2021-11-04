@@ -4,7 +4,7 @@ namespace Gutenberg\Blocks;
 
 use Clarkson_Core\WordPress_Object\post;
 
-class acf_block_latest_articles extends base_block {
+class acf_widget_latest_articles extends base_block {
 
 	/**
 	* Get latest posts

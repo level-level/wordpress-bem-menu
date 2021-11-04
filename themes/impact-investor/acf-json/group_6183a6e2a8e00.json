@@ -1,6 +1,6 @@
 {
     "key": "group_6183a6e2a8e00",
-    "title": "[Widget-Block] Latest articles",
+    "title": "[Widget] Latest articles",
     "fields": [
         {
             "key": "field_6183a70de25bd",
@@ -29,7 +29,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-latest-articles"
+                "value": "acf\/widget-latest-articles"
             }
         ]
     ],
@@ -41,5 +41,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636018007
+    "modified": 1636024891
 }
