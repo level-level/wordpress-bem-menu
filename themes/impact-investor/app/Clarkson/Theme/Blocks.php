@@ -37,12 +37,8 @@ class Blocks {
 		$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		$custom_blocks     = array();
 
-		foreach ( $registered_blocks as $block ) {
-			// Add all custom ACF blocks
-			if ( strpos( $block->name, 'acf' ) === 0 || strpos( $block->name, 'll' ) === 0 ) {
-				$custom_blocks[] = $block->name;
-			}
-		}
+		// Default block type for all ACF blocks
+		$block_type = 'acf/block';
 
 		// Define allowed core or plugin blocks
 		$allowed_blocks = array(
@@ -71,6 +67,24 @@ class Blocks {
 			'core/block',
 			'core/template',
 		);
+
+		// Determine the widget and customiser page
+		global $pagenow;
+		if ( 'widgets.php' === $pagenow || 'customize.php' === $pagenow ) {
+
+			// Define the allowed blocks that are limited to the widget area
+			$allowed_blocks = array(
+				'acf/block-advertisement',
+			);
+			$block_type     = 'acf/widget';
+		}
+
+		foreach ( $registered_blocks as $block ) {
+			// Add all custom ACF blocks
+			if ( strpos( $block->name, $block_type ) === 0 || strpos( $block->name, 'll' ) === 0 ) {
+				$custom_blocks[] = $block->name;
+			}
+		}
 
 		return array_merge( $allowed_blocks, $custom_blocks );
 	}
