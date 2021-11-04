@@ -129,11 +129,15 @@
 
 	&__item {
 		padding: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			padding: calc(#{$default-padding*0.5} + 3px);
+		}
 	}
 
 	&__heading {
 		@include font-bold;
-		@include font-size(18px, 26px);
+		@include font-size(16px, 24px);
 		color: $primary;
 	}
 

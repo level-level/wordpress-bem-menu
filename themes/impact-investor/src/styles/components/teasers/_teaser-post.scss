@@ -45,22 +45,17 @@
 		z-index: 2;
 		line-height: 1;
 		border-top: 1px solid $border;
-		padding: 14px $default-padding*0.5;
+		padding: $default-padding*0.5 $default-padding*0.5;
 		margin-top: auto;
+		min-height: 45px;
 
 		@include breakpoint-sm {
-			padding: 14px $default-padding;
-		}
-
-		.btn {
-			&__text {
-				text-decoration: none;
-			}
+			padding: $default-padding*0.5 $default-padding;
 		}
 	}
 
 	&__title {
-		@include font-size(22px, 27px);
+		@include font-size(24px, 32px);
 	}
 
 	&__link {
@@ -69,10 +64,10 @@
 	}
 
 	&__excerpt {
-		@include font-size(16px, 21px);
+		@include font-size(16px, 24px);
 
 		@include breakpoint-sm {
-			@include font-size(17px, 22px);
+			@include font-size(18px, 26px);
 		}
 	}
 

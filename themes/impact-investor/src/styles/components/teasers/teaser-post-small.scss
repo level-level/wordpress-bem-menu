@@ -14,10 +14,10 @@
 			}
 
 			&__title {
-				@include font-size(18px, 24px);
+				@include font-size(16px, 22px);
 
 				@include breakpoint-sm {
-					@include font-size(22px, 28px);
+					@include font-size(20px, 28px);
 				}
 			}
 
@@ -54,6 +54,13 @@
 						width: 100%;
 						height: auto;
 					}
+				}
+			}
+
+			&__footer {
+				@include breakpoint-lg {
+					padding-left: calc(#{$default-padding*0.5} + 3px);
+					padding-right: calc(#{$default-padding*0.5} + 3px);
 				}
 			}
 

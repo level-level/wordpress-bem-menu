@@ -6,13 +6,17 @@
 		padding: $default-padding*0.5;
 
 		@include breakpoint-sm {
-			padding: $default-padding;
+			padding: calc(#{$default-padding*0.5} + 3px);
 		}
 	}
 
 	&__title {
 		@include font-bold;
-		@include font-size(18px, 26px);
+		@include font-size(16px, 24px);
+
+		@include breakpoint-sm {
+			@include font-size(18px, 26px);
+		}
 	}
 
 	&__thumbnail {
@@ -21,8 +25,8 @@
 		margin-right: #{-$default-padding*0.5};
 
 		@include breakpoint-sm {
-			margin-left: #{-$default-padding};
-			margin-right: #{-$default-padding};
+			margin-left: calc((#{$default-padding*0.5} + 3px) * -1);
+			margin-right: calc((#{$default-padding*0.5} + 3px) * -1);
 		}
 
 		img {

@@ -20,7 +20,11 @@
 
 			li {
 				@include font-bold;
-				@include font-size(18px, 26px);
+				@include font-size(16px, 24px);
+
+				@include breakpoint-sm {
+					@include font-size(18px, 26px);
+				}
 			}
 		}
 	}

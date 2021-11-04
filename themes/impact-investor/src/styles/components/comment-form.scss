@@ -5,12 +5,13 @@
 
 	.comment-reply-title {
 		@include font-bold;
-		@include font-size(18px, 26px);
+		@include font-size(16px, 24px);
 		color: $primary;
 		border-bottom: 1px solid $quinary;
 		padding: 11px $default-padding*0.5;
 
 		@include breakpoint-sm {
+			@include font-size(18px, 26px);
 			padding: 11px $default-padding;
 		}
 	}
@@ -53,7 +54,11 @@
 
 	&__title {
 		@include font-bold;
-		@include font-size(22px, 32px);
+		@include font-size(18px, 26px);
 		color: $primary;
+
+		@include breakpoint-sm {
+			@include font-size(22px, 32px);
+		}
 	}
 }

@@ -18,10 +18,12 @@
 
 		&:focus {
 			color: $primary;
+			text-decoration: underline;
 		}
 
 		@include hover {
 			color: $primary;
+			text-decoration: underline;
 		}
 	}
 }

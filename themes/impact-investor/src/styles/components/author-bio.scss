@@ -2,15 +2,18 @@
 	@include font-normal;
 	@include font-size(16px, 21px);
 	position: relative;
-	background-color: $white;
-	border-bottom: 2px solid $quinary;
+	background-color: $quaternary;
 
 	@include breakpoint-sm {
 		@include font-size(17px, 22px);
 	}
 
 	&__inner {
-		padding: $default-padding;
+		padding: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			padding: calc(#{$default-padding*0.5} + 3px);
+		}
 	}
 
 	&__footer {
@@ -26,7 +29,11 @@
 
 	&__title {
 		@include font-bold;
-		@include font-size(18px, 24px);
+		@include font-size(16px, 24px);
 		color: $primary;
+
+		@include breakpoint-sm {
+			@include font-size(18px, 24px);
+		}
 	}
 }

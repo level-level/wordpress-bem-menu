@@ -42,6 +42,8 @@
 				{% endfor %}
 			</ul>
 		</div>
+
+		{% include 'partials/components/pagination.twig' %}
 	{% endif %}
 {% endblock %}
 
@@ -49,6 +51,3 @@
 
 {% endblock %}
 
-{% block pagination %}
-	{% include 'partials/components/pagination.twig' %}
-{% endblock %}
