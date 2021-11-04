@@ -2,7 +2,7 @@
 
 {% if objects %}
 	<div class="align{{ align }}">
-		{% include 'styleguide/components/latest-articles.twig' with {
+		{% include 'styleguide/components/list-component.twig' with {
 			heading: __('Jobs', 'impact-investor'),
 			objects: objects ? objects|map(post => {
 				title: post.get_title(),

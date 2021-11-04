@@ -12,6 +12,18 @@ class WidgetAreas {
 	public function register_widget_areas(): void {
 		register_sidebar(
 			array(
+				'name'          => _x( 'Page header advertisement area', 'Widgets', 'impact-investor' ),
+				'id'            => 'widget-area-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'impact-investor' ),
+				'before_widget' => '<div class="section">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
+
+		register_sidebar(
+			array(
 				'name'          => _x( 'Homepage', 'Widgets', 'impact-investor' ),
 				'id'            => 'widget-area-homepage',
 				'description'   => _x( 'Add widgets to appear on the homepage.', 'Widgets', 'impact-investor' ),

@@ -2,7 +2,11 @@
 
 <main class="main" id="main-content">
 
-	{% include 'partials/components/advertisement.twig' %}
+	{% if is_active_sidebar('widget-area-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-header-ad')|raw }}
+		</div>
+	{% endif %}
 
 	<div class="section section--no-top">
 		<div class="container">

@@ -32,7 +32,7 @@
 
 		{% if latest %}
 			<div id="latest" class="tab-list__section" {{ not most_read ? 'aria-hidden="false"' }}>
-				{% include 'styleguide/components/latest-articles.twig' with {
+				{% include 'styleguide/components/list-component.twig' with {
 					objects: latest ? latest|map(post => {
 						title: post.get_title(),
 						url: post.get_permalink(),

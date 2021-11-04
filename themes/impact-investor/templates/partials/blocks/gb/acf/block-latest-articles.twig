@@ -1,0 +1,18 @@
+{% set objects = block.get_latest_articles() %}
+
+{% if objects %}
+	<div class="align{{ align }}">
+		{% include 'styleguide/components/list-component.twig' with {
+			heading: __('Latest news', 'impact-investor'),
+			objects: objects ? objects|map(post => {
+				title: post.get_title(),
+				url: post.get_permalink(),
+				date: post.get_date_i18n('H:i'),
+				datetime: post.get_date_i18n('H:i'),
+			}),
+			button_text: __('More articles', 'impact-investor'),
+			button_link: get_post_type_archive_link('post'),
+			style: 'dark',
+		} %}
+	</div>
+{% endif %}

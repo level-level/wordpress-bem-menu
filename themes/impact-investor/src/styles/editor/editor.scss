@@ -110,6 +110,10 @@
 	.wp-block-widget-area__inner-blocks {
 		max-width: calc(#{$sidebar-width} + 32px);
 		margin: 0 auto !important;
+
+		&[data-widget-area-id='widget-area-header-ad'] {
+			max-width: none;
+		}
 	}
 
 	.wp-block-widget-area__panel-body-content {

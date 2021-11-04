@@ -1,6 +1,6 @@
 {
     "key": "group_618263e04e3ed",
-    "title": "[Block] Vacancies\/Jobs",
+    "title": "[Widget-Block] Vacancies\/Jobs",
     "fields": [
         {
             "key": "field_618263e092dcd",
@@ -110,5 +110,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635935285
+    "modified": 1636018019
 }
