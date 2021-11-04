@@ -1,4 +1,4 @@
-import './blocks/blocks.js';
+// import './blocks/blocks.js';
 import './styles/editor.scss';
 
 /**

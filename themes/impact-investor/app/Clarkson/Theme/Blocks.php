@@ -8,6 +8,7 @@ class Blocks {
 		$this->register_gutenberg_blocks();
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
+		add_filter( 'render_block', array( $this, 'block_wrapper' ), 10, 2 );
 	}
 
 	/**
@@ -89,13 +90,6 @@ class Blocks {
 	 * Wrap specific Gutenberg blocks in their own divs
 	 */
 	public function block_wrapper( string $block_content, array $block ): string {
-		if ( 'gravityforms/form' === $block['blockName'] ) {
-			$content  = '<div class="section section--core"><div class="container">';
-			$content .= $block_content;
-			$content .= '</div></div>';
-			return $content;
-		}
-
 		if ( 'core/table' === $block['blockName'] ) {
 			return '<div data-module="table">' . $block_content . '</div>';
 		}
