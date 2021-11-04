@@ -12,7 +12,8 @@ class Client {
 	 */
 	public const PUBLICATION = 'IMPACT_INVESTOR';
 
-	public const BASE_URL = 'https://messagent.fdmediagroep.nl/restapi/api/sync/';
+	public const BASE_URL  = 'https://messagent.fdmediagroep.nl';
+	public const BASE_PATH = '/restapi/api/sync/';
 
 	public const LIST_ID_ARTICLE    = 1980;
 	public const LIST_ID_NEWSLETTER = 1979;
@@ -36,7 +37,7 @@ class Client {
 	 * Registers a post to Selligent.
 	 */
 	public function register_post( post $post ): array {
-		return $this->post( $this->get_list_url( self::LIST_ID_ARTICLE ), DataGenerator::get_article_data( $post ) );
+		return $this->post( $this->get_list_path( self::LIST_ID_ARTICLE ), DataGenerator::get_article_data( $post ) );
 	}
 
 	/**
@@ -45,45 +46,50 @@ class Client {
 	 * @param int[] $post_ids
 	 */
 	public function register_newsletter( array $post_ids ): array {
-		return $this->post( $this->get_list_url( self::LIST_ID_NEWSLETTER ), DataGenerator::get_newsletter_data( $post_ids ) );
+		return $this->post( $this->get_list_path( self::LIST_ID_NEWSLETTER ), DataGenerator::get_newsletter_data( $post_ids ) );
 	}
 
 	/**
-	 * Returns the url of a list that is used to update either an article or a
+	 * Returns the path of a list that is used to update either an article or a
 	 * newsletter.
 	 *
 	 * @param Client::LIST_ID_* $list_id
 	 */
-	public function get_list_url( int $list_id ): string {
-		return sprintf( '%slists/%d/articles', self::BASE_URL, $list_id );
+	public function get_list_path( int $list_id ): string {
+		return sprintf( 'lists/%d/articles', $list_id );
 	}
 
 	/**
-	 * @param string $url  Full url endpoint.
+	 * @param string $url  Endpoint to POST to, BASE_URL and BASE_PATH will be
+	 * prefixed to this value.
 	 * @param string $data Associative array of data that is sent in the body.
 	 */
-	public function post( string $url, array $data ): array {
-		$data = wp_remote_post( $url, array(
-			'headers' => $this->get_auth_headers( $url ),
-			'body'    => $data,
+	public function post( string $path, array $data ): array {
+		$data = wp_remote_post( self::BASE_URL . self::BASE_PATH . $path, array(
+			'headers'   => $this->get_auth_headers( self::BASE_PATH . $path ),
+			'body'      => wp_json_encode( $data ),
 		) );
 
-		return $data ?? array();
+		if ( $data instanceof \WP_Error ) {
+			throw new \Exception( $data->get_error_message() );
+		}
+
+		return $data;
 	}
 
 	/**
 	 * Authorization headers are generated on the fly based on the endpoint and
 	 * the current timestamp.
 	 * 
-	 * @param string $endpoint Full endpoint url.
+	 * @param string $endpoint Full endpoint without BASE_URL.
 	 */
 	protected function get_auth_headers( string $endpoint ): array {
 		$timestamp = time();
 		$auth_hash = hash_hmac( 'sha256', sprintf( '%s-POST-%s', $timestamp, $endpoint ), $this->pass );
 
 		return array(
-			sprintf( 'Authorization: hmac %s:%s:%s', $this->user, $auth_hash, $timestamp ),
-			'Content-Type: application/json'
+			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->user, $auth_hash, $timestamp ),
+			'Content-Type'  => 'application/json',
 		);
 	}
 

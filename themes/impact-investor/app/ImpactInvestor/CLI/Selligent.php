@@ -7,14 +7,30 @@ use ImpactInvestor\Connectors\Selligent\Client;
 
 class Selligent {
 	/**
+	 * Shows information about the current status of the API.
+	 */
+	public function status( array $args, array $args_assoc ): void {
+		\WP_CLI::line( 'User: ' . constant( 'II_SELLIGENT_USER' ) );
+		\WP_CLI::line( 'Pass: ' . ( defined( 'II_SELLIGENT_USER' ) ? 'Password is set' : 'Password is not set' ) );
+		\WP_CLI::line( 'Type: ' . Client::get_type() );
+	}
+
+	/**
+	 * Registers a post to Selligent
+	 *
+	 * ## Options
+	 *
 	 * <id>...
 	 * : One or more IDs of posts to send
+	 *
+	 * [--preview]
+	 * : Preview the body data without sending the request.
 	 *
 	 * @subcommand post-article
 	 */
 	public function post_article( array $args, array $args_assoc ): void {
 		$client   = new Client();
-		$post_ids = array_filter( $args, 'is_int' );
+		$post_ids = array_filter( $args, 'is_numeric' );
 
 		$this->handle_default_flags( $args_assoc );
 
@@ -33,14 +49,23 @@ class Selligent {
 		}
 
 		foreach ( $posts as $post ) {
+			\WP_CLI::line( 'Sending post with ID ' . $post->get_id() );
 			$result = $client->register_post( $post );
 			$this->echo_response( $result );
+			\WP_CLI::line( '' );
 		}
 	}
 
 	/**
+	 * Combines posts into a newsletter that is registered to Selligent.
+	 *
+	 * ## Options
+	 *
 	 * <id>...
 	 * : One or more IDs of posts to send
+	 * 
+	 * [--preview]
+	 * : Preview the body data without sending the request.
 	 *
 	 * @subcommand register-newsletter
 	 */
@@ -74,7 +99,7 @@ class Selligent {
 	 * actually being sent, but allows us to preview the values.
 	 * 
 	 * @param mixed $pre Originally a false value, but can become anything.
-	 * If a non-false value is returned, the request willnot be made.
+	 * If a non-false value is returned, the request will not be made.
 	 *
 	 * @param array $args  Complete list of values that will be sent in the
 	 * request.
