@@ -51,6 +51,21 @@ $data = [
 ];
 ```
 
+#### Example response
+```
+{
+	"publication": "IMPACT_INVESTOR",
+	"articleId": 6,
+	"title": "&#8216;Keep it simple and familiar to convince institutional investors on blended finance&#8217;",
+	"teaser": "<p>Although blended finance is on everyone’s lips, deal flow and transaction sizes dropped sharply in 2020, a new Convergence report finds. The industry tracker makes recommendations on how to achieve scale. “We’re into the last decade of the 2030 agenda and we are nowhere near the trillions we will need to achieve it,” said Joan [&hellip;]</p>\n",
+	"news_section": "",
+	"img": "http://impact-investor.local/wp-content/uploads/2021/11/anp-375469043-1280x.jpg",
+	"cta": "http://impact-investor.local/keep-it-simple-and-familiar-to-convince-institutional-investors-on-blended-finance/",
+	"CREATED_DT": "2021-11-04T16:26:13.8569101+01:00",
+	"Id": 14680
+}
+```
+
 ### Create a newsletter
 
 Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/lists/1979/articles
@@ -71,6 +86,21 @@ $data = [
 ];
 ```
 
+#### Example response
+```
+{
+	"publication": "IMPACT_INVESTOR",
+	"type": "MVP",
+	"subject": "Newsletter test",
+	"preheader": "Pre header",
+	"introduction": "Introduction",
+	"article_1": "6",
+	"article_2": "9",
+	"CREATED_DT": "2021-11-04T11:34:04.6474839+01:00",
+	"Id": 1019
+}
+```
+
 ### Send a newsletter
 
 Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/campaigns/triggerbyjsonwithresult
@@ -85,4 +115,15 @@ $data = [
     'TYPE' => 'WEEKLY'
   ]
 ];
+```
+
+#### Example response:
+
+**Success:**
+```
+{
+	"IsSuccess": true,
+	"Error": "",
+	"Result": "[ok newsletter generated]"
+}
 ```
