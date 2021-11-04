@@ -23,7 +23,7 @@ class base_object extends Clarkson_Object {
 				$term = get_term( (int) $primary_term_id );
 
 				if ( $term instanceof WP_Term ) {
-					return $core_objects->get_term( $term ) ?: null;
+					return $core_objects->get_term( $term );
 				}
 			}
 		}
