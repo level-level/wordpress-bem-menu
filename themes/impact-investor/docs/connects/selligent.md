@@ -75,6 +75,8 @@ $data = [
 
 Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/campaigns/triggerbyjsonwithresult
 
+Default newsletter type is `WEEKLY`. This will send the newsletter to all current recipients. Set the newsletter type to `MVP` for a test recipient list, that includes the `notifications@level-level.com` email.
+
 ```
 $data = [
   'Gate' => 'NEWSLETTER_GENERATE_IMPACTINVESTOR',

@@ -23,23 +23,25 @@ class DataGenerator {
 	/**
 	 * Returns an array with the required values to send to Selligent. Keep in
 	 * mind that the post ids given should already have been registered.
-	 * 
+	 *
 	 * @param int[] $post_ids
 	 */
 	public static function get_newsletter_data( array $post_ids ): array {
 		$posts = array();
 
 		foreach ( $post_ids as $key => $post_id ) {
-			$article_key = sprintf( 'article_%d', $key + 1 );
+			$article_key           = sprintf( 'article_%d', $key + 1 );
 			$posts[ $article_key ] = $post_id;
 		}
 
-		return array_merge( array(
-			'publication'  => Client::PUBLICATION,
-			'type'         => Client::get_type(),
-			'subject'      => 'Newsletter test',
-			'preheader'    => 'Pre header',
-			'introduction' => 'Introduction',
-		), $posts );
+		return array_merge(
+			array(
+				'publication'  => Client::PUBLICATION,
+				'type'         => Client::get_type(),
+				'subject'      => 'Newsletter test',
+				'preheader'    => 'Pre header',
+				'introduction' => 'Introduction',
+			), $posts
+		);
 	}
 }

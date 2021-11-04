@@ -42,11 +42,27 @@ class Client {
 
 	/**
 	 * Registers a new newsletter based on a list of posts.
-	 * 
+	 *
 	 * @param int[] $post_ids
 	 */
 	public function register_newsletter( array $post_ids ): array {
 		return $this->post( $this->get_list_path( self::LIST_ID_NEWSLETTER ), DataGenerator::get_newsletter_data( $post_ids ) );
+	}
+
+	/**
+	 * Sends the most recent registered newsletter to all recipients.
+	 */
+	public function send_newsletter(): array {
+		$endpoint = 'campaigns/triggerbyjsonwithresult';
+		$data     = array(
+			'Gate'      => 'NEWSLETTER_GENERATE_IMPACTINVESTOR',
+			'Gateinput' => array(
+				'PUBLICATION' => self::PUBLICATION,
+				'TYPE'        => self::get_type(),
+			),
+		);
+
+		return $this->post( $endpoint, $data );
 	}
 
 	/**
@@ -65,10 +81,12 @@ class Client {
 	 * @param string $data Associative array of data that is sent in the body.
 	 */
 	public function post( string $path, array $data ): array {
-		$data = wp_remote_post( self::BASE_URL . self::BASE_PATH . $path, array(
-			'headers'   => $this->get_auth_headers( self::BASE_PATH . $path ),
-			'body'      => wp_json_encode( $data ),
-		) );
+		$data = wp_remote_post(
+			self::BASE_URL . self::BASE_PATH . $path, array(
+				'headers' => $this->get_auth_headers( self::BASE_PATH . $path ),
+				'body'    => wp_json_encode( $data ),
+			)
+		);
 
 		if ( $data instanceof \WP_Error ) {
 			throw new \Exception( $data->get_error_message() );
@@ -80,7 +98,7 @@ class Client {
 	/**
 	 * Authorization headers are generated on the fly based on the endpoint and
 	 * the current timestamp.
-	 * 
+	 *
 	 * @param string $endpoint Full endpoint without BASE_URL.
 	 */
 	protected function get_auth_headers( string $endpoint ): array {
