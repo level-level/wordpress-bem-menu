@@ -131,12 +131,11 @@
 }
 
 @mixin btn--share {
+	@include font-size(22px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-decoration: none;
-	background-color: $quaternary;
-	color: $white;
+	border: 0;
 }
 
 @mixin btn--search {
