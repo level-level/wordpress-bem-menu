@@ -1,10 +1,10 @@
 import Posts from '../data/Posts';
 
 export default {
-	title: 'Components/LatestArticles',
+	title: 'Components/ListComponent',
 	parameters: {
 		server: {
-			id: 'styleguide/components/latest-articles.twig',
+			id: 'styleguide/components/list-component.twig',
 		},
 	},
 	argTypes: {
@@ -24,6 +24,7 @@ export default {
 			options: [
 				'default',
 				'dark',
+				'light',
 			],
 			control: {
 				type: 'select',

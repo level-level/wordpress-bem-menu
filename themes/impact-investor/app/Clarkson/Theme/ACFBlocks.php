@@ -117,10 +117,10 @@ class ACFBlocks {
 				'description'     => _x( 'Displays an advertisement.', 'Block', 'impact-investor' ),
 				'icon'            => 'schedule',
 				'category'        => 'widgets',
-				'align'           => 'center', // full, wide, left, center, right
+				'align'           => 'full', // full, wide, left, center, right
 				'keywords'        => array( 'advertisement', 'ad' ),
 				'supports'        => array(
-					'align'    => array( 'center' ),
+					'align'    => array( 'full' ),
 					'multiple' => true,
 				),
 				'render_callback' => array( $this, 'block_render_callback' ),
@@ -202,6 +202,31 @@ class ACFBlocks {
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-latest-articles',
+				'title'           => _x( 'Latest articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'impact-investor' ),
+				'icon'            => 'list-view',
+				'category'        => 'widgets',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'latest', 'posts', 'articles' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'amount'          => 4,
 						),
 					),
 				),
