@@ -145,6 +145,8 @@ class base_block extends Block_Type {
 				'is_preview' => $this->is_preview,
 			);
 
+			$block_args = apply_filters( 'clarkson_core_block_context_' . $this->name, $block_args, $this );
+
 			$errors = $this->validate( $attributes );
 
 			if ( $errors->has_errors() ) {

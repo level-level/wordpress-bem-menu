@@ -14,18 +14,4 @@
 	{% if is_active_sidebar('widget-area-homepage') %}
 		{{ sidebar.get_widgetarea('widget-area-homepage')|raw }}
 	{% endif %}
-
-	{% set newsletter = options.newsletter %}
-	<div class="section">
-		{% include 'styleguide/components/newsletter.twig' with {
-			title: newsletter.title,
-			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium'),
-			content: newsletter.content,
-			button: {
-				title: newsletter.button.title,
-				url: newsletter.button.url,
-				target: newsletter.button.target,
-			}
-		} %}
-	</div>
 {% endblock %}
