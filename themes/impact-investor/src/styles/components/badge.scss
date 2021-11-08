@@ -18,13 +18,15 @@
 		padding: 4px 10px;
 		transition: background-color $time, color $time;
 
+		@include breakpoint-sm {
+			@include font-size(16px, 20px);
+		}
+	}
+
+	&--link {
 		@include hover-focus-style {
 			background-color: transparent;
 			color: $black;
-		}
-
-		@include breakpoint-sm {
-			@include font-size(16px, 20px);
 		}
 	}
 }

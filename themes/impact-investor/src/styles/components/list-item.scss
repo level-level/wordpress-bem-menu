@@ -1,5 +1,7 @@
 .list-item {
 	position: relative;
+	display: flex;
+	flex-direction: column;
 
 	&__meta {
 		@include font-size(14px, 16px);
@@ -15,6 +17,7 @@
 		@include absolute-link;
 		display: block;
 		text-decoration: none;
+		order: 2;
 
 		@include hover-focus-style {
 			color: $primary;

@@ -65,6 +65,7 @@
 
 	&__excerpt {
 		@include font-size(16px, 24px);
+		margin-top: $default-padding*0.5;
 
 		@include breakpoint-sm {
 			@include font-size(18px, 26px);
@@ -77,6 +78,18 @@
 
 		@include breakpoint-sm {
 			@include font-size(16px, 17px);
+		}
+	}
+}
+
+.teaser-post-header {
+	display: flex;
+	flex-direction: column;
+
+	&__item {
+		&--order-2 {
+			order: 2;
+			margin-top: $default-padding*0.5;
 		}
 	}
 }

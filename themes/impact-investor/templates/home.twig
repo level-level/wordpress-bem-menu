@@ -28,6 +28,7 @@
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
 							date: object.get_date_i18n(date_format),
+							date_full: object.get_date_i18n('F j Y'),
 							datetime: object.get_date_i18n('Y-m-d'),
 							terms: terms ? terms|map(term => {
 								name: term.get_name(),
