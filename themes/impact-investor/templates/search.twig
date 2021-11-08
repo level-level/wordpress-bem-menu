@@ -1,10 +1,18 @@
 {% extends 'layouts/sidebar-layout-with-header.twig' %}
 
-{% block content %}
+{% block header %}
 	<div class="section">
-		<h1>{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}</h1>
+		<div class="container">
+			<div class="layout-header-wrapper">
+				<h1 class="rich-title">
+					{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}
+				</h1>
+			</div>
+		</div>
 	</div>
+{% endblock %}
 
+{% block content %}
 	<div class="section">
 		{% include 'partials/components/search.twig' %}
 	</div>

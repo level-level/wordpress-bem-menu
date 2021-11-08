@@ -1,18 +1,22 @@
-{% if title or subtitle %}
+{% if title or label %}
 	<div class="author-header">
 		<div class="group group--small">
 
-			{% if subtitle %}
+			{% if label %}
 				<div class="group__item">
-					<div class="author-header__subtitle">
-						{{ subtitle|raw }}
-					</div>
+					<ul class="list-badges">
+						<li class="list-badges__item">
+							<div class="badge badge--rich">
+								{{ label|raw }}
+							</div>
+						</li>
+					</ul>
 				</div>
 			{% endif %}
 
 			{% if title %}
 				<div class="group__item">
-					<h1>{{ title|raw }}</h1>
+					<h1 class="rich-title">{{ title|raw }}</h1>
 				</div>
 			{% endif %}
 		</div>

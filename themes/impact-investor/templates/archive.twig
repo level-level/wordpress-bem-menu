@@ -3,7 +3,9 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			<h1>{{ post_type.get_archive_title() }}</h1>
+			<div class="layout-header-wrapper">
+				<h1 class="rich-title">{{ post_type.get_archive_title() }}</h1>
+			</div>
 		</div>
 	</div>
 {% endblock %}

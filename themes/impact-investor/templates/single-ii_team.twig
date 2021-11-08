@@ -7,10 +7,12 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			{% include 'styleguide/components/author-header.twig' with {
-				subtitle: __('Author', 'impact-investor'),
-				title: title,
-			} %}
+			<div class="layout-header-wrapper">
+				{% include 'styleguide/components/author-header.twig' with {
+					label: __('Author', 'impact-investor'),
+					title: title,
+				} %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
