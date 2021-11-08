@@ -74,8 +74,8 @@
         },
         {
             "key": "field_607fed05ed912",
-            "label": "Allow this block to automatically fill with the latest articles",
-            "name": "is_fill_enabled",
+            "label": "Disallow this block to automatically fill with the latest articles",
+            "name": "is_fill_disabled",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -102,7 +102,7 @@
                 [
                     {
                         "field": "field_607fed05ed912",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -132,7 +132,7 @@
                 [
                     {
                         "field": "field_607fed05ed912",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -168,5 +168,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635847782
+    "modified": 1636387362
 }

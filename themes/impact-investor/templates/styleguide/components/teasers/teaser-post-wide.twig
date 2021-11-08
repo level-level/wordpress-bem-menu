@@ -3,7 +3,7 @@
 	{# Mobile only #}
 	<div class="hidden-sm">
 		<div class="teaser-post__inner">
-			<div class="row row--nowrap">
+			<div class="row row--nowrap row--align-center">
 				<div class="col-auto col--grow-1">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
@@ -60,6 +60,6 @@
 		{% include 'styleguide/components/teasers/post/footer.twig' with {
 			authors: authors,
 			comments: comments,
-		} %}
+		} only %}
 	</div>
 </div>

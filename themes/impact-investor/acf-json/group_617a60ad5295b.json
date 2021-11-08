@@ -35,6 +35,25 @@
             },
             "default_value": "",
             "placeholder": "https:\/\/linkedin.com\/"
+        },
+        {
+            "key": "field_618923758495d",
+            "label": "Location",
+            "name": "location",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
         }
     ],
     "location": [
@@ -54,5 +73,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635410445
+    "modified": 1636377478
 }

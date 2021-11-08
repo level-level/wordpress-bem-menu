@@ -37,6 +37,7 @@
 							}),
 							authors: authors ? authors|map(author => {
 								name: author.get_title(),
+								location: author.get_location(),
 								url: author.get_permalink(),
 							}),
 							comments: object.get_comments_count(),

@@ -46,8 +46,8 @@
         },
         {
             "key": "field_618263e092e2d",
-            "label": "Allow this block to automatically fill with the latest vacancies",
-            "name": "is_fill_enabled",
+            "label": "Disallow this block to automatically fill with the latest vacancies",
+            "name": "is_fill_disabled",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -58,7 +58,7 @@
                 "id": ""
             },
             "message": "",
-            "default_value": 0,
+            "default_value": 1,
             "ui": 1,
             "ui_on_text": "Yes",
             "ui_off_text": "No"
@@ -74,7 +74,7 @@
                 [
                     {
                         "field": "field_618263e092e2d",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -110,5 +110,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636024903
+    "modified": 1636387877
 }

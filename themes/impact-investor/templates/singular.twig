@@ -16,6 +16,7 @@
 			datetime: object.get_date_i18n('Y-m-d'),
 			authors: authors ? authors|map(author => {
 				name: author.get_title(),
+				location: author.get_location(),
 				url: author.get_permalink(),
 			}),
 		} %}

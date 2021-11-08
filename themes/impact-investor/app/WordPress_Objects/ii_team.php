@@ -29,4 +29,8 @@ class ii_team extends base_object {
 	public function get_linkedin(): string {
 		return get_field( 'linkedin', $this->get_id() ) ?: '';
 	}
+
+	public function get_location(): string {
+		return get_field( 'location', $this->get_id() ) ?: '';
+	}
 }
