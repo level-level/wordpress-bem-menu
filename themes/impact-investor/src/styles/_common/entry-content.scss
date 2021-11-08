@@ -49,11 +49,7 @@
 			hyphens: none;
 		}
 
-		&:focus {
-			text-decoration: none;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			text-decoration: none;
 		}
 	}

@@ -20,11 +20,6 @@
 		padding: 10px 17px;
 	}
 
-	&:focus,
-	&:active {}
-
-	@include hover {}
-
 	// Button disabled
 	&:disabled {
 		opacity: 0.5;
@@ -38,7 +33,7 @@
 	color: $white;
 	border-radius: 3px;
 
-	@include hover {
+	@include hover-focus-style {
 		background-color: transparent;
 		color: $black;
 	}
@@ -72,21 +67,7 @@
 		}
 	}
 
-	&:focus {
-		background-color: $primary;
-		color: $white;
-
-		.btn {
-			&__icon {
-				&--highlight {
-					background-color: transparent;
-					transform: translateX(8px);
-				}
-			}
-		}
-	}
-
-	@include hover {
+	@include hover-focus-style {
 		background-color: $primary;
 		color: $white;
 
@@ -107,15 +88,7 @@
 	padding: 0;
 	text-decoration: none;
 
-	&:focus {
-		.btn {
-			&__text {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	@include hover {
+	@include hover-focus-style {
 		.btn {
 			&__text {
 				text-decoration: underline;
@@ -211,12 +184,7 @@ input[type='button'] {
 	&--play {
 		@include btn--primary;
 
-		&:focus {
-			background-color: $quinary;
-			border-color: $quinary;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			background-color: $quinary;
 			border-color: $quinary;
 		}

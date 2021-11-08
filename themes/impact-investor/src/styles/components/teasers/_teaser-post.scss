@@ -15,7 +15,7 @@
 		}
 	}
 
-	@include hover {
+	@include hover-focus-style {
 		.teaser-post {
 			&__link {
 				color: $primary;

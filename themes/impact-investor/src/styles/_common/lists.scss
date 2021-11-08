@@ -57,11 +57,7 @@
 		color: $senary;
 		transition: color $time;
 
-		&:focus {
-			color: $primary;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			color: $primary;
 		}
 	}
@@ -89,12 +85,7 @@
 					border-radius: 0;
 					border: 0;
 
-					&:focus {
-						background-color: $quinary;
-						color: $white;
-					}
-
-					@include hover {
+					@include hover-focus-style {
 						background-color: $quinary;
 						color: $white;
 					}

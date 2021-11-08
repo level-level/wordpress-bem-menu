@@ -18,12 +18,7 @@
 		padding: 4px 10px;
 		transition: background-color $time, color $time;
 
-		&:focus {
-			background-color: transparent;
-			color: $black;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			background-color: transparent;
 			color: $black;
 		}
