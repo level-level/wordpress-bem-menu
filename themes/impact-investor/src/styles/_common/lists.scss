@@ -70,21 +70,36 @@
 .list-social-share {
 	@include list-horizontal();
 
-	&--dialog {
-		display: block;
+	&--vertical {
+		@include breakpoint-lg {
+			flex-direction: column;
+			margin-top: 0;
+		}
 
 		.list-social-share {
 			&__item {
-				margin-right: 0;
-			}
-		}
+				margin: 0;
 
-		.btn--share {
-			width: 100%;
-			justify-content: flex-start;
-			height: auto;
-			padding-left: 0;
-			padding-right: 0;
+				.btn--share {
+					background-color: $quaternary;
+					color: $primary;
+					padding: 0;
+					width: 45px;
+					height: 45px;
+					border-radius: 0;
+					border: 0;
+
+					&:focus {
+						background-color: $quinary;
+						color: $white;
+					}
+
+					@include hover {
+						background-color: $quinary;
+						color: $white;
+					}
+				}
+			}
 		}
 	}
 }

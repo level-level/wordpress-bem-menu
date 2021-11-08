@@ -40,8 +40,16 @@
 			margin-right: auto;
 		}
 
-		ol[data-type='core/list'],
+		ol[data-type='core/list'] {
+			@include ordered-list-style;
+			margin: 0 auto;
+			margin-bottom: 28px;
+		}
+
 		ul[data-type='core/list'] {
+			@include unordered-list-style;
+			margin: 0 auto;
+			margin-bottom: 28px;
 		}
 
 		p {
