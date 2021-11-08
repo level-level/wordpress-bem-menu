@@ -62,4 +62,12 @@
 	ol {
 		margin-bottom: 0;
 	}
+
+	ul:not([class]) {
+		@include unordered-list-style;
+	}
+
+	ol:not([class]) {
+		@include ordered-list-style;
+	}
 }
