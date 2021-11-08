@@ -33,7 +33,7 @@
 				img {
 					@include breakpoint-sm {
 						position: absolute;
-						width: 100%;
+						width: auto;
 						height: 100%;
 						top: auto;
 						left: 50%;

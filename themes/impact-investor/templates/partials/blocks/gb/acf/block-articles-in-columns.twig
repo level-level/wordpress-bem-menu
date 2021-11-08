@@ -6,10 +6,12 @@
 	{% set class = 'col-sm-6' %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-medium.twig' %}
 	{% set row = 'row--spacing' %}
+	{% set image_size = 'teaser_medium' %}
 {% elseif columns is same as('3') %}
 	{% set class = 'col-lg-4' %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-small.twig' %}
 	{% set row = 'row--sm-spacing' %}
+	{% set image_size = 'medium' %}
 {% endif %}
 
 {% if objects %}
@@ -28,7 +30,7 @@
 
 				<li class="col-12 {{ class }}">
 					{% include teaser with {
-						image: image_id ? wp_get_attachment_image(image_id, 'large'),
+						image: image_id ? wp_get_attachment_image(image_id, image_size),
 						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 						title: object.get_title(),
 						url: object.get_permalink(),

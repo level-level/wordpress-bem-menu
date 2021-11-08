@@ -1,7 +1,7 @@
 {% set random_id = uniqid('searchbar-') %}
 <form class="search-component" method="get" action="{{ get_home_url() }}" role="search">
 	<div class="row row--small row--spacing row--align-center row--nowrap">
-		<div class="col-auto col--grow-1 {{ in_header ? 'col--order-2' }}">
+		<div class="col-auto col--grow-1">
 			<label for="{{ random_id }}" class="screen-reader-text">{{ __('Search', 'impact-investor') }}</label>
 			<input
 				type="search"

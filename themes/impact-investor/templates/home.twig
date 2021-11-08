@@ -3,7 +3,9 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			<h1>{{ get_the_title(get_option('page_for_posts', true))|raw }}</h1>
+			<div class="layout-header-wrapper">
+				<h1 class="rich-title">{{ get_the_title(get_option('page_for_posts', true))|raw }}</h1>
+			</div>
 		</div>
 	</div>
 {% endblock %}
