@@ -7,18 +7,17 @@
 	padding: 10px 12px;
 	background-color: transparent;
 	text-decoration: none;
-	border: 1px solid transparent;
-	border: 0;
+	border: 2px solid transparent;
 	line-height: 1;
 	user-select: none;
 	color: $black;
 	cursor: pointer;
-	transition: $time;
+	transition: background-color $time, color $time, border-color $time;
 	-webkit-appearance: none;
 
 	@include breakpoint-sm {
 		@include font-size(18px, 20px);
-		padding: 12px 20px;
+		padding: 10px 17px;
 	}
 
 	&:focus,
@@ -35,9 +34,14 @@
 
 @mixin btn--primary {
 	background-color: $primary;
-	border: 1px solid $primary;
+	border-color: $primary;
 	color: $white;
 	border-radius: 3px;
+
+	@include hover {
+		background-color: transparent;
+		color: $black;
+	}
 }
 
 @mixin btn--secondary {
@@ -55,6 +59,12 @@
 	@include font-bold;
 	color: $senary;
 	padding: 0;
+	padding-right: 12px;
+	border-radius: 20px;
+
+	@include breakpoint-sm {
+		padding-right: 17px;
+	}
 
 	.btn {
 		&__text {
@@ -63,30 +73,28 @@
 	}
 
 	&:focus {
-		.btn {
-			&__text {
-				text-decoration: underline;
-			}
+		background-color: $primary;
+		color: $white;
 
+		.btn {
 			&__icon {
 				&--highlight {
-					background-color: $quinary;
-					color: $senary;
+					background-color: transparent;
+					transform: translateX(8px);
 				}
 			}
 		}
 	}
 
 	@include hover {
-		.btn {
-			&__text {
-				text-decoration: underline;
-			}
+		background-color: $primary;
+		color: $white;
 
+		.btn {
 			&__icon {
 				&--highlight {
-					background-color: $quinary;
-					color: $senary;
+					background-color: transparent;
+					transform: translateX(8px);
 				}
 			}
 		}
@@ -131,17 +139,17 @@
 }
 
 @mixin btn--share {
+	@include btn--primary;
 	@include font-size(22px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	border: 0;
 }
 
 @mixin btn--search {
 	@include font-normal;
 	border-radius: 3px;
-	border: 1px solid $black;
+	border-color: $black;
 
 	.btn {
 		&__icon {
@@ -199,6 +207,20 @@ input[type='button'] {
 	&--search {
 		@include btn--search;
 	}
+
+	&--play {
+		@include btn--primary;
+
+		&:focus {
+			background-color: $quinary;
+			border-color: $quinary;
+		}
+
+		@include hover {
+			background-color: $quinary;
+			border-color: $quinary;
+		}
+	}
 }
 
 // Button utilities
@@ -254,7 +276,7 @@ input[type='button'] {
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			transition: background-color $time, color $time;
+			transition: $time;
 		}
 	}
 }
