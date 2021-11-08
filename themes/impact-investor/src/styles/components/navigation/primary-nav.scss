@@ -20,7 +20,7 @@
 		}
 
 		&:focus-within {
-			background-color: $quinary;
+			background-color: $septenary;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -29,7 +29,7 @@
 		}
 
 		@include hover-focus-style {
-			background-color: $quinary;
+			background-color: $septenary;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -43,7 +43,7 @@
 			color: $primary;
 
 			@include breakpoint-sm {
-				background-color: $quinary;
+				background-color: $septenary;
 				color: $white;
 			}
 		}
@@ -70,7 +70,7 @@
 		transition: background-color $time, color $time;
 
 		@include hover-focus-style {
-			background-color: $quinary;
+			background-color: $septenary;
 			color: $white;
 		}
 

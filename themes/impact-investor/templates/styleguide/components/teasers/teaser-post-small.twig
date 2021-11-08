@@ -5,25 +5,12 @@
 		<div class="teaser-post__inner">
 			<div class="row row--nowrap">
 				<div class="col-auto col--grow-1">
-					<div class="group group--small">
-						<div class="group__item">
-							<div class="row row--space-between row--nowrap row--align-center">
-								<div class="col-auto">
-									{% include 'styleguide/components/post-terms.twig' with {
-										terms: terms,
-									} %}
-								</div>
-							</div>
-						</div>
-
-						<div class="group__item">
-							<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
-								<a href="{{ url }}" class="teaser-post__link">
-									{{ title|raw }}
-								</a>
-							</{{ useH3 ? 'h3' : 'h2' }}>
-						</div>
-					</div>
+					{% include 'styleguide/components/teasers/post/header.twig' with {
+						useH3: useH3,
+						url: url,
+						title: title,
+						terms: terms,
+					} only %}
 				</div>
 
 				{% if image_square %}
@@ -51,30 +38,15 @@
 
 			<div class="col-auto col--grow-1">
 				<div class="teaser-post__inner">
-					<div class="group group--small">
-						<div class="group__item">
-							<div class="row row--space-between row--nowrap row--align-center">
-								<div class="col-auto">
-									{% include 'styleguide/components/post-terms.twig' with {
-										terms: terms,
-									} %}
-								</div>
-								<div class="col-auto col--shrink-0">
-									<div class="teaser-post__date">
-										<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-										<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="group__item">
-							<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
-								<a href="{{ url }}" class="teaser-post__link">
-									{{ title|raw }}
-								</a>
-							</{{ useH3 ? 'h3' : 'h2' }}>
-						</div>
-					</div>
+					{% include 'styleguide/components/teasers/post/header.twig' with {
+						useH3: useH3,
+						url: url,
+						title: title,
+						terms: terms,
+						date: date,
+						datetime: datetime,
+						date_full: date_full,
+					} only %}
 				</div>
 			</div>
 		</div>
@@ -90,48 +62,21 @@
 			{% endif %}
 
 			<div class="teaser-post__inner">
-				<div class="group group--small">
+				{% include 'styleguide/components/teasers/post/header.twig' with {
+					useH3: useH3,
+					url: url,
+					title: title,
+					terms: terms,
+					date: date,
+					datetime: datetime,
+					date_full: date_full,
+				} only %}
 
-					<div class="group__item">
-						<div class="row row--space-between row--nowrap row--align-center">
-							<div class="col-auto">
-								{% include 'styleguide/components/post-terms.twig' with {
-									terms: terms,
-								} %}
-							</div>
-							<div class="col-auto col--shrink-0">
-								<div class="teaser-post__date">
-									<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-									<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-								</div>
-							</div>
-						</div>
+				{% if excerpt %}
+					<div class="teaser-post__excerpt">
+						{{ excerpt|raw }}
 					</div>
-
-					<div class="group__item hidden-xs visible-sm">
-						<div class="row row--space-between row--nowrap">
-							<div class="col-auto">
-								<div class="group--small">
-									<div class="group__item">
-										<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
-											<a href="{{ url }}" class="teaser-post__link">
-												{{ title|raw }}
-											</a>
-										</{{ useH3 ? 'h3' : 'h2' }}>
-									</div>
-
-									{% if excerpt %}
-										<div class="group__item">
-											<div class="teaser-post__excerpt">
-												{{ excerpt|raw }}
-											</div>
-										</div>
-									{% endif %}
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+				{% endif %}
 			</div>
 
 			{% include 'styleguide/components/teasers/post/footer.twig' with {

@@ -4,11 +4,13 @@
 	<div class="align{{ align }}">
 		{% include 'styleguide/components/list-component.twig' with {
 			heading: __('Jobs', 'impact-investor'),
-			objects: objects ? objects|map(post => {
-				title: post.get_title(),
-				url: post.get_permalink(),
-				date: post.get_date_i18n(get_option('date_format')),
-				datetime: post.get_date_i18n('Y-m-d'),
+			objects: objects ? objects|map(vacancy => {
+				title: vacancy.get_title(),
+				url: vacancy.get_permalink(),
+				date: vacancy.get_date_i18n(get_option('date_format')),
+				date_full: vacancy.get_date_i18n('F j Y'),
+				datetime: vacancy.get_date_i18n('Y-m-d'),
+				date_full: vacancy.get_date_i18n('F j Y'),
 			}),
 			style: 'light',
 		} %}
