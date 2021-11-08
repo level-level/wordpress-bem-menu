@@ -12,11 +12,7 @@
 		display: block;
 		text-decoration: none;
 
-		&:focus {
-			text-decoration: underline;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			text-decoration: underline;
 		}
 	}

@@ -16,12 +16,7 @@
 		display: block;
 		text-decoration: none;
 
-		&:focus {
-			color: $primary;
-			text-decoration: underline;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			color: $primary;
 			text-decoration: underline;
 		}

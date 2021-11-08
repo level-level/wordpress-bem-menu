@@ -25,7 +25,7 @@ $gutter: 24px;
 	@include breakpoint-lg {
 		--container: 1170px;
 		--article-width: 690px;
-		--article-offset: 100px;
+		--article-offset: 45px;
 	}
 
 	@include breakpoint-xl {

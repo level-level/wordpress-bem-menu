@@ -49,11 +49,7 @@
 			hyphens: none;
 		}
 
-		&:focus {
-			text-decoration: none;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			text-decoration: none;
 		}
 	}
@@ -61,5 +57,13 @@
 	ul,
 	ol {
 		margin-bottom: 0;
+	}
+
+	ul:not([class]) {
+		@include unordered-list-style;
+	}
+
+	ol:not([class]) {
+		@include ordered-list-style;
 	}
 }

@@ -1,4 +1,4 @@
-import Icon from '../controls/Icon';
+import IconsList from '../data/Icons';
 
 export default {
 	title: 'Components/Button',
@@ -11,12 +11,20 @@ export default {
 		text: {
 			control: 'text'
 		},
-		icon: Icon,
+		icon: {
+			options: IconsList,
+			control: {
+				type: 'select',
+			}
+		},
 		icon_left: {
 			name: 'icon left',
 			control: 'boolean'
 		},
-		highlight_icon: false,
+		highlight_icon: {
+			name: 'highlight icon',
+			control: 'boolean'
+		},
 	},
 	args: {
 		url: '#',
@@ -57,6 +65,26 @@ Secondary.argTypes = {
 			Secondary.args.class,
 			`${ Secondary.args.class } btn--full`,
 			`${ Secondary.args.class } btn--no-padding`,
+		],
+		control: {
+			type: 'select',
+		}
+	},
+};
+
+export const Tertiary = Template.bind( {} );
+Tertiary.args = {
+	class: 'btn--tertiary',
+	text: 'Tertiary button',
+	icon_left: true,
+	highlight_icon: true,
+	icon: 'icon-arrow-right',
+};
+Tertiary.argTypes = {
+	class: {
+		options: [
+			Tertiary.args.class,
+			`${ Tertiary.args.class } btn--full`,
 		],
 		control: {
 			type: 'select',

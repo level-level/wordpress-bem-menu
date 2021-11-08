@@ -11,6 +11,13 @@
 	<div class="section section--no-top">
 		<div class="container">
 			<div class="layout-row">
+
+				{% if block('offset') is defined %}
+					<div class="layout-offset hidden-xs visible-lg">
+						{% block offset %}{% endblock %}
+					</div>
+				{% endif %}
+
 				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}

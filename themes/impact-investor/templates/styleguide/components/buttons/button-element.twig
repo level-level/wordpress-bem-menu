@@ -48,7 +48,11 @@
 	{% set id = 'id="%s"'|format(id) %}
 {% endif %}
 
-<button class="btn {{ class|raw }}" {{ id|raw }} {{ data_module|raw }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }}>
+{% if focusable is same as(false) %}
+	{% set tabindex = 'tabindex="-1"' %}
+{% endif %}
+
+<button class="btn {{ class|raw }}" {{ id|raw }} {{ data_module|raw }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }} {{ tabindex|raw }}>
 	{% if icon and icon_left %}
 		<span class="btn__icon {{ highlight_icon ? 'btn__icon--highlight' }}">
 			<span class="icon {{ icon|raw }}" aria-hidden="true"></span>

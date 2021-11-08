@@ -68,13 +68,7 @@
 			border: 0;
 			transition: color $time, background-color $time;
 
-			&:focus {
-				color: $senary;
-				text-decoration: none;
-				background-color: $quinary;
-			}
-
-			@include hover {
+			@include hover-focus-style {
 				color: $senary;
 				text-decoration: none;
 				background-color: $quinary;

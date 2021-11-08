@@ -39,7 +39,7 @@
 .oembed-audio {
 	&__content {
 		line-height: 0;
-		background-color: $grey;
+		background-color: $tertiary;
 	}
 
 	&__placeholder {
@@ -57,7 +57,7 @@
 }
 
 .oembed-placeholder {
-	background-color: $grey;
+	background-color: $tertiary;
 	text-align: center;
 	height: 100%;
 	display: flex;

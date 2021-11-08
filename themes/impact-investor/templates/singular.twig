@@ -24,6 +24,31 @@
 		</div>
 	</article>
 
+	<div class="section">
+		{% include 'styleguide/components/social-share.twig' with {
+			heading: __('Share on social media', 'impact-investor'),
+			sticky: false,
+			socials: [
+				{
+					title: 'Twitter',
+					type: 'twitter',
+				},
+				{
+					title: 'Facebook',
+					type: 'facebook',
+				},
+				{
+					title: 'LinkedIn',
+					type: 'linkedin',
+				},
+				{
+					title: 'E-mail',
+					type: 'email',
+				},
+			]
+		} %}
+	</div>
+
 	{% include 'styleguide/components/comments/comment-section.twig' %}
 {% endblock %}
 
@@ -31,4 +56,28 @@
 	{% if is_active_sidebar('widget-area-article') %}
 		{{ sidebar.get_widgetarea('widget-area-article')|raw }}
 	{% endif %}
+{% endblock %}
+
+{% block offset %}
+	{% include 'styleguide/components/social-share.twig' with {
+		sticky: true,
+		socials: [
+			{
+				title: 'Twitter',
+				type: 'twitter',
+			},
+			{
+				title: 'Facebook',
+				type: 'facebook',
+			},
+			{
+				title: 'LinkedIn',
+				type: 'linkedin',
+			},
+			{
+				title: 'E-mail',
+				type: 'email',
+			},
+		]
+	} %}
 {% endblock %}

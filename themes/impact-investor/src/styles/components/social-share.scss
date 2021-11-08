@@ -1,0 +1,17 @@
+.social-share {
+	&__heading {
+		color: $primary;
+	}
+
+	&--sticky {
+		display: none;
+
+		@include breakpoint-lg {
+			display: block;
+			z-index: 2;
+			margin-top: $default-padding;
+			position: sticky;
+			top: calc(#{$header-height} + #{$default-padding} + #{$admin-bar});
+		}
+	}
+}
