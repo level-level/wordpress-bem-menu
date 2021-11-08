@@ -29,12 +29,7 @@
 			cursor: pointer;
 			text-decoration: none;
 
-			&:focus {
-				text-decoration: underline;
-				color: $primary;
-			}
-
-			@include hover {
+			@include hover-focus-style {
 				text-decoration: underline;
 				color: $primary;
 			}

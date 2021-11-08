@@ -28,7 +28,7 @@
 			}
 		}
 
-		@include hover {
+		@include hover-focus-style {
 			background-color: $quinary;
 
 			.primary-nav__link,
@@ -125,13 +125,7 @@
 		@include font-normal;
 		text-decoration: none;
 
-		&:focus {
-			color: $senary;
-			text-decoration: underline;
-			background-color: transparent;
-		}
-
-		@include hover {
+		@include hover-focus-style {
 			color: $senary;
 			text-decoration: underline;
 			background-color: transparent;
