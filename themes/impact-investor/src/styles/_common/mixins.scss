@@ -141,6 +141,27 @@
 	transform: translateY(-50%) translateX(-50%);
 }
 
+// Hover-focus-style
+//
+// @include hover-focus-style { ..code }
+//
+// When focus styles should not be applied use
+// @include hover-focus-style(false) { .. code }
+//
+// Hover and focus styling. Hover styles that will not apply on real devices (phones, tablet etc)
+@mixin hover-focus-style($includeFocus: true) {
+	@if $includeFocus {
+		&:focus,
+		&:active {
+			@content;
+		}
+	}
+
+	@include hover {
+		@content;
+	}
+}
+
 // Hover
 //
 // @include hover { ..code }
