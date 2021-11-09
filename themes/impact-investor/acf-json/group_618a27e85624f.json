@@ -136,7 +136,7 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": 2,
+            "default_value": 3,
             "placeholder": "",
             "prepend": "",
             "append": "articles",
@@ -162,5 +162,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1636445183
+    "modified": 1636451115
 }

@@ -158,6 +158,30 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'block-social-share',
+				'title'           => _x( 'Social share', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of social share buttons.', 'Block', 'impact-investor' ),
+				'icon'            => 'share',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail' ),
+				'post_types'      => array( 'post' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => false,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'widget-vacancies',
 				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
