@@ -179,3 +179,20 @@
 		}
 	}
 }
+
+.list-related-news {
+	@include list-unstyled;
+	padding: $default-padding*0.5 0;
+
+	&__item {
+		@include breakpoint-sm {
+			margin: 0 $default-padding;
+		}
+
+		&:last-child {
+			& > * {
+				border: 0;
+			}
+		}
+	}
+}

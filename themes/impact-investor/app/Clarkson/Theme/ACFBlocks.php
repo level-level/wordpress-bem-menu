@@ -50,9 +50,9 @@ class ACFBlocks {
 				'example'         => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 1,
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 1,
 						),
 					),
 				),
@@ -75,9 +75,34 @@ class ACFBlocks {
 				'example'         => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 2,
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-related-articles',
+				'title'           => _x( 'Related articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of related articles based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'format-aside',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'related', 'articles', 'news', 'posts' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => false,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
 						),
 					),
 				),
@@ -147,9 +172,9 @@ class ACFBlocks {
 				'example'         => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 2,
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
 						),
 					),
 				),
