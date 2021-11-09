@@ -1,0 +1,16 @@
+.related-news {
+	position: relative;
+	background-color: $quaternary;
+	border-bottom: 2px solid $quinary;
+
+	&__title {
+		@include font-bold;
+		border-bottom: 1px solid $quinary;
+		color: $primary;
+		padding: $default-padding*0.5;
+
+		@include breakpoint-sm {
+			padding: $default-padding*0.5 $default-padding;
+		}
+	}
+}

@@ -26,31 +26,6 @@
 		</div>
 	</article>
 
-	<div class="section">
-		{% include 'styleguide/components/social-share.twig' with {
-			heading: __('Share on social media', 'impact-investor'),
-			sticky: false,
-			socials: [
-				{
-					title: 'Twitter',
-					type: 'twitter',
-				},
-				{
-					title: 'Facebook',
-					type: 'facebook',
-				},
-				{
-					title: 'LinkedIn',
-					type: 'linkedin',
-				},
-				{
-					title: 'E-mail',
-					type: 'email',
-				},
-			]
-		} %}
-	</div>
-
 	{% include 'styleguide/components/comments/comment-section.twig' %}
 {% endblock %}
 

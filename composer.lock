@@ -1341,20 +1341,20 @@
         },
         {
             "name": "psr/container",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/container.git",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf"
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/container/zipball/8622567409010282b7aeebe4bb841fe98b58dcaf",
-                "reference": "8622567409010282b7aeebe4bb841fe98b58dcaf",
+                "url": "https://api.github.com/repos/php-fig/container/zipball/513e0666f7216c7459170d56df27dfcefe1689ea",
+                "reference": "513e0666f7216c7459170d56df27dfcefe1689ea",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.0"
+                "php": ">=7.4.0"
             },
             "type": "library",
             "autoload": {
@@ -1383,9 +1383,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-fig/container/issues",
-                "source": "https://github.com/php-fig/container/tree/1.1.1"
+                "source": "https://github.com/php-fig/container/tree/1.1.2"
             },
-            "time": "2021-03-05T17:36:06+00:00"
+            "time": "2021-11-05T16:50:12+00:00"
         },
         {
             "name": "psr/http-client",
@@ -1699,16 +1699,16 @@
         },
         {
             "name": "sentry/sentry",
-            "version": "3.3.3",
+            "version": "3.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getsentry/sentry-php.git",
-                "reference": "9a7b6d84ac8fa370397336028e760c71accac1dc"
+                "reference": "ecbd09ea5d053a202cf773cb24ab28af820831bd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/9a7b6d84ac8fa370397336028e760c71accac1dc",
-                "reference": "9a7b6d84ac8fa370397336028e760c71accac1dc",
+                "url": "https://api.github.com/repos/getsentry/sentry-php/zipball/ecbd09ea5d053a202cf773cb24ab28af820831bd",
+                "reference": "ecbd09ea5d053a202cf773cb24ab28af820831bd",
                 "shasum": ""
             },
             "require": {
@@ -1726,7 +1726,7 @@
                 "psr/http-factory": "^1.0",
                 "psr/http-message-implementation": "^1.0",
                 "psr/log": "^1.0|^2.0|^3.0",
-                "symfony/options-resolver": "^3.4.43|^4.4.11|^5.0.11",
+                "symfony/options-resolver": "^3.4.43|^4.4.30|^5.0.11|^6.0",
                 "symfony/polyfill-php80": "^1.17",
                 "symfony/polyfill-uuid": "^1.13.1"
             },
@@ -1743,8 +1743,8 @@
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12",
                 "phpstan/phpstan-phpunit": "^0.12",
-                "phpunit/phpunit": "^8.5.13|^9.4",
-                "symfony/phpunit-bridge": "^5.2",
+                "phpunit/phpunit": "^8.5.14|^9.4",
+                "symfony/phpunit-bridge": "^5.2|^6.0",
                 "vimeo/psalm": "^4.2"
             },
             "suggest": {
@@ -1787,7 +1787,7 @@
             ],
             "support": {
                 "issues": "https://github.com/getsentry/sentry-php/issues",
-                "source": "https://github.com/getsentry/sentry-php/tree/3.3.3"
+                "source": "https://github.com/getsentry/sentry-php/tree/3.3.4"
             },
             "funding": [
                 {
@@ -1799,7 +1799,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-10-04T11:20:34+00:00"
+            "time": "2021-11-08T08:44:00+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -5303,16 +5303,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.0.12",
+            "version": "3.0.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "f6e8d3b38e2b457057262d414a1a69270521dcbd"
+                "reference": "098ba7b6efc880624a504423ad9ce4fdec69f923"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/f6e8d3b38e2b457057262d414a1a69270521dcbd",
-                "reference": "f6e8d3b38e2b457057262d414a1a69270521dcbd",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/098ba7b6efc880624a504423ad9ce4fdec69f923",
+                "reference": "098ba7b6efc880624a504423ad9ce4fdec69f923",
                 "shasum": ""
             },
             "require": {
@@ -5321,7 +5321,6 @@
                 "codeception/codeception": "^2.5 || ^3.0 || ^4.0",
                 "dg/mysql-dump": "^1.3",
                 "ext-fileinfo": "*",
-                "ext-iconv": "*",
                 "ext-json": "*",
                 "ext-pdo": "*",
                 "mikehaertl/php-shellcommand": "^1.6",
@@ -5385,7 +5384,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.0.12"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.0.13"
             },
             "funding": [
                 {
@@ -5393,7 +5392,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-30T16:28:12+00:00"
+            "time": "2021-11-08T09:01:44+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -9518,5 +9517,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
