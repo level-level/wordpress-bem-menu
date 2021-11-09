@@ -1,0 +1,35 @@
+.menu-dropdown {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: $septenary;
+	color: $white;
+	height: 100%;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		height: $header-height;
+	}
+
+	&__inner {
+		max-height: calc(100vh - ((#{$header-height} * 2) + 10px));
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	&__search {
+		margin: $default-padding*0.5 0;
+	}
+
+	&__body {
+		padding-bottom: 2px;
+	}
+
+	&__footer {
+		margin-top: auto;
+		border-top: 1px solid $tertiary;
+		height: calc(#{$header-height} + 10px);
+	}
+}

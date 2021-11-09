@@ -128,14 +128,42 @@
 	align-items: center;
 }
 
+@mixin btn--menu {
+	@include font-size(22px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	border: 0;
+	color: $senary;
+	min-width: $btn-menu-width;
+
+	.btn {
+		&__text {
+			@include font-size(12px);
+			text-transform: lowercase;
+			padding-left: 0;
+		}
+	}
+
+	&[aria-expanded='true'] {
+		color: $white;
+	}
+}
+
 @mixin btn--search {
 	@include font-normal;
 	border-radius: 3px;
 	border-color: $black;
+	min-height: $input-height;
+	min-width: $input-height;
+	border: 0;
 
 	.btn {
 		&__icon {
-			color: $primary;
+			@include font-size(20px);
+			color: $white;
 		}
 	}
 
@@ -184,6 +212,10 @@ input[type='button'] {
 
 	&--share {
 		@include btn--share;
+	}
+
+	&--menu {
+		@include btn--menu;
 	}
 
 	&--search {

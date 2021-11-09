@@ -5,41 +5,44 @@
 
 	<div class="header__top">
 		<div class="container">
-			<div class="row row--space-between row--align-center row--nowrap">
-				<div class="col-auto">
-					<div class="row row--align-center row--nowrap row--small">
-						<div class="col-auto">
-							<div class="header__brand">
-								<a
-									class="brand"
-									href="{{ esc_url(home_url('/')) }}"
-									aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
-									>
-									<img
-										src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
-										width="170"
-										height="30"
-										alt=""
-										class="brand__logo"
-									/>
-								</a>
-							</div>
-						</div>
+			<div class="row row--no-padding row--space-between row--align-center row--nowrap">
+				<div class="col-auto hidden-sm">
+					{% if has_nav_menu('primary_navigation') %}
+						{% include 'partials/components/header/header-menu.twig' %}
+					{% endif %}
+				</div>
+				<div class="col-auto col--grow-1 col--sm-grow-0">
+					<div class="header__brand">
+						<a
+							class="brand"
+							href="{{ esc_url(home_url('/')) }}"
+							aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
+							>
+							<img
+								src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
+								width="170"
+								height="30"
+								alt=""
+								class="brand__logo"
+							/>
+						</a>
 					</div>
 				</div>
 
-				<div class="col-auto col--shrink-0">
+				<div class="col-auto col--sm-shrink-0 hidden-xs visible-sm">
 					<div class="row row--small row--align-center row--nowrap">
 						{% set newsletter = options.newsletter %}
-						<div class="col-auto">
-							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: newsletter.button.title,
-								url: newsletter.button.url,
-								class: 'btn--primary',
-								is_external: newsletter.button.target ? true,
-								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
-							} %}
-						</div>
+						{% if newsletter.button.title and newsletter.button.url %}
+							<div class="col-auto">
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: newsletter.button.title,
+									url: newsletter.button.url,
+									class: 'btn--primary',
+									is_external: newsletter.button.target ? true,
+									aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+								} %}
+							</div>
+						{% endif %}
 						<div class="col-auto">
 							{% include 'partials/components/header/header-search.twig' %}
 						</div>
@@ -50,7 +53,7 @@
 	</div>
 
 	{% if has_nav_menu('primary_navigation') %}
-		<div class="header__bottom">
+		<div class="header__bottom hidden-xs visible-sm">
 			<div class="container">
 				{% include 'partials/components/header/header-menu.twig' %}
 			</div>

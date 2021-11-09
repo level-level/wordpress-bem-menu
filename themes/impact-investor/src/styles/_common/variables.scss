@@ -5,7 +5,7 @@ $gutter: 24px;
 	--admin-bar: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--container: calc(100vw - #{$gutter});
-	--header-height: 100px;
+	--header-height: 50px;
 	--menu-height: 50px;
 	--sidebar-width: 100%;
 
@@ -42,6 +42,7 @@ $sidebar-width: var(--sidebar-width);
 $menu-height: var(--menu-height);
 $article-width: var(--article-width);
 $article-offset: var(--article-offset);
+$btn-menu-width: 31px;
 
 $states: 'sm', 'md', 'lg', 'xl';
 $columns: 12;
