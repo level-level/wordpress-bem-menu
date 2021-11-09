@@ -17,12 +17,9 @@ class acf_block_articles_in_columns extends base_block {
 	* Get latest posts based on user defined options
 	*/
 	public function get_posts(): array {
-		$register        = ArticleBlockRegister::get_instance();
-		$selected_posts  = $this->content_attributes['selected_posts'] ?? null;
-		$is_fill_enabled = $this->content_attributes['is_fill_enabled'] ?? null;
-
-		$selected_posts  = $selected_posts ?: array();
-		$is_fill_enabled = $is_fill_enabled ?: false;
+		$register         = ArticleBlockRegister::get_instance();
+		$selected_posts   = ( $this->content_attributes['selected_posts'] ?? null ) ?: array();
+		$is_fill_disabled = ( $this->content_attributes['is_fill_disabled'] ?? null ) ?: false;
 
 		// Only show published posts even when future/drafts posts are selected
 		$selected_posts = array_filter(
@@ -41,14 +38,13 @@ class acf_block_articles_in_columns extends base_block {
 
 		$register->add_ids( $ids );
 
-		if ( ! $is_fill_enabled ) {
+		if ( $is_fill_disabled ) {
 			return $selected_posts;
 		}
 
 		$objects = array();
-		$terms   = $this->content_attributes['terms'] ?? null;
-		$terms   = $terms ?: array();
-		$amount  = $this->content_attributes['amount'] ?? null;
+		$terms   = ( $this->content_attributes['terms'] ?? null ) ?: array();
+		$amount  = ( $this->content_attributes['amount'] ?? null ) ?: 2;
 
 		$query_args = $this->get_query_args( $terms, self::POST_TYPES, $selected_posts, (int) $amount, self::TAX_RELATION );
 

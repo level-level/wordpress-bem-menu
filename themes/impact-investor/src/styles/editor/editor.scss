@@ -34,6 +34,31 @@
 			@include font-heading;
 		}
 
+		h2[data-type='core/heading'] {
+			@include font-size(24px, 32px);
+
+			@include breakpoint-sm {
+				@include font-size(28px, 40px);
+			}
+		}
+
+		h3[data-type='core/heading'] {
+			@include font-size(22px, 32px);
+
+			@include breakpoint-sm {
+				@include font-size(24px, 32px);
+			}
+		}
+
+		h4[data-type='core/heading'] {
+			@include font-bold;
+			@include font-size(16px, 22px);
+
+			@include breakpoint-sm {
+				@include font-size(18px, 26px);
+			}
+		}
+
 		*[data-type='core/quote'] {
 			@include blockquote;
 			margin-left: auto;

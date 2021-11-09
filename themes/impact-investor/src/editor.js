@@ -27,3 +27,26 @@ wp.domReady( () => {
 		} );
 	}
 } );
+
+// Disable default options for following core blocks
+const coreBlocks = [
+	'core/heading',
+];
+
+wp.hooks.addFilter(
+	'blocks.registerBlockType',
+	'impact-investor/blocks',
+	function( settings, name ) {
+		if ( coreBlocks.includes( name ) ) {
+			return lodash.assign( {}, settings, {
+				supports: lodash.assign( {}, settings.supports, {
+					align: false,
+					anchor: false,
+					className: false,
+					customClassName: false,
+				} ),
+			} );
+		}
+		return settings;
+	}
+);

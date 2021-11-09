@@ -48,6 +48,14 @@
 			text-decoration: none;
 		}
 	}
+
+	@include hover-focus-style {
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 @mixin btn--tertiary {
@@ -87,6 +95,7 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
+	color: $septenary;
 
 	@include hover-focus-style {
 		.btn {

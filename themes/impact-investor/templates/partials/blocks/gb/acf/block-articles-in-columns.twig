@@ -1,5 +1,5 @@
 {% set objects = block.get_posts() %}
-{% set columns = data.columns %}
+{% set columns = data.columns|default('2') %}
 
 {# Based on column amount (2 or 3) use a different teaser and column width #}
 {% if columns is same as('2') %}
@@ -43,6 +43,7 @@
 						}),
 						authors: authors ? authors|map(author => {
 							name: author.get_title(),
+							location: author.get_location(),
 							url: author.get_permalink(),
 						}),
 						comments: object.get_comments_count(),

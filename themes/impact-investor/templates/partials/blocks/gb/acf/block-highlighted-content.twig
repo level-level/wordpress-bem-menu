@@ -1,4 +1,4 @@
-{% set title = data.title ? data.title : __('In short', 'impact-investor') %}
+{% set title = data.title|default(__('In short', 'impact-investor')) %}
 {% set content = data.content %}
 
 {% if content %}

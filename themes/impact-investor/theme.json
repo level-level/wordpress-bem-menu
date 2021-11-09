@@ -11,8 +11,8 @@
         "palette": []
     },
     "layout": {
-        "contentSize": "var(--content-width)",
-        "wideSize": "var(--container)"
+        "contentSize": "var(--article-width)",
+        "wideSize": "var(--content-width)"
     },
     "typography": {
       "customFontSize": false,

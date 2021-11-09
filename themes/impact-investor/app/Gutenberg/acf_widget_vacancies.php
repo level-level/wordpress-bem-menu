@@ -16,11 +16,8 @@ class acf_widget_vacancies extends base_block {
 	* Get latest posts based on user defined options
 	*/
 	public function get_posts(): array {
-		$selected_posts  = $this->content_attributes['selected_posts'] ?? null;
-		$is_fill_enabled = $this->content_attributes['is_fill_enabled'] ?? null;
-
-		$selected_posts  = $selected_posts ?: array();
-		$is_fill_enabled = $is_fill_enabled ?: false;
+		$selected_posts   = ( $this->content_attributes['selected_posts'] ?? null ) ?: array();
+		$is_fill_disabled = ( $this->content_attributes['is_fill_disabled'] ?? null ) ?: false;
 
 		// Only show published posts even when future/drafts posts are selected
 		$selected_posts = array_filter(
@@ -30,12 +27,12 @@ class acf_widget_vacancies extends base_block {
 			}
 		);
 
-		if ( ! $is_fill_enabled ) {
+		if ( $is_fill_disabled ) {
 			return $selected_posts;
 		}
 
 		$objects = array();
-		$amount  = $this->content_attributes['amount'] ?? null;
+		$amount  = ( $this->content_attributes['amount'] ?? null ) ?: 3;
 
 		$query_args = $this->get_query_args( array(), self::POST_TYPES, $selected_posts, (int) $amount, self::TAX_RELATION );
 		$wp_query   = new WP_Query( $query_args );

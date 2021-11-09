@@ -61,6 +61,7 @@
 	&__link {
 		@include absolute-link;
 		text-decoration: none;
+		transition: color $time;
 	}
 
 	&__excerpt {

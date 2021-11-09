@@ -11,10 +11,14 @@
 						{% for object in authors %}
 							<li class="list-authors__item">
 								{% include 'styleguide/components/buttons/button-link.twig' with {
-									text: not loop.last ? object.name ~ ',' : object.name,
+									text: object.name,
 									url: object.url,
 									class: 'btn--link',
 								} %}
+
+								<div class="author-location" aria-hidden="true">
+									{{ object.location }}{% if not loop.last %},{% endif %}
+								</div>
 							</li>
 						{% endfor %}
 					</ul>
