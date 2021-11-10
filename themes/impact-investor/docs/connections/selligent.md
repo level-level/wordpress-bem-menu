@@ -20,7 +20,7 @@ Authentication is done via an authorization header that is send with the request
 (See `ImpactInvestor\Connectors\Selligent\Client::get_auth_headers`)
 
 ```
-## HMAC beveiliging
+## HMAC authentication
 $timestamp = time();
 $hash = hash_hmac('sha256', $timestamp . '-POST-' . '[[ENDPOINT]]', '[[APIKEY]]');
 
