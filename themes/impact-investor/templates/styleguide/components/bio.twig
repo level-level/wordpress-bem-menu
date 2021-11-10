@@ -1,19 +1,35 @@
-<div class="author-bio">
-	<div class="author-bio__inner">
+<div class="bio">
+	<div class="bio__inner">
 		<div class="group group--small">
 
 			{% if image %}
 				<div class="group__item">
-					<div class="author-bio__thumbnail">
+					<div class="bio__thumbnail">
 						{{ image|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if logo %}
+				<div class="group__item">
+					<div class="bio__logo">
+						{{ logo|raw }}
 					</div>
 				</div>
 			{% endif %}
 
 			{% if title %}
 				<div class="group__item">
-					<div class="author-bio__title">
+					<div class="bio__title">
 						{{ title|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if subtitle %}
+				<div class="group__item">
+					<div class="bio__subtitle">
+						{{ subtitle|raw }}
 					</div>
 				</div>
 			{% endif %}
@@ -27,8 +43,8 @@
 	</div>
 
 	{% if email or linkedin %}
-		<div class="author-bio__footer">
-			<div class="author-bio__inner">
+		<div class="bio__footer">
+			<div class="bio__inner">
 				<ul class="list-vertical-buttons">
 
 					{% if email %}

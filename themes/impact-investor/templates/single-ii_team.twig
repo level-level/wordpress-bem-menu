@@ -72,13 +72,13 @@
 {% block sidebar %}
 	<div class="section">
 		{% set image_id = object.get_thumbnail_id() %}
-		{% include 'styleguide/components/author-bio.twig' with {
+		{% include 'styleguide/components/bio.twig' with {
 			title: title,
 			excerpt: object.get_excerpt(),
 			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 			email: object.get_email_address(),
 			linkedin: object.get_linkedin(),
-		} %}
+		} only %}
 	</div>
 
 	{% if is_active_sidebar('widget-area-author') %}
