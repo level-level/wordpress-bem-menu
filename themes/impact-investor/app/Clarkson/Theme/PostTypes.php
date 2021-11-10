@@ -1,12 +1,14 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\PostTypes\Partner;
 use Clarkson\Theme\PostTypes\Team;
 use Clarkson\Theme\PostTypes\Vacancy;
 
 class PostTypes {
 
 	protected const POST_TYPES = array(
+		Partner::class,
 		Team::class,
 		Vacancy::class,
 	);

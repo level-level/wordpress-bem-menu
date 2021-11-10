@@ -10,7 +10,7 @@
 	&__top {
 		display: flex;
 		align-items: center;
-		background-color: $tertiary;
+		background-color: $quaternary;
 		height: $header-height;
 
 		@include breakpoint(sm) {

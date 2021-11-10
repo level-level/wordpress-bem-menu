@@ -1,0 +1,33 @@
+{% extends 'layouts/sidebar-layout.twig' %}
+{% set object = objects|first %}
+{% set content = object.get_content() %}
+
+{% block content %}
+	<div class="section">
+		{% include 'styleguide/components/article-header.twig' with {
+			title: object.get_title(),
+			label: __('Partner', 'impact-investor'),
+		} %}
+
+		{% if content %}
+			<div class="entry-content">
+				{{ content|raw }}
+			</div>
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+	<div class="section">
+		{% set image_id = object.get_thumbnail_id() %}
+		{% include 'styleguide/components/bio.twig' with {
+			subtitle: object.get_subtitle(),
+			excerpt: object.get_excerpt(),
+			logo: image_id ? wp_get_attachment_image(image_id, 'medium'),
+		} only %}
+	</div>
+
+	{% if is_active_sidebar('widget-area-partner') %}
+		{{ sidebar.get_widgetarea('widget-area-partner')|raw }}
+	{% endif %}
+{% endblock %}
