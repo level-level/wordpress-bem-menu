@@ -15,7 +15,7 @@
 
 		@include breakpoint-sm {
 			background-color: $white;
-			height: 68px;
+			height: $header-top-height;
 		}
 	}
 
@@ -29,11 +29,13 @@
 	&__brand {
 		position: relative;
 		max-width: 124px;
-		margin: 0 auto;
+		left: 50%;
+		transform: translateX(calc(-50% - #{$btn-menu-width*0.5}));
 
 		@include breakpoint-sm {
 			max-width: none;
-			margin: 0;
+			left: auto;
+			transform: none;
 		}
 	}
 }

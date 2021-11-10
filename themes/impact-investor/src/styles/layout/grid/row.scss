@@ -85,6 +85,21 @@
 		}
 	}
 
+	&--sm-padding {
+		@include breakpoint-sm {
+			margin-left: (-$gutter*0.5);
+			margin-right: (-$gutter*0.5);
+		}
+
+		> .col,
+		> [class*='col-'] {
+			@include breakpoint-sm {
+				padding-left: $gutter*0.5;
+				padding-right: $gutter*0.5;
+			}
+		}
+	}
+
 	// Align columns vertically centered
 	&--align-center {
 		> .col,

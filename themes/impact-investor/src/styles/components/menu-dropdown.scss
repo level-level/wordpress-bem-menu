@@ -21,6 +21,16 @@
 
 	&__search {
 		margin: $default-padding*0.5 0;
+
+		.search-component {
+			.btn--search {
+				.btn {
+					&__icon {
+						color: $white;
+					}
+				}
+			}
+		}
 	}
 
 	&__body {

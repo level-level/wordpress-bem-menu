@@ -15,6 +15,10 @@
 	&__item--open {
 		.primary-nav__link {
 			background-color: $senary;
+
+			@include breakpoint-sm {
+				background-color: transparent;
+			}
 		}
 	}
 

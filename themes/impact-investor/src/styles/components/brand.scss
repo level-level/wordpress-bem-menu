@@ -1,11 +1,5 @@
 .brand {
 	display: block;
 
-	&__logo {
-		margin-left: #{-$btn-menu-width*0.5};
-
-		@include breakpoint-sm {
-			margin-left: 0;
-		}
-	}
+	&__logo {}
 }

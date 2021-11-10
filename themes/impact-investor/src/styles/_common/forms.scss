@@ -144,6 +144,12 @@ input[type='search'] {
 	@include form-control;
 }
 
+input[type='search'] {
+	&::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+	}
+}
+
 select {
 	@include select;
 }

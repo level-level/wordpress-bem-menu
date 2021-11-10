@@ -6,13 +6,6 @@
 		top: 0;
 		right: 0;
 		height: 100%;
-
-		@include breakpoint-sm {
-			position: relative;
-			top: auto;
-			right: auto;
-			height: auto;
-		}
 	}
 
 	&--inline {
@@ -20,6 +13,7 @@
 			background-color: $senary;
 			color: $white;
 			border: 0;
+			padding-right: $input-height;
 
 			&:focus {
 				@include focus-style($white);
@@ -27,6 +21,15 @@
 
 			@include placeholder {
 				color: $quaternary;
+
+				@include breakpoint-sm {
+					color: $black;
+				}
+			}
+
+			@include breakpoint-sm {
+				background-color: $white;
+				color: $black;
 			}
 		}
 	}
