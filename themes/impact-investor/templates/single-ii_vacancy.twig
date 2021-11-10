@@ -15,5 +15,7 @@
 {% endblock %}
 
 {% block sidebar %}
-
+	{% if is_active_sidebar('widget-area-vacancy') %}
+		{{ sidebar.get_widgetarea('widget-area-vacancy')|raw }}
+	{% endif %}
 {% endblock %}
