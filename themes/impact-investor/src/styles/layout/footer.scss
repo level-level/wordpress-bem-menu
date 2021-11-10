@@ -4,7 +4,7 @@
 	padding: $default-padding*1.5 0;
 	background-color: $tertiary;
 
-	@include breakpoint-lg {
+	@include breakpoint(lg) {
 		padding: $default-padding*2 0;
 	}
 
@@ -12,11 +12,11 @@
 		margin-bottom: $default-padding;
 		max-width: 224px;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-bottom: $default-padding*2;
 		}
 
-		@include breakpoint-lg {
+		@include breakpoint(lg) {
 			max-width: none;
 		}
 	}
@@ -28,7 +28,7 @@
 	&__group {
 		margin-bottom: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-bottom: 0;
 		}
 	}
@@ -45,7 +45,7 @@
 	background-color: $tertiary;
 	border-top: 1px solid $quinary;
 
-	@include breakpoint-lg {
+	@include breakpoint(lg) {
 		padding: $default-padding*1.5 0;
 	}
 
@@ -55,7 +55,7 @@
 		color: $senary;
 		margin-bottom: $default-padding*0.5;
 
-		@include breakpoint-lg {
+		@include breakpoint(lg) {
 			@include font-size(22px, 26px);
 		}
 	}

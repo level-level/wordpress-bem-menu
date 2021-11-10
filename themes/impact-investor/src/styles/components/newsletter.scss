@@ -5,7 +5,7 @@
 	&__inner {
 		padding: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: calc(#{$default-padding*0.5} + 3px);
 		}
 	}
@@ -14,7 +14,7 @@
 		@include font-bold;
 		@include font-size(16px, 24px);
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
 		}
 	}
@@ -24,7 +24,7 @@
 		margin-left: #{-$default-padding*0.5};
 		margin-right: #{-$default-padding*0.5};
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-left: calc((#{$default-padding*0.5} + 3px) * -1);
 			margin-right: calc((#{$default-padding*0.5} + 3px) * -1);
 		}
@@ -39,7 +39,7 @@
 		@include font-normal;
 		@include font-size(16px, 21px);
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(17px, 22px);
 		}
 	}

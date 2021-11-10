@@ -17,7 +17,7 @@
 				margin-right: 0;
 			}
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(18px, 18px);
 			}
 		}
@@ -69,7 +69,7 @@
 				background-color: $quinary;
 			}
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(18px, 18px);
 			}
 		}

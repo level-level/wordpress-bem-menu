@@ -15,7 +15,7 @@
 	transition: background-color $time, color $time, border-color $time;
 	-webkit-appearance: none;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(18px, 20px);
 		padding: 10px 17px;
 	}
@@ -65,7 +65,7 @@
 	padding-right: 12px;
 	border-radius: 20px;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		padding-right: 17px;
 	}
 
@@ -196,7 +196,7 @@
 		&__text {
 			display: none;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				display: block;
 			}
 		}
@@ -293,7 +293,7 @@ input[type='button'] {
 		width: 100%;
 		justify-content: center;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			width: auto;
 		}
 	}

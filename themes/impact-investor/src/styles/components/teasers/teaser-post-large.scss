@@ -4,7 +4,7 @@
 			&__title {
 				@include font-size(24px, 32px);
 
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include font-size(28px, 40px);
 				}
 			}

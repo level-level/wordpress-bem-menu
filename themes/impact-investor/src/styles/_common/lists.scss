@@ -67,7 +67,7 @@
 	@include list-horizontal();
 
 	&--vertical {
-		@include breakpoint-lg {
+		@include breakpoint(lg) {
 			flex-direction: column;
 			margin-top: 0;
 		}
@@ -100,7 +100,7 @@
 	@include font-size(16px, 24px);
 	counter-reset: counter;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(18px, 24px);
 	}
 
@@ -131,7 +131,7 @@
 	@include list-unstyled;
 	@include font-size(16px, 24px);
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(18px, 24px);
 	}
 
@@ -142,7 +142,7 @@
 	&__item {
 		padding: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: calc(#{$default-padding*0.5} + 3px);
 		}
 	}
@@ -191,7 +191,7 @@
 	padding: $default-padding*0.5 0;
 
 	&__item {
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin: 0 $default-padding;
 		}
 

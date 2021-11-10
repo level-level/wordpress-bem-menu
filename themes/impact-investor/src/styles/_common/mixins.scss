@@ -1,48 +1,4 @@
-// Breakpoint Small
-//
-// @include breakpoint-sm { code.. }
-//
-// Breakpoint for small devices (breakpoint-sm) (min-width: 768px)
 @use 'sass:math';
-
-@mixin breakpoint-sm {
-	@media (min-width: 768px) {
-		@content;
-	}
-}
-
-// Breakpoint Medium
-//
-// @include breakpoint-md { code.. }
-//
-// Breakpoint for medium devices (md) (min-width: 992px)
-@mixin breakpoint-md {
-	@media (min-width: 992px) {
-		@content;
-	}
-}
-
-// Breakpoint Large
-//
-// @include breakpoint-lg { code.. }
-//
-// Breakpoint for large devices (lg) (min-width: 1200px)
-@mixin breakpoint-lg {
-	@media (min-width: 1200px) {
-		@content;
-	}
-}
-
-// Breakpoint Extra Large
-//
-// @include breakpoint-xl { code.. }
-//
-// Breakpoint for large devices (xl) (min-width: 1400px)
-@mixin breakpoint-xl {
-	@media (min-width: 1400px) {
-		@content;
-	}
-}
 
 // Placeholder
 //
@@ -186,7 +142,7 @@
 	@include font-size(16px, 24px);
 	color: $black;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(20px, 28px);
 	}
 }
@@ -213,7 +169,7 @@
 		font-style: italic;
 		color: $primary;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(22px);
 		}
 	}
@@ -263,7 +219,7 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		max-width: $content-width;
 	}
 }
@@ -273,7 +229,7 @@
 	margin-left: auto;
 	margin-right: auto;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		max-width: $container;
 	}
 }
@@ -318,4 +274,22 @@
 			content: '\2022';
 		}
 	}
+}
+
+// Type checking
+// https://css-tricks.com/snippets/sass/advanced-type-checking/
+@function is-number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is-relative-length($value) {
+	@return is-number($value) and index('em' 'ex' 'ch' 'rem' 'vw' 'vh' 'vmin' 'vmax', unit($value)) != null;
+}
+
+@function is-absolute-length($value) {
+	@return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function is-length($value) {
+	@return is-relative-length($value) or is-absolute-length($value);
 }

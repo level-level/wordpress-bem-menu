@@ -10,7 +10,7 @@
 		border-bottom: 1px solid $quinary;
 		padding: 11px $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
 			padding: 11px $default-padding;
 		}
@@ -22,7 +22,7 @@
 		padding: 11px $default-padding*0.5;
 		padding-bottom: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: 11px $default-padding;
 			padding-bottom: $default-padding;
 		}
@@ -31,7 +31,7 @@
 			width: 100%;
 			justify-content: center;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				width: auto;
 			}
 		}
@@ -47,7 +47,7 @@
 		border-bottom: 1px solid $quinary;
 		padding: 11px $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: 11px $default-padding;
 		}
 	}
@@ -57,7 +57,7 @@
 		@include font-size(18px, 26px);
 		color: $primary;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(22px, 32px);
 		}
 	}

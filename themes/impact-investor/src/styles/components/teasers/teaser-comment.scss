@@ -4,7 +4,7 @@
 	background-color: $quaternary;
 	padding: $default-padding*0.5;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		padding: $default-padding;
 	}
 
@@ -23,7 +23,7 @@
 		@include font-size(16px, 24px);
 		margin-top: 5px;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
 		}
 	}

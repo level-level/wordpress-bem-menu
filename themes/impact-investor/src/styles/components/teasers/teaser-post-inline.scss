@@ -5,7 +5,7 @@
 
 		.teaser-post {
 			&__inner {
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					padding: $default-padding*0.5 0;
 				}
 			}
@@ -13,7 +13,7 @@
 			&__title {
 				@include font-size(18px, 24px);
 
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include font-size(20px, 28px);
 				}
 			}
@@ -23,13 +23,13 @@
 			}
 
 			&__thumbnail {
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include image-ratio(14,9);
 					width: 155px;
 				}
 
 				img {
-					@include breakpoint-sm {
+					@include breakpoint(sm) {
 						position: absolute;
 						width: auto;
 						height: 100%;

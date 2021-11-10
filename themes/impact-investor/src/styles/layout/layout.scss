@@ -1,24 +1,24 @@
 .layout-row {
-	@include breakpoint-md {
+	@include breakpoint(md) {
 		display: flex;
 		flex-wrap: nowrap;
 	}
 }
 
 .layout-offset {
-	@include breakpoint-lg {
+	@include breakpoint(lg) {
 		flex-shrink: 0;
 	}
 }
 
 .layout-large {
-	@include breakpoint-md {
+	@include breakpoint(md) {
 		flex-grow: 1;
 		margin-right: $default-padding;
 	}
 
 	&--indent {
-		@include breakpoint-lg {
+		@include breakpoint(lg) {
 			max-width: $article-width;
 			margin-right: auto;
 			margin-left: $article-offset;
@@ -27,7 +27,7 @@
 }
 
 .layout-small {
-	@include breakpoint-md {
+	@include breakpoint(md) {
 		width: $sidebar-width;
 		flex-shrink: 0;
 	}
@@ -36,7 +36,7 @@
 .layout-header-wrapper {
 	width: 100%;
 
-	@include breakpoint-md {
+	@include breakpoint(md) {
 		width: calc(100% - #{$sidebar-width} - #{$default-padding});
 	}
 }

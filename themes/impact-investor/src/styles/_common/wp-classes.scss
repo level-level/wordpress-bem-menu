@@ -38,7 +38,7 @@
 		float: none;
 		margin: 0;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			float: right;
 			margin-left: 15px;
 		}
@@ -48,7 +48,7 @@
 		float: none;
 		margin: 0;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			float: left;
 			margin-right: 15px;
 		}

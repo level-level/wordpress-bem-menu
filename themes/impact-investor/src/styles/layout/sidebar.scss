@@ -4,7 +4,7 @@
 			&:first-child {
 				padding-top: 0;
 
-				@include breakpoint-md {
+				@include breakpoint(md) {
 					padding-top: $default-padding;
 				}
 			}

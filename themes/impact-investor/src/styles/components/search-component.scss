@@ -22,12 +22,12 @@
 			@include placeholder {
 				color: $quaternary;
 
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					color: $black;
 				}
 			}
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				background-color: $white;
 				color: $black;
 			}

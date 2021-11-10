@@ -22,62 +22,20 @@
 
 @each $state in $states {
 	.align-self-start-#{$state} {
-		@if $state == 'sm' {
-			@include breakpoint-sm {
-				align-self: flex-start;
-			}
-		}
-
-		@if $state == 'md' {
-			@include breakpoint-md {
-				align-self: flex-start;
-			}
-		}
-
-		@if $state == 'lg' {
-			@include breakpoint-lg {
-				align-self: flex-start;
-			}
+		@include breakpoint($state) {
+			align-self: flex-start;
 		}
 	}
 
 	.align-self-center-#{$state} {
-		@if $state == 'sm' {
-			@include breakpoint-sm {
-				align-self: flex-center;
-			}
-		}
-
-		@if $state == 'md' {
-			@include breakpoint-md {
-				align-self: flex-center;
-			}
-		}
-
-		@if $state == 'lg' {
-			@include breakpoint-lg {
-				align-self: flex-center;
-			}
+		@include breakpoint($state) {
+			align-self: center;
 		}
 	}
 
 	.align-self-end-#{$state} {
-		@if $state == 'sm' {
-			@include breakpoint-sm {
-				align-self: flex-end;
-			}
-		}
-
-		@if $state == 'md' {
-			@include breakpoint-md {
-				align-self: flex-end;
-			}
-		}
-
-		@if $state == 'lg' {
-			@include breakpoint-lg {
-				align-self: flex-end;
-			}
+		@include breakpoint($state) {
+			align-self: flex-end;
 		}
 	}
 }

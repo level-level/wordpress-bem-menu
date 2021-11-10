@@ -38,7 +38,7 @@
 		h2[data-type='core/heading'] {
 			@include font-size(24px, 32px);
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(28px, 40px);
 			}
 		}
@@ -46,7 +46,7 @@
 		h3[data-type='core/heading'] {
 			@include font-size(22px, 32px);
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(24px, 32px);
 			}
 		}
@@ -55,7 +55,7 @@
 			@include font-bold;
 			@include font-size(16px, 22px);
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(18px, 26px);
 			}
 		}
@@ -83,14 +83,18 @@
 				@include font-heading-normal;
 				@include font-size(20px, 28px, true);
 
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include font-size(22px, 30px, true);
 				}
 
-				@include breakpoint-lg {
+				@include breakpoint(lg) {
 					@include font-size(24px, 34px, true);
 				}
 			}
+		}
+
+		a:not([class]) {
+			color: $primary;
 		}
 	}
 }
@@ -121,11 +125,11 @@
 		> * + * {
 			margin-top: $default-padding*0.5;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				margin-top: $default-padding;
 			}
 
-			@include breakpoint-md {
+			@include breakpoint(md) {
 				margin-top: $default-padding*1.5;
 			}
 		}
