@@ -1,9 +1,8 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
-{% set title = object.get_title() %}
 
 {% block content %}
-	<h1 class="screen-reader-text">{{ title|raw }}</h1>
+	<h1 class="screen-reader-text">{{ object.get_title()|raw }}</h1>
 	<div class="section">
 		<div class="entry-content">
 			{{ object.get_content()|raw }}
@@ -12,8 +11,7 @@
 {% endblock %}
 
 {% block sidebar %}
-	{% include 'styleguide/components/tabbed-posts.twig' with {
-		latest: latest_articles,
-		most_read: most_read_articles,
-	} %}
+	{% if is_active_sidebar('widget-area-homepage') %}
+		{{ sidebar.get_widgetarea('widget-area-homepage')|raw }}
+	{% endif %}
 {% endblock %}

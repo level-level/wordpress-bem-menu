@@ -1,0 +1,20 @@
+{% extends 'layouts/sidebar-layout.twig' %}
+{% set object = objects|first %}
+
+{% block content %}
+	<div class="section">
+		{% include 'styleguide/components/article-header.twig' with {
+			title: object.get_title(),
+		} %}
+
+		<div class="entry-content">
+			{{ object.get_content()|raw }}
+		</div>
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+	{% if is_active_sidebar('widget-area-page') %}
+		{{ sidebar.get_widgetarea('widget-area-page')|raw }}
+	{% endif %}
+{% endblock %}

@@ -3,51 +3,64 @@
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ __('Straight to content', 'impact-investor') }}</a>
 
-	<div class="container">
-		<div class="row row--space-between row--align-center row--nowrap">
-			<div class="col-auto">
-				<div class="row row--align-center row--nowrap row--small">
-					<div class="col-auto">
-						<div class="header__brand">
-							<a
-								class="brand"
-								href="{{ esc_url(home_url('/')) }}"
-								aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
-								>
-								<img
-									src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.png"
-									width="164"
-									height="30"
-									alt=""
-									class="brand__logo"
-								/>
-							</a>
-						</div>
-					</div>
+	<div class="header__top">
+		<div class="container">
+			<div class="row row--no-padding row--space-between row--align-center row--nowrap">
+				<div class="col-auto hidden-sm">
 					{% if has_nav_menu('primary_navigation') %}
-						<div class="col-auto">
-							{% include 'partials/components/header/header-menu.twig' %}
-						</div>
+						{% include 'partials/components/header/header-menu.twig' %}
 					{% endif %}
 				</div>
-			</div>
-
-			<div class="col-auto">
-				<div class="row row--small row--align-center row--nowrap">
-					<div class="col-auto">
-						{% include 'partials/components/header/header-search.twig' %}
+				<div class="col-auto col--grow-1 col--sm-grow-0">
+					<div class="header__brand">
+						<a
+							class="brand"
+							href="{{ esc_url(home_url('/')) }}"
+							aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
+							>
+							<img
+								src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
+								width="170"
+								height="30"
+								alt=""
+								class="brand__logo"
+							/>
+						</a>
 					</div>
-					<div class="col-auto hidden-xs visible-sm">
-						{% include 'styleguide/components/buttons/button-link.twig' with {
-							text: __('Sign up', 'impact-investor'),
-							url: '#',
-							class: 'btn--primary btn--small',
-							is_external: true,
-							aria_label: __('Sign up for the newsletter', 'impact-investor'),
-						} %}
+				</div>
+
+				<div class="col-auto col--sm-shrink-0 hidden-xs visible-sm">
+					<div class="row row--small row--align-center row--nowrap">
+						{% set newsletter = options.newsletter %}
+						{% if newsletter.button.title and newsletter.button.url %}
+							<div class="col-auto">
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: newsletter.button.title,
+									url: newsletter.button.url,
+									class: 'btn--primary',
+									is_external: newsletter.button.target ? true,
+									aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+								} %}
+							</div>
+						{% endif %}
+						<div class="col-auto">
+							<ul class="list-header-buttons">
+								<li class="list-header-buttons__item">
+									{% include 'partials/components/header/header-search.twig' %}
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	{% if has_nav_menu('primary_navigation') %}
+		<div class="header__bottom hidden-xs visible-sm">
+			<div class="container">
+				{% include 'partials/components/header/header-menu.twig' %}
+			</div>
+		</div>
+	{% endif %}
 </header>

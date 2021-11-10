@@ -1,23 +1,24 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
-{% set title = object.get_title() %}
 {% set terms = object.get_terms('category') %}
 
 {% block content %}
-
-	<article class="section section--large">
+	<article class="section">
+		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
-			title: title,
+			title: object.get_title(),
 			terms: terms ? terms|map(term => {
 				name: term.get_name(),
 				url: term.get_permalink(),
 			}),
 			date: object.get_date_i18n(get_option('date_format')),
+			date_full: object.get_date_i18n('F j Y'),
 			datetime: object.get_date_i18n('Y-m-d'),
-			author: {
-				name: object.get_author().get_display_name(),
-				url: get_author_posts_url(object.get_author().get_id())
-			},
+			authors: authors ? authors|map(author => {
+				name: author.get_title(),
+				location: author.get_location(),
+				url: author.get_permalink(),
+			}),
 		} %}
 
 		<div class="entry-content">
@@ -29,8 +30,31 @@
 {% endblock %}
 
 {% block sidebar %}
-	{% include 'styleguide/components/tabbed-posts.twig' with {
-		latest: latest_articles,
-		most_read: most_read_articles,
+	{% if is_active_sidebar('widget-area-article') %}
+		{{ sidebar.get_widgetarea('widget-area-article')|raw }}
+	{% endif %}
+{% endblock %}
+
+{% block offset %}
+	{% include 'styleguide/components/social-share.twig' with {
+		sticky: true,
+		socials: [
+			{
+				title: 'Twitter',
+				type: 'twitter',
+			},
+			{
+				title: 'Facebook',
+				type: 'facebook',
+			},
+			{
+				title: 'LinkedIn',
+				type: 'linkedin',
+			},
+			{
+				title: 'E-mail',
+				type: 'email',
+			},
+		]
 	} %}
 {% endblock %}

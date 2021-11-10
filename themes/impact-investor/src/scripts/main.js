@@ -1,5 +1,5 @@
 import './modules/primary-nav.js';
-import './modules/toggle.js';
+import './modules/header-menu.js';
 import './modules/header-search.js';
 import './modules/skiplink.js';
 import './modules/example-module.js';
@@ -7,7 +7,6 @@ import './modules/cookiebot.js';
 import './modules/oembed.js';
 import './modules/table.js';
 import './modules/social-share.js';
-import './modules/social-share-dropdown.js';
 import './modules/tabs.js';
 
 ( function( app, $ ) {

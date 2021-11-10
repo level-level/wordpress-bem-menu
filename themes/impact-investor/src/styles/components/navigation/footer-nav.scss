@@ -6,8 +6,14 @@
 	}
 
 	&__link {
-		@include font-size(14px);
+		@include font-normal;
+		@include font-size(16px);
+		color: $senary;
 		display: block;
 		text-decoration: none;
+
+		@include hover-focus-style {
+			text-decoration: underline;
+		}
 	}
 }

@@ -1,13 +1,33 @@
 <div class="list-item">
 
-	{% if datetime and date %}
-		<div class="list-item__meta">
-			<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-			<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-		</div>
-	{% endif %}
-
 	<a href="{{ url }}" class="list-item__link">
 		{{ title|raw }}
 	</a>
+
+	{% if datetime and date or terms %}
+		<div class="list-item__meta">
+			<div class="row row--nowrap">
+
+				{% if terms %}
+					<div class="col-auto col--grow-1">
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
+					</div>
+				{% endif %}
+
+				{% if datetime and date %}
+					<div class="col-auto col--shrink-0">
+						{% if date_full %}
+							<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
+							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						{% else %}
+							<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
+							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
 </div>

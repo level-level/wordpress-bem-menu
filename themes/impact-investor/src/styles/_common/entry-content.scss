@@ -6,13 +6,13 @@
 	> *:not(.alignwide):not(.alignfull) {
 		max-width: $container;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			max-width: $content-width;
 		}
 	}
 
 	& > * + * {
-		margin-top: $default-padding*2;
+		margin-top: $default-padding;
 	}
 
 	> h2 + *:not([class*=' has-']),
@@ -23,32 +23,33 @@
 	}
 
 	> *:not(h2):not(h3):not(h4):not(h5) + *:not([class]) {
-		margin-top: $default-padding*2;
+		margin-top: $default-padding;
 	}
 
 	p {
 		&.has-intro-font-size {
 			@include font-heading-normal;
-			@include font-size(22px, 26px);
+			@include font-size(20px, 28px, true);
 
-			@include breakpoint-sm {
-				@include font-size(25px, 30px);
+			@include breakpoint(sm) {
+				@include font-size(22px, 30px, true);
 			}
 
-			@include breakpoint-md {
-				@include font-size(28px, 34px);
+			@include breakpoint(lg) {
+				@include font-size(24px, 34px, true);
 			}
 		}
 	}
 
 	a:not([class]) {
 		color: $primary;
+		hyphens: auto;
 
-		&:focus {
-			text-decoration: none;
+		@include breakpoint(sm) {
+			hyphens: none;
 		}
 
-		@include hover {
+		@include hover-focus-style {
 			text-decoration: none;
 		}
 	}
@@ -56,5 +57,13 @@
 	ul,
 	ol {
 		margin-bottom: 0;
+	}
+
+	ul:not([class]) {
+		@include unordered-list-style;
+	}
+
+	ol:not([class]) {
+		@include ordered-list-style;
 	}
 }

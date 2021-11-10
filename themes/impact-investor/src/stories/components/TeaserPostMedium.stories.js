@@ -1,4 +1,5 @@
 import Terms from '../data/Terms.js';
+import Authors from '../data/Authors.js';
 
 export default {
 	title: 'Components/Teasers/Post/Medium',
@@ -17,6 +18,9 @@ export default {
 		terms: {
 			control: 'array'
 		},
+		authors: {
+			control: 'array'
+		},
 		date: {
 			control: 'text'
 		},
@@ -25,17 +29,14 @@ export default {
 		}
 	},
 	args: {
-		image: '<img src="https://place-hold.it/1048x680" loading="lazy" class="teaser-post__image" width="1024" height="680" alt="">',
+		image: '<img src="https://place-hold.it/1024x578" loading="lazy" width="1024" height="680" alt="">',
 		title: 'Example Post teaser',
 		url: '#',
 		excerpt: '<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
 		terms: Terms,
 		date: 'Apr 21, 2021',
 		datetime: '2021-04-21',
-		author: {
-			name: 'Kevinio',
-			url: '#',
-		},
+		authors: Authors,
 		comments: 2,
 	},
 };

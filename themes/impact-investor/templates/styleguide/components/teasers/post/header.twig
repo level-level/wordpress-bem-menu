@@ -1,0 +1,33 @@
+<div class="teaser-post-header">
+	<div class="teaser-post-header__item teaser-post-header__item--order-2">
+		<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
+			<a href="{{ url }}" class="teaser-post__link">
+				{{ title|raw }}
+			</a>
+		</{{ useH3 ? 'h3' : 'h2' }}>
+	</div>
+
+	{% if terms or date and datetime and date_full %}
+		<div class="teaser-post-header__item">
+			<div class="row row--space-between row--nowrap row--align-center">
+
+				{% if terms %}
+					<div class="col-auto">
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
+					</div>
+				{% endif %}
+
+				{% if date and datetime and date_full %}
+					<div class="col-auto col--shrink-0">
+						<div class="teaser-post__date">
+							<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
+							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						</div>
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+</div>

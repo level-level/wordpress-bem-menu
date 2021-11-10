@@ -1,16 +1,16 @@
 :root {
-	--primary: #e63d14;
+	--primary: #cd3613;
 	--secondary: #f3f9fd;
-	--tertiary: #a3c3d6;
+	--tertiary: #a2c3d6;
 	--quaternary: #e7f3fb;
 	--quinary: #73a6bf;
 	--senary: #335061;
+	--septenary: #4a738c;
 
 	// Greyscale
 	--white: #fff;
-	--grey: #efefef;
-	--grey-light: #a3a3a3;
-	--black: #191919;
+	--grey: #e4e4e4;
+	--black: #1a1a1a;
 
 	// Form validation
 	--error: #ffecb3;
@@ -25,9 +25,9 @@ $tertiary: var(--tertiary);
 $quaternary: var(--quaternary);
 $quinary: var(--quinary);
 $senary: var(--senary);
+$septenary: var(--septenary);
 $white: var(--white);
 $grey: var(--grey);
-$grey-light: var(--grey-light);
 $black: var(--black);
 $error: var(--error);
 $outline: var(--outline);

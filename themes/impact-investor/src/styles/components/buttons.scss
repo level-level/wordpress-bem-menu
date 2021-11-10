@@ -4,22 +4,20 @@
 	position: relative;
 	display: inline-flex;
 	align-items: center;
-	padding: 6px 10px;
+	padding: 10px 12px;
 	background-color: transparent;
 	text-decoration: none;
-	border: 0;
+	border: 2px solid transparent;
 	line-height: 1;
 	user-select: none;
 	color: $black;
 	cursor: pointer;
-	transition: $time;
+	transition: background-color $time, color $time, border-color $time;
 	-webkit-appearance: none;
 
-	&:focus,
-	&:active {
-	}
-
-	@include hover {
+	@include breakpoint(sm) {
+		@include font-size(18px, 20px);
+		padding: 10px 17px;
 	}
 
 	// Button disabled
@@ -31,26 +29,196 @@
 
 @mixin btn--primary {
 	background-color: $primary;
+	border-color: $primary;
 	color: $white;
+	border-radius: 3px;
+
+	@include hover-focus-style {
+		background-color: transparent;
+		color: $black;
+	}
+}
+
+@mixin btn--secondary {
+	@include font-bold;
+	color: $primary;
+
+	.btn {
+		&__text {
+			text-decoration: none;
+		}
+	}
+
+	@include hover-focus-style {
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
+@mixin btn--tertiary {
+	@include font-bold;
+	color: $senary;
+	padding: 0;
+	padding-right: 12px;
+	border-radius: 20px;
+
+	@include breakpoint(sm) {
+		padding-right: 17px;
+	}
+
+	.btn {
+		&__text {
+			text-decoration: none;
+		}
+	}
+
+	@include hover-focus-style {
+		background-color: $primary;
+		color: $white;
+
+		.btn {
+			&__icon {
+				&--highlight {
+					background-color: transparent;
+					transform: translateX(8px);
+				}
+			}
+		}
+	}
 }
 
 @mixin btn--link {
 	@include font-normal;
 	@include font-size(14px);
 	padding: 0;
+	text-decoration: none;
+	color: $septenary;
 
-	.btn__text {
-		text-decoration: underline;
+	@include hover-focus-style {
+		.btn {
+			&__text {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.btn {
+		&__icon {
+			@include font-size(18px);
+
+			& + * {
+				padding-left: 5px;
+			}
+		}
+
+		&__text {
+			top: 2px;
+		}
 	}
 }
 
 @mixin btn--share {
+	@include btn--primary;
+	@include font-size(22px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	text-decoration: none;
-	background-color: $quaternary;
-	color: $white;
+}
+
+@mixin btn--header {
+	@include font-normal;
+
+	.btn {
+		&__icon {
+			@include font-size(20px);
+			color: $primary;
+		}
+	}
+
+	@include hover-focus-style {
+		background-color: $quaternary;
+	}
+}
+
+@mixin btn--menu {
+	@include font-size(22px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	border: 0;
+	color: $senary;
+	min-width: $btn-menu-width;
+
+	.btn {
+		&__text {
+			@include font-size(12px);
+			text-transform: lowercase;
+			padding-left: 0;
+		}
+	}
+
+	&[aria-expanded='true'] {
+		z-index: 11;
+		color: $white;
+
+		&:focus {
+			@include focus-style($white);
+		}
+
+		.btn {
+			&__icon {
+				.icon {
+					&:before {
+						content: $icon-close;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin btn--search {
+	@include font-normal;
+	min-height: $input-height;
+	min-width: $input-height;
+	border: 0;
+
+	.btn {
+		&__icon {
+			@include font-size(20px);
+		}
+
+		&__text {
+			display: none;
+
+			@include breakpoint(sm) {
+				display: block;
+			}
+		}
+	}
+
+	&[aria-expanded='true'] {
+		padding: 10px 11px;
+
+		.btn {
+			&__icon {
+				@include font-size(24px);
+
+				.icon {
+					color: $white;
+
+					&:before {
+						content: $icon-close;
+					}
+				}
+			}
+		}
+	}
 }
 
 // Styles to reset a styled button
@@ -75,6 +243,14 @@ input[type='button'] {
 		@include btn--primary;
 	}
 
+	&--secondary {
+		@include btn--secondary;
+	}
+
+	&--tertiary {
+		@include btn--tertiary;
+	}
+
 	&--link {
 		@include btn--link;
 	}
@@ -83,24 +259,24 @@ input[type='button'] {
 		@include btn--share;
 	}
 
-	&--search {
-		color: $white;
-
-		&[aria-expanded='true'] {
-			.icon {
-				&:before {
-					content: $icon-close;
-				}
-			}
-		}
+	&--header {
+		@include btn--header;
 	}
 
-	&--author {
-		.btn__text {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			max-width: 120px;
+	&--menu {
+		@include btn--menu;
+	}
+
+	&--search {
+		@include btn--search;
+	}
+
+	&--play {
+		@include btn--primary;
+
+		@include hover-focus-style {
+			background-color: $quinary;
+			border-color: $quinary;
 		}
 	}
 }
@@ -110,18 +286,20 @@ input[type='button'] {
 	// Force full width
 	&--full {
 		width: 100%;
+		justify-content: center;
 	}
 
 	&--mobile-full {
 		width: 100%;
+		justify-content: center;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			width: auto;
 		}
 	}
 
-	&--small {
-		@include font-size(14px);
+	&--no-padding {
+		padding: 0;
 	}
 
 	// To make sure the button and icon(s) are always on top when working with psuedo elements
@@ -134,7 +312,7 @@ input[type='button'] {
 	// Adds padding to the icon on the right
 	&__text {
 		& + * {
-			padding-left: 5px;
+			padding-left: $default-padding*0.5;
 		}
 	}
 
@@ -144,7 +322,19 @@ input[type='button'] {
 		align-items: center;
 
 		& + * {
-			padding-left: 5px;
+			padding-left: $default-padding*0.5;
+		}
+
+		&--highlight {
+			background-color: $primary;
+			color: $white;
+			width: 34px;
+			height: 34px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: $time;
 		}
 	}
 }

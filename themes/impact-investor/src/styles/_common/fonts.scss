@@ -12,29 +12,53 @@
 }
 
 @mixin font-heading {
-	font-family: 'ArnhemProBold', sans-serif;
-	font-weight: normal;
+	font-family: 'Libre Caslon Text', sans-serif;
+	font-weight: 700;
 }
 
 @mixin font-heading-normal {
-	font-family: 'ArnhemProBlond', sans-serif;
-	font-weight: normal;
+	font-family: 'Libre Caslon Text', sans-serif;
+	font-weight: 400;
 }
 
+// @font-face {
+// 	font-family: 'ArnhemProBold';
+// 	src: url('../fonts/ArnhemPro-Bold.woff') format('woff');
+// 	font-style: normal;
+// 	font-weight: normal;
+// 	font-display: swap;
+// }
+
+// @font-face {
+// 	font-family: 'ArnhemProBlond';
+// 	src: url('../fonts/ArnhemPro-Blond.woff') format('woff');
+// 	font-weight: normal;
+// 	font-style: normal;
+// 	font-display: swap;
+// }
+
+/* libre-caslon-text-regular - latin */
 @font-face {
-	font-family: 'ArnhemProBold';
-	src: url('../fonts/ArnhemPro-Bold.woff') format('woff');
+	font-family: 'Libre Caslon Text';
 	font-style: normal;
-	font-weight: normal;
 	font-display: swap;
+	font-weight: 400;
+	src:
+		local(''),
+		url('../fonts/libre-caslon-text-v2-latin-regular.woff2') format('woff2'),
+		url('../fonts/libre-caslon-text-v2-latin-regular.woff') format('woff');
 }
 
+/* libre-caslon-text-700 - latin */
 @font-face {
-	font-family: 'ArnhemProBlond';
-	src: url('../fonts/ArnhemPro-Blond.woff') format('woff');
-	font-weight: normal;
+	font-family: 'Libre Caslon Text';
 	font-style: normal;
 	font-display: swap;
+	font-weight: 700;
+	src:
+		local(''),
+		url('../fonts/libre-caslon-text-v2-latin-700.woff2') format('woff2'),
+		url('../fonts/libre-caslon-text-v2-latin-700.woff') format('woff');
 }
 
 @font-face {

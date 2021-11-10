@@ -1,5 +1,17 @@
 <div class="article-header">
 
+	{% if label %}
+		<div class="article-header__label">
+			<ul class="list-badges">
+				<li class="list-badges__item">
+					<div class="badge badge--rich">
+						{{ label|raw }}
+					</div>
+				</li>
+			</ul>
+		</div>
+	{% endif %}
+
 	{% if terms %}
 		<div class="article-header__terms">
 			{% include 'styleguide/components/post-terms.twig' with {
@@ -12,23 +24,37 @@
 		<h1>{{ title|raw }}</h1>
 	</div>
 
-	{% if author or date and datetime %}
+	{% if authors or date and datetime and date_full %}
 		<div class="article-header__meta">
 			<div class="row">
 
-				{% if author %}
+				{% if authors %}
 					<div class="col-auto">
-						{% include 'styleguide/components/post-author.twig' with {
-							name: author.name,
-							url: author.url,
-						} %}
+						<span class="screen-reader-text">
+							{{ __('Written by:', 'impact-investor') }}
+						</span>
+						<ul class="list-authors">
+							{% for object in authors %}
+								<li class="list-authors__item">
+									{% include 'styleguide/components/buttons/button-link.twig' with {
+										text: object.name,
+										url: object.url,
+										class: 'btn--secondary btn--no-padding',
+									} %}
+
+									<div class="author-location author-location--large" aria-hidden="true">
+										{{ object.location }}{% if not loop.last %},{% endif %}
+									</div>
+								</li>
+							{% endfor %}
+						</ul>
 					</div>
 				{% endif %}
 
-				{% if date and datetime %}
+				{% if date and datetime and date_full %}
 					<div class="col-auto">
-						<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-						<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+						<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
+						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 					</div>
 				{% endif %}
 

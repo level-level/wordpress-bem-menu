@@ -1,0 +1,11 @@
+{% set latest_articles = block.get_latest_articles() %}
+{% set most_read_articles = block.get_most_read_articles() %}
+
+{% if latest_articles or most_read_articles %}
+	<div class="align{{ align }}">
+		{% include 'styleguide/components/tabbed-posts.twig' with {
+			latest: latest_articles,
+			most_read: most_read_articles,
+		} %}
+	</div>
+{% endif %}

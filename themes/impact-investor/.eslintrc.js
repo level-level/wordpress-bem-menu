@@ -5,7 +5,7 @@ module.exports = {
 	],
 
 	globals: {
-
+		lodash: true,
 	},
 
 	rules: {

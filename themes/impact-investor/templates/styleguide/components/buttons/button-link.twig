@@ -9,6 +9,7 @@
 	aria_label: aria label on the link
 	icon: class of an icon
 	icon_left: bool
+	highlight_icon: bool
 #}
 
 {% if is_external %}
@@ -23,10 +24,14 @@
 	{% set data_config = "data-config='%s'"|format(data_config) %}
 {% endif %}
 
+{% if focusable is same as(false) %}
+	{% set tabindex = 'tabindex="-1"' %}
+{% endif %}
+
 {% if url %}
-	<a href="{{ url|raw }}" class="btn {{ class|raw }}" {{ external|raw }} {{ aria_label|raw }} {{ data_config|raw }}>
+	<a href="{{ url|raw }}" class="btn {{ class|raw }}" {{ external|raw }} {{ aria_label|raw }} {{ data_config|raw }} {{ tabindex|raw }}>
 		{% if icon and icon_left %}
-			<span class="btn__icon">
+			<span class="btn__icon {{ highlight_icon ? 'btn__icon--highlight' }}">
 				<span class="icon {{ icon|raw }}" aria-hidden="true"></span>
 			</span>
 		{% endif %}
@@ -42,7 +47,7 @@
 		{% endif %}
 
 		{% if icon and not icon_left %}
-			<span class="btn__icon">
+			<span class="btn__icon {{ highlight_icon ? 'btn__icon--highlight' }}">
 				<span class="icon {{ icon|raw }}" aria-hidden="true"></span>
 			</span>
 		{% endif %}

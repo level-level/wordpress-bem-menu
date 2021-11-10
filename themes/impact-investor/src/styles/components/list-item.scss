@@ -1,23 +1,27 @@
 .list-item {
 	position: relative;
+	display: flex;
+	flex-direction: column;
 
 	&__meta {
-		@include font-size(14px);
-		color: $grey-light;
-		margin-bottom: 3px;
+		@include font-size(14px, 16px);
+		color: $senary;
+		margin-bottom: 10px;
+
+		@include breakpoint(sm) {
+			@include font-size(16px, 17px);
+		}
 	}
 
 	&__link {
 		@include absolute-link;
 		display: block;
 		text-decoration: none;
+		order: 2;
 
-		&:focus {
+		@include hover-focus-style {
 			color: $primary;
-		}
-
-		@include hover {
-			color: $primary;
+			text-decoration: underline;
 		}
 	}
 }

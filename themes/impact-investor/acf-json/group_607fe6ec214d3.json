@@ -1,10 +1,10 @@
 {
     "key": "group_607fe6ec214d3",
-    "title": "[Block] Two column articles",
+    "title": "[Block] Articles in columns",
     "fields": [
         {
             "key": "field_607feb7bba1f8",
-            "label": "Explanation",
+            "label": "Usage",
             "name": "",
             "type": "message",
             "instructions": "",
@@ -15,9 +15,34 @@
                 "class": "",
                 "id": ""
             },
-            "message": "This block displays articles in a two column layout based on multiple options.",
+            "message": "Displays a list of articles in a two (2) or three (3) column layout based on multiple options.",
             "new_lines": "wpautop",
             "esc_html": 0
+        },
+        {
+            "key": "field_61810e09b64be",
+            "label": "Select amount of columns",
+            "name": "columns",
+            "type": "select",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "2": "Two (2) columns",
+                "3": "Three (3) columns"
+            },
+            "default_value": 2,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         },
         {
             "key": "field_607fec20ed911",
@@ -49,8 +74,8 @@
         },
         {
             "key": "field_607fed05ed912",
-            "label": "Allow this block to automatically fill with the latest articles",
-            "name": "is_fill_enabled",
+            "label": "Disallow this block to automatically fill with the latest articles",
+            "name": "is_fill_disabled",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -77,7 +102,7 @@
                 [
                     {
                         "field": "field_607fed05ed912",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -107,7 +132,7 @@
                 [
                     {
                         "field": "field_607fed05ed912",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -131,7 +156,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/block-column-articles"
+                "value": "acf\/block-articles-in-columns"
             }
         ]
     ],
@@ -143,5 +168,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634634120
+    "modified": 1636387362
 }

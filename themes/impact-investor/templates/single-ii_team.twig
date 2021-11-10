@@ -1,0 +1,87 @@
+{% extends 'layouts/sidebar-layout-with-header.twig' %}
+{% set object = objects|first %}
+{% set title = object.get_title() %}
+{% set content = object.get_content() %}
+{% set author_posts = object.get_posts_by_author() %}
+
+{% block header %}
+	<div class="section">
+		<div class="container">
+			<div class="layout-header-wrapper">
+				{% include 'styleguide/components/author-header.twig' with {
+					label: __('Author', 'impact-investor'),
+					title: title,
+				} %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+
+	{% if content %}
+		<div class="section">
+			<div class="entry-content">
+				{{ content|raw }}
+			</div>
+		</div>
+	{% endif %}
+
+	{% if author_posts %}
+		<div class="section">
+			<h2 class="screen-reader-text">
+				{{ __('Articles written by %s', 'impact-investor')|format(title) }}
+			</h2>
+			<ul class="row row--spacing">
+				{% set date_format = get_option('date_format') %}
+
+				{% for object in author_posts %}
+
+					{% set image_id = object.get_thumbnail_id() %}
+					{% set terms = object.get_terms('category') %}
+					{% set authors = object.get_authors() %}
+
+					<li class="col-12">
+						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'large'),
+							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							title: object.get_title(),
+							url: object.get_permalink(),
+							excerpt: object.get_excerpt(),
+							date: object.get_date_i18n(date_format),
+							date_full: object.get_date_i18n('F j Y'),
+							datetime: object.get_date_i18n('Y-m-d'),
+							terms: terms ? terms|map(term => {
+								name: term.get_name(),
+							}),
+							authors: authors ? authors|map(author => {
+								name: author.get_title(),
+								location: author.get_location(),
+								url: author.get_permalink(),
+							}),
+							comments: object.get_comments_count(),
+							useH3: true,
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+	<div class="section">
+		{% set image_id = object.get_thumbnail_id() %}
+		{% include 'styleguide/components/bio.twig' with {
+			title: title,
+			excerpt: object.get_excerpt(),
+			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+			email: object.get_email_address(),
+			linkedin: object.get_linkedin(),
+		} only %}
+	</div>
+
+	{% if is_active_sidebar('widget-area-author') %}
+		{{ sidebar.get_widgetarea('widget-area-author')|raw }}
+	{% endif %}
+{% endblock %}

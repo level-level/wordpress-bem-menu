@@ -1,115 +1,88 @@
 <div class="teaser-post teaser-post--small">
 
-	{% if image %}
-		<div class="teaser-post__thumbnail hidden-sm">
-			{{ image|raw }}
+	{# Mobile only #}
+	<div class="hidden-sm">
+		<div class="teaser-post__inner">
+			<div class="row row--nowrap row--align-center">
+				<div class="col-auto col--grow-1">
+					{% include 'styleguide/components/teasers/post/header.twig' with {
+						useH3: useH3,
+						url: url,
+						title: title,
+						terms: terms,
+					} only %}
+				</div>
+
+				{% if image_square %}
+					<div class="col-auto col--shrink-0">
+						<div class="teaser-post__square-thumbnail">
+							{{ image_square|raw }}
+						</div>
+					</div>
+				{% endif %}
+			</div>
 		</div>
-	{% endif %}
+	</div>
 
-	<div class="teaser-post__inner">
-		<div class="group group--small">
+	{# Tablet only #}
+	<div class="hidden-xs visible-sm hidden-lg">
+		<div class="row row--no-padding row--nowrap">
 
-			<div class="group__item">
-				<div class="row row--space-between row--nowrap row--align-center">
-					<div class="col-auto">
-						{% include 'styleguide/components/post-terms.twig' with {
-							terms: terms,
-						} %}
-					</div>
-					<div class="col-auto">
-						<div class="teaser-post__date">
-							<span class="screen-reader-text">{{ __('Published on:', 'impact-investor') }}</span>
-							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-						</div>
+			{% if image %}
+				<div class="col-auto col--shrink-0">
+					<div class="teaser-post__thumbnail">
+						{{ image|raw }}
 					</div>
 				</div>
-			</div>
+			{% endif %}
 
-			<div class="group__item hidden-xs visible-sm">
-				<div class="row row--space-between row--nowrap">
-					<div class="col-auto">
-						<div class="group--small">
-							<div class="group__item">
-								<h2 class="teaser-post__title">
-									<a href="{{ url }}" class="teaser-post__link">
-										{{ title|raw }}
-									</a>
-								</h2>
-							</div>
-
-							{% if excerpt %}
-								<div class="group__item">
-									<div class="teaser-post__excerpt">
-										{{ excerpt|raw }}
-									</div>
-								</div>
-							{% endif %}
-						</div>
-					</div>
-
-					{% if image_square %}
-						<div class="col-auto col--shrink-0">
-							<div class="visible-sm">
-								{{ image_square|raw }}
-							</div>
-						</div>
-					{% endif %}
-				</div>
-			</div>
-
-			<div class="group__item hidden-sm">
-				<div class="group--small">
-					<div class="group__item">
-						<h2 class="teaser-post__title">
-							<a href="{{ url }}" class="teaser-post__link">
-								{{ title|raw }}
-							</a>
-						</h2>
-					</div>
-
-					{% if excerpt %}
-						<div class="group__item">
-							<div class="teaser-post__excerpt">
-								{{ excerpt|raw }}
-							</div>
-						</div>
-					{% endif %}
+			<div class="col-auto col--grow-1">
+				<div class="teaser-post__inner">
+					{% include 'styleguide/components/teasers/post/header.twig' with {
+						useH3: useH3,
+						url: url,
+						title: title,
+						terms: terms,
+						date: date,
+						datetime: datetime,
+						date_full: date_full,
+					} only %}
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="teaser-post__footer">
-		<div class="row row--space-between row--nowrap row--align-center">
-			<div class="col-auto">
-				{% include 'styleguide/components/post-author.twig' with {
-					name: author.name,
-					url: author.url,
-				} %}
-			</div>
-			<div class="col-auto">
-				<div class="row row--space-between row--nowrap row--align-center">
-					<div class="col-auto">
-						{% include 'styleguide/components/social-share-button.twig' with {
-							show_button_title: true,
-							post_title: title,
-							url: url,
-						} %}
-					</div>
 
-					{% if comments > 0 %}
-						<div class="col-auto">
-							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: _n('%s comment', '%s comments', comments, 'impact-investor')|format(comments),
-								url: url ~ '#comments',
-								class: 'btn--link',
-								aria_label: __('View comments in this article', 'impact-investor'),
-								icon: 'icon-whatsapp',
-								icon_left: true,
-							} %}
-						</div>
-					{% endif %}
+	{# Desktop only #}
+	<div class="hidden-xs visible-lg teaser-post__desktop">
+		<div class="teaser-post__desktop-inner">
+			{% if image %}
+				<div class="teaser-post__thumbnail">
+					{{ image|raw }}
 				</div>
+			{% endif %}
+
+			<div class="teaser-post__inner">
+				{% include 'styleguide/components/teasers/post/header.twig' with {
+					useH3: useH3,
+					url: url,
+					title: title,
+					terms: terms,
+					date: date,
+					datetime: datetime,
+					date_full: date_full,
+				} only %}
+
+				{% if excerpt %}
+					<div class="teaser-post__excerpt">
+						{{ excerpt|raw }}
+					</div>
+				{% endif %}
 			</div>
+
+			{% include 'styleguide/components/teasers/post/footer.twig' with {
+				authors: authors,
+				comments: comments,
+			} only %}
 		</div>
 	</div>
 </div>

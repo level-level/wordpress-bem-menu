@@ -1,62 +1,63 @@
-{% extends 'layouts/full-width.twig' %}
+{% extends 'layouts/sidebar-layout-with-header.twig' %}
+
+{% block header %}
+	<div class="section">
+		<div class="container">
+			<div class="layout-header-wrapper">
+				<h1 class="rich-title">
+					{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}
+				</h1>
+			</div>
+		</div>
+	</div>
+{% endblock %}
 
 {% block content %}
 	<div class="section">
-		<div class="container">
-			<h1>{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}</h1>
-		</div>
-	</div>
-
-	<div class="section">
-		<div class="container">
-			{% include 'partials/components/search.twig' %}
-		</div>
+		{% include 'partials/components/search.twig' %}
 	</div>
 
 	{% if objects %}
 		<div class="section">
-			<div class="container">
-				<h2 class="screen-reader-text">{{ __('Overview of search results', 'impact-investor') }}</h2>
-				<ul class="row row--spacing">
-					{% for object in objects %}
+			<h2 class="screen-reader-text">{{ __('Search results', 'impact-investor') }}</h2>
+			<ul class="row row--spacing">
+				{% set date_format = get_option('date_format') %}
 
-						{% set image_id = object.get_thumbnail_id() %}
-						{% set terms = object.get_terms('category') %}
-						{% set author = object.get_author() %}
+				{% for object in objects %}
 
-						<li class="col-12">
-							{% include 'styleguide/components/teasers/teaser-post-small.twig' with {
-								image: image_id ? wp_get_attachment_image(image_id, 'large'),
-								image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
-								title: object.get_title(),
-								url: object.get_permalink(),
-								excerpt: object.get_excerpt(),
-								date: object.get_date_i18n(date_format),
-								datetime: object.get_date_i18n('Y-m-d'),
-								terms: terms ? terms|map(term => {
-									name: term.get_name(),
-								}),
-								author: {
-									name: author.get_display_name(),
-									url: get_author_posts_url(author.get_id())
-								},
-							} %}
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
+					{% set image_id = object.get_thumbnail_id() %}
+					{% set terms = object.get_terms('category') %}
+					{% set authors = object.get_authors() %}
+
+					<li class="col-12">
+						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'large'),
+							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							title: object.get_title(),
+							url: object.get_permalink(),
+							excerpt: object.get_excerpt(),
+							date: object.get_date_i18n(date_format),
+							date_full: object.get_date_i18n('F j Y'),
+							datetime: object.get_date_i18n('Y-m-d'),
+							terms: terms ? terms|map(term => {
+								name: term.get_name(),
+							}),
+							authors: authors ? authors|map(author => {
+								name: author.get_title(),
+								location: author.get_location(),
+								url: author.get_permalink(),
+							}),
+							useH3: true,
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
 
-		<div class="section">
-			<div class="container">
-				{% include 'partials/components/pagination.twig' %}
-			</div>
-		</div>
+		{% include 'partials/components/pagination.twig' %}
 	{% else %}
 		<div class="section">
-			<div class="container">
-				<p>{{ __('No search results found', 'impact-investor') }}</p>
-			</div>
+			<p>{{ __('No search results found', 'impact-investor') }}</p>
 		</div>
 	{% endif %}
 {% endblock %}

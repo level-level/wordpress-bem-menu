@@ -1,6 +1,6 @@
 {% if object.has_comments_enabled() %}
 	<div class="section">
-		<div class="group">
+		<div class="group group--small">
 
 			{% set comment_count = object.get_comments_count() %}
 			{% if comment_count > 0 %}

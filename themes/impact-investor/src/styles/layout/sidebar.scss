@@ -1,0 +1,13 @@
+.sidebar {
+	.section-wrapper {
+		.section {
+			&:first-child {
+				padding-top: 0;
+
+				@include breakpoint(md) {
+					padding-top: $default-padding;
+				}
+			}
+		}
+	}
+}

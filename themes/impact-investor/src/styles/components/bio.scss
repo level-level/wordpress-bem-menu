@@ -1,0 +1,53 @@
+.bio {
+	@include font-normal;
+	@include font-size(16px, 24px);
+	position: relative;
+	background-color: $quaternary;
+
+	@include breakpoint(sm) {
+		@include font-size(18px, 26px);
+	}
+
+	&__inner {
+		padding: $default-padding*0.5;
+
+		@include breakpoint(sm) {
+			padding: calc(#{$default-padding*0.5} + 3px);
+		}
+	}
+
+	&__footer {
+		border-top: 1px solid $border;
+	}
+
+	&__thumbnail {
+		img {
+			border-radius: 50%;
+			max-width: 80px;
+		}
+	}
+
+	&__logo {
+		padding: $default-padding*0.5 0 $default-padding;
+
+		img {
+			max-width: 200px;
+			margin: 0 auto;
+		}
+	}
+
+	&__title,
+	&__subtitle {
+		@include font-bold;
+		@include font-size(16px, 24px);
+		color: $primary;
+
+		@include breakpoint(sm) {
+			@include font-size(18px, 24px);
+		}
+	}
+
+	&__subtitle {
+		color: $senary;
+	}
+}

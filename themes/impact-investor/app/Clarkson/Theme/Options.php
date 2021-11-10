@@ -6,6 +6,7 @@ class Options {
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'add_options_pages' ) );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
+		add_filter( 'clarkson_core_block_context_acf/widget-newsletter', array( $this, 'add_context_args' ) );
 	}
 
 	public function add_options_pages(): void {

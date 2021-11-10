@@ -1,26 +1,30 @@
 .article-header {
 	position: relative;
-	margin-bottom: $default-padding*2;
+	margin-bottom: $default-padding;
 
+	@include breakpoint(sm) {
+		margin-bottom: $default-padding*2;
+	}
+
+	&__label,
 	&__terms {
-		margin-bottom: $default-padding*1.5;
+		margin-bottom: $default-padding*0.5;
+
+		@include breakpoint(sm) {
+			margin-bottom: $default-padding*1.5;
+		}
 	}
 
 	&__meta {
 		margin-top: $default-padding*0.5;
 
-		time,
-		.btn {
+		time {
 			@include font-bold;
 			@include font-size(17px);
 		}
 
 		.btn {
-			color: $primary;
-
-			&__text {
-				text-decoration: none;
-			}
+			@include font-size(17px);
 		}
 	}
 }

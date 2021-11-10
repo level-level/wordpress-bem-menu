@@ -2,6 +2,14 @@
 	& > * {
 		&:last-child {
 			padding-bottom: $default-padding;
+
+			@include breakpoint(sm) {
+				padding-bottom: $default-padding*2;
+			}
+
+			@include breakpoint(lg) {
+				padding-bottom: $default-padding*4;
+			}
 		}
 	}
 }

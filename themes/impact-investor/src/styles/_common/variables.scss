@@ -1,19 +1,35 @@
+// The default gutter variable, used for the grid
+$gutter: 24px;
+
 :root {
 	--admin-bar: 0px; /* stylelint-disable-line length-zero-no-unit */
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
-	--container: calc(100vw - 30px);
-	--header-height: 60px;
+	--container: calc(100vw - #{$gutter});
+	--header-height: 50px;
+	--menu-height: 50px;
 	--sidebar-width: 100%;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		--container: 720px;
 		--content-width: 720px;
+		--header-height: 120px;
+		--menu-height: 52px;
 	}
 
-	@include breakpoint-md {
-		--container: 1064px;
-		--content-width: 770px;
+	@include breakpoint(md) {
+		--container: 960px;
+		--content-width: 895px;
 		--sidebar-width: 300px;
+	}
+
+	@include breakpoint(lg) {
+		--container: 1170px;
+		--article-width: 690px;
+		--article-offset: 45px;
+	}
+
+	@include breakpoint(xl) {
+		--container: 1224px;
 	}
 }
 
@@ -23,21 +39,22 @@ $admin-bar: var(--admin-bar);
 $admin-bar-offset: var(--admin-bar-offset);
 $header-height: var(--header-height);
 $sidebar-width: var(--sidebar-width);
+$menu-height: var(--menu-height);
+$article-width: var(--article-width);
+$article-offset: var(--article-offset);
+$btn-menu-width: 31px;
+$header-top-height: 68px;
 
-$states: 'sm', 'md', 'lg';
 $columns: 12;
 
 // The default padding variable
-$default-padding: 15px;
-
-// The default gutter variable, used for the grid
-$gutter: 15px;
+$default-padding: 24px;
 
 // The default animation time variable
 $time: 150ms;
 
 // The default height of an input element
-$input-height: 40px;
+$input-height: 44px;
 
 // admin bar height
 // even the zero has to be set in pixels so you can use it in calc() operations
@@ -47,11 +64,11 @@ body.admin-bar {
 	--admin-bar: 46px;
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
 
-	@media (min-width: 601px) {
+	@include breakpoint(601px) {
 		--admin-bar-offset: var(--admin-bar);
 	}
 
-	@media (min-width: 783px) {
+	@include breakpoint(783px) {
 		--admin-bar: 32px;
 	}
 }

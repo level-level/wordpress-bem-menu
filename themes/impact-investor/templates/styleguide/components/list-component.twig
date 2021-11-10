@@ -1,0 +1,49 @@
+{#
+	Options
+	style:
+		- no style: default
+		- dark: a more dark version
+		- light: transparent version
+	heading: a title above the list
+	button_text and button_link to show a button underneath the list
+
+#}
+{% if objects %}
+	<ul class="list-bordered {{ style ? 'list-bordered--' ~ style ~ '' }}">
+
+		{% if heading %}
+			<li class="list-bordered__item">
+				<div class="list-bordered__heading">
+					{{ heading }}
+				</div>
+			</li>
+		{% endif %}
+
+		{% for object in objects %}
+			<li class="list-bordered__item">
+				{% include 'styleguide/components/list-item.twig' with {
+					title: object.title,
+					url: object.url,
+					terms: object.terms,
+					date: object.date,
+					datetime: object.datetime,
+					date_full: object.date_full,
+				} %}
+			</li>
+		{% endfor %}
+
+		{% if button_text and button_link %}
+			<li class="list-bordered__item">
+				{% include 'styleguide/components/buttons/button-link.twig' with {
+					text: button_text,
+					url: button_link,
+					class: 'btn--tertiary',
+					is_external: false,
+					icon: 'icon-arrow-right',
+					icon_left: true,
+					highlight_icon: true,
+				} %}
+			</li>
+		{% endif %}
+	</ul>
+{% endif %}

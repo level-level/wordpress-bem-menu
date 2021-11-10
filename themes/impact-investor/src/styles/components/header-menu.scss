@@ -5,15 +5,37 @@
 		position: fixed;
 		left: 0;
 		right: 0;
-		top: calc(80px + #{$admin-bar}); // based on the height of header + admin-bar (if logged in)
+		width: calc(100vw - #{$default-padding});
+		top: $admin-bar;
 		bottom: 0;
 		background-color: $quaternary;
 		z-index: 10;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
+		transform: translateX(-100%);
+		visibility: hidden;
+		transition: $time*2 cubic-bezier(0.2, 0.91, 0.53, 1);
 
-		&[aria-hidden='true'] {
-			display: none;
+		&[aria-hidden='false'] {
+			transform: translateX(0);
+			visibility: visible;
+		}
+	}
+
+	&__backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: '';
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 5;
+		opacity: 0;
+		visibility: hidden;
+		transition: $time;
+
+		&--active {
+			opacity: 1;
+			visibility: visible;
 		}
 	}
 }

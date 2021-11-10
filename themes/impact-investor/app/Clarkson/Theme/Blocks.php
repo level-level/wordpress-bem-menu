@@ -8,6 +8,7 @@ class Blocks {
 		$this->register_gutenberg_blocks();
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
+		add_filter( 'render_block', array( $this, 'block_wrapper' ), 10, 2 );
 	}
 
 	/**
@@ -36,12 +37,8 @@ class Blocks {
 		$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
 		$custom_blocks     = array();
 
-		foreach ( $registered_blocks as $block ) {
-			// Add all custom ACF blocks
-			if ( strpos( $block->name, 'acf' ) === 0 || strpos( $block->name, 'll' ) === 0 ) {
-				$custom_blocks[] = $block->name;
-			}
-		}
+		// Default block type for all ACF blocks
+		$block_type = 'acf/block';
 
 		// Define allowed core or plugin blocks
 		$allowed_blocks = array(
@@ -71,6 +68,24 @@ class Blocks {
 			'core/template',
 		);
 
+		// Determine the widget and customiser page
+		global $pagenow;
+		if ( 'widgets.php' === $pagenow || 'customize.php' === $pagenow ) {
+
+			// Define the allowed blocks that are limited to the widget area
+			$allowed_blocks = array(
+				'acf/block-advertisement',
+			);
+			$block_type     = 'acf/widget';
+		}
+
+		foreach ( $registered_blocks as $block ) {
+			// Add all custom ACF blocks
+			if ( strpos( $block->name, $block_type ) === 0 || strpos( $block->name, 'll' ) === 0 ) {
+				$custom_blocks[] = $block->name;
+			}
+		}
+
 		return array_merge( $allowed_blocks, $custom_blocks );
 	}
 
@@ -89,13 +104,6 @@ class Blocks {
 	 * Wrap specific Gutenberg blocks in their own divs
 	 */
 	public function block_wrapper( string $block_content, array $block ): string {
-		if ( 'gravityforms/form' === $block['blockName'] ) {
-			$content  = '<div class="section section--core"><div class="container">';
-			$content .= $block_content;
-			$content .= '</div></div>';
-			return $content;
-		}
-
 		if ( 'core/table' === $block['blockName'] ) {
 			return '<div data-module="table">' . $block_content . '</div>';
 		}

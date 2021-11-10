@@ -1,54 +1,91 @@
 // Pagination styling for the default WordPress styling and the FacetWP Pager
 .pagination {
+	--item-width: 34px;
+
 	ul {
 		@include list-unstyled;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 
 		li {
+			@include font-size(16px, 16px);
 			display: block;
-			margin-right: 5px;
+			margin-right: $default-padding*0.5;
 
 			&:last-child {
 				margin-right: 0;
+			}
+
+			@include breakpoint(sm) {
+				@include font-size(18px, 18px);
 			}
 		}
 
 		a {
 			display: block;
-			padding: 10px 15px;
-			border: 1px solid black;
+			padding: $default-padding*0.5;
+			border-bottom: 3px solid transparent;
 			cursor: pointer;
+			text-decoration: none;
 
-			&.prev,
-			&.next {
-				text-decoration: none;
+			@include hover-focus-style {
+				text-decoration: underline;
+				color: $primary;
 			}
 		}
 
 		span {
 			&.current {
-				@include font-bold;
 				display: block;
-				padding: 10px 15px;
-				border: 1px solid black;
+				padding: $default-padding*0.5;
+				border-bottom: 3px solid $primary;
 			}
 
 			&.dots {
 				display: block;
-				padding: 10px 15px;
+				padding: $default-padding*0.5;
+				border: 0;
+			}
+		}
+
+		.next,
+		.prev {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: $primary;
+			color: $white;
+			width: var(--item-width);
+			height: var(--item-width);
+			padding: 0;
+			border-radius: 50%;
+			border: 0;
+			transition: color $time, background-color $time;
+
+			@include hover-focus-style {
+				color: $senary;
+				text-decoration: none;
+				background-color: $quinary;
+			}
+
+			@include breakpoint(sm) {
+				@include font-size(18px, 18px);
 			}
 		}
 	}
 
 	&__icon {
+		display: flex;
+
 		&:before {
-			content: '<';
+			@include icon;
+			content: $icon-arrow-left;
 		}
 
 		&--next {
 			&:before {
-				content: '>';
+				content: $icon-arrow-right;
 			}
 		}
 	}

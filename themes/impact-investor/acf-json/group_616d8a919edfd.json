@@ -49,8 +49,8 @@
         },
         {
             "key": "field_616d8a91a3aef",
-            "label": "Allow this block to automatically fill",
-            "name": "is_fill_enabled",
+            "label": "Disallow this block to automatically fill",
+            "name": "is_fill_disabled",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -77,7 +77,7 @@
                 [
                     {
                         "field": "field_616d8a91a3aef",
-                        "operator": "==",
+                        "operator": "!=",
                         "value": "1"
                     }
                 ]
@@ -114,5 +114,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1634634053
+    "modified": 1636387461
 }

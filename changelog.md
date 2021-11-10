@@ -1,6 +1,18 @@
 # Changelog
 All notable changes for Impact Investor will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## November 10, 2021
+### Changed
+- Breakpoints refactor
+
+## November 8, 2021
+### Added
+- `hover-focus-style` mixin to encapsulate focus and hover styling
+
+## November 4, 2021
+### Added
+- Adds `render_block` function again after it has been removed by accident
+
 ## October 18, 2021
 ### Fixed
 - ACF post_object output, only return Clarkson Object if output value is 'object'

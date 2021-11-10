@@ -1,10 +1,10 @@
-{% set title = data.title ? data.title : __('In short', 'impact-investor') %}
+{% set title = data.title|default(__('In short', 'impact-investor')) %}
 {% set content = data.content %}
 
 {% if content %}
 	<div class="align{{ align }}">
 		<div class="highlighted-content">
-			<div class="group">
+			<div class="group group--small">
 
 				{% if title %}
 					<div class="group__item">

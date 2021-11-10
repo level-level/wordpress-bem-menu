@@ -3,20 +3,40 @@
 	top: $admin-bar;
 	left: 0;
 	right: 0;
-	display: flex;
-	align-items: center;
-	background-color: $tertiary;
 	height: $header-height;
-	box-shadow: 0 2px 0.2px rgb(0 0 0 / 15%);
+	box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
 	z-index: 10;
+
+	&__top {
+		display: flex;
+		align-items: center;
+		background-color: $quaternary;
+		height: $header-height;
+
+		@include breakpoint(sm) {
+			background-color: $white;
+			height: $header-top-height;
+		}
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: center;
+		background-color: $tertiary;
+		height: $menu-height;
+	}
 
 	&__brand {
 		position: relative;
-		display: flex;
-		align-items: center;
-		background-color: $white;
-		height: $header-height;
-		padding: 0 10px;
+		max-width: 124px;
+		left: 50%;
+		transform: translateX(calc(-50% - #{$btn-menu-width*0.5}));
+
+		@include breakpoint(sm) {
+			max-width: none;
+			left: auto;
+			transform: none;
+		}
 	}
 }
 

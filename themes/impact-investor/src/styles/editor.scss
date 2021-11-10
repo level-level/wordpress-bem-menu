@@ -1,6 +1,8 @@
 // WP editor
 @import '_common/mixins';
+@import '_common/breakpoints';
 @import '_common/variables';
+@import '_common/images';
 @import '_common/icons/_style';
 @import '_common/fonts';
 @import '_common/colors';
@@ -18,11 +20,18 @@
 	@import 'components/buttons';
 	@import 'components/teasers/_teaser-post';
 	@import 'components/teasers/teaser-post-large';
+	@import 'components/teasers/teaser-post-wide';
+	@import 'components/teasers/teaser-post-small';
+	@import 'components/teasers/teaser-post-inline';
 	@import 'components/badge';
-	@import 'components/social-share-dropdown';
+	@import 'components/social-share';
 	@import 'components/tabs';
 	@import 'components/list-item';
 	@import 'components/highlighted-content';
+	@import 'components/advertisement';
+	@import 'components/newsletter';
+	@import 'components/author-location';
+	@import 'components/related-news';
 
 	// Layout
 	@import 'layout/container';

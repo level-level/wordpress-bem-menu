@@ -21,20 +21,12 @@ export default {
 				type: 'twitter',
 			},
 			{
-				title: 'Google Plus',
-				type: 'googleplus',
-			},
-			{
 				title: 'LinkedIn',
 				type: 'linkedin',
 			},
 			{
 				title: 'E-mail',
 				type: 'email',
-			},
-			{
-				title: 'WhatsApp',
-				type: 'whatsapp',
 			},
 		]
 	}

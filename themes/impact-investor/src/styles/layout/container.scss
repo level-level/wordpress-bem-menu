@@ -1,9 +1,9 @@
 .container {
-	padding: 0 $gutter;
+	padding: 0 $gutter*0.5;
 	margin: 0 auto;
 	width: 100%;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		max-width: $container;
 	}
 }

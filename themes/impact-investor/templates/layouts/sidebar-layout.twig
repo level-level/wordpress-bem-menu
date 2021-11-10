@@ -1,10 +1,24 @@
 {% include 'defaults/head.twig' %}
 
 <main class="main" id="main-content">
-	<div class="section">
+
+	{% if is_active_sidebar('widget-area-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-header-ad')|raw }}
+		</div>
+	{% endif %}
+
+	<div class="section section--no-top">
 		<div class="container">
 			<div class="layout-row">
-				<div class="layout-large">
+
+				{% if block('offset') is defined %}
+					<div class="layout-offset hidden-xs visible-lg">
+						{% block offset %}{% endblock %}
+					</div>
+				{% endif %}
+
+				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}
 						{% block content %}{% endblock %}

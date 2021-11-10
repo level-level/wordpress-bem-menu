@@ -1,0 +1,81 @@
+<div class="bio">
+	<div class="bio__inner">
+		<div class="group group--small">
+
+			{% if image %}
+				<div class="group__item">
+					<div class="bio__thumbnail">
+						{{ image|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if logo %}
+				<div class="group__item">
+					<div class="bio__logo">
+						{{ logo|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if title %}
+				<div class="group__item">
+					<div class="bio__title">
+						{{ title|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if subtitle %}
+				<div class="group__item">
+					<div class="bio__subtitle">
+						{{ subtitle|raw }}
+					</div>
+				</div>
+			{% endif %}
+
+			{% if excerpt %}
+				<div class="group__item">
+					{{ excerpt|raw }}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	{% if email or linkedin %}
+		<div class="bio__footer">
+			<div class="bio__inner">
+				<ul class="list-vertical-buttons">
+
+					{% if email %}
+						<li class="list-vertical-buttons__item">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('E-mail', 'impact-investor'),
+								url: 'mailto:' ~ email,
+								class: 'btn--primary btn--full',
+								is_external: false,
+								aria_label: __('E-mail, send %s an e-mail', 'impact-investor')|format(title),
+								icon: 'icon-email',
+								icon_left: true,
+							} %}
+						</li>
+					{% endif %}
+
+					{% if linkedin %}
+						<li class="list-vertical-buttons__item">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: __('LinkedIn', 'impact-investor'),
+								url: linkedin,
+								class: 'btn--primary btn--full',
+								is_external: false,
+								aria_label: __('LinkedIn, visit %s\'s LinkedIn profile', 'impact-investor')|format(title),
+								icon: 'icon-linkedin',
+								icon_left: true,
+							} %}
+						</li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+</div>

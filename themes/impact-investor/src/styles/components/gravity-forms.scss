@@ -32,7 +32,7 @@
 		display: flex;
 		flex-direction: column;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			flex-direction: row;
 			flex-wrap: nowrap;
 
@@ -49,13 +49,13 @@
 		& > * + * {
 			margin-top: $default-padding*0.5;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				margin-top: 0;
 			}
 		}
 
 		&.ginput_container_address {
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				flex-wrap: wrap;
 				justify-content: space-between;
 
@@ -68,14 +68,14 @@
 				&.ginput_full + .ginput_full {
 					margin-top: $default-padding*0.5;
 
-					@include breakpoint-sm {
+					@include breakpoint(sm) {
 						margin-top: $default-padding;
 					}
 				}
 
 				&.ginput_left,
 				&.ginput_right {
-					@include breakpoint-sm {
+					@include breakpoint(sm) {
 						width: calc(50% - #{$default-padding*0.5});
 						margin-top: $default-padding;
 					}
@@ -99,7 +99,7 @@
 		flex-direction: column;
 
 		& > * {
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				align-self: flex-end;
 			}
 		}
@@ -108,13 +108,13 @@
 		& > * + * {
 			margin-top: $default-padding*0.5;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				margin-top: 0;
 				margin-left: $default-padding;
 			}
 		}
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			flex-direction: row;
 			flex-wrap: nowrap;
 		}

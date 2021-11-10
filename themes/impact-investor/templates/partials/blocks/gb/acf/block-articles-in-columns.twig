@@ -1,0 +1,59 @@
+{% set objects = block.get_posts() %}
+{% set columns = data.columns|default('2') %}
+
+{# Based on column amount (2 or 3) use a different teaser and column width #}
+{% if columns is same as('2') %}
+	{% set class = 'col-sm-6' %}
+	{% set teaser = 'styleguide/components/teasers/teaser-post-medium.twig' %}
+	{% set row = 'row--spacing' %}
+	{% set image_size = 'teaser_medium' %}
+{% elseif columns is same as('3') %}
+	{% set class = 'col-lg-4' %}
+	{% set teaser = 'styleguide/components/teasers/teaser-post-small.twig' %}
+	{% set row = 'row--sm-spacing' %}
+	{% set image_size = 'medium' %}
+{% endif %}
+
+{% if objects %}
+	<div class="align{{ align }}">
+
+		<ul class="row {{ row }}">
+			{% set date_format = get_option('date_format') %}
+
+			{% for object in objects %}
+
+				{% set image_id = object.get_thumbnail_id() %}
+				{% set terms = object.get_terms('category') %}
+				{% set authors = object.get_authors() %}
+
+				{# twigcs use-var teaser_size, date_format, image_id, terms, authors #}
+
+				<li class="col-12 {{ class }}">
+					{% include teaser with {
+						image: image_id ? wp_get_attachment_image(image_id, image_size),
+						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+						title: object.get_title(),
+						url: object.get_permalink(),
+						excerpt: object.get_excerpt(),
+						date: object.get_date_i18n(date_format),
+						date_full: object.get_date_i18n('F j Y'),
+						datetime: object.get_date_i18n('Y-m-d'),
+						terms: terms ? terms|map(term => {
+							name: term.get_name(),
+						}),
+						authors: authors ? authors|map(author => {
+							name: author.get_title(),
+							location: author.get_location(),
+							url: author.get_permalink(),
+						}),
+						comments: object.get_comments_count(),
+					} %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Articles']
+	} %}
+{% endif %}

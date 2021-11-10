@@ -36,31 +36,6 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-column-articles',
-				'title'           => _x( 'Two column articles', 'Block', 'impact-investor' ),
-				'description'     => _x( 'Displays a list of articles in a two column layout based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'            => 'columns',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'articles', 'column', 'post' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 2,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
 				'name'            => 'block-featured-article',
 				'title'           => _x( 'Featured article', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a single featured article.', 'Block', 'impact-investor' ),
@@ -75,9 +50,9 @@ class ACFBlocks {
 				'example'         => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 1,
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 1,
 						),
 					),
 				),
@@ -86,12 +61,12 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
-				'name'            => 'block-horizontal-articles',
-				'title'           => _x( 'Horizontal articles', 'Block', 'impact-investor' ),
-				'description'     => _x( 'Displays a list of articles in a horizontal layout based on multiple options.', 'Block', 'impact-investor' ),
-				'icon'            => 'align-right',
+				'name'            => 'block-articles-in-columns',
+				'title'           => _x( 'Articles in columns', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'columns',
 				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'articles', 'horizontal', 'post' ),
+				'keywords'        => array( 'posts', 'articles', 'column', 'two', '2', 'three', '3', 'post' ),
 				'supports'        => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -100,9 +75,34 @@ class ACFBlocks {
 				'example'         => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'is_fill_enabled' => true,
-							'amount'          => 1,
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-related-articles',
+				'title'           => _x( 'Related articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of related articles based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'format-aside',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'related', 'articles', 'news', 'posts' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => false,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
 						),
 					),
 				),
@@ -127,6 +127,148 @@ class ACFBlocks {
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
 							'content'         => '<p>Example feature content</p>',
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-advertisement',
+				'title'           => _x( 'Advertisement', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays an advertisement.', 'Block', 'impact-investor' ),
+				'icon'            => 'schedule',
+				'align'           => 'full', // full, wide, left, center, right
+				'keywords'        => array( 'advertisement', 'ad' ),
+				'supports'        => array(
+					'align'    => array( 'full' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-social-share',
+				'title'           => _x( 'Social share', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of social share buttons.', 'Block', 'impact-investor' ),
+				'icon'            => 'share',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail' ),
+				'post_types'      => array( 'post' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => false,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'widget-vacancies',
+				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
+				'icon'            => 'money',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'vacancies', 'jobs' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
+							'is_fill_disabled' => false,
+							'amount'           => 2,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'widget-latest-and-most-read-posts',
+				'title'           => _x( 'Latest and most read posts', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'impact-investor' ),
+				'icon'            => 'star-filled',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'posts', 'latest', 'most read', 'popular' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'widget-newsletter',
+				'title'           => _x( 'Newsletter', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'impact-investor' ),
+				'icon'            => 'email-alt',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'newsletter', 'subscribe', 'signup', 'call to action', 'cta' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'widget-latest-articles',
+				'title'           => _x( 'Latest articles', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'impact-investor' ),
+				'icon'            => 'list-view',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'latest', 'posts', 'articles' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+							'amount'          => 4,
 						),
 					),
 				),
@@ -157,8 +299,12 @@ class ACFBlocks {
 
 	/**
 	 * @psalm-suppress InvalidStringClass
+	 * @param array  $block
+	 * @param string $content
+	 * @param mixed  $is_preview (WP_Block $block or with acf it is a bool $is_preview)
+	 * @param mixed  $post_id (Post id or can also be a string in case of a Widget)
 	 */
-	public function block_render_callback( array $block, string $content, bool $is_preview = false, int $post_id = 0 ): void {
+	public function block_render_callback( $block, $content, $is_preview = false, $post_id = 0 ): void {
 		$block_object = WP_Block_Type_Registry::get_instance()->get_registered( $block['name'] );
 		if ( ! $block_object instanceof WP_Block_Type ) {
 			return;

@@ -26,9 +26,7 @@
 			const config = $( this ).data( 'config' ) || {};
 			const type = config.type;
 			const text = config.shareText || i18n.socialShare;
-			const body = `${ config.shareUrl }`;
-			const emailSubject = `'${ config.shareTitle }' | ${ i18n.emailSubject }`;
-			const emailBody = `${ i18n.socialShare } ${ config.shareUrl }`;
+			const body = `${ window.location.href }&text=${ text }`;
 
 			const location = {
 				twitter:    `${ platforms.twitter }${ body }`,
@@ -39,7 +37,7 @@
 			};
 
 			if ( type === 'email' ) {
-				$( this ).attr( 'href', `mailto:?subject=${ emailSubject }&body=${ emailBody }` );
+				$( this ).attr( 'href', `mailto:?subject=${ text }&body=${ window.location.href }` );
 			} else if ( typeof location[ type ] !== 'undefined' ) {
 
 				const width = 550;

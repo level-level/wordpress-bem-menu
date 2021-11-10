@@ -8,6 +8,10 @@ use ImpactInvestor\Comments\CommentWalker;
 class post extends base_object {
 	public static $type = 'post';
 
+	public function get_authors(): array {
+		return get_field( 'authors', $this->get_id() );
+	}
+
 	public function has_comments_enabled(): bool {
 		return comments_open( $this->get_id() );
 	}
