@@ -2,7 +2,7 @@
 
 namespace ImpactInvestor\Connectors\Selligent;
 
-use Clarkson_Core\WordPress_Object\post;
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
 
 class Client {
 	/**
@@ -36,7 +36,7 @@ class Client {
 	/**
 	 * Registers a post to Selligent.
 	 */
-	public function register_post( post $post ): array {
+	public function register_post( Clarkson_Object $post ): array {
 		return $this->post( $this->get_list_path( self::LIST_ID_ARTICLE ), DataGenerator::get_article_data( $post ) );
 	}
 
@@ -78,7 +78,7 @@ class Client {
 	/**
 	 * @param string $url  Endpoint to POST to, BASE_URL and BASE_PATH will be
 	 * prefixed to this value.
-	 * @param string $data Associative array of data that is sent in the body.
+	 * @param array $data Associative array of data that is sent in the body.
 	 */
 	public function post( string $path, array $data ): array {
 		$data = wp_remote_post(

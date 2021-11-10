@@ -2,6 +2,7 @@
 
 namespace ImpactInvestor\CLI;
 
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\post;
 use ImpactInvestor\Connectors\Selligent\Client;
 
@@ -32,8 +33,9 @@ class Selligent {
 		$this->handle_default_flags( $args_assoc );
 
 		$client   = new Client();
-		$post_ids = array_filter( $args, 'is_numeric' );
+		$post_ids = $this->filter_post_ids( $args );
 
+		/** @var Clarkson_Object[] */
 		$posts = array();
 		foreach ( $post_ids as $post_id ) {
 			$post = post::get( $post_id );
@@ -73,7 +75,7 @@ class Selligent {
 		$this->handle_default_flags( $args_assoc );
 
 		$client   = new Client();
-		$post_ids = array_filter( $args, 'is_numeric' );
+		$post_ids = $this->filter_post_ids( $args );
 
 		if ( empty( $post_ids ) ) {
 			\WP_CLI::error( 'No valid posts were given' );
@@ -84,7 +86,7 @@ class Selligent {
 	}
 
 	/**
-	 * Sends the last registerd newsletter to all recipients.
+	 * Sends the last registered newsletter to all recipients.
 	 *
 	 * ## Options
 	 *
@@ -112,7 +114,12 @@ class Selligent {
 	protected function handle_default_flags( array $args_assoc ): void {
 		if ( \WP_CLI\Utils\get_flag_value( $args_assoc, 'preview', false ) ) {
 			add_filter(
-				'pre_http_request', function( $false, $args, $url ) {
+				'pre_http_request',
+				/**
+				 * @param mixed $false Can be anything, if this value is not
+				 * false, it will prevent the request from running.
+				 */
+				function( $false, array $args, string $url ) {
 					return $this->preview_request( $false, $args, $url );
 				}, 10, 3
 			);
@@ -136,7 +143,8 @@ class Selligent {
 		\WP_CLI::line( $url );
 		\WP_CLI::line( '' );
 		\WP_CLI::line( 'Request:' );
-		\WP_CLI::line( wp_json_encode( $args, JSON_PRETTY_PRINT ) );
+		$json = wp_json_encode( $args, JSON_PRETTY_PRINT );
+		\WP_CLI::line( $json ?: 'Error encoding JSON string' );
 		\WP_CLI::line( '' );
 
 		$pre = array(
@@ -153,5 +161,22 @@ class Selligent {
 	protected function echo_response( array $data ): void {
 		\WP_CLI::line( sprintf( 'Response: %d %s', $data['response']['code'], $data['response']['message'] ) );
 		\WP_CLI::line( $data['body'] );
+	}
+
+	/**
+	 * Filters out al non-integers and 0 values.
+	 *
+	 * @return int[]
+	 */
+	protected function filter_post_ids( array $args ): array {
+		$post_ids = array();
+
+		foreach ( $args as $arg ) {
+			if ( (int) $arg !== 0 ) {
+				$post_ids[] = (int) $arg;
+			}
+		}
+
+		return $post_ids;
 	}
 }

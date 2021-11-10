@@ -2,13 +2,13 @@
 
 namespace ImpactInvestor\Connectors\Selligent;
 
-use Clarkson_Core\WordPress_Object\post;
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
 
 class DataGenerator {
 	/**
 	 * Returns an array with the required values to send to Selligent.
 	 */
-	public static function get_article_data( post $post ): array {
+	public static function get_article_data( Clarkson_Object $post ): array {
 		return array(
 			'publication'  => Client::PUBLICATION,
 			'articleId'    => $post->get_id(),
@@ -30,7 +30,7 @@ class DataGenerator {
 		$posts = array();
 
 		foreach ( $post_ids as $key => $post_id ) {
-			$article_key           = sprintf( 'article_%d', $key + 1 );
+			$article_key           = sprintf( 'article_%d', (int) $key + 1 );
 			$posts[ $article_key ] = $post_id;
 		}
 
