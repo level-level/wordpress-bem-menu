@@ -6,13 +6,17 @@
 	color: $white;
 	height: 100%;
 
-	&__header {
-		display: flex;
-		align-items: center;
-		height: $header-height;
+	&,
+	body.user-is-tabbing & {
+		* {
+			&:focus {
+				@include focus-style($white);
+			}
+		}
 	}
 
 	&__inner {
+		margin-top: $header-height;
 		max-height: calc(100vh - ((#{$header-height} * 2) + 10px));
 		overflow-y: auto;
 		overflow-x: hidden;

@@ -15,16 +15,6 @@ import { MrToggle } from '@level-level/recyclops';
 
 			const toggle = new MrToggle( $element, options );
 
-			// Set initial menu button to disable when menu is open
-			$element.on( 'openMrToggle', () => {
-				$element.find( '.js-header-menu-open' ).prop( 'disabled', true );
-			} );
-
-			// Set initial menu button to enable when menu is close
-			$element.on( 'closeMrToggle', () => {
-				$element.find( '.js-header-menu-open' ).prop( 'disabled', false );
-			} );
-
 			$backdrop.on( 'click', () => {
 				toggle.closeAllToggles();
 			} );

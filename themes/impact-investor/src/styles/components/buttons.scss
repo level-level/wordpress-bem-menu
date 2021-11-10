@@ -163,7 +163,22 @@
 	}
 
 	&[aria-expanded='true'] {
+		z-index: 11;
 		color: $white;
+
+		&:focus {
+			@include focus-style($white);
+		}
+
+		.btn {
+			&__icon {
+				.icon {
+					&:before {
+						content: $icon-close;
+					}
+				}
+			}
+		}
 	}
 }
 

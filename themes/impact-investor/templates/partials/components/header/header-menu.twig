@@ -8,12 +8,14 @@
 		"trigger": ".{{ trigger }}",
 		"target": ".{{ target }}",
 		"disableScroll": true,
-		"customScrollableElement": ".{{ scrollarea }}"
+		"customScrollableElement": ".{{ scrollarea }}",
+		"defaultButtonText": "{{ __('Menu', 'impact-investor') }}",
+		"closeButtonText": "{{ __('Close', 'impact-investor') }}"
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: __('Menu', 'impact-investor'),
 		aria_expanded_support: true,
-		class: 'btn--menu js-header-menu-open ' ~ trigger,
+		class: 'btn--menu ' ~ trigger,
 		aria_label: __('Open menu', 'impact-investor'),
 		aria_expanded_text: __('Close menu', 'impact-investor'),
 		aria_collapsed_text: __('Open menu', 'impact-investor'),
@@ -22,18 +24,6 @@
 	} %}
 	<div class="header-menu__dropdown {{ target }}" aria-hidden="true">
 		<div class="menu-dropdown">
-			<div class="menu-dropdown__header">
-				<div class="container">
-					{% include 'styleguide/components/buttons/button-element.twig' with {
-						text: __('Close', 'impact-investor'),
-						aria_expanded_support: true,
-						class: 'btn--menu ' ~ trigger,
-						aria_label: __('Close menu', 'impact-investor'),
-						icon: 'icon-close',
-						icon_left: true,
-					} %}
-				</div>
-			</div>
 			<div class="menu-dropdown__inner {{ scrollarea }}">
 				<div class="menu-dropdown__search">
 					<div class="container">
