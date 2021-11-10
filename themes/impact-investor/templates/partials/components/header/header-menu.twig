@@ -1,28 +1,64 @@
+{% set trigger = uniqid('js-header-menu-') %}
+{% set target = uniqid('header-menu__dropdown-') %}
+{% set scrollarea = uniqid('header-menu__inner-') %}
 <div
 	class="header-menu hidden-sm"
-	data-module="toggle"
+	data-module="headerMenu"
 	data-config='{
-		"trigger": ".js-header-menu",
-		"target": ".header-menu__dropdown",
-		"disableScroll": true
+		"trigger": ".{{ trigger }}",
+		"target": ".{{ target }}",
+		"disableScroll": true,
+		"customScrollableElement": ".{{ scrollarea }}",
+		"defaultButtonText": "{{ __('Menu', 'impact-investor') }}",
+		"closeButtonText": "{{ __('Close', 'impact-investor') }}"
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: __('Menu', 'impact-investor'),
 		aria_expanded_support: true,
-		class: 'btn--menu js-header-menu',
+		class: 'btn--menu ' ~ trigger,
 		aria_label: __('Open menu', 'impact-investor'),
 		aria_expanded_text: __('Close menu', 'impact-investor'),
 		aria_collapsed_text: __('Open menu', 'impact-investor'),
-		icon: '',
-		icon_left: false,
+		icon: 'icon-menu',
+		icon_left: true,
 	} %}
-	<div class="header-menu__dropdown" aria-hidden="true">
-		<div class="container">
-			<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
-				{{ bem_menu('primary_navigation', 'primary-nav') }}
-			</nav>
+	<div class="header-menu__dropdown {{ target }}" aria-hidden="true">
+		<div class="menu-dropdown">
+			<div class="menu-dropdown__inner {{ scrollarea }}">
+				<div class="menu-dropdown__search">
+					<div class="container">
+						{% include 'partials/components/search-header.twig' %}
+					</div>
+				</div>
+				<div class="menu-dropdown__body">
+					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+						{{ bem_menu('primary_navigation', 'primary-nav') }}
+					</nav>
+				</div>
+			</div>
+
+			{% set newsletter = options.newsletter %}
+			<div class="menu-dropdown__footer">
+				<ul class="list-dropdown-buttons">
+
+					{% if newsletter.button.title and newsletter.button.url %}
+						<li class="list-dropdown-buttons__item">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: newsletter.button.title,
+								url: newsletter.button.url,
+								class: '',
+								is_external: newsletter.button.target ? true,
+								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+								icon: 'icon-email',
+								icon_left: true,
+							} %}
+						</li>
+					{% endif %}
+				</ul>
+			</div>
 		</div>
 	</div>
+	<div class="header-menu__backdrop"></div>
 </div>
 
 <div class="hidden-xs visible-sm">

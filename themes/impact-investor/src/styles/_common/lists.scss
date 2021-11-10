@@ -97,9 +97,12 @@
 
 .list-styled-ordered {
 	@include list-unstyled;
-	@include font-normal;
-	@include font-size(17px, 22px);
+	@include font-size(16px, 24px);
 	counter-reset: counter;
+
+	@include breakpoint-sm {
+		@include font-size(18px, 24px);
+	}
 
 	& > * + * {
 		border-top: 1px solid $border;
@@ -126,8 +129,11 @@
 
 .list-bordered {
 	@include list-unstyled;
-	@include font-normal;
-	@include font-size(17px, 22px);
+	@include font-size(16px, 24px);
+
+	@include breakpoint-sm {
+		@include font-size(18px, 24px);
+	}
 
 	& > * + * {
 		border-top: 1px solid $border;
@@ -193,6 +199,60 @@
 			& > * {
 				border: 0;
 			}
+		}
+	}
+}
+
+.list-dropdown-buttons {
+	@include list-unstyled;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	height: 100%;
+
+	&__item {
+		width: 100%;
+		border-right: 1px solid $tertiary;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&:last-child {
+			border-right: 0;
+		}
+
+		& > .btn {
+			@include font-size(20px);
+			width: 100%;
+			justify-content: center;
+			height: 100%;
+			color: $white;
+		}
+	}
+}
+
+.list-header-buttons {
+	@include list-horizontal(0);
+	align-items: center;
+
+	&__item {
+		display: flex;
+		border-left: 1px solid $quinary;
+		height: $header-top-height;
+		justify-content: center;
+
+		& > * {
+			display: flex;
+			align-items: center;
+			height: 100%;
+
+			.btn {
+				height: 100%;
+			}
+		}
+
+		&:last-child {
+			border-right: 1px solid $quinary;
 		}
 	}
 }

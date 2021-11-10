@@ -12,6 +12,16 @@
 		display: block;
 	}
 
+	&__item--open {
+		.primary-nav__link {
+			background-color: $senary;
+
+			@include breakpoint-sm {
+				background-color: transparent;
+			}
+		}
+	}
+
 	&__item--parent {
 		position: relative;
 
@@ -40,11 +50,12 @@
 
 	&__item--active {
 		.primary-nav__link {
-			color: $primary;
+			color: $white;
+			text-decoration: underline;
 
 			@include breakpoint-sm {
 				background-color: $septenary;
-				color: $white;
+				text-decoration: none;
 			}
 		}
 
@@ -61,13 +72,12 @@
 
 	&__link {
 		@include font-bold;
-		@include font-size(16px);
+		@include font-size(20px);
 		display: flex;
 		align-items: center;
-		padding: 10px 0;
-		color: $senary;
+		padding: 10px $gutter*0.5;
+		color: $white;
 		text-decoration: none;
-		transition: background-color $time, color $time;
 
 		@include hover-focus-style {
 			background-color: $septenary;
@@ -79,18 +89,20 @@
 			padding: 0 20px;
 			border-bottom: 0;
 			height: $menu-height;
+			color: $senary;
+			transition: background-color $time, color $time;
 		}
 	}
 
 	&__arrow {
 		position: absolute;
 		top: 0;
-		right: -#{$default-padding*0.5};
+		right: 0;
 		background-color: transparent;
 		line-height: inherit;
 		padding: 0 $default-padding*0.5;
-		height: $menu-height;
-		color: $senary;
+		height: 44px;
+		color: $white;
 		border: 0;
 		transform: scaleY(1);
 		transition: $time;
@@ -103,6 +115,8 @@
 		@include breakpoint-sm {
 			padding: 0;
 			right: 15px;
+			color: $senary;
+			height: $menu-height;
 		}
 	}
 }
@@ -111,7 +125,9 @@
 	@include list-unstyled;
 	position: relative;
 	display: none;
-	padding-left: $default-padding*0.5;
+	background-color: $senary;
+	padding: $default-padding*0.5;
+	padding-top: 0;
 
 	&[aria-hidden='false'] {
 		display: block;
@@ -124,9 +140,10 @@
 	&__link {
 		@include font-normal;
 		text-decoration: none;
+		color: $white;
 
 		@include hover-focus-style {
-			color: $senary;
+			color: $white;
 			text-decoration: underline;
 			background-color: transparent;
 		}
@@ -136,6 +153,10 @@
 			color: $senary;
 			height: auto;
 			padding: 0;
+
+			@include hover-focus-style {
+				color: $senary;
+			}
 		}
 	}
 

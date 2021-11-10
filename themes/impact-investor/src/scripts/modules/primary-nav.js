@@ -87,6 +87,7 @@ import { ResponsiveHelper } from '@level-level/recyclops';
 		function closeAll() {
 			$element.find( `.${ classNames.sub }` ).attr( 'aria-hidden', true );
 			$element.find( `.${ classNames.arrow }` ).attr( 'aria-expanded', false );
+			$element.find( `.${ classNames.parent }` ).removeClass( `${ mainClass }__item--open` );
 		}
 
 		/**
@@ -99,11 +100,13 @@ import { ResponsiveHelper } from '@level-level/recyclops';
 			if ( $dropdownButton.attr( 'aria-expanded' ) === 'false' ) {
 				$dropdownButton.attr( 'aria-expanded', true );
 				$dropdownButton.next().attr( 'aria-hidden', false );
+				$dropdownButton.closest( `.${ classNames.parent }` ).addClass( `${ mainClass }__item--open` );
 
 			// Hide dropdown
 			} else {
 				$dropdownButton.attr( 'aria-expanded', false );
 				$dropdownButton.next().attr( 'aria-hidden', true );
+				$dropdownButton.closest( `.${ classNames.parent }` ).removeClass( `${ mainClass }__item--open` );
 			}
 		}
 

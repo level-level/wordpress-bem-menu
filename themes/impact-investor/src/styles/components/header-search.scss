@@ -8,32 +8,11 @@
 		right: 0;
 		padding: 0;
 		height: calc(#{$header-height} - #{$menu-height});
-		background-color: $black;
+		background-color: $senary;
 		z-index: 2;
 
 		&[aria-hidden='true'] {
 			display: none;
-		}
-
-		.search-component {
-			input[type='search'] {
-				background-color: transparent;
-				color: $white;
-				border: 0;
-
-				&:focus {
-					@include focus-style($white);
-				}
-
-				@include placeholder {
-					color: $white;
-					opacity: 0.6;
-				}
-			}
-		}
-
-		.btn--search {
-			color: $white;
 		}
 
 		&,

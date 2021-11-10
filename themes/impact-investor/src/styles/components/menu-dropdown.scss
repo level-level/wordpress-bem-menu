@@ -1,0 +1,49 @@
+.menu-dropdown {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	background-color: $septenary;
+	color: $white;
+	height: 100%;
+
+	&,
+	body.user-is-tabbing & {
+		* {
+			&:focus {
+				@include focus-style($white);
+			}
+		}
+	}
+
+	&__inner {
+		margin-top: $header-height;
+		max-height: calc(100vh - ((#{$header-height} * 2) + 10px));
+		overflow-y: auto;
+		overflow-x: hidden;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	&__search {
+		margin: $default-padding*0.5 0;
+
+		.search-component {
+			.btn--search {
+				.btn {
+					&__icon {
+						color: $white;
+					}
+				}
+			}
+		}
+	}
+
+	&__body {
+		padding-bottom: 2px;
+	}
+
+	&__footer {
+		margin-top: auto;
+		border-top: 1px solid $tertiary;
+		height: calc(#{$header-height} + 10px);
+	}
+}

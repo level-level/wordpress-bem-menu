@@ -10,11 +10,12 @@
 	&__top {
 		display: flex;
 		align-items: center;
-		background-color: $white;
-		height: calc(#{$header-height} * 0.5);
+		background-color: $tertiary;
+		height: $header-height;
 
 		@include breakpoint-sm {
-			height: 68px;
+			background-color: $white;
+			height: $header-top-height;
 		}
 	}
 
@@ -27,6 +28,15 @@
 
 	&__brand {
 		position: relative;
+		max-width: 124px;
+		left: 50%;
+		transform: translateX(calc(-50% - #{$btn-menu-width*0.5}));
+
+		@include breakpoint-sm {
+			max-width: none;
+			left: auto;
+			transform: none;
+		}
 	}
 }
 

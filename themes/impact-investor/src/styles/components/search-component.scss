@@ -1,0 +1,36 @@
+.search-component {
+	position: relative;
+
+	&__button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+	}
+
+	&--inline {
+		input[type='search'] {
+			background-color: $senary;
+			color: $white;
+			border: 0;
+			padding-right: $input-height;
+
+			&:focus {
+				@include focus-style($white);
+			}
+
+			@include placeholder {
+				color: $quaternary;
+
+				@include breakpoint-sm {
+					color: $black;
+				}
+			}
+
+			@include breakpoint-sm {
+				background-color: $white;
+				color: $black;
+			}
+		}
+	}
+}

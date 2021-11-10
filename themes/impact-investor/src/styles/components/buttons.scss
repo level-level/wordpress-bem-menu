@@ -128,21 +128,94 @@
 	align-items: center;
 }
 
-@mixin btn--search {
+@mixin btn--header {
 	@include font-normal;
-	border-radius: 3px;
-	border-color: $black;
 
 	.btn {
 		&__icon {
+			@include font-size(20px);
 			color: $primary;
 		}
 	}
 
+	@include hover-focus-style {
+		background-color: $quaternary;
+	}
+}
+
+@mixin btn--menu {
+	@include font-size(22px);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+	border: 0;
+	color: $senary;
+	min-width: $btn-menu-width;
+
+	.btn {
+		&__text {
+			@include font-size(12px);
+			text-transform: lowercase;
+			padding-left: 0;
+		}
+	}
+
 	&[aria-expanded='true'] {
-		.icon {
-			&:before {
-				content: $icon-close;
+		z-index: 11;
+		color: $white;
+
+		&:focus {
+			@include focus-style($white);
+		}
+
+		.btn {
+			&__icon {
+				.icon {
+					&:before {
+						content: $icon-close;
+					}
+				}
+			}
+		}
+	}
+}
+
+@mixin btn--search {
+	@include font-normal;
+	min-height: $input-height;
+	min-width: $input-height;
+	border: 0;
+
+	.btn {
+		&__icon {
+			@include font-size(20px);
+		}
+
+		&__text {
+			display: none;
+
+			@include breakpoint-sm {
+				display: block;
+			}
+		}
+	}
+
+	&[aria-expanded='true'] {
+		padding: 10px 11px;
+
+		.btn {
+			&__icon {
+				@include font-size(24px);
+
+				.icon {
+					color: $white;
+
+					&:before {
+						content: $icon-close;
+					}
+				}
 			}
 		}
 	}
@@ -184,6 +257,14 @@ input[type='button'] {
 
 	&--share {
 		@include btn--share;
+	}
+
+	&--header {
+		@include btn--header;
+	}
+
+	&--menu {
+		@include btn--menu;
 	}
 
 	&--search {

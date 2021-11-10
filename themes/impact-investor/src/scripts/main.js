@@ -1,5 +1,5 @@
 import './modules/primary-nav.js';
-import './modules/toggle.js';
+import './modules/header-menu.js';
 import './modules/header-search.js';
 import './modules/skiplink.js';
 import './modules/example-module.js';
