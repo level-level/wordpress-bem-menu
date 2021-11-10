@@ -182,6 +182,52 @@ class ACFBlocks {
 
 		acf_register_block_type(
 			array(
+				'name'            => 'block-team',
+				'title'           => _x( 'Team', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of team members.', 'Block', 'impact-investor' ),
+				'icon'            => 'groups',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'team', 'editors', 'members' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
+				'name'            => 'block-partners',
+				'title'           => _x( 'Partners', 'Block', 'impact-investor' ),
+				'description'     => _x( 'Displays a list of partners.', 'Block', 'impact-investor' ),
+				'icon'            => 'image-filter',
+				'align'           => 'center', // full, wide, left, center, right
+				'keywords'        => array( 'partners' ),
+				'supports'        => array(
+					'align'    => array( 'center' ),
+					'multiple' => true,
+				),
+				'render_callback' => array( $this, 'block_render_callback' ),
+				'example'         => array(
+					'attributes' => array(
+						'data' => array(
+							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+						),
+					),
+				),
+			)
+		);
+
+		acf_register_block_type(
+			array(
 				'name'            => 'widget-vacancies',
 				'title'           => _x( 'Vacancies/Jobs', 'Block', 'impact-investor' ),
 				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'impact-investor' ),
