@@ -6,7 +6,7 @@
 	> *:not(.alignwide):not(.alignfull) {
 		max-width: $container;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			max-width: $content-width;
 		}
 	}
@@ -31,11 +31,11 @@
 			@include font-heading-normal;
 			@include font-size(20px, 28px, true);
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				@include font-size(22px, 30px, true);
 			}
 
-			@include breakpoint-lg {
+			@include breakpoint(lg) {
 				@include font-size(24px, 34px, true);
 			}
 		}
@@ -45,7 +45,7 @@
 		color: $primary;
 		hyphens: auto;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			hyphens: none;
 		}
 

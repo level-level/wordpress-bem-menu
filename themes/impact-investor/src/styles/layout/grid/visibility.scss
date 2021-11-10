@@ -2,38 +2,16 @@
 	display: none;
 }
 
-.hidden-sm {
-	@include breakpoint-sm {
-		display: none;
+@each $state in $states {
+	.hidden-#{$state} {
+		@include breakpoint($state) {
+			display: none;
+		}
 	}
-}
 
-.visible-sm {
-	@include breakpoint-sm {
-		display: block;
-	}
-}
-
-.hidden-md {
-	@include breakpoint-md {
-		display: none;
-	}
-}
-
-.visible-md {
-	@include breakpoint-md {
-		display: block;
-	}
-}
-
-.hidden-lg {
-	@include breakpoint-lg {
-		display: none;
-	}
-}
-
-.visible-lg {
-	@include breakpoint-lg {
-		display: block;
+	.visible-#{$state} {
+		@include breakpoint($state) {
+			display: block;
+		}
 	}
 }

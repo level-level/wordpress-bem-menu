@@ -2,7 +2,7 @@
 	position: relative;
 	margin-bottom: $default-padding;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		margin-bottom: $default-padding*2;
 	}
 
@@ -10,7 +10,7 @@
 	&__terms {
 		margin-bottom: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-bottom: $default-padding*1.5;
 		}
 	}

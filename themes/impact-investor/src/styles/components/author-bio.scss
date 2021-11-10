@@ -4,14 +4,14 @@
 	position: relative;
 	background-color: $quaternary;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(17px, 22px);
 	}
 
 	&__inner {
 		padding: $default-padding*0.5;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: calc(#{$default-padding*0.5} + 3px);
 		}
 	}
@@ -32,7 +32,7 @@
 		@include font-size(16px, 24px);
 		color: $primary;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px, 24px);
 		}
 	}

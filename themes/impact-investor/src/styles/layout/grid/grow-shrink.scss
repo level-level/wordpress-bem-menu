@@ -16,42 +16,14 @@
 	@each $state in $states {
 		@for $i from 0 through 1 {
 			&--#{$state}-grow-#{$i} {
-				@if $state == 'sm' {
-					@include breakpoint-sm {
-						flex-grow: #{$i};
-					}
-				}
-
-				@if $state == 'md' {
-					@include breakpoint-md {
-						flex-grow: #{$i};
-					}
-				}
-
-				@if $state == 'lg' {
-					@include breakpoint-lg {
-						flex-grow: #{$i};
-					}
+				@include breakpoint($state) {
+					flex-grow: #{$i};
 				}
 			}
 
 			&--#{$state}-shrink-#{$i} {
-				@if $state == 'sm' {
-					@include breakpoint-sm {
-						flex-shrink: #{$i};
-					}
-				}
-
-				@if $state == 'md' {
-					@include breakpoint-md {
-						flex-shrink: #{$i};
-					}
-				}
-
-				@if $state == 'lg' {
-					@include breakpoint-lg {
-						flex-shrink: #{$i};
-					}
+				@include breakpoint($state) {
+					flex-shrink: #{$i};
 				}
 			}
 		}

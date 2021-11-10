@@ -4,7 +4,7 @@
 	display: flex;
 	flex-direction: column;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		flex-direction: row;
 	}
 
@@ -16,7 +16,7 @@
 		.primary-nav__link {
 			background-color: $senary;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				background-color: transparent;
 			}
 		}
@@ -53,7 +53,7 @@
 			color: $white;
 			text-decoration: underline;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				background-color: $septenary;
 				text-decoration: none;
 			}
@@ -84,7 +84,7 @@
 			color: $white;
 		}
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px);
 			padding: 0 20px;
 			border-bottom: 0;
@@ -112,7 +112,7 @@
 			color: $white;
 		}
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding: 0;
 			right: 15px;
 			color: $senary;
@@ -148,7 +148,7 @@
 			background-color: transparent;
 		}
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(18px);
 			color: $senary;
 			height: auto;
@@ -160,7 +160,7 @@
 		}
 	}
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		position: absolute;
 		top: $menu-height;
 		left: 0;

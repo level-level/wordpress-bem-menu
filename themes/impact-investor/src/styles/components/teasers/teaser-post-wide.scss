@@ -2,7 +2,7 @@
 	&--wide {
 		border-width: 1px;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			border-width: 2px;
 		}
 
@@ -10,7 +10,7 @@
 			&__title {
 				@include font-size(18px, 24px);
 
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include font-size(20px, 28px);
 				}
 			}
@@ -20,18 +20,18 @@
 			}
 
 			&__thumbnail {
-				@include breakpoint-sm {
+				@include breakpoint(sm) {
 					@include image-ratio(14,9);
 					width: 210px;
 				}
 
-				@include breakpoint-lg {
+				@include breakpoint(lg) {
 					@include image-ratio(14,9);
 					width: 260px;
 				}
 
 				img {
-					@include breakpoint-sm {
+					@include breakpoint(sm) {
 						position: absolute;
 						width: auto;
 						height: 100%;
@@ -41,7 +41,7 @@
 						max-width: none;
 					}
 
-					@include breakpoint-lg {
+					@include breakpoint(lg) {
 						@include center-element;
 						width: 100%;
 						height: auto;

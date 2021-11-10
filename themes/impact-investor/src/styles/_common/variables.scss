@@ -9,26 +9,26 @@ $gutter: 24px;
 	--menu-height: 50px;
 	--sidebar-width: 100%;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		--container: 720px;
 		--content-width: 720px;
 		--header-height: 120px;
 		--menu-height: 52px;
 	}
 
-	@include breakpoint-md {
+	@include breakpoint(md) {
 		--container: 960px;
 		--content-width: 895px;
 		--sidebar-width: 300px;
 	}
 
-	@include breakpoint-lg {
+	@include breakpoint(lg) {
 		--container: 1170px;
 		--article-width: 690px;
 		--article-offset: 45px;
 	}
 
-	@include breakpoint-xl {
+	@include breakpoint(xl) {
 		--container: 1224px;
 	}
 }
@@ -45,7 +45,6 @@ $article-offset: var(--article-offset);
 $btn-menu-width: 31px;
 $header-top-height: 68px;
 
-$states: 'sm', 'md', 'lg', 'xl';
 $columns: 12;
 
 // The default padding variable
@@ -65,11 +64,11 @@ body.admin-bar {
 	--admin-bar: 46px;
 	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
 
-	@media (min-width: 601px) {
+	@include breakpoint(601px) {
 		--admin-bar-offset: var(--admin-bar);
 	}
 
-	@media (min-width: 783px) {
+	@include breakpoint(783px) {
 		--admin-bar: 32px;
 	}
 }

@@ -21,11 +21,11 @@ h1,
 	@include font-size(26px, 36px);
 	color: $senary;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(40px, 56px);
 	}
 
-	@include breakpoint-lg {
+	@include breakpoint(lg) {
 		@include font-size(48px, 62px);
 	}
 }
@@ -34,7 +34,7 @@ h2,
 .h2 {
 	@include font-size(24px, 32px);
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(28px, 40px);
 	}
 }
@@ -43,7 +43,7 @@ h3,
 .h3 {
 	@include font-size(22px, 32px);
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(24px, 32px);
 	}
 }
@@ -53,7 +53,7 @@ h4,
 	@include font-bold;
 	@include font-size(16px, 22px);
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(18px, 26px);
 	}
 }

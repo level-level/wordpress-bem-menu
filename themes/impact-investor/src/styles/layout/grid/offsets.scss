@@ -21,22 +21,8 @@
 		$offset: math.percentage(math.div($i, $columns));
 
 		.offset-#{$state}-#{$i} {
-			@if $state == 'sm' {
-				@include breakpoint-sm {
-					margin-left: $offset;
-				}
-			}
-
-			@if $state == 'md' {
-				@include breakpoint-md {
-					margin-left: $offset;
-				}
-			}
-
-			@if $state == 'lg' {
-				@include breakpoint-lg {
-					margin-left: $offset;
-				}
+			@include breakpoint($state) {
+				margin-left: $offset;
 			}
 		}
 	}

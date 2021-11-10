@@ -6,7 +6,7 @@
 	&--sticky {
 		display: none;
 
-		@include breakpoint-lg {
+		@include breakpoint(lg) {
 			display: block;
 			z-index: 2;
 			margin-top: $default-padding;

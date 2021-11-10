@@ -34,7 +34,7 @@
 	&--spacing {
 		margin-top: (-$gutter*0.5);
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-top: (-$gutter);
 		}
 
@@ -42,7 +42,7 @@
 		> [class*='col-'] {
 			margin-top: $gutter*0.5;
 
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				margin-top: $gutter;
 			}
 		}
@@ -55,13 +55,13 @@
 	}
 
 	&--sm-spacing {
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			margin-top: (-$gutter);
 		}
 
 		> .col,
 		> [class*='col-'] {
-			@include breakpoint-sm {
+			@include breakpoint(sm) {
 				margin-top: $gutter;
 			}
 		}

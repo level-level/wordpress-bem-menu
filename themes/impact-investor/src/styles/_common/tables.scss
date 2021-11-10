@@ -18,7 +18,7 @@
 		td {
 			padding-bottom: 0;
 
-			@include breakpoint-md {
+			@include breakpoint(md) {
 				padding-bottom: 10px;
 			}
 
@@ -46,7 +46,7 @@
 		@include font-bold;
 	}
 
-	@media (max-width: 992px) {
+	@include breakpoint(992px, max-width) {
 		thead {
 			position: absolute;
 			left: -9999px;
@@ -95,7 +95,7 @@ table:not(#{$excluded_tables}) {
 			padding-bottom: 10px;
 		}
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			display: table-cell;
 		}
 	}
@@ -104,7 +104,7 @@ table:not(#{$excluded_tables}) {
 		font-weight: normal;
 		padding-bottom: 0;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding-bottom: 10px;
 			min-width: 170px;
 		}
@@ -113,7 +113,7 @@ table:not(#{$excluded_tables}) {
 	td {
 		padding-top: 0;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			padding-top: 10px;
 		}
 	}
@@ -121,7 +121,7 @@ table:not(#{$excluded_tables}) {
 	tr {
 		border: 0;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			display: table-row;
 		}
 

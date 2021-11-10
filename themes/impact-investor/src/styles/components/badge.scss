@@ -4,7 +4,7 @@
 	position: relative;
 	color: $primary;
 
-	@include breakpoint-sm {
+	@include breakpoint(sm) {
 		@include font-size(16px, 20px);
 	}
 
@@ -18,7 +18,7 @@
 		padding: 4px 10px;
 		transition: background-color $time, color $time;
 
-		@include breakpoint-sm {
+		@include breakpoint(sm) {
 			@include font-size(16px, 20px);
 		}
 	}
