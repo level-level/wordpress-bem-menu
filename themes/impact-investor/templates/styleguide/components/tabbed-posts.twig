@@ -41,7 +41,7 @@
 						}),
 						date: post.get_date_i18n(get_option('time_format')),
 						datetime: post.get_date_i18n('H:i'),
-						date_full: post.get_date_i18n('H:i'),
+						date_full: post.get_date_i18n(get_option('time_format')),
 					}),
 					button_text: __('More articles', 'impact-investor'),
 					button_link: get_post_type_archive_link('post'),
