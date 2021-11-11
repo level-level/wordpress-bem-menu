@@ -10,6 +10,10 @@
 	}
 %}
 
+{% if test_args %}
+	{% set args = args|merge(test_args) %}
+{% endif %}
+
 {% set pagination = paginate_links(args) %}
 {% if pagination %}
 	<div class="section">
