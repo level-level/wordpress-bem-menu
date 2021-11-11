@@ -5,15 +5,17 @@
 			{% set comment_count = object.get_comments_count() %}
 			{% if comment_count > 0 %}
 				<div class="group__item">
-					<div id="comments" class="comments-area">
-						<div class="comments-area__header">
-							<h2 class="comments-area__title">
-								{{ _n('%s Comment', '%s Comments', comment_count, 'impact-investor')|format(comment_count) }}
-							</h2>
+					<div id="comments">
+						<div class="comments-area">
+							<div class="comments-area__header">
+								<h2 class="comments-area__title">
+									{{ _n('%s Comment', '%s Comments', comment_count, 'impact-investor')|format(comment_count) }}
+								</h2>
+							</div>
+							<ol class="list-comments">
+								{{ object.get_comments() }}
+							</ol>
 						</div>
-						<ol class="list-comments">
-							{{ object.get_comments() }}
-						</ol>
 					</div>
 				</div>
 			{% endif %}
