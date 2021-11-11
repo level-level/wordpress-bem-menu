@@ -38,6 +38,12 @@
 	}
 }
 
+// Positions the anchor link
+#comments {
+	padding-top: calc((#{$header-height} + #{$admin-bar} + #{$default-padding}));
+	margin-top: calc((#{$header-height} + #{$admin-bar} + #{$default-padding}) * -1);
+}
+
 .comments-area {
 	position: relative;
 	background-color: $secondary-200;
