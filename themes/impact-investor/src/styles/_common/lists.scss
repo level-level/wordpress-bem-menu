@@ -54,7 +54,7 @@
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		color: $senary;
+		color: $secondary-600;
 		transition: color $time;
 
 		@include hover-focus-style {
@@ -77,7 +77,7 @@
 				margin: 0;
 
 				.btn--share {
-					background-color: $quaternary;
+					background-color: $secondary-200;
 					color: $primary;
 					padding: 0;
 					width: 45px;
@@ -86,7 +86,7 @@
 					border: 0;
 
 					@include hover-focus-style {
-						background-color: $quinary;
+						background-color: $secondary-400;
 						color: $white;
 					}
 				}
@@ -154,21 +154,21 @@
 	}
 
 	&--dark {
-		background-color: $quaternary;
+		background-color: $secondary-200;
 
 		.list-bordered {
 			&__item {
-				border-color: $quinary;
+				border-color: $secondary-400;
 			}
 		}
 	}
 
 	&--light {
-		border: 1px solid $quinary;
+		border: 1px solid $secondary-400;
 
 		.list-bordered {
 			&__item {
-				border-color: $quinary;
+				border-color: $secondary-400;
 			}
 		}
 	}
@@ -178,7 +178,7 @@
 	@include list-unstyled;
 
 	&__item {
-		border-bottom: 1px solid $quinary;
+		border-bottom: 1px solid $secondary-400;
 
 		&:last-child {
 			border-bottom: 0;
@@ -212,7 +212,7 @@
 
 	&__item {
 		width: 100%;
-		border-right: 1px solid $tertiary;
+		border-right: 1px solid $secondary-300;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -237,7 +237,7 @@
 
 	&__item {
 		display: flex;
-		border-left: 1px solid $quinary;
+		border-left: 1px solid $secondary-400;
 		height: $header-top-height;
 		justify-content: center;
 
@@ -252,7 +252,7 @@
 		}
 
 		&:last-child {
-			border-right: 1px solid $quinary;
+			border-right: 1px solid $secondary-400;
 		}
 	}
 }

@@ -18,7 +18,7 @@
 		background-color: #fff;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: $senary;
+		color: $secondary-600;
 
 		&[aria-selected='true'] {
 			border-color: $primary;
@@ -37,5 +37,5 @@
 }
 
 .tablist {
-	border-bottom: 2px solid $quinary;
+	border-bottom: 2px solid $secondary-400;
 }

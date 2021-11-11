@@ -64,9 +64,9 @@
 			transition: color $time, background-color $time;
 
 			@include hover-focus-style {
-				color: $senary;
+				color: $secondary-600;
 				text-decoration: none;
-				background-color: $quinary;
+				background-color: $secondary-400;
 			}
 
 			@include breakpoint(sm) {

@@ -1,6 +1,6 @@
 body {
 	@include body-styles;
-	background-color: $secondary;
+	background-color: $secondary-100;
 }
 
 h1,
@@ -19,7 +19,7 @@ h6 {
 h1,
 .h1 {
 	@include font-size(26px, 36px);
-	color: $senary;
+	color: $secondary-600;
 
 	@include breakpoint(sm) {
 		@include font-size(40px, 56px);
@@ -60,7 +60,7 @@ h4,
 
 .rich-title {
 	color: $primary;
-	border-bottom: 4px solid $quinary;
+	border-bottom: 4px solid $secondary-400;
 	padding-bottom: $default-padding*0.5;
 }
 

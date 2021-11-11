@@ -12,7 +12,7 @@
 	border-radius: 0;
 	padding: 0 $default-padding*0.5;
 	border: 0;
-	border-bottom: 1px solid $quinary;
+	border-bottom: 1px solid $secondary-400;
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
@@ -81,7 +81,7 @@
 		top: 5px;
 		width: 16px;
 		height: 16px;
-		border: 2px solid $quinary;
+		border: 2px solid $secondary-400;
 		background-color: $white;
 		border-radius: 50%;
 		content: '';

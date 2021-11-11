@@ -1,11 +1,11 @@
 :root {
-	--primary: #cd3613;
-	--secondary: #f3f9fd;
-	--tertiary: #a2c3d6;
-	--quaternary: #e7f3fb;
-	--quinary: #73a6bf;
-	--senary: #335061;
-	--septenary: #4a738c;
+	--primary-400: #cd3613;
+	--secondary-100: #f3f9fd;
+	--secondary-200: #e7f3fb;
+	--secondary-300: #a2c3d6;
+	--secondary-400: #73a6bf;
+	--secondary-500: #4a738c;
+	--secondary-600: #335061;
 
 	// Greyscale
 	--white: #fff;
@@ -19,13 +19,13 @@
 }
 
 // Use these variables in the scss files
-$primary: var(--primary);
-$secondary: var(--secondary);
-$tertiary: var(--tertiary);
-$quaternary: var(--quaternary);
-$quinary: var(--quinary);
-$senary: var(--senary);
-$septenary: var(--septenary);
+$primary: var(--primary-400);
+$secondary-100: var(--secondary-100);
+$secondary-200: var(--secondary-200);
+$secondary-300: var(--secondary-300);
+$secondary-400: var(--secondary-400);
+$secondary-600: var(--secondary-600);
+$secondary-500: var(--secondary-500);
 $white: var(--white);
 $grey: var(--grey);
 $black: var(--black);
