@@ -40,8 +40,8 @@
 
 // Positions the anchor link
 #comments {
-	padding-top: calc((#{$header-height} + #{$admin-bar} + #{$default-padding}));
-	margin-top: calc((#{$header-height} + #{$admin-bar} + #{$default-padding}) * -1);
+	padding-top: calc(#{$header-height} + #{$admin-bar} + #{$default-padding});
+	margin-top: calc(-1 * (#{$header-height} + #{$admin-bar} + #{$default-padding}));
 }
 
 .comments-area {
