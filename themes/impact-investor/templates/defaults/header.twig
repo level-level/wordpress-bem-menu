@@ -18,13 +18,16 @@
 							href="{{ esc_url(home_url('/')) }}"
 							aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
 							>
-							<img
-								src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
-								width="170"
-								height="30"
-								alt=""
-								class="brand__logo"
-							/>
+							<picture>
+								<source srcset="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor-darkmode.svg" media="(prefers-color-scheme: dark)" />
+								<img
+									src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
+									width="170"
+									height="30"
+									alt=""
+									class="brand__logo"
+								/>
+							  </picture>
 						</a>
 					</div>
 				</div>

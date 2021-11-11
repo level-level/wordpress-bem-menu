@@ -1,4 +1,5 @@
 :root {
+	// Brand colors
 	--primary-400: #cd3613;
 	--secondary-100: #f3f9fd;
 	--secondary-200: #e7f3fb;
@@ -7,15 +8,38 @@
 	--secondary-500: #4a738c;
 	--secondary-600: #335061;
 
+	// Components
+	--content-text: var(--black);
+	--header-bg-top: var(--white);
+	--teaser-bg: var(--white);
+
 	// Greyscale
 	--white: #fff;
 	--grey: #e4e4e4;
 	--black: #1a1a1a;
 
-	// Form validation
+	// Misc
 	--error: #ffecb3;
 	--outline: #000;
 	--border: rgba(0, 0, 0, 0.1);
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+	:root {
+		--primary-400: #9abdd2;
+		--secondary-100: #000;
+		--secondary-200: #191919;
+		--secondary-300: #222;
+		--secondary-400: #73a6bf;
+		--secondary-500: #4a738c;
+		--secondary-600: #335061;
+
+		// Components
+		--content-text: #fbfeff;
+		--header-bg-top: #0b0b0b;
+		--teaser-bg: var(--secondary-200);
+	}
 }
 
 // Use these variables in the scss files
@@ -26,9 +50,18 @@ $secondary-300: var(--secondary-300);
 $secondary-400: var(--secondary-400);
 $secondary-500: var(--secondary-500);
 $secondary-600: var(--secondary-600);
+
+// Components
+$content-text: var(--content-text);
+$header-bg-top: var(--header-bg-top);
+$teaser-bg: var(--teaser-bg);
+
+// Greyscale
 $white: var(--white);
 $grey: var(--grey);
 $black: var(--black);
+
+// Misc
 $error: var(--error);
 $outline: var(--outline);
 $border: var(--border);

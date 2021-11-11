@@ -14,7 +14,7 @@
 		height: $header-height;
 
 		@include breakpoint(sm) {
-			background-color: $white;
+			background-color: $header-bg-top;
 			height: $header-top-height;
 		}
 	}

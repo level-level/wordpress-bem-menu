@@ -142,6 +142,10 @@
 	@include font-size(16px, 24px);
 	color: $black;
 
+	@media (prefers-color-scheme: dark) {
+		color: $white;
+	}
+
 	@include breakpoint(sm) {
 		@include font-size(20px, 28px);
 	}
