@@ -14,7 +14,7 @@
 
 	&__item--open {
 		.primary-nav__link {
-			background-color: $senary;
+			background-color: $secondary-600;
 
 			@include breakpoint(sm) {
 				background-color: transparent;
@@ -30,7 +30,7 @@
 		}
 
 		&:focus-within {
-			background-color: $septenary;
+			background-color: $secondary-500;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -39,7 +39,7 @@
 		}
 
 		@include hover-focus-style {
-			background-color: $septenary;
+			background-color: $secondary-500;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -54,7 +54,7 @@
 			text-decoration: underline;
 
 			@include breakpoint(sm) {
-				background-color: $septenary;
+				background-color: $secondary-500;
 				text-decoration: none;
 			}
 		}
@@ -80,7 +80,7 @@
 		text-decoration: none;
 
 		@include hover-focus-style {
-			background-color: $septenary;
+			background-color: $secondary-500;
 			color: $white;
 		}
 
@@ -89,7 +89,7 @@
 			padding: 0 20px;
 			border-bottom: 0;
 			height: $menu-height;
-			color: $senary;
+			color: $secondary-600;
 			transition: background-color $time, color $time;
 		}
 	}
@@ -115,7 +115,7 @@
 		@include breakpoint(sm) {
 			padding: 0;
 			right: 15px;
-			color: $senary;
+			color: $secondary-600;
 			height: $menu-height;
 		}
 	}
@@ -125,7 +125,7 @@
 	@include list-unstyled;
 	position: relative;
 	display: none;
-	background-color: $senary;
+	background-color: $secondary-600;
 	padding: $default-padding*0.5;
 	padding-top: 0;
 
@@ -150,12 +150,12 @@
 
 		@include breakpoint(sm) {
 			@include font-size(18px);
-			color: $senary;
+			color: $secondary-600;
 			height: auto;
 			padding: 0;
 
 			@include hover-focus-style {
-				color: $senary;
+				color: $secondary-600;
 			}
 		}
 	}
@@ -165,7 +165,7 @@
 		top: $menu-height;
 		left: 0;
 		min-width: 300px;
-		border-bottom: 2px solid $quinary;
+		border-bottom: 2px solid $secondary-400;
 		z-index: 2;
 		background-color: $white;
 		padding: calc(#{$default-padding} - 5px) $default-padding;
@@ -178,7 +178,7 @@
 
 		.primary-nav__arrow {
 			transform: rotate(-90deg);
-			color: $quaternary;
+			color: $secondary-200;
 			right: 10px;
 		}
 	}

@@ -10,7 +10,7 @@
 
 	&--inline {
 		input[type='search'] {
-			background-color: $senary;
+			background-color: $secondary-600;
 			color: $white;
 			border: 0;
 			padding-right: $input-height;
@@ -20,7 +20,7 @@
 			}
 
 			@include placeholder {
-				color: $quaternary;
+				color: $secondary-200;
 
 				@include breakpoint(sm) {
 					color: $black;

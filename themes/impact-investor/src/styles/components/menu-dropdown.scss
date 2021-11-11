@@ -2,7 +2,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: $septenary;
+	background-color: $secondary-500;
 	color: $white;
 	height: 100%;
 
@@ -43,7 +43,7 @@
 
 	&__footer {
 		margin-top: auto;
-		border-top: 1px solid $tertiary;
+		border-top: 1px solid $secondary-300;
 		height: calc(#{$header-height} + 10px);
 	}
 }

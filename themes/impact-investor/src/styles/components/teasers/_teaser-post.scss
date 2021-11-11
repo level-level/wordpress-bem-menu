@@ -5,7 +5,7 @@
 	display: flex;
 	flex-direction: column;
 	background-color: $white;
-	border-bottom: 2px solid $quinary;
+	border-bottom: 2px solid $secondary-400;
 
 	&:focus-within {
 		.teaser-post {
@@ -75,7 +75,7 @@
 
 	&__date {
 		@include font-size(14px, 16px);
-		color: $senary;
+		color: $secondary-600;
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);

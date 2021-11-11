@@ -5,7 +5,7 @@
 
 	&__meta {
 		@include font-size(14px, 16px);
-		color: $senary;
+		color: $secondary-600;
 		margin-bottom: 10px;
 
 		@include breakpoint(sm) {

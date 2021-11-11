@@ -60,7 +60,7 @@
 
 @mixin btn--tertiary {
 	@include font-bold;
-	color: $senary;
+	color: $secondary-600;
 	padding: 0;
 	padding-right: 12px;
 	border-radius: 20px;
@@ -95,7 +95,7 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
-	color: $septenary;
+	color: $secondary-500;
 
 	@include hover-focus-style {
 		.btn {
@@ -139,7 +139,7 @@
 	}
 
 	@include hover-focus-style {
-		background-color: $quaternary;
+		background-color: $secondary-200;
 	}
 }
 
@@ -151,7 +151,7 @@
 	align-items: center;
 	padding: 0;
 	border: 0;
-	color: $senary;
+	color: $secondary-600;
 	min-width: $btn-menu-width;
 
 	.btn {
@@ -275,8 +275,8 @@ input[type='button'] {
 		@include btn--primary;
 
 		@include hover-focus-style {
-			background-color: $quinary;
-			border-color: $quinary;
+			background-color: $secondary-400;
+			border-color: $secondary-400;
 		}
 	}
 }
