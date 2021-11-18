@@ -38,9 +38,9 @@ class DataGenerator {
 			array(
 				'publication'  => Client::PUBLICATION,
 				'type'         => Client::get_type(),
-				'subject'      => 'Newsletter test',
-				'preheader'    => 'Pre header',
-				'introduction' => 'Introduction',
+				'subject'      => get_field( 'ii_newsletter_subject', 'options' ),
+				'preheader'    => get_field( 'ii_newsletter_preheader', 'options' ),
+				'introduction' => get_field( 'ii_newsletter_introduction', 'options' ),
 			), $posts
 		);
 	}

@@ -42,7 +42,8 @@
         "level-level/clarkson-wp-cli-twig-translations": "^1.0",
         "level-level/clarkson-core": "^1.0",
         "ll-premium/searchwp": "^4.1",
-        "wpackagist-plugin/koko-analytics": "^1.0"
+        "wpackagist-plugin/koko-analytics": "^1.0",
+        "wordplate/acf": "^11.2"
     },
     "scripts": {
         "post-autoload-dump": [
