@@ -5,7 +5,8 @@
 		<div class="container">
 			<div class="layout-header-wrapper">
 				<h1 class="rich-title">
-					{{ _n('%s result found', '%s results found', found_posts, 'impact-investor')|format(found_posts) }}
+					{% set query = get_search_query() %}
+					{{ _n('%s result found for %s', '%s results found for &lsquo;%s&rsquo;', found_posts, 'impact-investor')|format(found_posts, query)|raw }}
 				</h1>
 			</div>
 		</div>

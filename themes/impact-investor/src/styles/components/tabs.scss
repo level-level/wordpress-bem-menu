@@ -15,14 +15,25 @@
 		display: block;
 		padding: 15px $default-padding;
 		padding-bottom: calc(15px - 4px);
-		background-color: #fff;
+		background-color: $white;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
 		color: $secondary-600;
+		transition: background-color $time;
+
+		@include hover-focus-style {
+			background-color: $secondary-200;
+			text-decoration: underline;
+		}
 
 		&[aria-selected='true'] {
 			border-color: $primary;
 			color: $primary;
+
+			@include hover-focus-style {
+				background-color: $white;
+				text-decoration: none;
+			}
 		}
 	}
 
