@@ -136,16 +136,22 @@
 	--outline: #fff;
 }
 
+:root {
+	@include theme-light;
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
-		@include theme-dark;
-
 		&.theme-system {
 			@include theme-dark;
 		}
 
 		&.theme-light {
 			@include theme-light;
+		}
+
+		&.theme-dark {
+			@include theme-dark;
 		}
 	}
 }
