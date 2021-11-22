@@ -10,9 +10,47 @@
 
 	&__logo {
 		display: block;
-		background-image: $logo-url;
+		background-image: url('../images/logo-impact-investor.svg');
 		width: 100%;
 		height: 100%;
 		background-size: contain;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.theme-system,
+	.theme-dark {
+		.brand {
+			&__logo {
+				background-image: url('../images/logo-impact-investor-darkmode.svg');
+			}
+		}
+	}
+
+	.theme-light {
+		.brand {
+			&__logo {
+				background-image: url('../images/logo-impact-investor.svg');
+			}
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	.theme-system,
+	.theme-light {
+		.brand {
+			&__logo {
+				background-image: url('../images/logo-impact-investor.svg');
+			}
+		}
+	}
+
+	.theme-dark {
+		.brand {
+			&__logo {
+				background-image: url('../images/logo-impact-investor-darkmode.svg');
+			}
+		}
 	}
 }

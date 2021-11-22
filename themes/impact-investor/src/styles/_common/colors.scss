@@ -67,7 +67,6 @@
 	--error: #ffecb3;
 	--outline: #000;
 	--border: rgba(0, 0, 0, 0.1);
-	--logo: url('../images/logo-impact-investor.svg');
 }
 
 // Color variables specific for the dark theme
@@ -128,7 +127,6 @@
 	--border: #304149;
 	--white: #fbfeff;
 	--outline: #fff;
-	--logo: url('../images/logo-impact-investor-darkmode.svg');
 }
 
 @media (prefers-color-scheme: dark) {
@@ -210,7 +208,6 @@ $block-border: var(--block-border);
 $border-colored: var(--border-colored);
 $header-profile-bg: var(--header-profile-bg);
 $radio-checkbox-bg: var(--radio-checkbox-bg);
-$logo-url: var(--logo);
 
 // Greyscale
 $white: var(--white);
