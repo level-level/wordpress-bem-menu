@@ -7,18 +7,33 @@
 	background-color: $teaser-bg;
 	border-bottom: 2px solid $block-border;
 
+	&:not(.teaser-post--inline) {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+		transition: box-shadow $time;
+	}
+
 	&:focus-within {
+		&:not(.teaser-post--inline) {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		}
+
 		.teaser-post {
 			&__link {
 				color: $primary;
+				text-decoration: underline;
 			}
 		}
 	}
 
 	@include hover-focus-style {
+		&:not(.teaser-post--inline) {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		}
+
 		.teaser-post {
 			&__link {
 				color: $primary;
+				text-decoration: underline;
 			}
 		}
 	}

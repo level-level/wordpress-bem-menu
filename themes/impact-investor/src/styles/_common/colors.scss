@@ -44,6 +44,7 @@
 	--teaser-partner-thumbnail-bg: transparent;
 	--tabs-bg: var(--white);
 	--tabs-button-link-color: var(--secondary-600);
+	--tabs-button-hover: var(--secondary-200);
 	--footer-heading: var(--secondary-600);
 	--footer-link-color: var(--secondary-600);
 	--footer-social-link-color: var(--secondary-600);
@@ -113,6 +114,7 @@
 	--teaser-partner-thumbnail-bg: var(--white);
 	--tabs-bg: var(--secondary-200);
 	--tabs-button-link-color: var(--primary-400);
+	--tabs-button-hover: var(--secondary-300);
 	--tabs-active-bg: var(--secondary-200);
 	--footer-heading: var(--primary-400);
 	--footer-link-color: var(--white);
@@ -204,6 +206,7 @@ $btn-tertiary-hover-color: var(--btn-tertiary-hover-color);
 $teaser-partner-thumbnail-bg: var(--teaser-partner-thumbnail-bg);
 $tabs-bg: var(--tabs-bg);
 $tabs-button-link-color: var(--tabs-button-link-color);
+$tabs-button-hover: var(--tabs-button-hover);
 $footer-heading: var(--footer-heading);
 $footer-link-color: var(--footer-link-color);
 $footer-social-link-color: var(--footer-social-link-color);

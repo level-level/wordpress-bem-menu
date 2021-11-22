@@ -19,10 +19,21 @@
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
 		color: $tabs-button-link-color;
+		transition: background-color $time;
+
+		@include hover-focus-style {
+			background-color: $tabs-button-hover;
+			text-decoration: underline;
+		}
 
 		&[aria-selected='true'] {
 			border-color: $primary;
 			color: $primary;
+
+			@include hover-focus-style {
+				background-color: $tabs-bg;
+				text-decoration: none;
+			}
 		}
 	}
 
