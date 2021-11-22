@@ -1,5 +1,7 @@
 const config = {
-	addons: [],
+	addons: [
+		'storybook-dark-mode'
+	],
 }
 
 const storybook = require( '@level-level/storybook-config' )( {}, config );

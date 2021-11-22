@@ -1,3 +1,4 @@
+import { themes } from '@storybook/theming';
 import '../src/styles/main.scss';
 
 let localConfig = '';
@@ -13,4 +14,16 @@ export const parameters = {
 		hideNoControlsWarning: true,
 		expanded: false,
 	},
+	darkMode: {
+		darkClass: 'theme-dark',
+		lightClass: 'theme-light',
+		classTarget: 'html',
+		stylePreview: true,
+		dark: {
+			...themes.dark,
+		},
+		light: {
+			...themes.normal,
+		}
+	}
 };
