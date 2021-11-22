@@ -9,6 +9,17 @@
 
 		<link rel="preload" as="font" href="{{ assets.get_assets_directory_url() }}/fonts/impact-investor.ttf" type="font/ttf" crossorigin="anonymous">
 
+		{# Instantly set the theme style class on the <html> element based on the localStorage #}
+		<script>
+			try {
+				if ( localStorage.getItem( 'theme-style' ) === null ) {
+					localStorage.setItem( 'theme-style', 'system' );
+				}
+				var preference = localStorage.getItem( 'theme-style' );
+				document.documentElement.classList.add( 'theme-' + preference );
+			} catch (e) {}
+		</script>
+
 		{{ wp_head() }}
 	</head>
 	<body {{ body_class() }}>

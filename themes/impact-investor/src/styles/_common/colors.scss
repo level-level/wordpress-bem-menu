@@ -53,6 +53,7 @@
 	--block-border: var(--secondary-400);
 	--border-colored: var(--secondary-400);
 	--radio-checkbox-bg: var(--white);
+	--pagination-arrow-color: var(--white);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -124,6 +125,7 @@
 	--block-border: transparent;
 	--border-colored: var(--border);
 	--radio-checkbox-bg: transparent;
+	--pagination-arrow-color: var(--secondary-100);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -222,6 +224,7 @@ $block-border: var(--block-border);
 $border-colored: var(--border-colored);
 $header-profile-bg: var(--header-profile-bg);
 $radio-checkbox-bg: var(--radio-checkbox-bg);
+$pagination-arrow-color: var(--pagination-arrow-color);
 
 // Greyscale
 $white: var(--white);

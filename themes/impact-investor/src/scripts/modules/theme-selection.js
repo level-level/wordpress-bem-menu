@@ -6,19 +6,9 @@
 			$radio = $element.find( 'input[type="radio"]' ),
 			$html = $( 'html' );
 
-		const currentTheme = localStorage.getItem( 'theme-style' );
-
 		// Initialize an instance
 		function initialize() {
-			initialLoad();
 			addEventListeners();
-		}
-
-		// On initial load check if there is a theme available in the localStorage
-		function initialLoad() {
-			if ( currentTheme ) {
-				setActiveTheme( currentTheme );
-			}
 		}
 
 		// Set active theme based on radiobutton selection
