@@ -9,8 +9,11 @@
 
 		<link rel="preload" as="font" href="{{ assets.get_assets_directory_url() }}/fonts/impact-investor.ttf" type="font/ttf" crossorigin="anonymous">
 
-		{# Instantly set the theme style class on the <html> element based on the localStorage #}
-		<script>
+		{#
+			Instantly set the theme style class on the <html> element based on the localStorage.
+			Also check all the radiobuttons with the active theme
+		#}
+		<script defer>
 			try {
 				if ( localStorage.getItem( 'theme-style' ) === null ) {
 					localStorage.setItem( 'theme-style', 'system' );
@@ -18,6 +21,16 @@
 				var preference = localStorage.getItem( 'theme-style' );
 				document.documentElement.classList.add( 'theme-' + preference );
 			} catch (e) {}
+
+			document.addEventListener( 'DOMContentLoaded', function () {
+				if ( preference ) {
+					var radiobuttons = document.querySelectorAll( 'input[value="' + preference + '"]' );
+					for ( var index = 0; index < radiobuttons.length; index++ ) {
+						var radiobutton = radiobuttons[index];
+						radiobutton.checked = true;
+					}
+				}
+			});
 		</script>
 
 		{{ wp_head() }}
