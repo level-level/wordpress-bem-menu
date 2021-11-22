@@ -1,11 +1,11 @@
 .related-news {
 	position: relative;
 	background-color: $secondary-200;
-	border-bottom: 2px solid $secondary-400;
+	border-bottom: 2px solid $block-border;
 
 	&__title {
 		@include font-bold;
-		border-bottom: 1px solid $secondary-400;
+		border-bottom: 1px solid $border-colored;
 		color: $primary;
 		padding: $default-padding*0.5;
 

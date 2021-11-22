@@ -15,7 +15,7 @@
 		display: block;
 		padding: 15px $default-padding;
 		padding-bottom: calc(15px - 4px);
-		background-color: #fff;
+		background-color: $tabs-bg;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
 		color: $secondary-600;
@@ -28,7 +28,7 @@
 
 	&__section {
 		display: none;
-		background-color: $white;
+		background-color: $tabs-bg;
 
 		&[aria-hidden='false'] {
 			display: block;
@@ -37,5 +37,5 @@
 }
 
 .tablist {
-	border-bottom: 2px solid $secondary-400;
+	border-bottom: 2px solid $block-border;
 }

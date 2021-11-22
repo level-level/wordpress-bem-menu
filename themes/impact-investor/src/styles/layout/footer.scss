@@ -36,14 +36,14 @@
 	h3 {
 		@include font-bold;
 		@include font-size(22px, 24px);
-		color: $secondary-600;
+		color: $footer-heading;
 	}
 }
 
 .footer-socials {
 	padding: $default-padding 0;
 	background-color: $secondary-300;
-	border-top: 1px solid $secondary-400;
+	border-top: 1px solid $border-colored;
 
 	@include breakpoint(lg) {
 		padding: $default-padding*1.5 0;
@@ -52,7 +52,7 @@
 	&__heading {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $secondary-600;
+		color: $footer-heading;
 		margin-bottom: $default-padding*0.5;
 
 		@include breakpoint(lg) {

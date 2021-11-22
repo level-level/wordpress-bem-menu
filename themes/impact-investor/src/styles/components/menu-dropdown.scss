@@ -2,7 +2,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: $secondary-500;
+	background-color: $mobile-menu-dropdown;
 	color: $white;
 	height: 100%;
 
@@ -30,7 +30,7 @@
 			.btn--search {
 				.btn {
 					&__icon {
-						color: $white;
+						color: $search-inline-color;
 					}
 				}
 			}

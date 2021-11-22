@@ -1,13 +1,13 @@
 .comment-form-container {
 	position: relative;
 	background-color: $secondary-200;
-	border-bottom: 2px solid $secondary-400;
+	border-bottom: 2px solid $block-border;
 
 	.comment-reply-title {
 		@include font-bold;
 		@include font-size(16px, 24px);
 		color: $primary;
-		border-bottom: 1px solid $secondary-400;
+		border-bottom: 1px solid $border-colored;
 		padding: 11px $default-padding*0.5;
 
 		@include breakpoint(sm) {
@@ -47,10 +47,10 @@
 .comments-area {
 	position: relative;
 	background-color: $secondary-200;
-	border-bottom: 2px solid $secondary-400;
+	border-bottom: 2px solid $block-border;
 
 	&__header {
-		border-bottom: 1px solid $secondary-400;
+		border-bottom: 1px solid $border-colored;
 		padding: 11px $default-padding*0.5;
 
 		@include breakpoint(sm) {

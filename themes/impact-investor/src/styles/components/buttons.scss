@@ -30,12 +30,12 @@
 @mixin btn--primary {
 	background-color: $primary;
 	border-color: $primary;
-	color: $white;
+	color: $btn-primary-color;
 	border-radius: 3px;
 
 	@include hover-focus-style {
-		background-color: transparent;
-		color: $black;
+		background-color: $btn-primary-hover;
+		color: $btn-primary-hover-color;
 	}
 }
 
@@ -60,7 +60,7 @@
 
 @mixin btn--tertiary {
 	@include font-bold;
-	color: $secondary-600;
+	color: $btn-tertiary-color;
 	padding: 0;
 	padding-right: 12px;
 	border-radius: 20px;
@@ -77,7 +77,7 @@
 
 	@include hover-focus-style {
 		background-color: $primary;
-		color: $white;
+		color: $btn-tertiary-hover-color;
 
 		.btn {
 			&__icon {
@@ -95,7 +95,7 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
-	color: $secondary-500;
+	color: $btn-link-color;
 
 	@include hover-focus-style {
 		.btn {
@@ -130,6 +130,7 @@
 
 @mixin btn--header {
 	@include font-normal;
+	color: $btn-header-color;
 
 	.btn {
 		&__icon {
@@ -140,6 +141,7 @@
 
 	@include hover-focus-style {
 		background-color: $secondary-200;
+		color: $btn-header-color-hover;
 	}
 }
 
@@ -151,7 +153,7 @@
 	align-items: center;
 	padding: 0;
 	border: 0;
-	color: $secondary-600;
+	color: $btn-menu-color;
 	min-width: $btn-menu-width;
 
 	.btn {
@@ -327,7 +329,7 @@ input[type='button'] {
 
 		&--highlight {
 			background-color: $primary;
-			color: $white;
+			color: $btn-icon-highlight-color;
 			width: 34px;
 			height: 34px;
 			border-radius: 50%;
@@ -335,6 +337,11 @@ input[type='button'] {
 			align-items: center;
 			justify-content: center;
 			transition: $time;
+		}
+
+		.icon-comment {
+			position: relative;
+			top: 1px;
 		}
 	}
 }

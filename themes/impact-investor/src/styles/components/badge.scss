@@ -13,7 +13,7 @@
 		display: block;
 		background-color: $primary;
 		border: 2px solid $primary;
-		color: $white;
+		color: $rich-badge-color;
 		text-decoration: none;
 		padding: 4px 10px;
 		transition: background-color $time, color $time;
@@ -26,7 +26,7 @@
 	&--link {
 		@include hover-focus-style {
 			background-color: transparent;
-			color: $black;
+			color: $rich-badge-hover-color;
 		}
 	}
 }
