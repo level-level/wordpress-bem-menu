@@ -1,0 +1,40 @@
+{% set trigger = uniqid('js-dark-mode-') %}
+{% set target = uniqid('dark-mode__dropdown-') %}
+{% set radio_id = uniqid('radio') %}
+
+<div
+	class="dark-mode"
+	data-module="displayOptions"
+	data-config='{
+		"trigger": ".{{ trigger }}",
+		"target": ".{{ target }}"
+}'>
+	{% include 'styleguide/components/buttons/button-element.twig' with {
+		text: __('Display preferences', 'impact-investor'),
+		aria_expanded_support: true,
+		class: 'btn--link ' ~ trigger,
+		aria_label: __('Open display options', 'impact-investor'),
+		aria_expanded_text: __('Close display options', 'impact-investor'),
+		aria_collapsed_text: __('Open display options', 'impact-investor'),
+		icon: 'icon-chevron-down',
+		icon_left: false,
+	} %}
+	<div class="dark-mode__dropdown {{ target }}" aria-hidden="true">
+		<div class="dark-mode__inner">
+			<ul class="list-dark-mode" data-module="themeSelection">
+				<li class="list-dark-mode__item">
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="system" id="theme-system" checked>
+					<label for="theme-system">{{ __('System (device settings)', 'impact-investor') }}</label>
+				</li>
+				<li class="list-dark-mode__item">
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light">
+					<label for="theme-light">{{ __('Light theme', 'impact-investor') }}</label>
+				</li>
+				<li class="list-dark-mode__item">
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="theme-dark">
+					<label for="theme-dark">{{ __('Dark theme', 'impact-investor') }}</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

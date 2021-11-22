@@ -18,7 +18,7 @@
 		background-color: $tabs-bg;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: $secondary-600;
+		color: $tabs-button-link-color;
 
 		&[aria-selected='true'] {
 			border-color: $primary;

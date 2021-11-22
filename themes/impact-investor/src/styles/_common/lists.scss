@@ -237,7 +237,7 @@
 
 	&__item {
 		display: flex;
-		border-left: 1px solid $header-buttons-border;
+		border-left: 1px solid $border;
 		height: $header-top-height;
 		justify-content: center;
 
@@ -252,7 +252,15 @@
 		}
 
 		&:last-child {
-			border-right: 1px solid $header-buttons-border;
+			border-right: 1px solid $border;
 		}
+	}
+}
+
+.list-dark-mode {
+	@include list-unstyled;
+
+	& > * + * {
+		margin-top: 5px;
 	}
 }

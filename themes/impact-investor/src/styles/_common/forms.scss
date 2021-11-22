@@ -72,17 +72,17 @@
 @mixin radiobutton-label {
 	@include font-normal;
 	position: relative;
-	padding-left: $default-padding*2;
+	padding-left: calc(20px + #{$default-padding*0.5});
 	margin: 0;
 
 	&:before {
 		position: absolute;
 		left: 0;
-		top: 5px;
+		top: 2px;
 		width: 16px;
 		height: 16px;
 		border: 2px solid $secondary-400;
-		background-color: $white;
+		background-color: $radio-checkbox-bg;
 		border-radius: 50%;
 		content: '';
 	}
@@ -91,7 +91,7 @@
 		display: none;
 		position: absolute;
 		left: 4px;
-		top: 9px;
+		top: 6px;
 		width: 12px;
 		height: 12px;
 		background-color: $primary;
@@ -106,6 +106,14 @@
 
 @mixin checkbox-label {
 	@include radiobutton-label;
+
+	&:before {
+		top: 5px;
+	}
+
+	&:after {
+		top: 9px;
+	}
 
 	&:before,
 	&:after {

@@ -1,6 +1,9 @@
+import './modules/theme-selection.js';
 import './modules/primary-nav.js';
 import './modules/header-menu.js';
 import './modules/header-search.js';
+import './modules/header-profile.js';
+import './modules/display-options.js';
 import './modules/skiplink.js';
 import './modules/example-module.js';
 import './modules/cookiebot.js';

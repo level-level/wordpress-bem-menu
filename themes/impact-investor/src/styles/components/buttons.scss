@@ -131,6 +131,7 @@
 @mixin btn--header {
 	@include font-normal;
 	color: $btn-header-color;
+	border-radius: 0;
 
 	.btn {
 		&__icon {
@@ -142,6 +143,10 @@
 	@include hover-focus-style {
 		background-color: $secondary-200;
 		color: $btn-header-color-hover;
+	}
+
+	&[aria-expanded='true'] {
+		background-color: $secondary-200;
 	}
 }
 

@@ -18,7 +18,8 @@
 							href="{{ esc_url(home_url('/')) }}"
 							aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
 							>
-							<picture>
+							<span class="brand__logo"></span>
+							{# <picture>
 								<source srcset="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor-darkmode.svg" media="(prefers-color-scheme: dark)" />
 								<img
 									src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor.svg"
@@ -27,7 +28,7 @@
 									alt=""
 									class="brand__logo"
 								/>
-							  </picture>
+							  </picture> #}
 						</a>
 					</div>
 				</div>
@@ -48,6 +49,9 @@
 						{% endif %}
 						<div class="col-auto">
 							<ul class="list-header-buttons">
+								<li class="list-header-buttons__item">
+									{% include 'partials/components/header/header-profile.twig' %}
+								</li>
 								<li class="list-header-buttons__item">
 									{% include 'partials/components/header/header-search.twig' %}
 								</li>

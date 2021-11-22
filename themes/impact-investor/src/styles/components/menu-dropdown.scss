@@ -41,6 +41,12 @@
 		padding-bottom: 2px;
 	}
 
+	&__item {
+		margin-top: auto;
+		padding: 10px $default-padding*0.5;
+		border-top: 1px solid $secondary-600;
+	}
+
 	&__footer {
 		margin-top: auto;
 		border-top: 1px solid $secondary-300;

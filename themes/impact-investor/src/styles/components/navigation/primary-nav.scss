@@ -70,7 +70,7 @@
 
 	&__link {
 		@include font-bold;
-		@include font-size(18px);
+		@include font-size(16px);
 		display: flex;
 		align-items: center;
 		padding: 10px $gutter*0.5;
@@ -83,6 +83,7 @@
 		}
 
 		@include breakpoint(sm) {
+			@include font-size(18px);
 			padding: 0 20px;
 			border-bottom: 0;
 			height: $menu-height;
