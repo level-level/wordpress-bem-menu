@@ -23,16 +23,16 @@
 		<div class="dark-mode__inner">
 			<ul class="list-dark-mode" data-module="themeSelection">
 				<li class="list-dark-mode__item">
-					<input type="radio" name="theme-choice-{{ radio_id }}" value="system" id="theme-system" checked>
-					<label for="theme-system">{{ __('System (device settings)', 'impact-investor') }}</label>
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="system" id="theme-system-{{ radio_id }}" checked>
+					<label for="theme-system-{{ radio_id }}">{{ __('System (device settings)', 'impact-investor') }}</label>
 				</li>
 				<li class="list-dark-mode__item">
-					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light">
-					<label for="theme-light">{{ __('Light theme', 'impact-investor') }}</label>
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light-{{ radio_id }}">
+					<label for="theme-light-{{ radio_id }}">{{ __('Light theme', 'impact-investor') }}</label>
 				</li>
 				<li class="list-dark-mode__item">
-					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="theme-dark">
-					<label for="theme-dark">{{ __('Dark theme', 'impact-investor') }}</label>
+					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="theme-dark-{{ radio_id }}">
+					<label for="theme-dark-{{ radio_id }}">{{ __('Dark theme', 'impact-investor') }}</label>
 				</li>
 			</ul>
 		</div>
