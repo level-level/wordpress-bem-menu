@@ -30,7 +30,7 @@
 		bottom: 0;
 		content: '';
 		background-color: rgba(0, 0, 0, 0);
-		z-index: 0;
+		z-index: 1;
 		visibility: hidden;
 		opacity: 0;
 		transition: $time;
