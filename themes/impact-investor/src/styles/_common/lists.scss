@@ -178,7 +178,7 @@
 	@include list-unstyled;
 
 	&__item {
-		border-bottom: 1px solid $secondary-400;
+		border-bottom: 1px solid $border-colored;
 
 		&:last-child {
 			border-bottom: 0;

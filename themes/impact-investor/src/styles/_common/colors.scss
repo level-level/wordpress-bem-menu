@@ -80,6 +80,8 @@
 	--border-colored: var(--secondary-400);
 	--pagination-arrow-color: var(--white);
 	--backdrop: rgba(0, 0, 0, 0.5);
+	--bio-logo: transparent;
+	--bio-subtitle: var(--secondary-600);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -174,6 +176,8 @@
 	--border-colored: var(--border);
 	--pagination-arrow-color: var(--secondary-100);
 	--backdrop: rgba(0, 0, 0, 0.8);
+	--bio-logo: var(--white);
+	--bio-subtitle: var(--primary-400);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -276,6 +280,8 @@ $pagination-arrow-color: var(--pagination-arrow-color);
 $backdrop: var(--backdrop);
 $table-border-color: var(--table-border-color);
 $table-odd-bg: var(--table-odd-bg);
+$bio-logo: var(--bio-logo);
+$bio-subtitle: var(--bio-subtitle);
 
 // Greyscale
 $white: var(--white);
