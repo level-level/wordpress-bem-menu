@@ -8,7 +8,7 @@
 		right: 0;
 		padding: 0;
 		height: calc(#{$header-height} - #{$menu-height});
-		background-color: $secondary-600;
+		background-color: $header-search-bg;
 		z-index: 2;
 
 		&[aria-hidden='true'] {
@@ -32,7 +32,7 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: rgba(0, 0, 0, 0.3);
+		background-color: $backdrop;
 		z-index: 0;
 		visibility: hidden;
 		opacity: 0;

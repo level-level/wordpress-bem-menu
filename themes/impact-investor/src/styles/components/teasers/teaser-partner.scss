@@ -19,12 +19,14 @@
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $black;
+		color: $content-text;
 	}
 
 	&__thumbnail {
 		max-width: 120px;
 		margin-bottom: $default-padding*0.5;
+		background-color: $teaser-partner-thumbnail-bg;
+		padding: $default-padding*0.5;
 
 		@include breakpoint(sm) {
 			margin-bottom: 0;

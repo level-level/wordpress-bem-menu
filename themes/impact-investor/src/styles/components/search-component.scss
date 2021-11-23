@@ -10,8 +10,8 @@
 
 	&--inline {
 		input[type='search'] {
-			background-color: $secondary-600;
-			color: $white;
+			background-color: $search-inline-bg;
+			color: $search-inline-color;
 			border: 0;
 			padding-right: $input-height;
 

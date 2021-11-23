@@ -15,14 +15,14 @@
 		display: block;
 		padding: 15px $default-padding;
 		padding-bottom: calc(15px - 4px);
-		background-color: $white;
+		background-color: $tabs-bg;
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: $secondary-600;
+		color: $tabs-button-link-color;
 		transition: background-color $time;
 
 		@include hover-focus-style {
-			background-color: $secondary-200;
+			background-color: $tabs-button-hover;
 			text-decoration: underline;
 		}
 
@@ -31,7 +31,7 @@
 			color: $primary;
 
 			@include hover-focus-style {
-				background-color: $white;
+				background-color: $tabs-bg;
 				text-decoration: none;
 			}
 		}
@@ -39,7 +39,7 @@
 
 	&__section {
 		display: none;
-		background-color: $white;
+		background-color: $tabs-bg;
 
 		&[aria-hidden='false'] {
 			display: block;
@@ -48,5 +48,5 @@
 }
 
 .tablist {
-	border-bottom: 2px solid $secondary-400;
+	border-bottom: 2px solid $block-border;
 }

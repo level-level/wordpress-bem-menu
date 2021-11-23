@@ -6,6 +6,7 @@ module.exports = {
 
 	globals: {
 		lodash: true,
+		localStorage: true,
 	},
 
 	rules: {

@@ -5,7 +5,7 @@
 
 	&__meta {
 		@include font-size(14px, 16px);
-		color: $secondary-600;
+		color: $list-item-meta-color;
 		margin-bottom: 10px;
 
 		@include breakpoint(sm) {

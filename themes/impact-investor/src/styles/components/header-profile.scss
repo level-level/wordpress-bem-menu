@@ -1,0 +1,43 @@
+.header-profile {
+	position: relative;
+
+	&__dropdown {
+		display: block;
+		position: absolute;
+		top: calc(#{$header-height} - #{$menu-height});
+		right: 0;
+		padding: 0;
+		background-color: $header-profile-bg;
+		z-index: 2;
+		min-width: 330px;
+		border-bottom: 2px solid $block-border;
+
+		&[aria-hidden='true'] {
+			display: none;
+		}
+	}
+
+	&__inner {
+		@include font-size(16px, 24px);
+		padding: $default-padding;
+	}
+
+	&__backdrop {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: '';
+		background-color: rgba(0, 0, 0, 0);
+		z-index: 0;
+		visibility: hidden;
+		opacity: 0;
+		transition: $time;
+
+		&--active {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}

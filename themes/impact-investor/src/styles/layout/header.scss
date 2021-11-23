@@ -4,7 +4,7 @@
 	left: 0;
 	right: 0;
 	height: $header-height;
-	box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+	box-shadow: $header-shadow;
 	z-index: 10;
 
 	&__top {
@@ -14,7 +14,7 @@
 		height: $header-height;
 
 		@include breakpoint(sm) {
-			background-color: $white;
+			background-color: $header-bg-top;
 			height: $header-top-height;
 		}
 	}
