@@ -33,7 +33,7 @@
 		bottom: 0;
 		content: '';
 		background-color: $backdrop;
-		z-index: 0;
+		z-index: 1;
 		visibility: hidden;
 		opacity: 0;
 		transition: $time;

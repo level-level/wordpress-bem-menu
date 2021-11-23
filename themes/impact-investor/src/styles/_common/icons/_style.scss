@@ -134,3 +134,15 @@
 		content: $icon-instagram;
 	}
 }
+
+.icon-darkmode-dark {
+	&:before {
+		content: $icon-darkmode-dark;
+	}
+}
+
+.icon-darkmode-light {
+	&:before {
+		content: $icon-darkmode-light;
+	}
+}

@@ -182,6 +182,18 @@
 		display: block;
 		font-style: normal;
 	}
+
+	&:after {
+		position: absolute;
+		bottom: 0;
+		right: 12px;
+		width: 71px;
+		height: 58px;
+		content: '';
+		z-index: -1;
+		background-color: $secondary-300;
+		mask-image: url('../images/quote.svg');
+	}
 }
 
 @mixin absolute-link {
@@ -243,15 +255,20 @@
 		position: relative;
 		counter-increment: counter;
 		margin-top: 5px;
-		padding-left: 20px;
+		padding-left: 24px;
 
 		&:before {
+			@include font-heading;
 			position: absolute;
 			top: 0;
 			left: 0;
 			color: $primary;
-			content: counter(counter) '. ';
+			content: counter(counter);
 			z-index: 1;
+
+			@include breakpoint(sm) {
+				@include font-size(24px);
+			}
 		}
 	}
 }
