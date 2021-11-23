@@ -72,6 +72,8 @@
 	--border-colored: var(--secondary-400);
 	--pagination-arrow-color: var(--white);
 	--backdrop: rgba(0, 0, 0, 0.5);
+	--table-border-color: var(--black);
+	--table-odd-bg: var(--secondary-200);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -158,6 +160,8 @@
 	--border-colored: var(--border);
 	--pagination-arrow-color: var(--secondary-100);
 	--backdrop: rgba(0, 0, 0, 0.8);
+	--table-border-color: var(--secondary-200);
+	--table-odd-bg: var(--secondary-200);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -258,6 +262,8 @@ $header-profile-bg: var(--header-profile-bg);
 $radio-checkbox-bg: var(--radio-checkbox-bg);
 $pagination-arrow-color: var(--pagination-arrow-color);
 $backdrop: var(--backdrop);
+$table-border-color: var(--table-border-color);
+$table-odd-bg: var(--table-odd-bg);
 
 // Greyscale
 $white: var(--white);

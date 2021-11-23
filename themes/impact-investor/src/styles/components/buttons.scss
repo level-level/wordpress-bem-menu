@@ -284,6 +284,7 @@ input[type='button'] {
 		@include hover-focus-style {
 			background-color: $secondary-400;
 			border-color: $secondary-400;
+			color: $black;
 		}
 	}
 }

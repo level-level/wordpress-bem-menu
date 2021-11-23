@@ -64,7 +64,7 @@
 			transition: color $time, background-color $time;
 
 			@include hover-focus-style {
-				color: $secondary-600;
+				color: $pagination-arrow-color;
 				text-decoration: none;
 				background-color: $secondary-400;
 			}
