@@ -57,14 +57,22 @@
 	// Form elements
 	--radio-checkbox-bg: var(--white);
 
+	// Mobile menu
+	--mobile-menu-dropdown: var(--secondary-500);
+	--mobile-menu-active-item: var(--secondary-600);
+
+	// Search
+	--search-inline-bg: var(--secondary-600);
+	--search-inline-color: var(--white);
+
+	// Tables
+	--table-border-color: var(--black);
+	--table-odd-bg: var(--secondary-200);
+
 	// Misc
 	--content-text: var(--black);
 	--advertisement-text: var(--secondary-600);
 	--heading-color: var(--secondary-600);
-	--mobile-menu-dropdown: var(--secondary-500);
-	--mobile-menu-active-item: var(--secondary-600);
-	--search-inline-bg: var(--secondary-600);
-	--search-inline-color: var(--white);
 	--list-item-meta-color: var(--secondary-600);
 	--caption-color: var(--secondary-200);
 	--comment-meta-color: var(--secondary-600);
@@ -72,8 +80,6 @@
 	--border-colored: var(--secondary-400);
 	--pagination-arrow-color: var(--white);
 	--backdrop: rgba(0, 0, 0, 0.5);
-	--table-border-color: var(--black);
-	--table-odd-bg: var(--secondary-200);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -145,14 +151,22 @@
 	// Form elements
 	--radio-checkbox-bg: transparent;
 
+	// Mobile menu
+	--mobile-menu-dropdown: var(--secondary-200);
+	--mobile-menu-active-item: var(--secondary-300);
+
+	// Search
+	--search-inline-bg: var(--primary-400);
+	--search-inline-color: var(--secondary-100);
+
+	// Tables
+	--table-border-color: var(--secondary-200);
+	--table-odd-bg: var(--secondary-200);
+
 	// Misc
 	--content-text: var(--white);
 	--advertisement-text: var(--primary-400);
 	--heading-color: var(--primary-400);
-	--mobile-menu-dropdown: var(--secondary-200);
-	--mobile-menu-active-item: var(--secondary-300);
-	--search-inline-bg: var(--primary-400);
-	--search-inline-color: var(--secondary-100);
 	--list-item-meta-color: var(--white);
 	--caption-color: var(--white);
 	--comment-meta-color: var(--white);
@@ -160,8 +174,6 @@
 	--border-colored: var(--border);
 	--pagination-arrow-color: var(--secondary-100);
 	--backdrop: rgba(0, 0, 0, 0.8);
-	--table-border-color: var(--secondary-200);
-	--table-odd-bg: var(--secondary-200);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -217,7 +229,7 @@ $secondary-400: var(--secondary-400);
 $secondary-500: var(--secondary-500);
 $secondary-600: var(--secondary-600);
 
-// Components
+// Sass variables using CSS vars
 $content-text: var(--content-text);
 $header-bg-top: var(--header-bg-top);
 $header-shadow: var(--header-shadow);
