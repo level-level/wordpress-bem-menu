@@ -1,11 +1,9 @@
-
 ( function( $, app ) {
 
 	app.oembed = function( element ) {
 
 		const $element = $( element ),
 			$button = $element.find( '.js-consent-button' ),
-			isCookiebot = $element.data( 'cookiebot' ),
 			source = $element.data( 'source' ),
 			type = $element.data( 'type' ),
 			disableNotice = $element.data( 'disable-notice' );
@@ -17,25 +15,34 @@
 				return;
 			}
 
-			if ( isCookiebot && typeof Cookiebot !== 'undefined' ) {
-				initCookiebot();
+			if ( typeof __tcfapi !== 'undefined' ) {
+				initLiveRamp();
 			} else {
 				initDefault();
 			}
 		}
 
-		function initCookiebot() {
-			if ( Cookiebot.consent.marketing ) {
-				showEmbed();
-			} else {
-				$( window ).on( 'CookiebotOnAccept', () => {
+		/**
+		 * Use the LiveRamp cookie plugin
+		 * Docs: https://docs.liveramp.com/privacy-manager/en/api-reference--gdpr-for-web-.html
+		 */
+		function initLiveRamp() {
+			__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted ) => {
+				if ( socialMediaCookiesAccepted ) {
 					showEmbed();
-				} );
+				} else {
 
-				$button.on( 'click', () => {
-					Cookiebot.show();
-				} );
-			}
+					// No consent given (yet), show cookiewall on consent button click
+					$button.on( 'click', () => {
+						__tcfapi( 'showConsentManager' );
+					} );
+				}
+			}, {
+				data: [{
+					purposeIds: [29], // Represents the social media cookies (youtube, vimeo, twitter etc)
+				}],
+				recheckConsentOnChange: true,
+			} );
 		}
 
 		function initDefault() {
