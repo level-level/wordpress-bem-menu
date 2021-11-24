@@ -83,6 +83,7 @@
 	--bio-logo: transparent;
 	--bio-subtitle: var(--secondary-600);
 	--primary-border: var(--secondary-400);
+	--list-bordered-border: var(--secondary-400);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -180,6 +181,7 @@
 	--bio-logo: var(--white);
 	--bio-subtitle: var(--primary-400);
 	--primary-border: var(--primary-400);
+	--list-bordered-border: var(--secondary-200);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -285,6 +287,7 @@ $table-odd-bg: var(--table-odd-bg);
 $bio-logo: var(--bio-logo);
 $bio-subtitle: var(--bio-subtitle);
 $primary-border: var(--primary-border);
+$list-bordered-border: var(--list-bordered-border);
 
 // Greyscale
 $white: var(--white);
