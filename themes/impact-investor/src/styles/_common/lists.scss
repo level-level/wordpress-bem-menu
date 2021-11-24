@@ -164,11 +164,11 @@
 	}
 
 	&--light {
-		border: 1px solid $secondary-400;
+		border: 1px solid $primary-border;
 
 		.list-bordered {
 			&__item {
-				border-color: $secondary-400;
+				border-color: $primary-border;
 			}
 		}
 	}

@@ -82,6 +82,7 @@
 	--backdrop: rgba(0, 0, 0, 0.5);
 	--bio-logo: transparent;
 	--bio-subtitle: var(--secondary-600);
+	--primary-border: var(--secondary-400);
 
 	@include breakpoint(sm) {
 		--nav-text-color: var(--secondary-600);
@@ -101,7 +102,7 @@
 
 // Color variables specific for the dark theme
 @mixin theme-dark {
-	--primary-400: #9abdd2;
+	--primary-400: #df593b;
 	--secondary-100: #000;
 	--secondary-200: #191919;
 	--secondary-300: #222;
@@ -178,6 +179,7 @@
 	--backdrop: rgba(0, 0, 0, 0.8);
 	--bio-logo: var(--white);
 	--bio-subtitle: var(--primary-400);
+	--primary-border: var(--primary-400);
 
 	// Greyscale
 	--white: #fbfeff;
@@ -185,7 +187,7 @@
 	--black: #1a1a1a;
 
 	// Utilities
-	--border: #304149;
+	--border: var(--secondary-100);
 	--error: #ffecb3;
 	--outline: #fff;
 }
@@ -282,6 +284,7 @@ $table-border-color: var(--table-border-color);
 $table-odd-bg: var(--table-odd-bg);
 $bio-logo: var(--bio-logo);
 $bio-subtitle: var(--bio-subtitle);
+$primary-border: var(--primary-border);
 
 // Greyscale
 $white: var(--white);
