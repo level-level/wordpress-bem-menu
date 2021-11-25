@@ -11,33 +11,18 @@
 		z-index: 2;
 		min-width: 330px;
 		border-bottom: 2px solid $block-border;
+		opacity: 1;
+		visibility: visible;
+		transition: $time;
 
 		&[aria-hidden='true'] {
-			display: none;
+			opacity: 0;
+			visibility: hidden;
 		}
 	}
 
 	&__inner {
 		@include font-size(16px, 24px);
-		padding: $default-padding;
-	}
-
-	&__backdrop {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		content: '';
-		background-color: rgba(0, 0, 0, 0);
-		z-index: 1;
-		visibility: hidden;
-		opacity: 0;
-		transition: $time;
-
-		&--active {
-			visibility: visible;
-			opacity: 1;
-		}
+		padding: 20px;
 	}
 }
