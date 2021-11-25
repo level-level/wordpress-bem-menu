@@ -163,7 +163,7 @@
 		top: $menu-height;
 		left: 0;
 		min-width: 300px;
-		border-bottom: 2px solid $secondary-400;
+		border-bottom: 2px solid $primary-border;
 		z-index: 2;
 		background-color: $nav-dropdown-bg;
 		padding: calc(#{$default-padding} - 5px) $default-padding;
