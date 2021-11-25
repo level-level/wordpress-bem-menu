@@ -192,7 +192,8 @@
 @mixin btn--search {
 	@include font-normal;
 	min-height: $input-height;
-	min-width: $input-height;
+	min-width: calc(#{$input-height} + 14px);
+	justify-content: center;
 	border: 0;
 
 	.btn {
@@ -210,11 +211,9 @@
 	}
 
 	&[aria-expanded='true'] {
-		padding: 10px 11px;
-
 		.btn {
 			&__icon {
-				@include font-size(24px);
+				@include font-size(20px);
 
 				.icon {
 					color: $white;

@@ -4,38 +4,21 @@ import { MrToggle } from '@level-level/recyclops';
 
 	app.headerProfile = function( element ) {
 
-		const $element = $( element ),
-			$backdrop = $element.find( '.header-profile__backdrop' );
+		const $element = $( element );
 
 		function initialize() {
 			const options = {
-				moduleName: 'headerProfile',
 				useHover: false,
 			};
 
 			const toggle = new MrToggle( $element, options );
 
-			$backdrop.on( 'click', () => {
-				toggle.closeAllToggles();
-			} );
-
-			$element.on( 'openMrToggle', () => {
-				showBackdrop();
-			} );
-
-			$element.on( 'closeMrToggle', () => {
-				if ( $element.find( '.header-profile__dropdown' ).attr( 'aria-hidden' ) === 'true' ) {
-					hideBackdrop();
+			// Close toggle when clicking outside of element
+			$( document ).on( 'click', ( e ) => {
+				if ( ! $element.is( e.target ) && $element.has( e.target ).length === 0 ) {
+					toggle.closeAllToggles();
 				}
 			} );
-		}
-
-		function showBackdrop() {
-			$backdrop.addClass( 'header-profile__backdrop--active' );
-		}
-
-		function hideBackdrop() {
-			$backdrop.removeClass( 'header-profile__backdrop--active' );
 		}
 
 		initialize();

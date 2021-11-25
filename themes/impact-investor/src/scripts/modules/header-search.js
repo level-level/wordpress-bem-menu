@@ -9,14 +9,15 @@ import { MrToggle } from '@level-level/recyclops';
 
 		function initialize() {
 			const options = {
-				moduleName: 'headerSearch',
 				useHover: false,
 			};
 
 			const toggle = new MrToggle( $element, options );
 
 			$element.on( 'openMrToggle', () => {
-				$element.find( '.js-header-search-open' ).prop( 'disabled', true );
+				setTimeout( () => {
+					$element.find( '.js-header-search-open' ).prop( 'disabled', true );
+				}, 300 );
 			} );
 
 			$element.on( 'closeMrToggle', () => {
