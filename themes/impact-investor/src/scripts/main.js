@@ -6,7 +6,6 @@ import './modules/header-profile.js';
 import './modules/display-options.js';
 import './modules/skiplink.js';
 import './modules/example-module.js';
-import './modules/cookiebot.js';
 import './modules/oembed.js';
 import './modules/table.js';
 import './modules/social-share.js';

@@ -19,7 +19,6 @@
 ( new \Clarkson\Theme\ACF() )->register_hooks();
 ( new \Clarkson\Theme\Blocks() )->register_hooks();
 ( new \Clarkson\Theme\Cleanup() )->register_hooks();
-( new \Clarkson\Theme\Cookiebot() )->register_hooks();
 ( new \Clarkson\Theme\Localization() )->register_hooks();
 ( new \Clarkson\Theme\Navigation() )->register_hooks();
 ( new \Clarkson\Theme\OEmbed() )->register_hooks();

@@ -53,6 +53,16 @@
 							</div>
 						{% endif %}
 					</div>
+
+					{% if options.enable_liveramp_cmp %}
+						<button
+							class="btn btn--link"
+							onclick="__tcfapi('showConsentManager')"
+							aria-label="{{ __('Open cookie preference dialog', 'impact-investor') }}"
+						>
+							{{ __('Privacy Settings', 'impact-investor') }}
+						</button>
+					{% endif %}
 				</div>
 			</nav>
 		</div>

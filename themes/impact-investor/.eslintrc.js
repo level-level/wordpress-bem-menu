@@ -7,6 +7,7 @@ module.exports = {
 	globals: {
 		lodash: true,
 		localStorage: true,
+		__tcfapi: true,
 	},
 
 	rules: {

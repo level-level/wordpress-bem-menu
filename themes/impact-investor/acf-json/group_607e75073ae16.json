@@ -126,6 +126,41 @@
                             "mime_types": ""
                         }
                     ]
+                },
+                {
+                    "key": "field_619e47f21b38f",
+                    "label": "Cookiewall",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "left",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_619e47fc1b390",
+                    "label": "LiveRamp CMP",
+                    "name": "enable_liveramp_cmp",
+                    "type": "true_false",
+                    "instructions": "Enables or disables the LiveRamp CMP cookiewall.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "LiveRamp CMP cookiewall",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Enabled",
+                    "ui_off_text": "Disabled"
                 }
             ]
         }
@@ -147,5 +182,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635922982
+    "show_in_rest": 0,
+    "modified": 1637763270
 }
