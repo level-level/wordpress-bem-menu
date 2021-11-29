@@ -125,9 +125,7 @@
 	background-color: $nav-dropdown-bg;
 	padding: $default-padding*0.5;
 	padding-top: 0;
-	visibility: visible;
-	opacity: 1;
-	transition: $time;
+	display: none;
 
 	@include breakpoint(sm) {
 		position: absolute;
@@ -139,6 +137,10 @@
 		background-color: $nav-dropdown-bg;
 		padding: calc(#{$default-padding} - 5px) $default-padding;
 		box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		transition: $time;
 
 		.primary-nav-sub {
 			left: 100%;
@@ -152,13 +154,13 @@
 		}
 	}
 
-	&[aria-hidden='true'] {
-		display: none;
+	&[aria-hidden='false'] {
+		display: block;
 
 		@include breakpoint(sm) {
 			display: block;
-			visibility: hidden;
-			opacity: 0;
+			visibility: visible;
+			opacity: 1;
 		}
 	}
 

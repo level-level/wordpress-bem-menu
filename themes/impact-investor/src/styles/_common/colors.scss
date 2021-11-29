@@ -10,6 +10,9 @@
 	--secondary-500: #4a738c;
 	--secondary-600: #335061;
 
+	// Site background
+	--body-bg: var(--secondary-100);
+
 	// Header
 	--header-bg-top: var(--white);
 	--header-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
@@ -107,6 +110,9 @@
 	--secondary-100: #000;
 	--secondary-200: #191919;
 	--secondary-300: #222;
+
+	// Site background
+	--body-bg: #0b0b0b;
 
 	// Header
 	--header-bg-top: #0b0b0b;
@@ -238,6 +244,7 @@ $secondary-500: var(--secondary-500);
 $secondary-600: var(--secondary-600);
 
 // Sass variables using CSS vars
+$body-bg: var(--body-bg);
 $content-text: var(--content-text);
 $header-bg-top: var(--header-bg-top);
 $header-shadow: var(--header-shadow);
