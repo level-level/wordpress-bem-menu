@@ -59,6 +59,7 @@
 
 	// Form elements
 	--radio-checkbox-bg: var(--white);
+	--radio-checkbox-border: var(--secondary-400);
 
 	// Mobile menu
 	--mobile-menu-dropdown: var(--secondary-500);
@@ -77,7 +78,7 @@
 	--advertisement-text: var(--secondary-600);
 	--heading-color: var(--secondary-600);
 	--list-item-meta-color: var(--secondary-600);
-	--caption-color: var(--secondary-200);
+	--caption-color: var(--secondary-500);
 	--comment-meta-color: var(--secondary-600);
 	--block-border: var(--secondary-400);
 	--border-colored: var(--secondary-400);
@@ -160,6 +161,7 @@
 
 	// Form elements
 	--radio-checkbox-bg: transparent;
+	--radio-checkbox-border: var(--primary-400);
 
 	// Mobile menu
 	--mobile-menu-dropdown: var(--secondary-200);
@@ -287,6 +289,7 @@ $block-border: var(--block-border);
 $border-colored: var(--border-colored);
 $header-profile-bg: var(--header-profile-bg);
 $radio-checkbox-bg: var(--radio-checkbox-bg);
+$radio-checkbox-border: var(--radio-checkbox-border);
 $pagination-arrow-color: var(--pagination-arrow-color);
 $backdrop: var(--backdrop);
 $table-border-color: var(--table-border-color);
