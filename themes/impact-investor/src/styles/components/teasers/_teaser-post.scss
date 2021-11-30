@@ -4,21 +4,36 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: $white;
-	border-bottom: 2px solid $quinary;
+	background-color: $teaser-bg;
+	border-bottom: 2px solid $block-border;
+
+	&:not(.teaser-post--inline) {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+		transition: box-shadow $time;
+	}
 
 	&:focus-within {
+		&:not(.teaser-post--inline) {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		}
+
 		.teaser-post {
 			&__link {
 				color: $primary;
+				text-decoration: underline;
 			}
 		}
 	}
 
 	@include hover-focus-style {
+		&:not(.teaser-post--inline) {
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+		}
+
 		.teaser-post {
 			&__link {
 				color: $primary;
+				text-decoration: underline;
 			}
 		}
 	}
@@ -49,6 +64,10 @@
 		margin-top: auto;
 		min-height: 47px;
 
+		& > * {
+			width: calc(100% + #{$default-padding});
+		}
+
 		@include breakpoint(sm) {
 			padding: $default-padding*0.5 $default-padding;
 		}
@@ -75,7 +94,7 @@
 
 	&__date {
 		@include font-size(14px, 16px);
-		color: $senary;
+		color: $teaser-date-color;
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);

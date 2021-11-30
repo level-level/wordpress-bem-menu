@@ -1,13 +1,13 @@
 .comment-form-container {
 	position: relative;
-	background-color: $quaternary;
-	border-bottom: 2px solid $quinary;
+	background-color: $secondary-200;
+	border-bottom: 2px solid $block-border;
 
 	.comment-reply-title {
 		@include font-bold;
 		@include font-size(16px, 24px);
 		color: $primary;
-		border-bottom: 1px solid $quinary;
+		border-bottom: 1px solid $border-colored;
 		padding: 11px $default-padding*0.5;
 
 		@include breakpoint(sm) {
@@ -38,13 +38,19 @@
 	}
 }
 
+// Positions the anchor link
+#comments {
+	padding-top: calc(#{$header-height} + #{$admin-bar} + #{$default-padding});
+	margin-top: calc(-1 * (#{$header-height} + #{$admin-bar} + #{$default-padding}));
+}
+
 .comments-area {
 	position: relative;
-	background-color: $quaternary;
-	border-bottom: 2px solid $quinary;
+	background-color: $secondary-200;
+	border-bottom: 2px solid $block-border;
 
 	&__header {
-		border-bottom: 1px solid $quinary;
+		border-bottom: 1px solid $border-colored;
 		padding: 11px $default-padding*0.5;
 
 		@include breakpoint(sm) {

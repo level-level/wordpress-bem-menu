@@ -1,0 +1,39 @@
+.teaser-team {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	@include breakpoint(sm) {
+		@include font-size(17px, 24px);
+	}
+
+	&__inner {
+		background-color: $secondary-200;
+		padding: $default-padding*0.5;
+
+		@include breakpoint(sm) {
+			padding: $default-padding;
+		}
+	}
+
+	&__title {
+		@include font-bold;
+		@include font-size(18px, 26px);
+		color: $primary;
+	}
+
+	&__thumbnail {
+		@include breakpoint(sm) {
+			min-width: 115px;
+		}
+
+		img {
+			border-radius: 50%;
+			max-width: 75px;
+
+			@include breakpoint(sm) {
+				max-width: 115px;
+			}
+		}
+	}
+}

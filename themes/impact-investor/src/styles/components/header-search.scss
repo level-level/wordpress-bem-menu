@@ -8,11 +8,15 @@
 		right: 0;
 		padding: 0;
 		height: calc(#{$header-height} - #{$menu-height});
-		background-color: $senary;
-		z-index: 2;
+		background-color: $header-search-bg;
+		z-index: 3;
+		visibility: visible;
+		opacity: 1;
+		transition: $time;
 
 		&[aria-hidden='true'] {
-			display: none;
+			visibility: hidden;
+			opacity: 0;
 		}
 
 		&,
@@ -32,8 +36,8 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: rgba(0, 0, 0, 0.5);
-		z-index: 0;
+		background-color: $backdrop;
+		z-index: 2;
 		visibility: hidden;
 		opacity: 0;
 		transition: $time;

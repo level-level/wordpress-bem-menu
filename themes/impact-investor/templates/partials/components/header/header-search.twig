@@ -4,8 +4,7 @@
 	data-config='{
 		"trigger": ".js-header-search",
 		"target": ".header-search__dropdown",
-		"focusInput": true,
-		"disableScroll": true
+		"focusInput": true
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: __('Search', 'impact-investor'),
@@ -19,7 +18,7 @@
 	} %}
 	<div class="header-search__dropdown" aria-hidden="true">
 		<div class="container">
-			<div class="row row--align-center row--nowrap">
+			<div class="row row--small row--align-center row--nowrap">
 				<div class="col-auto col--grow-1">
 					{% include 'partials/components/search-header.twig' %}
 				</div>

@@ -1,0 +1,31 @@
+{% set title = data.title|default(__('Meet our editorial team', 'impact-investor')) %}
+{% set objects = data.team %}
+
+{% if objects %}
+	<div class="align{{ align }}">
+		<div class="group group--small">
+			<div class="group__item">
+				<h2>{{ title|raw }}</h2>
+			</div>
+			<div class="group__item">
+				<ul class="row row--spacing">
+					{% for object in objects %}
+						{% set image_id = object.get_thumbnail_id() %}
+						<li class="col-12">
+							{% include 'styleguide/components/teasers/teaser-team.twig' with {
+								image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+								title: object.get_title(),
+								url: object.get_permalink(),
+								excerpt: object.get_excerpt(),
+							} %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Team member(s)']
+	} %}
+{% endif %}

@@ -2,7 +2,7 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: $septenary;
+	background-color: $mobile-menu-dropdown;
 	color: $white;
 	height: 100%;
 
@@ -30,7 +30,7 @@
 			.btn--search {
 				.btn {
 					&__icon {
-						color: $white;
+						color: $search-inline-color;
 					}
 				}
 			}
@@ -41,9 +41,15 @@
 		padding-bottom: 2px;
 	}
 
+	&__item {
+		margin-top: auto;
+		padding: 10px $default-padding*0.5;
+		border-top: 1px solid $secondary-600;
+	}
+
 	&__footer {
 		margin-top: auto;
-		border-top: 1px solid $tertiary;
+		border-top: 1px solid $secondary-300;
 		height: calc(#{$header-height} + 10px);
 	}
 }

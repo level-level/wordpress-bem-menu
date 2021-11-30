@@ -21,7 +21,7 @@
 .editor-post-title {
 	.editor-post-title__input {
 		@include font-heading;
-		color: $senary;
+		color: $heading-color;
 	}
 }
 
@@ -29,7 +29,7 @@
 .block-editor {
 	.editor-styles-wrapper {
 		@include body-styles;
-		background-color: $secondary;
+		background-color: $secondary-100;
 
 		*[data-type='core/heading'] {
 			@include font-heading;
@@ -141,7 +141,7 @@
 	.block-editor-block-list {
 		&__layout {
 			@include body-styles;
-			background-color: $secondary;
+			background-color: $secondary-100;
 		}
 	}
 
@@ -155,6 +155,6 @@
 	}
 
 	.wp-block-widget-area__panel-body-content {
-		background-color: $secondary;
+		background-color: $secondary-100;
 	}
 }

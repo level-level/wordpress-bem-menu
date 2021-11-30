@@ -30,12 +30,12 @@
 @mixin btn--primary {
 	background-color: $primary;
 	border-color: $primary;
-	color: $white;
+	color: $btn-primary-color;
 	border-radius: 3px;
 
 	@include hover-focus-style {
-		background-color: transparent;
-		color: $black;
+		background-color: $btn-primary-hover;
+		color: $btn-primary-hover-color;
 	}
 }
 
@@ -60,7 +60,7 @@
 
 @mixin btn--tertiary {
 	@include font-bold;
-	color: $senary;
+	color: $btn-tertiary-color;
 	padding: 0;
 	padding-right: 12px;
 	border-radius: 20px;
@@ -77,7 +77,7 @@
 
 	@include hover-focus-style {
 		background-color: $primary;
-		color: $white;
+		color: $btn-tertiary-hover-color;
 
 		.btn {
 			&__icon {
@@ -95,7 +95,7 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
-	color: $septenary;
+	color: $btn-link-color;
 
 	@include hover-focus-style {
 		.btn {
@@ -130,6 +130,8 @@
 
 @mixin btn--header {
 	@include font-normal;
+	color: $btn-header-color;
+	border-radius: 0;
 
 	.btn {
 		&__icon {
@@ -139,7 +141,12 @@
 	}
 
 	@include hover-focus-style {
-		background-color: $quaternary;
+		background-color: $secondary-200;
+		color: $btn-header-color-hover;
+	}
+
+	&[aria-expanded='true'] {
+		background-color: $secondary-200;
 	}
 }
 
@@ -151,7 +158,7 @@
 	align-items: center;
 	padding: 0;
 	border: 0;
-	color: $senary;
+	color: $btn-menu-color;
 	min-width: $btn-menu-width;
 
 	.btn {
@@ -185,7 +192,8 @@
 @mixin btn--search {
 	@include font-normal;
 	min-height: $input-height;
-	min-width: $input-height;
+	min-width: calc(#{$input-height} + 14px);
+	justify-content: center;
 	border: 0;
 
 	.btn {
@@ -203,11 +211,9 @@
 	}
 
 	&[aria-expanded='true'] {
-		padding: 10px 11px;
-
 		.btn {
 			&__icon {
-				@include font-size(24px);
+				@include font-size(20px);
 
 				.icon {
 					color: $white;
@@ -275,8 +281,9 @@ input[type='button'] {
 		@include btn--primary;
 
 		@include hover-focus-style {
-			background-color: $quinary;
-			border-color: $quinary;
+			background-color: $secondary-400;
+			border-color: $secondary-400;
+			color: $black;
 		}
 	}
 }
@@ -327,7 +334,7 @@ input[type='button'] {
 
 		&--highlight {
 			background-color: $primary;
-			color: $white;
+			color: $btn-icon-highlight-color;
 			width: 34px;
 			height: 34px;
 			border-radius: 50%;
@@ -335,6 +342,11 @@ input[type='button'] {
 			align-items: center;
 			justify-content: center;
 			transition: $time;
+		}
+
+		.icon-comment {
+			position: relative;
+			top: 1px;
 		}
 	}
 }

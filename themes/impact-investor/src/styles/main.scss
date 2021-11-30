@@ -41,6 +41,7 @@
 @import 'components/navigation/footer-nav';
 @import 'components/header-menu';
 @import 'components/header-search';
+@import 'components/header-profile';
 @import 'components/menu-dropdown';
 @import 'components/teasers/_teaser-post';
 @import 'components/teasers/teaser-post-large';
@@ -48,6 +49,8 @@
 @import 'components/teasers/teaser-post-small';
 @import 'components/teasers/teaser-post-inline';
 @import 'components/teasers/teaser-comment';
+@import 'components/teasers/teaser-team';
+@import 'components/teasers/teaser-partner';
 @import 'components/badge';
 @import 'components/social-share';
 @import 'components/tabs';
@@ -62,3 +65,4 @@
 @import 'components/author-location';
 @import 'components/related-news';
 @import 'components/search-component';
+@import 'components/dark-mode';

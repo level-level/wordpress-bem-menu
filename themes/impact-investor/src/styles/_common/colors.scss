@@ -1,34 +1,310 @@
-:root {
-	--primary: #cd3613;
-	--secondary: #f3f9fd;
-	--tertiary: #a2c3d6;
-	--quaternary: #e7f3fb;
-	--quinary: #73a6bf;
-	--senary: #335061;
-	--septenary: #4a738c;
+// Color variables specific for the light theme
+@mixin theme-light {
+
+	// Brand colors
+	--primary-400: #cd3613;
+	--secondary-100: #f3f9fd;
+	--secondary-200: #e7f3fb;
+	--secondary-300: #a2c3d6;
+	--secondary-400: #73a6bf;
+	--secondary-500: #4a738c;
+	--secondary-600: #335061;
+
+	// Site background
+	--body-bg: var(--secondary-100);
+
+	// Header
+	--header-bg-top: var(--white);
+	--header-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+	--header-search-bg: var(--secondary-600);
+	--header-profile-bg: var(--secondary-200);
+
+	// Navigation
+	--nav-text-color: var(--white);
+	--nav-text-hover-color: var(--white);
+	--nav-active-item-color: var(--secondary-500);
+	--nav-dropdown-bg: var(--secondary-600);
+
+	// Buttons
+	--btn-header-color: var(--black);
+	--btn-header-color-hover: var(--black);
+	--btn-menu-color: var(--black);
+	--btn-primary-color: var(--white);
+	--btn-primary-hover: transparent;
+	--btn-primary-hover-color: var(--black);
+	--btn-link-color: var(--secondary-500);
+	--btn-tertiary-color: var(--secondary-600);
+	--btn-tertiary-hover-color: var(--white);
+	--btn-icon-highlight-color: var(--white);
+
+	// Teasers
+	--teaser-bg: var(--white);
+	--teaser-date-color: var(--secondary-600);
+	--teaser-partner-thumbnail-bg: transparent;
+
+	// Tabs
+	--tabs-bg: var(--white);
+	--tabs-button-link-color: var(--secondary-600);
+	--tabs-button-hover: var(--secondary-200);
+	--tabs-active-bg: var(--white);
+
+	// Badges
+	--rich-badge-color: var(--white);
+	--rich-badge-hover-color: var(--black);
+
+	// Footer
+	--footer-heading: var(--secondary-600);
+	--footer-link-color: var(--secondary-600);
+	--footer-social-link-color: var(--secondary-600);
+
+	// Form elements
+	--radio-checkbox-bg: var(--white);
+	--radio-checkbox-border: var(--secondary-400);
+
+	// Mobile menu
+	--mobile-menu-dropdown: var(--secondary-500);
+	--mobile-menu-active-item: var(--secondary-600);
+
+	// Search
+	--search-inline-bg: var(--secondary-600);
+	--search-inline-color: var(--white);
+
+	// Tables
+	--table-border-color: var(--black);
+	--table-odd-bg: var(--secondary-200);
+
+	// Misc
+	--content-text: var(--black);
+	--advertisement-text: var(--secondary-600);
+	--heading-color: var(--secondary-600);
+	--list-item-meta-color: var(--secondary-600);
+	--caption-color: var(--secondary-500);
+	--comment-meta-color: var(--secondary-600);
+	--block-border: var(--secondary-400);
+	--border-colored: var(--secondary-400);
+	--pagination-arrow-color: var(--white);
+	--backdrop: rgba(0, 0, 0, 0.5);
+	--bio-logo: transparent;
+	--bio-subtitle: var(--secondary-600);
+	--primary-border: var(--secondary-400);
+	--list-bordered-border: var(--secondary-400);
+
+	@include breakpoint(sm) {
+		--nav-text-color: var(--secondary-600);
+		--nav-dropdown-bg: var(--white);
+	}
 
 	// Greyscale
 	--white: #fff;
 	--grey: #e4e4e4;
 	--black: #1a1a1a;
 
-	// Form validation
+	// Utilities
 	--error: #ffecb3;
 	--outline: #000;
 	--border: rgba(0, 0, 0, 0.1);
 }
 
+// Color variables specific for the dark theme
+@mixin theme-dark {
+	--primary-400: #df593b;
+	--secondary-100: #000;
+	--secondary-200: #191919;
+	--secondary-300: #222;
+
+	// Site background
+	--body-bg: #0b0b0b;
+
+	// Header
+	--header-bg-top: #0b0b0b;
+	--header-shadow: none;
+	--header-search-bg: var(--secondary-100);
+	--header-profile-bg: var(--secondary-200);
+
+	// Navigation
+	--nav-text-color: var(--white);
+	--nav-text-hover-color: #e7f3fb;
+	--nav-active-item-color: #313131;
+	--nav-dropdown-bg: var(--secondary-300);
+
+	// Buttons
+	--btn-header-color: var(--white);
+	--btn-header-color-hover: var(--primary-400);
+	--btn-menu-color: var(--white);
+	--btn-primary-color: var(--secondary-100);
+	--btn-primary-hover: transparent;
+	--btn-primary-hover-color: var(--primary-400);
+	--btn-link-color: var(--primary-400);
+	--btn-tertiary-color: var(--primary-400);
+	--btn-tertiary-hover-color: var(--secondary-100);
+	--btn-icon-highlight-color: var(--secondary-100);
+
+	// Teasers
+	--teaser-bg: var(--secondary-200);
+	--teaser-date-color: var(--white);
+	--teaser-partner-thumbnail-bg: var(--white);
+
+	// Tabs
+	--tabs-bg: var(--secondary-200);
+	--tabs-button-link-color: var(--primary-400);
+	--tabs-button-hover: var(--secondary-300);
+	--tabs-active-bg: var(--secondary-200);
+
+	// Badges
+	--rich-badge-color: var(--secondary-100);
+	--rich-badge-hover-color: var(--primary-400);
+
+	// Footer
+	--footer-heading: var(--primary-400);
+	--footer-link-color: var(--white);
+	--footer-social-link-color: var(--white);
+
+	// Form elements
+	--radio-checkbox-bg: transparent;
+	--radio-checkbox-border: var(--primary-400);
+
+	// Mobile menu
+	--mobile-menu-dropdown: var(--secondary-200);
+	--mobile-menu-active-item: var(--secondary-300);
+
+	// Search
+	--search-inline-bg: var(--white);
+	--search-inline-color: var(--secondary-100);
+
+	// Tables
+	--table-border-color: var(--secondary-200);
+	--table-odd-bg: var(--secondary-200);
+
+	// Misc
+	--content-text: var(--white);
+	--advertisement-text: var(--primary-400);
+	--heading-color: var(--primary-400);
+	--list-item-meta-color: var(--white);
+	--caption-color: var(--white);
+	--comment-meta-color: var(--white);
+	--block-border: transparent;
+	--border-colored: var(--border);
+	--pagination-arrow-color: var(--secondary-100);
+	--backdrop: rgba(0, 0, 0, 0.8);
+	--bio-logo: var(--white);
+	--bio-subtitle: var(--primary-400);
+	--primary-border: var(--primary-400);
+	--list-bordered-border: var(--secondary-200);
+
+	// Greyscale
+	--white: #fbfeff;
+	--grey: #e4e4e4;
+	--black: #1a1a1a;
+
+	// Utilities
+	--border: var(--secondary-100);
+	--error: #ffecb3;
+	--outline: #fff;
+}
+
+:root {
+	@include theme-light;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		&.theme-system {
+			@include theme-dark;
+		}
+
+		&.theme-light {
+			@include theme-light;
+		}
+
+		&.theme-dark {
+			@include theme-dark;
+		}
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		@include theme-light;
+
+		&.theme-system {
+			@include theme-light;
+		}
+
+		&.theme-dark {
+			@include theme-dark;
+		}
+	}
+}
+
 // Use these variables in the scss files
-$primary: var(--primary);
-$secondary: var(--secondary);
-$tertiary: var(--tertiary);
-$quaternary: var(--quaternary);
-$quinary: var(--quinary);
-$senary: var(--senary);
-$septenary: var(--septenary);
+$primary: var(--primary-400);
+$secondary-100: var(--secondary-100);
+$secondary-200: var(--secondary-200);
+$secondary-300: var(--secondary-300);
+$secondary-400: var(--secondary-400);
+$secondary-500: var(--secondary-500);
+$secondary-600: var(--secondary-600);
+
+// Sass variables using CSS vars
+$body-bg: var(--body-bg);
+$content-text: var(--content-text);
+$header-bg-top: var(--header-bg-top);
+$header-shadow: var(--header-shadow);
+$teaser-bg: var(--teaser-bg);
+$nav-text-color: var(--nav-text-color);
+$nav-text-hover-color: var(--nav-text-hover-color);
+$nav-active-item-color: var(--nav-active-item-color);
+$nav-dropdown-bg: var(--nav-dropdown-bg);
+$btn-header-color: var(--btn-header-color);
+$btn-header-color-hover: var(--btn-header-color-hover);
+$btn-primary-color: var(--btn-primary-color);
+$btn-primary-hover: var(--btn-primary-hover);
+$btn-primary-hover-color: var(--btn-primary-hover-color);
+$advertisement-text: var(--advertisement-text);
+$heading-color: var(--heading-color);
+$btn-menu-color: var(--btn-menu-color);
+$mobile-menu-dropdown: var(--mobile-menu-dropdown);
+$mobile-menu-active-item: var(--mobile-menu-active-item);
+$search-inline-bg: var(--search-inline-bg);
+$search-inline-color: var(--search-inline-color);
+$header-search-bg: var(--header-search-bg);
+$rich-badge-color: var(--rich-badge-color);
+$rich-badge-hover-color: var(--rich-badge-hover-color);
+$teaser-date-color: var(--teaser-date-color);
+$btn-link-color: var(--btn-link-color);
+$list-item-meta-color: var(--list-item-meta-color);
+$btn-tertiary-color: var(--btn-tertiary-color);
+$btn-icon-highlight-color: var(--btn-icon-highlight-color);
+$btn-tertiary-hover-color: var(--btn-tertiary-hover-color);
+$teaser-partner-thumbnail-bg: var(--teaser-partner-thumbnail-bg);
+$tabs-bg: var(--tabs-bg);
+$tabs-button-link-color: var(--tabs-button-link-color);
+$tabs-button-hover: var(--tabs-button-hover);
+$footer-heading: var(--footer-heading);
+$footer-link-color: var(--footer-link-color);
+$footer-social-link-color: var(--footer-social-link-color);
+$caption-color: var(--caption-color);
+$comment-meta-color: var(--comment-meta-color);
+$block-border: var(--block-border);
+$border-colored: var(--border-colored);
+$header-profile-bg: var(--header-profile-bg);
+$radio-checkbox-bg: var(--radio-checkbox-bg);
+$radio-checkbox-border: var(--radio-checkbox-border);
+$pagination-arrow-color: var(--pagination-arrow-color);
+$backdrop: var(--backdrop);
+$table-border-color: var(--table-border-color);
+$table-odd-bg: var(--table-odd-bg);
+$bio-logo: var(--bio-logo);
+$bio-subtitle: var(--bio-subtitle);
+$primary-border: var(--primary-border);
+$list-bordered-border: var(--list-bordered-border);
+
+// Greyscale
 $white: var(--white);
 $grey: var(--grey);
 $black: var(--black);
+
+// Misc
 $error: var(--error);
 $outline: var(--outline);
 $border: var(--border);

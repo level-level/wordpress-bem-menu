@@ -81,6 +81,18 @@ class WidgetAreas {
 				'after_title'   => '</h2>',
 			)
 		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Vacancy', 'Widgets', 'impact-investor' ),
+				'id'            => 'widget-area-vacancy',
+				'description'   => _x( 'Add widgets to appear on the vacancy pages.', 'Widgets', 'impact-investor' ),
+				'before_widget' => '<div class="section">',
+				'after_widget'  => '</div>',
+				'before_title'  => '<h2 class="widget-title">',
+				'after_title'   => '</h2>',
+			)
+		);
 	}
 
 	public function get_widgetarea( string $widget ): string {

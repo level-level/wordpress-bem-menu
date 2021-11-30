@@ -14,7 +14,7 @@
 
 	&__item--open {
 		.primary-nav__link {
-			background-color: $senary;
+			background-color: $mobile-menu-active-item;
 
 			@include breakpoint(sm) {
 				background-color: transparent;
@@ -30,7 +30,7 @@
 		}
 
 		&:focus-within {
-			background-color: $septenary;
+			background-color: $nav-active-item-color;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -39,7 +39,7 @@
 		}
 
 		@include hover-focus-style {
-			background-color: $septenary;
+			background-color: $nav-active-item-color;
 
 			.primary-nav__link,
 			.primary-nav__arrow {
@@ -51,11 +51,9 @@
 	&__item--active {
 		.primary-nav__link {
 			color: $white;
-			text-decoration: underline;
 
 			@include breakpoint(sm) {
-				background-color: $septenary;
-				text-decoration: none;
+				background-color: $nav-active-item-color;
 			}
 		}
 
@@ -72,16 +70,16 @@
 
 	&__link {
 		@include font-bold;
-		@include font-size(20px);
+		@include font-size(16px);
 		display: flex;
 		align-items: center;
 		padding: 10px $gutter*0.5;
-		color: $white;
+		color: $nav-text-color;
 		text-decoration: none;
 
 		@include hover-focus-style {
-			background-color: $septenary;
-			color: $white;
+			background-color: $nav-active-item-color;
+			color: $nav-text-hover-color;
 		}
 
 		@include breakpoint(sm) {
@@ -89,7 +87,7 @@
 			padding: 0 20px;
 			border-bottom: 0;
 			height: $menu-height;
-			color: $senary;
+			color: $nav-text-color;
 			transition: background-color $time, color $time;
 		}
 	}
@@ -102,20 +100,20 @@
 		line-height: inherit;
 		padding: 0 $default-padding*0.5;
 		height: 44px;
-		color: $white;
+		color: $nav-text-color;
 		border: 0;
 		transform: scaleY(1);
 		transition: $time;
 
 		&[aria-expanded='true'] {
 			transform: scaleY(-1);
-			color: $white;
+			color: $nav-text-color;
 		}
 
 		@include breakpoint(sm) {
 			padding: 0;
 			right: 15px;
-			color: $senary;
+			color: $nav-text-color;
 			height: $menu-height;
 		}
 	}
@@ -124,13 +122,46 @@
 .primary-nav-sub {
 	@include list-unstyled;
 	position: relative;
-	display: none;
-	background-color: $senary;
+	background-color: $nav-dropdown-bg;
 	padding: $default-padding*0.5;
 	padding-top: 0;
+	display: none;
+
+	@include breakpoint(sm) {
+		position: absolute;
+		top: $menu-height;
+		left: 0;
+		min-width: 300px;
+		border-bottom: 2px solid $primary-border;
+		z-index: 2;
+		background-color: $nav-dropdown-bg;
+		padding: calc(#{$default-padding} - 5px) $default-padding;
+		box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		transition: $time;
+
+		.primary-nav-sub {
+			left: 100%;
+			top: 0;
+		}
+
+		.primary-nav__arrow {
+			transform: rotate(-90deg);
+			color: $nav-text-color;
+			right: 10px;
+		}
+	}
 
 	&[aria-hidden='false'] {
 		display: block;
+
+		@include breakpoint(sm) {
+			display: block;
+			visibility: visible;
+			opacity: 1;
+		}
 	}
 
 	& > * + * {
@@ -140,46 +171,23 @@
 	&__link {
 		@include font-normal;
 		text-decoration: none;
-		color: $white;
+		color: $nav-text-color;
 
 		@include hover-focus-style {
-			color: $white;
+			color: $nav-text-color;
 			text-decoration: underline;
 			background-color: transparent;
 		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px);
-			color: $senary;
+			color: $nav-text-color;
 			height: auto;
 			padding: 0;
 
 			@include hover-focus-style {
-				color: $senary;
+				color: $nav-text-color;
 			}
-		}
-	}
-
-	@include breakpoint(sm) {
-		position: absolute;
-		top: $menu-height;
-		left: 0;
-		min-width: 300px;
-		border-bottom: 2px solid $quinary;
-		z-index: 2;
-		background-color: $white;
-		padding: calc(#{$default-padding} - 5px) $default-padding;
-		box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
-
-		.primary-nav-sub {
-			left: 100%;
-			top: 0;
-		}
-
-		.primary-nav__arrow {
-			transform: rotate(-90deg);
-			color: $quaternary;
-			right: 10px;
 		}
 	}
 }

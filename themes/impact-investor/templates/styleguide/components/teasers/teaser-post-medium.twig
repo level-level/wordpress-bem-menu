@@ -25,7 +25,9 @@
 	</div>
 
 	{% include 'styleguide/components/teasers/post/footer.twig' with {
+		title: title,
 		authors: authors,
 		comments: comments,
+		url: url,
 	} only %}
 </div>

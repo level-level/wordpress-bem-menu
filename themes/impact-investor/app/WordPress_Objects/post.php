@@ -9,7 +9,7 @@ class post extends base_object {
 	public static $type = 'post';
 
 	public function get_authors(): array {
-		return get_field( 'authors', $this->get_id() );
+		return get_field( 'authors', $this->get_id() ) ?: array();
 	}
 
 	public function has_comments_enabled(): bool {

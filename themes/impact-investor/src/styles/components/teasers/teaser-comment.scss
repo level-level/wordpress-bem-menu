@@ -1,7 +1,7 @@
 .teaser-comment {
 	@include font-normal;
 	position: relative;
-	background-color: $quaternary;
+	background-color: $secondary-200;
 	padding: $default-padding*0.5;
 
 	@include breakpoint(sm) {
@@ -11,12 +11,12 @@
 	&__author {
 		@include font-bold;
 		@include font-size(16px);
-		color: $senary;
+		color: $comment-meta-color;
 	}
 
 	&__meta {
 		@include font-size(16px);
-		color: $senary;
+		color: $comment-meta-color;
 	}
 
 	&__content {

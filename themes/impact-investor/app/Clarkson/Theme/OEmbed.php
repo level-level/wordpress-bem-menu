@@ -4,11 +4,6 @@ namespace Clarkson\Theme;
 use Clarkson_Core\Templates;
 
 class OEmbed {
-	/**
-	 * @var null|bool $cookiebot_enabled.
-	 */
-	private $cookiebot_enabled = null;
-
 	public function register_hooks(): void {
 		add_filter( 'embed_oembed_html', array( $this, 'rewrite_oembed' ), 99, 2 );
 		add_action( 'acf/init', array( $this, 'remove_acf_oembed_format_value_filter' ), 1 );
@@ -27,7 +22,6 @@ class OEmbed {
 		$oembed       = _wp_oembed_get_object();
 		$provider_url = $oembed->get_provider( $url ) ?: $url;
 		$source       = $this->get_source( $provider_url );
-		$cookiebot    = $this->is_cookiebot_enabled();
 		$is_video     = $this->is_video_embed( $source );
 		$is_audio     = $this->is_audio_embed( $source );
 		$thumbnail    = '';
@@ -52,16 +46,17 @@ class OEmbed {
 		$args = array(
 			'html'           => $html,
 			'source'         => $source,
-			'cookiebot'      => $cookiebot,
 			'type'           => $type,
 			'thumbnail'      => $thumbnail,
-			'notice_text'    => sprintf( __( 'This content is available if you agree to the cookies from %s.', 'impact-investor' ), ucfirst( $source ) ),
+			'notice_text'    => __( 'This content is available after accepting the cookies.', 'impact-investor' ),
 			'button_text'    => __( 'I agree', 'impact-investor' ),
 			'disable_notice' => $this->maybe_disable_notice( $source, $html ),
 		);
 
-		if ( $cookiebot ) {
-			$args['notice_text'] = __( 'This content is available after accepting the cookies.', 'impact-investor' );
+		$options = get_field( 'theme_options', 'option' );
+
+		if ( ! empty( $options ) && $options['enable_liveramp_cmp'] ) {
+			$args['notice_text'] = __( 'This content is available after accepting the social media cookies.', 'impact-investor' );
 			$args['button_text'] = __( 'Change cookie-settings', 'impact-investor' );
 		}
 
@@ -197,13 +192,6 @@ class OEmbed {
 		}
 
 		return false;
-	}
-
-	private function is_cookiebot_enabled(): bool {
-		if ( is_null( $this->cookiebot_enabled ) ) {
-			$this->cookiebot_enabled = is_plugin_active( 'cookiebot/cookiebot.php' );
-		}
-		return $this->cookiebot_enabled;
 	}
 
 	/**

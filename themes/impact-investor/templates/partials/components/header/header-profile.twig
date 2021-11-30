@@ -1,0 +1,26 @@
+{% set trigger = uniqid('js-header-profile-') %}
+{% set target = uniqid('header-profile__dropdown-') %}
+
+<div
+	class="header-profile"
+	data-module="headerProfile"
+	data-config='{
+		"trigger": ".{{ trigger }}",
+		"target": ".{{ target }}"
+}'>
+	{% include 'styleguide/components/buttons/button-element.twig' with {
+		text: '',
+		aria_expanded_support: true,
+		class: 'btn--header ' ~ trigger,
+		aria_label: __('Open profile', 'impact-investor'),
+		aria_expanded_text: __('Close profile', 'impact-investor'),
+		aria_collapsed_text: __('Open profile', 'impact-investor'),
+		icon: 'icon-user',
+		icon_left: true,
+	} %}
+	<div class="header-profile__dropdown {{ target }}" aria-hidden="true">
+		<div class="header-profile__inner">
+			{% include 'partials/components/header/header-display-options.twig' %}
+		</div>
+	</div>
+</div>

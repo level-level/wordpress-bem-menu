@@ -33,7 +33,7 @@
 								text: comments,
 								url: url ~ '#comments',
 								class: 'btn--link',
-								aria_label: _n('See %s comment in this article', 'See %s comments in this article', comments, 'impact-investor')|format(comments),
+								aria_label: _n('%s comment on %s', '%s comments on %s', comments, 'impact-investor')|format(comments, title),
 								icon: 'icon-comment',
 								icon_left: true,
 							} %}

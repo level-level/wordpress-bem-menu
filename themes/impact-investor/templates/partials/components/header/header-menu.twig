@@ -34,6 +34,10 @@
 					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
 						{{ bem_menu('primary_navigation', 'primary-nav') }}
 					</nav>
+
+					<div class="menu-dropdown__item">
+						{% include 'partials/components/header/header-display-options.twig' %}
+					</div>
 				</div>
 			</div>
 

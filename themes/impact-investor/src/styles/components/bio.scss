@@ -2,7 +2,7 @@
 	@include font-normal;
 	@include font-size(16px, 24px);
 	position: relative;
-	background-color: $quaternary;
+	background-color: $secondary-200;
 
 	@include breakpoint(sm) {
 		@include font-size(18px, 26px);
@@ -29,6 +29,7 @@
 
 	&__logo {
 		padding: $default-padding*0.5 0 $default-padding;
+		background-color: $bio-logo;
 
 		img {
 			max-width: 200px;
@@ -48,6 +49,6 @@
 	}
 
 	&__subtitle {
-		color: $senary;
+		color: $bio-subtitle;
 	}
 }

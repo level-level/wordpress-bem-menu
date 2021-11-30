@@ -3,7 +3,7 @@
 			<div class="container">
 				<div class="footer__brand">
 					<a
-						class="brand"
+						class="brand-footer"
 						href="{{ esc_url(home_url('/')) }}"
 						aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
 						>
@@ -12,7 +12,6 @@
 							width="284"
 							height="50"
 							alt=""
-							class="brand__logo"
 						/>
 					</a>
 				</div>
@@ -54,6 +53,16 @@
 							</div>
 						{% endif %}
 					</div>
+
+					{% if options.enable_liveramp_cmp %}
+						<button
+							class="btn btn--link"
+							onclick="__tcfapi('showConsentManager')"
+							aria-label="{{ __('Open cookie preference dialog', 'impact-investor') }}"
+						>
+							{{ __('Privacy Settings', 'impact-investor') }}
+						</button>
+					{% endif %}
 				</div>
 			</nav>
 		</div>

@@ -8,7 +8,7 @@
 		width: calc(100vw - #{$default-padding});
 		top: $admin-bar;
 		bottom: 0;
-		background-color: $quaternary;
+		background-color: $secondary-200;
 		z-index: 10;
 		transform: translateX(-100%);
 		visibility: hidden;
@@ -27,7 +27,7 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: $backdrop;
 		z-index: 5;
 		opacity: 0;
 		visibility: hidden;

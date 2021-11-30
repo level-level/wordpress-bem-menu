@@ -55,7 +55,7 @@
 			align-items: center;
 			justify-content: center;
 			background-color: $primary;
-			color: $white;
+			color: $pagination-arrow-color;
 			width: var(--item-width);
 			height: var(--item-width);
 			padding: 0;
@@ -64,9 +64,9 @@
 			transition: color $time, background-color $time;
 
 			@include hover-focus-style {
-				color: $senary;
+				color: $pagination-arrow-color;
 				text-decoration: none;
-				background-color: $quinary;
+				background-color: $secondary-400;
 			}
 
 			@include breakpoint(sm) {
