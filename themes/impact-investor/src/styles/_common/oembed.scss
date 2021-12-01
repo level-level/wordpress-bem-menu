@@ -10,7 +10,7 @@
 
 .oembed-video {
 	position: relative;
-	padding: 25px 0 54.25% 0;
+	padding: 25px 0 54.25%;
 	height: 0;
 	overflow: hidden;
 	cursor: pointer;
@@ -51,7 +51,7 @@
 		text-align: center;
 
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 	}
 }
@@ -70,7 +70,7 @@
 		padding: $default-padding;
 
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 	}
 }

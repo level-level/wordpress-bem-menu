@@ -123,14 +123,14 @@
 .block-editor-block-list {
 	&__layout {
 		> * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 
 			@include breakpoint(sm) {
 				margin-top: $default-padding;
 			}
 
 			@include breakpoint(md) {
-				margin-top: $default-padding*1.5;
+				margin-top: $default-padding * 1.5;
 			}
 		}
 	}

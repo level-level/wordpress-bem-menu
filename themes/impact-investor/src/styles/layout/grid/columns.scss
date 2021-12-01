@@ -1,8 +1,8 @@
 @use 'sass:math';
 
 [class^='col-'] {
-	padding-left: $gutter*0.5;
-	padding-right: $gutter*0.5;
+	padding-left: $gutter * 0.5;
+	padding-right: $gutter * 0.5;
 }
 
 .col-auto {

@@ -9,7 +9,7 @@
 		.teaser-post {
 			&__inner {
 				@include breakpoint(lg) {
-					padding: calc(#{$default-padding*0.5} + 3px);
+					padding: calc(#{$default-padding * 0.5} + 3px);
 				}
 			}
 
@@ -59,8 +59,8 @@
 
 			&__footer {
 				@include breakpoint(lg) {
-					padding-left: calc(#{$default-padding*0.5} + 3px);
-					padding-right: calc(#{$default-padding*0.5} + 3px);
+					padding-left: calc(#{$default-padding * 0.5} + 3px);
+					padding-right: calc(#{$default-padding * 0.5} + 3px);
 				}
 			}
 

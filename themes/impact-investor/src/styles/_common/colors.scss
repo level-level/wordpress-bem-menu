@@ -15,7 +15,7 @@
 
 	// Header
 	--header-bg-top: var(--white);
-	--header-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+	--header-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 	--header-search-bg: var(--secondary-600);
 	--header-profile-bg: var(--secondary-200);
 
@@ -83,7 +83,7 @@
 	--block-border: var(--secondary-400);
 	--border-colored: var(--secondary-400);
 	--pagination-arrow-color: var(--white);
-	--backdrop: rgba(0, 0, 0, 0.5);
+	--backdrop: rgb(0 0 0 / 50%);
 	--bio-logo: transparent;
 	--bio-subtitle: var(--secondary-600);
 	--primary-border: var(--secondary-400);
@@ -102,7 +102,7 @@
 	// Utilities
 	--error: #ffecb3;
 	--outline: #000;
-	--border: rgba(0, 0, 0, 0.1);
+	--border: rgb(0 0 0 / 10%);
 }
 
 // Color variables specific for the dark theme
@@ -185,7 +185,7 @@
 	--block-border: transparent;
 	--border-colored: var(--border);
 	--pagination-arrow-color: var(--secondary-100);
-	--backdrop: rgba(0, 0, 0, 0.8);
+	--backdrop: rgb(0 0 0 / 80%);
 	--bio-logo: var(--white);
 	--bio-subtitle: var(--primary-400);
 	--primary-border: var(--primary-400);

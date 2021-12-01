@@ -8,7 +8,7 @@
 		@include font-size(16px, 24px);
 		color: $primary;
 		border-bottom: 1px solid $border-colored;
-		padding: 11px $default-padding*0.5;
+		padding: 11px $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -19,8 +19,8 @@
 	.form-group {
 		@include font-normal;
 		@include font-size(16px);
-		padding: 11px $default-padding*0.5;
-		padding-bottom: $default-padding*0.5;
+		padding: 11px $default-padding * 0.5;
+		padding-bottom: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			padding: 11px $default-padding;
@@ -51,7 +51,7 @@
 
 	&__header {
 		border-bottom: 1px solid $border-colored;
-		padding: 11px $default-padding*0.5;
+		padding: 11px $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			padding: 11px $default-padding;

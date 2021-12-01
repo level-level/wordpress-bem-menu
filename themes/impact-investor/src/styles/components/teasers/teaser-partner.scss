@@ -9,7 +9,7 @@
 
 	&__inner {
 		background-color: $secondary-200;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			padding: $default-padding;
@@ -24,9 +24,9 @@
 
 	&__thumbnail {
 		max-width: 120px;
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 		background-color: $teaser-partner-thumbnail-bg;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			margin-bottom: 0;

@@ -73,7 +73,7 @@
 		@include font-size(16px);
 		display: flex;
 		align-items: center;
-		padding: 10px $gutter*0.5;
+		padding: 10px $gutter * 0.5;
 		color: $nav-text-color;
 		text-decoration: none;
 
@@ -98,7 +98,7 @@
 		right: 0;
 		background-color: transparent;
 		line-height: inherit;
-		padding: 0 $default-padding*0.5;
+		padding: 0 $default-padding * 0.5;
 		height: 44px;
 		color: $nav-text-color;
 		border: 0;
@@ -123,7 +123,7 @@
 	@include list-unstyled;
 	position: relative;
 	background-color: $nav-dropdown-bg;
-	padding: $default-padding*0.5;
+	padding: $default-padding * 0.5;
 	padding-top: 0;
 	display: none;
 
@@ -136,7 +136,7 @@
 		z-index: 2;
 		background-color: $nav-dropdown-bg;
 		padding: calc(#{$default-padding} - 5px) $default-padding;
-		box-shadow: 0 2px 4px rgba(115, 166, 191, 0.15);
+		box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 		display: block;
 		visibility: hidden;
 		opacity: 0;
@@ -165,7 +165,7 @@
 	}
 
 	& > * + * {
-		margin-top: $default-padding*0.5;
+		margin-top: $default-padding * 0.5;
 	}
 
 	&__link {
