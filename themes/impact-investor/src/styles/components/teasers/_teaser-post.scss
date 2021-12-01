@@ -8,13 +8,13 @@
 	border-bottom: 2px solid $block-border;
 
 	&:not(.teaser-post--inline) {
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0);
+		box-shadow: 0 2px 4px rgb(0 0 0 / 0%);
 		transition: box-shadow $time;
 	}
 
 	&:focus-within {
 		&:not(.teaser-post--inline) {
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+			box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
 		}
 
 		.teaser-post {
@@ -27,7 +27,7 @@
 
 	@include hover-focus-style {
 		&:not(.teaser-post--inline) {
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+			box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
 		}
 
 		.teaser-post {
@@ -39,7 +39,7 @@
 	}
 
 	&__inner {
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			padding: $default-padding;
@@ -60,7 +60,7 @@
 		z-index: 2;
 		line-height: 1;
 		border-top: 1px solid $border;
-		padding: $default-padding*0.5 $default-padding*0.5;
+		padding: $default-padding * 0.5 $default-padding * 0.5;
 		margin-top: auto;
 		min-height: 47px;
 
@@ -69,7 +69,7 @@
 		}
 
 		@include breakpoint(sm) {
-			padding: $default-padding*0.5 $default-padding;
+			padding: $default-padding * 0.5 $default-padding;
 		}
 	}
 
@@ -85,7 +85,7 @@
 
 	&__excerpt {
 		@include font-size(16px, 24px);
-		margin-top: $default-padding*0.5;
+		margin-top: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -109,7 +109,7 @@
 	&__item {
 		&--order-2 {
 			order: 2;
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 	}
 }

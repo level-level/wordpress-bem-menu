@@ -1,7 +1,5 @@
 // Lists
-//
 // @include list-unstyled;
-//
 // Reset default list styling
 @mixin list-unstyled {
 	margin: 0;
@@ -112,8 +110,8 @@
 		display: flex;
 		align-items: center;
 		counter-increment: counter;
-		padding: $default-padding*0.5 0;
-		padding-right: $default-padding*0.5;
+		padding: $default-padding * 0.5 0;
+		padding-right: $default-padding * 0.5;
 
 		&:before {
 			@include font-bold;
@@ -140,10 +138,10 @@
 	}
 
 	&__item {
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding*0.5} + 3px);
+			padding: calc(#{$default-padding * 0.5} + 3px);
 		}
 	}
 
@@ -188,7 +186,7 @@
 
 .list-related-news {
 	@include list-unstyled;
-	padding: $default-padding*0.5 0;
+	padding: $default-padding * 0.5 0;
 
 	&__item {
 		@include breakpoint(sm) {

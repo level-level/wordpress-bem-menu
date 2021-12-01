@@ -7,7 +7,7 @@
 		.teaser-post {
 			&__inner {
 				@include breakpoint(sm) {
-					padding: $default-padding*0.5 0;
+					padding: $default-padding * 0.5 0;
 				}
 			}
 

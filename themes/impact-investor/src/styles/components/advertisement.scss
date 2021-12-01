@@ -1,7 +1,7 @@
 .advertisement {
 	position: relative;
 	background-color: $secondary-200;
-	padding: $default-padding*0.5 0;
+	padding: $default-padding * 0.5 0;
 
 	&__heading {
 		@include font-normal;

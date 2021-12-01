@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // Set your theme's breakpoints here
 $breakpoints: (
 	sm: 768px,
@@ -7,16 +9,14 @@ $breakpoints: (
 );
 
 // Used in grid to loop over breakpoint names
-$states: map-keys($breakpoints);
+$states: map.keys($breakpoints);
 
 // Breakpoints
-//
 // @include breakpoint($size, [$mq]) { code.. }
-//
 // Breakpoint size can be sm, md, lg or any relative or absolute length
 // Default media-query is min-width
 @mixin breakpoint($size: sm, $mq: min-width) {
-	$min-width: map-get($breakpoints, $size);
+	$min-width: map.get($breakpoints, $size);
 
 	@if is-length($size) {
 		$min-width: $size;

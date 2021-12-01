@@ -1,7 +1,5 @@
 // Forms
-//
 // @include form-control;
-//
 // Applies default form styling
 @mixin form-control {
 	@include font-normal;
@@ -10,13 +8,13 @@
 	display: block;
 	width: 100%;
 	border-radius: 0;
-	padding: 0 $default-padding*0.5;
+	padding: 0 $default-padding * 0.5;
 	border: 0;
 	border-bottom: 1px solid $secondary-400;
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
-	-webkit-appearance: none;
+	appearance: none;
 
 	@include breakpoint(sm) {
 		@include font-size(16px);
@@ -36,7 +34,7 @@
 @mixin textarea {
 	@include form-control;
 	height: 150px;
-	padding: $default-padding*0.5;
+	padding: $default-padding * 0.5;
 	line-height: inherit;
 
 	@include breakpoint(sm) {
@@ -72,7 +70,7 @@
 @mixin radiobutton-label {
 	@include font-normal;
 	position: relative;
-	padding-left: calc(20px + #{$default-padding*0.5});
+	padding-left: calc(20px + #{$default-padding * 0.5});
 	margin: 0;
 
 	&:before {
@@ -125,10 +123,10 @@
 	@include form-control;
 	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
 	background-size: 12px;
-	background-position: calc(100% - #{$default-padding*0.5}) calc(50% + 3px);
+	background-position: calc(100% - #{$default-padding * 0.5}) calc(50% + 3px);
 	background-repeat: no-repeat;
 	background-color: $white;
-	padding-right: $default-padding + $default-padding*0.5;
+	padding-right: $default-padding + $default-padding * 0.5;
 
 	// Removes the IE dropdown arrow
 	&::-ms-expand {
@@ -138,7 +136,7 @@
 	&[multiple] {
 		min-height: 100px;
 		background-image: none;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 	}
 }
 
@@ -154,7 +152,7 @@ input[type='search'] {
 
 input[type='search'] {
 	&::-webkit-search-cancel-button {
-		-webkit-appearance: none;
+		appearance: none;
 	}
 }
 

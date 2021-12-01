@@ -17,14 +17,14 @@
 
 	.gfield {
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 	}
 
 	.gfield_radio,
 	.gfield_checkbox {
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 	}
 
@@ -47,7 +47,7 @@
 		}
 
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 
 			@include breakpoint(sm) {
 				margin-top: 0;
@@ -66,7 +66,7 @@
 
 			span {
 				&.ginput_full + .ginput_full {
-					margin-top: $default-padding*0.5;
+					margin-top: $default-padding * 0.5;
 
 					@include breakpoint(sm) {
 						margin-top: $default-padding;
@@ -76,7 +76,7 @@
 				&.ginput_left,
 				&.ginput_right {
 					@include breakpoint(sm) {
-						width: calc(50% - #{$default-padding*0.5});
+						width: calc(50% - #{$default-padding * 0.5});
 						margin-top: $default-padding;
 					}
 				}
@@ -106,7 +106,7 @@
 
 		// Represents every item in a date element
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 
 			@include breakpoint(sm) {
 				margin-top: 0;
@@ -122,7 +122,7 @@
 
 	.ginput_container_fileupload {
 		border: 2px dashed $grey;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 	}
 
 	.gform_drop_area {
@@ -131,7 +131,7 @@
 
 		.gform_drop_instructions {
 			display: block;
-			margin-right: $default-padding*0.5;
+			margin-right: $default-padding * 0.5;
 		}
 
 		button {
@@ -174,7 +174,7 @@
 	.gsection,
 	.gform_heading {
 		& > * + * {
-			margin-top: $default-padding*0.5;
+			margin-top: $default-padding * 0.5;
 		}
 
 		.gform_description {
@@ -183,7 +183,7 @@
 	}
 
 	.gform_heading {
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 	}
 
 	.gfield_consent_description {
@@ -199,7 +199,7 @@
 
 	.gfield_error {
 		position: relative;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 		background-color: $error;
 
 		.validation_message {
@@ -213,9 +213,9 @@
 	.gform_validation_errors,
 	.validation_error {
 		position: relative;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 		background-color: $error;
-		margin: $default-padding*0.5 0;
+		margin: $default-padding * 0.5 0;
 
 		ol {
 			margin-bottom: 0;

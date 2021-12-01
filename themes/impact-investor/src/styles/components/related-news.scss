@@ -7,10 +7,10 @@
 		@include font-bold;
 		border-bottom: 1px solid $border-colored;
 		color: $primary;
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
-			padding: $default-padding*0.5 $default-padding;
+			padding: $default-padding * 0.5 $default-padding;
 		}
 	}
 }

@@ -11,7 +11,7 @@
 		li {
 			@include font-size(16px, 16px);
 			display: block;
-			margin-right: $default-padding*0.5;
+			margin-right: $default-padding * 0.5;
 
 			&:last-child {
 				margin-right: 0;
@@ -24,7 +24,7 @@
 
 		a {
 			display: block;
-			padding: $default-padding*0.5;
+			padding: $default-padding * 0.5;
 			border-bottom: 3px solid transparent;
 			cursor: pointer;
 			text-decoration: none;
@@ -38,13 +38,13 @@
 		span {
 			&.current {
 				display: block;
-				padding: $default-padding*0.5;
+				padding: $default-padding * 0.5;
 				border-bottom: 3px solid $primary;
 			}
 
 			&.dots {
 				display: block;
-				padding: $default-padding*0.5;
+				padding: $default-padding * 0.5;
 				border: 0;
 			}
 		}

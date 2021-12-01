@@ -12,7 +12,7 @@
 		z-index: 10;
 		transform: translateX(-100%);
 		visibility: hidden;
-		transition: $time*2 cubic-bezier(0.2, 0.91, 0.53, 1);
+		transition: $time * 2 cubic-bezier(0.2, 0.91, 0.53, 1);
 
 		&[aria-hidden='false'] {
 			transform: translateX(0);

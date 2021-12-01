@@ -3,10 +3,10 @@
 	background-color: $secondary-200;
 
 	&__inner {
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding*0.5} + 3px);
+			padding: calc(#{$default-padding * 0.5} + 3px);
 		}
 	}
 
@@ -21,12 +21,12 @@
 
 	&__thumbnail {
 		border-bottom: 1px solid $border-colored;
-		margin-left: #{-$default-padding*0.5};
-		margin-right: #{-$default-padding*0.5};
+		margin-left: #{-$default-padding * 0.5};
+		margin-right: #{-$default-padding * 0.5};
 
 		@include breakpoint(sm) {
-			margin-left: calc((#{$default-padding*0.5} + 3px) * -1);
-			margin-right: calc((#{$default-padding*0.5} + 3px) * -1);
+			margin-left: calc((#{$default-padding * 0.5} + 3px) * -1);
+			margin-right: calc((#{$default-padding * 0.5} + 3px) * -1);
 		}
 
 		img {
