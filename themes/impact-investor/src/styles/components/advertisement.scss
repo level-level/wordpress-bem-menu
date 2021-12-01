@@ -23,6 +23,11 @@
 			text-align: center;
 		}
 	}
+
+	&__selected {
+		@include font-size(14px, 16px);
+		text-align: center;
+	}
 }
 
 .top-advertisement {

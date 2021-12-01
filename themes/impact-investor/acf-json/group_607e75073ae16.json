@@ -161,6 +161,41 @@
                     "ui": 1,
                     "ui_on_text": "Enabled",
                     "ui_off_text": "Disabled"
+                },
+                {
+                    "key": "field_61a7754ea9949",
+                    "label": "Advertisements",
+                    "name": "",
+                    "type": "tab",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placement": "left",
+                    "endpoint": 0
+                },
+                {
+                    "key": "field_61a7755da994a",
+                    "label": "Advertisements",
+                    "name": "enable_advertisements",
+                    "type": "true_false",
+                    "instructions": "Enables or disables the advertisements",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "Advertisements",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Enabled",
+                    "ui_off_text": "Disabled"
                 }
             ]
         }
@@ -183,5 +218,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1637763270
+    "modified": 1638364545
 }
