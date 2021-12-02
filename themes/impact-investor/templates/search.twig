@@ -62,3 +62,9 @@
 		</div>
 	{% endif %}
 {% endblock %}
+
+{% block sidebar %}
+	{% if is_active_sidebar('widget-area-search-results') %}
+		{{ sidebar.get_widgetarea('widget-area-search-results')|raw }}
+	{% endif %}
+{% endblock %}

@@ -13,7 +13,7 @@
 	color: $black;
 	cursor: pointer;
 	transition: background-color $time, color $time, border-color $time;
-	-webkit-appearance: none;
+	appearance: none;
 
 	@include breakpoint(sm) {
 		@include font-size(18px, 20px);
@@ -319,7 +319,7 @@ input[type='button'] {
 	// Adds padding to the icon on the right
 	&__text {
 		& + * {
-			padding-left: $default-padding*0.5;
+			padding-left: $default-padding * 0.5;
 		}
 	}
 
@@ -329,7 +329,7 @@ input[type='button'] {
 		align-items: center;
 
 		& + * {
-			padding-left: $default-padding*0.5;
+			padding-left: $default-padding * 0.5;
 		}
 
 		&--highlight {

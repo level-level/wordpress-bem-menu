@@ -2,7 +2,7 @@
 	@include font-normal;
 	position: relative;
 	background-color: $secondary-200;
-	padding: $default-padding*0.5;
+	padding: $default-padding * 0.5;
 
 	@include breakpoint(sm) {
 		padding: $default-padding;

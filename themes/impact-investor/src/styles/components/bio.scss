@@ -9,10 +9,10 @@
 	}
 
 	&__inner {
-		padding: $default-padding*0.5;
+		padding: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding*0.5} + 3px);
+			padding: calc(#{$default-padding * 0.5} + 3px);
 		}
 	}
 
@@ -28,7 +28,7 @@
 	}
 
 	&__logo {
-		padding: $default-padding*0.5 0 $default-padding;
+		padding: $default-padding * 0.5 0 $default-padding;
 		background-color: $bio-logo;
 
 		img {

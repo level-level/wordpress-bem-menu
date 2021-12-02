@@ -1,11 +1,11 @@
 .footer {
 	@include font-normal;
 	position: relative;
-	padding: $default-padding*1.5 0;
+	padding: $default-padding * 1.5 0;
 	background-color: $secondary-300;
 
 	@include breakpoint(lg) {
-		padding: $default-padding*2 0;
+		padding: $default-padding * 2 0;
 	}
 
 	&__brand {
@@ -13,7 +13,7 @@
 		max-width: 224px;
 
 		@include breakpoint(sm) {
-			margin-bottom: $default-padding*2;
+			margin-bottom: $default-padding * 2;
 		}
 
 		@include breakpoint(lg) {
@@ -22,11 +22,11 @@
 	}
 
 	&__heading {
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 	}
 
 	&__group {
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
 			margin-bottom: 0;
@@ -46,14 +46,14 @@
 	border-top: 1px solid $border-colored;
 
 	@include breakpoint(lg) {
-		padding: $default-padding*1.5 0;
+		padding: $default-padding * 1.5 0;
 	}
 
 	&__heading {
 		@include font-bold;
 		@include font-size(18px, 26px);
 		color: $footer-heading;
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 
 		@include breakpoint(lg) {
 			@include font-size(22px, 26px);

@@ -52,5 +52,7 @@
 {% endblock %}
 
 {% block sidebar %}
-
+	{% if is_active_sidebar('widget-area-category') %}
+		{{ sidebar.get_widgetarea('widget-area-category')|raw }}
+	{% endif %}
 {% endblock %}

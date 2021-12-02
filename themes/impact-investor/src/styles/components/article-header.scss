@@ -3,20 +3,20 @@
 	margin-bottom: $default-padding;
 
 	@include breakpoint(sm) {
-		margin-bottom: $default-padding*2;
+		margin-bottom: $default-padding * 2;
 	}
 
 	&__label,
 	&__terms {
-		margin-bottom: $default-padding*0.5;
+		margin-bottom: $default-padding * 0.5;
 
 		@include breakpoint(sm) {
-			margin-bottom: $default-padding*1.5;
+			margin-bottom: $default-padding * 1.5;
 		}
 	}
 
 	&__meta {
-		margin-top: $default-padding*0.5;
+		margin-top: $default-padding * 0.5;
 
 		time {
 			@include font-bold;

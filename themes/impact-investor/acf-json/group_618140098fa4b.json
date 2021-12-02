@@ -3,21 +3,36 @@
     "title": "[Block] Advertisement",
     "fields": [
         {
-            "key": "field_618140282aab4",
-            "label": "",
-            "name": "",
-            "type": "message",
-            "instructions": "",
-            "required": 0,
+            "key": "field_61a772bbd72bc",
+            "label": "Advertisement slot",
+            "name": "advertisement_slot",
+            "type": "select",
+            "instructions": "Select a advertisement slot from the list.",
+            "required": 1,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
                 "class": "",
                 "id": ""
             },
-            "message": "For now, no options.",
-            "new_lines": "wpautop",
-            "esc_html": 0
+            "choices": {
+                "Home\/Mid1": "Home\/Mid1",
+                "Home\/Mid2": "Home\/Mid2",
+                "Home\/Mid3": "Home\/Mid3",
+                "Article\/Mid1": "Article\/Mid1",
+                "Category\/Mid1": "Category\/Mid1",
+                "Page\/Mid1": "Page\/Mid1",
+                "Searchresult\/Mid1": "Searchresult\/Mid1",
+                "Author\/Mid1": "Author\/Mid1",
+                "Partner\/Mid1": "Partner\/Mid1"
+            },
+            "default_value": false,
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
         }
     ],
     "location": [
@@ -37,5 +52,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1635860540
+    "show_in_rest": 0,
+    "modified": 1638364239
 }
