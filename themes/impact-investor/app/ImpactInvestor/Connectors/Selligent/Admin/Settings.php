@@ -22,7 +22,7 @@ class Settings {
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'create_admin_menu' ) );
 		add_action( 'acf/init', array( $this, 'register_newsletter_fields' ) );
-		add_filter( 'acf/update_value/name=ii_newsletter_send', array( $this, 'send_newsletter' ), 10, 4 );
+		add_filter( 'acf/update_value/name=' . self::FIELD_SEND, array( $this, 'send_newsletter' ), 10, 4 );
 
 		add_filter( 'acf/fields/relationship/query/name=' . self::FIELD_ARTICLES, array( $this, 'order_articles' ), 10, 3 );
 	}

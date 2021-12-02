@@ -3,6 +3,7 @@
 namespace ImpactInvestor\Connectors\Selligent;
 
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use ImpactInvestor\Connectors\Selligent\Admin\Settings;
 
 class DataGenerator {
 	/**
@@ -38,9 +39,9 @@ class DataGenerator {
 			array(
 				'publication'  => Client::PUBLICATION,
 				'type'         => Client::get_type(),
-				'subject'      => get_field( 'ii_newsletter_subject', 'options' ),
-				'preheader'    => get_field( 'ii_newsletter_preheader', 'options' ),
-				'introduction' => get_field( 'ii_newsletter_introduction', 'options' ),
+				'subject'      => get_field( Settings::FIELD_SUBJECT, 'options' ),
+				'preheader'    => get_field( Settings::FIELD_PREHEADER, 'options' ),
+				'introduction' => get_field( Settings::FIELD_INTRO, 'options' ),
 			), $posts
 		);
 	}
