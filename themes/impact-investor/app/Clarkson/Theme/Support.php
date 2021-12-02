@@ -43,6 +43,7 @@ class Support {
 			'uniqid',
 			'get_post_thumbnail_id',
 			'wp_get_nav_menu_name',
+			'get_edit_post_link',
 		);
 		$functions       = array_merge( $functions, $theme_functions );
 		return $functions;

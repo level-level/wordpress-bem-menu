@@ -37,3 +37,4 @@
 
 // Impact Investor APIs
 ( new \ImpactInvestor\CLI\Init() )->register_commands();
+( new \ImpactInvestor\Connectors\Selligent\Init() )->register_hooks();
