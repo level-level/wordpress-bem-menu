@@ -2,15 +2,15 @@
 	<p><strong>{{ message }}</strong></p>
 {% endif %}
 <p>
-	<strong>{{ __( 'Last newsletter sent: ', 'impact-investor' ) }}</strong><br>
+	<strong>{{ __('Last newsletter sent: ', 'impact-investor') }}</strong><br>
 	{{ status.time }}
 </p>
 <p>
-	<strong>{{ __( 'Articles:', 'impact-investor' ) }}</strong><br />
+	<strong>{{ __('Articles:', 'impact-investor') }}</strong><br />
 	<ol>
 		{% for article in status.articles %}
 		<li>
-			<a href="{{ get_edit_post_link(article.body.articleId, '' ) }}">{{ article.body.title }}</a>
+			<a href="{{ get_edit_post_link(article.body.articleId, '') }}">{{ article.body.title }}</a>
 		</li>
 		{% endfor %}
 	</ol>

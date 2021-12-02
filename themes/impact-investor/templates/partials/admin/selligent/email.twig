@@ -1,9 +1,9 @@
 <p>
-	<strong>{{ __( 'Time:', 'impact-investor' ) }} </strong> {{ time }} {{ __( '(server time)', 'impact-investor' ) }}
+	<strong>{{ __('Time:', 'impact-investor') }} </strong> {{ status.time }} {{ __('(server time)', 'impact-investor') }}
 </p>
 
 <p>
-	<h2>{{ __( 'Articles', 'impact-investor' ) }}</h2>
+	<h2>{{ __('Articles', 'impact-investor') }}</h2>
 	<table>
 		<thead>
 			<tr>
@@ -26,24 +26,24 @@
 
 {% if status.newsletter %}
 	<p>
-		{{ __( 'Registering the newsletter resulted in the following error:', 'impact-investor' ) }}<br>
+		{{ __('Registering the newsletter resulted in the following error:', 'impact-investor') }}<br>
 		[{{ status.newsletter.code }}] {{ status.newsletter.message }}<br>
 		{{ status.newsletter.body|json_encode }}
 	</p>
 {% else %}
 	<p>
-		{{ __( 'Since there was an error while registering the articles, the newsletter registration was canceled.', 'impact-investor' ) }}
+		{{ __('Since there was an error while registering the articles, the newsletter registration was canceled.', 'impact-investor') }}
 	</p>
 {% endif %}
 
 {% if status.send %}
 	<p>
-		{{ __( 'Sending the newsletter resulted in the following error:', 'impact-investor' ) }}<br>
+		{{ __('Sending the newsletter resulted in the following error:', 'impact-investor') }}<br>
 		[{{ status.newsletter.code }}] {{ status.newsletter.message }}<br>
 		{{ status.newsletter.body|json_encode }}
 	</p>
 {% else %}
 	<p>
-		{{ __( 'Since there was an error while registering the newsletter, the newsletter sending was canceled.', 'impact-investor' ) }}
+		{{ __('Since there was an error while registering the newsletter, the newsletter sending was canceled.', 'impact-investor') }}
 	</p>
 {% endif %}
