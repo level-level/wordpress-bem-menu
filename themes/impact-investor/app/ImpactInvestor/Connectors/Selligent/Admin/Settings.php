@@ -2,8 +2,6 @@
 
 namespace ImpactInvestor\Connectors\Selligent\Admin;
 
-use Clarkson_Core\WordPress_Object\post;
-use ImpactInvestor\Connectors\Selligent\Client;
 use WordPlate\Acf\Fields\Message;
 use WordPlate\Acf\Fields\Relationship;
 use WordPlate\Acf\Fields\Text;
@@ -19,6 +17,7 @@ class Settings {
 	public const FIELD_ARTICLES  = 'ii_newsletter_articles';
 	public const FIELD_SEND      = 'ii_newsletter_send';
 	public const META_STATUS     = 'ii_newsletter_api_status';
+	public const META_MESSAGE    = 'ii_newsletter_api_status_message';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'create_admin_menu' ) );
@@ -29,17 +28,15 @@ class Settings {
 	}
 
 	public function create_admin_menu(): void {
-		$updated_message = __( 'Newsletter has been updated, but has not been sent.', 'impact-investor' );
-		if ( get_field( self::FIELD_SEND, 'options' ) ) {
-			$updated_message = __( 'Newsletter has been updated and has been sent to Selligent.', 'impact-investor' );
-		}
-		acf_add_options_page( array(
-			'page_title' => __( 'Impact Investor Newsletter', 'impact-investor' ),
-			'menu_title' => __( 'Newsletter', 'impact-investor' ),
-			'menu_slug'  => 'impact-investor-newsletter',
-			'icon_url'   => 'dashicons-email',
-			'updated_message' => __( 'Newsletter has been updated.', 'impact-investor' ),
-		) );
+		acf_add_options_page(
+			array(
+				'page_title'      => __( 'Impact Investor Newsletter', 'impact-investor' ),
+				'menu_title'      => __( 'Newsletter', 'impact-investor' ),
+				'menu_slug'       => 'impact-investor-newsletter',
+				'icon_url'        => 'dashicons-email',
+				'updated_message' => __( 'Newsletter has been updated.', 'impact-investor' ),
+			)
+		);
 	}
 
 	/**
@@ -47,34 +44,39 @@ class Settings {
 	 * sending a newsletter.
 	 */
 	public function register_newsletter_fields(): void {
-		register_extended_field_group( array(
-			'key'   => 'impact-investor-newsletter',
-			'title' => __( 'Impact Investor Newsletter', 'impact-investor' ),
-			'fields' => array(
-				Message::make( __( 'Creating a newsletter', 'impact-investor' ), self::FIELD_MESSAGE )
-					->message( __( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Update\' on the right to save the current settings. If the \'Send newsletter\' box is checked, the newsletter will be sent to Selligent. The filled in values are stored in the database, so the same newsletter can be sent again in case of problems.', 'impact-investor' ) ),
-				Text::make( __( 'Subject', 'impact-investor' ), self::FIELD_SUBJECT )
-					->required(),
-				Text::make( __( 'Pre header', 'impact-investor' ), self::FIELD_PREHEADER )
-					->required(),
-				Textarea::make( __( 'Introduction', 'impact-investor', self::FIELD_INTRO ) )
-					->required(),
-				Relationship::make( 'Newsletter articles', self::FIELD_ARTICLES )
+		register_extended_field_group(
+			array(
+				'key'      => 'impact-investor-newsletter',
+				'title'    => __( 'Impact Investor Newsletter', 'impact-investor' ),
+				'fields'   => array(
+					Message::make( __( 'Creating a newsletter', 'impact-investor' ), self::FIELD_MESSAGE )
+						->message( __( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Update\' on the right to save the current settings. If the \'Send newsletter\' box is checked, the newsletter will be sent to Selligent. The filled in values are stored in the database, so the same newsletter can be sent again in case of problems.', 'impact-investor' ) ),
+					Text::make( __( 'Subject', 'impact-investor' ), self::FIELD_SUBJECT )
+						->required(),
+					Text::make( __( 'Pre header', 'impact-investor' ), self::FIELD_PREHEADER )
+						->required(),
+					Textarea::make( __( 'Introduction', 'impact-investor' ), self::FIELD_INTRO )
+						->required(),
+					Relationship::make( 'Newsletter articles', self::FIELD_ARTICLES )
 					->instructions( 'Select the articles that will be included in the newsletter' )
 					->postTypes( array( 'post' ) )
-					->filters( array(
-						'search',
-						'taxonomy'
-					) )
-					->returnFormat( 'object' )
+					->filters(
+						array(
+							'search',
+							'taxonomy',
+						)
+					)
+					->returnFormat( 'id' )
 					->required(),
-				TrueFalse::make( __( 'Send newsletter', 'impact-investor' ), self::FIELD_SEND )
-					->instructions( __( 'Check this box to send the newsletter after pressing \'Update\'.', 'impact-investor' ) ),
-			),
-			'location' => array(
-				Location::if( 'options_page', 'impact-investor-newsletter' ),
+					TrueFalse::make( __( 'Send newsletter', 'impact-investor' ), self::FIELD_SEND )
+							->instructions( __( 'Check this box to send the newsletter after pressing \'Update\'.', 'impact-investor' ) )
+							->stylisedUi(),
+				),
+				'location' => array(
+					Location::if( 'options_page', 'impact-investor-newsletter' ),
+				),
 			)
-		) );
+		);
 	}
 
 	/**
@@ -86,30 +88,20 @@ class Settings {
 			return $value;
 		}
 
-		$client = new Client();
-
-		/** @var post[] $articles */
 		$articles = get_field( self::FIELD_ARTICLES, 'options' );
-		$post_ids = array();
 
-		$status = array(
-			'time'       => time(),
-			'articles'   => array(),
-			'newsletter' => null,
-		);
-
-		foreach( $articles as $article ) {
-			$registration_result  = $client->register_post( $article );
-			$status['articles'][] = $this->get_status( $registration_result );
-			$post_ids[]           = $article->get_id();
+		if ( is_array( $articles ) && ! empty( $articles ) ) {
+			wp_schedule_single_event( time(), 'impact_investor_send_newsletter', array( $articles ) );
+			update_option(
+				self::META_MESSAGE, sprintf(
+					__( '[%1$s] A newsletter will be created with %2$d articles.', 'impact-investor' ),
+					date_i18n( 'Y-m-d H:i:s' ),
+					count( $articles )
+				)
+			);
 		}
 
-		$newsletter_result    = $client->register_newsletter( $post_ids );
-		$status['newsletter'] = $this->get_status( $newsletter_result );
-
-		update_option( self::META_STATUS, $status );
-
-		return false;
+		return '0';
 	}
 
 	/**
@@ -120,25 +112,5 @@ class Settings {
 		$args['orderby'] = 'ID';
 		$args['order']   = 'DESC';
 		return $args;
-	}
-
-	/**
-	 * Returns the status in a format that can be saved in the databse. If the
-	 * returned body is JSON, decode that to prevent issues with serialization.
-	 * 
-	 * @return array<string, string>
-	 */
-	public function get_status( array $api_response ): array {
-		$body = json_decode( $api_response['body'] );
-
-		if ( json_last_error() !== JSON_ERROR_NONE ) {
-			$body = $api_response['body'];
-		}
-
-		return array(
-			'code'    => $api_response['response']['code'],
-			'message' => $api_response['response']['message'],
-			'body'    => $body,
-		);
 	}
 }
