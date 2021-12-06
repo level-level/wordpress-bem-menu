@@ -1,25 +1,14 @@
 {% if slot %}
 	<div class="advertisement" aria-hidden="true">
-		<div class="container">
-			<div class="group group--small">
-				<div class="group__item">
-					<div class="advertisement__heading">
-						{{ __('Advertisement', 'impact-investor') }}
-					</div>
-				</div>
-				<div class="group__item">
-					<div class="advertisement__element">
+		<div class="advertisement__element">
 
-						{% if is_admin() %}
-							<div class="advertisement__selected">
-								{{ __('Selected slot: <strong>%s</strong>', 'impact-investor')|format(slot)|raw }}
-							</div>
-						{% endif %}
-
-						<div class="ii-message" data-slot="{{ slot }}"></div>
-					</div>
+			{% if is_admin() %}
+				<div class="advertisement__selected">
+					{{ __('Selected slot: <strong>%s</strong>', 'impact-investor')|format(slot)|raw }}
 				</div>
-			</div>
+			{% endif %}
+
+			<div class="ii-message" data-slot="{{ slot }}"></div>
 		</div>
 	</div>
 {% endif %}
