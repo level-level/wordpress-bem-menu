@@ -3,24 +3,24 @@
 	background-color: $secondary-200;
 	padding: $default-padding * 0.5 0;
 
-	&__heading {
-		@include font-normal;
-		@include font-size(14px, 16px);
-		text-align: center;
-		color: $advertisement-text;
-
-		@include breakpoint(sm) {
-			@include font-size(16px, 17px);
-		}
-	}
-
 	&__element {
 		display: block;
 
-		& > * {
-			display: block;
-			margin: 0 auto;
-			text-align: center;
+		// Represents a advertisement element from Google
+		.ii-message {
+			& > div {
+				& > div {
+					&:before {
+						@include font-normal;
+						@include font-size(14px, 16px);
+						color: $advertisement-text;
+
+						@include breakpoint(sm) {
+							@include font-size(16px, 17px);
+						}
+					}
+				}
+			}
 		}
 	}
 
