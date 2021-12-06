@@ -37,6 +37,10 @@
 			<script async defer src="https://gdpr-wrapper.privacymanager.io/gdpr/ab3257e2-40a2-4fa5-8e9c-1a45c23819e6/gdpr-liveramp.js"></script>
 		{% endif %}
 
+		{% if options.enable_advertisements %}
+			<script async defer src="https://fdmg-forms-assets.s3.amazonaws.com/impactinvestor/iimpact_investor-message.js"></script>
+		{% endif %}
+
 		{{ wp_head() }}
 	</head>
 	<body {{ body_class() }}>
