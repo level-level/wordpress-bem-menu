@@ -40,7 +40,5 @@ import './modules/tabs.js';
 
 	document.defaultView.addEventListener( 'keydown', handleFirstTab );
 
-	/* eslint-disable no-console */
-	console.log( '%c  Powered by level-level.com 💪🏻  ', 'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;' );
-	/* eslint-enable no-console */
+	console.log( '%c  Powered by level-level.com 💪🏻  ', 'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;' ); // eslint-disable-line
 }( window.app = window.app || {}, jQuery ) );

@@ -55,6 +55,9 @@ import { ResponsiveHelper } from '@level-level/recyclops';
 			if ( responsiveHelper.isDesktop() ) {
 				$parentItem.on( 'mouseenter', showDropdown );
 				$parentItem.on( 'mouseleave', hideDropdown );
+			} else {
+				$parentItem.off( 'mouseenter' );
+				$parentItem.off( 'mouseleave' );
 			}
 
 			// Only on viewports that are atleast the tablet landscape size close dropdowns that are not active
