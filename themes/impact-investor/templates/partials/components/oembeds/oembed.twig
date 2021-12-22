@@ -1,4 +1,4 @@
-<div class="oembed-component" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ type }}" data-disable-notice="{{ disable_notice }}">
+<div class="oembed-component" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-disable-notice="{{ disable_notice }}">
 	<div class="oembed-component__content">
 		<div class="oembed-placeholder">
 			<div class="oembed-placeholder__content">
@@ -12,9 +12,9 @@
 	</div>
 
 	<template>
-		{% if type == 'video' %}
+		{% if embed_type == 'video' %}
 			{% include 'partials/components/oembeds/oembed-video.twig' %}
-		{% elseif type == 'audio' %}
+		{% elseif embed_type == 'audio' %}
 			{% include 'partials/components/oembeds/oembed-audio.twig' %}
 		{% else %}
 			{{ html|raw }}

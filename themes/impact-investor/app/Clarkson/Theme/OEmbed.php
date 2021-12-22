@@ -46,11 +46,12 @@ class OEmbed {
 		$args = array(
 			'html'           => $html,
 			'source'         => $source,
-			'type'           => $type,
+			'embed_type'     => $type,
 			'thumbnail'      => $thumbnail,
 			'notice_text'    => __( 'This content is available after accepting the cookies.', 'impact-investor' ),
 			'button_text'    => __( 'I agree', 'impact-investor' ),
 			'disable_notice' => $this->maybe_disable_notice( $source, $html ),
+			'svg_icons'      => SVGIcons::get_instance(),
 		);
 
 		$options = get_field( 'theme_options', 'option' );

@@ -44,6 +44,7 @@ class Assets {
 		}
 
 		( new ScriptTranslations() )->register_hooks();
+		( new SVGIcons() )->localize_script_icons();
 	}
 
 	public function enqueue_editor(): void {

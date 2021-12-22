@@ -2,6 +2,7 @@
 
 namespace Gutenberg\Blocks;
 
+use Clarkson\Theme\SVGIcons;
 use Clarkson_Core\Gutenberg\Block_Type;
 use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
@@ -143,6 +144,7 @@ class base_block extends Block_Type {
 				'post_id'    => $this->post_id,
 				'is_acf'     => $this->is_acf,
 				'is_preview' => $this->is_preview,
+				'svg_icons'  => SVGIcons::get_instance(),
 			);
 
 			$block_args = apply_filters( 'clarkson_core_block_context_' . $this->name, $block_args, $this );

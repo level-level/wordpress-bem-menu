@@ -19,13 +19,16 @@
 		text-decoration: none;
 		color: $nav-text-color;
 
-		.icon {
+		&__icon {
+			transform: scaleY(1);
 			transition: transform $time;
 		}
 
 		&[aria-expanded='true'] {
-			.icon {
-				transform: scaleY(-1);
+			.btn {
+				&__icon {
+					transform: scaleY(-1);
+				}
 			}
 		}
 	}

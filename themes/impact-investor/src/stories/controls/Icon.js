@@ -1,7 +1,12 @@
-import IconsList from '../data/Icons';
-
 export default {
-	options: IconsList,
+	options: [
+		'arrow-left',
+		'arrow-right',
+		'close',
+		'search',
+		'email',
+		'user',
+	],
 	control: {
 		type: 'select',
 	}

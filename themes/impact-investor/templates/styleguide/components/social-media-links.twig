@@ -4,7 +4,7 @@
 			{% if social.url %}
 				<li class="list-social__item">
 					<a href="{{ social.url }}" class="list-social__link" aria-label="{{ social.label ? social.label : social.title }}">
-						<span class="icon icon-{{ social.icon }}" aria-hidden="true"></span>
+						<span class="icon-inline" aria-hidden="true">{{ svg_icons.get(social.icon)|raw }}</span>
 					</a>
 				</li>
 			{% endif %}

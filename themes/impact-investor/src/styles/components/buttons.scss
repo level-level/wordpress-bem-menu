@@ -176,16 +176,6 @@
 		&:focus {
 			@include focus-style($white);
 		}
-
-		.btn {
-			&__icon {
-				.icon {
-					&:before {
-						content: $icon-close;
-					}
-				}
-			}
-		}
 	}
 }
 
@@ -214,14 +204,7 @@
 		.btn {
 			&__icon {
 				@include font-size(20px);
-
-				.icon {
-					color: $white;
-
-					&:before {
-						content: $icon-close;
-					}
-				}
+				color: $white;
 			}
 		}
 	}
@@ -347,6 +330,26 @@ input[type='button'] {
 		.icon-comment {
 			position: relative;
 			top: 1px;
+		}
+	}
+
+	// Hide icon_expanded by default
+	&[aria-expanded='false'] {
+		.icon-inline {
+			&--expanded {
+				display: none;
+			}
+		}
+	}
+
+	// Hide default icon and shows icon_expanded
+	&[aria-expanded='true'] {
+		.icon-inline {
+			display: none;
+
+			&--expanded {
+				display: inline-flex;
+			}
 		}
 	}
 }

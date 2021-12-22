@@ -8,6 +8,7 @@ module.exports = {
 		lodash: true,
 		localStorage: true,
 		__tcfapi: true,
+		icons: true,
 	},
 
 	rules: {

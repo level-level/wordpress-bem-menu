@@ -3,11 +3,10 @@
 		<div class="oembed-audio__placeholder">
 
 			<div class="oembed-audio__button">
-				{% include 'partials/components/oembeds/play-button.twig' with {
-					text: '',
-					aria_label: __('Play audio', 'impact-investor'),
+				{% include 'styleguide/components/buttons/button-element.twig' with {
 					class: 'btn--play btn--js-audio-play',
-					type: 'audio'
+					aria_label: __('Play audio', 'impact-investor'),
+					icon: 'play',
 				} %}
 			</div>
 
