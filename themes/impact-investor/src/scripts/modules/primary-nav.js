@@ -28,7 +28,7 @@ import { ResponsiveHelper } from '@level-level/recyclops';
 		function createSubmenuButton() {
 			const button =
 				`<button class="${ classNames.arrow }" aria-expanded="false">
-					<span class="icon icon-carrot-down" aria-hidden="true"></span>
+					<span class="icon-inline" aria-hidden="true">${ icons.arrowDown }</span>
 					<span class="screen-reader-text">${ i18n.navigation.subMenu }</span>
 				</button>`;
 

@@ -1,4 +1,4 @@
-import IconsList from '../data/Icons';
+import Icon from '../controls/Icon';
 
 export default {
 	title: 'Components/Button',
@@ -11,12 +11,7 @@ export default {
 		text: {
 			control: 'text'
 		},
-		icon: {
-			options: IconsList,
-			control: {
-				type: 'select',
-			}
-		},
+		icon: Icon,
 		icon_left: {
 			name: 'icon left',
 			control: 'boolean'
@@ -78,7 +73,7 @@ Tertiary.args = {
 	text: 'Tertiary button',
 	icon_left: true,
 	highlight_icon: true,
-	icon: 'icon-arrow-right',
+	icon: 'arrow-right',
 };
 Tertiary.argTypes = {
 	class: {

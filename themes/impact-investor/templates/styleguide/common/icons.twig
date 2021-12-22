@@ -2,14 +2,14 @@
 	<div class="container">
 		<div class="entry-content">
 			<div class="row row--spacing">
-				{% for icon in icons %}
+				{% for name, svg in svg_icons.get_svgs() %}
 					<div class="col-12 col-sm-4">
 						<div class="row">
 							<div class="col-1">
-								<span class="{{ icon }}" aria-hidden="true"></span>
+								<span class="icon-inline" aria-hidden="true">{{ svg_icons.get(name)|raw }}</span>
 							</div>
 							<div class="col-auto">
-								<code>.{{ icon }}</code>
+								<code>.{{ name }}</code>
 							</div>
 						</div>
 					</div>

@@ -28,6 +28,7 @@
 ( new \Clarkson\Theme\Taxonomies() )->register_hooks();
 ( new \Clarkson\Theme\Options() )->register_hooks();
 ( new \Clarkson\Theme\ImageSizes() )->register_hooks();
+( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 
 // Impact Investor
 ( new \ImpactInvestor\Comments\Comments() )->register_hooks();

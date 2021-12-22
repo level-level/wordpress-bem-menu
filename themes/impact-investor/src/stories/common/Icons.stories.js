@@ -1,5 +1,3 @@
-import IconsList from '../data/Icons';
-
 export default {
 	title: 'Common/Icons',
 	parameters: {
@@ -10,12 +8,9 @@ export default {
 	argTypes: {
 
 	},
-	args: {
-		icons: IconsList,
-	}
+	args: {}
 };
 
 const Template = () => {};
 
 export const Icons = Template.bind( {} );
-Icons.args = {};

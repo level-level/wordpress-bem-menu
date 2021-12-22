@@ -7,11 +7,10 @@
 
 		{% if thumbnail %}
 			<div class="oembed-video__button">
-				{% include 'partials/components/oembeds/play-button.twig' with {
-					text: '',
-					aria_label: __('Play video', 'impact-investor'),
+				{% include 'styleguide/components/buttons/button-element.twig' with {
 					class: 'btn--play btn--js-video-play',
-					type: 'video'
+					aria_label: __('Play video', 'impact-investor'),
+					icon: 'play',
 				} %}
 			</div>
 		{% endif %}

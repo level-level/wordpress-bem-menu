@@ -17,7 +17,7 @@
 								{% set args = {
 									text: '',
 									class: 'btn--share js--share',
-									icon: 'icon-' ~ social.type,
+									icon: social.type,
 									data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
 									aria_label: __('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'impact-investor')|format(social.title),
 									focusable: sticky ? false,
@@ -28,9 +28,9 @@
 										url: 'javascript:void(0);',
 										aria_label: __('%1$s share — This button opens your e-mail client.', 'impact-investor')|format(social.title),
 									}) %}
-									{% include 'styleguide/components/buttons/button-link.twig' with args only %}
+									{% include 'styleguide/components/buttons/button-link.twig' with args %}
 								{% else %}
-									{% include 'styleguide/components/buttons/button-element.twig' with args only %}
+									{% include 'styleguide/components/buttons/button-element.twig' with args %}
 								{% endif %}
 							</li>
 						{% endfor %}

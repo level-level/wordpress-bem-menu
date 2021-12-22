@@ -77,16 +77,5 @@
 
 	&__icon {
 		display: flex;
-
-		&:before {
-			@include icon;
-			content: $icon-arrow-left;
-		}
-
-		&--next {
-			&:before {
-				content: $icon-arrow-right;
-			}
-		}
 	}
 }

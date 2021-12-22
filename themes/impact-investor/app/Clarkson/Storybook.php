@@ -2,6 +2,7 @@
 
 namespace Clarkson;
 
+use Clarkson\Theme\SVGIcons;
 use Clarkson\WPadmin\Tools\Styleguide;
 use Clarkson_Core\Templates;
 use WP_Error;
@@ -42,6 +43,8 @@ class Storybook extends WP_REST_Controller {
 	public function stories( WP_REST_Request $request ) {
 		$path    = $request->get_param( 'path' ) ?: '';
 		$objects = $request->get_param( 'params' ) ?: array();
+
+		$objects['svg_icons'] = SVGIcons::get_instance();
 
 		$template = Templates::get_instance()->render_twig( $path, $objects, true );
 

@@ -44,6 +44,14 @@ Usage example:
 <img src="{{ assets.get_assets_directory_url() }}/images/thumbnail.jpg" loading="lazy" alt="" width="150" height="150">
 ```
 
+### Inline SVG Icons
+All svg icons need to be located inside `src/images/icons/`. Make sure to run `npm run optimize-images` to remove unused ids and other attributes.
+
+Usage example:
+```html
+<span class="icon-inline" aria-hidden="true">{{ svg_icons.get('arrow-right')|raw }}</span>
+```
+
 ## Storybook
 ### Setup
 Add `define( 'WP_ENVIRONMENT_TYPE', 'local' );` to `wp-config.php`.

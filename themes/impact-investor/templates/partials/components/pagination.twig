@@ -1,12 +1,15 @@
 {# Settings pagination for archives and search #}
 {# For available args see: https://developer.wordpress.org/reference/functions/paginate_links/ #}
 
+{% set arrow_left = svg_icons.get('arrow-left')|raw %}
+{% set arrow_right = svg_icons.get('arrow-right')|raw %}
+
 {% set args = {
 		'type': 'list',
 		'mid_size': 1,
 		'before_page_number': '<span class="screen-reader-text">' ~ __('Page', 'impact-investor') ~ '</span>',
-		'prev_text': '<span class="pagination__icon pagination__icon--prev" aria-hidden="true"></span><span class="screen-reader-text">' ~ __('Previous page', 'impact-investor') ~ '</span>',
-		'next_text': '<span class="pagination__icon pagination__icon--next" aria-hidden="true"></span><span class="screen-reader-text">' ~ __('Next page', 'impact-investor') ~ '</span>'
+		'prev_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_left ~ '</span><span class="screen-reader-text">' ~ __('Previous page', 'impact-investor') ~ '</span>',
+		'next_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_right ~ '</span><span class="screen-reader-text">' ~ __('Next page', 'impact-investor') ~ '</span>'
 	}
 %}
 
