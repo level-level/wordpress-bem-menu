@@ -10,10 +10,12 @@
 	border-radius: 0;
 	padding: 0 $default-padding * 0.5;
 	border: 0;
-	border-bottom: 1px solid $secondary-400;
+	border-bottom: 1px solid $input-border-color;
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
+	background-color: $input-background;
+	color: $input-text-color;
 	appearance: none;
 
 	@include breakpoint(sm) {
