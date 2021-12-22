@@ -16,15 +16,22 @@
                 "id": ""
             },
             "choices": {
+                "Web\/Header": "Web\/Header",
                 "Home\/Mid1": "Home\/Mid1",
                 "Home\/Mid2": "Home\/Mid2",
                 "Home\/Mid3": "Home\/Mid3",
+                "Home\/Mid4": "Home\/Mid4",
+                "Home\/Mid5": "Home\/Mid5",
+                "Home\/Mid6": "Home\/Mid6",
                 "Article\/Mid1": "Article\/Mid1",
+                "Article\/Mid2": "Article\/Mid2",
                 "Category\/Mid1": "Category\/Mid1",
                 "Page\/Mid1": "Page\/Mid1",
+                "Page\/Mid2": "Page\/Mid2",
                 "Searchresult\/Mid1": "Searchresult\/Mid1",
                 "Author\/Mid1": "Author\/Mid1",
-                "Partner\/Mid1": "Partner\/Mid1"
+                "Partner\/Mid1": "Partner\/Mid1",
+                "Partner\/Mid2": "Partner\/Mid2"
             },
             "default_value": false,
             "allow_null": 0,
@@ -53,5 +60,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1638364239
+    "modified": 1640181806
 }
