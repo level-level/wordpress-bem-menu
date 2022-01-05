@@ -34,7 +34,7 @@
                 "Partner\/Mid2": "Partner\/Mid2"
             },
             "default_value": false,
-            "allow_null": 0,
+            "allow_null": 1,
             "multiple": 0,
             "ui": 0,
             "return_format": "value",
@@ -60,5 +60,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1640181806
+    "modified": 1641383007
 }
