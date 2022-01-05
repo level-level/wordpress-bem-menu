@@ -43,4 +43,8 @@
 	</head>
 	<body {{ body_class() }}>
 
+	{% if function_exists('gtm4wp_the_gtm_tag') %}
+		{{ gtm4wp_the_gtm_tag() }}
+	{% endif %}
+
 	{% include 'defaults/header.twig' %}
