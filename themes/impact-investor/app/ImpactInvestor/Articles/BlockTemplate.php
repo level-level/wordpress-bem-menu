@@ -32,6 +32,7 @@ class BlockTemplate {
 					'placeholder' => _x( 'Start article text..', 'Block', 'impact-investor' ),
 				),
 			),
+			array( 'acf/block-highlighted-content' ),
 			array( 'acf/block-social-share' ),
 			array( 'acf/block-related-articles' ),
 		);

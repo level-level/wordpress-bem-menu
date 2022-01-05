@@ -11,6 +11,7 @@
 		* {
 			&:focus {
 				@include focus-style($white);
+				outline-offset: -2px;
 			}
 		}
 	}
