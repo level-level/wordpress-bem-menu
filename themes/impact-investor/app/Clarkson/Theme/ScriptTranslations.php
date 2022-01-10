@@ -10,7 +10,7 @@ class ScriptTranslations {
 				'navigation'  => array(
 					'subMenu' => __( 'Sub menu', 'impact-investor' ),
 				),
-				'socialShare' => __( 'I read this article via Impact Investor and i would like to share it with you:', 'impact-investor' ),
+				'socialShare' => __( 'I read this article via Impact Investor and I would like to share it with you:', 'impact-investor' ),
 			)
 		);
 	}
