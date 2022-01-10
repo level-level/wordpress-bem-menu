@@ -7,11 +7,10 @@ class ScriptTranslations {
 			'clarkson_main',
 			'i18n',
 			array(
-				'navigation'   => array(
+				'navigation'  => array(
 					'subMenu' => __( 'Sub menu', 'impact-investor' ),
 				),
-				'socialShare'  => __( 'I read this article via Impact Investor and i would like to share it with you:', 'impact-investor' ),
-				'emailSubject' => __( 'Article shared via Impact Investor', 'impact-investor' ),
+				'socialShare' => __( 'I read this article via Impact Investor and i would like to share it with you:', 'impact-investor' ),
 			)
 		);
 	}

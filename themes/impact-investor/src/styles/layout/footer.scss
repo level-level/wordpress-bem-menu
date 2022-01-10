@@ -38,6 +38,16 @@
 		@include font-size(22px, 24px);
 		color: $footer-heading;
 	}
+
+	.btn {
+		&--link {
+			color: $footer-link-color;
+
+			@include hover-focus-style {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 .footer-socials {

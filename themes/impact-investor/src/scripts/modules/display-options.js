@@ -1,18 +1,21 @@
-import { MrToggle } from '@level-level/recyclops';
+import { ResponsiveHelper } from '@level-level/recyclops';
 
 ( function( $, app ) {
 
 	app.displayOptions = function( element ) {
 
-		const $element = $( element );
+		const $element = $( element ),
+			responsiveHelper = new ResponsiveHelper();
 
 		function initialize() {
-			const options = {
-				moduleName: 'displayOptions',
-				useHover: false,
-			};
+			$element.on( 'keydown', handleKeyboard );
+		}
 
-			new MrToggle( $element, options );
+		function handleKeyboard( event ) {
+			if ( event.which === 9 && responsiveHelper.atLeastTabletPortrait() ) {
+				event.preventDefault();
+				$( '.header-profile' ).find( '.btn' ).focus();
+			}
 		}
 
 		initialize();
