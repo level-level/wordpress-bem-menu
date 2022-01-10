@@ -22,10 +22,10 @@
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
-    "@level-level/eslint-config-level-level": "^1.0.3",
+    "@level-level/eslint-config-level-level": "^1.0.4",
     "@level-level/storybook-config": "^1.0.0",
-    "@level-level/stylelint-config-level-level": "^1.0.4",
-    "@level-level/webpack-config": "^1.2.5",
+    "@level-level/stylelint-config-level-level": "^1.0.5",
+    "@level-level/webpack-config": "^1.2.7",
     "storybook-dark-mode": "^1.0.8"
   }
 }
