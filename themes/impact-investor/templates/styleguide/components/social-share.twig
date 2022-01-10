@@ -26,7 +26,7 @@
 								{% if social.type == 'email' %}
 									{% set args = args|merge({
 										url: 'javascript:void(0);',
-										aria_label: __('%1$s share — This button opens your e-mail client.', 'impact-investor')|format(social.title),
+										aria_label: __('%1$s share — This opens your e-mail client.', 'impact-investor')|format(social.title),
 									}) %}
 									{% include 'styleguide/components/buttons/button-link.twig' with args %}
 								{% else %}
