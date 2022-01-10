@@ -19,7 +19,7 @@ class WPSEO {
 			$pages_total = $wp_query->max_num_pages;
 			$search_term = get_search_query();
 			$separator   = is_plugin_active( 'wordpress-seo/wp-seo.php' ) || is_plugin_active( 'wordpress-seo-premium/wp-seo-premium.php' ) ? YoastSEO()->helpers->options->get_title_separator() : '-';
-			$title       = sprintf( __( 'Search results for "%s"', 'clarkson-theme-dawn' ), $search_term ) . ', ' . sprintf( __( 'page %1$s of %2$s', 'clarkson-theme-dawn' ), $page, $pages_total ) . ' ' . $separator . ' ' . get_bloginfo( 'name' );
+			$title       = sprintf( __( 'Search results for "%s"', 'impact-investor' ), $search_term ) . ', ' . sprintf( __( 'page %1$s of %2$s', 'impact-investor' ), $page, $pages_total ) . ' ' . $separator . ' ' . get_bloginfo( 'name' );
 		}
 		return $title;
 	}
