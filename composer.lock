@@ -636,16 +636,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.1.3",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "832eeb86f915d6cd26ca1e5461cc1bbec311d029"
+                "reference": "9838ce28418380cfc232126147587794502eb6ad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/832eeb86f915d6cd26ca1e5461cc1bbec311d029",
-                "reference": "832eeb86f915d6cd26ca1e5461cc1bbec311d029",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/9838ce28418380cfc232126147587794502eb6ad",
+                "reference": "9838ce28418380cfc232126147587794502eb6ad",
                 "shasum": ""
             },
             "require": {
@@ -694,9 +694,9 @@
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
                 "issues": "https://github.com/level-level/Clarkson-Core/issues",
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.1.3"
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.2.0"
             },
-            "time": "2021-11-16T10:52:15+00:00"
+            "time": "2022-01-06T10:10:18+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
@@ -4047,16 +4047,16 @@
         },
         {
             "name": "codeception/codeception",
-            "version": "4.1.27",
+            "version": "4.1.28",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "2d9a11e6f487e3bcc17e22b7552fb6a10cec5c7c"
+                "reference": "e9bc22a3819f9d356068c0e372193ebcc9b06014"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/2d9a11e6f487e3bcc17e22b7552fb6a10cec5c7c",
-                "reference": "2d9a11e6f487e3bcc17e22b7552fb6a10cec5c7c",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/e9bc22a3819f9d356068c0e372193ebcc9b06014",
+                "reference": "e9bc22a3819f9d356068c0e372193ebcc9b06014",
                 "shasum": ""
             },
             "require": {
@@ -4133,7 +4133,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeception/Codeception/issues",
-                "source": "https://github.com/Codeception/Codeception/tree/4.1.27"
+                "source": "https://github.com/Codeception/Codeception/tree/4.1.28"
             },
             "funding": [
                 {
@@ -4141,7 +4141,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-12-22T06:40:46+00:00"
+            "time": "2022-01-05T16:41:25+00:00"
         },
         {
             "name": "codeception/lib-asserts",
@@ -4632,16 +4632,16 @@
         },
         {
             "name": "codeception/stub",
-            "version": "4.0.0",
+            "version": "4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Stub.git",
-                "reference": "4c9cf3e19bd5f064e08e7f3ba6be651c218dc6ae"
+                "reference": "ce0a9e418c775ca8b737d50c2b4ac1132f3990d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Stub/zipball/4c9cf3e19bd5f064e08e7f3ba6be651c218dc6ae",
-                "reference": "4c9cf3e19bd5f064e08e7f3ba6be651c218dc6ae",
+                "url": "https://api.github.com/repos/Codeception/Stub/zipball/ce0a9e418c775ca8b737d50c2b4ac1132f3990d8",
+                "reference": "ce0a9e418c775ca8b737d50c2b4ac1132f3990d8",
                 "shasum": ""
             },
             "require": {
@@ -4664,9 +4664,9 @@
             "description": "Flexible Stub wrapper for PHPUnit's Mock Builder",
             "support": {
                 "issues": "https://github.com/Codeception/Stub/issues",
-                "source": "https://github.com/Codeception/Stub/tree/4.0.0"
+                "source": "https://github.com/Codeception/Stub/tree/4.0.1"
             },
-            "time": "2021-12-07T14:39:17+00:00"
+            "time": "2022-01-08T09:35:36+00:00"
         },
         {
             "name": "codeception/util-universalframework",
@@ -5153,16 +5153,16 @@
         },
         {
             "name": "illuminate/collections",
-            "version": "v8.78.0",
+            "version": "v8.78.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/collections.git",
-                "reference": "7cb18ab1acf3802917bda8c840c72d8d15a37f1c"
+                "reference": "e8c1cbd7a4cc8fb0e6a8978a55ef6d49c90bea59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/collections/zipball/7cb18ab1acf3802917bda8c840c72d8d15a37f1c",
-                "reference": "7cb18ab1acf3802917bda8c840c72d8d15a37f1c",
+                "url": "https://api.github.com/repos/illuminate/collections/zipball/e8c1cbd7a4cc8fb0e6a8978a55ef6d49c90bea59",
+                "reference": "e8c1cbd7a4cc8fb0e6a8978a55ef6d49c90bea59",
                 "shasum": ""
             },
             "require": {
@@ -5203,11 +5203,11 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-12-30T20:34:52+00:00"
+            "time": "2022-01-04T18:54:15+00:00"
         },
         {
             "name": "illuminate/contracts",
-            "version": "v8.78.0",
+            "version": "v8.78.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/contracts.git",
@@ -5255,7 +5255,7 @@
         },
         {
             "name": "illuminate/macroable",
-            "version": "v8.78.0",
+            "version": "v8.78.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/macroable.git",
@@ -5301,7 +5301,7 @@
         },
         {
             "name": "illuminate/support",
-            "version": "v8.78.0",
+            "version": "v8.78.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
@@ -5408,16 +5408,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.0.18",
+            "version": "3.0.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "eff4b188a7f651ab857cbb452d49235eedbc55f1"
+                "reference": "4f4c11f11305418e150f0ef1f4909c45f585b39f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/eff4b188a7f651ab857cbb452d49235eedbc55f1",
-                "reference": "eff4b188a7f651ab857cbb452d49235eedbc55f1",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/4f4c11f11305418e150f0ef1f4909c45f585b39f",
+                "reference": "4f4c11f11305418e150f0ef1f4909c45f585b39f",
                 "shasum": ""
             },
             "require": {
@@ -5498,7 +5498,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.0.18"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.0.19"
             },
             "funding": [
                 {
@@ -5506,7 +5506,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-05T09:25:36+00:00"
+            "time": "2022-01-06T09:42:39+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -6875,16 +6875,16 @@
         },
         {
             "name": "psalm/phar",
-            "version": "4.17.0",
+            "version": "4.18.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/phar.git",
-                "reference": "8e968d791ffbb253901afc4b3512445d96cb1c51"
+                "reference": "2c5140c62d897982d7f623d8dbb25ab802557c5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/phar/zipball/8e968d791ffbb253901afc4b3512445d96cb1c51",
-                "reference": "8e968d791ffbb253901afc4b3512445d96cb1c51",
+                "url": "https://api.github.com/repos/psalm/phar/zipball/2c5140c62d897982d7f623d8dbb25ab802557c5f",
+                "reference": "2c5140c62d897982d7f623d8dbb25ab802557c5f",
                 "shasum": ""
             },
             "require": {
@@ -6904,9 +6904,9 @@
             "description": "Composer-based Psalm Phar",
             "support": {
                 "issues": "https://github.com/psalm/phar/issues",
-                "source": "https://github.com/psalm/phar/tree/4.17.0"
+                "source": "https://github.com/psalm/phar/tree/4.18.1"
             },
-            "time": "2022-01-01T19:35:43+00:00"
+            "time": "2022-01-08T21:49:33+00:00"
         },
         {
             "name": "psr/event-dispatcher",
