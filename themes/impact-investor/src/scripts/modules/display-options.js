@@ -1,4 +1,4 @@
-import { MrToggle, ResponsiveHelper } from '@level-level/recyclops';
+import { ResponsiveHelper } from '@level-level/recyclops';
 
 ( function( $, app ) {
 
@@ -8,12 +8,6 @@ import { MrToggle, ResponsiveHelper } from '@level-level/recyclops';
 			responsiveHelper = new ResponsiveHelper();
 
 		function initialize() {
-			const options = {
-				moduleName: 'displayOptions',
-				useHover: false,
-			};
-
-			new MrToggle( $element, options );
 			$element.on( 'keydown', handleKeyboard );
 		}
 
