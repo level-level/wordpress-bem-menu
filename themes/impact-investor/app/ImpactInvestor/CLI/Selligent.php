@@ -11,7 +11,7 @@ class Selligent {
 	 * Shows information about the current status of the API.
 	 */
 	public function status( array $args, array $args_assoc ): void {
-		\WP_CLI::line( 'User: ' . constant( 'II_SELLIGENT_USER' ) );
+		\WP_CLI::line( 'User: ' . ( defined( 'II_SELLIGENT_USER' ) ? constant( 'II_SELLIGENT_USER' ) : 'User is not set' ) );
 		\WP_CLI::line( 'Pass: ' . ( defined( 'II_SELLIGENT_USER' ) ? 'Password is set' : 'Password is not set' ) );
 		\WP_CLI::line( 'Type: ' . Client::get_type() );
 	}
