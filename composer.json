@@ -119,5 +119,11 @@
         "codeception/module-cli": "^1.1",
         "codeception/util-universalframework": "^1.0",
         "psalm/phar": "^4.11"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }
