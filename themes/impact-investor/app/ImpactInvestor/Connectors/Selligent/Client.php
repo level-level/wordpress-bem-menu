@@ -112,11 +112,11 @@ class Client {
 	}
 
 	/**
-	 * The mailing list type. There are currently two:
-	 * WEEKLY: The standard mailing list that sends the email to all subscribers.
-	 * MVP: Default. The mailing list used to test the API.
+	 * The mailing list type. This type determines the mailing list that will
+	 * be used. The production mailing list is 'MVP'. Custom test lists can be
+	 * created if needed.
 	 */
 	public static function get_type(): string {
-		return defined( 'II_SELLIGENT_TYPE' ) ? constant( 'II_SELLIGENT_TYPE' ) : 'MVP';
+		return defined( 'II_SELLIGENT_TYPE' ) ? constant( 'II_SELLIGENT_TYPE' ) : 'NONE';
 	}
 }
