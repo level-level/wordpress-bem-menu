@@ -56,6 +56,7 @@ class Settings {
 					Text::make( __( 'Pre header', 'impact-investor' ), self::FIELD_PREHEADER )
 						->required(),
 					Textarea::make( __( 'Introduction', 'impact-investor' ), self::FIELD_INTRO )
+						->newLines( 'br' )
 						->required(),
 					Relationship::make( 'Newsletter articles', self::FIELD_ARTICLES )
 					->instructions( 'Select the articles that will be included in the newsletter' )
