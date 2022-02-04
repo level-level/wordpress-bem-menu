@@ -3754,15 +3754,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.5.5",
+            "version": "2.5.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.5.5"
+                "reference": "tags/2.5.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.5.5.zip"
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.5.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
