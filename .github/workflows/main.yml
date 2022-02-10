@@ -126,7 +126,7 @@ jobs:
           npm run lint
       - name: JavaScript tests
         run: |
-          cd themes/clarkson-theme-dawn
+          cd themes/impact-investor
           npm run test
       - name: Build
         run: |
