@@ -3,7 +3,7 @@
 {% set scrollarea = uniqid('header-menu__inner-') %}
 <div
 	class="header-menu hidden-sm"
-	data-module="headerMenu"
+	data-module="header-menu"
 	data-config='{
 		"trigger": ".{{ trigger }}",
 		"target": ".{{ target }}",
@@ -32,7 +32,7 @@
 					</div>
 				</div>
 				<div class="menu-dropdown__body">
-					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
 						{{ bem_menu('primary_navigation', 'primary-nav') }}
 					</nav>
 
@@ -67,7 +67,7 @@
 </div>
 
 <div class="hidden-xs visible-sm">
-	<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primaryNav">
+	<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
 		{{ bem_menu('primary_navigation', 'primary-nav') }}
 	</nav>
 </div>

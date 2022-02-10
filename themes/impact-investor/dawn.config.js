@@ -1,17 +1,17 @@
 module.exports = {
 	entries: {
-		main: './src/index.js',
-		editor: './src/editor.js',
+		main: './src/index.ts',
+		editor: './src/editor.ts',
 	},
 	dist: './dist',
 	src: './src',
-	webpack({ module }) {
+	webpack( { module } ) {
 
 	},
-	webpackDev({ mode, devtool }) {
+	webpackDev( { mode, devtool } ) {
 
 	},
-	webpackProd({ mode, devtool }) {
+	webpackProd( { mode, devtool } ) {
 
 	},
 };

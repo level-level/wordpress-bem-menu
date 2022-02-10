@@ -1,6 +1,6 @@
 <div
 	class="header-search"
-	data-module="headerSearch"
+	data-module="header-search"
 	data-config='{
 		"trigger": ".js-header-search",
 		"target": ".header-search__dropdown",
@@ -25,7 +25,6 @@
 				<div class="col-auto">
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
-						aria_expanded_support: true,
 						class: 'btn--secondary btn--search js-header-search',
 						aria_label: __('Close search', 'impact-investor'),
 						icon: 'close',
