@@ -15,17 +15,27 @@
     "fix": "dawn lint --fix",
     "optimize-images": "dawn optimize-images",
     "storybook": "start-storybook -p 6006",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "test": "jest"
   },
   "dependencies": {
-    "@level-level/recyclops": "^1.0.5",
+    "@level-level/recyclops": "^2.0.5",
     "normalize.css": "^8.0.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@jest/globals": "^27.4.6",
     "@level-level/eslint-config-level-level": "^1.0.6",
-    "@level-level/storybook-config": "^1.0.0",
+    "@level-level/storybook-config": "^1.0.4",
     "@level-level/stylelint-config-level-level": "^1.0.5",
     "@level-level/webpack-config": "^1.3.0",
+    "@types/body-scroll-lock": "^3.1.0",
+    "@types/jest": "^27.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "babel-jest": "^27.4.6",
+    "eslint-plugin-jest": "^26.0.0",
+    "jest": "^27.4.7",
     "storybook-dark-mode": "^1.0.8"
   }
 }

@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         php: ['7.4']
-        wp: ['5.8']
+        wp: ['5.9']
         mysql: ['5.7']
     services:
       mysql:
@@ -124,6 +124,10 @@ jobs:
         run: |
           cd themes/impact-investor
           npm run lint
+      - name: JavaScript tests
+        run: |
+          cd themes/clarkson-theme-dawn
+          npm run test
       - name: Build
         run: |
           cd themes/impact-investor

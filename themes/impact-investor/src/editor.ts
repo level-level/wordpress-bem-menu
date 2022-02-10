@@ -1,5 +1,8 @@
-// import './blocks/blocks.js';
 import './styles/editor.scss';
+
+// Global variable provided by WordPress
+declare const wp: any; // eslint-disable-line
+declare const lodash: any; // eslint-disable-line
 
 /**
  * Disable default WordPress fullscreen mode
@@ -7,6 +10,10 @@ import './styles/editor.scss';
 const isFullscreenMode = wp.data.select( 'core/edit-post' ).isFeatureActive( 'fullscreenMode' );
 if ( isFullscreenMode ) {
 	wp.data.dispatch( 'core/edit-post' ).toggleFeature( 'fullscreenMode' );
+}
+
+type Block = {
+	[key: string]: string;
 }
 
 wp.domReady( () => {
@@ -20,9 +27,9 @@ wp.domReady( () => {
 	const embedBlock = wp.blocks.getBlockVariations( 'core/embed' );
 
 	if ( embedBlock ) {
-		embedBlock.forEach( ( el ) => {
-			if ( ! enabledEmbeds.includes( el.name ) ) {
-				wp.blocks.unregisterBlockVariation( 'core/embed', el.name );
+		embedBlock.forEach( ( block: Block ) => {
+			if ( ! enabledEmbeds.includes( block.name ) ) {
+				wp.blocks.unregisterBlockVariation( 'core/embed', block.name );
 			}
 		} );
 	}
@@ -36,7 +43,7 @@ const coreBlocks = [
 wp.hooks.addFilter(
 	'blocks.registerBlockType',
 	'impact-investor/blocks',
-	function( settings, name ) {
+	function( settings: any, name: string ) {
 		if ( coreBlocks.includes( name ) ) {
 			return lodash.assign( {}, settings, {
 				supports: lodash.assign( {}, settings.supports, {

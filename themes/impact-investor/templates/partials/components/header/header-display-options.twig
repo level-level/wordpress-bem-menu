@@ -1,12 +1,12 @@
 {% set radio_id = uniqid('radio') %}
 
-<div class="dark-mode" data-module="displayOptions">
+<div class="dark-mode" data-module="display-options">
 	<div class="dark-mode__title">
 		{{ __('Display preferences', 'impact-investor') }}
 	</div>
 	<div class="dark-mode__dropdown">
 		<div class="dark-mode__inner">
-			<ul class="list-dark-mode" data-module="themeSelection">
+			<ul class="list-dark-mode" data-module="theme-selection">
 				<li class="list-dark-mode__item">
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="system" id="theme-system-{{ radio_id }}" checked>
 					<label for="theme-system-{{ radio_id }}">{{ __('System (device settings)', 'impact-investor') }}</label>
