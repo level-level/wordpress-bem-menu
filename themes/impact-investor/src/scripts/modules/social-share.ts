@@ -10,7 +10,7 @@ interface IPlatforms {
 	email?: string;
 }
 
-class Socials implements IModule {
+class SocialShare implements IModule {
 	element: HTMLElement;
 	shareLinks: HTMLElement[];
 	platforms: IPlatforms;
@@ -73,4 +73,4 @@ class Socials implements IModule {
 	}
 }
 
-export default Socials;
+export default SocialShare;
