@@ -855,11 +855,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.1.22",
+            "version": "4.2.0",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.1.22.zip",
-                "shasum": "d61e38a2af198f092c5f8e60e35e0280f9eda03d"
+                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.0.zip",
+                "shasum": "ab2a1b3a4f46ff86983631335e7f67a9ae531a69"
             },
             "type": "wordpress-plugin"
         },
