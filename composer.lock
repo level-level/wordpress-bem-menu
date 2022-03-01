@@ -636,16 +636,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "75219c9d8bbcbe5de6867681497548d8d3b9837a"
+                "reference": "f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/75219c9d8bbcbe5de6867681497548d8d3b9837a",
-                "reference": "75219c9d8bbcbe5de6867681497548d8d3b9837a",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d",
+                "reference": "f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d",
                 "shasum": ""
             },
             "require": {
@@ -665,12 +665,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Clarkson_Core\\": "src/"
-                },
                 "files": [
                     "clarkson-core.php"
-                ]
+                ],
+                "psr-4": {
+                    "Clarkson_Core\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -694,9 +694,9 @@
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
                 "issues": "https://github.com/level-level/Clarkson-Core/issues",
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.3.0"
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.4.0"
             },
-            "time": "2022-01-13T12:22:09+00:00"
+            "time": "2022-02-28T09:16:00+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
