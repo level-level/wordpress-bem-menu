@@ -3772,15 +3772,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.0.23",
+            "version": "2.0.24",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.0.23"
+                "reference": "tags/2.0.24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.0.23.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.0.24.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
