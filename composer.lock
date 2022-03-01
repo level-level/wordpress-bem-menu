@@ -828,11 +828,11 @@
         },
         {
             "name": "level-level/wordpress-bem-menu",
-            "version": "v1.0.7",
+            "version": "v1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Wordpress-Bem-Menu",
-                "reference": "3a1a9e044e1799451a575b561b4dfafe02c20ed6"
+                "reference": "145eb9e174a5df9dd67ee3c17f0fc5b87868a0dc"
             },
             "type": "library",
             "autoload": {
@@ -841,7 +841,7 @@
                 ]
             },
             "description": "Better menu implementation for Wordpress using BEM syntax",
-            "time": "2021-10-06T12:13:47+00:00"
+            "time": "2022-02-10T14:01:49+00:00"
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
