@@ -45,7 +45,8 @@
         "wpackagist-plugin/koko-analytics": "^1.0",
         "wordplate/acf": "^11.2",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.14",
-        "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0"
+        "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
+        "ll-premium/gravityforms": "2.5.16.3"
     },
     "scripts": {
         "post-autoload-dump": [

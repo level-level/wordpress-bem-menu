@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bca25d4698e09ca08d47a6d83e57c563",
+    "content-hash": "ee7be17f220057fce580f195d9f3e78f",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -850,6 +850,16 @@
                 "type": "zip",
                 "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.11.4.zip",
                 "shasum": "eb70c64d652f2508979d5a3321aff295eca2c53a"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "ll-premium/gravityforms",
+            "version": "2.5.16.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.5.16.3.zip",
+                "shasum": "d8565e6873c47eefcb0db94eb45b98b01d5a48dd"
             },
             "type": "wordpress-plugin"
         },
