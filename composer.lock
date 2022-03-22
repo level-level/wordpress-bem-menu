@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee7be17f220057fce580f195d9f3e78f",
+    "content-hash": "84cd512f9368bd0715a2cc1f4d09d531",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3779,6 +3779,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/loco-translate/"
+        },
+        {
+            "name": "wpackagist-plugin/popup-maker",
+            "version": "1.16.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/popup-maker/",
+                "reference": "tags/1.16.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.4.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/popup-maker/"
         },
         {
             "name": "wpackagist-plugin/post-smtp",
