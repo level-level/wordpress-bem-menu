@@ -63,6 +63,7 @@
 	--input-background: var(--white);
 	--input-border-color: var(--secondary-400);
 	--input-text-color: var(--black);
+	--form-validation-text: var(--black);
 
 	// Mobile menu
 	--mobile-menu-dropdown: var(--secondary-500);
@@ -168,6 +169,7 @@
 	--input-background: #0b0b0b;
 	--input-border-color: var(--primary-400);
 	--input-text-color: var(--white);
+	--form-validation-text: var(--black);
 
 	// Mobile menu
 	--mobile-menu-dropdown: var(--secondary-200);
@@ -299,6 +301,7 @@ $radio-checkbox-border: var(--radio-checkbox-border);
 $input-background: var(--input-background);
 $input-border-color: var(--input-border-color);
 $input-text-color: var(--input-text-color);
+$form-validation-text: var(--form-validation-text);
 $pagination-arrow-color: var(--pagination-arrow-color);
 $backdrop: var(--backdrop);
 $table-border-color: var(--table-border-color);

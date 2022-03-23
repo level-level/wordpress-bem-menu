@@ -169,15 +169,34 @@
 			margin-top: 10px;
 			border-top: 1px solid $black;
 			padding-top: 10px;
+			color: $form-validation-text;
+		}
+
+		label,
+		legend {
+			color: $form-validation-text;
+		}
+
+		legend {
+			background-color: $error;
+			margin-left: calc(-1 * ($default-padding * 0.5));
+			padding: $default-padding * 0.5;
+			padding-top: 5px;
+			margin-bottom: 0;
 		}
 	}
 
 	.gform_validation_errors,
 	.validation_error {
+		@include font-size(16px);
 		position: relative;
 		padding: $default-padding * 0.5;
 		background-color: $error;
 		margin: $default-padding * 0.5 0;
+
+		* {
+			color: $form-validation-text;
+		}
 
 		ol {
 			margin-bottom: 0;

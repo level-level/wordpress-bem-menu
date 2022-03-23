@@ -1,0 +1,41 @@
+.pum {
+	.pum-container {
+		@include body-styles;
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		background-color: $secondary-200;
+		width: calc(100% - #{$default-padding});
+		transform: translateX(-50%) translateY(-50%);
+		padding: $default-padding;
+		padding-top: 44px;
+		border-radius: 3px;
+	}
+
+	.pum-content {
+		color: inherit;
+		line-height: unset;
+	}
+
+	.pum-content + .pum-close {
+		@include btn;
+		@include btn--primary;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+.pum-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: $backdrop;
+	z-index: 10;
+
+	:before {
+		box-sizing: initial;
+	}
+}
