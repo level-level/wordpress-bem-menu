@@ -5,26 +5,11 @@
 		}
 	}
 
-	ul {
-		@include list-unstyled;
-	}
-
 	.gform_fields {
-		& > * + * {
-			margin-top: $default-padding;
-		}
-	}
+		grid-row-gap: $gutter !important;
 
-	.gfield {
-		& > * + * {
-			margin-top: $default-padding * 0.5;
-		}
-	}
-
-	.gfield_radio,
-	.gfield_checkbox {
-		& > * + * {
-			margin-top: $default-padding * 0.5;
+		@include breakpoint(sm) {
+			grid-column-gap: $gutter !important;
 		}
 	}
 
@@ -88,41 +73,8 @@
 		}
 	}
 
-	.ginput_container_time {
-		i {
-			display: none;
-		}
-	}
-
-	.clear-multi {
-		display: flex;
-		flex-direction: column;
-
-		& > * {
-			@include breakpoint(sm) {
-				align-self: flex-end;
-			}
-		}
-
-		// Represents every item in a date element
-		& > * + * {
-			margin-top: $default-padding * 0.5;
-
-			@include breakpoint(sm) {
-				margin-top: 0;
-				margin-left: $default-padding;
-			}
-		}
-
-		@include breakpoint(sm) {
-			flex-direction: row;
-			flex-wrap: nowrap;
-		}
-	}
-
-	.ginput_container_fileupload {
-		border: 2px dashed $grey;
-		padding: $default-padding * 0.5;
+	.gform-icon {
+		display: none;
 	}
 
 	.gform_drop_area {
@@ -132,6 +84,7 @@
 		.gform_drop_instructions {
 			display: block;
 			margin-right: $default-padding * 0.5;
+			margin-bottom: 0;
 		}
 
 		button {
@@ -156,6 +109,7 @@
 
 		button {
 			padding: 5px;
+			color: $primary;
 
 			& + * {
 				margin-left: 10px;
@@ -164,8 +118,11 @@
 	}
 
 	.gfield_required {
-		color: $secondary-200;
+		@include font-normal();
+		color: $primary;
+		text-transform: lowercase;
 
+		&.gfield_required_text,
 		&.gfield_required_custom {
 			margin-left: 5px;
 		}
@@ -186,6 +143,11 @@
 		margin-bottom: $default-padding * 0.5;
 	}
 
+	.gfield_consent_label,
+	.gfield_consent_description {
+		@include font-size(16px);
+	}
+
 	.gfield_consent_description {
 		padding-left: $default-padding;
 	}
@@ -199,8 +161,8 @@
 
 	.gfield_error {
 		position: relative;
-		padding: $default-padding * 0.5;
-		background-color: $error;
+		padding: $default-padding * 0.5 !important;
+		background-color: $error !important;
 
 		.validation_message {
 			@include font-size(14px);
