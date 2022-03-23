@@ -178,11 +178,11 @@
 		}
 
 		legend {
-			background-color: $error;
-			margin-left: calc(-1 * ($default-padding * 0.5));
-			padding: $default-padding * 0.5;
-			padding-top: 5px;
-			margin-bottom: 0;
+			background-color: $error !important;
+			margin-left: calc(-1 * ($default-padding * 0.5)) !important;
+			padding: $default-padding * 0.5 !important;
+			padding-top: 5px !important;
+			margin-bottom: 0 !important;
 		}
 	}
 

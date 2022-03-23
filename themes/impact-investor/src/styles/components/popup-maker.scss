@@ -1,41 +1,58 @@
-.pum {
+[class*='pum-theme-'] {
 	.pum-container {
 		@include body-styles;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		background-color: $secondary-200;
+		background-color: $secondary-200 !important;
 		width: calc(100% - #{$default-padding});
 		transform: translateX(-50%) translateY(-50%);
-		padding: $default-padding;
-		padding-top: 44px;
-		border-radius: 3px;
+		padding: $default-padding !important;
+		padding-top: 44px !important;
+		border-radius: 3px !important;
 	}
 
 	.pum-content {
-		color: inherit;
+		color: inherit !important;
 		line-height: unset;
 	}
 
 	.pum-content + .pum-close {
-		@include btn;
-		@include btn--primary;
 		position: absolute;
 		top: 0;
 		right: 0;
+		border: 2px solid transparent !important;
+		font-family: 'ProximaNovaBold', sans-serif !important;
+		padding: 5px 10px !important;
+		background-color: $primary !important;
+		border-color: $primary !important;
+		color: $btn-primary-color !important;
+		border-radius: 3px !important;
+		font-size: 16px !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
+
+		@include hover-focus-style {
+			background-color: $btn-primary-hover !important;
+			color: $btn-primary-hover-color !important;
+		}
+
+		@include breakpoint(sm) {
+			font-size: 18px !important;
+		}
 	}
-}
 
-.pum-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: $backdrop;
-	z-index: 10;
+	&.pum-overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $backdrop;
+		z-index: 10;
 
-	:before {
-		box-sizing: initial;
+		:before {
+			box-sizing: initial;
+		}
 	}
 }
