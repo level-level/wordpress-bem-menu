@@ -606,34 +606,42 @@
         },
         {
             "name": "level-level/clarkson-404",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-404.git",
-                "reference": "04d4f21e0a1307332877c7b0db5510e03cd88c2e"
+                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/04d4f21e0a1307332877c7b0db5510e03cd88c2e",
-                "reference": "04d4f21e0a1307332877c7b0db5510e03cd88c2e",
+                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/1268d58247d3444d15392aadf8ddff6d6c5b4128",
+                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128",
                 "shasum": ""
             },
             "require": {
-                "level-level/clarkson-core": "^1.0.0"
+                "level-level/clarkson-core": "^1 | ^2"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+                "wp-coding-standards/wpcs": "^2.3"
             },
             "type": "wordpress-muplugin",
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Level Level",
                     "homepage": "https://level-level.com"
                 }
             ],
+            "description": "A plugin to set a custom page as 404 for using with Clarkson.",
             "support": {
                 "issues": "https://github.com/level-level/clarkson-404/issues",
-                "source": "https://github.com/level-level/clarkson-404/tree/1.0.3"
+                "source": "https://github.com/level-level/clarkson-404/tree/1.0.4"
             },
-            "time": "2021-03-16T14:22:50+00:00"
+            "time": "2022-03-24T12:23:50+00:00"
         },
         {
             "name": "level-level/clarkson-core",
