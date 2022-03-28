@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bca25d4698e09ca08d47a6d83e57c563",
+    "content-hash": "84cd512f9368bd0715a2cc1f4d09d531",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -860,6 +860,16 @@
                 "type": "zip",
                 "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.zip",
                 "shasum": "420ae6e00c75611cf8dfb12859691e8a7d175d26"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "ll-premium/gravityforms",
+            "version": "2.5.16.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.5.16.3.zip",
+                "shasum": "d8565e6873c47eefcb0db94eb45b98b01d5a48dd"
             },
             "type": "wordpress-plugin"
         },
@@ -3780,6 +3790,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/loco-translate/"
+        },
+        {
+            "name": "wpackagist-plugin/popup-maker",
+            "version": "1.16.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/popup-maker/",
+                "reference": "tags/1.16.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.4.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/popup-maker/"
         },
         {
             "name": "wpackagist-plugin/post-smtp",
