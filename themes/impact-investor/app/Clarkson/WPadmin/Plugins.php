@@ -13,8 +13,8 @@ class Plugins {
 		// Used to change the tabindex start value or to disable the tabindex attribute for gravity forms
 		add_filter( 'gform_tabindex', '__return_false' );
 
-		// Disable gravity forms default styling
-		add_filter( 'pre_option_rg_gforms_disable_css', '__return_true' );
+		// Disable gravity forms theme styling, only use basic.css
+		add_filter( 'gform_disable_form_theme_css', '__return_true' );
 
 		// Force output with HTML5 elements in Gravity Forms
 		add_filter( 'pre_option_rg_gforms_enable_html5', '__return_true' );
