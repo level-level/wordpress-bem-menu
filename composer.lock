@@ -606,51 +606,59 @@
         },
         {
             "name": "level-level/clarkson-404",
-            "version": "1.0.3",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-404.git",
-                "reference": "04d4f21e0a1307332877c7b0db5510e03cd88c2e"
+                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/04d4f21e0a1307332877c7b0db5510e03cd88c2e",
-                "reference": "04d4f21e0a1307332877c7b0db5510e03cd88c2e",
+                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/1268d58247d3444d15392aadf8ddff6d6c5b4128",
+                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128",
                 "shasum": ""
             },
             "require": {
-                "level-level/clarkson-core": "^1.0.0"
+                "level-level/clarkson-core": "^1 | ^2"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+                "wp-coding-standards/wpcs": "^2.3"
             },
             "type": "wordpress-muplugin",
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Level Level",
                     "homepage": "https://level-level.com"
                 }
             ],
+            "description": "A plugin to set a custom page as 404 for using with Clarkson.",
             "support": {
                 "issues": "https://github.com/level-level/clarkson-404/issues",
-                "source": "https://github.com/level-level/clarkson-404/tree/1.0.3"
+                "source": "https://github.com/level-level/clarkson-404/tree/1.0.4"
             },
-            "time": "2021-03-16T14:22:50+00:00"
+            "time": "2022-03-24T12:23:50+00:00"
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d"
+                "reference": "37341d5419fcf98d39ac494cf873a2c280c577c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d",
-                "reference": "f376b5aa3c7bdf9d694a896f9d26457bcfce2f3d",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/37341d5419fcf98d39ac494cf873a2c280c577c3",
+                "reference": "37341d5419fcf98d39ac494cf873a2c280c577c3",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "php": ">=7.4",
                 "twig/html-extra": "^3.1",
                 "twig/intl-extra": "^3.1",
                 "twig/markdown-extra": "^3.1",
@@ -661,6 +669,7 @@
                 "10up/wp_mock": "^0.4.2",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "giacocorsiglia/wordpress-stubs": "^5.1",
+                "phpcompatibility/php-compatibility": "^9.3",
                 "vimeo/psalm": "^3.4",
                 "wp-coding-standards/wpcs": "^2.3"
             },
@@ -695,9 +704,9 @@
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
                 "issues": "https://github.com/level-level/Clarkson-Core/issues",
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.4.0"
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.5.0"
             },
-            "time": "2022-02-28T09:16:00+00:00"
+            "time": "2022-03-24T12:23:18+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
@@ -9694,5 +9703,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }
