@@ -34,5 +34,7 @@ class Capabilities {
 		$role->remove_cap( 'update_plugins' );
 		$role->remove_cap( 'update_themes' );
 		$role->remove_cap( 'delete_site' );
+
+		$role->add_cap( 'gform_full_access' );
 	}
 }
