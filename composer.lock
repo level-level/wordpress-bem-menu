@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "84cd512f9368bd0715a2cc1f4d09d531",
+    "content-hash": "824ffe37b7b47dc343a90c2b7bcc2430",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -870,6 +870,16 @@
                 "type": "zip",
                 "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.5.16.3.zip",
                 "shasum": "d8565e6873c47eefcb0db94eb45b98b01d5a48dd"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "ll-premium/popup-maker-advanced-targeting-conditions",
+            "version": "1.4.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/popup-maker-advanced-targeting-conditions/ll-premium-popup-maker-advanced-targeting-conditions-1.4.6.zip",
+                "shasum": "41bba4c3ca8d8b57451caa3da3d5413976493390"
             },
             "type": "wordpress-plugin"
         },

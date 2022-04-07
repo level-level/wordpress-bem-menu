@@ -47,7 +47,8 @@
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.14",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
         "ll-premium/gravityforms": "2.5.16.3",
-        "wpackagist-plugin/popup-maker": "^1.16"
+        "wpackagist-plugin/popup-maker": "^1.16",
+        "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4"
     },
     "scripts": {
         "post-autoload-dump": [
