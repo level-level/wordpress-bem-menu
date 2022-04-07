@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "824ffe37b7b47dc343a90c2b7bcc2430",
+    "content-hash": "681778a06ff8fb0bc7efb6eb87294f14",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -855,11 +855,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12",
+            "version": "5.12.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.zip",
-                "shasum": "420ae6e00c75611cf8dfb12859691e8a7d175d26"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.1.zip",
+                "shasum": "b3916629945173dc2bd55f3bbad3c86665f91e91"
             },
             "type": "wordpress-plugin"
         },
