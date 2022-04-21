@@ -855,11 +855,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12.1",
+            "version": "5.12.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.1.zip",
-                "shasum": "b3916629945173dc2bd55f3bbad3c86665f91e91"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.2.zip",
+                "shasum": "01776becbbbcfdeb750dba2c67059916350d8252"
             },
             "type": "wordpress-plugin"
         },
