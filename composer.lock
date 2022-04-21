@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "681778a06ff8fb0bc7efb6eb87294f14",
+    "content-hash": "32295160d381dcc237ea7278279c9997",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -855,21 +855,21 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12.1",
+            "version": "5.12.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.1.zip",
-                "shasum": "b3916629945173dc2bd55f3bbad3c86665f91e91"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.2.zip",
+                "shasum": "01776becbbbcfdeb750dba2c67059916350d8252"
             },
             "type": "wordpress-plugin"
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.5.16.3",
+            "version": "2.6.1.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.5.16.3.zip",
-                "shasum": "d8565e6873c47eefcb0db94eb45b98b01d5a48dd"
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.1.3.zip",
+                "shasum": "e3e9eebfd1aef0a6b07c3aa92fb72be476052df1"
             },
             "type": "wordpress-plugin"
         },
@@ -885,11 +885,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.2.1",
+            "version": "4.2.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.1.zip",
-                "shasum": "24011669c60bcd24de219727fe5c8069536364a7"
+                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.2.zip",
+                "shasum": "49fa4657ba2bc4f39945214dadadb9f893d94f41"
             },
             "type": "wordpress-plugin"
         },
@@ -3749,15 +3749,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.14.2",
+            "version": "1.15",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.14.2"
+                "reference": "tags/1.15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.14.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.15.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3803,15 +3803,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.16.4",
+            "version": "1.16.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.16.4"
+                "reference": "tags/1.16.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.7.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3821,15 +3821,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.0.24",
+            "version": "2.0.25",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.0.24"
+                "reference": "tags/2.0.25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.0.24.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.0.25.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3875,15 +3875,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "18.4.1",
+            "version": "18.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/18.4.1"
+                "reference": "tags/18.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.18.4.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.18.6.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
