@@ -108,7 +108,7 @@ class Newsletter {
 						->instructions( _x( 'Add the articles that should be shown in the newsletter.', 'Fields', 'impact-investor' ) )
 						->min( 0 )
 						->max( 6 )
-						->collapsed( 'tip' )
+						->collapsed( 'article' )
 						->buttonLabel( _x( 'Add article', 'Fields', 'impact-investor' ) )
 						->fields(
 							array(
