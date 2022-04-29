@@ -93,4 +93,49 @@ abstract class BaseLogger {
 			}, $messages
 		);
 	}
+
+	/**
+	 * Add log line to gravityforms entry
+	 *
+	 * @param integer $entry_id
+	 * @param string $message
+	 * @param LogLine::LEVEL_* $level
+	 * @return void
+	 */
+	public function add_gravityforms_entry_log( int $entry_id, string $message, string $level = 'info' ): void {
+		if ( ! function_exists( 'gform_update_meta' ) ) {
+			return;
+		}
+
+		$messages   = $this->get_gravityforms_entry_logs( $entry_id );
+		$messages[] = new LogLine( time(), $message, $level );
+		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
+		$messages   = array_map(
+			function( LogLine $log_line ): array {
+				return $log_line->get_data();
+			}, $messages
+		);
+		gform_update_meta( $entry_id, $this->get_logger_meta_key(), $messages );
+	}
+
+	/**
+	 * Get log lines from gravityforms entry meta
+	 *
+	 * @return LogLine[]
+	 */
+	public function get_gravityforms_entry_logs( int $entry_id ): array {
+		if ( ! function_exists( 'gform_get_meta' ) ) {
+			return array();
+		}
+
+		$messages = gform_get_meta( $entry_id, $this->get_logger_meta_key() );
+		if ( ! is_array( $messages ) ) {
+			$messages = array();
+		}
+		return array_map(
+			function( array $message ): LogLine {
+				return LogLine::from_data( $message );
+			}, $messages
+		);
+	}
 }

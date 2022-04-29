@@ -125,6 +125,32 @@ class Selligent {
 	}
 
 	/**
+	 * Subscribes the provided e-mail address to the newsletter.
+	 *
+	 * ## Options
+	 *
+	 * <email>
+	 * : E-mail address to subscribe
+	 *
+	 * [--preview]
+	 * : Preview the body data without sending the request.
+	 *
+	 * @subcommand optin-email
+	 */
+	public function optin_email( array $args, array $args_assoc ): void {
+		$this->handle_default_flags( $args_assoc );
+
+		$email = (string) ( $args[0] ?? '' );
+		if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+			WP_CLI::error( 'No valid e-mail address was given' );
+			exit;
+		}
+
+		$client = new Client();
+		$this->echo_response( $client->optin_email( $email ) );
+	}
+
+	/**
 	 * Handles flags that are valid for all commands.
 	 */
 	protected function handle_default_flags( array $args_assoc ): void {

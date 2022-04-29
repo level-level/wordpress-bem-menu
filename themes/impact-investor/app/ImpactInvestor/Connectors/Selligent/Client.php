@@ -22,6 +22,13 @@ class Client {
 	 */
 	public const SEND_NEWSLETTER_GATE = 'NEWSLETTER_GENERATE_IMPACTINVESTOR';
 
+	/**
+	 * Defines the gate used for subscribing to a newsletter
+	 *
+	 * @var string
+	 */
+	public const OPTIN_GATE = 'OPTIN_IMPACTINVESTOR';
+
 	public const BASE_PATH = '/restapi/api/sync/';
 
 	/** @var string */
@@ -82,6 +89,23 @@ class Client {
 			'Gateinput' => array(
 				'PUBLICATION' => self::PUBLICATION,
 				'TYPE'        => self::get_type(),
+			),
+		);
+
+		return $this->post( $endpoint, $data );
+	}
+
+	/**
+	 * Subscribes the provided e-mail address to the newsletter.
+	 *
+	 * @return array|WP_Error
+	 */
+	public function optin_email( string $email ) {
+		$endpoint = 'campaigns/triggerbyjsonwithresult';
+		$data     = array(
+			'Gate'      => self::OPTIN_GATE,
+			'Gateinput' => array(
+				'MAIL' => $email,
 			),
 		);
 
