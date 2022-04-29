@@ -9,18 +9,38 @@ The general flow for creating and sending a newsletter consists of three steps:
 2. Registering a newsletter to Selligent, with the already registerd posts
 3. Sending the newsletter.
 
-## Documentation
+## Environments
 
-The functionality we need for Selligent can be summed up with a simplified documentation:
+There is a testing and a production environment available for connecting to the Selligent API. The login credentials for each environment can be found in Lastpass.
 
-### Authentication
+- API Url test: https://selligent.devfd.nl/restapi/api/sync/
+- API Url prod: https://messagent.fdmediagroep.nl/restapi/api/sync/
 
+The following credentials are required in the wp-config.
+
+```php
+define( 'II_SELLIGENT_BASE_URL', 'https://selligent.devfd.nl' );
+define( 'II_SELLIGENT_USER', 'xxx' );
+define( 'II_SELLIGENT_PASS', 'xxx' );
+define( 'II_SELLIGENT_TYPE', 'xxx' );
+define( 'II_SELLIGENT_LIST_ID_NEWSLETTER', 'xxx' );
+define( 'II_SELLIGENT_LIST_ID_ARTICLE', 'xxx' );
+```
+
+## Authentication
+
+### IP Whitelisting
+
+Requests can only be sent from authorized ip addresses.
+For local testing, the Pritnl VPN connection has been whitelisted.
+For test, acceptance and production environments, the server IP's should be whitelisted as well.
+
+### Authorization request
 Authentication is done via an authorization header that is send with the request:
 
 (See `ImpactInvestor\Connectors\Selligent\Client::get_auth_headers`)
 
-```
-## HMAC authentication
+```php
 $timestamp = time();
 $hash = hash_hmac('sha256', $timestamp . '-POST-' . '[[ENDPOINT]]', '[[APIKEY]]');
 
@@ -34,12 +54,12 @@ $options = [
 ];
 ```
 
-### Posting articles
+## Posting articles
 
-Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/lists/1980/articles
-
+Endpoint: /lists/[[LIST_ID_NEWSLETTER]]/articles
 Data:
-```
+
+```php
 $data = [
   'publication' => 'IMPACT_INVESTOR',
   'articleId' => '[[ARTICLEID]]',
@@ -51,8 +71,10 @@ $data = [
 ];
 ```
 
-#### Example response
-```
+### Example response:
+
+**Success:**
+```json
 {
 	"publication": "IMPACT_INVESTOR",
 	"articleId": 6,
@@ -66,18 +88,18 @@ $data = [
 }
 ```
 
-### Create a newsletter
+## Create a newsletter
 
-Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/lists/1979/articles
+Endpoint: /lists/[[LIST_ID_ARTICLE]]/articles
 
 Data:
-```
+```php
 $data = [
   'publication' => 'IMPACT_INVESTOR',
   'type' => 'WEEKLY',
   'subject' => '[[SUBJECT]]'
   'preheader' => '[[PREHEADER]]',
-  'introduction' => '[[INTRO]]', 
+  'introduction' => '[[INTRO]]',
   'article_1' => '[[ARTILCEID]]',
   'article_2' => '[[ARTILCEID]]',
   'article_3' => '[[ARTILCEID]]',
@@ -86,8 +108,10 @@ $data = [
 ];
 ```
 
-#### Example response
-```
+### Example response:
+
+**Success:**
+```json
 {
 	"publication": "IMPACT_INVESTOR",
 	"type": "MVP",
@@ -101,13 +125,13 @@ $data = [
 }
 ```
 
-### Send a newsletter
 
-Endpoint: https://messagent.fdmediagroep.nl/restapi/api/sync/campaigns/triggerbyjsonwithresult
+## Send a newsletter
 
-Default newsletter type is `MVP`. This will send the newsletter to all current recipients. If a test type is needed, contact Impact Investor.
+Endpoint: /campaigns/triggerbyjsonwithresult
 
-```
+Data:
+```php
 $data = [
   'Gate' => 'NEWSLETTER_GENERATE_IMPACTINVESTOR',
   'Gateinput' => [
@@ -117,13 +141,38 @@ $data = [
 ];
 ```
 
-#### Example response:
+### Example response:
 
 **Success:**
-```
+```json
 {
 	"IsSuccess": true,
 	"Error": "",
 	"Result": "[ok newsletter generated]"
+}
+```
+
+## Optin for the newsletter
+
+Endpoint: /campaigns/triggerbyjsonwithresult
+
+Data:
+```php
+$data = [
+  'Gate' => 'OPTIN_IMPACTINVESTOR',
+  'Gateinput' => [
+    'MAIL' => 'mail@example.com'
+  ]
+];
+```
+
+### Example response:
+
+**Success:**
+```json
+{
+	"IsSuccess": true,
+	"Error": "",
+	"Result": ""
 }
 ```
