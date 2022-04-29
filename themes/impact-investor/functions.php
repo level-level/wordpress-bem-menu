@@ -39,6 +39,5 @@
 ( new \ImpactInvestor\Logging\Init() )->register_hooks();
 ( new \ImpactInvestor\Sync\Init() )->register_hooks();
 
-// Impact Investor APIs
+// Impact Investor CLI
 ( new \ImpactInvestor\CLI\Init() )->register_commands();
-( new \ImpactInvestor\Connectors\Selligent\Init() )->register_hooks();
