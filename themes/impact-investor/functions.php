@@ -36,6 +36,7 @@
 ( new \ImpactInvestor\Search\Search() )->register_hooks();
 ( new \ImpactInvestor\Widgets\WidgetAreas() )->register_hooks();
 ( new \ImpactInvestor\Articles\BlockTemplate() )->register_hooks();
+( new \ImpactInvestor\GravityForms\Init() )->register_hooks();
 ( new \ImpactInvestor\Logging\Init() )->register_hooks();
 ( new \ImpactInvestor\Sync\Init() )->register_hooks();
 
