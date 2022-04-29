@@ -55,7 +55,7 @@ class ii_newsletter extends base_object {
 	 * @return post[]
 	 */
 	public function get_article_objects(): array {
-		$ids  = $this->get_article_ids();
+		$ids      = $this->get_article_ids();
 		$articles = array();
 		foreach ( $ids as $id ) {
 			$article = post::get( $id );

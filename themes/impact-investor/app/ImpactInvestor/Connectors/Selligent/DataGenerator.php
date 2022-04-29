@@ -16,7 +16,7 @@ class DataGenerator {
 			'title'        => substr( $post->get_title(), 0, 255 ),
 			'teaser'       => substr( $post->get_excerpt(), 0, 2000 ),
 			'news_section' => substr( '', 50 ),
-			'img'          => substr( get_the_post_thumbnail_url( $post->get_id() ), 255 ),
+			'img'          => substr( get_the_post_thumbnail_url( $post->get_id() ) ?: '', 255 ),
 			'cta'          => $post->get_permalink(),
 		);
 		return $data;
@@ -33,13 +33,15 @@ class DataGenerator {
 			$posts[ $article_key ] = $post_id;
 		}
 
-		return array_merge( array(
-			'publication'    => Client::PUBLICATION,
-			'type'           => Client::get_type(),
-			'subject'        => substr( $newsletter->get_subject(), 0, 255 ),
-			'preheader'      => substr( $newsletter->get_pre_header(), 0, 255 ),
-			'introduction'   => substr( $newsletter->get_introduction(), 0, 2000 ),
-			'test'           => $test_mode ? '1' : '0',
-		), $posts );
+		return array_merge(
+			array(
+				'publication'  => Client::PUBLICATION,
+				'type'         => Client::get_type(),
+				'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
+				'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
+				'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),
+				'test'         => $test_mode ? '1' : '0',
+			), $posts
+		);
 	}
 }

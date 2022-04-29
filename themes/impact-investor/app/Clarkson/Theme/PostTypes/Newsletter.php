@@ -19,17 +19,17 @@ class Newsletter {
 		'core/heading',
 	);
 
-	public const META_MESSAGE       = 'message';
-	public const META_SUBJECT       = 'subject';
-	public const META_PRE_HEADER    = 'pre_header';
-	public const META_INTRODUCTION  = 'introduction';
-	public const META_ARTICLES          = 'articles';
-	public const META_ARTICLES_ARTICLE      = 'article';
-	public const META_SEND          = 'send';
-	public const META_SEND_ACTION   = 'action';
-	public const META_SEND_TEST     = 'test';
-	public const META_SEND_SCHEDULE = 'schedule';
-	public const META_SEND_DATE     = 'date';
+	public const META_MESSAGE          = 'message';
+	public const META_SUBJECT          = 'subject';
+	public const META_PRE_HEADER       = 'pre_header';
+	public const META_INTRODUCTION     = 'introduction';
+	public const META_ARTICLES         = 'articles';
+	public const META_ARTICLES_ARTICLE = 'article';
+	public const META_SEND             = 'send';
+	public const META_SEND_ACTION      = 'action';
+	public const META_SEND_TEST        = 'test';
+	public const META_SEND_SCHEDULE    = 'schedule';
+	public const META_SEND_DATE        = 'date';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
