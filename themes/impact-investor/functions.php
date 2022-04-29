@@ -37,6 +37,7 @@
 ( new \ImpactInvestor\Widgets\WidgetAreas() )->register_hooks();
 ( new \ImpactInvestor\Articles\BlockTemplate() )->register_hooks();
 ( new \ImpactInvestor\Logging\Init() )->register_hooks();
+( new \ImpactInvestor\Sync\Init() )->register_hooks();
 
 // Impact Investor APIs
 ( new \ImpactInvestor\CLI\Init() )->register_commands();
