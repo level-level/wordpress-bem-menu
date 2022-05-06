@@ -10,6 +10,7 @@ class MetaBoxes {
 
 	public function register_hooks(): void {
 		add_action( 'add_meta_boxes', array( $this, 'add_newsletter_meta_box' ) );
+		add_filter( 'gform_entry_detail_meta_boxes', array( $this, 'add_gravityforms_entry_meta_box' ), 10, 3 );
 	}
 
 	public function add_newsletter_meta_box( string $post_type ): void {
@@ -33,6 +34,25 @@ class MetaBoxes {
 			'admin/logging/selligent-metabox.twig', array(
 				'object'    => Objects::get_instance()->get_object( $post ),
 				'log_lines' => array_reverse( ( new SelligentLogger() )->get_post_logs( $post->ID ) ),
+			)
+		);
+	}
+
+	public function add_gravityforms_entry_meta_box( array $boxes, array $entry, array $form ): array {
+		$boxes['impact_investor_selligent_log'] = array(
+			'title'    => __( 'Selligent information', 'impact-investor' ),
+			'callback' => array( $this, 'render_gravityforms_entry_meta_box' ),
+			'context'  => 'side',
+		);
+		return $boxes;
+	}
+
+	public function render_gravityforms_entry_meta_box( array $args ): void {
+		$templates = Templates::get_instance();
+		$templates->echo_twig(
+			'admin/logging/selligent-metabox.twig', array(
+				'object'    => $args['entry'],
+				'log_lines' => array_reverse( ( new SelligentLogger() )->get_gravityforms_entry_logs( (int) $args['entry']['id'] ) ),
 			)
 		);
 	}
