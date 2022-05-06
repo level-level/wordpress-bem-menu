@@ -73,6 +73,7 @@ jobs:
           wp config create --allow-root --dbname=test --dbuser=root --dbpass=root --dbhost=127.0.0.1
           wp config set WP_DEBUG true --allow-root
           wp core install --allow-root  --url=localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@test.test
+          wp plugin activate gravityforms --allow-root
           wp theme activate impact-investor --allow-root
       - name: test:psalm
         run: |
