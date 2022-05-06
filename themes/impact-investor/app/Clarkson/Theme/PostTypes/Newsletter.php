@@ -91,7 +91,7 @@ class Newsletter {
 				'title'    => _x( 'Newsletter meta', 'Fields', 'impact-investor' ),
 				'fields'   => array(
 					Message::make( _x( 'Creating a newsletter', 'impact-investor' ), self::META_MESSAGE )
-						->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'impact-investor' ) ),
+						->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'impact-investor' ) ),
 					Text::make( _x( 'Subject', 'Fields', 'impact-investor' ), self::META_SUBJECT )
 						->instructions( _x( 'The subject of the e-mail.', 'Fields', 'impact-investor' ) )
 						->characterLimit( 255 )
