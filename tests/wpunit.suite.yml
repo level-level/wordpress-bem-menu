@@ -23,5 +23,9 @@ modules:
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
             title: "Test"
             theme: impact-investor
-            plugins: []
-            activatePlugins: []
+            plugins: [
+              'gravityforms/gravityforms.php'
+            ]
+            activatePlugins: [
+              'gravityforms/gravityforms.php'
+            ]

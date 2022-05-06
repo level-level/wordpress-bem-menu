@@ -15,8 +15,8 @@ class DataGenerator {
 			'articleId'    => $post->get_id(),
 			'title'        => substr( $post->get_title(), 0, 255 ),
 			'teaser'       => substr( $post->get_excerpt(), 0, 2000 ),
-			'news_section' => substr( '', 50 ),
-			'img'          => substr( get_the_post_thumbnail_url( $post->get_id() ) ?: '', 255 ),
+			'news_section' => substr( '', 0, 50 ),
+			'img'          => substr( get_the_post_thumbnail_url( $post->get_id() ) ?: '', 0, 255 ),
 			'cta'          => $post->get_permalink(),
 		);
 		return $data;
