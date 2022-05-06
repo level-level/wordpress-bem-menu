@@ -1,29 +1,26 @@
- <!--- Provide a general summary of your changes in the Title above -->
+<!--- Provide a general summary of your changes in the Title above -->
 
 ## Issue link
 <!--- Link to the origin of the issue in Asana or HelpScout. -->
+<!--- Even if you made this discovery yourself, please make a new Asana task and refer to it. -->
 
 ## Description
-<!--- Describe your changes in detail -->
+<!--- Describe why this change was needed, -->
+<!--- what choices you had to make while implementing this feature, -->
+<!--- and any difficulties you had during development. -->
 
 ## How Has This Been Tested?
 <!--- Please describe in detail how you tested your changes. -->
 <!--- Include details of your testing environment, tests ran to see how -->
 <!--- your change affects other areas of the code, etc. -->
+- [ ] This change is covered by an automated (integration) test.
+- [ ] I have added/updated a JavaScript test.
 
-## Screenshots (if appropriate):
-
-## Types of changes
-<!--- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-
-## Checklist:
+## Documentation & communication
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] If relevant: I have updated Storybook.
-- [ ] If relevant: When adding or changing styling i have checked & tested it in dark mode.
-- [ ] My code follows the code style of this project.
-- [ ] My change requires a change to the documentation.
-- [ ] I have updated the documentation accordingly.
+- [ ] I have set a label for this PR reflecting the change type (bug, feature, breaking change, etc.).
+- [ ] I have added/updated Storybook component(s).
+- [ ] I have updated [the documentation](https://docs.google.com/document/d/1EHCrMGE8anHbKDpSpRDyLlPdu8ozFLWwo-Orrz2RN6c/edit) accordingly.
+
+## Screenshots (if appropriate)
