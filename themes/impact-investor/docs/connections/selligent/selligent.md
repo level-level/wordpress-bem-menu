@@ -133,7 +133,7 @@ Endpoint: /campaigns/triggerbyjsonwithresult
 Data:
 ```php
 $data = [
-  'Gate' => 'NEWSLETTER_GENERATE_IMPACTINVESTOR',
+  'Gate' => 'NEWSLETTER_IMPACTINVESTOR',
   'Gateinput' => [
     'PUBLICATION' => 'IMPACT_INVESTOR',
     'TYPE' => 'WEEKLY'

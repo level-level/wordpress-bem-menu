@@ -20,7 +20,7 @@ class Client {
 	 *
 	 * @var string
 	 */
-	public const SEND_NEWSLETTER_GATE = 'NEWSLETTER_GENERATE_IMPACTINVESTOR';
+	public const SEND_NEWSLETTER_GATE = 'NEWSLETTER_IMPACTINVESTOR';
 
 	/**
 	 * Defines the gate used for subscribing to a newsletter
