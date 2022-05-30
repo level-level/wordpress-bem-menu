@@ -31,20 +31,15 @@ class Client {
 
 	public const BASE_PATH = '/restapi/api/sync/';
 
-	/** @var string */
-	protected $base_url;
+	protected string $base_url;
 
-	/** @var string */
-	protected $user;
+	protected string $user;
 
-	/** @var string */
-	protected $pass;
+	protected string $pass;
 
-	/** @var int */
-	protected $list_id_article;
+	protected int $list_id_article;
 
-	/** @var int */
-	protected $list_id_newsletter;
+	protected int $list_id_newsletter;
 
 	/**
 	 * @psalm-suppress RedundantCast

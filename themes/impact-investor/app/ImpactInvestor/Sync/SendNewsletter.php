@@ -15,8 +15,7 @@ class SendNewsletter extends BaseSync {
 
 	public const TRIGGER = 'ii_send_newsletter';
 
-	/** @var SelligentLogger */
-	protected $selligent_logger;
+	protected SelligentLogger $selligent_logger;
 
 	public function __construct() {
 		$this->selligent_logger = new SelligentLogger();
