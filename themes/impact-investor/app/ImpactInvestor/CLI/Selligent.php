@@ -140,14 +140,13 @@ class Selligent {
 	public function optin_email( array $args, array $args_assoc ): void {
 		$this->handle_default_flags( $args_assoc );
 
-		$email = (string) ( $args[0] ?? '' );
-		if ( ! filter_var( $email, FILTER_VALIDATE_EMAIL ) ) {
+		if ( ! filter_var( $args[0], FILTER_VALIDATE_EMAIL ) ) {
 			WP_CLI::error( 'No valid e-mail address was given' );
 			exit;
 		}
 
 		$client = new Client();
-		$this->echo_response( $client->optin_email( $email ) );
+		$this->echo_response( $client->optin_email( $args[0] ) );
 	}
 
 	/**
