@@ -1,0 +1,46 @@
+<div class="logbook">
+
+	<h3>{{ __('Logbook', 'impact-investor') }}</h3>
+
+	<div class="logbook__inner" style="max-height: 400px; overflow: auto;">
+		<table class="widefat striped">
+			<tbody>
+				{% if log_lines %}
+					{% for log_line in log_lines %}
+						<tr>
+							<td>
+								<p>
+									{% if log_line.get_level() == 'success' %}
+										<span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span>
+									{% elseif log_line.get_level() == 'error' %}
+										<span class="dashicons dashicons-warning" style="color: #d63638;"></span>
+									{% elseif log_line.get_level() == 'warning' %}
+										<span class="dashicons dashicons-warning" style="color: #dba617;"></span>
+									{% else %}
+										<span class="dashicons dashicons-info" style="color: #72aee6;"></span>
+									{% endif %}
+									<strong>{{ utilities.i18n.format_date('Y-m-d H:i:s', log_line.get_date())|capitalize }}</strong>
+								</p>
+								<p>
+									{{ log_line.get_message()|raw }}
+								</p>
+							</td>
+						</tr>
+					{% endfor %}
+				{% else %}
+					<tr>
+						<td>
+							<p>
+								<span class="dashicons dashicons-info" style="color: #72aee6;"></span>
+								<strong>{{ utilities.i18n.format_date('Y-m-d H:i:s')|capitalize }}</strong>
+							</p>
+							<p>
+								{{ __('The logbook is empty.', 'impact-investor') }}
+							</p>
+						</td>
+					</tr>
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+</div>

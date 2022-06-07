@@ -31,12 +31,17 @@
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
 
+// Clarkson Utilities
+( new \Clarkson\Utilities\Init() )->register_hooks();
+
 // Impact Investor
 ( new \ImpactInvestor\Comments\Comments() )->register_hooks();
 ( new \ImpactInvestor\Search\Search() )->register_hooks();
 ( new \ImpactInvestor\Widgets\WidgetAreas() )->register_hooks();
 ( new \ImpactInvestor\Articles\BlockTemplate() )->register_hooks();
+( new \ImpactInvestor\GravityForms\Init() )->register_hooks();
+( new \ImpactInvestor\Logging\Init() )->register_hooks();
+( new \ImpactInvestor\Sync\Init() )->register_hooks();
 
-// Impact Investor APIs
+// Impact Investor CLI
 ( new \ImpactInvestor\CLI\Init() )->register_commands();
-( new \ImpactInvestor\Connectors\Selligent\Init() )->register_hooks();
