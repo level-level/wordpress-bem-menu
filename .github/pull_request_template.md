@@ -21,6 +21,6 @@
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 - [ ] I have set a label for this PR reflecting the change type (bug, feature, breaking change, etc.).
 - [ ] I have added/updated Storybook component(s).
-- [ ] I have updated [the documentation](https://docs.google.com/document/d/1EHCrMGE8anHbKDpSpRDyLlPdu8ozFLWwo-Orrz2RN6c/edit) accordingly.
+- [ ] I have updated [the documentation](https://docs.google.com/document/d/1G2mW_mV-uKucwFmfaVY6NL-P3KBUiUVgmAyOtnGT-Lg/edit?usp=sharing) accordingly.
 
 ## Screenshots (if appropriate)
