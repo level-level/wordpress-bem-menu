@@ -1,0 +1,19 @@
+.responsibility {
+	&__heading {
+		color: $primary;
+	}
+
+	&--sticky {
+		display: block;
+		background-color: $secondary-200;
+
+		@include breakpoint(lg) {
+			display: block;
+			z-index: 2;
+			margin-top: $default-padding;
+			position: sticky;
+			top: calc(#{$header-height} + #{$default-padding} + #{$admin-bar});
+			background-color: $secondary-200;
+		}
+	}
+}
