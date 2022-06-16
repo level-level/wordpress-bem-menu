@@ -19,9 +19,7 @@
 				{% endif %}
 
 				{% if block('responsibility') is defined %}
-					<div class="layout-small">
 						{% block responsibility %}{% endblock %}
-					</div>
 				{% endif %}
 
 				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">

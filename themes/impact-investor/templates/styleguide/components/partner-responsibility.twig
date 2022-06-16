@@ -1,12 +1,14 @@
 {% if partner %}
-	<div class="responsibility {{ sticky ? 'responsibility--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
-		<div class="group group--small">
-			{% if partner %}
-				<div class="group__item">
-                        <strong> {{ partner|raw }} </strong><p> is verantwoordelijk voor de inhoud van deze pagina.</p>
-                        <p>De redactie van Impact Investor draagt voor deze inhoud geen verantwoordelijkheid.</p>
-				</div>
-			{% endif %}
-		</div>
-	</div>
+   <div class="layout-small">
+	    <div class="responsibility {{ sticky ? 'responsibility--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
+	    	<div class="group group--small">
+	    		{% if partner %}
+	    			<div class="group__item">
+                            <strong> {{ partner|raw }} </strong><p> is verantwoordelijk voor de inhoud van deze pagina.</p>
+                            <p>De redactie van Impact Investor draagt voor deze inhoud geen verantwoordelijkheid.</p>
+	    			</div>
+	    		{% endif %}
+	    	</div>
+	    </div>
+    </div>
 {% endif %}
