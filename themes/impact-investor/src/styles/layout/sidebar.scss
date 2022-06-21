@@ -21,6 +21,7 @@
 					@include breakpoint(md) {
 						position: sticky;
 						top: calc(#{$admin-bar-offset} + #{$header-height} + #{$default-padding});
+						margin-bottom: 24px;
 					}
 				}
 			}
