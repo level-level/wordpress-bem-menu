@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce70b2a2c626d82d06eb71cbb4fb3b16",
+    "content-hash": "59dfbc2c244cea8d1d3bcc8db2366bdc",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -885,11 +885,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.2.2",
+            "version": "4.2.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.2.zip",
-                "shasum": "49fa4657ba2bc4f39945214dadadb9f893d94f41"
+                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.3.zip",
+                "shasum": "42b4bc090889b68f4ca3cecb6ec858244e1b45e2"
             },
             "type": "wordpress-plugin"
         },
@@ -3767,15 +3767,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.29",
+            "version": "1.0.32",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.29"
+                "reference": "tags/1.0.32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.29.zip"
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.32.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3785,15 +3785,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.1",
+            "version": "2.6.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.1"
+                "reference": "tags/2.6.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3821,15 +3821,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.0.27",
+            "version": "2.1.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.0.27"
+                "reference": "tags/2.1.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.0.27.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.1.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3857,15 +3857,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.5.10",
+            "version": "7.5.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.5.10"
+                "reference": "tags/7.5.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.5.10.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.5.11.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3875,15 +3875,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "18.9",
+            "version": "19.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/18.9"
+                "reference": "tags/19.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.18.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -4534,20 +4534,20 @@
         },
         {
             "name": "codeception/module-phpbrowser",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/module-phpbrowser.git",
-                "reference": "770a6be4160a5c0c08d100dd51bff35f6056bbf1"
+                "reference": "8ba6bede11d0914e74d98691f427fd8f397f192e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/module-phpbrowser/zipball/770a6be4160a5c0c08d100dd51bff35f6056bbf1",
-                "reference": "770a6be4160a5c0c08d100dd51bff35f6056bbf1",
+                "url": "https://api.github.com/repos/Codeception/module-phpbrowser/zipball/8ba6bede11d0914e74d98691f427fd8f397f192e",
+                "reference": "8ba6bede11d0914e74d98691f427fd8f397f192e",
                 "shasum": ""
             },
             "require": {
-                "codeception/codeception": "^4.0",
+                "codeception/codeception": "^4.1",
                 "codeception/lib-innerbrowser": "^1.3",
                 "guzzlehttp/guzzle": "^6.3|^7.0",
                 "php": ">=5.6.0 <9.0"
@@ -4588,9 +4588,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeception/module-phpbrowser/issues",
-                "source": "https://github.com/Codeception/module-phpbrowser/tree/1.0.2"
+                "source": "https://github.com/Codeception/module-phpbrowser/tree/1.0.3"
             },
-            "time": "2020-10-24T15:29:28+00:00"
+            "time": "2022-05-21T13:50:41+00:00"
         },
         {
             "name": "codeception/module-webdriver",
