@@ -2,21 +2,21 @@
    <div class="layout-small-responsibility">
 	    <div class="responsibility {{ sticky ? 'responsibility--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
 			<div class="section-wrapper">
-			<div class="section">
-			<div class="group group--small">
-	    		{% if partner %}
-					<div class="responisbility-text">
-						<div class="responisbility-text__inner">
-	    					<div class="group__item">
-                        	    <p> <strong> {{ partner|raw }} </strong> is verantwoordelijk voor de inhoud van deze pagina.</p>
-                           		<p>De redactie van Impact Investor draagt voor deze inhoud geen verantwoordelijkheid.</p>
-	    					</div>
-						</div>
-					</div>
-	    		{% endif %}
-	    	</div>
-	    </div>
-    </div>
-    </div>
+				<div class="section">
+					<div class="group group--small">
+			    		{% if partner %}
+							<div class="responisbility-text">
+								<div class="responisbility-text__inner">
+			    					<div class="group__item">
+    		                    	    <p><strong>{{ partner|raw }}</strong> is verantwoordelijk voor de inhoud van deze pagina.</p>
+    		                       		<p>De redactie van Impact Investor draagt voor deze inhoud geen verantwoordelijkheid.</p>
+			    					</div>
+								</div>
+							</div>
+			    		{% endif %}
+			    	</div>
+			    </div>
+    		</div>
+    	</div>
 	</div>
 {% endif %}
