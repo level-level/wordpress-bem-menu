@@ -18,6 +18,10 @@
 					</div>
 				{% endif %}
 
+				{% if block('responsibility') is defined %}
+						{% block responsibility %}{% endblock %}
+				{% endif %}
+
 				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}

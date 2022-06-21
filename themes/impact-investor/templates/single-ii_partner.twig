@@ -31,3 +31,10 @@
 		{{ sidebar.get_widgetarea('widget-area-partner')|raw }}
 	{% endif %}
 {% endblock %}
+
+{% block responsibility %}
+	{% include 'styleguide/components/partner-responsibility.twig' with {
+		sticky: true,
+		partner: object.get_title(),
+	} %}
+{% endblock %}
