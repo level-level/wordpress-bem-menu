@@ -3767,15 +3767,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.29",
+            "version": "1.0.32",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.29"
+                "reference": "tags/1.0.32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.29.zip"
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.32.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
