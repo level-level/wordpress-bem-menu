@@ -1,7 +1,6 @@
 .responsibility {
 	&--sticky {
 		display: block;
-		background-color: $secondary-200;
 
 		@include breakpoint(md) {
 			display: block;
@@ -9,7 +8,32 @@
 			margin-top: $default-padding;
 			position: sticky;
 			top: calc(#{$header-height} + #{$default-padding} + #{$admin-bar});
-			background-color: $secondary-200;
+		}
+
+		.section-wrapper {
+			height: 100%;
+
+			.section {
+				padding-top: 0;
+				margin-top: $default-padding;
+
+				&:first-child {
+					margin-top: 0;
+
+					@include breakpoint(md) {
+						margin-top: $default-padding;
+					}
+				}
+
+				&--has-advertisement {
+					&:last-child {
+						@include breakpoint(md) {
+							position: sticky;
+							top: calc(#{$admin-bar-offset} + #{$header-height} + #{$default-padding});
+						}
+					}
+				}
+			}
 		}
 	}
 

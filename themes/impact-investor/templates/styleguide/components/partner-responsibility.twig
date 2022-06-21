@@ -1,7 +1,9 @@
 {% if partner %}
    <div class="layout-small-responsibility">
 	    <div class="responsibility {{ sticky ? 'responsibility--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
-	    	<div class="group group--small">
+			<div class="section-wrapper">
+			<div class="section">
+			<div class="group group--small">
 	    		{% if partner %}
 					<div class="responisbility-text">
 						<div class="responisbility-text__inner">
@@ -15,4 +17,6 @@
 	    	</div>
 	    </div>
     </div>
+    </div>
+	</div>
 {% endif %}
