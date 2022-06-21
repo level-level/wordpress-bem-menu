@@ -17,7 +17,7 @@
 				padding-top: $default-padding;
 				margin-top: $default-padding;
 
-				@include breakpoint(lg) {
+				@include breakpoint(md) {
 					padding-top: 0;
 				}
 
