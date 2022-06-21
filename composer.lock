@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce70b2a2c626d82d06eb71cbb4fb3b16",
+    "content-hash": "b2bae67ba6e4455c0938f3e235b4caa9",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -860,6 +860,16 @@
                 "type": "zip",
                 "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.2.zip",
                 "shasum": "01776becbbbcfdeb750dba2c67059916350d8252"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "ll-premium/exit-intent",
+            "version": "1.4.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/exit-intent/ll-premium-exit-intent-1.4.0.zip",
+                "shasum": "074b97f1cf05023f1df41708bf20ab1f558e2f2c"
             },
             "type": "wordpress-plugin"
         },
@@ -9713,5 +9723,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
