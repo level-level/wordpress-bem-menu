@@ -49,7 +49,7 @@
         "ll-premium/gravityforms": "2.6.1.3",
         "wpackagist-plugin/popup-maker": "^1.16",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
-        "ll-premium/exit-intent": "^1.4"
+        "ll-premium/popup-maker-exit-intent-popups": "^1.4"
     },
     "scripts": {
         "post-autoload-dump": [

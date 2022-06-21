@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b8b13541aafe42ba002a2456ea9bd547",
+    "content-hash": "fead3c8032db8de71c92850677d507aa",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -864,16 +864,6 @@
             "type": "wordpress-plugin"
         },
         {
-            "name": "ll-premium/exit-intent",
-            "version": "1.4.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/exit-intent/ll-premium-exit-intent-1.4.0.zip",
-                "shasum": "074b97f1cf05023f1df41708bf20ab1f558e2f2c"
-            },
-            "type": "wordpress-plugin"
-        },
-        {
             "name": "ll-premium/gravityforms",
             "version": "2.6.1.3",
             "dist": {
@@ -890,6 +880,16 @@
                 "type": "zip",
                 "url": "https://satis.level-level.com/packages/ll-premium/popup-maker-advanced-targeting-conditions/ll-premium-popup-maker-advanced-targeting-conditions-1.4.6.zip",
                 "shasum": "41bba4c3ca8d8b57451caa3da3d5413976493390"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "ll-premium/popup-maker-exit-intent-popups",
+            "version": "1.4.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/popup-maker-exit-intent-popups/ll-premium-popup-maker-exit-intent-popups-1.4.0.zip",
+                "shasum": "39b4033e71fceebbf017bd6dfbf676d3e76f16ff"
             },
             "type": "wordpress-plugin"
         },
