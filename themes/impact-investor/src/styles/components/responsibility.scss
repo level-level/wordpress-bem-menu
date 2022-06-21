@@ -1,13 +1,10 @@
 .responsibility {
-	&__heading {
-		color: $primary;
-	}
-
 	&--sticky {
 		display: block;
 		background-color: $secondary-200;
+		margin-right: $default-padding;
 
-		@include breakpoint(lg) {
+		@include breakpoint(md) {
 			display: block;
 			z-index: 2;
 			margin-top: $default-padding;
