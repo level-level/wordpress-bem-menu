@@ -16,6 +16,7 @@
 			.section {
 				padding-top: $default-padding;
 				margin-top: $default-padding;
+				padding-bottom: 0;
 
 				@include breakpoint(md) {
 					padding-top: 0;
