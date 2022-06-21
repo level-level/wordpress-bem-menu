@@ -2,7 +2,6 @@
 	&--sticky {
 		display: block;
 		background-color: $secondary-200;
-		margin-right: $default-padding;
 
 		@include breakpoint(md) {
 			display: block;

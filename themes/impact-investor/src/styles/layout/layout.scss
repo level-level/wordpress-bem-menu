@@ -15,6 +15,7 @@
 	@include breakpoint(md) {
 		flex-grow: 1;
 		margin-right: $default-padding;
+		margin-left: $default-padding;
 	}
 
 	&--indent {
