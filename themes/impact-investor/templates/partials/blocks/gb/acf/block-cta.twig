@@ -9,9 +9,11 @@
 				title: cta.button.title,
 				url: cta.button.url,
 			}
-		} %}
+		}
+	%}
 {% else %}
 	{% include 'partials/components/gb-placeholder.twig' with {
 		required_fields: ['Title', 'Image', 'Text', 'Button link']
-	} %}
+		}
+	%}
 {% endif %}
