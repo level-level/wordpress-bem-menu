@@ -29,6 +29,10 @@
 	&__content-container {
 		gap: $default-padding * 0.5;
 		padding-top: $default-padding * 0.7;
+
+		@include breakpoint(600px) {
+			padding-top: 0;
+		}
 	}
 
 	&__title {
