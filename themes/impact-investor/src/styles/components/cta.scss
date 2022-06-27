@@ -29,7 +29,7 @@
 	&__content-container {
 		display: flex;
 		flex-direction: column;
-		gap: $default-padding * 0.7;
+		gap: $default-padding * 0.5;
 		padding-top: $default-padding * 0.7;
 	}
 
@@ -42,8 +42,15 @@
 	&__text {
 		color: $white;
 
+		ul {
+			margin-top: 0;
+
+			li:before {
+				color: $white !important;
+			}
+		}
+
 		@include font-size(18px, 27px);
-		@include font-normal;
 	}
 
 	&__button {
