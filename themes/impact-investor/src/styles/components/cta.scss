@@ -42,11 +42,11 @@
 		color: $white;
 		margin-bottom: $default-padding * 0.7;
 
-		ul {
+		ul:not([class]) {
 			margin-top: 0;
 
-			li:before {
-				color: $white !important;
+			> li:before {
+				color: $white;
 			}
 		}
 
