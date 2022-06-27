@@ -27,20 +27,20 @@
 	}
 
 	&__content-container {
-		display: flex;
-		flex-direction: column;
 		gap: $default-padding * 0.5;
 		padding-top: $default-padding * 0.7;
 	}
 
 	&__title {
 		color: $white;
+		margin-bottom: $default-padding * 0.7;
 
 		@include font-heading-normal;
 	}
 
 	&__text {
 		color: $white;
+		margin-bottom: $default-padding * 0.7;
 
 		ul {
 			margin-top: 0;

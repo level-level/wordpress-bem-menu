@@ -6,12 +6,14 @@
 		<div class="cta__content-container">
 			<h3 class="cta__title">{{ title }}</h3>
 			<div class="cta__text">{{ content|raw }}</div>
+
 			{% include 'styleguide/components/buttons/button-link.twig' with {
 				text: button.title,
 				url: button.url,
-				class: 'btn--primary cta__button',
+				class: 'btn--action',
 				is_external: button.target ? true
 			} %}
+
 		</div>
 	</div>
 {% endif %}
