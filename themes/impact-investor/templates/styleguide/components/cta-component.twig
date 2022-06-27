@@ -1,0 +1,18 @@
+{% if title or image or content or button %}
+	<div class="cta">
+		<div aria-hidden='true' class="cta__image-container">
+			{{image|raw}}
+		</div>
+		<div class="cta__content-container">
+			<h3 class="cta__title">{{title}}</h3>
+			<p class="cta__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tenetur, placeat culpa aut porro repellendus atque velit accusantium facere iste quod?</p>
+			{% include 'styleguide/components/buttons/button-link.twig' with {
+					text: button.title,
+					url: button.url,
+					class: 'btn--primary cta__button',
+					aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+				}
+			%}
+		</div>
+	</div>
+{% endif %}
