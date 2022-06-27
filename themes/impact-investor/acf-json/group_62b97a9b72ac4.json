@@ -15,7 +15,7 @@
                 "class": "",
                 "id": ""
             },
-            "message": "Add here a call to action",
+            "message": "Add a call to action. Image, title, text and link are required fields.",
             "new_lines": "wpautop",
             "esc_html": 0
         },
@@ -134,7 +134,7 @@
                             "key": "field_62b97e7a70da2",
                             "label": "Url",
                             "name": "url",
-                            "type": "page_link",
+                            "type": "link",
                             "instructions": "",
                             "required": 1,
                             "conditional_logic": 0,
@@ -143,11 +143,7 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "post_type": "",
-                            "taxonomy": "",
-                            "allow_null": 0,
-                            "allow_archives": 1,
-                            "multiple": 0
+                            "return_format": "array"
                         }
                     ]
                 }
@@ -172,5 +168,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1656330627
+    "modified": 1656334595
 }
