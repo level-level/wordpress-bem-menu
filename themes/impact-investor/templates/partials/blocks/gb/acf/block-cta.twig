@@ -1,0 +1,18 @@
+{% set cta = data.cta %}
+
+{% if cta.title and cta.content and cta.button.title and cta.button.url %}
+	{% include 'styleguide/components/cta-component.twig' with {
+		title: cta.title,
+		image: cta.image ? wp_get_attachment_image(cta.image, 'medium'),
+		content: cta.content,
+		button: {
+			title: cta.button.title,
+			url: cta.button.url,
+			target: cta.button.target
+		}
+	} %}
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Title', 'Image', 'Text', 'Button link']
+	} %}
+{% endif %}

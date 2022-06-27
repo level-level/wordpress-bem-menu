@@ -19,18 +19,18 @@
 
 // Post/Page title
 .editor-post-title {
-		@include font-heading;
-		color: $heading-color;
+	@include font-heading;
+	color: $heading-color;
 
-		@include font-size(26px, 36px);
+	@include font-size(26px, 36px);
 
-		@include breakpoint(sm) {
-			@include font-size(40px, 56px);
-		}
+	@include breakpoint(sm) {
+		@include font-size(40px, 56px);
+	}
 
-		@include breakpoint(lg) {
-			@include font-size(48px, 62px);
-		}
+	@include breakpoint(lg) {
+		@include font-size(48px, 62px);
+	}
 }
 
 // Text styling in gutenberg core blocks

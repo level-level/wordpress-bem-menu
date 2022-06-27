@@ -90,6 +90,24 @@
 	}
 }
 
+@mixin btn--action {
+	background-color: $primary;
+	border-color: $primary;
+	color: $white;
+	border-radius: 3px;
+	display: block;
+	text-align: center;
+
+	@include hover-focus-style {
+		background-color: $btn-primary-hover;
+		color: $white;
+	}
+
+	@include breakpoint(600px) {
+		display: inline-block;
+	}
+}
+
 @mixin btn--link {
 	@include font-normal;
 	@include font-size(14px);
@@ -238,6 +256,10 @@ input[type='button'] {
 
 	&--tertiary {
 		@include btn--tertiary;
+	}
+
+	&--action {
+		@include btn--action;
 	}
 
 	&--link {
