@@ -9,7 +9,8 @@
 			{% include 'styleguide/components/buttons/button-link.twig' with {
 				text: button.title,
 				url: button.url,
-				class: 'btn--primary cta__button'
+				class: 'btn--primary cta__button',
+				is_external: button.target ? true
 			} %}
 		</div>
 	</div>
