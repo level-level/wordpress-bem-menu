@@ -1,0 +1,9 @@
+{% set cta = data.cta %}
+
+{% if cta %}
+{# MARKUP #}
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Title', 'Image', 'Text', 'Link']
+	} %}
+{% endif %}
