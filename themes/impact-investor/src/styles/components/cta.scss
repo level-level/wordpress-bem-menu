@@ -2,19 +2,19 @@
 	background-color: $secondary-600;
 	padding: $default-padding * 0.8;
 
-	@include breakpoint(sm) {
+	@include breakpoint(600px) {
 		display: grid;
 		grid-template-columns: 250px auto;
 		gap: $default-padding;
 	}
 
 	&__image-container {
-		height: 150px;
+		height: 200px;
 		width: 100%;
 		overflow: hidden;
 		position: relative;
 
-		@include breakpoint(sm) {
+		@include breakpoint(600px) {
 			height: 100%;
 		}
 
@@ -57,7 +57,7 @@
 		display: block;
 		text-align: center;
 
-		@include breakpoint(sm) {
+		@include breakpoint(600px) {
 			align-self: flex-start;
 		}
 
