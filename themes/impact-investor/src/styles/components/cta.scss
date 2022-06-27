@@ -66,3 +66,15 @@
 		}
 	}
 }
+
+@media (prefers-color-scheme: dark) {
+	.cta {
+		background-color: $secondary-300;
+		border-bottom: 1px solid $primary;
+		border-top: 1px solid $primary;
+
+		&__button {
+			color: $white;
+		}
+	}
+}
