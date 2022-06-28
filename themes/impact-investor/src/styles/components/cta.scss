@@ -20,31 +20,32 @@
 
 		img {
 			position: absolute;
-			object-fit: cover;
+			top: 0;
+			left: 0;
 			width: 100%;
-			height: 100%;
 		}
 	}
 
 	&__content-container {
-		gap: $default-padding * 0.5;
+		display: flex;
+		flex-direction: column;
+		gap: $default-padding * 0.6;
 		padding-top: $default-padding * 0.7;
 
 		@include breakpoint(600px) {
 			padding-top: 0;
+			align-items: flex-start;
 		}
 	}
 
 	&__title {
 		color: $white;
-		margin-bottom: $default-padding * 0.7;
 
 		@include font-heading-normal;
 	}
 
 	&__text {
 		color: $white;
-		margin-bottom: $default-padding * 0.7;
 
 		ul:not([class]) {
 			margin-top: 0;
