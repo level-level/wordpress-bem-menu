@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fead3c8032db8de71c92850677d507aa",
+    "content-hash": "3e660fb8782039ab49172e5f57a37b9e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -838,11 +838,11 @@
         },
         {
             "name": "level-level/wordpress-bem-menu",
-            "version": "v1.0.8",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Wordpress-Bem-Menu",
-                "reference": "145eb9e174a5df9dd67ee3c17f0fc5b87868a0dc"
+                "reference": "3ccd5829bc18f5f003d3ac811a290751918b107f"
             },
             "type": "library",
             "autoload": {
@@ -851,25 +851,25 @@
                 ]
             },
             "description": "Better menu implementation for Wordpress using BEM syntax",
-            "time": "2022-02-10T14:01:49+00:00"
+            "time": "2022-06-27T13:10:13+00:00"
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12.2",
+            "version": "5.12.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.2.zip",
-                "shasum": "01776becbbbcfdeb750dba2c67059916350d8252"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.3.zip",
+                "shasum": "ab15da8c8cb4e95d053a68af0ff232ee2aada9a1"
             },
             "type": "wordpress-plugin"
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.1.3",
+            "version": "2.6.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.1.3.zip",
-                "shasum": "e3e9eebfd1aef0a6b07c3aa92fb72be476052df1"
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.4.1.zip",
+                "shasum": "e0f835eac99eeb2a72084f1025824631fda9c417"
             },
             "type": "wordpress-plugin"
         },
@@ -3719,6 +3719,7 @@
                 "issues": "https://github.com/wordplate/extended-acf/issues",
                 "source": "https://github.com/wordplate/extended-acf/tree/11.2.0"
             },
+            "abandoned": "vinkla/extended-acf",
             "time": "2021-11-03T13:41:55+00:00"
         },
         {
@@ -3759,15 +3760,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.15.2",
+            "version": "1.16",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.15.2"
+                "reference": "tags/1.16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.15.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.16.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3831,15 +3832,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.1.1.1",
+            "version": "2.1.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.1.1.1"
+                "reference": "tags/2.1.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.1.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3885,15 +3886,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.1",
+            "version": "19.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.1"
+                "reference": "tags/19.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -6959,16 +6960,16 @@
         },
         {
             "name": "psalm/phar",
-            "version": "4.23.0",
+            "version": "4.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psalm/phar.git",
-                "reference": "92700588da7c19107e4c465641ef10ac1a30e105"
+                "reference": "86a74acd5b9d4888ac3c42c95c1cba7b395b8d2f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/psalm/phar/zipball/92700588da7c19107e4c465641ef10ac1a30e105",
-                "reference": "92700588da7c19107e4c465641ef10ac1a30e105",
+                "url": "https://api.github.com/repos/psalm/phar/zipball/86a74acd5b9d4888ac3c42c95c1cba7b395b8d2f",
+                "reference": "86a74acd5b9d4888ac3c42c95c1cba7b395b8d2f",
                 "shasum": ""
             },
             "require": {
@@ -6988,9 +6989,9 @@
             "description": "Composer-based Psalm Phar",
             "support": {
                 "issues": "https://github.com/psalm/phar/issues",
-                "source": "https://github.com/psalm/phar/tree/4.23.0"
+                "source": "https://github.com/psalm/phar/tree/4.24.0"
             },
-            "time": "2022-05-02T02:15:17+00:00"
+            "time": "2022-06-27T17:13:36+00:00"
         },
         {
             "name": "psr/event-dispatcher",
@@ -9638,15 +9639,15 @@
         },
         {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.5.8",
+            "version": "1.6.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.5.8"
+                "reference": "tags/1.6.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.5.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.6.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -9720,5 +9721,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
