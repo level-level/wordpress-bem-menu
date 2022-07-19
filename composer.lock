@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fead3c8032db8de71c92850677d507aa",
+    "content-hash": "3e660fb8782039ab49172e5f57a37b9e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -865,11 +865,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.1.3",
+            "version": "2.6.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.1.3.zip",
-                "shasum": "e3e9eebfd1aef0a6b07c3aa92fb72be476052df1"
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.4.1.zip",
+                "shasum": "e0f835eac99eeb2a72084f1025824631fda9c417"
             },
             "type": "wordpress-plugin"
         },
