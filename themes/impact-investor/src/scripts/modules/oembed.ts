@@ -28,7 +28,11 @@ class OEmbed implements IModule {
 		}
 
 		if ( typeof window.__tcfapi !== 'undefined' ) {
-			this.initLiveRamp();
+			window.addEventListener( 'message', ( event ) => {
+				if( event.data.tcfData?.command === 'isLoaded' ) {
+					this.initLiveRamp();
+				}
+			} );
 		} else {
 			this.initDefault();
 		}
@@ -47,7 +51,7 @@ class OEmbed implements IModule {
 
 				// No consent given (yet), show cookiewall on consent button click
 				this.button.addEventListener( 'click', () => {
-					window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes');
+					window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
 				} );
 			}
 		}, {
