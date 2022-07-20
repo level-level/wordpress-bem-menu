@@ -32,7 +32,7 @@
 		</script>
 
 		{% if options.enable_liveramp_cmp %}
-			<script async defer src="https://gdpr-wrapper.privacymanager.io/gdpr/6107b4ac-133b-41d0-8fe8-d28e5e95ca48/gdpr-liveramp.js"></script>
+			{% include 'defaults/partials/gdpr/liveramp.twig' %}
 		{% endif %}
 
 		{% if options.enable_advertisements %}
