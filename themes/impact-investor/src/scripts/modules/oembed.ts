@@ -1,5 +1,10 @@
 import { IModule } from '../../globals';
 
+declare global {
+	interface Window { __tcfapi: any; }
+	interface Window { _sp_: any; }
+}
+
 class OEmbed implements IModule {
 	element: HTMLElement;
 	button: HTMLElement;
@@ -22,8 +27,7 @@ class OEmbed implements IModule {
 			return;
 		}
 
-		// @ts-expect-error __tcfapi is an external function
-		if ( typeof __tcfapi !== 'undefined' ) {
+		if ( typeof window.__tcfapi !== 'undefined' ) {
 			this.initLiveRamp();
 		} else {
 			this.initDefault();
@@ -36,17 +40,14 @@ class OEmbed implements IModule {
 		*/
 	initLiveRamp() {
 
-		// @ts-expect-error __tcfapi is an external function
-		__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted ) => {
+		window.__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted: any ) => {
 			if ( socialMediaCookiesAccepted ) {
 				this.showEmbed();
 			} else {
 
 				// No consent given (yet), show cookiewall on consent button click
 				this.button.addEventListener( 'click', () => {
-
-					// @ts-expect-error __tcfapi is an external function
-					__tcfapi( 'showConsentManager' );
+					window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes');
 				} );
 			}
 		}, {
