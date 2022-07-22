@@ -28,36 +28,56 @@ class OEmbed implements IModule {
 		}
 
 		if ( typeof window.__tcfapi !== 'undefined' ) {
-			this.initLiveRamp();
+			this.initSourcepoint();
 		} else {
 			this.initDefault();
 		}
 	}
 
 	/**
-		* Use the LiveRamp cookie plugin
-		* Docs: https://docs.liveramp.com/privacy-manager/en/api-reference--gdpr-for-web-.html
+		* Use Sourcepoint to handle user consent
 		*/
-	initLiveRamp() {
+	initSourcepoint() {
 
-		window._sp_.gdpr.getCustomVendorConsents( ( vendorConsents: any, success: any ) => console.log( vendorConsents ) );
+		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
+		window.__tcfapi( 'addEventListener', 2, ( tcData: any ) => {
+			if ( tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete' ) {
 
-		// window.__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted: any ) => {
-		// 	if ( socialMediaCookiesAccepted ) {
-		// 		this.showEmbed();
-		// 	} else {
+				window.__tcfapi( 'getCustomVendorConsents', 2, ( data: any, success: any ) => {
+					const embedSource = this.source;
 
-		// 		// No consent given (yet), show cookiewall on consent button click
-		// 		this.button.addEventListener( 'click', () => {
-		// 			window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
-		// 		} );
-		// 	}
-		// }, {
-		// 	data: [{
-		// 		purposeIds: [29], // Represents the social media cookies (youtube, vimeo, twitter etc)
-		// 	}],
-		// 	recheckConsentOnChange: true,
-		// } );
+					let purposeConsent = false;
+					data.consentedPurposes.forEach( ( element: any ) => {
+						if ( element.name === 'Verrijken van artikelen' || element._id === '62a1c6502b246104cd6ebda5' ) {
+							purposeConsent = true;
+						}
+					} );
+
+					let vendorConsent = false;
+					data.consentedVendors.forEach( ( element: any ) => {
+						if ( embedSource.includes( element.name.toLowerCase() ) ) {
+							vendorConsent = true;
+						}
+					} );
+
+					if ( purposeConsent && vendorConsent ) {
+
+						// Show the ember if we have both purpose and vendor consent
+						this.showEmbed();
+					}
+					else if ( tcData.eventStatus === 'tcloaded' ) {
+
+						// On first load we show the privacy modal if there is no consent
+						window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
+					}
+					else if ( tcData.eventStatus === 'useractioncomplete' ) {
+
+						// If the user has withdrawn his/her consent, we reload the page
+						window.location.reload();
+					}
+				} );
+			}
+		} );
 	}
 
 	initDefault() {

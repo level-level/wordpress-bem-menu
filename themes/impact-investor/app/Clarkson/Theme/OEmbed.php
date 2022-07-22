@@ -56,7 +56,7 @@ class OEmbed {
 
 		$options = get_field( 'theme_options', 'option' );
 
-		if ( ! empty( $options ) && $options['enable_liveramp_cmp'] ) {
+		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
 			$args['notice_text'] = __( 'This content is available after accepting the social media cookies.', 'impact-investor' );
 			$args['button_text'] = __( 'Change cookie-settings', 'impact-investor' );
 		}
