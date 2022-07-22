@@ -43,22 +43,24 @@ class OEmbed implements IModule {
 		*/
 	initLiveRamp() {
 
-		window.__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted: any ) => {
-			if ( socialMediaCookiesAccepted ) {
-				this.showEmbed();
-			} else {
+		window._sp_.gdpr.getCustomVendorConsents( ( vendorConsents: any, success: any ) => console.log( vendorConsents ) );
 
-				// No consent given (yet), show cookiewall on consent button click
-				this.button.addEventListener( 'click', () => {
-					window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
-				} );
-			}
-		}, {
-			data: [{
-				purposeIds: [29], // Represents the social media cookies (youtube, vimeo, twitter etc)
-			}],
-			recheckConsentOnChange: true,
-		} );
+		// window.__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted: any ) => {
+		// 	if ( socialMediaCookiesAccepted ) {
+		// 		this.showEmbed();
+		// 	} else {
+
+		// 		// No consent given (yet), show cookiewall on consent button click
+		// 		this.button.addEventListener( 'click', () => {
+		// 			window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
+		// 		} );
+		// 	}
+		// }, {
+		// 	data: [{
+		// 		purposeIds: [29], // Represents the social media cookies (youtube, vimeo, twitter etc)
+		// 	}],
+		// 	recheckConsentOnChange: true,
+		// } );
 	}
 
 	initDefault() {
