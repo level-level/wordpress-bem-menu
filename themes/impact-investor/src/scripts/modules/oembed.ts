@@ -27,14 +27,11 @@ class OEmbed implements IModule {
 			return;
 		}
 
-		window.addEventListener( 'message', ( event ) => {
-			if( event.data.tcfData?.command === 'isLoaded' ) {
-				this.initLiveRamp();
-			}
-			else {
-				this.initDefault();
-			}
-		} );
+		if ( typeof window.__tcfapi !== 'undefined' ) {
+			this.initLiveRamp();
+		} else {
+			this.initDefault();
+		}
 	}
 
 	/**
