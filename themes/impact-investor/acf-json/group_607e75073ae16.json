@@ -145,10 +145,10 @@
                 },
                 {
                     "key": "field_619e47fc1b390",
-                    "label": "LiveRamp CMP",
-                    "name": "enable_liveramp_cmp",
+                    "label": "Sourcepoint CMP",
+                    "name": "enable_sourcepoint_cmp",
                     "type": "true_false",
-                    "instructions": "Enables or disables the LiveRamp CMP cookiewall.",
+                    "instructions": "Enables or disables the Sourcepoint CMP cookiewall.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -156,7 +156,7 @@
                         "class": "",
                         "id": ""
                     },
-                    "message": "LiveRamp CMP cookiewall",
+                    "message": "Sourcepoint CMP cookiewall",
                     "default_value": 1,
                     "ui": 1,
                     "ui_on_text": "Enabled",

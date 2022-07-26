@@ -1,5 +1,15 @@
 import { IModule } from '../../globals';
 
+declare global {
+	interface Window { __tcfapi: any; }
+	interface Window { _sp_: {
+		gdpr: {
+			deleteConsentCookies: () => void;
+			loadPrivacyManagerModal: ( e: number, n: string ) => void;
+		};
+	}; }
+}
+
 class OEmbed implements IModule {
 	element: HTMLElement;
 	button: HTMLElement;
@@ -22,38 +32,66 @@ class OEmbed implements IModule {
 			return;
 		}
 
-		// @ts-expect-error __tcfapi is an external function
-		if ( typeof __tcfapi !== 'undefined' ) {
-			this.initLiveRamp();
+		if ( typeof window.__tcfapi !== 'undefined' ) {
+			this.initSourcepoint();
 		} else {
 			this.initDefault();
 		}
 	}
 
 	/**
-		* Use the LiveRamp cookie plugin
-		* Docs: https://docs.liveramp.com/privacy-manager/en/api-reference--gdpr-for-web-.html
+		* Use Sourcepoint to handle user consent
 		*/
-	initLiveRamp() {
+	initSourcepoint() {
 
-		// @ts-expect-error __tcfapi is an external function
-		__tcfapi( 'checkConsent', 2, ( socialMediaCookiesAccepted ) => {
-			if ( socialMediaCookiesAccepted ) {
-				this.showEmbed();
-			} else {
+		this.button.addEventListener( 'click', () => {
+			window._sp_.gdpr.loadPrivacyManagerModal( 656244, 'purposes' );
+		} );
 
-				// No consent given (yet), show cookiewall on consent button click
-				this.button.addEventListener( 'click', () => {
+		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
+		window.__tcfapi( 'addEventListener', 2, ( tcData: { eventStatus: string } ) => {
+			if ( tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete' ) {
 
-					// @ts-expect-error __tcfapi is an external function
-					__tcfapi( 'showConsentManager' );
+				// Get the consent data
+				window.__tcfapi( 'getCustomVendorConsents', 2, ( data: {
+					consentedPurposes: {
+						_id: string;
+						name: string;
+					}[];
+					consentedVendors: {
+						_id: string;
+						name: string;
+					}[]
+				} ) => {
+					const embedSource = this.source;
+
+					// Check if we have consent for the specific purpose of showing embeds in content
+					let purposeConsent = false;
+					data.consentedPurposes.forEach( ( element ) => {
+						if ( element.name === 'Verrijken van artikelen' || element._id === '62a1c6502b246104cd6ebda5' ) {
+							purposeConsent = true;
+						}
+					} );
+
+					// Check if we have consent for the vendor of the current embed
+					let vendorConsent = false;
+					data.consentedVendors.forEach( ( element ) => {
+						if ( embedSource.includes( element.name.toLowerCase() ) ) {
+							vendorConsent = true;
+						}
+					} );
+
+					// Show the embed if we have both purpose and vendor consent
+					if ( purposeConsent && vendorConsent ) {
+						this.showEmbed();
+					}
+
+					// If the user has withdrawn his/her consent, we reload the page
+					else if ( tcData.eventStatus === 'useractioncomplete' ) {
+						window.location.reload();
+					}
 				} );
 			}
-		}, {
-			data: [{
-				purposeIds: [29], // Represents the social media cookies (youtube, vimeo, twitter etc)
-			}],
-			recheckConsentOnChange: true,
 		} );
 	}
 
