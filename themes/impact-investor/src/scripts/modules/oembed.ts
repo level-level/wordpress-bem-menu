@@ -2,7 +2,12 @@ import { IModule } from '../../globals';
 
 declare global {
 	interface Window { __tcfapi: any; }
-	interface Window { _sp_: any; }
+	interface Window { _sp_: {
+		gdpr: {
+			deleteConsentCookies: () => void;
+			loadPrivacyManagerModal: ( e: number, n: string ) => void;
+		};
+	}; }
 }
 
 class OEmbed implements IModule {
@@ -44,16 +49,25 @@ class OEmbed implements IModule {
 		} );
 
 		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
-		window.__tcfapi( 'addEventListener', 2, ( tcData: any ) => {
+		window.__tcfapi( 'addEventListener', 2, ( tcData: { eventStatus: string } ) => {
 			if ( tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete' ) {
 
 				// Get the consent data
-				window.__tcfapi( 'getCustomVendorConsents', 2, ( data: any ) => {
+				window.__tcfapi( 'getCustomVendorConsents', 2, ( data: {
+					consentedPurposes: {
+						_id: string;
+						name: string;
+					}[];
+					consentedVendors: {
+						_id: string;
+						name: string;
+					}[]
+				} ) => {
 					const embedSource = this.source;
 
 					// Check if we have consent for the specific purpose of showing embeds in content
 					let purposeConsent = false;
-					data.consentedPurposes.forEach( ( element: any ) => {
+					data.consentedPurposes.forEach( ( element ) => {
 						if ( element.name === 'Verrijken van artikelen' || element._id === '62a1c6502b246104cd6ebda5' ) {
 							purposeConsent = true;
 						}
@@ -61,7 +75,7 @@ class OEmbed implements IModule {
 
 					// Check if we have consent for the vendor of the current embed
 					let vendorConsent = false;
-					data.consentedVendors.forEach( ( element: any ) => {
+					data.consentedVendors.forEach( ( element ) => {
 						if ( embedSource.includes( element.name.toLowerCase() ) ) {
 							vendorConsent = true;
 						}
