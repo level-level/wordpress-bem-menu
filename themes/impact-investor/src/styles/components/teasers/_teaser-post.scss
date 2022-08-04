@@ -64,10 +64,6 @@
 		margin-top: auto;
 		min-height: 47px;
 
-		& > * {
-			width: calc(100% + #{$default-padding});
-		}
-
 		@include breakpoint(sm) {
 			padding: $default-padding * 0.5 $default-padding;
 		}

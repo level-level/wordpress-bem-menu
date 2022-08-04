@@ -1,7 +1,7 @@
 {% set random_id = uniqid('searchbar-') %}
 <form class="search-component search-component--inline" method="get" action="{{ get_home_url() }}" role="search">
-	<div class="row row--no-padding row--align-center row--nowrap">
-		<div class="col-auto col--grow-1">
+	<div class="flex items-center flex-nowrap">
+		<div class="grow">
 			<label for="{{ random_id }}" class="screen-reader-text">{{ __('Search', 'impact-investor') }}</label>
 			<input
 				type="search"
@@ -14,17 +14,15 @@
 				spellcheck="false"
 			>
 		</div>
-		<div class="col-auto">
-			<div class="search-component__button">
-				{% include 'styleguide/components/buttons/button-element.twig' with {
-					text: '',
-					class: 'btn--search',
-					aria_label: __('Search', 'impact-investor'),
-					icon: 'search',
-					icon_left: true,
-					type: 'submit'
-				} %}
-			</div>
+		<div class="search-component__button">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				text: '',
+				class: 'btn--search',
+				aria_label: __('Search', 'impact-investor'),
+				icon: 'search',
+				icon_left: true,
+				type: 'submit'
+			} %}
 		</div>
 	</div>
 </form>

@@ -6,10 +6,10 @@
 
 	{% if datetime and date or terms %}
 		<div class="list-item__meta">
-			<div class="row row--nowrap">
+			<div class="flex gap-6 flex-nowrap">
 
 				{% if terms %}
-					<div class="col-auto col--grow-1">
+					<div class="grow">
 						{% include 'styleguide/components/post-terms.twig' with {
 							terms: terms,
 						} %}
@@ -17,7 +17,7 @@
 				{% endif %}
 
 				{% if datetime and date %}
-					<div class="col-auto col--shrink-0">
+					<div class="shrink-0">
 						{% if date_full %}
 							<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
 							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>

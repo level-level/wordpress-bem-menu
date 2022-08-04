@@ -3,21 +3,19 @@
 
 {# Based on column amount (2 or 3) use a different teaser and column width #}
 {% if columns is same as('2') %}
-	{% set class = 'col-sm-6' %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-medium.twig' %}
-	{% set row = 'row--spacing' %}
+	{% set grid = 'gap-6 sm:grid-cols-2' %}
 	{% set image_size = 'teaser_medium' %}
 {% elseif columns is same as('3') %}
-	{% set class = 'col-lg-4' %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-small.twig' %}
-	{% set row = 'row--sm-spacing' %}
+	{% set grid = 'sm:gap-6 lg:grid-cols-3' %}
 	{% set image_size = 'medium' %}
 {% endif %}
 
 {% if objects %}
-	<div class="align{{ align }}">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
 
-		<ul class="row {{ row }}">
+		<ul class="grid {{ grid }}">
 			{% set date_format = get_option('date_format') %}
 
 			{% for object in objects %}
@@ -28,7 +26,7 @@
 
 				{# twigcs use-var teaser_size, date_format, image_id, terms, authors #}
 
-				<li class="col-12 {{ class }}">
+				<li>
 					{% include teaser with {
 						image: image_id ? wp_get_attachment_image(image_id, image_size),
 						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),

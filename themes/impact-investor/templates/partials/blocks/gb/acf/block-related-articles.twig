@@ -2,7 +2,7 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="align{{ align }}">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
 		<div class="related-news">
 			<h2 class="h3 related-news__title">{{ title|raw }}</h2>
 			<ul class="list-related-news">

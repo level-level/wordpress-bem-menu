@@ -1,10 +1,10 @@
 <div class="teaser-post teaser-post--inline">
 
 	{# Mobile only #}
-	<div class="hidden-sm">
+	<div class="sm:hidden">
 		<div class="teaser-post__inner">
-			<div class="row row--nowrap row--align-center">
-				<div class="col-auto col--grow-1">
+			<div class="flex gap-6 items-center">
+				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
@@ -14,7 +14,7 @@
 				</div>
 
 				{% if image_square %}
-					<div class="col-auto col--shrink-0">
+					<div class="shrink-0">
 						<div class="teaser-post__square-thumbnail">
 							{{ image_square|raw }}
 						</div>
@@ -27,8 +27,8 @@
 	{# Tablet >= #}
 	<div class="hidden-xs visible-sm">
 		<div class="teaser-post__inner">
-			<div class="row row--nowrap row--align-center">
-				<div class="col-auto col--grow-1">
+			<div class="flex gap-6 items-center">
+				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
@@ -38,7 +38,7 @@
 				</div>
 
 				{% if image %}
-					<div class="col-auto col--shrink-0">
+					<div class="shrink-0">
 						<div class="teaser-post__thumbnail">
 							{{ image|raw }}
 						</div>

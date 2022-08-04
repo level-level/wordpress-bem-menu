@@ -2,16 +2,16 @@
 {% set objects = data.partners %}
 
 {% if objects %}
-	<div class="align{{ align }}">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
 		<div class="group group--small">
 			<div class="group__item">
 				<h2>{{ title|raw }}</h2>
 			</div>
 			<div class="group__item">
-				<ul class="row row--spacing">
+				<ul class="flex flex-col gap-6">
 					{% for object in objects %}
 						{% set image_id = object.get_thumbnail_id() %}
-						<li class="col-12">
+						<li>
 							{% include 'styleguide/components/teasers/teaser-partner.twig' with {
 								image: image_id ? wp_get_attachment_image(image_id, 'medium'),
 								title: object.get_title(),

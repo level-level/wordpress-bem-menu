@@ -1,8 +1,8 @@
 <div class="teaser-partner">
 	<div class="teaser-partner__inner">
-		<div class="row row--spacing row--sm-nowrap">
+		<div class="flex gap-3 flex-wrap sm:flex-nowrap">
 
-			<div class="col-12 col-sm-auto col--sm-shrink-0 col--sm-order-2">
+			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
 				<div class="teaser-partner__thumbnail">
 					{% if image %}
 						{{ image|raw }}
@@ -10,7 +10,7 @@
 				</div>
 			</div>
 
-			<div class="col-12 col-sm-auto">
+			<div class="basis-full sm:basis-auto">
 				<div class="group group--small">
 					<div class="group__item">
 						<h3 class="teaser-partner__title">

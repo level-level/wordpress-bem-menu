@@ -1,8 +1,8 @@
 <div class="teaser-team">
 	<div class="teaser-team__inner">
-		<div class="row row--spacing row--sm-nowrap">
+		<div class="flex gap-6 flex-col sm:flex-row sm:flex-nowrap">
 
-			<div class="col-12 col-sm-auto col--sm-shrink-0">
+			<div class="shrink-0">
 				<div class="teaser-team__thumbnail">
 					{% if image %}
 						{{ image|raw }}
@@ -10,31 +10,29 @@
 				</div>
 			</div>
 
-			<div class="col-12 col-sm-auto">
-				<div class="group group--small">
-					<div class="group__item">
-						<h3 class="teaser-team__title">
-							{{ title|raw }}
-						</h3>
-					</div>
+			<div class="group group--small">
+				<div class="group__item">
+					<h3 class="teaser-team__title">
+						{{ title|raw }}
+					</h3>
+				</div>
 
-					{% if excerpt %}
-						<div class="group__item">
-							{{ excerpt|raw }}
-						</div>
-					{% endif %}
-
+				{% if excerpt %}
 					<div class="group__item">
-						{% include 'styleguide/components/buttons/button-link.twig' with {
-							text: __('View profile', 'impact-investor'),
-							url: url,
-							class: 'btn--tertiary',
-							aria_label: __('View profile, %s', 'impact-investor')|format(title),
-							icon: 'arrow-right',
-							icon_left: true,
-							highlight_icon: true,
-						} %}
+						{{ excerpt|raw }}
 					</div>
+				{% endif %}
+
+				<div class="group__item">
+					{% include 'styleguide/components/buttons/button-link.twig' with {
+						text: __('View profile', 'impact-investor'),
+						url: url,
+						class: 'btn--tertiary',
+						aria_label: __('View profile, %s', 'impact-investor')|format(title),
+						icon: 'arrow-right',
+						icon_left: true,
+						highlight_icon: true,
+					} %}
 				</div>
 			</div>
 		</div>

@@ -111,6 +111,12 @@
 .editor-styles-wrapper ol,
 .editor-styles-wrapper ul {
 	box-sizing: border-box;
+
+	&:not([data-type]) {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .gb-placeholder,

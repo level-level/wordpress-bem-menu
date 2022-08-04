@@ -26,10 +26,10 @@
 
 	{% if authors or date and datetime and date_full %}
 		<div class="article-header__meta">
-			<div class="row">
+			<div class="flex gap-6 items-center">
 
 				{% if authors %}
-					<div class="col-auto">
+					<div>
 						<span class="screen-reader-text">
 							{{ __('Written by:', 'impact-investor') }}
 						</span>
@@ -48,7 +48,7 @@
 				{% endif %}
 
 				{% if date and datetime and date_full %}
-					<div class="col-auto">
+					<div>
 						<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
 						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 					</div>

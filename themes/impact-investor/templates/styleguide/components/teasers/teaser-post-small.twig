@@ -3,8 +3,8 @@
 	{# Mobile only #}
 	<div class="hidden-sm">
 		<div class="teaser-post__inner">
-			<div class="row row--nowrap row--align-center">
-				<div class="col-auto col--grow-1">
+			<div class="flex gap-6 items-center">
+				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
@@ -14,7 +14,7 @@
 				</div>
 
 				{% if image_square %}
-					<div class="col-auto col--shrink-0">
+					<div class="shrink-0">
 						<div class="teaser-post__square-thumbnail">
 							{{ image_square|raw }}
 						</div>
@@ -25,18 +25,18 @@
 	</div>
 
 	{# Tablet only #}
-	<div class="hidden-xs visible-sm hidden-lg">
-		<div class="row row--no-padding row--nowrap">
+	<div class="hidden sm:block lg:hidden">
+		<div class="flex">
 
 			{% if image %}
-				<div class="col-auto col--shrink-0">
+				<div class="shrink-0">
 					<div class="teaser-post__thumbnail">
 						{{ image|raw }}
 					</div>
 				</div>
 			{% endif %}
 
-			<div class="col-auto col--grow-1">
+			<div class="grow">
 				<div class="teaser-post__inner">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
@@ -53,7 +53,7 @@
 	</div>
 
 	{# Desktop only #}
-	<div class="hidden-xs visible-lg teaser-post__desktop">
+	<div class="hidden lg:block teaser-post__desktop">
 		<div class="teaser-post__desktop-inner">
 			{% if image %}
 				<div class="teaser-post__thumbnail">

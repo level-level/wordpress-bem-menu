@@ -1,8 +1,8 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="align{{ align }}">
-		<ul class="row row--spacing">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
+		<ul class="grid grid-cols-1 gap-6">
 			{% set date_format = get_option('date_format') %}
 
 			{% for object in objects %}
@@ -10,7 +10,7 @@
 				{% set terms = object.get_terms('category') %}
 				{% set authors = object.get_authors() %}
 
-				<li class="col-12">
+				<li>
 					{% include 'styleguide/components/teasers/teaser-post-large.twig' with {
 						image: image_id ? wp_get_attachment_image(image_id, 'large'),
 						title: object.get_title(),

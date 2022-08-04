@@ -18,11 +18,11 @@
 	} %}
 	<div class="header-search__dropdown" aria-hidden="true">
 		<div class="container">
-			<div class="row row--small row--align-center row--nowrap">
-				<div class="col-auto col--grow-1">
+			<div class="flex gap-3 items-center flex-nowrap">
+				<div class="grow">
 					{% include 'partials/components/search-header.twig' %}
 				</div>
-				<div class="col-auto">
+				<div>
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
 						class: 'btn--secondary btn--search js-header-search',

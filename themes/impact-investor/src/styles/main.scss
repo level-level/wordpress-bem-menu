@@ -1,4 +1,6 @@
-@import '~normalize.css/normalize.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 // Common
 @import '_common/mixins';
