@@ -14,7 +14,7 @@ if ( isFullscreenMode ) {
 
 type Block = {
 	[key: string]: string;
-}
+};
 
 wp.domReady( () => {
 
