@@ -35,10 +35,10 @@
 	{% if email or linkedin %}
 		<div class="bio__footer">
 			<div class="bio__inner">
-				<ul class="list-vertical-buttons">
+				<ul class="flex flex-col gap-3">
 
 					{% if email %}
-						<li class="list-vertical-buttons__item">
+						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: __('E-mail', 'impact-investor'),
 								url: 'mailto:' ~ email,
@@ -52,7 +52,7 @@
 					{% endif %}
 
 					{% if linkedin %}
-						<li class="list-vertical-buttons__item">
+						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: __('LinkedIn', 'impact-investor'),
 								url: linkedin,

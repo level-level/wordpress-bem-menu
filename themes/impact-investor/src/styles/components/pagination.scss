@@ -3,7 +3,6 @@
 	--item-width: 34px;
 
 	ul {
-		@include list-unstyled;
 		display: flex;
 		align-items: center;
 		justify-content: center;

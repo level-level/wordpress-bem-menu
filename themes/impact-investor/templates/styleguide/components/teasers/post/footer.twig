@@ -7,9 +7,9 @@
 					<span class="screen-reader-text">
 						{{ __('Written by:', 'impact-investor') }}
 					</span>
-					<ul class="list-authors">
+					<ul class="flex gap-3">
 						{% for object in authors %}
-							<li class="list-authors__item">
+							<li>
 								{% include 'styleguide/components/buttons/button-link.twig' with {
 									text: object.name,
 									url: object.url,

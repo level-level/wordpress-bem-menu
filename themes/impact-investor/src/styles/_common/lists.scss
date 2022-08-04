@@ -1,14 +1,5 @@
 // Lists
-// @include list-unstyled;
-// Reset default list styling
-@mixin list-unstyled {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
 @mixin list-horizontal( $margin: $spacing-6 ) {
-	@include list-unstyled;
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: -#{$margin};
@@ -20,26 +11,6 @@
 		&:last-child {
 			margin-right: 0;
 		}
-	}
-}
-
-.list-unstyled {
-	@include list-unstyled;
-}
-
-.list-authors {
-	@include list-horizontal(10px);
-}
-
-.list-badges {
-	@include list-horizontal(5px);
-}
-
-.list-vertical-buttons {
-	@include list-unstyled;
-
-	& > * + * {
-		margin-top: 10px;
 	}
 }
 
@@ -94,7 +65,6 @@
 }
 
 .list-styled-ordered {
-	@include list-unstyled;
 	@include font-size(16px, 24px);
 	counter-reset: counter;
 
@@ -126,7 +96,6 @@
 }
 
 .list-bordered {
-	@include list-unstyled;
 	@include font-size(16px, 24px);
 
 	@include breakpoint(sm) {
@@ -173,8 +142,6 @@
 }
 
 .list-comments {
-	@include list-unstyled;
-
 	&__item {
 		border-bottom: 1px solid $border-colored;
 
@@ -185,7 +152,6 @@
 }
 
 .list-related-news {
-	@include list-unstyled;
 	padding: $spacing-3 0;
 
 	&__item {
@@ -202,7 +168,6 @@
 }
 
 .list-dropdown-buttons {
-	@include list-unstyled;
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -252,13 +217,5 @@
 		&:last-child {
 			border-right: 1px solid $border;
 		}
-	}
-}
-
-.list-dark-mode {
-	@include list-unstyled;
-
-	& > * + * {
-		margin-top: 5px;
 	}
 }

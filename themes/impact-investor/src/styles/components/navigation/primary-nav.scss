@@ -1,5 +1,4 @@
 .primary-nav {
-	@include list-unstyled;
 	@include font-normal;
 	display: flex;
 	flex-direction: column;
@@ -120,11 +119,9 @@
 }
 
 .primary-nav-sub {
-	@include list-unstyled;
 	position: relative;
 	background-color: $nav-dropdown-bg;
 	padding: $spacing-3;
-	padding-top: 0;
 	display: none;
 
 	@include breakpoint(sm) {

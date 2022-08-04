@@ -1,6 +1,4 @@
 .footer-nav {
-	@include list-unstyled;
-
 	& > * + * {
 		margin-top: 10px;
 	}

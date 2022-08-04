@@ -283,3 +283,20 @@
 	width: 100%;
 	max-width: var(--container);
 }
+
+@mixin intro-font {
+	--wp--preset--font-size--intro: #{calculaterem(20px)};
+	line-height: line-height(20px, 28px);
+
+	@include font-heading-normal;
+
+	@include breakpoint(sm) {
+		--wp--preset--font-size--intro: #{calculaterem(22px)};
+		line-height: line-height(22px, 30px);
+	}
+
+	@include breakpoint(lg) {
+		--wp--preset--font-size--intro: #{calculaterem(24px)};
+		line-height: line-height(24px, 34px);
+	}
+}

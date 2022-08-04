@@ -6,16 +6,16 @@
 	</div>
 	<div class="dark-mode__dropdown">
 		<div class="dark-mode__inner">
-			<ul class="list-dark-mode" data-module="theme-selection">
-				<li class="list-dark-mode__item">
+			<ul class="flex flex-col gap-1" data-module="theme-selection">
+				<li>
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="system" id="theme-system-{{ radio_id }}" checked>
 					<label for="theme-system-{{ radio_id }}">{{ __('System (device settings)', 'impact-investor') }}</label>
 				</li>
-				<li class="list-dark-mode__item">
+				<li>
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light-{{ radio_id }}">
 					<label for="theme-light-{{ radio_id }}">{{ __('Light theme', 'impact-investor') }}</label>
 				</li>
-				<li class="list-dark-mode__item">
+				<li>
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="theme-dark-{{ radio_id }}">
 					<label for="theme-dark-{{ radio_id }}">{{ __('Dark theme', 'impact-investor') }}</label>
 				</li>

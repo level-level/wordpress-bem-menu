@@ -28,16 +28,7 @@
 
 	p {
 		&.has-intro-font-size {
-			@include font-heading-normal;
-			@include font-size(20px, 28px, true);
-
-			@include breakpoint(sm) {
-				@include font-size(22px, 30px, true);
-			}
-
-			@include breakpoint(lg) {
-				@include font-size(24px, 34px, true);
-			}
+			@include intro-font;
 		}
 	}
 
