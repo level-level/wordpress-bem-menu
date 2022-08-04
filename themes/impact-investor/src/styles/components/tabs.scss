@@ -13,7 +13,7 @@
 		@include font-size(17px, 22px);
 		position: relative;
 		display: block;
-		padding: 15px $default-padding;
+		padding: 15px $spacing-6;
 		padding-bottom: calc(15px - 4px);
 		background-color: $tabs-bg;
 		text-decoration: none;

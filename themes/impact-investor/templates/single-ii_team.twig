@@ -32,7 +32,7 @@
 			<h2 class="screen-reader-text">
 				{{ __('Articles written by %s', 'impact-investor')|format(title) }}
 			</h2>
-			<ul class="flex flex-col gap-6">
+			<ul class="flex flex-col gap-3 sm:gap-6">
 				{% set date_format = get_option('date_format') %}
 
 				{% for object in author_posts %}

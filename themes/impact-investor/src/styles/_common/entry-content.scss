@@ -4,15 +4,15 @@
 	}
 
 	> *:not(.alignwide, .alignfull) {
-		max-width: $container;
+		max-width: var(--container);
 
 		@include breakpoint(sm) {
-			max-width: $content-width;
+			max-width: var(--content-width);
 		}
 	}
 
 	& > * + * {
-		margin-top: $default-padding;
+		margin-top: $spacing-6;
 	}
 
 	> h2 + *:not([class*=' has-']),
@@ -23,7 +23,7 @@
 	}
 
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
-		margin-top: $default-padding;
+		margin-top: $spacing-6;
 	}
 
 	p {

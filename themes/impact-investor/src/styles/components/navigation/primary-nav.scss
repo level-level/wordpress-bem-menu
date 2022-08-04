@@ -26,7 +26,7 @@
 		position: relative;
 
 		.primary-nav__link {
-			padding-right: calc(#{$default-padding} + 10px);
+			padding-right: calc(#{$spacing-6} + 10px);
 		}
 
 		&:focus-within {
@@ -73,7 +73,7 @@
 		@include font-size(16px);
 		display: flex;
 		align-items: center;
-		padding: 10px $gutter * 0.5;
+		padding: 10px $spacing-3;
 		color: $nav-text-color;
 		text-decoration: none;
 
@@ -86,7 +86,7 @@
 			@include font-size(18px);
 			padding: 0 20px;
 			border-bottom: 0;
-			height: $menu-height;
+			height: var(--menu-height);
 			color: $nav-text-color;
 			transition: background-color $time, color $time;
 		}
@@ -98,7 +98,7 @@
 		right: 0;
 		background-color: transparent;
 		line-height: inherit;
-		padding: 0 $default-padding * 0.5;
+		padding: 0 $spacing-3;
 		height: 44px;
 		color: $nav-text-color;
 		border: 0;
@@ -114,7 +114,7 @@
 			padding: 0;
 			right: 15px;
 			color: $nav-text-color;
-			height: $menu-height;
+			height: var(--menu-height);
 		}
 	}
 }
@@ -123,19 +123,19 @@
 	@include list-unstyled;
 	position: relative;
 	background-color: $nav-dropdown-bg;
-	padding: $default-padding * 0.5;
+	padding: $spacing-3;
 	padding-top: 0;
 	display: none;
 
 	@include breakpoint(sm) {
 		position: absolute;
-		top: $menu-height;
+		top: var(--menu-height);
 		left: 0;
 		min-width: 300px;
 		border-bottom: 2px solid $primary-border;
 		z-index: 2;
 		background-color: $nav-dropdown-bg;
-		padding: calc(#{$default-padding} - 5px) $default-padding;
+		padding: calc(#{$spacing-6} - 5px) $spacing-6;
 		box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 		display: block;
 		visibility: hidden;
@@ -165,7 +165,7 @@
 	}
 
 	& > * + * {
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 	}
 
 	&__link {

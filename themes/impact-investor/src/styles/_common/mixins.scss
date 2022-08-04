@@ -127,7 +127,7 @@
 	padding: 0;
 
 	& > * + * {
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 	}
 
 	p {
@@ -192,13 +192,13 @@
 }
 
 @mixin aligncenter {
-	max-width: $container;
+	max-width: var(--container);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 
 	@include breakpoint(sm) {
-		max-width: $content-width;
+		max-width: var(--content-width);
 	}
 }
 
@@ -208,7 +208,7 @@
 	margin-right: auto;
 
 	@include breakpoint(sm) {
-		max-width: $container;
+		max-width: var(--container);
 	}
 }
 
@@ -275,4 +275,11 @@
 
 @function is-length($value) {
 	@return is-relative-length($value) or is-absolute-length($value);
+}
+
+@mixin container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	max-width: var(--container);
 }

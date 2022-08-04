@@ -1,6 +1,6 @@
 // Main column width
 .wp-block {
-	max-width: $content-width;
+	max-width: var(--content-width);
 
 	&.is-reusable {
 		max-width: none;
@@ -122,7 +122,7 @@
 .gb-placeholder,
 .gb-invalid {
 	position: relative;
-	padding: $default-padding;
+	padding: $spacing-6;
 	background-color: $error;
 
 	&__required {
@@ -137,14 +137,14 @@
 .block-editor-block-list {
 	&__layout {
 		> * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 
 			@include breakpoint(sm) {
-				margin-top: $default-padding;
+				margin-top: $spacing-6;
 			}
 
 			@include breakpoint(md) {
-				margin-top: $default-padding * 1.5;
+				margin-top: $spacing-9;
 			}
 		}
 	}
@@ -160,7 +160,7 @@
 	}
 
 	.wp-block-widget-area__inner-blocks {
-		max-width: calc(#{$sidebar-width} + 32px);
+		max-width: calc(#{var(--sidebar-width)} + 32px);
 		margin: 0 auto !important;
 
 		&[data-widget-area-id='widget-area-header-ad'] {

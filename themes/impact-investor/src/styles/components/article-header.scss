@@ -1,22 +1,22 @@
 .article-header {
 	position: relative;
-	margin-bottom: $default-padding;
+	margin-bottom: $spacing-6;
 
 	@include breakpoint(sm) {
-		margin-bottom: $default-padding * 2;
+		margin-bottom: $spacing-12;
 	}
 
 	&__label,
 	&__terms {
-		margin-bottom: $default-padding * 0.5;
+		margin-bottom: $spacing-3;
 
 		@include breakpoint(sm) {
-			margin-bottom: $default-padding * 1.5;
+			margin-bottom: $spacing-9;
 		}
 	}
 
 	&__meta {
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 
 		time {
 			@include font-bold;

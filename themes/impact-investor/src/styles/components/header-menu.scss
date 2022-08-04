@@ -5,8 +5,8 @@
 		position: fixed;
 		left: 0;
 		right: 0;
-		width: calc(100vw - #{$default-padding});
-		top: $admin-bar;
+		width: calc(100vw - #{$spacing-6});
+		top: var(--wp-admin--admin-bar--height, 0px); /* stylelint-disable-line length-zero-no-unit */
 		bottom: 0;
 		background-color: $secondary-200;
 		z-index: 10;

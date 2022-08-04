@@ -7,7 +7,7 @@
 		left: 0;
 		right: 0;
 		padding: 0;
-		height: calc(#{$header-height} - #{$menu-height});
+		height: calc(#{var(--header-height)} - #{var(--menu-height)});
 		background-color: $header-search-bg;
 		z-index: 3;
 		visibility: visible;

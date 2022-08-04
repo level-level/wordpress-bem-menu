@@ -5,9 +5,9 @@
 		left: 50%;
 		top: 50%;
 		background-color: $secondary-200 !important;
-		width: calc(100% - #{$default-padding});
+		width: calc(100% - #{$spacing-6});
 		transform: translateX(-50%) translateY(-50%);
-		padding: $default-padding !important;
+		padding: $spacing-6 !important;
 		padding-top: 44px !important;
 		border-radius: 3px !important;
 	}

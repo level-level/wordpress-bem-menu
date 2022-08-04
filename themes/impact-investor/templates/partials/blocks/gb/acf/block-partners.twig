@@ -3,25 +3,21 @@
 
 {% if objects %}
 	<div class="align{{ align }}" data-name="{{ block.name }}">
-		<div class="group group--small">
-			<div class="group__item">
-				<h2>{{ title|raw }}</h2>
-			</div>
-			<div class="group__item">
-				<ul class="flex flex-col gap-6">
-					{% for object in objects %}
-						{% set image_id = object.get_thumbnail_id() %}
-						<li>
-							{% include 'styleguide/components/teasers/teaser-partner.twig' with {
-								image: image_id ? wp_get_attachment_image(image_id, 'medium'),
-								title: object.get_title(),
-								url: object.get_permalink(),
-								excerpt: object.get_excerpt(),
-							} %}
-						</li>
-					{% endfor %}
-				</ul>
-			</div>
+		<div class="flex flex-col gap-3">
+			<h2>{{ title|raw }}</h2>
+			<ul class="flex flex-col gap-6">
+				{% for object in objects %}
+					{% set image_id = object.get_thumbnail_id() %}
+					<li>
+						{% include 'styleguide/components/teasers/teaser-partner.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'medium'),
+							title: object.get_title(),
+							url: object.get_permalink(),
+							excerpt: object.get_excerpt(),
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
 		</div>
 	</div>
 {% else %}

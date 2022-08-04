@@ -161,7 +161,7 @@
 	padding: 0;
 	border: 0;
 	color: $btn-menu-color;
-	min-width: $btn-menu-width;
+	min-width: 32px;
 
 	.btn {
 		&__text {
@@ -304,7 +304,7 @@ input[type='button'] {
 	// Adds padding to the icon on the right
 	&__text {
 		& + * {
-			padding-left: $default-padding * 0.5;
+			padding-left: $spacing-3;
 		}
 	}
 
@@ -314,7 +314,7 @@ input[type='button'] {
 		align-items: center;
 
 		& + * {
-			padding-left: $default-padding * 0.5;
+			padding-left: $spacing-3;
 		}
 
 		&--highlight {

@@ -2,10 +2,10 @@
 	position: relative;
 	border-top: 3px solid $primary;
 	border-bottom: 1px solid $black;
-	padding: $default-padding * 0.5 0;
+	padding: $spacing-3 0;
 
 	&__title {
-		padding-bottom: $default-padding * 0.5;
+		padding-bottom: $spacing-3;
 		border-bottom: 1px solid $black;
 	}
 

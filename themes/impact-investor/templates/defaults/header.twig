@@ -50,9 +50,11 @@
 	</div>
 
 	{% if has_nav_menu('primary_navigation') %}
-		<div class="header__bottom hidden-xs visible-sm">
-			<div class="container">
-				{% include 'partials/components/header/header-menu.twig' %}
+		<div class="hidden sm:block">
+			<div class="header__bottom">
+				<div class="container">
+					{% include 'partials/components/header/header-menu.twig' %}
+				</div>
 			</div>
 		</div>
 	{% endif %}

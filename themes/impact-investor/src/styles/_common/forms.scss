@@ -8,7 +8,7 @@
 	display: block;
 	width: 100%;
 	border-radius: 0;
-	padding: 0 $default-padding * 0.5;
+	padding: 0 $spacing-3;
 	border: 0;
 	border-bottom: 1px solid $input-border-color;
 	min-width: 90px;
@@ -36,7 +36,7 @@
 @mixin textarea {
 	@include form-control;
 	height: 150px;
-	padding: $default-padding * 0.5;
+	padding: $spacing-3;
 	line-height: inherit;
 
 	@include breakpoint(sm) {
@@ -73,7 +73,7 @@
 @mixin radiobutton-label {
 	@include font-normal;
 	position: relative;
-	padding-left: calc(20px + #{$default-padding * 0.5});
+	padding-left: calc(20px + #{$spacing-3});
 	margin: 0;
 
 	&:before {
@@ -91,8 +91,8 @@
 	&:after {
 		display: none;
 		position: absolute;
-		left: 4px;
-		top: 8px;
+		left: 2px;
+		top: 6px;
 		width: 12px;
 		height: 12px;
 		background-color: $primary;
@@ -118,10 +118,10 @@
 	@include form-control;
 	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>") no-repeat;
 	background-size: 12px;
-	background-position: calc(100% - #{$default-padding * 0.5}) calc(50% + 3px);
+	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
 	background-repeat: no-repeat;
 	background-color: $input-background;
-	padding-right: $default-padding + $default-padding * 0.5;
+	padding-right: $spacing-6 + $spacing-3;
 
 	// Removes the IE dropdown arrow
 	&::-ms-expand {
@@ -131,7 +131,7 @@
 	&[multiple] {
 		min-height: 100px;
 		background-image: none;
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 	}
 }
 
@@ -195,6 +195,6 @@ fieldset {
 
 .form-group {
 	& > * + * {
-		margin-top: $default-padding;
+		margin-top: $spacing-6;
 	}
 }

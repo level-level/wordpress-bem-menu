@@ -1,13 +1,13 @@
 .teaser-post {
 	&--inline {
-		border-width: 1px;
+		border-bottom-width: 1px;
 		border-color: $border-colored;
 		background-color: transparent;
 
 		.teaser-post {
 			&__inner {
 				@include breakpoint(sm) {
-					padding: $default-padding * 0.5 0;
+					padding: $spacing-3 0;
 				}
 			}
 

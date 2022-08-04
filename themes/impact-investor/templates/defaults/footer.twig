@@ -21,25 +21,25 @@
 				<div class="container">
 					<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
 						{% if has_nav_menu('about_navigation') %}
-							<div class="footer__group">
+							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
 								{{ bem_menu('about_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('general_navigation') %}
-							<div class="footer__group">
+							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('general_navigation')|raw }}</h3>
 								{{ bem_menu('general_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('services_navigation') %}
-							<div class="footer__group">
+							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('services_navigation')|raw }}</h3>
 								{{ bem_menu('services_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('fdmg_navigation') %}
-							<div class="footer__group">
+							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('fdmg_navigation')|raw }}</h3>
 								{{ bem_menu('fdmg_navigation', 'footer-nav') }}
 							</div>

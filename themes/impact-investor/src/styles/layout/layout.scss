@@ -15,29 +15,29 @@
 .layout-large {
 	@include breakpoint(md) {
 		flex-grow: 1;
-		margin-right: $default-padding;
-		margin-left: $default-padding;
+		margin-right: $spacing-6;
+		margin-left: $spacing-6;
 	}
 
 	&--indent {
 		@include breakpoint(lg) {
-			max-width: $article-width;
-			margin-right: $article-offset;
-			margin-left: $article-offset;
+			max-width: var(--article-width);
+			margin-right: var(--article-offset);
+			margin-left: var(--article-offset);
 		}
 	}
 }
 
 .layout-small {
 	@include breakpoint(md) {
-		width: $sidebar-width;
+		width: var(--sidebar-width);
 		flex-shrink: 0;
 	}
 }
 
 .layout-small-responsibility {
 	@include breakpoint(md) {
-		width: $sidebar-width;
+		width: var(--sidebar-width);
 		flex-shrink: 1;
 	}
 }
@@ -46,6 +46,6 @@
 	width: 100%;
 
 	@include breakpoint(md) {
-		width: calc(100% - #{$sidebar-width} - #{$default-padding});
+		width: calc(100% - #{var(--sidebar-width)} - #{$spacing-6});
 	}
 }

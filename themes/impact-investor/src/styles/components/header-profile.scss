@@ -4,7 +4,7 @@
 	&__dropdown {
 		display: block;
 		position: absolute;
-		top: calc(#{$header-height} - #{$menu-height});
+		top: calc(#{var(--header-height)} - #{var(--menu-height)});
 		right: 0;
 		padding: 0;
 		background-color: $header-profile-bg;

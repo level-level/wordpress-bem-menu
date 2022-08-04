@@ -1,43 +1,33 @@
 <div class="bio">
 	<div class="bio__inner">
-		<div class="group group--small">
+		<div class="flex flex-col gap-3">
 
 			{% if image %}
-				<div class="group__item">
-					<div class="bio__thumbnail">
-						{{ image|raw }}
-					</div>
+				<div class="bio__thumbnail">
+					{{ image|raw }}
 				</div>
 			{% endif %}
 
 			{% if logo %}
-				<div class="group__item">
-					<div class="bio__logo">
-						{{ logo|raw }}
-					</div>
+				<div class="bio__logo">
+					{{ logo|raw }}
 				</div>
 			{% endif %}
 
 			{% if title %}
-				<div class="group__item">
-					<h3 class="bio__title">
-						{{ title|raw }}
-					</h3>
-				</div>
+				<h3 class="bio__title">
+					{{ title|raw }}
+				</h3>
 			{% endif %}
 
 			{% if subtitle %}
-				<div class="group__item">
-					<h3 class="bio__subtitle">
-						{{ subtitle|raw }}
-					</h3>
-				</div>
+				<h3 class="bio__subtitle">
+					{{ subtitle|raw }}
+				</h3>
 			{% endif %}
 
 			{% if excerpt %}
-				<div class="group__item">
-					{{ excerpt|raw }}
-				</div>
+				{{ excerpt|raw }}
 			{% endif %}
 		</div>
 	</div>

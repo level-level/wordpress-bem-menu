@@ -1,9 +1,9 @@
 .header {
 	position: fixed;
-	top: $admin-bar;
+	top: var(--wp-admin--admin-bar--height, 0px); /* stylelint-disable-line length-zero-no-unit */
 	left: 0;
 	right: 0;
-	height: $header-height;
+	height: var(--header-height);
 	box-shadow: $header-shadow;
 	z-index: 10;
 
@@ -11,11 +11,11 @@
 		display: flex;
 		align-items: center;
 		background-color: $secondary-200;
-		height: $header-height;
+		height: var(--header-height);
 
 		@include breakpoint(sm) {
 			background-color: $header-bg-top;
-			height: $header-top-height;
+			height: var(--header-top-height);
 		}
 	}
 
@@ -23,14 +23,14 @@
 		display: flex;
 		align-items: center;
 		background-color: $secondary-300;
-		height: $menu-height;
+		height: var(--menu-height);
 	}
 
 	&__brand {
 		position: relative;
 		max-width: 124px;
 		left: 50%;
-		transform: translateX(calc(-50% - #{$btn-menu-width * 0.5}));
+		transform: translateX(calc(-50% - 16px));
 
 		@include breakpoint(sm) {
 			max-width: none;
@@ -41,5 +41,5 @@
 }
 
 body {
-	padding-top: $header-height;
+	padding-top: var(--header-height);
 }

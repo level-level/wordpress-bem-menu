@@ -7,7 +7,7 @@
 	list-style-type: none;
 }
 
-@mixin list-horizontal( $margin: $default-padding ) {
+@mixin list-horizontal( $margin: $spacing-6 ) {
 	@include list-unstyled;
 	display: flex;
 	flex-wrap: wrap;
@@ -110,8 +110,8 @@
 		display: flex;
 		align-items: center;
 		counter-increment: counter;
-		padding: $default-padding * 0.5 0;
-		padding-right: $default-padding * 0.5;
+		padding: $spacing-3 0;
+		padding-right: $spacing-3;
 
 		&:before {
 			@include font-bold;
@@ -138,10 +138,10 @@
 	}
 
 	&__item {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding * 0.5} + 3px);
+			padding: calc(#{$spacing-3} + 3px);
 		}
 	}
 
@@ -186,11 +186,11 @@
 
 .list-related-news {
 	@include list-unstyled;
-	padding: $default-padding * 0.5 0;
+	padding: $spacing-3 0;
 
 	&__item {
 		@include breakpoint(sm) {
-			margin: 0 $default-padding;
+			margin: 0 $spacing-6;
 		}
 
 		&:last-child {
@@ -236,7 +236,7 @@
 	&__item {
 		display: flex;
 		border-left: 1px solid $border;
-		height: $header-top-height;
+		height: var(--header-top-height);
 		justify-content: center;
 
 		& > * {

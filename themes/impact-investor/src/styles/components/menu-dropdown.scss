@@ -17,15 +17,15 @@
 	}
 
 	&__inner {
-		margin-top: $header-height;
-		max-height: calc(100vh - ((#{$header-height} * 2) + 10px));
+		margin-top: var(--header-height);
+		max-height: calc(100vh - ((#{var(--header-height)} * 2) + 10px));
 		overflow-y: auto;
 		overflow-x: hidden;
 		-webkit-overflow-scrolling: touch;
 	}
 
 	&__search {
-		margin: $default-padding * 0.5 0;
+		margin: $spacing-3 0;
 
 		.search-component {
 			.btn--search {
@@ -44,13 +44,13 @@
 
 	&__item {
 		margin-top: auto;
-		padding: 10px $default-padding * 0.5;
+		padding: 10px $spacing-3;
 		border-top: 1px solid $secondary-600;
 	}
 
 	&__footer {
 		margin-top: auto;
 		border-top: 1px solid $secondary-300;
-		height: calc(#{$header-height} + 10px);
+		height: calc(#{var(--header-height)} + 10px);
 	}
 }

@@ -56,14 +56,14 @@
 }
 
 .wp-block-columns {
-	margin-top: -#{$default-padding};
+	margin-top: -#{$spacing-6};
 	margin-bottom: 0;
 
 	+ .wp-block-columns {
-		padding-top: $default-padding;
+		padding-top: $spacing-6;
 	}
 }
 
 .wp-block-column {
-	margin-top: $default-padding;
+	margin-top: $spacing-6;
 }

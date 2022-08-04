@@ -59,18 +59,18 @@
 	display: flex;
 	justify-content: space-between;
 	border-top: 1px solid $black;
-	padding: $default-padding * 0.5;
+	padding: $spacing-3;
 }
 
 .ui-timepicker-div {
-	padding: $default-padding * 0.5;
+	padding: $spacing-3;
 
 	.ui-widget-header {
 		display: none;
 	}
 
 	&.ui-timepicker-oneLine {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		.ui_tpicker_time_label {
 			display: none;

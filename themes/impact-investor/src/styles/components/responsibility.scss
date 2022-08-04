@@ -5,17 +5,17 @@
 		@include breakpoint(md) {
 			display: block;
 			z-index: 2;
-			margin-top: $default-padding;
+			margin-top: $spacing-6;
 			position: sticky;
-			top: calc(#{$header-height} + #{$default-padding} + #{$admin-bar});
+			top: calc(#{var(--header-height)} + #{$spacing-6} + #{var(--wp-admin--admin-bar--height, 0px)});
 		}
 
 		.section-wrapper {
 			height: 100%;
 
 			.section {
-				padding-top: $default-padding;
-				margin-top: $default-padding;
+				padding-top: $spacing-6;
+				margin-top: $spacing-6;
 				padding-bottom: 0;
 
 				@include breakpoint(md) {
@@ -26,7 +26,7 @@
 					margin-top: 0;
 
 					@include breakpoint(md) {
-						margin-top: $default-padding;
+						margin-top: $spacing-6;
 					}
 				}
 			}
@@ -44,10 +44,10 @@
 		}
 
 		&__inner {
-			padding: $default-padding * 0.5;
+			padding: $spacing-3;
 
 			@include breakpoint(sm) {
-				padding: calc(#{$default-padding * 0.5} + 3px);
+				padding: calc(#{$spacing-3} + 3px);
 			}
 		}
 	}

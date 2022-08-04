@@ -1,41 +1,37 @@
 {% if socials %}
 	<div class="social-share {{ sticky ? 'social-share--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
-		<div class="group group--small">
+		<div class="flex flex-col gap-3">
 
 			{% if heading %}
-				<div class="group__item">
-					<p class="social-share__heading h4">{{ heading|raw }}</p>
-				</div>
+				<p class="social-share__heading h4">{{ heading|raw }}</p>
 			{% endif %}
 
 			{% if socials %}
-				<div class="group__item">
-					<ul class="list-social-share {{ sticky ? 'list-social-share--vertical' }}" data-module="social-share">
-						{% for social in socials %}
-							<li class="list-social-share__item">
+				<ul class="list-social-share {{ sticky ? 'list-social-share--vertical' }}" data-module="social-share">
+					{% for social in socials %}
+						<li class="list-social-share__item">
 
-								{% set args = {
-									text: '',
-									class: 'btn--share js--share',
-									icon: social.type,
-									data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
-									aria_label: __('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'impact-investor')|format(social.title),
-									focusable: sticky ? false,
-								} %}
+							{% set args = {
+								text: '',
+								class: 'btn--share js--share',
+								icon: social.type,
+								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
+								aria_label: __('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'impact-investor')|format(social.title),
+								focusable: sticky ? false,
+							} %}
 
-								{% if social.type == 'email' %}
-									{% set args = args|merge({
-										url: 'javascript:void(0);',
-										aria_label: __('%1$s share — This opens your e-mail client.', 'impact-investor')|format(social.title),
-									}) %}
-									{% include 'styleguide/components/buttons/button-link.twig' with args %}
-								{% else %}
-									{% include 'styleguide/components/buttons/button-element.twig' with args %}
-								{% endif %}
-							</li>
-						{% endfor %}
-					</ul>
-				</div>
+							{% if social.type == 'email' %}
+								{% set args = args|merge({
+									url: 'javascript:void(0);',
+									aria_label: __('%1$s share — This opens your e-mail client.', 'impact-investor')|format(social.title),
+								}) %}
+								{% include 'styleguide/components/buttons/button-link.twig' with args %}
+							{% else %}
+								{% include 'styleguide/components/buttons/button-element.twig' with args %}
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
 			{% endif %}
 		</div>
 	</div>

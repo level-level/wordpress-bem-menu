@@ -1,15 +1,15 @@
 .gravity-forms {
 	form {
 		& > * + * {
-			margin-top: $default-padding;
+			margin-top: $spacing-6;
 		}
 	}
 
 	.gform_fields {
-		grid-row-gap: $gutter !important;
+		grid-row-gap: $spacing-8 !important;
 
 		@include breakpoint(sm) {
-			grid-column-gap: $gutter !important;
+			grid-column-gap: $spacing-8 !important;
 		}
 	}
 
@@ -23,7 +23,7 @@
 
 			// Represents every item (span) in a complex element
 			& > * + * {
-				margin-left: $default-padding;
+				margin-left: $spacing-6;
 			}
 
 			span {
@@ -32,7 +32,7 @@
 		}
 
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 
 			@include breakpoint(sm) {
 				margin-top: 0;
@@ -51,18 +51,18 @@
 
 			span {
 				&.ginput_full + .ginput_full {
-					margin-top: $default-padding * 0.5;
+					margin-top: $spacing-3;
 
 					@include breakpoint(sm) {
-						margin-top: $default-padding;
+						margin-top: $spacing-6;
 					}
 				}
 
 				&.ginput_left,
 				&.ginput_right {
 					@include breakpoint(sm) {
-						width: calc(50% - #{$default-padding * 0.5});
-						margin-top: $default-padding;
+						width: calc(50% - #{$spacing-3});
+						margin-top: $spacing-6;
 					}
 				}
 			}
@@ -83,7 +83,7 @@
 
 		.gform_drop_instructions {
 			display: block;
-			margin-right: $default-padding * 0.5;
+			margin-right: $spacing-3;
 			margin-bottom: 0;
 		}
 
@@ -131,7 +131,7 @@
 	.gsection,
 	.gform_heading {
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 
 		.gform_description {
@@ -140,7 +140,7 @@
 	}
 
 	.gform_heading {
-		margin-bottom: $default-padding * 0.5;
+		margin-bottom: $spacing-3;
 	}
 
 	.gfield_consent_label,
@@ -149,7 +149,7 @@
 	}
 
 	.gfield_consent_description {
-		padding-left: $default-padding;
+		padding-left: $spacing-6;
 	}
 
 	.hidden_label {
@@ -161,7 +161,7 @@
 
 	.gfield_error {
 		position: relative;
-		padding: $default-padding * 0.5 !important;
+		padding: $spacing-3 !important;
 		background-color: $error !important;
 
 		.validation_message {
@@ -179,8 +179,8 @@
 
 		legend {
 			background-color: $error !important;
-			margin-left: calc(-1 * ($default-padding * 0.5)) !important;
-			padding: $default-padding * 0.5 !important;
+			margin-left: calc(-1 * ($spacing-3)) !important;
+			padding: $spacing-3 !important;
 			padding-top: 5px !important;
 			margin-bottom: 0 !important;
 		}
@@ -190,9 +190,9 @@
 	.validation_error {
 		@include font-size(16px);
 		position: relative;
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 		background-color: $error;
-		margin: $default-padding * 0.5 0;
+		margin: $spacing-3 0;
 
 		* {
 			color: $form-validation-text;

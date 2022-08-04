@@ -4,22 +4,18 @@
 {% if content %}
 	<div class="align{{ align }}" data-name="{{ block.name }}">
 		<div class="highlighted-content">
-			<div class="group group--small">
+			<div class="flex flex-col gap-3">
 
 				{% if title %}
-					<div class="group__item">
-						<div class="highlighted-content__title">
-							<h2>
-								{{ title|raw }}
-							</h2>
-						</div>
+					<div class="highlighted-content__title">
+						<h2>
+							{{ title|raw }}
+						</h2>
 					</div>
 				{% endif %}
 
-				<div class="group__item">
-					<div class="highlighted-content__content">
-						{{ content|raw }}
-					</div>
+				<div class="highlighted-content__content">
+					{{ content|raw }}
 				</div>
 			</div>
 		</div>

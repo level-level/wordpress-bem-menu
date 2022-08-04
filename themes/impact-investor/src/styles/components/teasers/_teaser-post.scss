@@ -39,10 +39,10 @@
 	}
 
 	&__inner {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		@include breakpoint(sm) {
-			padding: $default-padding;
+			padding: $spacing-6;
 		}
 	}
 
@@ -60,12 +60,12 @@
 		z-index: 2;
 		line-height: 1;
 		border-top: 1px solid $border;
-		padding: $default-padding * 0.5 $default-padding * 0.5;
+		padding: $spacing-3 $spacing-3;
 		margin-top: auto;
 		min-height: 47px;
 
 		@include breakpoint(sm) {
-			padding: $default-padding * 0.5 $default-padding;
+			padding: $spacing-3 $spacing-6;
 		}
 	}
 
@@ -81,7 +81,7 @@
 
 	&__excerpt {
 		@include font-size(16px, 24px);
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -105,7 +105,7 @@
 	&__item {
 		&--order-2 {
 			order: 2;
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }

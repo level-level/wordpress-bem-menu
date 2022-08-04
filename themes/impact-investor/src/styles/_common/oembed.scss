@@ -51,7 +51,7 @@
 		text-align: center;
 
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }
@@ -67,10 +67,10 @@
 
 	&__content {
 		max-width: 500px;
-		padding: $default-padding;
+		padding: $spacing-6;
 
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }

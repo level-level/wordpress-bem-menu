@@ -11,20 +11,16 @@
 			</div>
 
 			<div class="basis-full sm:basis-auto">
-				<div class="group group--small">
-					<div class="group__item">
-						<h3 class="teaser-partner__title">
-							{{ title|raw }}
-						</h3>
-					</div>
+				<div class="flex flex-col gap-3">
+					<h3 class="teaser-partner__title">
+						{{ title|raw }}
+					</h3>
 
 					{% if excerpt %}
-						<div class="group__item">
-							{{ excerpt|raw }}
-						</div>
+						{{ excerpt|raw }}
 					{% endif %}
 
-					<div class="group__item">
+					<div>
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: __('View partner', 'impact-investor'),
 							url: url,

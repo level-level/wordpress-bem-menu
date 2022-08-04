@@ -1,23 +1,19 @@
 {% if title or label %}
 	<div class="author-header">
-		<div class="group group--small">
+		<div class="flex flex-col gap-3">
 
 			{% if label %}
-				<div class="group__item">
-					<ul class="list-badges">
-						<li class="list-badges__item">
-							<div class="badge badge--rich">
-								{{ label|raw }}
-							</div>
-						</li>
-					</ul>
-				</div>
+				<ul class="list-badges">
+					<li class="list-badges__item">
+						<div class="badge badge--rich">
+							{{ label|raw }}
+						</div>
+					</li>
+				</ul>
 			{% endif %}
 
 			{% if title %}
-				<div class="group__item">
-					<h1 class="rich-title">{{ title|raw }}</h1>
-				</div>
+				<h1 class="rich-title">{{ title|raw }}</h1>
 			{% endif %}
 		</div>
 	</div>
