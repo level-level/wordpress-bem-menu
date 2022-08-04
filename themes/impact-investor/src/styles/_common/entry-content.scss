@@ -3,7 +3,7 @@
 		margin: 0 auto;
 	}
 
-	> *:not(.alignwide):not(.alignfull) {
+	> *:not(.alignwide, .alignfull) {
 		max-width: $container;
 
 		@include breakpoint(sm) {
@@ -22,7 +22,7 @@
 		margin-top: 10px;
 	}
 
-	> *:not(h2):not(h3):not(h4):not(h5) + *:not([class]) {
+	> *:not(h2, h3, h4, h5) + *:not([class]) {
 		margin-top: $default-padding;
 	}
 
