@@ -4,8 +4,8 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: $teaser-bg;
-	border-bottom: 2px solid $block-border;
+	background-color: var(--teaser-bg);
+	border-bottom: 2px solid var(--block-border);
 
 	&:not(.teaser-post--inline) {
 		box-shadow: 0 2px 4px rgb(0 0 0 / 0%);
@@ -19,7 +19,7 @@
 
 		.teaser-post {
 			&__link {
-				color: $primary;
+				color: var(--primary-400);
 				text-decoration: underline;
 			}
 		}
@@ -32,7 +32,7 @@
 
 		.teaser-post {
 			&__link {
-				color: $primary;
+				color: var(--primary-400);
 				text-decoration: underline;
 			}
 		}
@@ -59,7 +59,7 @@
 		position: relative;
 		z-index: 2;
 		line-height: 1;
-		border-top: 1px solid $border;
+		border-top: 1px solid var(--border);
 		padding: $spacing-3 $spacing-3;
 		margin-top: auto;
 		min-height: 47px;
@@ -90,7 +90,7 @@
 
 	&__date {
 		@include font-size(14px, 16px);
-		color: $teaser-date-color;
+		color: var(--teaser-date-color);
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);

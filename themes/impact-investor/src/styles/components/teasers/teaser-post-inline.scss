@@ -1,7 +1,7 @@
 .teaser-post {
 	&--inline {
 		border-bottom-width: 1px;
-		border-color: $border-colored;
+		border-color: var(--border-colored);
 		background-color: transparent;
 
 		.teaser-post {

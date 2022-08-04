@@ -13,7 +13,7 @@
 
 	&__item--open {
 		.primary-nav__link {
-			background-color: $mobile-menu-active-item;
+			background-color: var(--mobile-menu-active-item);
 
 			@include breakpoint(sm) {
 				background-color: transparent;
@@ -29,35 +29,35 @@
 		}
 
 		&:focus-within {
-			background-color: $nav-active-item-color;
+			background-color: var(--nav-active-item-color);
 
 			.primary-nav__link,
 			.primary-nav__arrow {
-				color: $white;
+				color: var(--white);
 			}
 		}
 
 		@include hover-focus-style {
-			background-color: $nav-active-item-color;
+			background-color: var(--nav-active-item-color);
 
 			.primary-nav__link,
 			.primary-nav__arrow {
-				color: $white;
+				color: var(--white);
 			}
 		}
 	}
 
 	&__item--active {
 		.primary-nav__link {
-			color: $white;
+			color: var(--white);
 
 			@include breakpoint(sm) {
-				background-color: $nav-active-item-color;
+				background-color: var(--nav-active-item-color);
 			}
 		}
 
 		.primary-nav__arrow {
-			color: $white;
+			color: var(--white);
 		}
 	}
 
@@ -73,12 +73,12 @@
 		display: flex;
 		align-items: center;
 		padding: 10px $spacing-3;
-		color: $nav-text-color;
+		color: var(--nav-text-color);
 		text-decoration: none;
 
 		@include hover-focus-style {
-			background-color: $nav-active-item-color;
-			color: $nav-text-hover-color;
+			background-color: var(--nav-active-item-color);
+			color: var(--nav-text-hover-color);
 		}
 
 		@include breakpoint(sm) {
@@ -86,7 +86,7 @@
 			padding: 0 20px;
 			border-bottom: 0;
 			height: var(--menu-height);
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 			transition: background-color $time, color $time;
 		}
 	}
@@ -99,20 +99,20 @@
 		line-height: inherit;
 		padding: 0 $spacing-3;
 		height: 44px;
-		color: $nav-text-color;
+		color: var(--nav-text-color);
 		border: 0;
 		transform: scaleY(1);
 		transition: $time;
 
 		&[aria-expanded='true'] {
 			transform: scaleY(-1);
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 		}
 
 		@include breakpoint(sm) {
 			padding: 0;
 			right: 15px;
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 			height: var(--menu-height);
 		}
 	}
@@ -120,7 +120,7 @@
 
 .primary-nav-sub {
 	position: relative;
-	background-color: $nav-dropdown-bg;
+	background-color: var(--nav-dropdown-bg);
 	padding: $spacing-3;
 	display: none;
 
@@ -129,9 +129,9 @@
 		top: var(--menu-height);
 		left: 0;
 		min-width: 300px;
-		border-bottom: 2px solid $primary-border;
+		border-bottom: 2px solid var(--primary-400) -border;
 		z-index: 2;
-		background-color: $nav-dropdown-bg;
+		background-color: var(--nav-dropdown-bg);
 		padding: calc(#{$spacing-6} - 5px) $spacing-6;
 		box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 		display: block;
@@ -146,7 +146,7 @@
 
 		.primary-nav__arrow {
 			transform: rotate(-90deg);
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 			right: 10px;
 		}
 	}
@@ -168,22 +168,22 @@
 	&__link {
 		@include font-normal;
 		text-decoration: none;
-		color: $nav-text-color;
+		color: var(--nav-text-color);
 
 		@include hover-focus-style {
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 			text-decoration: underline;
 			background-color: transparent;
 		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px);
-			color: $nav-text-color;
+			color: var(--nav-text-color);
 			height: auto;
 			padding: 0;
 
 			@include hover-focus-style {
-				color: $nav-text-color;
+				color: var(--nav-text-color);
 			}
 		}
 	}

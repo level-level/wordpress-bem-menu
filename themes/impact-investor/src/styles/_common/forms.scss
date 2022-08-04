@@ -10,12 +10,12 @@
 	border-radius: 0;
 	padding: 0 $spacing-3;
 	border: 0;
-	border-bottom: 1px solid $input-border-color;
+	border-bottom: 1px solid var(--input-border-color);
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
-	background-color: $input-background;
-	color: $input-text-color;
+	background-color: var(--input-background);
+	color: var(--input-text-color);
 	appearance: none;
 
 	@include breakpoint(sm) {
@@ -28,7 +28,7 @@
 	}
 
 	@include placeholder {
-		color: $black;
+		color: var(--black);
 		opacity: 0.8;
 	}
 }
@@ -82,8 +82,8 @@
 		top: 4px;
 		width: 16px;
 		height: 16px;
-		border: 2px solid $radio-checkbox-border;
-		background-color: $radio-checkbox-bg;
+		border: 2px solid var(--radio-checkbox-border);
+		background-color: var(--radio-checkbox-bg);
 		border-radius: 50%;
 		content: '';
 	}
@@ -95,7 +95,7 @@
 		top: 6px;
 		width: 12px;
 		height: 12px;
-		background-color: $primary;
+		background-color: var(--primary-400);
 		border-radius: 50%;
 		content: '';
 	}
@@ -120,7 +120,7 @@
 	background-size: 12px;
 	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
 	background-repeat: no-repeat;
-	background-color: $input-background;
+	background-color: var(--input-background);
 	padding-right: $spacing-6 + $spacing-3;
 
 	// Removes the IE dropdown arrow

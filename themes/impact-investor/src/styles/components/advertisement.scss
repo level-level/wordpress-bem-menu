@@ -1,6 +1,6 @@
 .advertisement {
 	position: relative;
-	background-color: $secondary-200;
+	background-color: var(--secondary-200);
 	padding: $spacing-3 0;
 
 	&__element {
@@ -13,7 +13,7 @@
 					&:before {
 						@include font-normal;
 						@include font-size(14px, 16px);
-						color: $advertisement-text;
+						color: var(--advertisement-text);
 
 						@include breakpoint(sm) {
 							@include font-size(16px, 17px);

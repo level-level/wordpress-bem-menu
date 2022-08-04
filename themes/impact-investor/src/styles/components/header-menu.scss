@@ -8,7 +8,7 @@
 		width: calc(100vw - #{$spacing-6});
 		top: var(--wp-admin--admin-bar--height, 0px); /* stylelint-disable-line length-zero-no-unit */
 		bottom: 0;
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 		z-index: 10;
 		transform: translateX(-100%);
 		visibility: hidden;
@@ -27,7 +27,7 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: $backdrop;
+		background-color: var(--backdrop);
 		z-index: 5;
 		opacity: 0;
 		visibility: hidden;

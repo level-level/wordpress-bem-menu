@@ -2,15 +2,15 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: $mobile-menu-dropdown;
-	color: $white;
+	background-color: var(--mobile-menu-dropdown);
+	color: var(--white);
 	height: 100%;
 
 	&,
 	body.user-is-tabbing & {
 		* {
 			&:focus {
-				@include focus-style($white);
+				@include focus-style(var(--white));
 				outline-offset: -2px;
 			}
 		}
@@ -31,7 +31,7 @@
 			.btn--search {
 				.btn {
 					&__icon {
-						color: $search-inline-color;
+						color: var(--search-inline-color);
 					}
 				}
 			}
@@ -45,12 +45,12 @@
 	&__item {
 		margin-top: auto;
 		padding: 10px $spacing-3;
-		border-top: 1px solid $secondary-600;
+		border-top: 1px solid var(--secondary-600);
 	}
 
 	&__footer {
 		margin-top: auto;
-		border-top: 1px solid $secondary-300;
+		border-top: 1px solid var(--secondary-300);
 		height: calc(#{var(--header-height)} + 10px);
 	}
 }

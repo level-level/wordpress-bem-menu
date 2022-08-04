@@ -7,10 +7,10 @@
 		top: calc(#{var(--header-height)} - #{var(--menu-height)});
 		right: 0;
 		padding: 0;
-		background-color: $header-profile-bg;
+		background-color: var(--header-profile-bg);
 		z-index: 2;
 		min-width: 330px;
-		border-bottom: 2px solid $block-border;
+		border-bottom: 2px solid var(--block-border);
 		opacity: 1;
 		visibility: visible;
 		transition: $time;

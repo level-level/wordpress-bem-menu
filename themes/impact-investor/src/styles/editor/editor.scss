@@ -20,7 +20,7 @@
 // Post/Page title
 .editor-post-title {
 	@include font-heading;
-	color: $heading-color;
+	color: var(--heading-color);
 
 	@include font-size(26px, 36px);
 
@@ -37,7 +37,7 @@
 .block-editor {
 	.editor-styles-wrapper {
 		@include body-styles;
-		background-color: $secondary-100;
+		background-color: var(--secondary-100);
 
 		*[data-type='core/heading'] {
 			@include font-heading;
@@ -93,7 +93,7 @@
 		}
 
 		a:not([class]) {
-			color: $primary;
+			color: var(--primary-400);
 		}
 	}
 }
@@ -114,7 +114,7 @@
 .gb-invalid {
 	position: relative;
 	padding: $spacing-6;
-	background-color: $error;
+	background-color: var(--error);
 
 	&__required {
 		margin-top: 15px;
@@ -146,7 +146,7 @@
 	.block-editor-block-list {
 		&__layout {
 			@include body-styles;
-			background-color: $secondary-100;
+			background-color: var(--secondary-100);
 		}
 	}
 
@@ -160,6 +160,6 @@
 	}
 
 	.wp-block-widget-area__panel-body-content {
-		background-color: $secondary-100;
+		background-color: var(--secondary-100);
 	}
 }

@@ -33,7 +33,7 @@
 	}
 
 	a:not([class]) {
-		color: $primary;
+		color: var(--primary-400);
 		hyphens: auto;
 
 		@include breakpoint(sm) {

@@ -95,7 +95,7 @@
 // Focus style
 // @include focus-style { ..code }
 // Adds properties of focus styling
-@mixin focus-style($color: $outline) {
+@mixin focus-style($color: var(--outline)) {
 	outline: 2px solid;
 	outline-color: $color;
 	outline-offset: 2px;
@@ -108,7 +108,7 @@
 @mixin body-styles {
 	@include font-normal;
 	@include font-size(16px, 24px);
-	color: $content-text;
+	color: var(--content-text);
 
 	@include breakpoint(sm) {
 		@include font-size(20px, 28px);
@@ -133,7 +133,7 @@
 	p {
 		@include font-normal;
 		font-style: italic;
-		color: $primary;
+		color: var(--primary-400);
 
 		@include breakpoint(sm) {
 			@include font-size(22px);
@@ -144,7 +144,7 @@
 	.wp-block-quote__citation {
 		@include font-bold;
 		@include font-size(14px);
-		color: $primary;
+		color: var(--primary-400);
 		display: block;
 		font-style: normal;
 	}
@@ -157,7 +157,7 @@
 		height: 58px;
 		content: '';
 		z-index: -1;
-		background-color: $secondary-300;
+		background-color: var(--secondary-300);
 		mask-image: url('../images/quote.svg');
 	}
 }
@@ -228,7 +228,7 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			color: $primary;
+			color: var(--primary-400);
 			content: counter(counter);
 			z-index: 1;
 
@@ -253,7 +253,7 @@
 			position: absolute;
 			top: -1px;
 			left: 0;
-			color: $primary;
+			color: var(--primary-400);
 			content: '\2022';
 		}
 	}

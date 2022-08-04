@@ -109,7 +109,7 @@
 
 		button {
 			padding: 5px;
-			color: $primary;
+			color: var(--primary-400);
 
 			& + * {
 				margin-left: 10px;
@@ -119,7 +119,7 @@
 
 	.gfield_required {
 		@include font-normal();
-		color: $primary;
+		color: var(--primary-400);
 		text-transform: lowercase;
 
 		&.gfield_required_text,
@@ -162,23 +162,23 @@
 	.gfield_error {
 		position: relative;
 		padding: $spacing-3 !important;
-		background-color: $error !important;
+		background-color: var(--error) !important;
 
 		.validation_message {
 			@include font-size(14px);
 			margin-top: 10px;
-			border-top: 1px solid $black;
+			border-top: 1px solid var(--black);
 			padding-top: 10px;
-			color: $form-validation-text;
+			color: var(--form-validation-text);
 		}
 
 		label,
 		legend {
-			color: $form-validation-text;
+			color: var(--form-validation-text);
 		}
 
 		legend {
-			background-color: $error !important;
+			background-color: var(--error) !important;
 			margin-left: calc(-1 * ($spacing-3)) !important;
 			padding: $spacing-3 !important;
 			padding-top: 5px !important;
@@ -191,11 +191,11 @@
 		@include font-size(16px);
 		position: relative;
 		padding: $spacing-3;
-		background-color: $error;
+		background-color: var(--error);
 		margin: $spacing-3 0;
 
 		* {
-			color: $form-validation-text;
+			color: var(--form-validation-text);
 		}
 
 		ol {

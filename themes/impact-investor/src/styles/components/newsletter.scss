@@ -1,6 +1,6 @@
 .newsletter {
 	position: relative;
-	background-color: $secondary-200;
+	background-color: var(--secondary-200);
 
 	&__inner {
 		padding: $spacing-3;
@@ -20,7 +20,7 @@
 	}
 
 	&__thumbnail {
-		border-bottom: 1px solid $border-colored;
+		border-bottom: 1px solid var(--border-colored);
 		margin-left: #{-$spacing-3};
 		margin-right: #{-$spacing-3};
 

@@ -1,7 +1,7 @@
 .tab-list {
 	display: flex;
 	flex-wrap: nowrap;
-	border-bottom: 1px solid $border;
+	border-bottom: 1px solid var(--border);
 
 	&__item {
 		flex-grow: 1;
@@ -14,23 +14,23 @@
 		display: block;
 		padding: 15px $spacing-6;
 		padding-bottom: calc(15px - 4px);
-		background-color: $tabs-bg;
+		background-color: var(--tabs-bg);
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: $tabs-button-link-color;
+		color: var(--tabs-button-link-color);
 		transition: background-color $time;
 
 		@include hover-focus-style {
-			background-color: $tabs-button-hover;
+			background-color: var(--tabs-button-hover);
 			text-decoration: underline;
 		}
 
 		&[aria-selected='true'] {
-			border-color: $primary;
-			color: $primary;
+			border-color: var(--primary-400);
+			color: var(--primary-400);
 
 			@include hover-focus-style {
-				background-color: $tabs-bg;
+				background-color: var(--tabs-bg);
 				text-decoration: none;
 			}
 		}
@@ -38,7 +38,7 @@
 
 	&__section {
 		display: none;
-		background-color: $tabs-bg;
+		background-color: var(--tabs-bg);
 
 		&[aria-hidden='false'] {
 			display: block;
@@ -47,5 +47,5 @@
 }
 
 .tablist {
-	border-bottom: 2px solid $block-border;
+	border-bottom: 2px solid var(--block-border);
 }

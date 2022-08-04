@@ -10,7 +10,7 @@
 	border: 2px solid transparent;
 	line-height: 1;
 	user-select: none;
-	color: $black;
+	color: var(--black);
 	cursor: pointer;
 	transition: background-color $time, color $time, border-color $time;
 	appearance: none;
@@ -28,22 +28,22 @@
 }
 
 @mixin btn--primary {
-	background-color: $primary;
-	border-color: $primary;
-	color: $btn-primary-color;
+	background-color: var(--primary-400);
+	border-color: var(--primary-400);
+	color: var(--btn-primary-color);
 	border-radius: 3px;
 	display: inline-flex;
 	justify-content: center;
 
 	@include hover-focus-style {
-		background-color: $btn-primary-hover;
-		color: $btn-primary-hover-color;
+		background-color: var(--btn-primary-hover);
+		color: var(--btn-primary-hover-color);
 	}
 }
 
 @mixin btn--secondary {
 	@include font-bold;
-	color: $primary;
+	color: var(--primary-400);
 
 	.btn {
 		&__text {
@@ -62,7 +62,7 @@
 
 @mixin btn--tertiary {
 	@include font-bold;
-	color: $btn-tertiary-color;
+	color: var(--btn-tertiary-color);
 	padding: 0;
 	padding-right: 12px;
 	border-radius: 20px;
@@ -78,8 +78,8 @@
 	}
 
 	@include hover-focus-style {
-		background-color: $primary;
-		color: $btn-tertiary-hover-color;
+		background-color: var(--primary-400);
+		color: var(--btn-tertiary-hover-color);
 
 		.btn {
 			&__icon {
@@ -97,7 +97,7 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
-	color: $btn-link-color;
+	color: var(--btn-link-color);
 
 	@include hover-focus-style {
 		.btn {
@@ -132,23 +132,23 @@
 
 @mixin btn--header {
 	@include font-normal;
-	color: $btn-header-color;
+	color: var(--btn-header-color);
 	border-radius: 0;
 
 	.btn {
 		&__icon {
 			@include font-size(20px);
-			color: $primary;
+			color: var(--primary-400);
 		}
 	}
 
 	@include hover-focus-style {
-		background-color: $secondary-200;
-		color: $btn-header-color-hover;
+		background-color: var(--secondary-200);
+		color: var(--btn-header-color-hover);
 	}
 
 	&[aria-expanded='true'] {
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 	}
 }
 
@@ -160,7 +160,7 @@
 	align-items: center;
 	padding: 0;
 	border: 0;
-	color: $btn-menu-color;
+	color: var(--btn-menu-color);
 	min-width: 32px;
 
 	.btn {
@@ -173,10 +173,10 @@
 
 	&[aria-expanded='true'] {
 		z-index: 11;
-		color: $white;
+		color: var(--white);
 
 		&:focus {
-			@include focus-style($white);
+			@include focus-style(var(--white));
 		}
 	}
 }
@@ -206,7 +206,7 @@
 		.btn {
 			&__icon {
 				@include font-size(20px);
-				color: $white;
+				color: var(--white);
 			}
 		}
 	}
@@ -266,9 +266,9 @@ input[type='button'] {
 		@include btn--primary;
 
 		@include hover-focus-style {
-			background-color: $secondary-400;
-			border-color: $secondary-400;
-			color: $black;
+			background-color: var(--secondary-400);
+			border-color: var(--secondary-400);
+			color: var(--black);
 		}
 	}
 }
@@ -318,8 +318,8 @@ input[type='button'] {
 		}
 
 		&--highlight {
-			background-color: $primary;
-			color: $btn-icon-highlight-color;
+			background-color: var(--primary-400);
+			color: var(--btn-icon-highlight-color);
 			width: 34px;
 			height: 34px;
 			border-radius: 50%;

@@ -8,7 +8,7 @@
 	}
 
 	&__inner {
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 		padding: $spacing-3;
 
 		@include breakpoint(sm) {
@@ -19,13 +19,13 @@
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $content-text;
+		color: var(--content-text);
 	}
 
 	&__thumbnail {
 		max-width: 120px;
 		margin-bottom: $spacing-3;
-		background-color: $teaser-partner-thumbnail-bg;
+		background-color: var(--teaser-partner-thumbnail-bg);
 		padding: $spacing-3;
 
 		@include breakpoint(sm) {

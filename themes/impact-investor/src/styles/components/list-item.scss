@@ -5,7 +5,7 @@
 
 	&__meta {
 		@include font-size(14px, 16px);
-		color: $list-item-meta-color;
+		color: var(--list-item-meta-color);
 		margin-bottom: 10px;
 
 		@include breakpoint(sm) {
@@ -20,7 +20,7 @@
 		order: 2;
 
 		@include hover-focus-style {
-			color: $primary;
+			color: var(--primary-400);
 			text-decoration: underline;
 		}
 	}

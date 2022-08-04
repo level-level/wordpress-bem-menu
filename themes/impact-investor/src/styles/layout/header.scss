@@ -4,17 +4,17 @@
 	left: 0;
 	right: 0;
 	height: var(--header-height);
-	box-shadow: $header-shadow;
+	box-shadow: var(--header-shadow);
 	z-index: 10;
 
 	&__top {
 		display: flex;
 		align-items: center;
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 		height: var(--header-height);
 
 		@include breakpoint(sm) {
-			background-color: $header-bg-top;
+			background-color: var(--header-bg-top);
 			height: var(--header-top-height);
 		}
 	}
@@ -22,7 +22,7 @@
 	&__bottom {
 		display: flex;
 		align-items: center;
-		background-color: $secondary-300;
+		background-color: var(--secondary-300);
 		height: var(--menu-height);
 	}
 

@@ -23,11 +23,11 @@
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		color: $footer-social-link-color;
+		color: var(--footer-social-link-color);
 		transition: color $time;
 
 		@include hover-focus-style {
-			color: $primary;
+			color: var(--primary-400);
 		}
 	}
 }
@@ -46,8 +46,8 @@
 				margin: 0;
 
 				.btn--share {
-					background-color: $secondary-200;
-					color: $primary;
+					background-color: var(--secondary-200);
+					color: var(--primary-400);
 					padding: 0;
 					width: 45px;
 					height: 45px;
@@ -55,8 +55,8 @@
 					border: 0;
 
 					@include hover-focus-style {
-						background-color: $secondary-400;
-						color: $white;
+						background-color: var(--secondary-400);
+						color: var(--white);
 					}
 				}
 			}
@@ -73,7 +73,7 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid $border;
+		border-top: 1px solid var(--border);
 	}
 
 	&__item {
@@ -87,7 +87,7 @@
 			@include font-bold;
 			@include font-size(28px);
 			content: counter(counter);
-			color: $primary;
+			color: var(--primary-400);
 			text-align: center;
 			width: 50px;
 			flex-shrink: 0;
@@ -103,7 +103,7 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid $border;
+		border-top: 1px solid var(--border);
 	}
 
 	&__item {
@@ -117,25 +117,25 @@
 	&__heading {
 		@include font-bold;
 		@include font-size(16px, 24px);
-		color: $primary;
+		color: var(--primary-400);
 	}
 
 	&--dark {
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 
 		.list-bordered {
 			&__item {
-				border-color: $border-colored;
+				border-color: var(--border-colored);
 			}
 		}
 	}
 
 	&--light {
-		border: 1px solid $list-bordered-border;
+		border: 1px solid var(--list-bordered-border);
 
 		.list-bordered {
 			&__item {
-				border-color: $list-bordered-border;
+				border-color: var(--list-bordered-border);
 			}
 		}
 	}
@@ -143,7 +143,7 @@
 
 .list-comments {
 	&__item {
-		border-bottom: 1px solid $border-colored;
+		border-bottom: 1px solid var(--border-colored);
 
 		&:last-child {
 			border-bottom: 0;
@@ -175,7 +175,7 @@
 
 	&__item {
 		width: 100%;
-		border-right: 1px solid $secondary-300;
+		border-right: 1px solid var(--secondary-300);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -189,7 +189,7 @@
 			width: 100%;
 			justify-content: center;
 			height: 100%;
-			color: $white;
+			color: var(--white);
 		}
 	}
 }
@@ -200,7 +200,7 @@
 
 	&__item {
 		display: flex;
-		border-left: 1px solid $border;
+		border-left: 1px solid var(--border);
 		height: var(--header-top-height);
 		justify-content: center;
 
@@ -215,7 +215,7 @@
 		}
 
 		&:last-child {
-			border-right: 1px solid $border;
+			border-right: 1px solid var(--border);
 		}
 	}
 }

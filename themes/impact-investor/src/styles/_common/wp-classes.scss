@@ -26,10 +26,10 @@
 	figcaption {
 		@include font-normal;
 		@include font-size(14px, 18px);
-		color: $caption-color;
+		color: var(--caption-color);
 		margin: 0;
 		padding: 10px;
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 	}
 }
 

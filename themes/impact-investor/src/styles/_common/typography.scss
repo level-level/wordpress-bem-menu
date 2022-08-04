@@ -1,6 +1,6 @@
 body {
 	@include body-styles;
-	background-color: $body-bg;
+	background-color: var(--body-bg);
 }
 
 h1,
@@ -13,13 +13,13 @@ h6 {
 	display: block;
 	margin: 0;
 	padding: 0;
-	color: $content-text;
+	color: var(--content-text);
 }
 
 h1,
 .h1 {
 	@include font-size(26px, 36px);
-	color: $heading-color;
+	color: var(--heading-color);
 
 	@include breakpoint(sm) {
 		@include font-size(40px, 56px);
@@ -59,8 +59,8 @@ h4,
 }
 
 .rich-title {
-	color: $primary;
-	border-bottom: 4px solid $primary-border;
+	color: var(--primary-400);
+	border-bottom: 4px solid var(--primary-400) -border;
 	padding-bottom: $spacing-3;
 }
 
@@ -70,7 +70,7 @@ p {
 
 a {
 	text-decoration: underline;
-	color: $content-text;
+	color: var(--content-text);
 }
 
 strong {

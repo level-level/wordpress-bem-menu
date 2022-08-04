@@ -1,12 +1,12 @@
 .highlighted-content {
 	position: relative;
-	border-top: 3px solid $primary;
-	border-bottom: 1px solid $black;
+	border-top: 3px solid var(--primary-400);
+	border-bottom: 1px solid var(--black);
 	padding: $spacing-3 0;
 
 	&__title {
 		padding-bottom: $spacing-3;
-		border-bottom: 1px solid $black;
+		border-bottom: 1px solid var(--black);
 	}
 
 	&__content {

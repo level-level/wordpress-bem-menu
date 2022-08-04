@@ -1,5 +1,5 @@
 .cta {
-	background-color: $secondary-600;
+	background-color: var(--secondary-600);
 	padding: $spacing-5;
 
 	@include breakpoint(600px) {
@@ -39,19 +39,19 @@
 	}
 
 	&__title {
-		color: $white;
+		color: var(--white);
 
 		@include font-heading-normal;
 	}
 
 	&__text {
-		color: $white;
+		color: var(--white);
 
 		ul:not([class]) {
 			margin-top: 0;
 
 			> li:before {
-				color: $white;
+				color: var(--white);
 			}
 		}
 
@@ -67,19 +67,19 @@
 		}
 
 		&:hover {
-			color: $white;
+			color: var(--white);
 		}
 	}
 }
 
 @media (prefers-color-scheme: dark) {
 	.cta {
-		background-color: $secondary-300;
-		border-bottom: 1px solid $primary;
-		border-top: 1px solid $primary;
+		background-color: var(--secondary-300);
+		border-bottom: 1px solid var(--primary-400);
+		border-top: 1px solid var(--primary-400);
 
 		&__button {
-			color: $white;
+			color: var(--white);
 		}
 	}
 }

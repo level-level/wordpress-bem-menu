@@ -2,7 +2,7 @@
 	@include font-normal;
 	position: relative;
 	padding: $spacing-9 0;
-	background-color: $secondary-300;
+	background-color: var(--secondary-300);
 
 	@include breakpoint(lg) {
 		padding: $spacing-12 0;
@@ -28,12 +28,12 @@
 	h3 {
 		@include font-bold;
 		@include font-size(22px, 24px);
-		color: $footer-heading;
+		color: var(--footer-heading);
 	}
 
 	.btn {
 		&--link {
-			color: $footer-link-color;
+			color: var(--footer-link-color);
 
 			@include hover-focus-style {
 				text-decoration: underline;
@@ -44,8 +44,8 @@
 
 .footer-socials {
 	padding: $spacing-6 0;
-	background-color: $secondary-300;
-	border-top: 1px solid $border-colored;
+	background-color: var(--secondary-300);
+	border-top: 1px solid var(--border-colored);
 
 	@include breakpoint(lg) {
 		padding: $spacing-9 0;
@@ -54,7 +54,7 @@
 	&__heading {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $footer-heading;
+		color: var(--footer-heading);
 		margin-bottom: $spacing-3;
 
 		@include breakpoint(lg) {

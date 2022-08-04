@@ -37,7 +37,7 @@
 		@include font-normal;
 		@include font-size(16px, 24px);
 		position: relative;
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);

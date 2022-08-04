@@ -6,7 +6,7 @@
 	&__link {
 		@include font-normal;
 		@include font-size(16px);
-		color: $footer-link-color;
+		color: var(--footer-link-color);
 		display: block;
 		text-decoration: none;
 

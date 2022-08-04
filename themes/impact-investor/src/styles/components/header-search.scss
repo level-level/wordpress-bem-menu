@@ -8,7 +8,7 @@
 		right: 0;
 		padding: 0;
 		height: calc(#{var(--header-height)} - #{var(--menu-height)});
-		background-color: $header-search-bg;
+		background-color: var(--header-search-bg);
 		z-index: 3;
 		visibility: visible;
 		opacity: 1;
@@ -23,7 +23,7 @@
 		body.user-is-tabbing & {
 			* {
 				&:focus {
-					@include focus-style($white);
+					@include focus-style(var(--white));
 				}
 			}
 		}
@@ -36,7 +36,7 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: $backdrop;
+		background-color: var(--backdrop);
 		z-index: 2;
 		visibility: hidden;
 		opacity: 0;
