@@ -1,6 +1,10 @@
 body {
 	@include body-styles;
-	background-color: var(--body-bg);
+	background-color: var(--secondary-100);
+
+	@include dark-theme {
+		background-color: var(--base-700);
+	}
 }
 
 h1,
@@ -13,13 +17,21 @@ h6 {
 	display: block;
 	margin: 0;
 	padding: 0;
-	color: var(--content-text);
+	color: var(--base-700);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 }
 
 h1,
 .h1 {
 	@include font-size(26px, 36px);
-	color: var(--heading-color);
+	color: var(--secondary-600);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(40px, 56px);
@@ -60,8 +72,13 @@ h4,
 
 .rich-title {
 	color: var(--primary-400);
-	border-bottom: 4px solid var(--primary-400) -border;
+	border-bottom: 4px solid var(--secondary-400);
 	padding-bottom: $spacing-3;
+
+	@include dark-theme {
+		color: var(--primary-300);
+		border-color: var(--primary-300);
+	}
 }
 
 p {
@@ -70,7 +87,11 @@ p {
 
 a {
 	text-decoration: underline;
-	color: var(--content-text);
+	color: var(--base-500);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 }
 
 strong {

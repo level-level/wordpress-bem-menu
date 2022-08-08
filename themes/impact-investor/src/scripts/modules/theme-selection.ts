@@ -28,27 +28,14 @@ class ThemeSelection implements IModule {
 
 	setActiveTheme( theme: string ) {
 
-		// Reset all theme classes
-		this.html?.classList.remove( 'theme-light' );
-		this.html?.classList.remove( 'theme-dark' );
-		this.html?.classList.remove( 'theme-system' );
-
 		// Uncheck any checked radiobuttons
 		this.radios?.forEach( radio => {
 			radio.checked = false;
 		} );
 
-		// Add body classes based on theme
-		if ( theme === 'light' ) {
-			this.html?.classList.add( 'theme-light' );
-		} else if ( theme === 'dark' ) {
-			this.html?.classList.add( 'theme-dark' );
-		} else if ( theme === 'system' ) {
-			this.html?.classList.add( 'theme-system' );
-		}
+		this.html?.setAttribute( 'data-theme', theme );
 
 		// Check radiobutton with active theme
-		// $( `:radio[value="${ theme }"]` ).prop( 'checked', true );
 		document.querySelectorAll<HTMLInputElement>( `[value="${ theme }"]` ).forEach( radio => {
 			radio.checked = true;
 		} );

@@ -19,7 +19,11 @@
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: var(--content-text);
+		color: var(--base-500);
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 	}
 
 	&__thumbnail {

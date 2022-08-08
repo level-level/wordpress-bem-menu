@@ -40,6 +40,18 @@
 	}
 }
 
+@mixin dark-theme {
+	[data-theme='dark'] & {
+		@content;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		[data-theme='system'] & {
+			@content;
+		}
+	}
+}
+
 // Image ratio
 // @include image-ratio($x, $y);
 // Calculating the padding-bottom based on image ratio

@@ -1,14 +1,27 @@
-// Color variables specific for the light theme
-@mixin theme-light {
-
+:root {
 	// Brand colors
 	--primary-400: #cd3613;
+	--primary-300: #df593b;
 	--secondary-100: #f3f9fd;
 	--secondary-200: #e7f3fb;
 	--secondary-300: #a2c3d6;
 	--secondary-400: #73a6bf;
 	--secondary-500: #4a738c;
 	--secondary-600: #335061;
+
+	// Base
+	--base-100: #fbfeff;
+	--base-200: #e4e4e4;
+	--base-300: #313131;
+	--base-400: #222;
+	--base-500: #1a1a1a;
+	--base-600: #191919;
+	--base-700: #0b0b0b;
+	--base-800: #000;
+}
+
+// Color variables specific for the light theme
+@mixin theme-light {
 
 	// Site background
 	--body-bg: var(--secondary-100);
@@ -78,7 +91,6 @@
 	--table-odd-bg: var(--secondary-200);
 
 	// Misc
-	--content-text: var(--black);
 	--advertisement-text: var(--secondary-600);
 	--heading-color: var(--secondary-600);
 	--list-item-meta-color: var(--secondary-600);
@@ -184,7 +196,6 @@
 	--table-odd-bg: var(--secondary-200);
 
 	// Misc
-	--content-text: var(--white);
 	--advertisement-text: var(--primary-400);
 	--heading-color: var(--primary-400);
 	--list-item-meta-color: var(--white);

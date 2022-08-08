@@ -6,7 +6,11 @@
 @mixin body-styles {
 	@include font-normal;
 	@include font-size(16px, 24px);
-	color: var(--content-text);
+	color: var(--base-500);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(20px, 28px);
