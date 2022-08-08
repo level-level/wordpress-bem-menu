@@ -24,9 +24,9 @@
 	}
 
 	&__thumbnail {
-		border-bottom: 1px solid var(--border-colored);
-		margin-left: calc(-1 * #{-$spacing-3});
-		margin-right: calc(-1 * #{-$spacing-3});
+		border-bottom: 1px solid var(--secondary-400);
+		margin-left: calc(-1 * #{$spacing-3});
+		margin-right: calc(-1 * #{$spacing-3});
 
 		@include dark-theme {
 			border-color: var(--base-800);

@@ -4,8 +4,6 @@
 	}
 
 	> *:not(.alignwide, .alignfull) {
-		max-width: var(--container);
-
 		@include breakpoint(sm) {
 			max-width: var(--content-width);
 		}

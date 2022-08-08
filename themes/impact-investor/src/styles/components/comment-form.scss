@@ -41,6 +41,17 @@
 			width: 100%;
 			justify-content: center;
 
+			@include dark-theme {
+				background-color: var(--primary-300);
+			}
+
+			@include hover-focus-style {
+				@include dark-theme {
+					background-color: transparent;
+					border-color: var(--primary-300);
+				}
+			}
+
 			@include breakpoint(sm) {
 				width: auto;
 			}

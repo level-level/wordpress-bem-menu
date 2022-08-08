@@ -20,7 +20,7 @@
 // Post/Page title
 .editor-post-title {
 	@include font-heading;
-	color: var(--heading-color);
+	color: var(--secondary-600);
 
 	@include font-size(26px, 36px);
 

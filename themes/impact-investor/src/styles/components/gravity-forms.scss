@@ -191,7 +191,7 @@
 
 		legend {
 			background-color: var(--error) !important;
-			margin-left: calc(-1 * ($spacing-3)) !important;
+			margin-left: calc(-1 * #{$spacing-3}) !important;
 			padding: $spacing-3 !important;
 			padding-top: 5px !important;
 			margin-bottom: 0 !important;

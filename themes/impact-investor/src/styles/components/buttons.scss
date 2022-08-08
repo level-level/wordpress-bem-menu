@@ -179,7 +179,7 @@
 
 	@include hover-focus-style {
 		background-color: var(--secondary-200);
-		color: var(--btn-header-color-hover);
+		color: var(--base-800);
 
 		@include dark-theme {
 			background-color: var(--base-600);

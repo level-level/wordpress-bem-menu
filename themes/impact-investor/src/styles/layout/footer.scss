@@ -71,8 +71,12 @@
 	&__heading {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: var(--footer-heading);
+		color: var(--secondary-600);
 		margin-bottom: $spacing-3;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(lg) {
 			@include font-size(22px, 26px);

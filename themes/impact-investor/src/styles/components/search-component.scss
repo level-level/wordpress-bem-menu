@@ -11,12 +11,13 @@
 	&--inline {
 		input[type='search'] {
 			background-color: var(--secondary-600);
-			color: var(--search-inline-color);
+			color: var(--secondary-100);
 			border: 0;
 			padding-right: $input-height;
 
 			@include dark-theme {
 				background-color: var(--base-50);
+				color: var(--base-50);
 			}
 
 			&:focus {

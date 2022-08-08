@@ -109,7 +109,7 @@
 // Focus style
 // @include focus-style { ..code }
 // Adds properties of focus styling
-@mixin focus-style($color: var(--outline)) {
+@mixin focus-style($color: var(--base-800)) {
 	outline: 2px solid;
 	outline-color: $color;
 	outline-offset: 2px;
@@ -146,7 +146,6 @@
 }
 
 @mixin aligncenter {
-	max-width: var(--container);
 	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
@@ -170,5 +169,10 @@
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-	max-width: var(--container);
+	padding-left: 12px;
+	padding-right: 12px;
+
+	@include breakpoint(sm) {
+		max-width: var(--container);
+	}
 }

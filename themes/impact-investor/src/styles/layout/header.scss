@@ -4,8 +4,12 @@
 	left: 0;
 	right: 0;
 	height: var(--header-height);
-	box-shadow: var(--header-shadow);
+	box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 	z-index: 10;
+
+	@include dark-theme {
+		box-shadow: none;
+	}
 
 	&__top {
 		display: flex;

@@ -93,12 +93,13 @@
 		width: 16px;
 		height: 16px;
 		border: 2px solid var(--secondary-400);
-		background-color: transparent;
+		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
 
 		@include dark-theme {
 			border-color: var(--primary-300);
+			background-color: transparent;
 		}
 	}
 

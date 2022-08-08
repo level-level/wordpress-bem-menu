@@ -43,19 +43,19 @@
 	}
 
 	&__title {
-		color: var(--white);
+		color: var(--base-50);
 
 		@include font-heading-normal;
 	}
 
 	&__text {
-		color: var(--white);
+		color: var(--base-50);
 
 		ul:not([class]) {
 			margin-top: 0;
 
 			> li:before {
-				color: var(--white);
+				color: var(--base-50);
 			}
 		}
 
@@ -71,7 +71,7 @@
 		}
 
 		&:hover {
-			color: var(--white);
+			color: var(--base-50);
 		}
 	}
 }
