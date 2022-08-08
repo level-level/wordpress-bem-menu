@@ -105,6 +105,10 @@ body.user-is-tabbing {
 	* {
 		&:focus {
 			@include focus-style;
+
+			@include dark-theme {
+				@include focus-style(var(--base-50));
+			}
 		}
 	}
 }
