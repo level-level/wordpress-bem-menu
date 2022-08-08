@@ -31,6 +31,10 @@
 	&:focus,
 	&:active {
 		@include focus-style;
+
+		@include dark-theme {
+			@include focus-style(--base-50);
+		}
 	}
 
 	@include placeholder {
@@ -77,6 +81,10 @@
 
 	&:focus + label:before {
 		@include focus-style;
+
+		@include dark-theme {
+			@include focus-style(--base-50);
+		}
 	}
 }
 
@@ -140,7 +148,7 @@
 	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
 	background-repeat: no-repeat;
 	background-color: var(--base-50);
-	padding-right: $spacing-6 + $spacing-3;
+	padding-right: calc(#{$spacing-6} + #{$spacing-3});
 
 	@include dark-theme {
 		background-color: var(--base-700);

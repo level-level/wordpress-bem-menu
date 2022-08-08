@@ -13,61 +13,23 @@ h3,
 h4,
 h5,
 h6 {
-	@include font-heading;
-	display: block;
-	margin: 0;
-	padding: 0;
-	color: var(--base-700);
-
-	@include dark-theme {
-		color: var(--base-100);
-	}
+	@include heading;
 }
 
-h1,
-.h1 {
-	@include font-size(26px, 36px);
-	color: var(--secondary-600);
-
-	@include dark-theme {
-		color: var(--primary-300);
-	}
-
-	@include breakpoint(sm) {
-		@include font-size(40px, 56px);
-	}
-
-	@include breakpoint(lg) {
-		@include font-size(48px, 62px);
-	}
+h1 {
+	@include heading-h1;
 }
 
-h2,
-.h2 {
-	@include font-size(24px, 32px);
-
-	@include breakpoint(sm) {
-		@include font-size(28px, 40px);
-	}
+h2 {
+	@include heading-h2;
 }
 
-h3,
-.h3 {
-	@include font-size(22px, 32px);
-
-	@include breakpoint(sm) {
-		@include font-size(24px, 32px);
-	}
+h3 {
+	@include heading-h3;
 }
 
-h4,
-.h4 {
-	@include font-bold;
-	@include font-size(16px, 22px);
-
-	@include breakpoint(sm) {
-		@include font-size(18px, 26px);
-	}
+h4 {
+	@include heading-h4;
 }
 
 .rich-title {

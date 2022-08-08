@@ -1,9 +1,15 @@
 .social-share {
 	&__heading {
+		@include font-bold;
+		@include font-size(16px, 22px);
 		color: var(--primary-400);
 
 		@include dark-theme {
 			color: var(--primary-300);
+		}
+
+		@include breakpoint(sm) {
+			@include font-size(18px, 26px);
 		}
 	}
 

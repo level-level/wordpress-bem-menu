@@ -19,18 +19,7 @@
 
 // Post/Page title
 .editor-post-title {
-	@include font-heading;
-	color: var(--secondary-600);
-
-	@include font-size(26px, 36px);
-
-	@include breakpoint(sm) {
-		@include font-size(40px, 56px);
-	}
-
-	@include breakpoint(lg) {
-		@include font-size(48px, 62px);
-	}
+	@include heading-h1;
 }
 
 // Text styling in gutenberg core blocks
@@ -39,32 +28,25 @@
 		@include body-styles;
 		background-color: var(--secondary-100);
 
-		*[data-type='core/heading'] {
-			@include font-heading;
-		}
-
 		h2[data-type='core/heading'] {
-			@include font-size(24px, 32px);
-
-			@include breakpoint(sm) {
-				@include font-size(28px, 40px);
-			}
+			@include heading-h2;
 		}
 
 		h3[data-type='core/heading'] {
-			@include font-size(22px, 32px);
-
-			@include breakpoint(sm) {
-				@include font-size(24px, 32px);
-			}
+			@include heading-h3;
 		}
 
 		h4[data-type='core/heading'] {
-			@include font-bold;
-			@include font-size(16px, 22px);
+			@include heading-h4;
+		}
+
+		h2[data-type='core/heading'],
+		h3[data-type='core/heading'],
+		h4[data-type='core/heading'] {
+			margin-top: $spacing-4;
 
 			@include breakpoint(sm) {
-				@include font-size(18px, 26px);
+				margin-top: $spacing-8;
 			}
 		}
 

@@ -17,6 +17,64 @@
 	}
 }
 
+@mixin heading {
+	@include font-heading;
+	display: block;
+	margin: 0;
+	padding: 0;
+	color: var(--base-700);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
+}
+
+@mixin heading-h1 {
+	@include heading;
+	@include font-size(26px, 36px);
+	color: var(--secondary-600);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
+
+	@include breakpoint(sm) {
+		@include font-size(40px, 56px);
+	}
+
+	@include breakpoint(lg) {
+		@include font-size(48px, 62px);
+	}
+}
+
+@mixin heading-h2 {
+	@include heading;
+	@include font-size(24px, 32px);
+
+	@include breakpoint(sm) {
+		@include font-size(28px, 40px);
+	}
+}
+
+@mixin heading-h3 {
+	@include heading;
+	@include font-size(22px, 32px);
+
+	@include breakpoint(sm) {
+		@include font-size(24px, 32px);
+	}
+}
+
+@mixin heading-h4 {
+	@include heading;
+	@include font-bold;
+	@include font-size(16px, 22px);
+
+	@include breakpoint(sm) {
+		@include font-size(18px, 26px);
+	}
+}
+
 // Blockquote
 // @include blockquote;
 // Adds properties for blockquote styling
