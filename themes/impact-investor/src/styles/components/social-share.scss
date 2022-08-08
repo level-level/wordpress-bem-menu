@@ -1,6 +1,10 @@
 .social-share {
 	&__heading {
 		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&--sticky {

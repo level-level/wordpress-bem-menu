@@ -11,6 +11,10 @@
 		background-color: var(--secondary-200);
 		padding: $spacing-3;
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		@include breakpoint(sm) {
 			padding: $spacing-6;
 		}
@@ -29,8 +33,12 @@
 	&__thumbnail {
 		max-width: 120px;
 		margin-bottom: $spacing-3;
-		background-color: var(--teaser-partner-thumbnail-bg);
+		background-color: transparent;
 		padding: $spacing-3;
+
+		@include dark-theme {
+			background-color: var(--base-100);
+		}
 
 		@include breakpoint(sm) {
 			margin-bottom: 0;

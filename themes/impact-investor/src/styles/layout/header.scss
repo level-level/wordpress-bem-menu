@@ -13,9 +13,17 @@
 		background-color: var(--secondary-200);
 		height: var(--header-height);
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		@include breakpoint(sm) {
-			background-color: var(--header-bg-top);
+			background-color: var(--base-50);
 			height: var(--header-top-height);
+
+			@include dark-theme {
+				background-color: var(--base-700);
+			}
 		}
 	}
 
@@ -24,6 +32,10 @@
 		align-items: center;
 		background-color: var(--secondary-300);
 		height: var(--menu-height);
+
+		@include dark-theme {
+			background-color: var(--base-400);
+		}
 	}
 
 	&__brand {

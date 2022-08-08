@@ -11,6 +11,10 @@
 		background-color: var(--secondary-200);
 		padding: $spacing-3;
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		@include breakpoint(sm) {
 			padding: $spacing-6;
 		}
@@ -20,6 +24,10 @@
 		@include font-bold;
 		@include font-size(18px, 26px);
 		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&__thumbnail {

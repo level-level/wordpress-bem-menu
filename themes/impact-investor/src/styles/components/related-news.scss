@@ -1,13 +1,22 @@
 .related-news {
 	position: relative;
+	border-bottom: 2px solid var(--secondary-400);
 	background-color: var(--secondary-200);
-	border-bottom: 2px solid var(--block-border);
+
+	@include dark-theme {
+		background-color: var(--base-600);
+		border-color: transparent;
+	}
 
 	&__title {
 		@include font-bold;
-		border-bottom: 1px solid var(--border-colored);
 		color: var(--primary-400);
 		padding: $spacing-3;
+		border-bottom: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		@include breakpoint(sm) {
 			padding: $spacing-3 $spacing-6;

@@ -36,6 +36,10 @@
 		color: var(--primary-400);
 		hyphens: auto;
 
+		@include dark-theme {
+			color: var(--primary-300);
+		}
+
 		@include breakpoint(sm) {
 			hyphens: none;
 		}

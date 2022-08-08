@@ -1,6 +1,10 @@
 .cta {
-	background-color: var(--secondary-600);
+	background-color: var(--secondary-300);
 	padding: $spacing-5;
+
+	@include dark-theme {
+		background-color: var(--base-600);
+	}
 
 	@include breakpoint(600px) {
 		display: grid;
@@ -67,18 +71,6 @@
 		}
 
 		&:hover {
-			color: var(--white);
-		}
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	.cta {
-		background-color: var(--secondary-300);
-		border-bottom: 1px solid var(--primary-400);
-		border-top: 1px solid var(--primary-400);
-
-		&__button {
 			color: var(--white);
 		}
 	}

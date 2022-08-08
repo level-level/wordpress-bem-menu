@@ -37,6 +37,10 @@
 		font-style: italic;
 		color: var(--primary-400);
 
+		@include dark-theme {
+			color: var(--primary-300);
+		}
+
 		@include breakpoint(sm) {
 			@include font-size(22px);
 		}
@@ -49,6 +53,10 @@
 		color: var(--primary-400);
 		display: block;
 		font-style: normal;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&:after {
@@ -61,6 +69,10 @@
 		z-index: -1;
 		background-color: var(--secondary-300);
 		mask-image: url('../images/quote.svg');
+
+		@include dark-theme {
+			background-color: var(--primary-300);
+		}
 	}
 }
 
@@ -83,6 +95,10 @@
 			color: var(--primary-400);
 			content: counter(counter);
 			z-index: 1;
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 
 			@include breakpoint(sm) {
 				@include font-size(24px);
@@ -107,6 +123,10 @@
 			left: 0;
 			color: var(--primary-400);
 			content: '\2022';
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }

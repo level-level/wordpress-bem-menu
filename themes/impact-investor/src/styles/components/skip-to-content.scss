@@ -2,9 +2,9 @@
 .skip-to-content {
 	@include screen-reader-text;
 	@include font-size(22px);
-	background: #fff;
-	border: 3px solid #000;
-	color: #000;
+	background: var(--base-50);
+	border: 3px solid var(--base-800);
+	color: var(--base-800);
 	padding: 15px 30px;
 	position: absolute;
 	top: 0;

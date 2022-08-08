@@ -4,6 +4,10 @@
 	position: relative;
 	background-color: var(--secondary-200);
 
+	@include dark-theme {
+		background-color: var(--base-600);
+	}
+
 	@include breakpoint(sm) {
 		@include font-size(18px, 26px);
 	}
@@ -17,7 +21,11 @@
 	}
 
 	&__footer {
-		border-top: 1px solid var(--border);
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 	}
 
 	&__thumbnail {
@@ -29,7 +37,11 @@
 
 	&__logo {
 		padding: $spacing-3 0 $spacing-6;
-		background-color: var(--bio-logo);
+		background-color: transparent;
+
+		@include dark-theme {
+			background-color: var(--base-50);
+		}
 
 		img {
 			max-width: 200px;
@@ -43,12 +55,20 @@
 		@include font-size(16px, 24px);
 		color: var(--primary-400);
 
+		@include dark-theme {
+			color: var(--primary-300);
+		}
+
 		@include breakpoint(sm) {
 			@include font-size(18px, 24px);
 		}
 	}
 
 	&__subtitle {
-		color: var(--bio-subtitle);
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 }

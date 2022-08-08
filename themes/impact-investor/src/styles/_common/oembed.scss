@@ -40,6 +40,10 @@
 	&__content {
 		line-height: 0;
 		background-color: var(--secondary-300);
+
+		@include dark-theme {
+			background-color: var(--base-300);
+		}
 	}
 
 	&__placeholder {
@@ -64,6 +68,10 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	@include dark-theme {
+		background-color: var(--base-300);
+	}
 
 	&__content {
 		max-width: 500px;

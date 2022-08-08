@@ -4,8 +4,13 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: var(--teaser-bg);
-	border-bottom: 2px solid var(--block-border);
+	background-color: var(--base-50);
+	border-bottom: 2px solid var(--secondary-400);
+
+	@include dark-theme {
+		border-color: transparent;
+		background-color: var(--base-600);
+	}
 
 	&:not(.teaser-post--inline) {
 		box-shadow: 0 2px 4px rgb(0 0 0 / 0%);
@@ -21,6 +26,10 @@
 			&__link {
 				color: var(--primary-400);
 				text-decoration: underline;
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
 			}
 		}
 	}
@@ -34,6 +43,10 @@
 			&__link {
 				color: var(--primary-400);
 				text-decoration: underline;
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
 			}
 		}
 	}
@@ -59,10 +72,14 @@
 		position: relative;
 		z-index: 2;
 		line-height: 1;
-		border-top: 1px solid var(--border);
+		border-top: 1px solid rgb(0 0 0 / 10%);
 		padding: $spacing-3 $spacing-3;
 		margin-top: auto;
 		min-height: 47px;
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		@include breakpoint(sm) {
 			padding: $spacing-3 $spacing-6;
@@ -90,7 +107,11 @@
 
 	&__date {
 		@include font-size(14px, 16px);
-		color: var(--teaser-date-color);
+		color: var(--secondary-600);
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);

@@ -1,14 +1,24 @@
 .comment-form-container {
 	position: relative;
 	background-color: var(--secondary-200);
-	border-bottom: 2px solid var(--block-border);
+	border-bottom: 2px solid var(--secondary-400);
+
+	@include dark-theme {
+		background-color: var(--base-600);
+		border-color: transparent;
+	}
 
 	.comment-reply-title {
 		@include font-bold;
 		@include font-size(16px, 24px);
 		color: var(--primary-400);
-		border-bottom: 1px solid var(--border-colored);
 		padding: 11px $spacing-3;
+		border-bottom: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+			border-color: var(--base-800);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -47,11 +57,20 @@
 .comments-area {
 	position: relative;
 	background-color: var(--secondary-200);
-	border-bottom: 2px solid var(--block-border);
+	border-bottom: 2px solid var(--secondary-400);
+
+	@include dark-theme {
+		background-color: var(--base-600);
+		border-color: transparent;
+	}
 
 	&__header {
-		border-bottom: 1px solid var(--border-colored);
 		padding: 11px $spacing-3;
+		border-bottom: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		@include breakpoint(sm) {
 			padding: 11px $spacing-6;
@@ -62,6 +81,10 @@
 		@include font-bold;
 		@include font-size(18px, 26px);
 		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(22px, 32px);

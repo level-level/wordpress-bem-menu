@@ -23,11 +23,19 @@
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		color: var(--footer-social-link-color);
+		color: var(--secondary-600);
 		transition: color $time;
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 
 		@include hover-focus-style {
 			color: var(--primary-400);
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }
@@ -54,9 +62,14 @@
 					border-radius: 0;
 					border: 0;
 
+					@include dark-theme {
+						background-color: var(--base-600);
+						color: var(--primary-300);
+					}
+
 					@include hover-focus-style {
 						background-color: var(--secondary-400);
-						color: var(--white);
+						color: var(--base-50);
 					}
 				}
 			}
@@ -73,7 +86,11 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid var(--border);
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 	}
 
 	&__item {
@@ -91,6 +108,10 @@
 			text-align: center;
 			width: 50px;
 			flex-shrink: 0;
+
+			@include dark-theme {
+				border-color: var(--primary-300);
+			}
 		}
 	}
 }
@@ -103,7 +124,11 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid var(--border);
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 	}
 
 	&__item {
@@ -118,24 +143,44 @@
 		@include font-bold;
 		@include font-size(16px, 24px);
 		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&--dark {
 		background-color: var(--secondary-200);
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		.list-bordered {
 			&__item {
-				border-color: var(--border-colored);
+				border-color: var(--secondary-400);
+
+				@include dark-theme {
+					border-color: var(--base-800);
+				}
 			}
 		}
 	}
 
 	&--light {
-		border: 1px solid var(--list-bordered-border);
+		border: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-600);
+		}
 
 		.list-bordered {
 			&__item {
-				border-color: var(--list-bordered-border);
+				border-color: var(--secondary-400);
+
+				@include dark-theme {
+					border-color: var(--base-600);
+				}
 			}
 		}
 	}
@@ -143,7 +188,11 @@
 
 .list-comments {
 	&__item {
-		border-bottom: 1px solid var(--border-colored);
+		border-bottom: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		&:last-child {
 			border-bottom: 0;
@@ -180,6 +229,10 @@
 		align-items: center;
 		justify-content: center;
 
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
+
 		&:last-child {
 			border-right: 0;
 		}
@@ -189,7 +242,7 @@
 			width: 100%;
 			justify-content: center;
 			height: 100%;
-			color: var(--white);
+			color: var(--base-50);
 		}
 	}
 }
@@ -200,9 +253,13 @@
 
 	&__item {
 		display: flex;
-		border-left: 1px solid var(--border);
+		border-left: 1px solid rgb(0 0 0 / 10%);
 		height: var(--header-top-height);
 		justify-content: center;
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 
 		& > * {
 			display: flex;
@@ -215,7 +272,11 @@
 		}
 
 		&:last-child {
-			border-right: 1px solid var(--border);
+			border-right: 1px solid rgb(0 0 0 / 10%);
+
+			@include dark-theme {
+				border-color: var(--base-400);
+			}
 		}
 	}
 }

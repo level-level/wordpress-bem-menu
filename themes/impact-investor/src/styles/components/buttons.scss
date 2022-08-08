@@ -10,7 +10,7 @@
 	border: 2px solid transparent;
 	line-height: 1;
 	user-select: none;
-	color: var(--black);
+	color: var(--base-800);
 	cursor: pointer;
 	transition: background-color $time, color $time, border-color $time;
 	appearance: none;
@@ -30,20 +30,34 @@
 @mixin btn--primary {
 	background-color: var(--primary-400);
 	border-color: var(--primary-400);
-	color: var(--btn-primary-color);
+	color: var(--base-50);
 	border-radius: 3px;
 	display: inline-flex;
 	justify-content: center;
 
+	@include dark-theme {
+		background-color: var(--primary-300);
+		border-color: var(--primary-300);
+		color: var(--base-800);
+	}
+
 	@include hover-focus-style {
-		background-color: var(--btn-primary-hover);
-		color: var(--btn-primary-hover-color);
+		background-color: transparent;
+		color: var(--base-500);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 }
 
 @mixin btn--secondary {
 	@include font-bold;
 	color: var(--primary-400);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
 
 	.btn {
 		&__text {
@@ -62,10 +76,14 @@
 
 @mixin btn--tertiary {
 	@include font-bold;
-	color: var(--btn-tertiary-color);
+	color: var(--secondary-600);
 	padding: 0;
 	padding-right: 12px;
 	border-radius: 20px;
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
 
 	@include breakpoint(sm) {
 		padding-right: 17px;
@@ -79,7 +97,12 @@
 
 	@include hover-focus-style {
 		background-color: var(--primary-400);
-		color: var(--btn-tertiary-hover-color);
+		color: var(--base-50);
+
+		@include dark-theme {
+			background-color: var(--primary-300);
+			color: var(--base-50);
+		}
 
 		.btn {
 			&__icon {
@@ -97,7 +120,11 @@
 	@include font-size(14px);
 	padding: 0;
 	text-decoration: none;
-	color: var(--btn-link-color);
+	color: var(--secondary-500);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
 
 	@include hover-focus-style {
 		.btn {
@@ -132,23 +159,40 @@
 
 @mixin btn--header {
 	@include font-normal;
-	color: var(--btn-header-color);
+	color: var(--base-500);
 	border-radius: 0;
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 
 	.btn {
 		&__icon {
 			@include font-size(20px);
 			color: var(--primary-400);
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 
 	@include hover-focus-style {
 		background-color: var(--secondary-200);
 		color: var(--btn-header-color-hover);
+
+		@include dark-theme {
+			background-color: var(--base-600);
+			color: var(--primary-300);
+		}
 	}
 
 	&[aria-expanded='true'] {
 		background-color: var(--secondary-200);
+
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
 	}
 }
 
@@ -160,8 +204,12 @@
 	align-items: center;
 	padding: 0;
 	border: 0;
-	color: var(--btn-menu-color);
+	color: var(--base-500);
 	min-width: 32px;
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 
 	.btn {
 		&__text {
@@ -173,10 +221,10 @@
 
 	&[aria-expanded='true'] {
 		z-index: 11;
-		color: var(--white);
+		color: var(--base-50);
 
 		&:focus {
-			@include focus-style(var(--white));
+			@include focus-style(var(--base-50));
 		}
 	}
 }
@@ -206,7 +254,7 @@
 		.btn {
 			&__icon {
 				@include font-size(20px);
-				color: var(--white);
+				color: var(--base-50);
 			}
 		}
 	}
@@ -224,6 +272,11 @@ input[type='button'] {
 	@include btn;
 	@include btn--primary;
 	line-height: inherit;
+
+	@include dark-theme {
+		background-color: transparent;
+		border-color: transparent;
+	}
 }
 
 // Color variations
@@ -268,7 +321,13 @@ input[type='button'] {
 		@include hover-focus-style {
 			background-color: var(--secondary-400);
 			border-color: var(--secondary-400);
-			color: var(--black);
+			color: var(--base-800);
+
+			@include dark-theme {
+				background-color: var(--secondary-400);
+				border-color: var(--secondary-400);
+				color: var(--base-800);
+			}
 		}
 	}
 }
@@ -319,7 +378,7 @@ input[type='button'] {
 
 		&--highlight {
 			background-color: var(--primary-400);
-			color: var(--btn-icon-highlight-color);
+			color: var(--base-50);
 			width: 34px;
 			height: 34px;
 			border-radius: 50%;
@@ -327,6 +386,10 @@ input[type='button'] {
 			align-items: center;
 			justify-content: center;
 			transition: $time;
+
+			@include dark-theme {
+				background-color: var(--primary-300);
+			}
 		}
 
 		.icon-comment {

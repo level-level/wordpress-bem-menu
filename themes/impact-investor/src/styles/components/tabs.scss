@@ -1,7 +1,11 @@
 .tab-list {
 	display: flex;
 	flex-wrap: nowrap;
-	border-bottom: 1px solid var(--border);
+	border-bottom: 1px solid rgb(0 0 0 / 10%);
+
+	@include dark-theme {
+		border-color: var(--base-800);
+	}
 
 	&__item {
 		flex-grow: 1;
@@ -14,31 +18,53 @@
 		display: block;
 		padding: 15px $spacing-6;
 		padding-bottom: calc(15px - 4px);
-		background-color: var(--tabs-bg);
+		background-color: var(--base-50);
 		text-decoration: none;
 		border-bottom: 4px solid transparent;
-		color: var(--tabs-button-link-color);
+		color: var(--primary-400);
 		transition: background-color $time;
 
+		@include dark-theme {
+			color: var(--primary-300);
+			background-color: var(--base-600);
+		}
+
 		@include hover-focus-style {
-			background-color: var(--tabs-button-hover);
+			background-color: var(--secondary-400);
 			text-decoration: underline;
+
+			@include dark-theme {
+				background-color: var(--base-400);
+			}
 		}
 
 		&[aria-selected='true'] {
 			border-color: var(--primary-400);
 			color: var(--primary-400);
 
+			@include dark-theme {
+				border-color: var(--primary-300);
+				color: var(--primary-300);
+			}
+
 			@include hover-focus-style {
-				background-color: var(--tabs-bg);
+				background-color: var(--base-50);
 				text-decoration: none;
+
+				@include dark-theme {
+					background-color: var(--base-600);
+				}
 			}
 		}
 	}
 
 	&__section {
 		display: none;
-		background-color: var(--tabs-bg);
+		background-color: var(--base-50);
+
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
 
 		&[aria-hidden='false'] {
 			display: block;
@@ -47,5 +73,9 @@
 }
 
 .tablist {
-	border-bottom: 2px solid var(--block-border);
+	border-bottom: 2px solid var(--secondary-400);
+
+	@include dark-theme {
+		border-color: transparent;
+	}
 }

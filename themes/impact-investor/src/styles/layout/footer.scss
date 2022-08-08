@@ -4,6 +4,10 @@
 	padding: $spacing-9 0;
 	background-color: var(--secondary-300);
 
+	@include dark-theme {
+		background-color: var(--base-400);
+	}
+
 	@include breakpoint(lg) {
 		padding: $spacing-12 0;
 	}
@@ -28,12 +32,20 @@
 	h3 {
 		@include font-bold;
 		@include font-size(22px, 24px);
-		color: var(--footer-heading);
+		color: var(--secondary-600);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	.btn {
 		&--link {
-			color: var(--footer-link-color);
+			color: var(--secondary-600);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 
 			@include hover-focus-style {
 				text-decoration: underline;
@@ -44,8 +56,13 @@
 
 .footer-socials {
 	padding: $spacing-6 0;
+	border-top: 1px solid var(--secondary-400);
 	background-color: var(--secondary-300);
-	border-top: 1px solid var(--border-colored);
+
+	@include dark-theme {
+		border-color: var(--base-800);
+		background-color: var(--base-400);
+	}
 
 	@include breakpoint(lg) {
 		padding: $spacing-9 0;

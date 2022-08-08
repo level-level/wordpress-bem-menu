@@ -111,6 +111,10 @@
 			padding: 5px;
 			color: var(--primary-400);
 
+			@include dark-theme {
+				color: var(--primary-300);
+			}
+
 			& + * {
 				margin-left: 10px;
 			}
@@ -121,6 +125,10 @@
 		@include font-normal();
 		color: var(--primary-400);
 		text-transform: lowercase;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		&.gfield_required_text,
 		&.gfield_required_custom {
@@ -167,14 +175,18 @@
 		.validation_message {
 			@include font-size(14px);
 			margin-top: 10px;
-			border-top: 1px solid var(--black);
+			border-top: 1px solid var(--base-800);
 			padding-top: 10px;
-			color: var(--form-validation-text);
+			color: var(--base-800);
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 
 		label,
 		legend {
-			color: var(--form-validation-text);
+			color: var(--base-800);
 		}
 
 		legend {
@@ -195,7 +207,7 @@
 		margin: $spacing-3 0;
 
 		* {
-			color: var(--form-validation-text);
+			color: var(--base-800);
 		}
 
 		ol {

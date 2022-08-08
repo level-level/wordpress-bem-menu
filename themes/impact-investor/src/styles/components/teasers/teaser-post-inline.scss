@@ -1,8 +1,12 @@
 .teaser-post {
 	&--inline {
 		border-bottom-width: 1px;
-		border-color: var(--border-colored);
+		border-color: var(--secondary-400);
 		background-color: transparent;
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		.teaser-post {
 			&__inner {

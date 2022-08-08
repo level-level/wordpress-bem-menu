@@ -2,15 +2,19 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	background-color: var(--mobile-menu-dropdown);
+	background-color: var(--secondary-500);
 	color: var(--white);
 	height: 100%;
+
+	@include dark-theme {
+		background-color: var(--base-600);
+	}
 
 	&,
 	body.user-is-tabbing & {
 		* {
 			&:focus {
-				@include focus-style(var(--white));
+				@include focus-style(var(--base-50));
 				outline-offset: -2px;
 			}
 		}
@@ -31,7 +35,11 @@
 			.btn--search {
 				.btn {
 					&__icon {
-						color: var(--search-inline-color);
+						color: var(--base-50);
+
+						@include dark-theme {
+							color: var(--base-800);
+						}
 					}
 				}
 			}
@@ -46,11 +54,19 @@
 		margin-top: auto;
 		padding: 10px $spacing-3;
 		border-top: 1px solid var(--secondary-600);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 	}
 
 	&__footer {
 		margin-top: auto;
 		border-top: 1px solid var(--secondary-300);
 		height: calc(#{var(--header-height)} + 10px);
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 	}
 }

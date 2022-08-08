@@ -5,8 +5,12 @@
 
 	&__meta {
 		@include font-size(14px, 16px);
-		color: var(--list-item-meta-color);
+		color: var(--secondary-600);
 		margin-bottom: 10px;
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);
@@ -22,6 +26,10 @@
 		@include hover-focus-style {
 			color: var(--primary-400);
 			text-decoration: underline;
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }

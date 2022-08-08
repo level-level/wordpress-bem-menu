@@ -39,6 +39,10 @@
 		position: relative;
 		background-color: var(--secondary-200);
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
 		}

@@ -26,10 +26,15 @@
 	figcaption {
 		@include font-normal;
 		@include font-size(14px, 18px);
-		color: var(--caption-color);
+		color: var(--base-700);
 		margin: 0;
 		padding: 10px;
 		background-color: var(--secondary-200);
+
+		@include dark-theme {
+			color: var(--base-100);
+			background-color: var(--base-400);
+		}
 	}
 }
 

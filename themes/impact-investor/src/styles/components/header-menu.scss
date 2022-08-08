@@ -14,6 +14,10 @@
 		visibility: hidden;
 		transition: $time * 2 cubic-bezier(0.2, 0.91, 0.53, 1);
 
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
+
 		&[aria-hidden='false'] {
 			transform: translateX(0);
 			visibility: visible;
@@ -27,11 +31,15 @@
 		right: 0;
 		bottom: 0;
 		content: '';
-		background-color: var(--backdrop);
+		background-color: rgb(0 0 0 / 50%);
 		z-index: 5;
 		opacity: 0;
 		visibility: hidden;
 		transition: $time;
+
+		@include dark-theme {
+			background-color: rgb(0 0 0 / 80%);
+		}
 
 		&--active {
 			opacity: 1;
