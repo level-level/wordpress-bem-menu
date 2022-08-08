@@ -17,7 +17,7 @@
 					localStorage.setItem( 'theme-style', 'system' );
 				}
 				var preference = localStorage.getItem( 'theme-style' );
-				document.documentElement.classList.add( 'theme-' + preference );
+				document.documentElement.setAttribute( 'data-theme', preference );
 			} catch (e) {}
 
 			document.addEventListener( 'DOMContentLoaded', function () {

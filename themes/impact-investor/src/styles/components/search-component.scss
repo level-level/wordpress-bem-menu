@@ -10,26 +10,35 @@
 
 	&--inline {
 		input[type='search'] {
-			background-color: $search-inline-bg;
-			color: $search-inline-color;
+			background-color: var(--secondary-600);
+			color: var(--secondary-100);
 			border: 0;
 			padding-right: $input-height;
 
+			@include dark-theme {
+				background-color: var(--base-50);
+				color: var(--base-50);
+			}
+
 			&:focus {
-				@include focus-style($white);
+				@include focus-style(var(--base-50));
 			}
 
 			@include placeholder {
-				color: $secondary-200;
+				color: var(--secondary-200);
+
+				@include dark-theme {
+					color: var(--base-800);
+				}
 
 				@include breakpoint(sm) {
-					color: $black;
+					color: var(--base-800);
 				}
 			}
 
 			@include breakpoint(sm) {
-				background-color: $white;
-				color: $black;
+				background-color: var(--base-50);
+				color: var(--base-800);
 			}
 		}
 	}

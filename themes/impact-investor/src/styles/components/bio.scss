@@ -2,22 +2,30 @@
 	@include font-normal;
 	@include font-size(16px, 24px);
 	position: relative;
-	background-color: $secondary-200;
+	background-color: var(--secondary-200);
+
+	@include dark-theme {
+		background-color: var(--base-600);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(18px, 26px);
 	}
 
 	&__inner {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding * 0.5} + 3px);
+			padding: calc(#{$spacing-3} + 3px);
 		}
 	}
 
 	&__footer {
-		border-top: 1px solid $border;
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 	}
 
 	&__thumbnail {
@@ -28,8 +36,12 @@
 	}
 
 	&__logo {
-		padding: $default-padding * 0.5 0 $default-padding;
-		background-color: $bio-logo;
+		padding: $spacing-3 0 $spacing-6;
+		background-color: transparent;
+
+		@include dark-theme {
+			background-color: var(--base-50);
+		}
 
 		img {
 			max-width: 200px;
@@ -41,7 +53,11 @@
 	&__subtitle {
 		@include font-bold;
 		@include font-size(16px, 24px);
-		color: $primary;
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 24px);
@@ -49,6 +65,10 @@
 	}
 
 	&__subtitle {
-		color: $bio-subtitle;
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 }

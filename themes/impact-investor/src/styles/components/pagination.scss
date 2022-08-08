@@ -3,7 +3,6 @@
 	--item-width: 34px;
 
 	ul {
-		@include list-unstyled;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -11,7 +10,7 @@
 		li {
 			@include font-size(16px, 16px);
 			display: block;
-			margin-right: $default-padding * 0.5;
+			margin-right: $spacing-3;
 
 			&:last-child {
 				margin-right: 0;
@@ -24,27 +23,35 @@
 
 		a {
 			display: block;
-			padding: $default-padding * 0.5;
+			padding: $spacing-3;
 			border-bottom: 3px solid transparent;
 			cursor: pointer;
 			text-decoration: none;
 
 			@include hover-focus-style {
 				text-decoration: underline;
-				color: $primary;
+				color: var(--primary-400);
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
 			}
 		}
 
 		span {
 			&.current {
 				display: block;
-				padding: $default-padding * 0.5;
-				border-bottom: 3px solid $primary;
+				padding: $spacing-3;
+				border-bottom: 3px solid var(--primary-400);
+
+				@include dark-theme {
+					border-color: var(--primary-300);
+				}
 			}
 
 			&.dots {
 				display: block;
-				padding: $default-padding * 0.5;
+				padding: $spacing-3;
 				border: 0;
 			}
 		}
@@ -54,8 +61,8 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background-color: $primary;
-			color: $pagination-arrow-color;
+			background-color: var(--primary-400);
+			color: var(--base-50);
 			width: var(--item-width);
 			height: var(--item-width);
 			padding: 0;
@@ -63,10 +70,19 @@
 			border: 0;
 			transition: color $time, background-color $time;
 
+			@include dark-theme {
+				background-color: var(--primary-300);
+			}
+
 			@include hover-focus-style {
-				color: $pagination-arrow-color;
+				color: var(--base-50);
 				text-decoration: none;
-				background-color: $secondary-400;
+				background-color: var(--secondary-400);
+
+				@include dark-theme {
+					color: var(--base-50);
+					background-color: var(--secondary-300);
+				}
 			}
 
 			@include breakpoint(sm) {

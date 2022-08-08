@@ -1,22 +1,30 @@
 .teaser-comment {
 	@include font-normal;
 	position: relative;
-	background-color: $secondary-200;
-	padding: $default-padding * 0.5;
+	padding: $spacing-3;
+	background-color: var(--secondary-200);
 
-	@include breakpoint(sm) {
-		padding: $default-padding;
+	@include dark-theme {
+		background-color: var(--base-600);
 	}
 
-	&__author {
+	@include breakpoint(sm) {
+		padding: $spacing-6;
+	}
+
+	&__author,
+	&__meta {
 		@include font-bold;
 		@include font-size(16px);
-		color: $comment-meta-color;
+		color: var(--secondary-600);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&__meta {
-		@include font-size(16px);
-		color: $comment-meta-color;
+		@include font-normal;
 	}
 
 	&__content {

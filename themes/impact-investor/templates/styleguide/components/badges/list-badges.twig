@@ -1,7 +1,7 @@
 {% if badges %}
-	<ul class="list-badges">
+	<ul class="flex gap-1">
 		{% for badge in badges %}
-			<li class="list-badges__item">
+			<li>
 				{% include 'styleguide/components/badges/badge.twig' with {
 					title: not loop.last and not badge.url ? badge.name ~ ',' : badge.name,
 					url: badge.url,

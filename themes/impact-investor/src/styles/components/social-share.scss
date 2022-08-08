@@ -1,6 +1,16 @@
 .social-share {
 	&__heading {
-		color: $primary;
+		@include font-bold;
+		@include font-size(16px, 22px);
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
+
+		@include breakpoint(sm) {
+			@include font-size(18px, 26px);
+		}
 	}
 
 	&--sticky {
@@ -9,9 +19,9 @@
 		@include breakpoint(lg) {
 			display: block;
 			z-index: 2;
-			margin-top: $default-padding;
+			margin-top: $spacing-6;
 			position: sticky;
-			top: calc(#{$header-height} + #{$default-padding} + #{$admin-bar});
+			top: calc(#{var(--header-height)} + #{$spacing-6} + #{var(--wp-admin--admin-bar--height, 0px)});
 		}
 	}
 }

@@ -1,19 +1,23 @@
 .footer {
 	@include font-normal;
 	position: relative;
-	padding: $default-padding * 1.5 0;
-	background-color: $secondary-300;
+	padding: $spacing-9 0;
+	background-color: var(--secondary-300);
+
+	@include dark-theme {
+		background-color: var(--base-400);
+	}
 
 	@include breakpoint(lg) {
-		padding: $default-padding * 2 0;
+		padding: $spacing-12 0;
 	}
 
 	&__brand {
-		margin-bottom: $default-padding;
+		margin-bottom: $spacing-6;
 		max-width: 224px;
 
 		@include breakpoint(sm) {
-			margin-bottom: $default-padding * 2;
+			margin-bottom: $spacing-12;
 		}
 
 		@include breakpoint(lg) {
@@ -22,26 +26,26 @@
 	}
 
 	&__heading {
-		margin-bottom: $default-padding * 0.5;
-	}
-
-	&__group {
-		margin-bottom: $default-padding * 0.5;
-
-		@include breakpoint(sm) {
-			margin-bottom: 0;
-		}
+		margin-bottom: $spacing-3;
 	}
 
 	h3 {
 		@include font-bold;
 		@include font-size(22px, 24px);
-		color: $footer-heading;
+		color: var(--secondary-600);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	.btn {
 		&--link {
-			color: $footer-link-color;
+			color: var(--secondary-600);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 
 			@include hover-focus-style {
 				text-decoration: underline;
@@ -51,19 +55,28 @@
 }
 
 .footer-socials {
-	padding: $default-padding 0;
-	background-color: $secondary-300;
-	border-top: 1px solid $border-colored;
+	padding: $spacing-6 0;
+	border-top: 1px solid var(--secondary-400);
+	background-color: var(--secondary-300);
+
+	@include dark-theme {
+		border-color: var(--base-800);
+		background-color: var(--base-400);
+	}
 
 	@include breakpoint(lg) {
-		padding: $default-padding * 1.5 0;
+		padding: $spacing-9 0;
 	}
 
 	&__heading {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $footer-heading;
-		margin-bottom: $default-padding * 0.5;
+		color: var(--secondary-600);
+		margin-bottom: $spacing-3;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(lg) {
 			@include font-size(22px, 26px);

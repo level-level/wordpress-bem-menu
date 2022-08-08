@@ -1,6 +1,4 @@
 .footer-nav {
-	@include list-unstyled;
-
 	& > * + * {
 		margin-top: 10px;
 	}
@@ -8,9 +6,13 @@
 	&__link {
 		@include font-normal;
 		@include font-size(16px);
-		color: $footer-link-color;
+		color: var(--secondary-600);
 		display: block;
 		text-decoration: none;
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 
 		@include hover-focus-style {
 			text-decoration: underline;

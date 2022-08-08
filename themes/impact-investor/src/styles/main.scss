@@ -1,4 +1,6 @@
-@import '~normalize.css/normalize.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 // Common
 @import '_common/mixins';
@@ -25,8 +27,6 @@
 @import 'layout/footer';
 @import 'layout/container';
 @import 'layout/section';
-@import 'layout/group';
-@import 'layout/grid/_grid';
 @import 'layout/layout';
 @import 'layout/sidebar';
 

@@ -1,12 +1,16 @@
 .highlighted-content {
 	position: relative;
-	border-top: 3px solid $primary;
-	border-bottom: 1px solid $black;
-	padding: $default-padding * 0.5 0;
+	border-top: 3px solid var(--primary-400);
+	border-bottom: 1px solid var(--base-800);
+	padding: $spacing-3 0;
+
+	@include dark-theme {
+		border-top-color: var(--primary-300);
+	}
 
 	&__title {
-		padding-bottom: $default-padding * 0.5;
-		border-bottom: 1px solid $black;
+		padding-bottom: $spacing-3;
+		border-bottom: 1px solid var(--base-800);
 	}
 
 	&__content {

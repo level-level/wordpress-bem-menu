@@ -1,13 +1,30 @@
-// The default gutter variable, used for the grid
-$gutter: 24px;
+// Spacing variables based on tailwind config
+$spacing-auto: theme('spacing.auto');
+$spacing-0: theme('spacing.0');
+$spacing-1: theme('spacing.1');
+$spacing-2: theme('spacing.2');
+$spacing-3: theme('spacing.3');
+$spacing-4: theme('spacing.4');
+$spacing-5: theme('spacing.5');
+$spacing-6: theme('spacing.6');
+$spacing-7: theme('spacing.7');
+$spacing-8: theme('spacing.8');
+$spacing-9: theme('spacing.9');
+$spacing-10: theme('spacing.10');
+$spacing-11: theme('spacing.11');
+$spacing-12: theme('spacing.12');
+$spacing-13: theme('spacing.13');
+$spacing-14: theme('spacing.14');
+$spacing-15: theme('spacing.15');
+$spacing-16: theme('spacing.16');
 
 :root {
-	--admin-bar: 0px; /* stylelint-disable-line length-zero-no-unit */
-	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
-	--container: calc(100vw - #{$gutter});
+	--container: calc(100vw - #{$spacing-8});
+	--content-width: var(--container);
 	--header-height: 50px;
 	--menu-height: 50px;
 	--sidebar-width: 100%;
+	--header-top-height: 68px;
 
 	@include breakpoint(sm) {
 		--container: 720px;
@@ -33,42 +50,8 @@ $gutter: 24px;
 	}
 }
 
-$container: var(--container);
-$content-width: var(--content-width);
-$admin-bar: var(--admin-bar);
-$admin-bar-offset: var(--admin-bar-offset);
-$header-height: var(--header-height);
-$sidebar-width: var(--sidebar-width);
-$menu-height: var(--menu-height);
-$article-width: var(--article-width);
-$article-offset: var(--article-offset);
-$btn-menu-width: 31px;
-$header-top-height: 68px;
-
-$columns: 12;
-
-// The default padding variable
-$default-padding: 24px;
-
 // The default animation time variable
 $time: 150ms;
 
 // The default height of an input element
 $input-height: 44px;
-
-// admin bar height
-// even the zero has to be set in pixels so you can use it in calc() operations
-// use admin-bar-height for absolute positioning and admin-bar-offset for sticky or fixed
-// breakpoints come from WordPress' styles
-body.admin-bar {
-	--admin-bar: 46px;
-	--admin-bar-offset: 0px; /* stylelint-disable-line length-zero-no-unit */
-
-	@include breakpoint(601px) {
-		--admin-bar-offset: var(--admin-bar);
-	}
-
-	@include breakpoint(783px) {
-		--admin-bar: 32px;
-	}
-}

@@ -39,7 +39,11 @@
 .oembed-audio {
 	&__content {
 		line-height: 0;
-		background-color: $secondary-300;
+		background-color: var(--secondary-300);
+
+		@include dark-theme {
+			background-color: var(--base-300);
+		}
 	}
 
 	&__placeholder {
@@ -51,13 +55,13 @@
 		text-align: center;
 
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }
 
 .oembed-placeholder {
-	background-color: $secondary-300;
+	background-color: var(--secondary-300);
 	text-align: center;
 	height: 100%;
 	display: flex;
@@ -65,12 +69,16 @@
 	justify-content: center;
 	align-items: center;
 
+	@include dark-theme {
+		background-color: var(--base-300);
+	}
+
 	&__content {
 		max-width: 500px;
-		padding: $default-padding;
+		padding: $spacing-6;
 
 		& > * + * {
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }

@@ -7,11 +7,19 @@
 	tbody,
 	tfoot {
 		tr {
-			border: 1px solid $table-border-color;
+			border: 1px solid var(--secondary-300);
 			border-bottom: 0;
 
+			@include dark-theme {
+				border-color: var(--base-300);
+			}
+
 			&:last-child {
-				border-bottom: 1px solid $table-border-color;
+				border-bottom: 1px solid var(--secondary-300);
+
+				@include dark-theme {
+					border-color: var(--base-300);
+				}
 			}
 		}
 
@@ -130,7 +138,11 @@ table:not(#{$excluded_tables}) {
 		}
 
 		&:nth-child(odd) {
-			background-color: $table-odd-bg;
+			background-color: var(--secondary-200);
+
+			@include dark-theme {
+				background-color: var(--base-300);
+			}
 		}
 	}
 }

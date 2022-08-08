@@ -8,18 +8,26 @@
 	}
 
 	&__inner {
-		background-color: $secondary-200;
-		padding: $default-padding * 0.5;
+		background-color: var(--secondary-200);
+		padding: $spacing-3;
+
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
 
 		@include breakpoint(sm) {
-			padding: $default-padding;
+			padding: $spacing-6;
 		}
 	}
 
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $primary;
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&__thumbnail {

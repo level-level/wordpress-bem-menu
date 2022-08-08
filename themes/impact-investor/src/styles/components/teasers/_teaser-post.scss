@@ -4,8 +4,13 @@
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	background-color: $teaser-bg;
-	border-bottom: 2px solid $block-border;
+	background-color: var(--base-50);
+	border-bottom: 2px solid var(--secondary-400);
+
+	@include dark-theme {
+		border-color: transparent;
+		background-color: var(--base-600);
+	}
 
 	&:not(.teaser-post--inline) {
 		box-shadow: 0 2px 4px rgb(0 0 0 / 0%);
@@ -19,8 +24,12 @@
 
 		.teaser-post {
 			&__link {
-				color: $primary;
+				color: var(--primary-400);
 				text-decoration: underline;
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
 			}
 		}
 	}
@@ -32,17 +41,21 @@
 
 		.teaser-post {
 			&__link {
-				color: $primary;
+				color: var(--primary-400);
 				text-decoration: underline;
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
 			}
 		}
 	}
 
 	&__inner {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		@include breakpoint(sm) {
-			padding: $default-padding;
+			padding: $spacing-6;
 		}
 	}
 
@@ -59,17 +72,17 @@
 		position: relative;
 		z-index: 2;
 		line-height: 1;
-		border-top: 1px solid $border;
-		padding: $default-padding * 0.5 $default-padding * 0.5;
+		border-top: 1px solid rgb(0 0 0 / 10%);
+		padding: $spacing-3 $spacing-3;
 		margin-top: auto;
 		min-height: 47px;
 
-		& > * {
-			width: calc(100% + #{$default-padding});
+		@include dark-theme {
+			border-color: var(--base-800);
 		}
 
 		@include breakpoint(sm) {
-			padding: $default-padding * 0.5 $default-padding;
+			padding: $spacing-3 $spacing-6;
 		}
 	}
 
@@ -85,7 +98,7 @@
 
 	&__excerpt {
 		@include font-size(16px, 24px);
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -94,7 +107,11 @@
 
 	&__date {
 		@include font-size(14px, 16px);
-		color: $teaser-date-color;
+		color: var(--secondary-600);
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 17px);
@@ -109,7 +126,7 @@
 	&__item {
 		&--order-2 {
 			order: 2;
-			margin-top: $default-padding * 0.5;
+			margin-top: $spacing-3;
 		}
 	}
 }

@@ -5,13 +5,13 @@
 
 	<div class="header__top">
 		<div class="container">
-			<div class="row row--no-padding row--space-between row--align-center row--nowrap">
-				<div class="col-auto hidden-sm">
+			<div class="flex justify-between items-center">
+				<div class="sm:hidden">
 					{% if has_nav_menu('primary_navigation') %}
 						{% include 'partials/components/header/header-menu.twig' %}
 					{% endif %}
 				</div>
-				<div class="col-auto col--grow-1 col--sm-grow-0">
+				<div class="grow sm:grow-0">
 					<div class="header__brand">
 						<a
 							class="brand"
@@ -23,30 +23,26 @@
 					</div>
 				</div>
 
-				<div class="col-auto col--sm-shrink-0 hidden-xs visible-sm">
-					<div class="row row--small row--align-center row--nowrap">
+				<div class="shrink-0 hidden sm:block">
+					<div class="flex gap-2 items-center flex-nowrap">
 						{% set newsletter = options.newsletter %}
 						{% if newsletter.button.title and newsletter.button.url %}
-							<div class="col-auto">
-								{% include 'styleguide/components/buttons/button-link.twig' with {
-									text: newsletter.button.title,
-									url: newsletter.button.url,
-									class: 'btn--primary',
-									is_external: newsletter.button.target ? true,
-									aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
-								} %}
-							</div>
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: newsletter.button.title,
+								url: newsletter.button.url,
+								class: 'btn--primary',
+								is_external: newsletter.button.target ? true,
+								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+							} %}
 						{% endif %}
-						<div class="col-auto">
-							<ul class="list-header-buttons">
-								<li class="list-header-buttons__item">
-									{% include 'partials/components/header/header-profile.twig' %}
-								</li>
-								<li class="list-header-buttons__item">
-									{% include 'partials/components/header/header-search.twig' %}
-								</li>
-							</ul>
-						</div>
+						<ul class="list-header-buttons">
+							<li class="list-header-buttons__item">
+								{% include 'partials/components/header/header-profile.twig' %}
+							</li>
+							<li class="list-header-buttons__item">
+								{% include 'partials/components/header/header-search.twig' %}
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -54,9 +50,11 @@
 	</div>
 
 	{% if has_nav_menu('primary_navigation') %}
-		<div class="header__bottom hidden-xs visible-sm">
-			<div class="container">
-				{% include 'partials/components/header/header-menu.twig' %}
+		<div class="hidden sm:block">
+			<div class="header__bottom">
+				<div class="container">
+					{% include 'partials/components/header/header-menu.twig' %}
+				</div>
 			</div>
 		</div>
 	{% endif %}

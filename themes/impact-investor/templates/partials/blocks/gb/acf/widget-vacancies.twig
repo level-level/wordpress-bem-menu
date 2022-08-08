@@ -1,7 +1,7 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="align{{ align }}">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/list-component.twig' with {
 			heading: __('Jobs', 'impact-investor'),
 			objects: objects ? objects|map(vacancy => {

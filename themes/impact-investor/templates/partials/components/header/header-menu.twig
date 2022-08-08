@@ -2,7 +2,7 @@
 {% set target = uniqid('header-menu__dropdown-') %}
 {% set scrollarea = uniqid('header-menu__inner-') %}
 <div
-	class="header-menu hidden-sm"
+	class="header-menu sm:hidden"
 	data-module="header-menu"
 	data-config='{
 		"trigger": ".{{ trigger }}",
@@ -66,7 +66,7 @@
 	<div class="header-menu__backdrop"></div>
 </div>
 
-<div class="hidden-xs visible-sm">
+<div class="hidden sm:block">
 	<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
 		{{ bem_menu('primary_navigation', 'primary-nav') }}
 	</nav>

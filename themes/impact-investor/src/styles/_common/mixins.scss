@@ -1,106 +1,4 @@
-@use 'sass:math';
-
-// Placeholder
-// @include placeholder { code.. }
-// Set the placehold styling for a input element
-@mixin placeholder {
-	&::placeholder {
-		@content;
-	}
-}
-
-@function calculaterem($size) {
-	$remSize: math.div($size, 16px);
-
-	@return $remSize * 1rem;
-}
-
-@function line-height($font-size, $line-height) {
-	@return math.div($line-height, $font-size) * 1em;
-}
-
-// Font Size + line height
-// @include font-size($font-size, $line-height);
-// If important is needed:
-// @include font-size($font-size, $line-height, true);
-// Set the font-size in pixels and it will calculate the font-size in rem.
-// Optional: set the line-height based on the font-size and line-height in pixels
-// $font-size = 16px - Font size in pixels.
-// $line-height = 32px - Line-height in pixels.
-// $important = bool whether statement should have the !important property
-@mixin font-size($font-size, $line-height: false, $important: false) {
-	$important-flag: if($important, !important, null);
-	font-size: $font-size $important-flag;
-	font-size: calculaterem($font-size) $important-flag;
-
-	@if $line-height {
-		line-height: line-height($font-size, $line-height) $important-flag;
-	}
-}
-
-// Image ratio
-// @include image-ratio($x, $y);
-// Calculating the padding-bottom based on image ratio
-// For example X:Y
-// 4:3 ratio
-// 16:9 ratio
-// 21:9 ratio
-// $x (int) 16 - Width of the ratio
-// $y (int) 9 - Height of the ratio
-@mixin image-ratio($x, $y) {
-	position: relative;
-	aspect-ratio: #{$x} / #{$y};
-	overflow: hidden;
-
-	@if type-of($x) != 'number' {
-		@error ' Variable `$x` should be a integer.';
-	}
-
-	@if type-of($y) != 'number' {
-		@error ' Variable `$y` should be a integer.';
-	}
-}
-
-// Center element
-// @include center-element();
-// Enables perfect centering on the X and Y axis
-// Can be used for any element like images, icons etc
-@mixin center-element() {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateY(-50%) translateX(-50%);
-}
-
-// Hover-focus-style
-// @include hover-focus-style { ..code }
-// When focus styles should not be applied use
-// @include hover-focus-style(false) { .. code }
-// Hover and focus styling. Hover styles that will not apply on real devices (phones, tablet etc)
-@mixin hover-focus-style($includeFocus: true) {
-	@if $includeFocus {
-		&:focus,
-		&:active {
-			@content;
-		}
-	}
-
-	@media not all and (hover: none), (-ms-high-contrast: none) {
-		&:hover {
-			@content;
-		}
-	}
-}
-
-// Focus style
-// @include focus-style { ..code }
-// Adds properties of focus styling
-@mixin focus-style($color: $outline) {
-	outline: 2px solid;
-	outline-color: $color;
-	outline-offset: 2px;
-	transition: none;
-}
+@import './mixins/helpers';
 
 // Body styles
 // @include body-styles;
@@ -108,10 +6,72 @@
 @mixin body-styles {
 	@include font-normal;
 	@include font-size(16px, 24px);
-	color: $content-text;
+	color: var(--base-500);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(20px, 28px);
+	}
+}
+
+@mixin heading {
+	@include font-heading;
+	display: block;
+	margin: 0;
+	padding: 0;
+	color: var(--base-700);
+
+	@include dark-theme {
+		color: var(--base-100);
+	}
+}
+
+@mixin heading-h1 {
+	@include heading;
+	@include font-size(26px, 36px);
+	color: var(--secondary-600);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
+
+	@include breakpoint(sm) {
+		@include font-size(40px, 56px);
+	}
+
+	@include breakpoint(lg) {
+		@include font-size(48px, 62px);
+	}
+}
+
+@mixin heading-h2 {
+	@include heading;
+	@include font-size(24px, 32px);
+
+	@include breakpoint(sm) {
+		@include font-size(28px, 40px);
+	}
+}
+
+@mixin heading-h3 {
+	@include heading;
+	@include font-size(22px, 32px);
+
+	@include breakpoint(sm) {
+		@include font-size(24px, 32px);
+	}
+}
+
+@mixin heading-h4 {
+	@include heading;
+	@include font-bold;
+	@include font-size(16px, 22px);
+
+	@include breakpoint(sm) {
+		@include font-size(18px, 26px);
 	}
 }
 
@@ -127,13 +87,17 @@
 	padding: 0;
 
 	& > * + * {
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 	}
 
 	p {
 		@include font-normal;
 		font-style: italic;
-		color: $primary;
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(22px);
@@ -144,9 +108,13 @@
 	.wp-block-quote__citation {
 		@include font-bold;
 		@include font-size(14px);
-		color: $primary;
+		color: var(--primary-400);
 		display: block;
 		font-style: normal;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&:after {
@@ -157,58 +125,12 @@
 		height: 58px;
 		content: '';
 		z-index: -1;
-		background-color: $secondary-300;
+		background-color: var(--secondary-300);
 		mask-image: url('../images/quote.svg');
-	}
-}
 
-@mixin absolute-link {
-	&:before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		content: '';
-		z-index: 1;
-	}
-}
-
-// WP Alignments
-@mixin alignleft {
-	float: left;
-	margin-right: 2em;
-}
-
-@mixin alignright {
-	float: right;
-	margin-right: 2em;
-}
-
-@mixin alignfull {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-@mixin aligncenter {
-	max-width: $container;
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-
-	@include breakpoint(sm) {
-		max-width: $content-width;
-	}
-}
-
-@mixin alignwide {
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
-
-	@include breakpoint(sm) {
-		max-width: $container;
+		@include dark-theme {
+			background-color: var(--primary-300);
+		}
 	}
 }
 
@@ -228,9 +150,13 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			color: $primary;
+			color: var(--primary-400);
 			content: counter(counter);
 			z-index: 1;
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 
 			@include breakpoint(sm) {
 				@include font-size(24px);
@@ -253,26 +179,29 @@
 			position: absolute;
 			top: -1px;
 			left: 0;
-			color: $primary;
+			color: var(--primary-400);
 			content: '\2022';
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }
 
-// Type checking
-// https://css-tricks.com/snippets/sass/advanced-type-checking/
-@function is-number($value) {
-	@return type-of($value) == 'number';
-}
+@mixin intro-font {
+	--wp--preset--font-size--intro: #{calculaterem(20px)};
+	line-height: line-height(20px, 28px);
 
-@function is-relative-length($value) {
-	@return is-number($value) and index('em' 'ex' 'ch' 'rem' 'vw' 'vh' 'vmin' 'vmax', unit($value)) != null;
-}
+	@include font-heading-normal;
 
-@function is-absolute-length($value) {
-	@return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
-}
+	@include breakpoint(sm) {
+		--wp--preset--font-size--intro: #{calculaterem(22px)};
+		line-height: line-height(22px, 30px);
+	}
 
-@function is-length($value) {
-	@return is-relative-length($value) or is-absolute-length($value);
+	@include breakpoint(lg) {
+		--wp--preset--font-size--intro: #{calculaterem(24px)};
+		line-height: line-height(24px, 34px);
+	}
 }

@@ -4,12 +4,16 @@
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		background-color: $secondary-200 !important;
-		width: calc(100% - #{$default-padding});
+		background-color: var(--secondary-200) !important;
+		width: calc(100% - #{$spacing-6});
 		transform: translateX(-50%) translateY(-50%);
-		padding: $default-padding !important;
+		padding: $spacing-6 !important;
 		padding-top: 44px !important;
 		border-radius: 3px !important;
+
+		@include dark-theme {
+			background-color: var(--base-600) !important;
+		}
 	}
 
 	.pum-content {
@@ -24,17 +28,27 @@
 		border: 2px solid transparent !important;
 		font-family: 'ProximaNovaBold', sans-serif !important;
 		padding: 5px 10px !important;
-		background-color: $primary !important;
-		border-color: $primary !important;
-		color: $btn-primary-color !important;
+		background-color: var(--primary-400) !important;
+		border-color: var(--primary-400) !important;
+		color: var(--base-50) !important;
 		border-radius: 3px !important;
 		font-size: 16px !important;
 		box-shadow: none !important;
 		text-shadow: none !important;
 
+		@include dark-theme {
+			background-color: var(--primary-300) !important;
+			border-color: var(--primary-300) !important;
+		}
+
 		@include hover-focus-style {
-			background-color: $btn-primary-hover !important;
-			color: $btn-primary-hover-color !important;
+			background-color: transparent !important;
+			color: var(--base-800) !important;
+
+			@include dark-theme {
+				background-color: transparent !important;
+				color: var(--primary-300) !important;
+			}
 		}
 
 		@include breakpoint(sm) {
@@ -48,7 +62,7 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background-color: $backdrop;
+		background-color: rgb(0 0 0 / 10%);
 		z-index: 10;
 
 		:before {

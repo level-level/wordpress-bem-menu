@@ -8,25 +8,37 @@
 	}
 
 	&__inner {
-		background-color: $secondary-200;
-		padding: $default-padding * 0.5;
+		background-color: var(--secondary-200);
+		padding: $spacing-3;
+
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
 
 		@include breakpoint(sm) {
-			padding: $default-padding;
+			padding: $spacing-6;
 		}
 	}
 
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: $content-text;
+		color: var(--base-500);
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 	}
 
 	&__thumbnail {
 		max-width: 120px;
-		margin-bottom: $default-padding * 0.5;
-		background-color: $teaser-partner-thumbnail-bg;
-		padding: $default-padding * 0.5;
+		margin-bottom: $spacing-3;
+		background-color: transparent;
+		padding: $spacing-3;
+
+		@include dark-theme {
+			background-color: var(--base-100);
+		}
 
 		@include breakpoint(sm) {
 			margin-bottom: 0;

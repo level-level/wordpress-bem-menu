@@ -1,5 +1,4 @@
 .primary-nav {
-	@include list-unstyled;
 	@include font-normal;
 	display: flex;
 	flex-direction: column;
@@ -12,60 +11,60 @@
 		display: block;
 	}
 
-	&__item--open {
-		.primary-nav__link {
-			background-color: $mobile-menu-active-item;
-
-			@include breakpoint(sm) {
-				background-color: transparent;
-			}
-		}
-	}
-
 	&__item--parent {
 		position: relative;
 
 		.primary-nav__link {
-			padding-right: calc(#{$default-padding} + 10px);
+			padding-right: calc(#{$spacing-6} + 10px);
 		}
 
 		&:focus-within {
-			background-color: $nav-active-item-color;
+			background-color: var(--secondary-500);
+
+			@include breakpoint(sm) {
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
+			}
 
 			.primary-nav__link,
 			.primary-nav__arrow {
-				color: $white;
+				color: var(--base-50);
 			}
 		}
 
 		@include hover-focus-style {
-			background-color: $nav-active-item-color;
+			background-color: var(--secondary-500);
+
+			@include breakpoint(sm) {
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
+			}
 
 			.primary-nav__link,
 			.primary-nav__arrow {
-				color: $white;
+				color: var(--base-50);
 			}
 		}
 	}
 
 	&__item--active {
 		.primary-nav__link {
-			color: $white;
+			color: var(--base-50);
 
 			@include breakpoint(sm) {
-				background-color: $nav-active-item-color;
+				background-color: var(--secondary-500);
+
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
 			}
 		}
 
 		.primary-nav__arrow {
-			color: $white;
+			color: var(--base-50);
 		}
-	}
-
-	&__item--parent--active {
-	}
-
-	&__item--ancestor--active {
 	}
 
 	&__link {
@@ -73,22 +72,31 @@
 		@include font-size(16px);
 		display: flex;
 		align-items: center;
-		padding: 10px $gutter * 0.5;
-		color: $nav-text-color;
+		padding: 10px $spacing-3;
+		color: var(--base-100);
 		text-decoration: none;
 
 		@include hover-focus-style {
-			background-color: $nav-active-item-color;
-			color: $nav-text-hover-color;
+			background-color: var(--secondary-500);
+			color: var(--base-50);
+
+			@include dark-theme {
+				background-color: var(--base-300);
+				color: var(--base-100);
+			}
 		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px);
 			padding: 0 20px;
 			border-bottom: 0;
-			height: $menu-height;
-			color: $nav-text-color;
+			height: var(--menu-height);
+			color: var(--secondary-600);
 			transition: background-color $time, color $time;
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 		}
 	}
 
@@ -98,49 +106,67 @@
 		right: 0;
 		background-color: transparent;
 		line-height: inherit;
-		padding: 0 $default-padding * 0.5;
+		padding: 0 $spacing-3;
 		height: 44px;
-		color: $nav-text-color;
+		color: var(--base-50);
 		border: 0;
 		transform: scaleY(1);
 		transition: $time;
 
+		@include dark-theme {
+			color: var(--base-50);
+		}
+
 		&[aria-expanded='true'] {
 			transform: scaleY(-1);
-			color: $nav-text-color;
+			color: var(--secondary-600);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 		}
 
 		@include breakpoint(sm) {
 			padding: 0;
 			right: 15px;
-			color: $nav-text-color;
-			height: $menu-height;
+			color: var(--secondary-600);
+			height: var(--menu-height);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 		}
 	}
 }
 
 .primary-nav-sub {
-	@include list-unstyled;
 	position: relative;
-	background-color: $nav-dropdown-bg;
-	padding: $default-padding * 0.5;
-	padding-top: 0;
+	background-color: var(--secondary-600);
+	padding: $spacing-3;
 	display: none;
+
+	@include dark-theme {
+		background-color: var(--base-400);
+	}
 
 	@include breakpoint(sm) {
 		position: absolute;
-		top: $menu-height;
+		top: var(--menu-height);
 		left: 0;
 		min-width: 300px;
-		border-bottom: 2px solid $primary-border;
+		border-bottom: 2px solid var(--primary-400) -border;
 		z-index: 2;
-		background-color: $nav-dropdown-bg;
-		padding: calc(#{$default-padding} - 5px) $default-padding;
+		background-color: var(--base-50);
+		padding: calc(#{$spacing-6} - 5px) $spacing-6;
 		box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 		display: block;
 		visibility: hidden;
 		opacity: 0;
 		transition: $time;
+
+		@include dark-theme {
+			background-color: var(--base-400);
+		}
 
 		.primary-nav-sub {
 			left: 100%;
@@ -149,8 +175,12 @@
 
 		.primary-nav__arrow {
 			transform: rotate(-90deg);
-			color: $nav-text-color;
+			color: var(--secondary-600);
 			right: 10px;
+
+			@include dark-theme {
+				color: var(--base-100);
+			}
 		}
 	}
 
@@ -165,28 +195,31 @@
 	}
 
 	& > * + * {
-		margin-top: $default-padding * 0.5;
+		margin-top: $spacing-3;
 	}
 
 	&__link {
 		@include font-normal;
 		text-decoration: none;
-		color: $nav-text-color;
+		color: var(--base-50);
 
 		@include hover-focus-style {
-			color: $nav-text-color;
 			text-decoration: underline;
 			background-color: transparent;
 		}
 
 		@include breakpoint(sm) {
 			@include font-size(18px);
-			color: $nav-text-color;
+			color: var(--secondary-600);
 			height: auto;
 			padding: 0;
 
 			@include hover-focus-style {
-				color: $nav-text-color;
+				color: var(--secondary-600);
+
+				@include dark-theme {
+					color: var(--base-50);
+				}
 			}
 		}
 	}

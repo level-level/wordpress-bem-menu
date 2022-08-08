@@ -2,7 +2,11 @@
 	@include font-bold;
 	@include font-size(14px, 18px);
 	position: relative;
-	color: $primary;
+	color: var(--primary-400);
+
+	@include dark-theme {
+		color: var(--primary-300);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(16px, 20px);
@@ -11,12 +15,18 @@
 	&--rich {
 		@include font-size(14px, 18px);
 		display: block;
-		background-color: $primary;
-		border: 2px solid $primary;
-		color: $rich-badge-color;
+		background-color: var(--primary-400);
+		border: 2px solid var(--primary-400);
+		color: var(--base-50);
 		text-decoration: none;
 		padding: 4px 10px;
 		transition: background-color $time, color $time;
+
+		@include dark-theme {
+			background-color: var(--primary-300);
+			border: 2px solid var(--primary-300);
+			color: var(--base-800);
+		}
 
 		@include breakpoint(sm) {
 			@include font-size(16px, 20px);
@@ -26,7 +36,11 @@
 	&--link {
 		@include hover-focus-style {
 			background-color: transparent;
-			color: $rich-badge-hover-color;
+			color: var(--base-800);
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }

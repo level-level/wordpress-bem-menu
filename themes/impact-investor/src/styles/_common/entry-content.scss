@@ -4,15 +4,13 @@
 	}
 
 	> *:not(.alignwide, .alignfull) {
-		max-width: $container;
-
 		@include breakpoint(sm) {
-			max-width: $content-width;
+			max-width: var(--content-width);
 		}
 	}
 
 	& > * + * {
-		margin-top: $default-padding;
+		margin-top: $spacing-6;
 	}
 
 	> h2 + *:not([class*=' has-']),
@@ -23,27 +21,22 @@
 	}
 
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
-		margin-top: $default-padding;
+		margin-top: $spacing-6;
 	}
 
 	p {
 		&.has-intro-font-size {
-			@include font-heading-normal;
-			@include font-size(20px, 28px, true);
-
-			@include breakpoint(sm) {
-				@include font-size(22px, 30px, true);
-			}
-
-			@include breakpoint(lg) {
-				@include font-size(24px, 34px, true);
-			}
+			@include intro-font;
 		}
 	}
 
 	a:not([class]) {
-		color: $primary;
+		color: var(--primary-400);
 		hyphens: auto;
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 
 		@include breakpoint(sm) {
 			hyphens: none;

@@ -1,6 +1,6 @@
 {% set newsletter = options.newsletter %}
 {% if newsletter.title or newsletter.image or newsletter.content or newsletter.button %}
-	<div class="align{{ align }}">
+	<div class="align{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/newsletter.twig' with {
 			title: newsletter.title,
 			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium'),

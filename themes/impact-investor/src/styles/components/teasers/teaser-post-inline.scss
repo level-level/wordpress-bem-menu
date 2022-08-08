@@ -1,13 +1,17 @@
 .teaser-post {
 	&--inline {
-		border-width: 1px;
-		border-color: $border-colored;
+		border-bottom-width: 1px;
+		border-color: var(--secondary-400);
 		background-color: transparent;
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		.teaser-post {
 			&__inner {
 				@include breakpoint(sm) {
-					padding: $default-padding * 0.5 0;
+					padding: $spacing-3 0;
 				}
 			}
 

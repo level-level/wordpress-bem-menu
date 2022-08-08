@@ -14,4 +14,5 @@ module.exports = {
 	webpackProd( { mode, devtool } ) {
 
 	},
+	useTailwindCSS: true,
 };

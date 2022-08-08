@@ -26,10 +26,15 @@
 	figcaption {
 		@include font-normal;
 		@include font-size(14px, 18px);
-		color: $caption-color;
+		color: var(--base-700);
 		margin: 0;
 		padding: 10px;
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
+
+		@include dark-theme {
+			color: var(--base-100);
+			background-color: var(--base-400);
+		}
 	}
 }
 
@@ -56,14 +61,14 @@
 }
 
 .wp-block-columns {
-	margin-top: -#{$default-padding};
+	margin-top: -#{$spacing-6};
 	margin-bottom: 0;
 
 	+ .wp-block-columns {
-		padding-top: $default-padding;
+		padding-top: $spacing-6;
 	}
 }
 
 .wp-block-column {
-	margin-top: $default-padding;
+	margin-top: $spacing-6;
 }

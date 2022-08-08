@@ -2,8 +2,8 @@
 
 	{% if label %}
 		<div class="article-header__label">
-			<ul class="list-badges">
-				<li class="list-badges__item">
+			<ul class="flex gap-1">
+				<li>
 					<div class="badge badge--rich">
 						{{ label|raw }}
 					</div>
@@ -26,16 +26,16 @@
 
 	{% if authors or date and datetime and date_full %}
 		<div class="article-header__meta">
-			<div class="row">
+			<div class="flex gap-6 items-center">
 
 				{% if authors %}
-					<div class="col-auto">
+					<div>
 						<span class="screen-reader-text">
 							{{ __('Written by:', 'impact-investor') }}
 						</span>
-						<ul class="list-authors">
+						<ul class="flex gap-3">
 							{% for object in authors %}
-								<li class="list-authors__item">
+								<li>
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
@@ -48,7 +48,7 @@
 				{% endif %}
 
 				{% if date and datetime and date_full %}
-					<div class="col-auto">
+					<div>
 						<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
 						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 					</div>

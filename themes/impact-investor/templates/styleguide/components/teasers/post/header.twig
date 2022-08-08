@@ -9,10 +9,10 @@
 
 	{% if terms or date and datetime and date_full %}
 		<div class="teaser-post-header__item">
-			<div class="row row--space-between row--nowrap row--align-center">
+			<div class="flex justify-between flex-nowrap items-center">
 
 				{% if terms %}
-					<div class="col-auto">
+					<div>
 						{% include 'styleguide/components/post-terms.twig' with {
 							terms: terms,
 						} %}
@@ -20,7 +20,7 @@
 				{% endif %}
 
 				{% if date and datetime and date_full %}
-					<div class="col-auto col--shrink-0">
+					<div class="shrink-0">
 						<div class="teaser-post__date">
 							<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
 							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>

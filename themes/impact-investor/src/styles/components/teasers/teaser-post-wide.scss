@@ -1,9 +1,9 @@
 .teaser-post {
 	&--wide {
-		border-width: 1px;
+		border-bottom-width: 1px;
 
 		@include breakpoint(sm) {
-			border-width: 2px;
+			border-bottom-width: 2px;
 		}
 
 		.teaser-post {

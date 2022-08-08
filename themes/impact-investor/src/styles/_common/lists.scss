@@ -1,14 +1,5 @@
 // Lists
-// @include list-unstyled;
-// Reset default list styling
-@mixin list-unstyled {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-}
-
-@mixin list-horizontal( $margin: $default-padding ) {
-	@include list-unstyled;
+@mixin list-horizontal( $margin: $spacing-6 ) {
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: -#{$margin};
@@ -23,26 +14,6 @@
 	}
 }
 
-.list-unstyled {
-	@include list-unstyled;
-}
-
-.list-authors {
-	@include list-horizontal(10px);
-}
-
-.list-badges {
-	@include list-horizontal(5px);
-}
-
-.list-vertical-buttons {
-	@include list-unstyled;
-
-	& > * + * {
-		margin-top: 10px;
-	}
-}
-
 .list-social {
 	@include list-horizontal(30px);
 
@@ -52,11 +23,19 @@
 		justify-content: center;
 		align-items: center;
 		text-decoration: none;
-		color: $footer-social-link-color;
+		color: var(--secondary-600);
 		transition: color $time;
 
+		@include dark-theme {
+			color: var(--base-100);
+		}
+
 		@include hover-focus-style {
-			color: $primary;
+			color: var(--primary-400);
+
+			@include dark-theme {
+				color: var(--primary-300);
+			}
 		}
 	}
 }
@@ -75,17 +54,22 @@
 				margin: 0;
 
 				.btn--share {
-					background-color: $secondary-200;
-					color: $primary;
+					background-color: var(--secondary-200);
+					color: var(--primary-400);
 					padding: 0;
 					width: 45px;
 					height: 45px;
 					border-radius: 0;
 					border: 0;
 
+					@include dark-theme {
+						background-color: var(--base-600);
+						color: var(--primary-300);
+					}
+
 					@include hover-focus-style {
-						background-color: $secondary-400;
-						color: $white;
+						background-color: var(--secondary-400);
+						color: var(--base-50);
 					}
 				}
 			}
@@ -94,7 +78,6 @@
 }
 
 .list-styled-ordered {
-	@include list-unstyled;
 	@include font-size(16px, 24px);
 	counter-reset: counter;
 
@@ -103,30 +86,37 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid $border;
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 	}
 
 	&__item {
 		display: flex;
 		align-items: center;
 		counter-increment: counter;
-		padding: $default-padding * 0.5 0;
-		padding-right: $default-padding * 0.5;
+		padding: $spacing-3 0;
+		padding-right: $spacing-3;
 
 		&:before {
 			@include font-bold;
 			@include font-size(28px);
 			content: counter(counter);
-			color: $primary;
+			color: var(--primary-400);
 			text-align: center;
 			width: 50px;
 			flex-shrink: 0;
+
+			@include dark-theme {
+				border-color: var(--primary-300);
+			}
 		}
 	}
 }
 
 .list-bordered {
-	@include list-unstyled;
 	@include font-size(16px, 24px);
 
 	@include breakpoint(sm) {
@@ -134,49 +124,75 @@
 	}
 
 	& > * + * {
-		border-top: 1px solid $border;
+		border-top: 1px solid rgb(0 0 0 / 10%);
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 	}
 
 	&__item {
-		padding: $default-padding * 0.5;
+		padding: $spacing-3;
 
 		@include breakpoint(sm) {
-			padding: calc(#{$default-padding * 0.5} + 3px);
+			padding: calc(#{$spacing-3} + 3px);
 		}
 	}
 
 	&__heading {
 		@include font-bold;
 		@include font-size(16px, 24px);
-		color: $primary;
+		color: var(--primary-400);
+
+		@include dark-theme {
+			color: var(--primary-300);
+		}
 	}
 
 	&--dark {
-		background-color: $secondary-200;
+		background-color: var(--secondary-200);
+
+		@include dark-theme {
+			background-color: var(--base-600);
+		}
 
 		.list-bordered {
 			&__item {
-				border-color: $border-colored;
+				border-color: var(--secondary-400);
+
+				@include dark-theme {
+					border-color: var(--base-800);
+				}
 			}
 		}
 	}
 
 	&--light {
-		border: 1px solid $list-bordered-border;
+		border: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-600);
+		}
 
 		.list-bordered {
 			&__item {
-				border-color: $list-bordered-border;
+				border-color: var(--secondary-400);
+
+				@include dark-theme {
+					border-color: var(--base-600);
+				}
 			}
 		}
 	}
 }
 
 .list-comments {
-	@include list-unstyled;
-
 	&__item {
-		border-bottom: 1px solid $border-colored;
+		border-bottom: 1px solid var(--secondary-400);
+
+		@include dark-theme {
+			border-color: var(--base-800);
+		}
 
 		&:last-child {
 			border-bottom: 0;
@@ -185,12 +201,11 @@
 }
 
 .list-related-news {
-	@include list-unstyled;
-	padding: $default-padding * 0.5 0;
+	padding: $spacing-3 0;
 
 	&__item {
 		@include breakpoint(sm) {
-			margin: 0 $default-padding;
+			margin: 0 $spacing-6;
 		}
 
 		&:last-child {
@@ -202,7 +217,6 @@
 }
 
 .list-dropdown-buttons {
-	@include list-unstyled;
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
@@ -210,10 +224,14 @@
 
 	&__item {
 		width: 100%;
-		border-right: 1px solid $secondary-300;
+		border-right: 1px solid var(--secondary-300);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 
 		&:last-child {
 			border-right: 0;
@@ -224,7 +242,7 @@
 			width: 100%;
 			justify-content: center;
 			height: 100%;
-			color: $white;
+			color: var(--base-50);
 		}
 	}
 }
@@ -235,9 +253,13 @@
 
 	&__item {
 		display: flex;
-		border-left: 1px solid $border;
-		height: $header-top-height;
+		border-left: 1px solid rgb(0 0 0 / 10%);
+		height: var(--header-top-height);
 		justify-content: center;
+
+		@include dark-theme {
+			border-color: var(--base-400);
+		}
 
 		& > * {
 			display: flex;
@@ -250,15 +272,11 @@
 		}
 
 		&:last-child {
-			border-right: 1px solid $border;
+			border-right: 1px solid rgb(0 0 0 / 10%);
+
+			@include dark-theme {
+				border-color: var(--base-400);
+			}
 		}
-	}
-}
-
-.list-dark-mode {
-	@include list-unstyled;
-
-	& > * + * {
-		margin-top: 5px;
 	}
 }

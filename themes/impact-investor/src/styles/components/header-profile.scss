@@ -4,16 +4,21 @@
 	&__dropdown {
 		display: block;
 		position: absolute;
-		top: calc(#{$header-height} - #{$menu-height});
+		top: calc(#{var(--header-height)} - #{var(--menu-height)});
 		right: 0;
 		padding: 0;
-		background-color: $header-profile-bg;
+		background-color: var(--secondary-200);
 		z-index: 2;
 		min-width: 330px;
-		border-bottom: 2px solid $block-border;
 		opacity: 1;
 		visibility: visible;
 		transition: $time;
+		border-bottom: 2px solid var(--secondary-400);
+
+		@include dark-theme {
+			background-color: var(--base-600);
+			border-color: transparent;
+		}
 
 		&[aria-hidden='true'] {
 			opacity: 0;

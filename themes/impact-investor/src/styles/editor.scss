@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // WP editor
 @import '_common/mixins';
 @import '_common/breakpoints';
@@ -34,12 +38,11 @@
 	@import 'components/newsletter';
 	@import 'components/author-location';
 	@import 'components/related-news';
+	@import 'components/cta';
 
 	// Layout
 	@import 'layout/container';
 	@import 'layout/section';
-	@import 'layout/group';
-	@import 'layout/grid/_grid';
 
 	@extend .entry-content;
 

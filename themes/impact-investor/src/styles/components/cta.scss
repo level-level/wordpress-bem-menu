@@ -1,11 +1,15 @@
 .cta {
-	background-color: $secondary-600;
-	padding: $default-padding * 0.8;
+	background-color: var(--secondary-300);
+	padding: $spacing-5;
+
+	@include dark-theme {
+		background-color: var(--base-600);
+	}
 
 	@include breakpoint(600px) {
 		display: grid;
 		grid-template-columns: 250px auto;
-		gap: $default-padding;
+		gap: $spacing-6;
 	}
 
 	&__image-container {
@@ -29,8 +33,8 @@
 	&__content-container {
 		display: flex;
 		flex-direction: column;
-		gap: $default-padding * 0.6;
-		padding-top: $default-padding * 0.7;
+		gap: $spacing-3;
+		padding-top: $spacing-3;
 
 		@include breakpoint(600px) {
 			padding-top: 0;
@@ -39,19 +43,19 @@
 	}
 
 	&__title {
-		color: $white;
+		color: var(--base-50);
 
 		@include font-heading-normal;
 	}
 
 	&__text {
-		color: $white;
+		color: var(--base-50);
 
 		ul:not([class]) {
 			margin-top: 0;
 
 			> li:before {
-				color: $white;
+				color: var(--base-50);
 			}
 		}
 
@@ -67,19 +71,7 @@
 		}
 
 		&:hover {
-			color: $white;
-		}
-	}
-}
-
-@media (prefers-color-scheme: dark) {
-	.cta {
-		background-color: $secondary-300;
-		border-bottom: 1px solid $primary;
-		border-top: 1px solid $primary;
-
-		&__button {
-			color: $white;
+			color: var(--base-50);
 		}
 	}
 }
