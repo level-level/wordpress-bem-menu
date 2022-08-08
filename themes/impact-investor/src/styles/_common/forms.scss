@@ -10,13 +10,19 @@
 	border-radius: 0;
 	padding: 0 $spacing-3;
 	border: 0;
-	border-bottom: 1px solid var(--input-border-color);
+	border-bottom: 1px solid var(--secondary-400);
 	min-width: 90px;
 	height: $input-height;
 	line-height: $input-height;
-	background-color: var(--input-background);
-	color: var(--input-text-color);
+	background-color: var(--base-50);
+	color: var(--base-500);
 	appearance: none;
+
+	@include dark-theme {
+		border-color: var(--primary-300);
+		color: var(--base-100);
+		background-color: var(--base-700);
+	}
 
 	@include breakpoint(sm) {
 		@include font-size(16px);
@@ -28,8 +34,12 @@
 	}
 
 	@include placeholder {
-		color: var(--black);
+		color: var(--base-500);
 		opacity: 0.8;
+
+		@include dark-theme {
+			color: var(--base-100);
+		}
 	}
 }
 
@@ -82,10 +92,15 @@
 		top: 4px;
 		width: 16px;
 		height: 16px;
-		border: 2px solid var(--radio-checkbox-border);
-		background-color: var(--radio-checkbox-bg);
+		border: 2px solid var(--secondary-400);
+		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
+
+		@include dark-theme {
+			border-color: var(--primary-300);
+			background-color: var(--base-50);
+		}
 	}
 
 	&:after {
@@ -98,6 +113,10 @@
 		background-color: var(--primary-400);
 		border-radius: 50%;
 		content: '';
+
+		@include dark-theme {
+			background-color: var(--primary-300);
+		}
 	}
 }
 
@@ -120,8 +139,12 @@
 	background-size: 12px;
 	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
 	background-repeat: no-repeat;
-	background-color: var(--input-background);
+	background-color: var(--base-50);
 	padding-right: $spacing-6 + $spacing-3;
+
+	@include dark-theme {
+		background-color: var(--base-700);
+	}
 
 	// Removes the IE dropdown arrow
 	&::-ms-expand {
