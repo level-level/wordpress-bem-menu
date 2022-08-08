@@ -1,0 +1,17 @@
+// Type checking
+// https://css-tricks.com/snippets/sass/advanced-type-checking/
+@function is-number($value) {
+	@return type-of($value) == 'number';
+}
+
+@function is-relative-length($value) {
+	@return is-number($value) and index('em' 'ex' 'ch' 'rem' 'vw' 'vh' 'vmin' 'vmax', unit($value)) != null;
+}
+
+@function is-absolute-length($value) {
+	@return is-number($value) and index('cm' 'mm' 'in' 'px' 'pt' 'pc', unit($value)) != null;
+}
+
+@function is-length($value) {
+	@return is-relative-length($value) or is-absolute-length($value);
+}
