@@ -753,16 +753,16 @@
         },
         {
             "name": "level-level/ll-plugin-autoloader",
-            "version": "v3.0.0",
+            "version": "v3.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/ll-plugin-autoloader.git",
-                "reference": "8ab95d3af0dd49c0060d89684f016eeb97e60f16"
+                "reference": "1b620013b9c88938ce5369262144cc08714315a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-plugin-autoloader/zipball/8ab95d3af0dd49c0060d89684f016eeb97e60f16",
-                "reference": "8ab95d3af0dd49c0060d89684f016eeb97e60f16",
+                "url": "https://api.github.com/repos/level-level/ll-plugin-autoloader/zipball/1b620013b9c88938ce5369262144cc08714315a0",
+                "reference": "1b620013b9c88938ce5369262144cc08714315a0",
                 "shasum": ""
             },
             "require-dev": {
@@ -777,9 +777,9 @@
             "description": "Simplifies loading the composer autoloader and mu-plugins in WordPress.",
             "support": {
                 "issues": "https://github.com/level-level/ll-plugin-autoloader/issues",
-                "source": "https://github.com/level-level/ll-plugin-autoloader/tree/master"
+                "source": "https://github.com/level-level/ll-plugin-autoloader/tree/v3.0.1"
             },
-            "time": "2020-07-17T15:00:05+00:00"
+            "time": "2022-08-08T13:55:34+00:00"
         },
         {
             "name": "level-level/logging",
