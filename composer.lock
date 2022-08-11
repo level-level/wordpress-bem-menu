@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e660fb8782039ab49172e5f57a37b9e",
+    "content-hash": "da2bf7c5a2950bf1084bb4263509a28b",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3658,16 +3658,16 @@
             "time": "2022-05-17T05:48:52+00:00"
         },
         {
-            "name": "wordplate/acf",
+            "name": "vinkla/extended-acf",
             "version": "11.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/wordplate/extended-acf.git",
+                "url": "https://github.com/vinkla/extended-acf.git",
                 "reference": "4ed02a95435b49e37459b8a0c4759797314aafd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wordplate/extended-acf/zipball/4ed02a95435b49e37459b8a0c4759797314aafd1",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/4ed02a95435b49e37459b8a0c4759797314aafd1",
                 "reference": "4ed02a95435b49e37459b8a0c4759797314aafd1",
                 "shasum": ""
             },
@@ -3716,10 +3716,9 @@
                 "wordpress"
             ],
             "support": {
-                "issues": "https://github.com/wordplate/extended-acf/issues",
-                "source": "https://github.com/wordplate/extended-acf/tree/11.2.0"
+                "issues": "https://github.com/vinkla/extended-acf/issues",
+                "source": "https://github.com/vinkla/extended-acf/tree/11.2.0"
             },
-            "abandoned": "vinkla/extended-acf",
             "time": "2021-11-03T13:41:55+00:00"
         },
         {
