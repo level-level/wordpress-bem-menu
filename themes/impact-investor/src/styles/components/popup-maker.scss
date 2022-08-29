@@ -68,5 +68,9 @@
 		:before {
 			box-sizing: initial;
 		}
+
+		@include dark-theme {
+			background-color: rgb(0 0 0 / 80%) !important;
+		}
 	}
 }
