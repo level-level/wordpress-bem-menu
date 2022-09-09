@@ -3840,15 +3840,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.1.3",
+            "version": "2.1.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.1.3"
+                "reference": "tags/2.1.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.3.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
