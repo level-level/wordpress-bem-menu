@@ -77,7 +77,7 @@
         ],
         "test:psalm": [
             "echo Deprecated: use 'test:phpstan' instead.",
-            "@test:phpstan"
+            "@test:psalm"
         ],
         "test:phpstan": [
             "phpstan --memory-limit=2g"
