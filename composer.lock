@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da2bf7c5a2950bf1084bb4263509a28b",
+    "content-hash": "5509da1ec4f727d4da157d1afbc83f6e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -865,13 +865,22 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.4.1",
+            "version": "2.6.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.4.1.zip",
-                "shasum": "e0f835eac99eeb2a72084f1025824631fda9c417"
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.6.zip",
+                "shasum": "496ba3146bab9769caee0f9094e37874e2116460"
             },
-            "type": "wordpress-plugin"
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "authors": {
+                "name": "Gravity Forms",
+                "homepage": "https://gravityforms.com"
+            },
+            "description": "Easily create web forms and manage form entries within the WordPress admin.",
+            "homepage": "https://gravityforms.com"
         },
         {
             "name": "ll-premium/popup-maker-advanced-targeting-conditions",
