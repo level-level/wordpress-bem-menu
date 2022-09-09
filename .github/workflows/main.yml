@@ -75,10 +75,10 @@ jobs:
           wp core install --allow-root  --url=localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@test.test
           wp plugin activate gravityforms --allow-root
           wp theme activate impact-investor --allow-root
-      - name: test:psalm
+      - name: test:phpstan
         run: |
           cd wp-content/
-          composer run test:psalm
+          composer run test:phpstan
       - name: Start PHP Server
         run: |
           nohup php -S 127.0.0.1:8080 > phpd.log 2>&1 &
