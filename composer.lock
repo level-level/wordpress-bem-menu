@@ -895,13 +895,22 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.2.3",
+            "version": "4.2.5",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.3.zip",
-                "shasum": "42b4bc090889b68f4ca3cecb6ec858244e1b45e2"
+                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.5.zip",
+                "shasum": "395099fefced4da2274788a751b1fc198439723d"
             },
-            "type": "wordpress-plugin"
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "authors": {
+                "name": "SearchWP",
+                "homepage": "https://searchwp.com/"
+            },
+            "description": "The best WordPress search you can find",
+            "homepage": "https://searchwp.com/"
         },
         {
             "name": "monolog/monolog",
