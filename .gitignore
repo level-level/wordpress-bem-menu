@@ -12,6 +12,7 @@
 /debug.log
 /.phpunit.result.cache
 /tests/coverage
+phpstan.neon
 
 .secrets
 

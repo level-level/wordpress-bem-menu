@@ -45,7 +45,7 @@
         "wpackagist-plugin/koko-analytics": "^1.0",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.15",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
-        "ll-premium/gravityforms": "2.6.4.1",
+        "ll-premium/gravityforms": "^2.6",
         "wpackagist-plugin/popup-maker": "^1.16",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
@@ -59,7 +59,7 @@
             "echo Running tests",
             "@test:composer",
             "@test:phpcs",
-            "@test:psalm",
+            "@test:phpstan",
             "@test:twigcs",
             "@test:docs"
         ],
@@ -76,7 +76,11 @@
             "twigcs themes/impact-investor/templates --severity error"
         ],
         "test:psalm": [
-            "./vendor/bin/psalm.phar"
+            "echo Deprecated: use 'test:phpstan' instead.",
+            "@test:phpstan"
+        ],
+        "test:phpstan": [
+            "phpstan --memory-limit=2g"
         ],
         "test:codeception": [
             "test ! -f codeception.yml && { echo NO LOCAL CONFIGURATION HAS BEEN SET UP. See README.md; exit 1; } || echo 'Local configuration found!'",
@@ -123,12 +127,15 @@
         "codeception/module-filesystem": "^1.0",
         "codeception/module-cli": "^1.1",
         "codeception/util-universalframework": "^1.0",
-        "psalm/phar": "^4.11"
+        "level-level/phpstan-config": "^1.0",
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "phpstan/extension-installer": "^1.1"
     },
     "config": {
         "allow-plugins": {
             "composer/installers": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "phpstan/extension-installer": true
         }
     }
 }

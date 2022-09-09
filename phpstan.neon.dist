@@ -1,0 +1,7 @@
+includes:
+  - phpstan-baseline.neon
+  - vendor/level-level/phpstan-config/config/wp-content.neon
+
+parameters:
+    paths:
+      - themes/impact-investor/app
