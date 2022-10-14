@@ -35,7 +35,7 @@ class post extends base_object {
 			array(
 				'walker' => new CommentWalker(),
 				'style'  => 'ol',
-			), display_comments( $args )
+			), get_comments( $args )
 		);
 	}
 
