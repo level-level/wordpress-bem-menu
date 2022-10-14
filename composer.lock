@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1702e113a69d2f08c6b7da6195ad1d70",
+    "content-hash": "69f0e7d569833b7ac1f03efb7fd1d414",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -650,16 +650,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.5.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "37341d5419fcf98d39ac494cf873a2c280c577c3"
+                "reference": "8abe8c8bed07f82a509bbaa61239941667404aa9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/37341d5419fcf98d39ac494cf873a2c280c577c3",
-                "reference": "37341d5419fcf98d39ac494cf873a2c280c577c3",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/8abe8c8bed07f82a509bbaa61239941667404aa9",
+                "reference": "8abe8c8bed07f82a509bbaa61239941667404aa9",
                 "shasum": ""
             },
             "require": {
@@ -709,9 +709,9 @@
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
                 "issues": "https://github.com/level-level/Clarkson-Core/issues",
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.5.0"
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.6.1"
             },
-            "time": "2022-03-24T12:23:18+00:00"
+            "time": "2022-10-12T08:40:48+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
@@ -860,18 +860,18 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12.3",
+            "version": "6.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.3.zip",
-                "shasum": "ab15da8c8cb4e95d053a68af0ff232ee2aada9a1"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.2.zip",
+                "shasum": "f486093cc4986f32d42a69bd7c6b46107f09bfab"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "authors": {
-                "name": "Delicious Brains",
+                "name": "WP Engine",
                 "homepage": "https://www.advancedcustomfields.com"
             },
             "description": "Customize WordPress with powerful, professional and intuitive fields.",
@@ -3532,16 +3532,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.4.2",
+            "version": "v3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077"
+                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077",
-                "reference": "e07cdd3d430cd7e453c31b36eb5ad6c0c5e43077",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c38fd6b0b7f370c198db91ffd02e23b517426b58",
+                "reference": "c38fd6b0b7f370c198db91ffd02e23b517426b58",
                 "shasum": ""
             },
             "require": {
@@ -3592,7 +3592,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.4.2"
+                "source": "https://github.com/twigphp/Twig/tree/v3.4.3"
             },
             "funding": [
                 {
@@ -3604,7 +3604,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-12T06:47:24+00:00"
+            "time": "2022-09-28T08:42:51+00:00"
         },
         {
             "name": "vinkla/extended-acf",
@@ -3780,15 +3780,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.1.9",
+            "version": "2.1.10",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.1.9"
+                "reference": "tags/2.1.10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.10.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3816,15 +3816,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.6.2",
+            "version": "7.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.6.2"
+                "reference": "tags/7.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.7.1.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3834,15 +3834,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.7.1",
+            "version": "19.8",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.7.1"
+                "reference": "tags/19.8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.7.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.8.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -9614,5 +9614,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

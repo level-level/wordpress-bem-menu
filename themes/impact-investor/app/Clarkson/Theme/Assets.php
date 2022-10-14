@@ -103,8 +103,10 @@ class Assets {
 
 	public function get_development_src( string $path = '' ): string {
 		$config   = $this->get_src_config();
-		$protocol = $config['secure'] ? 'https' : 'http';
-		return $protocol . '://localhost:' . $config['port'] . $path;
+		$secure   = $config['secure'] ?? false;
+		$port     = $config['port'] ?? 1234;
+		$protocol = $secure ? 'https' : 'http';
+		return $protocol . '://localhost:' . $port . $path;
 	}
 
 }

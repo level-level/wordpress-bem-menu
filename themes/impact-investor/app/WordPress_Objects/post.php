@@ -24,7 +24,7 @@ class post extends base_object {
 	/**
 	 * @return mixed
 	 */
-	public function get_comments() {
+	public function display_comments() {
 		$args = array(
 			'post_id' => $this->get_id(),
 			'order'   => 'ASC',
