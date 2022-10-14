@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1702e113a69d2f08c6b7da6195ad1d70",
+    "content-hash": "69f0e7d569833b7ac1f03efb7fd1d414",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -860,18 +860,18 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "5.12.3",
+            "version": "6.0.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-5.12.3.zip",
-                "shasum": "ab15da8c8cb4e95d053a68af0ff232ee2aada9a1"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.2.zip",
+                "shasum": "f486093cc4986f32d42a69bd7c6b46107f09bfab"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
             },
             "type": "wordpress-plugin",
             "authors": {
-                "name": "Delicious Brains",
+                "name": "WP Engine",
                 "homepage": "https://www.advancedcustomfields.com"
             },
             "description": "Customize WordPress with powerful, professional and intuitive fields.",

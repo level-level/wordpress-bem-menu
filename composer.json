@@ -28,7 +28,7 @@
     },
     "require": {
         "level-level/ll-plugin-autoloader": "^3.0",
-        "ll-premium/advanced-custom-fields-pro": "^5.12",
+        "ll-premium/advanced-custom-fields-pro": "^6.0",
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/disable-emojis": "^1.7",
         "level-level/wordpress-bem-menu": "^1.0",
