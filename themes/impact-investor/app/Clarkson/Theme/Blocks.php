@@ -9,6 +9,18 @@ class Blocks {
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
 		add_filter( 'render_block', array( $this, 'block_wrapper' ), 10, 2 );
+		add_filter( 'acf/pre_save_block', array( $this, 'add_block_id' ), 9 );
+	}
+
+	/**
+	 * @param array<int> $attributes
+	 * @return array<int|string>
+	 */
+	public function add_block_id( array $attributes ): array {
+		if ( empty( $attributes['id'] ) ) {
+			$attributes['id'] = 'acf-block-' . uniqid();
+		}
+		return $attributes;
 	}
 
 	/**
