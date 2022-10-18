@@ -35,7 +35,7 @@
 		flex-direction: column;
 		gap: $spacing-3;
 		padding-top: $spacing-3;
-		color: var(--secondary-600);
+		color: var(--base-600);
 
 		@include breakpoint(600px) {
 			padding-top: 0;
@@ -49,7 +49,7 @@
 
 	&__title {
 		@include font-heading-normal;
-		color: var(--secondary-600);
+		color: var(--base-600);
 
 		@include dark-theme {
 			color: var(--base-50);
