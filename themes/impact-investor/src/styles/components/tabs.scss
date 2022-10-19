@@ -30,11 +30,12 @@
 		}
 
 		@include hover-focus-style {
-			background-color: var(--secondary-400);
+			background-color: var(--secondary-200);
 			text-decoration: underline;
 
 			@include dark-theme {
 				background-color: var(--base-400);
+				color: var(--primary-300);
 			}
 		}
 

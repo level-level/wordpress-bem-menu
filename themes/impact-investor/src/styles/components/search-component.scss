@@ -6,6 +6,12 @@
 		top: 0;
 		right: 0;
 		height: 100%;
+
+		button {
+			@include dark-theme {
+				color: var(--base-50);
+			}
+		}
 	}
 
 	&--inline {
@@ -16,7 +22,7 @@
 			padding-right: $input-height;
 
 			@include dark-theme {
-				background-color: var(--base-50);
+				background-color: var(--base-500);
 				color: var(--base-50);
 			}
 
@@ -28,11 +34,7 @@
 				color: var(--secondary-200);
 
 				@include dark-theme {
-					color: var(--base-800);
-				}
-
-				@include breakpoint(sm) {
-					color: var(--base-800);
+					color: var(--base-50);
 				}
 			}
 

@@ -35,22 +35,28 @@
 		flex-direction: column;
 		gap: $spacing-3;
 		padding-top: $spacing-3;
+		color: var(--base-600);
 
 		@include breakpoint(600px) {
 			padding-top: 0;
 			align-items: flex-start;
 		}
+
+		@include dark-theme {
+			color: var(--base-50);
+		}
 	}
 
 	&__title {
-		color: var(--base-50);
-
 		@include font-heading-normal;
+		color: var(--base-600);
+
+		@include dark-theme {
+			color: var(--base-50);
+		}
 	}
 
 	&__text {
-		color: var(--base-50);
-
 		ul:not([class]) {
 			margin-top: 0;
 
