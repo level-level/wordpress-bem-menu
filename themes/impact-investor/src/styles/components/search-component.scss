@@ -31,7 +31,7 @@
 			}
 
 			@include placeholder {
-				color: var(--secondary-200);
+				color: var(--secondary-500);
 
 				@include dark-theme {
 					color: var(--base-50);
