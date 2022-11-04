@@ -3762,15 +3762,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.16.9",
+            "version": "1.16.12",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.16.9"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.zip?timestamp=1666757097"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
