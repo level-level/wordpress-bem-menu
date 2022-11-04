@@ -860,11 +860,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.2",
+            "version": "6.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.2.zip",
-                "shasum": "f486093cc4986f32d42a69bd7c6b46107f09bfab"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.3.zip",
+                "shasum": "788fa17f9e02ae14f8be6f765ee121df13262244"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
