@@ -650,16 +650,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.6.1",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "8abe8c8bed07f82a509bbaa61239941667404aa9"
+                "reference": "2d62d269c9cbdfe462018268778984e15eeebb36"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/8abe8c8bed07f82a509bbaa61239941667404aa9",
-                "reference": "8abe8c8bed07f82a509bbaa61239941667404aa9",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/2d62d269c9cbdfe462018268778984e15eeebb36",
+                "reference": "2d62d269c9cbdfe462018268778984e15eeebb36",
                 "shasum": ""
             },
             "require": {
@@ -709,9 +709,9 @@
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
                 "issues": "https://github.com/level-level/Clarkson-Core/issues",
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.6.1"
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.0"
             },
-            "time": "2022-10-12T08:40:48+00:00"
+            "time": "2022-10-14T10:17:47+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
@@ -860,11 +860,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.2",
+            "version": "6.0.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.2.zip",
-                "shasum": "f486093cc4986f32d42a69bd7c6b46107f09bfab"
+                "url": "https://satis.level-level.com/packages/ll-premium/advanced-custom-fields-pro/ll-premium-advanced-custom-fields-pro-6.0.3.zip",
+                "shasum": "788fa17f9e02ae14f8be6f765ee121df13262244"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3726,15 +3726,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.34",
+            "version": "1.0.35",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.34"
+                "reference": "tags/1.0.35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.34.zip"
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.35.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3744,15 +3744,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.2",
+            "version": "2.6.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.2"
+                "reference": "tags/2.6.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.2.zip"
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.3.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3762,15 +3762,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.16.9",
+            "version": "1.16.12",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.16.9"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.16.9.zip"
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.zip?timestamp=1666757097"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -3834,15 +3834,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.8",
+            "version": "19.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.8"
+                "reference": "tags/19.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.8.zip"
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.9.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
@@ -6295,28 +6295,27 @@
         },
         {
             "name": "phpstan/extension-installer",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/extension-installer.git",
-                "reference": "66c7adc9dfa38b6b5838a9fb728b68a7d8348051"
+                "reference": "f06dbb052ddc394e7896fcd1cfcd533f9f6ace40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/66c7adc9dfa38b6b5838a9fb728b68a7d8348051",
-                "reference": "66c7adc9dfa38b6b5838a9fb728b68a7d8348051",
+                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/f06dbb052ddc394e7896fcd1cfcd533f9f6ace40",
+                "reference": "f06dbb052ddc394e7896fcd1cfcd533f9f6ace40",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.1 || ^2.0",
-                "php": "^7.1 || ^8.0",
-                "phpstan/phpstan": ">=0.11.6"
+                "composer-plugin-api": "^2.0",
+                "php": "^7.2 || ^8.0",
+                "phpstan/phpstan": "^1.8.0"
             },
             "require-dev": {
-                "composer/composer": "^1.8",
-                "phing/phing": "^2.16.3",
+                "composer/composer": "^2.0",
                 "php-parallel-lint/php-parallel-lint": "^1.2.0",
-                "phpstan/phpstan-strict-rules": "^0.11 || ^0.12"
+                "phpstan/phpstan-strict-rules": "^0.11 || ^0.12 || ^1.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -6334,9 +6333,9 @@
             "description": "Composer plugin for automatic installation of PHPStan extensions",
             "support": {
                 "issues": "https://github.com/phpstan/extension-installer/issues",
-                "source": "https://github.com/phpstan/extension-installer/tree/1.1.0"
+                "source": "https://github.com/phpstan/extension-installer/tree/1.2.0"
             },
-            "time": "2020-12-13T13:06:13+00:00"
+            "time": "2022-10-17T12:59:16+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
