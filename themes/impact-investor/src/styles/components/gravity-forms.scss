@@ -180,13 +180,17 @@
 			color: var(--base-800);
 
 			@include dark-theme {
-				color: var(--primary-300);
+				color: var(--base-50);
 			}
 		}
 
 		label,
 		legend {
 			color: var(--base-800);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 		}
 
 		legend {
@@ -208,6 +212,10 @@
 
 		* {
 			color: var(--base-800);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
 		}
 
 		ol {
