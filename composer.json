@@ -32,7 +32,7 @@
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/disable-emojis": "^1.7",
         "level-level/wordpress-bem-menu": "^1.0",
-        "wpackagist-plugin/wordfence": "^7.4",
+        "wpackagist-plugin/wordfence": "^7.8",
         "wpackagist-plugin/post-smtp": "^2.0",
         "ext-mbstring": "^7.1",
         "level-level/clarkson-404": "^1.0",
