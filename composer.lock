@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "70b3c5be368a31c0a38d21d15fd4d1d2",
+    "content-hash": "d67ca0d78c66c8086951b99080d80299",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3937,15 +3937,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.16.12",
+            "version": "1.17.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "trunk"
+                "reference": "tags/1.17.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.zip?timestamp=1666757097"
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.17.0.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
