@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69f0e7d569833b7ac1f03efb7fd1d414",
+    "content-hash": "56a5ea7b9a3f762fc641b7a7a81ce5ae",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -788,17 +788,17 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v2.2.4",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "e38136eda7167a0171f009dac0e4ff3b5c9b7bad"
+                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/level-level/logging/level-level-logging-e38136eda7167a0171f009dac0e4ff3b5c9b7bad-zip-a135b5.zip",
-                "reference": "e38136eda7167a0171f009dac0e4ff3b5c9b7bad",
-                "shasum": "56c9adb9ba447bcc70c4c7e7c3f5be70040fa00b"
+                "url": "https://satis.level-level.com/packages/level-level/logging/level-level-logging-1a77f3e60bf13d23425255f4678200f13108ffb6-zip-9fff83.zip",
+                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6",
+                "shasum": "8764bd10c8f6c85b0c4d22b69428b0358f704426"
             },
             "require": {
                 "inpsyde/wonolog": "^1.0",
@@ -839,7 +839,7 @@
                 }
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
-            "time": "2021-11-02T09:55:24+00:00"
+            "time": "2022-11-24T08:26:49+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
