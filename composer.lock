@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56a5ea7b9a3f762fc641b7a7a81ce5ae",
+    "content-hash": "153aef208a469c9d0b6e1466a62ec96a",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -918,11 +918,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.2.6",
+            "version": "4.2.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.6.zip",
-                "shasum": "cf4d47abeff89b17a66235056eeebc6bd432364c"
+                "url": "https://satis.level-level.com/packages/ll-premium/searchwp/ll-premium-searchwp-4.2.8.zip",
+                "shasum": "77916042b0957cd4e55ae4f65a31d3bac5ea0e90"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
