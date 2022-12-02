@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d67ca0d78c66c8086951b99080d80299",
+    "content-hash": "a4c923bbc9b30959ab2ebea4548b2225",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3973,15 +3973,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.3.4",
+            "version": "5.3.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.3.4"
+                "reference": "tags/5.3.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.4.zip"
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.5.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
