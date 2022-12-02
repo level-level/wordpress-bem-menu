@@ -879,11 +879,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.7",
+            "version": "2.6.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.7.zip",
-                "shasum": "644560c235308d742ac6d7e926d784f3ae8497f0"
+                "url": "https://satis.level-level.com/packages/ll-premium/gravityforms/ll-premium-gravityforms-2.6.8.zip",
+                "shasum": "c4bc37aa3e90959dd1914c9408f904c2d9c16cd1"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
