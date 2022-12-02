@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10d31893af1ca9c48a8ab9bc5e4d7674",
+    "content-hash": "91b9d9b6950342160f9c9ee3a2a21b94",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3355,16 +3355,16 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.1.4",
+            "version": "v1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "e1503589f0a0ed4950c467558d99fbad108a21ca"
+                "reference": "e644df734e1bbe95810e0f617d17df091048a94e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/e1503589f0a0ed4950c467558d99fbad108a21ca",
-                "reference": "e1503589f0a0ed4950c467558d99fbad108a21ca",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/e644df734e1bbe95810e0f617d17df091048a94e",
+                "reference": "e644df734e1bbe95810e0f617d17df091048a94e",
                 "shasum": ""
             },
             "require": {
@@ -3408,7 +3408,7 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.1.4"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.1.3"
             },
             "funding": [
                 {
@@ -3420,7 +3420,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-11-09T20:15:16+00:00"
+            "time": "2022-09-22T13:14:50+00:00"
         },
         {
             "name": "twig/html-extra",
