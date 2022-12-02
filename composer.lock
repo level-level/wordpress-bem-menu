@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0f4e12da7d6e950e089399e1a534bd17",
+    "content-hash": "70b3c5be368a31c0a38d21d15fd4d1d2",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -3883,15 +3883,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.16.1",
+            "version": "1.16.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.16.1"
+                "reference": "tags/1.16.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.16.1.zip"
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.16.2.zip"
             },
             "require": {
                 "composer/installers": "^1.0 || ^2.0"
