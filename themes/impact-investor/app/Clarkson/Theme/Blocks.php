@@ -59,6 +59,7 @@ class Blocks {
 			'core/image',
 			'core/heading',
 			'core/list',
+			'core/list-item',
 			'core/quote',
 			'core/table',
 
