@@ -3,14 +3,18 @@
     "type": "project",
     "license": "proprietary",
     "description": "Level Level starter theme",
-    "repositories": [
-        {
+    "repositories": {
+        "private-packagist": {
+            "type": "composer",
+            "url": "https://repo.packagist.com/level-level/"
+        },
+        "0": {
             "type": "git",
             "url": "https://github.com/level-level/Wordpress-Bem-Menu"
         }
-    ],
+    },
     "autoload": {
-        "psr-4":{
+        "psr-4": {
             "Hooks\\": "themes/impact-investor/app/Hooks",
             "Clarkson\\": "themes/impact-investor/app/Clarkson",
             "Gutenberg\\Blocks\\": "themes/impact-investor/app/Gutenberg/",
@@ -103,8 +107,12 @@
                 "type:wordpress-muplugin",
                 "ll-premium/advanced-custom-fields-pro"
             ],
-            "./plugins/{$name}": ["type:wordpress-plugin"],
-            "./themes/{$name}": ["type:wordpress-theme"]
+            "./plugins/{$name}": [
+                "type:wordpress-plugin"
+            ],
+            "./themes/{$name}": [
+                "type:wordpress-theme"
+            ]
         }
     },
     "require-dev": {
