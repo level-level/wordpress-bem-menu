@@ -48,12 +48,10 @@ jobs:
       - name: Composer build
         run: |
           cd wp-content/
-          composer config http-basic.${{ secrets.SATIS_DOMAIN }} "${{ secrets.SATIS_USERNAME }}" "${{ secrets.SATIS_PASSWORD }}"
+          composer config --global --auth http-basic.repo.packagist.com token "${{ secrets.PRIVATE_PACKAGIST_TOKEN }}"
           composer install --prefer-dist
         env:
-          SATIS_DOMAIN: ${{ secrets.SATIS_DOMAIN }}
-          SATIS_USERNAME: ${{ secrets.SATIS_USERNAME }}
-          SATIS_PASSWORD: ${{ secrets.SATIS_PASSWORD }}
+          PRIVATE_PACKAGIST_TOKEN: ${{ secrets.PRIVATE_PACKAGIST_TOKEN }}
       - name: test:composer
         run: |
           cd wp-content/
