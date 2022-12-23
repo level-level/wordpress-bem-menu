@@ -5,10 +5,6 @@
     "description": "Level Level starter theme",
     "repositories": [
         {
-            "type": "composer",
-            "url": "https://satis.level-level.com"
-        },
-        {
             "type": "git",
             "url": "https://github.com/level-level/Wordpress-Bem-Menu"
         }
