@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.5",
+            "version": "6.0.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.5",
-                "shasum": "6f032c149ac06d8f0fe8711bd28c5bc923877254",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.6",
+                "shasum": "f4ca2a684d2e2f938bb8de2fed9e175f7d9e487d",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.8",
+            "version": "2.6.8.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.6.8",
-                "shasum": "825f53606392a62bf21d8550b710c782d90dbe00",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.6.8.3",
+                "shasum": "a09539b340a85a1039fec043ea9bfc74816906e8",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4314,15 +4314,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.35",
+            "version": "1.0.37",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.35"
+                "reference": "tags/1.0.37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.35.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.37.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4364,15 +4364,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.17.0",
+            "version": "1.17.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.17.0"
+                "reference": "tags/1.17.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.17.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.17.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4389,15 +4389,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.1.10",
+            "version": "2.2.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.1.10"
+                "reference": "tags/2.2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.10.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.2.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4414,15 +4414,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.3.5",
+            "version": "5.3.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.3.5"
+                "reference": "tags/5.3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4439,15 +4439,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.8.0",
+            "version": "7.8.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.8.0"
+                "reference": "tags/7.8.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.8.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.8.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4464,15 +4464,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.11",
+            "version": "19.13",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.11"
+                "reference": "tags/19.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.11.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.13.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
