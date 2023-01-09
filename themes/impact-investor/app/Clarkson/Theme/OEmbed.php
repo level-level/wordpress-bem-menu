@@ -111,7 +111,7 @@ class OEmbed {
 	 */
 	public function get_source( string $url ): string {
 		$host  = wp_parse_url( $url, PHP_URL_HOST );
-		$parts = explode( '.', $host );
+		$parts = is_string( $host ) ? explode( '.', $host ) : array();
 		$parts = array_reverse( $parts );
 
 		if ( strlen( $parts[1] ) <= 2 ) {
