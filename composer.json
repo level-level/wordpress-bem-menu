@@ -46,8 +46,7 @@
         "wpackagist-plugin/popup-maker": "^1.17",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
-        "vinkla/extended-acf": "^11.2",
-        "szepeviktor/phpstan-wordpress": "1.1.3"
+        "vinkla/extended-acf": "^11.2"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -130,7 +129,8 @@
         "codeception/module-cli": "^1.1",
         "codeception/util-universalframework": "^1.0",
         "level-level/phpstan-config": "^1.0",
-        "phpstan/extension-installer": "^1.1"
+        "phpstan/extension-installer": "^1.1",
+        "szepeviktor/phpstan-wordpress": "^1.1"
     },
     "config": {
         "allow-plugins": {
