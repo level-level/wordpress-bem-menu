@@ -92,10 +92,10 @@ class SendNewsletter extends BaseSync {
 	/**
 	 * Register articles in selligent, and then send the newsletter.
 	 */
-	public function sync( int $newsletter_id, bool $test_mode ): bool {
+	public function sync( int $newsletter_id, bool $test_mode ): void {
 		$newsletter = ii_newsletter::get( $newsletter_id );
 		if ( ! $newsletter instanceof ii_newsletter ) {
-			return false;
+			return;
 		}
 
 		if ( ! $test_mode ) {
@@ -111,7 +111,7 @@ class SendNewsletter extends BaseSync {
 			$article = post::get( $article_id );
 			if ( ! $article instanceof post ) {
 				$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'The article with ID %d does not exist.', $article_id ), LogLine::LEVEL_ERROR );
-				return false;
+				return;
 			}
 
 			$response = $client->register_post( $article );
@@ -125,7 +125,7 @@ class SendNewsletter extends BaseSync {
 						$response->get_error_message()
 					), LogLine::LEVEL_ERROR
 				);
-				return false;
+				return;
 			}
 		}
 
@@ -139,7 +139,7 @@ class SendNewsletter extends BaseSync {
 					$response->get_error_message()
 				), LogLine::LEVEL_ERROR
 			);
-			return false;
+			return;
 		}
 
 		// Send the newsletter
@@ -152,7 +152,7 @@ class SendNewsletter extends BaseSync {
 					$response->get_error_message()
 				), LogLine::LEVEL_ERROR
 			);
-			return false;
+			return;
 		}
 
 		if ( ! $test_mode ) {
@@ -160,6 +160,5 @@ class SendNewsletter extends BaseSync {
 		} else {
 			$this->selligent_logger->add_post_log( $newsletter_id, 'The newsletter has been sent in testmode.', LogLine::LEVEL_SUCCESS );
 		}
-		return true;
 	}
 }

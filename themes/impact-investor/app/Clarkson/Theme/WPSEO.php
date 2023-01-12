@@ -3,8 +3,8 @@ namespace Clarkson\Theme;
 
 class WPSEO {
 	public function register_hooks(): void {
-		add_filter( 'pre_get_document_title', array( $this, 'filter_wpseo_title' ), 10, 2 );
-		add_filter( 'wpseo_title', array( $this, 'filter_wpseo_title' ), 10, 1 );
+		add_filter( 'pre_get_document_title', array( $this, 'filter_wpseo_title' ) );
+		add_filter( 'wpseo_title', array( $this, 'filter_wpseo_title' ) );
 	}
 
 	public function filter_wpseo_title( string $title ): string {

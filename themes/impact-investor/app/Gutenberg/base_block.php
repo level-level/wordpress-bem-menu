@@ -57,11 +57,7 @@ class base_block extends Block_Type {
 	 */
 	public function __construct( string $block_type, $args = array() ) {
 		// Set props in constructor
-		$this->attributes    = array();
-		$this->editor_script = '';
-		$this->script        = '';
-		$this->editor_style  = '';
-		$this->style         = '';
+		$this->attributes = array();
 
 		// Let \WP_Block_Type overwrite variables
 		parent::__construct( $block_type, $args );
