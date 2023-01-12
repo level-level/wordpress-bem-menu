@@ -23,13 +23,13 @@ class Plugins {
 		add_filter( 'pre_option_gform_enable_noconflict', '__return_false' );
 
 		// Add a custom class around every gravity forms entity
-		add_filter( 'gform_get_form_filter', array( $this, 'add_custom_wrapper' ), 10, 2 );
+		add_filter( 'gform_get_form_filter', array( $this, 'add_custom_wrapper' ) );
 
 		// Custom the GF submit button HTML output
 		add_filter( 'gform_submit_button', array( $this, 'edit_form_button_html' ), 10, 2 );
 
 		// Set default GF options
-		add_filter( 'gform_form_settings_initial_values', array( $this, 'default_gravity_forms_settings' ), 10, 2 );
+		add_filter( 'gform_form_settings_initial_values', array( $this, 'default_gravity_forms_settings' ) );
 	}
 
 	/**

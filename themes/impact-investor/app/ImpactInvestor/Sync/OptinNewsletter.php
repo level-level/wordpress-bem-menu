@@ -48,7 +48,7 @@ class OptinNewsletter extends BaseSync {
 	/**
 	 * Register articles in selligent, and then send the newsletter.
 	 */
-	public function sync( int $entry_id ): bool {
+	public function sync( int $entry_id ): void {
 		$entry = GFAPI::get_entry( $entry_id );
 		if ( $entry instanceof WP_Error ) {
 			$this->selligent_logger->add_gravityforms_entry_log(
@@ -58,13 +58,13 @@ class OptinNewsletter extends BaseSync {
 					$entry->get_error_message()
 				), LogLine::LEVEL_ERROR
 			);
-			return false;
+			return;
 		}
 
 		$form = GFAPI::get_form( $entry['form_id'] );
 		if ( ! is_array( $form ) ) {
 			$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Could not subscribe to the newsletter because the form does not exist.', LogLine::LEVEL_ERROR );
-			return false;
+			return;
 		}
 
 		$email_field = null;
@@ -81,13 +81,13 @@ class OptinNewsletter extends BaseSync {
 					__( 'Email', 'gravityforms' )
 				), LogLine::LEVEL_ERROR
 			);
-			return false;
+			return;
 		}
 
 		$field_email_value = RGFormsModel::get_lead_field_value( $entry, $email_field );
 		if ( ! is_string( $field_email_value ) || ! filter_var( $field_email_value, FILTER_VALIDATE_EMAIL ) ) {
 			$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Could not subscribe to the newsletter because the entry has no valid e-mail address.', LogLine::LEVEL_ERROR );
-			return false;
+			return;
 		}
 
 		// Subscribe to the newsletter
@@ -101,9 +101,8 @@ class OptinNewsletter extends BaseSync {
 					$response->get_error_message()
 				), LogLine::LEVEL_ERROR
 			);
-			return false;
+			return;
 		}
 		$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Subscribing to the newsletter has finished.', LogLine::LEVEL_SUCCESS );
-		return true;
 	}
 }

@@ -28,7 +28,7 @@ class post extends base_object {
 		$args = array(
 			'post_id' => $this->get_id(),
 			'order'   => 'ASC',
-			'status'  => 1,
+			'status'  => 'approve',
 		);
 
 		return wp_list_comments(
