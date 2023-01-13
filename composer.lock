@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8f1d10cf92b04e7b3271fff16cbad46b",
+    "content-hash": "755c37e075a1b2a5f00f8ddb2aeda0d5",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -893,16 +893,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v2.4.2",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6"
+                "reference": "5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/1a77f3e60bf13d23425255f4678200f13108ffb6",
-                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd",
+                "reference": "5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -916,7 +916,7 @@
                 "sentry/sdk": "^3.0"
             },
             "require-dev": {
-                "level-level/coding-standards": "^1.0 || ^2.0"
+                "level-level/coding-standards": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -952,10 +952,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v2.4.2",
+                "source": "https://github.com/level-level/logging/tree/v2.5.0",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2022-11-24T08:26:49+00:00"
+            "time": "2023-01-10T12:44:51+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
