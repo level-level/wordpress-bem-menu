@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.6",
+            "version": "6.0.7",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.6",
-                "shasum": "f4ca2a684d2e2f938bb8de2fed9e175f7d9e487d",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.7",
+                "shasum": "2eab20bf6a472225be40c0b7bfbb10f7aa870a38",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
