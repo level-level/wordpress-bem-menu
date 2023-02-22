@@ -34,7 +34,7 @@
         "ext-mbstring": "^7.1",
         "level-level/clarkson-404": "^1.0",
         "level-level/logging": "^2.5",
-        "wpackagist-plugin/wordpress-seo": "^19.11",
+        "wpackagist-plugin/wordpress-seo": "^20.1",
         "wpackagist-plugin/redirection": "^5.3",
         "level-level/clarkson-wp-cli-twig-translations": "^1.0",
         "level-level/clarkson-core": "^1.0",

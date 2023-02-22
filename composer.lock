@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "755c37e075a1b2a5f00f8ddb2aeda0d5",
+    "content-hash": "5adae9706b9c203c1265f0fddf446377",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4271,15 +4271,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.14",
+            "version": "20.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.14"
+                "reference": "tags/20.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.14.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
