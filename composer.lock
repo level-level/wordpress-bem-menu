@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e34ee98c044c20a31b29d52394b9069",
+    "content-hash": "755c37e075a1b2a5f00f8ddb2aeda0d5",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -893,16 +893,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v2.4.2",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6"
+                "reference": "5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/1a77f3e60bf13d23425255f4678200f13108ffb6",
-                "reference": "1a77f3e60bf13d23425255f4678200f13108ffb6",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd",
+                "reference": "5c8ebc0b0191d7444f4f4905549fe9a5d69c54cd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -916,7 +916,7 @@
                 "sentry/sdk": "^3.0"
             },
             "require-dev": {
-                "level-level/coding-standards": "^1.0 || ^2.0"
+                "level-level/coding-standards": "^3.0"
             },
             "type": "library",
             "autoload": {
@@ -952,10 +952,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v2.4.2",
+                "source": "https://github.com/level-level/logging/tree/v2.5.0",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2022-11-24T08:26:49+00:00"
+            "time": "2023-01-10T12:44:51+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.5",
+            "version": "6.0.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.5",
-                "shasum": "6f032c149ac06d8f0fe8711bd28c5bc923877254",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.6",
+                "shasum": "f4ca2a684d2e2f938bb8de2fed9e175f7d9e487d",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.6.8",
+            "version": "2.6.8.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.6.8",
-                "shasum": "825f53606392a62bf21d8550b710c782d90dbe00",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.6.8.3",
+                "shasum": "a09539b340a85a1039fec043ea9bfc74816906e8",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1610,124 +1610,6 @@
                 "promise"
             ],
             "time": "2020-07-07T09:29:14+00:00"
-        },
-        {
-            "name": "php-stubs/wordpress-stubs",
-            "version": "v6.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-stubs/wordpress-stubs.git",
-                "reference": "e04781a84e364615a7b5f70fdc345c8253ca5b8f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/e04781a84e364615a7b5f70fdc345c8253ca5b8f",
-                "reference": "e04781a84e364615a7b5f70fdc345c8253ca5b8f",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "replace": {
-                "giacocorsiglia/wordpress-stubs": "*"
-            },
-            "require-dev": {
-                "nikic/php-parser": "< 4.12.0",
-                "php": "~7.3 || ~8.0",
-                "php-stubs/generator": "^0.8.1",
-                "phpdocumentor/reflection-docblock": "^5.3",
-                "phpstan/phpstan": "^1.2"
-            },
-            "suggest": {
-                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
-                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
-                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
-            },
-            "type": "library",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "WordPress function and class declaration stubs for static analysis.",
-            "homepage": "https://github.com/php-stubs/wordpress-stubs",
-            "keywords": [
-                "PHPStan",
-                "static analysis",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
-                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.0.1"
-            },
-            "time": "2022-07-15T11:10:45+00:00"
-        },
-        {
-            "name": "phpstan/phpstan",
-            "version": "1.8.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c386ab2741e64cc9e21729f891b28b2b10fe6618"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c386ab2741e64cc9e21729f891b28b2b10fe6618",
-                "reference": "c386ab2741e64cc9e21729f891b28b2b10fe6618",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": "^7.2|^8.0"
-            },
-            "conflict": {
-                "phpstan/phpstan-shim": "*"
-            },
-            "bin": [
-                "phpstan",
-                "phpstan.phar"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHPStan - PHP Static Analysis Tool",
-            "keywords": [
-                "dev",
-                "static analysis"
-            ],
-            "support": {
-                "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.6"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ondrejmirtes",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/phpstan",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-09-23T09:54:39+00:00"
         },
         {
             "name": "psr/container",
@@ -3266,16 +3148,16 @@
         },
         {
             "name": "symfony/polyfill-php73",
-            "version": "v1.26.0",
+            "version": "v1.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "e440d35fa0286f77fb45b79a03fedbeda9307e85"
+                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/e440d35fa0286f77fb45b79a03fedbeda9307e85",
-                "reference": "e440d35fa0286f77fb45b79a03fedbeda9307e85",
+                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
+                "reference": "9e8ecb5f92152187c4799efd3c96b78ccab18ff9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3290,7 +3172,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.26-dev"
+                    "dev-main": "1.27-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -3331,7 +3213,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php73/tree/v1.26.0"
+                "source": "https://github.com/symfony/polyfill-php73/tree/v1.27.0"
             },
             "funding": [
                 {
@@ -3347,7 +3229,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-05-24T11:49:31+00:00"
+            "time": "2022-11-03T14:55:06+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
@@ -3702,81 +3584,6 @@
                 }
             ],
             "time": "2022-06-27T16:58:25+00:00"
-        },
-        {
-            "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.1.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "e644df734e1bbe95810e0f617d17df091048a94e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/e644df734e1bbe95810e0f617d17df091048a94e",
-                "reference": "e644df734e1bbe95810e0f617d17df091048a94e",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "php": "^7.2 || ^8.0",
-                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0",
-                "phpstan/phpstan": "^1.6",
-                "symfony/polyfill-php73": "^1.12.0"
-            },
-            "require-dev": {
-                "composer/composer": "^2.1.14",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
-                "php-parallel-lint/php-parallel-lint": "^1.1",
-                "phpstan/phpstan-strict-rules": "^1.2",
-                "phpunit/phpunit": "^8 || ^9",
-                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.6"
-            },
-            "type": "phpstan-extension",
-            "extra": {
-                "phpstan": {
-                    "includes": [
-                        "extension.neon"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "SzepeViktor\\PHPStan\\WordPress\\": "src/"
-                }
-            },
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "WordPress extensions for PHPStan",
-            "keywords": [
-                "PHPStan",
-                "code analyse",
-                "code analysis",
-                "static analysis",
-                "wordpress"
-            ],
-            "support": {
-                "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.1.3"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.me/szepeviktor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/szepeviktor",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-09-22T13:14:50+00:00"
         },
         {
             "name": "twig/html-extra",
@@ -4314,15 +4121,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.35",
+            "version": "1.0.37",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.35"
+                "reference": "tags/1.0.37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.35.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.37.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4364,15 +4171,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.17.0",
+            "version": "1.17.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.17.0"
+                "reference": "tags/1.17.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.17.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.17.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4389,15 +4196,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.1.10",
+            "version": "2.2.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.1.10"
+                "reference": "tags/2.2.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.1.10.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.2.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4414,15 +4221,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.3.5",
+            "version": "5.3.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.3.5"
+                "reference": "tags/5.3.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4439,15 +4246,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.8.0",
+            "version": "7.8.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.8.0"
+                "reference": "tags/7.8.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.8.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.8.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4464,15 +4271,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "19.11",
+            "version": "19.13",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/19.11"
+                "reference": "tags/19.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.11.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.19.13.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -6984,6 +6791,59 @@
             "time": "2022-02-21T01:04:05+00:00"
         },
         {
+            "name": "php-stubs/wordpress-stubs",
+            "version": "v6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-stubs/wordpress-stubs.git",
+                "reference": "19e7966c8e70a99a4824b3e5d1526680a151f13b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-stubs/wordpress-stubs/zipball/19e7966c8e70a99a4824b3e5d1526680a151f13b",
+                "reference": "19e7966c8e70a99a4824b3e5d1526680a151f13b",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "replace": {
+                "giacocorsiglia/wordpress-stubs": "*"
+            },
+            "require-dev": {
+                "nikic/php-parser": "< 4.12.0",
+                "php": "~7.3 || ~8.0",
+                "php-stubs/generator": "^0.8.1",
+                "phpdocumentor/reflection-docblock": "^5.3",
+                "phpstan/phpstan": "^1.2"
+            },
+            "suggest": {
+                "paragonie/sodium_compat": "Pure PHP implementation of libsodium",
+                "symfony/polyfill-php73": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+                "szepeviktor/phpstan-wordpress": "WordPress extensions for PHPStan"
+            },
+            "type": "library",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress function and class declaration stubs for static analysis.",
+            "homepage": "https://github.com/php-stubs/wordpress-stubs",
+            "keywords": [
+                "PHPStan",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/php-stubs/wordpress-stubs/issues",
+                "source": "https://github.com/php-stubs/wordpress-stubs/tree/v6.1.0"
+            },
+            "time": "2022-11-09T05:33:25+00:00"
+        },
+        {
             "name": "php-webdriver/webdriver",
             "version": "1.12.1",
             "source": {
@@ -7222,6 +7082,71 @@
             ],
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "time": "2020-08-03T20:32:43+00:00"
+        },
+        {
+            "name": "phpstan/phpstan",
+            "version": "1.9.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpstan/phpstan.git",
+                "reference": "f68d7cc3d0638a01bc6321cb826e4cae7fa6884d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f68d7cc3d0638a01bc6321cb826e4cae7fa6884d",
+                "reference": "f68d7cc3d0638a01bc6321cb826e4cae7fa6884d",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^7.2|^8.0"
+            },
+            "conflict": {
+                "phpstan/phpstan-shim": "*"
+            },
+            "bin": [
+                "phpstan",
+                "phpstan.phar"
+            ],
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHPStan - PHP Static Analysis Tool",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
+            "support": {
+                "issues": "https://github.com/phpstan/phpstan/issues",
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.9"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ondrejmirtes",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/phpstan",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/phpstan/phpstan",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-01-11T14:39:22+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -10008,6 +9933,81 @@
             "time": "2022-08-02T15:52:22+00:00"
         },
         {
+            "name": "szepeviktor/phpstan-wordpress",
+            "version": "v1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
+                "reference": "27784541f184a1ea3b6656fc8a882bb9adf45fc2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/27784541f184a1ea3b6656fc8a882bb9adf45fc2",
+                "reference": "27784541f184a1ea3b6656fc8a882bb9adf45fc2",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^7.2 || ^8.0",
+                "php-stubs/wordpress-stubs": "^4.7 || ^5.0 || ^6.0",
+                "phpstan/phpstan": "^1.8.7",
+                "symfony/polyfill-php73": "^1.12.0"
+            },
+            "require-dev": {
+                "composer/composer": "^2.1.14",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+                "php-parallel-lint/php-parallel-lint": "^1.1",
+                "phpstan/phpstan-strict-rules": "^1.2",
+                "phpunit/phpunit": "^8.0 || ^9.0",
+                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.6.1"
+            },
+            "type": "phpstan-extension",
+            "extra": {
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "SzepeViktor\\PHPStan\\WordPress\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress extensions for PHPStan",
+            "keywords": [
+                "PHPStan",
+                "code analyse",
+                "code analysis",
+                "static analysis",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.1.6"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/szepeviktor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/szepeviktor",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-12-01T14:56:51+00:00"
+        },
+        {
             "name": "theseer/tokenizer",
             "version": "1.2.1",
             "source": {
@@ -10589,5 +10589,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

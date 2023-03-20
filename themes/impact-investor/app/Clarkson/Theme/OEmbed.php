@@ -142,7 +142,7 @@ class OEmbed {
 		$transient_name = "clarkson_{$source}_thumbnails_{$embed_id}";
 		$thumbnail      = get_transient( $transient_name );
 
-		if ( $thumbnail !== false ) {
+		if ( is_string( $thumbnail ) ) {
 			return $thumbnail;
 		}
 
