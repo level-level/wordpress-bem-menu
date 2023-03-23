@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.1",
+            "version": "2.7.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.1",
-                "shasum": "f892c113ec94e59dc7b6d1571bb5f077cd93b246",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.3",
+                "shasum": "354946b0516ba647c152dafdd50190459c32df36",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4146,15 +4146,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.3",
+            "version": "2.6.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.3"
+                "reference": "tags/2.6.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.4.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4171,15 +4171,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.18.0",
+            "version": "1.18.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.18.0"
+                "reference": "tags/1.18.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.18.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.18.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4196,15 +4196,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.4",
+            "version": "2.4.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.4"
+                "reference": "tags/2.4.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.4.5.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4246,15 +4246,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.9.0",
+            "version": "7.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.9.0"
+                "reference": "tags/7.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.9.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.9.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4271,15 +4271,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.1",
+            "version": "20.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.1"
+                "reference": "tags/20.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -6091,16 +6091,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.1.7",
+            "version": "3.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "7fe42a1e1ce4150c27e18261c91c1262efe8e54c"
+                "reference": "161bf51aea475f86fb124aad1642c845b5379444"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/7fe42a1e1ce4150c27e18261c91c1262efe8e54c",
-                "reference": "7fe42a1e1ce4150c27e18261c91c1262efe8e54c",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/161bf51aea475f86fb124aad1642c845b5379444",
+                "reference": "161bf51aea475f86fb124aad1642c845b5379444",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6190,7 +6190,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.1.7"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.1.8"
             },
             "funding": [
                 {
@@ -6198,7 +6198,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-14T08:36:32+00:00"
+            "time": "2023-02-24T15:10:07+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
