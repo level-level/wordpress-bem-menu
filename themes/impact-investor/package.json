@@ -28,7 +28,7 @@
     "@level-level/eslint-config-level-level": "^1.1.11",
     "@level-level/storybook-config": "^1.0.6",
     "@level-level/stylelint-config-level-level": "^1.0.21",
-    "@level-level/webpack-config": "^1.3.16",
+    "@level-level/webpack-config": "^1.3.23",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/jest": "^29.0.3",
     "@typescript-eslint/eslint-plugin": "^5.38.0",
