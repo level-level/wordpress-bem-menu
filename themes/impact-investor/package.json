@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@level-level/recyclops": "^2.1.11"
+    "@level-level/recyclops": "^2.1.19"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.1",
