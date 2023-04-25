@@ -22,7 +22,7 @@
     "@level-level/recyclops": "^2.1.19"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-env": "^7.21.4",
     "@babel/preset-typescript": "^7.21.0",
     "@jest/globals": "^29.5.0",
     "@level-level/eslint-config-level-level": "^1.1.11",
