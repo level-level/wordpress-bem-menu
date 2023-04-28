@@ -1078,11 +1078,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.2.9",
+            "version": "4.3.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.2.9",
-                "shasum": "c77ca9dac693e8bb200b6013753d7ce13e6e29cd",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.1",
+                "shasum": "223b1294e42be354cf4b554d10e3b7dc9cc052e0",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
