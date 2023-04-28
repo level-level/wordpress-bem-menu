@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.0.7",
+            "version": "6.1.4",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.0.7",
-                "shasum": "2eab20bf6a472225be40c0b7bfbb10f7aa870a38",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.1.4",
+                "shasum": "27f18e9e7b1b461d0eb98a818f9fdcac5440eb80",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1011,7 +1011,7 @@
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "authors": {
                 "name": "WP Engine",
-                "homepage": "https://www.advancedcustomfields.com"
+                "homepage": "https://wpengine.com/?utm_source=wordpress.org&#038;utm_medium=referral&#038;utm_campaign=plugin_directory&#038;utm_content=advanced_custom_fields"
             },
             "description": "Customize WordPress with powerful, professional and intuitive fields.",
             "homepage": "https://www.advancedcustomfields.com"
