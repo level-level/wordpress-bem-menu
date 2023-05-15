@@ -36,7 +36,7 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: mbstring, dom, simplexml
           tools: wp
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           path: wp-content/
           ref: ${{ github.event.pull_request.head.sha }}
@@ -98,19 +98,16 @@ jobs:
   npm-project:
     name: NPM test
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ['16.x']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 1
           ref: ${{github.event.pull_request.head.sha}}
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
           always-auth: true
-          node-version: ${{ matrix.node-version }}
+          node-version-file: '.nvmrc'
           registry-url: https://npm.pkg.github.com
           scope: '@level-level'
       - name: Clean install dependencies

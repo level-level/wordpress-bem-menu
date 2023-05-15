@@ -16,6 +16,10 @@
 - [ ] This change is covered by an automated (integration) test.
 - [ ] I have added/updated a JavaScript test.
 
+Steps to show the feature, or reproduce the bug:
+1. ...
+2. ...
+
 ## Documentation & communication
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
