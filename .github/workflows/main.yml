@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         php: ['8.0']
-        wp: ['6.1']
+        wp: ['6.2']
         mysql: ['5.7']
     services:
       mysql:

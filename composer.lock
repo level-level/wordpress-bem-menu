@@ -893,16 +893,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "deabb4b91370da900330f101ccac39ae710ebd5d"
+                "reference": "0c1ae1449908972257cc39f5bda78c3cb12aa7d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/deabb4b91370da900330f101ccac39ae710ebd5d",
-                "reference": "deabb4b91370da900330f101ccac39ae710ebd5d",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/0c1ae1449908972257cc39f5bda78c3cb12aa7d6",
+                "reference": "0c1ae1449908972257cc39f5bda78c3cb12aa7d6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -952,10 +952,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v2.6.0",
+                "source": "https://github.com/level-level/logging/tree/v2.6.1",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2023-04-13T14:04:35+00:00"
+            "time": "2023-05-08T09:11:15+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.1.4",
+            "version": "6.1.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.1.4",
-                "shasum": "27f18e9e7b1b461d0eb98a818f9fdcac5440eb80",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.1.6",
+                "shasum": "1500f523815c38ab04ee29a7c1f4e40949ad6604",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.4",
+            "version": "2.7.5",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.4",
-                "shasum": "d4ead9a9a2cb42f04defd8a9736962754f901dcd",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.5",
+                "shasum": "2f29154fbb2d4b904886d6541a244bc9beef066a",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4121,15 +4121,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.38",
+            "version": "1.0.37",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.38"
+                "reference": "tags/1.0.37"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.38.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.37.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4221,15 +4221,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.3.10",
+            "version": "5.3.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.3.10"
+                "reference": "tags/5.3.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.10.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.3.9.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -10598,5 +10598,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
