@@ -118,7 +118,7 @@
     "require-dev": {
         "niels-de-blaauw/php-doc-check": "^0.2.1",
         "wpackagist-plugin/user-switching": "^1.5",
-        "level-level/coding-standards": "^1.0",
+        "level-level/coding-standards": "^3.0",
         "friendsoftwig/twigcs": "^6.1",
         "lucatume/wp-browser": "^3.0",
         "codeception/module-asserts": "^1.3",
