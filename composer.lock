@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bec9617d08e8e525329bbd9b9aea49d",
+    "content-hash": "6102ffc80ee3e2da6c00039b956930ef",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -893,16 +893,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v2.6.1",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "0c1ae1449908972257cc39f5bda78c3cb12aa7d6"
+                "reference": "dbf56c47acc4e85676d048a9b05e615b85f1f7ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/0c1ae1449908972257cc39f5bda78c3cb12aa7d6",
-                "reference": "0c1ae1449908972257cc39f5bda78c3cb12aa7d6",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/dbf56c47acc4e85676d048a9b05e615b85f1f7ec",
+                "reference": "dbf56c47acc4e85676d048a9b05e615b85f1f7ec",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -952,10 +952,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v2.6.1",
+                "source": "https://github.com/level-level/logging/tree/v3.0.0",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2023-05-08T09:11:15+00:00"
+            "time": "2023-05-11T07:13:30+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
