@@ -41,6 +41,10 @@
 		color: var(--base-800);
 	}
 
+	@include theme-pp(dark) {
+		color: var(--base-50);
+	}
+
 	@include hover-focus-style {
 		background-color: transparent;
 		color: var(--base-500);
@@ -102,6 +106,10 @@
 		@include dark-theme {
 			background-color: var(--primary-300);
 			color: var(--base-50);
+		}
+
+		@include theme-energeia(true) {
+			color: var(--base-700);
 		}
 
 		.btn {
@@ -235,6 +243,10 @@
 	min-width: calc(#{$input-height} + 14px);
 	justify-content: center;
 	border: 0;
+
+	&.js-header-search {
+		color: var(--base-50);
+	}
 
 	.btn {
 		&__icon {
@@ -389,6 +401,10 @@ input[type='button'] {
 
 			@include dark-theme {
 				background-color: var(--primary-300);
+			}
+
+			@include theme-energeia(true) {
+				color: var(--base-700);
 			}
 		}
 

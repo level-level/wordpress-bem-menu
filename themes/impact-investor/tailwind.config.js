@@ -1,3 +1,5 @@
+const plugin = require( 'tailwindcss/plugin' ); // eslint-disable-line
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	content: ['./templates/**/*.twig'],
@@ -28,36 +30,56 @@ module.exports = {
 			'14': '56px',
 			'15': '60px',
 			'16': '64px',
+		},
+		colors: {
+			'transparent': 'transparent',
+			'white': 'white',
+			'ii': {
+				400: '#cd3613',
+			},
+			'energeia': {
+				400: '#01b06d',
+			},
+			'pp': {
+				400: '#2c3b60',
+			},
 		}
 	},
-	corePlugins: [
-		'preflight',
-		'gap',
-		'gridAutoColumns',
-		'gridAutoFlow',
-		'gridAutoRows',
-		'gridColumn',
-		'gridColumnEnd',
-		'gridColumnStart',
-		'gridRow',
-		'gridRowEnd',
-		'gridRowStart',
-		'gridTemplateColumns',
-		'gridTemplateRows',
-		'order',
-		'alignContent',
-		'alignItems',
-		'alignSelf',
-		'justifyContent',
-		'justifyItems',
-		'justifySelf',
-		'display',
-		'flex',
-		'flexDirection',
-		'flexGrow',
-		'flexShrink',
-		'flexWrap',
-		'flexBasis',
-	],
-	plugins: [],
+
+	// corePlugins: [
+	// 	'preflight',
+	// 	'gap',
+	// 	'gridAutoColumns',
+	// 	'gridAutoFlow',
+	// 	'gridAutoRows',
+	// 	'gridColumn',
+	// 	'gridColumnEnd',
+	// 	'gridColumnStart',
+	// 	'gridRow',
+	// 	'gridRowEnd',
+	// 	'gridRowStart',
+	// 	'gridTemplateColumns',
+	// 	'gridTemplateRows',
+	// 	'order',
+	// 	'alignContent',
+	// 	'alignItems',
+	// 	'alignSelf',
+	// 	'justifyContent',
+	// 	'justifyItems',
+	// 	'justifySelf',
+	// 	'display',
+	// 	'flex',
+	// 	'flexDirection',
+	// 	'flexGrow',
+	// 	'flexShrink',
+	// 	'flexWrap',
+	// 	'flexBasis',
+	// 	'position',
+	// 	'left'
+	// ],
+	plugins: [
+		plugin( function ( { addVariant, e } ) {
+			addVariant( 'hocus', ['&:hover', '&:focus-visible', '&:focus-within'] );
+		} )
+	]
 };

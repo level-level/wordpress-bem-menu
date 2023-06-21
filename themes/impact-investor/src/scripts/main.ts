@@ -11,6 +11,7 @@ import Table from './modules/table';
 import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
+import ThemeColorPreview from './modules/theme-color-preview';
 
 const modules: any = {
 	'theme-selection': ThemeSelection,
@@ -25,6 +26,7 @@ const modules: any = {
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
+	'theme-color-preview': ThemeColorPreview,
 };
 
 Array.from( document.querySelectorAll<HTMLElement>( '[data-module]' ) ).forEach( ( element: HTMLElement ) => {

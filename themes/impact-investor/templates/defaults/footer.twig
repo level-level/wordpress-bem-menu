@@ -19,7 +19,7 @@
 			<nav aria-labelledby="footer-heading">
 				<h2 class="screen-reader-text" id="footer-heading">{{ __('Important links', 'impact-investor') }}</h2>
 				<div class="container">
-					<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 						{% if has_nav_menu('about_navigation') %}
 							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
@@ -87,6 +87,18 @@
 				} %}
 			</div>
 		</div>
+
+		{% if current_user_can( 'manage_options' ) %}
+			<div class="hidden lg:fixed lg:bottom-0 lg:right-0 lg:z-10 lg:bg-white lg:p-2 lg:shadow-xl" data-module="theme-color-preview">
+				<ul>
+					<li>
+						<button class="w-4 h-4 p-0 border-0 rounded-full bg-ii-400 hocus:bg-ii-400" data-theme=""></button>
+						<button class="w-4 h-4 p-0 border-0 rounded-full bg-energeia-400 hocus:bg-energeia-400" data-theme="theme-energeia"></button>
+						<button class="w-4 h-4 p-0 border-0 rounded-full bg-pp-400 hocus:bg-pp-400" data-theme="theme-pp"></button>
+					</li>
+				</ul>
+			</div>
+		{% endif %}
 	</footer>
 {{ wp_footer() }}
 </body>
