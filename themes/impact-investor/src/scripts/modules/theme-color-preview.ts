@@ -33,7 +33,7 @@ class ThemeColorPreview implements IModule {
 		// If complete show theme preview div
 		if ( this.pattern.length === this.current ) {
 			this.current = 0;
-			this.element.classList.add( 'lg:block' );
+			this.element.classList.remove( 'hidden' );
 		}
 	}
 
