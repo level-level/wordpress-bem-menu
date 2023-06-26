@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6102ffc80ee3e2da6c00039b956930ef",
+    "content-hash": "f25c00aa2056b1e169d7e60c891bed1a",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.7",
+            "version": "2.7.9",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.7",
-                "shasum": "4f78c0c3e44278d4b11148e2c271d3b86d0f970c",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.9",
+                "shasum": "87430ac44e755e05b52e999fa82254b9db9e01cc",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4196,15 +4196,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.5.5",
+            "version": "2.5.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.5.5"
+                "reference": "tags/2.5.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.7.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4246,15 +4246,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.9.3",
+            "version": "7.10.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.9.3"
+                "reference": "tags/7.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.9.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.10.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4271,15 +4271,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.8",
+            "version": "20.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.8"
+                "reference": "tags/20.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.8.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.9.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
