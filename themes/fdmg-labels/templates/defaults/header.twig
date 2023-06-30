@@ -1,7 +1,7 @@
 <header class="header">
 
 	<!-- Skiplink -->
-	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ __('Straight to content', 'impact-investor') }}</a>
+	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ __('Straight to content', 'fdmg-labels') }}</a>
 
 	<div class="header__top">
 		<div class="container">
@@ -16,7 +16,7 @@
 						<a
 							class="brand"
 							href="{{ esc_url(home_url('/')) }}"
-							aria-label="{{ __('%s logo, go to the homepage', 'impact-investor')|format(get_bloginfo('name'))|raw }}"
+							aria-label="{{ __('%s logo, go to the homepage', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
 							>
 							<span class="brand__logo"></span>
 						</a>
@@ -32,7 +32,7 @@
 								url: newsletter.button.url,
 								class: 'btn--primary',
 								is_external: newsletter.button.target ? true,
-								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+								aria_label: __('Sign up to our weekly newsletter', 'fdmg-labels'),
 							} %}
 						{% endif %}
 						<ul class="list-header-buttons">

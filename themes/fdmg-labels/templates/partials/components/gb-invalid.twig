@@ -1,7 +1,7 @@
 {% if is_admin() %}
     <div class="gb-invalid">
-        <p>{{ __('%s. This block is invalid. <strong>Click here to edit this block.</strong>', 'impact-investor')|format(block.title)|raw }}</p>
-        <p><i>{{ __('Found errors', 'impact-investor') }}</i></p>
+        <p>{{ __('%s. This block is invalid. <strong>Click here to edit this block.</strong>', 'fdmg-labels')|format(block.title)|raw }}</p>
+        <p><i>{{ __('Found errors', 'fdmg-labels') }}</i></p>
         <ul>
         {% for error in errors.get_error_messages() %}
             <li>{{ error }}</li>

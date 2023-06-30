@@ -40,11 +40,11 @@
 					{% if email %}
 						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: __('E-mail', 'impact-investor'),
+								text: __('E-mail', 'fdmg-labels'),
 								url: 'mailto:' ~ email,
 								class: 'btn--primary btn--full',
 								is_external: false,
-								aria_label: __('E-mail, send %s an e-mail', 'impact-investor')|format(title),
+								aria_label: __('E-mail, send %s an e-mail', 'fdmg-labels')|format(title),
 								icon: 'email',
 								icon_left: true,
 							} %}
@@ -54,11 +54,11 @@
 					{% if linkedin %}
 						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: __('LinkedIn', 'impact-investor'),
+								text: __('LinkedIn', 'fdmg-labels'),
 								url: linkedin,
 								class: 'btn--primary btn--full',
 								is_external: false,
-								aria_label: __('LinkedIn, visit %s\'s LinkedIn profile', 'impact-investor')|format(title),
+								aria_label: __('LinkedIn, visit %s\'s LinkedIn profile', 'fdmg-labels')|format(title),
 								icon: 'linkedin',
 								icon_left: true,
 							} %}

@@ -5,7 +5,7 @@
 			{% if authors %}
 				<div>
 					<span class="screen-reader-text">
-						{{ __('Written by:', 'impact-investor') }}
+						{{ __('Written by:', 'fdmg-labels') }}
 					</span>
 					<ul class="flex gap-3">
 						{% for object in authors %}
@@ -29,7 +29,7 @@
 								text: comments,
 								url: url ~ '#comments',
 								class: 'btn--link',
-								aria_label: _n('%s comment on %s', '%s comments on %s', comments, 'impact-investor')|format(comments, title),
+								aria_label: _n('%s comment on %s', '%s comments on %s', comments, 'fdmg-labels')|format(comments, title),
 								icon: 'comment',
 								icon_left: true,
 							} %}

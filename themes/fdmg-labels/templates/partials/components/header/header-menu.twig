@@ -9,16 +9,16 @@
 		"target": ".{{ target }}",
 		"disableScroll": true,
 		"customScrollableElement": ".{{ scrollarea }}",
-		"defaultButtonText": "{{ __('Menu', 'impact-investor') }}",
-		"closeButtonText": "{{ __('Close', 'impact-investor') }}"
+		"defaultButtonText": "{{ __('Menu', 'fdmg-labels') }}",
+		"closeButtonText": "{{ __('Close', 'fdmg-labels') }}"
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
-		text: __('Menu', 'impact-investor'),
+		text: __('Menu', 'fdmg-labels'),
 		aria_expanded_support: true,
 		class: 'btn--menu ' ~ trigger,
-		aria_label: __('Open menu', 'impact-investor'),
-		aria_expanded_text: __('Close menu', 'impact-investor'),
-		aria_collapsed_text: __('Open menu', 'impact-investor'),
+		aria_label: __('Open menu', 'fdmg-labels'),
+		aria_expanded_text: __('Close menu', 'fdmg-labels'),
+		aria_collapsed_text: __('Open menu', 'fdmg-labels'),
 		icon: 'menu',
 		icon_expanded: 'close',
 		icon_left: true,
@@ -53,7 +53,7 @@
 								url: newsletter.button.url,
 								class: '',
 								is_external: newsletter.button.target ? true,
-								aria_label: __('Sign up to our weekly newsletter', 'impact-investor'),
+								aria_label: __('Sign up to our weekly newsletter', 'fdmg-labels'),
 								icon: 'email',
 								icon_left: true,
 							} %}

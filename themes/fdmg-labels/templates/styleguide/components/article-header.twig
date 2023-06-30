@@ -31,7 +31,7 @@
 				{% if authors %}
 					<div>
 						<span class="screen-reader-text">
-							{{ __('Written by:', 'impact-investor') }}
+							{{ __('Written by:', 'fdmg-labels') }}
 						</span>
 						<ul class="flex gap-3">
 							{% for object in authors %}
@@ -49,7 +49,7 @@
 
 				{% if date and datetime and date_full %}
 					<div>
-						<span class="screen-reader-text">{{ __('Published on: %s', 'impact-investor')|format(date_full)|raw }}</span>
+						<span class="screen-reader-text">{{ __('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
 						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 					</div>
 				{% endif %}

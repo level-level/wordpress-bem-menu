@@ -7,9 +7,9 @@
 {% set args = {
 		'type': 'list',
 		'mid_size': 1,
-		'before_page_number': '<span class="screen-reader-text">' ~ __('Page', 'impact-investor') ~ '</span>',
-		'prev_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_left ~ '</span><span class="screen-reader-text">' ~ __('Previous page', 'impact-investor') ~ '</span>',
-		'next_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_right ~ '</span><span class="screen-reader-text">' ~ __('Next page', 'impact-investor') ~ '</span>'
+		'before_page_number': '<span class="screen-reader-text">' ~ __('Page', 'fdmg-labels') ~ '</span>',
+		'prev_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_left ~ '</span><span class="screen-reader-text">' ~ __('Previous page', 'fdmg-labels') ~ '</span>',
+		'next_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_right ~ '</span><span class="screen-reader-text">' ~ __('Next page', 'fdmg-labels') ~ '</span>'
 	}
 %}
 
@@ -20,8 +20,8 @@
 {% set pagination = paginate_links(args) %}
 {% if pagination %}
 	<div class="section">
-		<nav class="pagination" aria-label="{{ __('Pagination', 'impact-investor') }}">
-			<h2 class="screen-reader-text">{{ __('Pagination', 'impact-investor') }}</h2>
+		<nav class="pagination" aria-label="{{ __('Pagination', 'fdmg-labels') }}">
+			<h2 class="screen-reader-text">{{ __('Pagination', 'fdmg-labels') }}</h2>
 			{{ pagination|raw }}
 		</nav>
 	</div>

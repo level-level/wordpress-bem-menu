@@ -1,4 +1,4 @@
-{% set title = data.title|default(__('Related news', 'impact-investor')) %}
+{% set title = data.title|default(__('Related news', 'fdmg-labels')) %}
 {% set objects = block.get_posts() %}
 
 {% if objects %}
