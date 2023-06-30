@@ -1,8 +1,8 @@
 <?php
 
-namespace ImpactInvestor\GravityForms\FormSettings;
+namespace FDMGLabels\GravityForms\FormSettings;
 
-use ImpactInvestor\GravityForms\FormSettings\DonationForm\DonationFrequency;
+use FDMGLabels\GravityForms\FormSettings\DonationForm\DonationFrequency;
 
 class FormSettings {
 
@@ -19,7 +19,10 @@ class FormSettings {
 
 	public function add_settings_section( array $fields, array $form ): array {
 		$fields['ii_form_settings'] = array(
-			'title'  => esc_html_x( 'Impact Investor form settings', 'GravityForms', 'impact-investor' ),
+			'title'  => esc_html( sprintf(
+				_x( '%s form settings', 'GravityForms', 'fdmg-labels' ),
+				get_bloginfo( 'name' )
+			) ),
 			'fields' => array_map(
 				function( BaseSetting $setting ) use ( $form ): array {
 					return $setting->get_data( $form );

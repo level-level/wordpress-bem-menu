@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Connectors\Selligent;
+namespace FDMGLabels\Connectors\Selligent;
 
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;

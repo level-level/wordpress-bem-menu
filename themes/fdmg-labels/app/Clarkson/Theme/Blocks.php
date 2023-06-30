@@ -31,8 +31,8 @@ class Blocks {
 			$categories,
 			array(
 				array(
-					'slug'  => 'impact-investor',
-					'title' => _x( 'Impact Investor', 'Block', 'impact-investor' ),
+					'slug'  => 'fdmg-labels',
+					'title' => get_bloginfo( 'name' ),
 				),
 			)
 		);

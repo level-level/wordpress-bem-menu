@@ -8,9 +8,12 @@ class ScriptTranslations {
 			'i18n',
 			array(
 				'navigation'  => array(
-					'subMenu' => __( 'Sub menu', 'impact-investor' ),
+					'subMenu' => __( 'Sub menu', 'fdmg-labels' ),
 				),
-				'socialShare' => __( 'I read this article via Impact Investor and I would like to share it with you:', 'impact-investor' ),
+				'socialShare' => sprintf(
+					__( 'I read this article via %s and I would like to share it with you:', 'fdmg-labels' ),
+					get_bloginfo( 'name' )
+				),
 			)
 		);
 	}
