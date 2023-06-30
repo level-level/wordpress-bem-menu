@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Search;
+namespace FDMGLabels\Search;
 
 use WP_Query;
 

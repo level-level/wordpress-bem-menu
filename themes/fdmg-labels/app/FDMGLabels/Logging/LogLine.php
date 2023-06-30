@@ -1,5 +1,5 @@
 <?php
-namespace ImpactInvestor\Logging;
+namespace FDMGLabels\Logging;
 
 use DateTime;
 

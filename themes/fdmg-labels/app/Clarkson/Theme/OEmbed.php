@@ -48,8 +48,8 @@ class OEmbed {
 			'source'         => $source,
 			'embed_type'     => $type,
 			'thumbnail'      => $thumbnail,
-			'notice_text'    => __( 'This content is available after accepting the cookies.', 'impact-investor' ),
-			'button_text'    => __( 'I agree', 'impact-investor' ),
+			'notice_text'    => __( 'This content is available after accepting the cookies.', 'fdmg-labels' ),
+			'button_text'    => __( 'I agree', 'fdmg-labels' ),
 			'disable_notice' => $this->maybe_disable_notice( $source, $html ),
 			'svg_icons'      => SVGIcons::get_instance(),
 		);
@@ -57,8 +57,8 @@ class OEmbed {
 		$options = get_field( 'theme_options', 'option' );
 
 		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
-			$args['notice_text'] = __( 'This content is available after accepting the social media cookies.', 'impact-investor' );
-			$args['button_text'] = __( 'Change cookie-settings', 'impact-investor' );
+			$args['notice_text'] = __( 'This content is available after accepting the social media cookies.', 'fdmg-labels' );
+			$args['button_text'] = __( 'Change cookie-settings', 'fdmg-labels' );
 		}
 
 		return Templates::get_instance()->render_twig( 'partials/components/oembeds/oembed.twig', $args, true );

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bundle name="Impact Investor">
-	<domain name="impact-investor">
-		<project name="Clarkson Theme" slug="impact-investor">
+<bundle name="FDMG Labels">
+	<domain name="fdmg-labels">
+		<project name="Clarkson Theme" slug="fdmg-labels">
 			<source>
 				<directory>.</directory>
 			</source>
@@ -9,12 +9,12 @@
 				<directory>languages</directory>
 			</target>
 			<template locked="true">
-				<file>languages/impact-investor.pot</file>
+				<file>languages/fdmg-labels.pot</file>
 			</template>
 		</project>
 	</domain>
-	<domain name="impact-investor-slugs">
-		<project name="Clarkson Theme slugs" slug="impact-investor-slugs">
+	<domain name="fdmg-labels-slugs">
+		<project name="Clarkson Theme slugs" slug="fdmg-labels-slugs">
 			<source>
 				<directory>.</directory>
 			</source>
@@ -22,7 +22,7 @@
 				<directory>languages</directory>
 			</target>
 			<template locked="true">
-				<file>languages/impact-investor-slugs.pot</file>
+				<file>languages/fdmg-labels-slugs.pot</file>
 			</template>
 		</project>
 	</domain>

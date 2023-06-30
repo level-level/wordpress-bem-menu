@@ -37,7 +37,7 @@ class Cleanup {
 
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 ) {
-			$title .= " {$sep} " . sprintf( __( 'Page %s', 'impact-investor' ), max( $paged, $page ) );
+			$title .= " {$sep} " . sprintf( __( 'Page %s', 'fdmg-labels' ), max( $paged, $page ) );
 		}
 		return $title;
 	}

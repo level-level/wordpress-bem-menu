@@ -14,11 +14,11 @@ class Navigation {
 	public function register_custom_nav_menus(): void {
 		register_nav_menus(
 			array(
-				'primary_navigation'  => __( 'Primary navigation', 'impact-investor' ),
-				'about_navigation'    => __( 'About navigation', 'impact-investor' ),
-				'general_navigation'  => __( 'General navigation', 'impact-investor' ),
-				'services_navigation' => __( 'Services navigation', 'impact-investor' ),
-				'fdmg_navigation'     => __( 'FDMG navigation', 'impact-investor' ),
+				'primary_navigation'  => __( 'Primary navigation', 'fdmg-labels' ),
+				'about_navigation'    => __( 'About navigation', 'fdmg-labels' ),
+				'general_navigation'  => __( 'General navigation', 'fdmg-labels' ),
+				'services_navigation' => __( 'Services navigation', 'fdmg-labels' ),
+				'fdmg_navigation'     => __( 'FDMG navigation', 'fdmg-labels' ),
 			)
 		);
 	}

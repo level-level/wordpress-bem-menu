@@ -27,7 +27,7 @@ class Support {
 		add_theme_support( 'html5', array( 'caption', 'comment-form', 'comment-list', 'gallery', 'search-form', 'navigation-widgets' ) );
 
 		// Make theme available for translation
-		load_theme_textdomain( 'impact-investor', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'fdmg-labels', get_template_directory() . '/languages' );
 	}
 
 	public function add_custom_functions( array $functions ): array {

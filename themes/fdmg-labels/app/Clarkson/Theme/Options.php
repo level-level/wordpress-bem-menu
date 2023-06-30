@@ -13,8 +13,8 @@ class Options {
 	public function add_options_pages(): void {
 		acf_add_options_page(
 			array(
-				'menu_title' => _x( 'Theme options', 'Options', 'impact-investor' ),
-				'page_title' => _x( 'Options', 'Options', 'impact-investor' ),
+				'menu_title' => _x( 'Theme options', 'Options', 'fdmg-labels' ),
+				'page_title' => _x( 'Options', 'Options', 'fdmg-labels' ),
 				'menu_slug'  => 'acf-options',
 				'icon_url'   => 'dashicons-admin-settings',
 			)

@@ -1,5 +1,5 @@
 <?php
-namespace ImpactInvestor\Logging\Selligent;
+namespace FDMGLabels\Logging\Selligent;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson_Core\Objects;
@@ -19,8 +19,8 @@ class MetaBoxes {
 		}
 
 		add_meta_box(
-			'impact-investor-selligent-log',
-			__( 'Selligent information', 'impact-investor' ),
+			'fdmg-labels-selligent-log',
+			__( 'Selligent information', 'fdmg-labels' ),
 			array( $this, 'render_newsletter_meta_box' ),
 			null,
 			'side',
@@ -39,8 +39,8 @@ class MetaBoxes {
 	}
 
 	public function add_gravityforms_entry_meta_box( array $boxes, array $entry, array $form ): array {
-		$boxes['impact_investor_selligent_log'] = array(
-			'title'    => __( 'Selligent information', 'impact-investor' ),
+		$boxes['fdmg_labels_selligent_log'] = array(
+			'title'    => __( 'Selligent information', 'fdmg-labels' ),
 			'callback' => array( $this, 'render_gravityforms_entry_meta_box' ),
 			'context'  => 'side',
 		);

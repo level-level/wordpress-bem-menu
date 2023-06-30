@@ -21,4 +21,4 @@ params:
 coverage:
     enabled: true
     include:
-        - themes/impact-investor/app/*
+        - themes/fdmg-labels/app/*

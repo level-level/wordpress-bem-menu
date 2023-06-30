@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Articles;
+namespace FDMGLabels\Articles;
 
 use WP_Post_Type;
 
@@ -21,7 +21,7 @@ class BlockTemplate {
 			array(
 				'core/paragraph',
 				array(
-					'placeholder' => _x( 'Introduction text.', 'Block', 'impact-investor' ),
+					'placeholder' => _x( 'Introduction text.', 'Block', 'fdmg-labels' ),
 					'fontSize'    => 'intro',
 				),
 			),
@@ -29,7 +29,7 @@ class BlockTemplate {
 			array(
 				'core/paragraph',
 				array(
-					'placeholder' => _x( 'Start article text..', 'Block', 'impact-investor' ),
+					'placeholder' => _x( 'Start article text..', 'Block', 'fdmg-labels' ),
 				),
 			),
 			array( 'acf/block-highlighted-content' ),

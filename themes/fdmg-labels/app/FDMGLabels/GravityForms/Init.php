@@ -1,8 +1,8 @@
 <?php
 
-namespace ImpactInvestor\GravityForms;
+namespace FDMGLabels\GravityForms;
 
-use ImpactInvestor\GravityForms\FormSettings\FormSettings;
+use FDMGLabels\GravityForms\FormSettings\FormSettings;
 
 class Init {
 

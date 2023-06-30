@@ -1,8 +1,8 @@
 <?php
 
-namespace ImpactInvestor\GravityForms\FormSettings;
+namespace FDMGLabels\GravityForms\FormSettings;
 
-use ImpactInvestor\GravityForms\FormSettings\BaseSetting;
+use FDMGLabels\GravityForms\FormSettings\BaseSetting;
 
 final class IsSelligentForm extends BaseSetting {
 	protected $default_value = false;
@@ -16,11 +16,11 @@ final class IsSelligentForm extends BaseSetting {
 	}
 
 	public function get_name(): string {
-		return _x( 'Is Selligent form', 'GravityForms', 'impact-investor' );
+		return _x( 'Is Selligent form', 'GravityForms', 'fdmg-labels' );
 	}
 
 	public function get_tooltip_message(): string {
-		return _x( 'Enable Selligent functionalities. Form entries will be sent to Selligent as a newsletter subscription.', 'GravityForms', 'impact-investor' );
+		return _x( 'Enable Selligent functionalities. Form entries will be sent to Selligent as a newsletter subscription.', 'GravityForms', 'fdmg-labels' );
 	}
 
 	public function pre_settings_save( array $form ): array {
@@ -35,7 +35,7 @@ final class IsSelligentForm extends BaseSetting {
 	 */
 	public function get_description(): string {
 		return sprintf(
-			_x( 'To use this functionality, a form field of the type "%s" must be present in the form.', 'GravityForms', 'impact-investor' ),
+			_x( 'To use this functionality, a form field of the type "%s" must be present in the form.', 'GravityForms', 'fdmg-labels' ),
 			__( 'Email', 'gravityforms' )
 		);
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\CLI;
+namespace FDMGLabels\CLI;
 
 class Init {
 	public function register_commands(): void {

@@ -1,12 +1,12 @@
 <?php
-namespace ImpactInvestor\Sync;
+namespace FDMGLabels\Sync;
 
+use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\GravityForms\FormSettings\IsSelligentForm;
+use FDMGLabels\Logging\LogLine;
+use FDMGLabels\Logging\Selligent\SelligentLogger;
 use GF_Field;
 use GFAPI;
-use ImpactInvestor\Connectors\Selligent\Client;
-use ImpactInvestor\GravityForms\FormSettings\IsSelligentForm;
-use ImpactInvestor\Logging\LogLine;
-use ImpactInvestor\Logging\Selligent\SelligentLogger;
 use RGFormsModel;
 use WP_Error;
 

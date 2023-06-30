@@ -1,5 +1,5 @@
 <?php
-namespace ImpactInvestor\KokoAnalytics;
+namespace FDMGLabels\KokoAnalytics;
 
 use Clarkson_Core\Objects;
 

@@ -58,7 +58,7 @@ Add `define( 'WP_ENVIRONMENT_TYPE', 'local' );` to `wp-config.php`.
 Important note: For security reasons Storybook will only work on your local machine and on a staging server.
 
 ### Examples
-Impact Investor comes with some [predefined stories](https://github.com/level-level/impact-investor/tree/main/themes/impact-investor/src/stories).
+FDMG Labels comes with some [predefined stories](https://github.com/level-level/fdmg-labels/tree/main/themes/fdmg-labels/src/stories).
 What is important for a story to work is that a story should always be located in the `src/stories` folder and that the name should include the `.stories` affix.
 
 ## Cookiebot

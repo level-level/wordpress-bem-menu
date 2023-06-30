@@ -1,7 +1,7 @@
 <?php
-namespace ImpactInvestor\Logging;
+namespace FDMGLabels\Logging;
 
-use ImpactInvestor\Logging\Selligent\MetaBoxes as SelligentMetaBoxes;
+use FDMGLabels\Logging\Selligent\MetaBoxes as SelligentMetaBoxes;
 
 class Init {
 

@@ -3,839 +3,839 @@ parameters:
 		-
 			message: "#^Method Clarkson\\\\CronAuth\\:\\:authenticate_cron_request\\(\\) has parameter \\$cron_request with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/CronAuth.php
+			path: themes/fdmg-labels/app/Clarkson/CronAuth.php
 
 		-
 			message: "#^Method Clarkson\\\\CronAuth\\:\\:authenticate_cron_request\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/CronAuth.php
+			path: themes/fdmg-labels/app/Clarkson/CronAuth.php
 
 		-
 			message: "#^Method Clarkson\\\\MailStyling\\:\\:add_content\\(\\) has parameter \\$mail_data with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/MailStyling.php
+			path: themes/fdmg-labels/app/Clarkson/MailStyling.php
 
 		-
 			message: "#^Method Clarkson\\\\MailStyling\\:\\:add_content\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/MailStyling.php
+			path: themes/fdmg-labels/app/Clarkson/MailStyling.php
 
 		-
 			message: "#^Method Clarkson\\\\MailStyling\\:\\:add_styling\\(\\) has parameter \\$mail_data with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/MailStyling.php
+			path: themes/fdmg-labels/app/Clarkson/MailStyling.php
 
 		-
 			message: "#^Parameter \\#1 \\$stack of function array_pop expects array, array\\<int, string\\>\\|false given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/MailStyling.php
+			path: themes/fdmg-labels/app/Clarkson/MailStyling.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\ACF\\:\\:prevent_field_group_sync\\(\\) has parameter \\$field_group with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACF.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACF.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\ACF\\:\\:prevent_field_group_sync\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACF.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACF.php
 
 		-
 			message: "#^Call to an undefined method object\\:\\:clarkson_render_callback\\(\\)\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACFBlocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACFBlocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\ACFBlocks\\:\\:block_render_callback\\(\\) has parameter \\$block with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACFBlocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACFBlocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\ACFBlocks\\:\\:set_default_block_type_args\\(\\) has parameter \\$block with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACFBlocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACFBlocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\ACFBlocks\\:\\:set_default_block_type_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/ACFBlocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/ACFBlocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Assets\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Assets\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Assets\\:\\:enqueue_development\\(\\) has parameter \\$deps with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Assets\\:\\:enqueue_editor_production\\(\\) has parameter \\$deps with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Assets\\:\\:get_src_config\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Assets.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Assets.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Blocks\\:\\:allowed_gutenberg_blocks\\(\\) has parameter \\$allowed_blocks with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Blocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Blocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Blocks\\:\\:allowed_gutenberg_blocks\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Blocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Blocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Blocks\\:\\:block_wrapper\\(\\) has parameter \\$block with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Blocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Blocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Blocks\\:\\:create_custom_gutenberg_categories\\(\\) has parameter \\$categories with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Blocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Blocks.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Blocks\\:\\:create_custom_gutenberg_categories\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Blocks.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Blocks.php
 
 		-
 			message: "#^Cannot cast array\\|string\\|false to string\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/OEmbed.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/OEmbed.php
 
 		-
 			message: "#^Parameter \\#2 \\$str of function explode expects string, string\\|false\\|null given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/OEmbed.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/OEmbed.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Options\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Options.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Options.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Options\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Options.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Options.php
 
 		-
 			message: "#^Cannot call method getTimestamp\\(\\) on DateTime\\|false\\.$#"
 			count: 2
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Newsletter.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Newsletter.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\PostTypes\\\\Newsletter\\:\\:limit_schedule_dates\\(\\) has parameter \\$field with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Newsletter.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Newsletter.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\PostTypes\\\\Newsletter\\:\\:wysiwyg_max_length\\(\\) has parameter \\$field with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Newsletter.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Newsletter.php
 
 		-
 			message: "#^Parameter \\#2 \\$args of function register_post_type expects array\\{label\\?\\: string, labels\\?\\: array\\<string\\>, description\\?\\: string, public\\?\\: bool, hierarchical\\?\\: bool, exclude_from_search\\?\\: bool, publicly_queryable\\?\\: bool, show_ui\\?\\: bool, \\.\\.\\.\\}, array\\{labels\\: array\\{name\\: string, singular_name\\: string, all_items\\: string, archives\\: string, attributes\\: string, insert_into_item\\: string, uploaded_to_this_item\\: string, featured_image\\: string, \\.\\.\\.\\}, public\\: false, hierarchical\\: false, show_ui\\: true, show_in_nav_menus\\: false, supports\\: array\\{'title', 'revisions'\\}, has_archive\\: false, rewrite\\: array\\{slug\\: string, with_front\\: false\\}, \\.\\.\\.\\} given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Newsletter.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Newsletter.php
 
 		-
 			message: "#^Parameter \\#2 \\$args of function register_post_type expects array\\{label\\?\\: string, labels\\?\\: array\\<string\\>, description\\?\\: string, public\\?\\: bool, hierarchical\\?\\: bool, exclude_from_search\\?\\: bool, publicly_queryable\\?\\: bool, show_ui\\?\\: bool, \\.\\.\\.\\}, array\\{labels\\: array\\{name\\: string, singular_name\\: string, all_items\\: string, archives\\: string, attributes\\: string, insert_into_item\\: string, uploaded_to_this_item\\: string, featured_image\\: string, \\.\\.\\.\\}, public\\: true, hierarchical\\: false, show_ui\\: true, show_in_nav_menus\\: true, supports\\: array\\{'title', 'editor', 'thumbnail', 'excerpt'\\}, has_archive\\: false, rewrite\\: array\\{slug\\: string\\}, \\.\\.\\.\\} given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Partner.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Partner.php
 
 		-
 			message: "#^Parameter \\#2 \\$args of function register_post_type expects array\\{label\\?\\: string, labels\\?\\: array\\<string\\>, description\\?\\: string, public\\?\\: bool, hierarchical\\?\\: bool, exclude_from_search\\?\\: bool, publicly_queryable\\?\\: bool, show_ui\\?\\: bool, \\.\\.\\.\\}, array\\{labels\\: array\\{name\\: string, singular_name\\: string, all_items\\: string, archives\\: string, attributes\\: string, insert_into_item\\: string, uploaded_to_this_item\\: string, featured_image\\: string, \\.\\.\\.\\}, public\\: true, hierarchical\\: false, show_ui\\: true, show_in_nav_menus\\: true, supports\\: array\\{'title', 'editor', 'thumbnail', 'excerpt'\\}, has_archive\\: true, rewrite\\: array\\{slug\\: string\\}, \\.\\.\\.\\} given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Team.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Team.php
 
 		-
 			message: "#^Parameter \\#2 \\$args of function register_post_type expects array\\{label\\?\\: string, labels\\?\\: array\\<string\\>, description\\?\\: string, public\\?\\: bool, hierarchical\\?\\: bool, exclude_from_search\\?\\: bool, publicly_queryable\\?\\: bool, show_ui\\?\\: bool, \\.\\.\\.\\}, array\\{labels\\: array\\{name\\: string, singular_name\\: string, all_items\\: string, archives\\: string, attributes\\: string, insert_into_item\\: string, uploaded_to_this_item\\: string, featured_image\\: string, \\.\\.\\.\\}, public\\: true, hierarchical\\: false, show_ui\\: true, show_in_nav_menus\\: true, supports\\: array\\{'title', 'editor', 'thumbnail', 'excerpt'\\}, has_archive\\: false, rewrite\\: array\\{slug\\: string\\}, \\.\\.\\.\\} given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/PostTypes/Vacancy.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/PostTypes/Vacancy.php
 
 		-
 			message: "#^Argument of an invalid type array\\<int, string\\>\\|false supplied for foreach, only iterables are supported\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/SVGIcons.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/SVGIcons.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\SVGIcons\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/SVGIcons.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/SVGIcons.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\SVGIcons\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/SVGIcons.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/SVGIcons.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\SVGIcons\\:\\:get_svgs\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/SVGIcons.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/SVGIcons.php
 
 		-
 			message: "#^Property Clarkson\\\\Theme\\\\SVGIcons\\:\\:\\$svgs type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/SVGIcons.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/SVGIcons.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Support\\:\\:add_custom_functions\\(\\) has parameter \\$functions with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Support.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Support.php
 
 		-
 			message: "#^Method Clarkson\\\\Theme\\\\Support\\:\\:add_custom_functions\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Support.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Support.php
 
 		-
 			message: "#^Empty array passed to foreach\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Theme/Taxonomies.php
+			path: themes/fdmg-labels/app/Clarkson/Theme/Taxonomies.php
 
 		-
 			message: "#^Parameter \\#2 \\$html of method Clarkson\\\\Utilities\\\\ContentConverter\\:\\:node_to_block\\(\\) expects string, string\\|false given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/ContentConverter.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/ContentConverter.php
 
 		-
 			message: "#^Empty array passed to foreach\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Image.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Image.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Image\\:\\:download_image\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Image.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Image.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Image\\:\\:get_image_object\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Image.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Image.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Image\\:\\:get_image_objects\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Image.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Image.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Image\\:\\:set_post_thumbnail\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Image.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Image.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$cache\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Import.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Import.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$group_ops\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Import.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Import.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$memcache_debug\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Import.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Import.php
 
 		-
 			message: "#^Access to an undefined property object\\:\\:\\$stats\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Import.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Import.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Init\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Init.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Init.php
 
 		-
 			message: "#^Method Clarkson\\\\Utilities\\\\Init\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/Utilities/Init.php
+			path: themes/fdmg-labels/app/Clarkson/Utilities/Init.php
 
 		-
 			message: "#^Method Clarkson\\\\WPadmin\\\\Plugins\\:\\:default_gravity_forms_settings\\(\\) has parameter \\$initial_values with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/WPadmin/Plugins.php
+			path: themes/fdmg-labels/app/Clarkson/WPadmin/Plugins.php
 
 		-
 			message: "#^Method Clarkson\\\\WPadmin\\\\Plugins\\:\\:default_gravity_forms_settings\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/WPadmin/Plugins.php
+			path: themes/fdmg-labels/app/Clarkson/WPadmin/Plugins.php
 
 		-
 			message: "#^Method Clarkson\\\\WPadmin\\\\Plugins\\:\\:edit_form_button_html\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Clarkson/WPadmin/Plugins.php
+			path: themes/fdmg-labels/app/Clarkson/WPadmin/Plugins.php
 
 		-
 			message: "#^Cannot access offset 'amount' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_articles_in_columns.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_articles_in_columns.php
 
 		-
 			message: "#^Cannot access offset 'is_fill_disabled' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_articles_in_columns.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_articles_in_columns.php
 
 		-
 			message: "#^Cannot access offset 'selected_posts' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_articles_in_columns.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_articles_in_columns.php
 
 		-
 			message: "#^Cannot access offset 'terms' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_articles_in_columns.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_articles_in_columns.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_block_articles_in_columns\\:\\:get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_articles_in_columns.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_articles_in_columns.php
 
 		-
 			message: "#^Cannot access offset 'is_fill_disabled' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_featured_article.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_featured_article.php
 
 		-
 			message: "#^Cannot access offset 'selected_posts' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_featured_article.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_featured_article.php
 
 		-
 			message: "#^Cannot access offset 'terms' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_featured_article.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_featured_article.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_block_featured_article\\:\\:get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_featured_article.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_featured_article.php
 
 		-
 			message: "#^Cannot access offset 'amount' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_related_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_related_articles.php
 
 		-
 			message: "#^Cannot access offset 'is_fill_disabled' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_related_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_related_articles.php
 
 		-
 			message: "#^Cannot access offset 'selected_posts' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_related_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_related_articles.php
 
 		-
 			message: "#^Cannot access offset 'terms' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_related_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_related_articles.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_block_related_articles\\:\\:get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_block_related_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_block_related_articles.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_widget_latest_and_most_read_posts\\:\\:get_latest_articles\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_latest_and_most_read_posts.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_latest_and_most_read_posts.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_widget_latest_and_most_read_posts\\:\\:get_most_read_articles\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_latest_and_most_read_posts.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_latest_and_most_read_posts.php
 
 		-
 			message: "#^Cannot access offset 'amount' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_latest_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_latest_articles.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_widget_latest_articles\\:\\:get_latest_articles\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_latest_articles.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_latest_articles.php
 
 		-
 			message: "#^Cannot access offset 'amount' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_vacancies.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_vacancies.php
 
 		-
 			message: "#^Cannot access offset 'is_fill_disabled' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_vacancies.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_vacancies.php
 
 		-
 			message: "#^Cannot access offset 'selected_posts' on array\\|bool\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_vacancies.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_vacancies.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\acf_widget_vacancies\\:\\:get_posts\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/acf_widget_vacancies.php
+			path: themes/fdmg-labels/app/Gutenberg/acf_widget_vacancies.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:__construct\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:clarkson_render_callback\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:get_preview_mode\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:get_query_args\\(\\) has parameter \\$exluded_objects with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:get_query_args\\(\\) has parameter \\$post_types with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:get_query_args\\(\\) has parameter \\$terms with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:get_query_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:has_example\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:is_preview\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Method Gutenberg\\\\Blocks\\\\base_block\\:\\:validate\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Parameter \\#1 \\$filename of function file_exists expects string, string\\|false given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Parameter \\#3 \\$subject of function str_replace expects array\\|string, string\\|false given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
 			message: "#^Property Gutenberg\\\\Blocks\\\\base_block\\:\\:\\$content_attributes type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/Gutenberg/base_block.php
+			path: themes/fdmg-labels/app/Gutenberg/base_block.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Articles\\\\ArticleBlockRegister\\:\\:add_ids\\(\\) has parameter \\$ids with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Articles\\\\ArticleBlockRegister\\:\\:add_ids\\(\\) has parameter \\$ids with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Articles/ArticleBlockRegister.php
+			path: themes/fdmg-labels/app/FDMGLabels/Articles/ArticleBlockRegister.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Articles\\\\ArticleBlockRegister\\:\\:get_ids\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Articles\\\\ArticleBlockRegister\\:\\:get_ids\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Articles/ArticleBlockRegister.php
+			path: themes/fdmg-labels/app/FDMGLabels/Articles/ArticleBlockRegister.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Articles\\\\ArticleBlockRegister\\:\\:maybe_add_id_exclude_to_query_args\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Articles\\\\ArticleBlockRegister\\:\\:maybe_add_id_exclude_to_query_args\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Articles/ArticleBlockRegister.php
+			path: themes/fdmg-labels/app/FDMGLabels/Articles/ArticleBlockRegister.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Articles\\\\ArticleBlockRegister\\:\\:maybe_add_id_exclude_to_query_args\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Articles\\\\ArticleBlockRegister\\:\\:maybe_add_id_exclude_to_query_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Articles/ArticleBlockRegister.php
+			path: themes/fdmg-labels/app/FDMGLabels/Articles/ArticleBlockRegister.php
 
 		-
-			message: "#^Property ImpactInvestor\\\\Articles\\\\ArticleBlockRegister\\:\\:\\$shown_ids type has no value type specified in iterable type array\\.$#"
+			message: "#^Property FDMGLabels\\\\Articles\\\\ArticleBlockRegister\\:\\:\\$shown_ids type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Articles/ArticleBlockRegister.php
+			path: themes/fdmg-labels/app/FDMGLabels/Articles/ArticleBlockRegister.php
 
 		-
-			message: "#^Parameter \\#2 \\$callable of static method WP_CLI\\:\\:add_command\\(\\) expects callable\\(\\)\\: mixed, 'ImpactInvestor\\\\\\\\CLI\\\\\\\\Selligent' given\\.$#"
+			message: "#^Parameter \\#2 \\$callable of static method WP_CLI\\:\\:add_command\\(\\) expects callable\\(\\)\\: mixed, 'FDMGLabels\\\\\\\\CLI\\\\\\\\Selligent' given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Init.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Init.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:echo_response\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:echo_response\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:filter_post_ids\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:filter_post_ids\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:handle_default_flags\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:handle_default_flags\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:optin_email\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:optin_email\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:optin_email\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:optin_email\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:preview_request\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:preview_request\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:preview_request\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:preview_request\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:register_article\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:register_article\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:register_article\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:register_article\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:register_newsletter\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:register_newsletter\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:register_newsletter\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:register_newsletter\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:send_newsletter\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:send_newsletter\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:send_newsletter\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:send_newsletter\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:status\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:status\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\CLI\\\\Selligent\\:\\:status\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\CLI\\\\Selligent\\:\\:status\\(\\) has parameter \\$args_assoc with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
 			message: "#^Used function WP_CLI\\\\Utils\\\\get_flag_value not found\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/CLI/Selligent.php
+			path: themes/fdmg-labels/app/FDMGLabels/CLI/Selligent.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:comment\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:comment\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:display_element\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:display_element\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:display_element\\(\\) has parameter \\$children_elements with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:display_element\\(\\) has parameter \\$children_elements with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:end_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:end_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:end_lvl\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:end_lvl\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:start_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:start_el\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:start_lvl\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:start_lvl\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^PHPDoc type array of property ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:\\$db_fields is not covariant with PHPDoc type array\\<string\\> of overridden property Walker_Comment\\:\\:\\$db_fields\\.$#"
+			message: "#^PHPDoc type array of property FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:\\$db_fields is not covariant with PHPDoc type array\\<string\\> of overridden property Walker_Comment\\:\\:\\$db_fields\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Parameter \\#1 \\$comment of method ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:comment\\(\\) expects WP_Comment, object given\\.$#"
+			message: "#^Parameter \\#1 \\$comment of method FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:comment\\(\\) expects WP_Comment, object given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
 			message: "#^Parameter \\#1 \\$element of method Walker_Comment\\:\\:display_element\\(\\) expects WP_Comment, object given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Property ImpactInvestor\\\\Comments\\\\CommentWalker\\:\\:\\$db_fields type has no value type specified in iterable type array\\.$#"
+			message: "#^Property FDMGLabels\\\\Comments\\\\CommentWalker\\:\\:\\$db_fields type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/CommentWalker.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/CommentWalker.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\Comments\\:\\:edit_comment_form\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\Comments\\:\\:edit_comment_form\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/Comments.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/Comments.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Comments\\\\Comments\\:\\:edit_comment_form\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Comments\\\\Comments\\:\\:edit_comment_form\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Comments/Comments.php
+			path: themes/fdmg-labels/app/FDMGLabels/Comments/Comments.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:get_auth_headers\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:get_auth_headers\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:optin_email\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:optin_email\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:post\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:post\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:post\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:post\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:register_newsletter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:register_newsletter\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:register_post\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:register_post\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\Client\\:\\:send_newsletter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\Client\\:\\:send_newsletter\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
 			message: "#^PHPDoc tag @param references unknown parameter\\: \\$url$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/Client.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/Client.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\DataGenerator\\:\\:get_article_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\DataGenerator\\:\\:get_article_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/DataGenerator.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/DataGenerator.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Connectors\\\\Selligent\\\\DataGenerator\\:\\:get_newsletter_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Connectors\\\\Selligent\\\\DataGenerator\\:\\:get_newsletter_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Connectors/Selligent/DataGenerator.php
+			path: themes/fdmg-labels/app/FDMGLabels/Connectors/Selligent/DataGenerator.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:add_tooltip\\(\\) has parameter \\$tooltips with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:add_tooltip\\(\\) has parameter \\$tooltips with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:add_tooltip\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:add_tooltip\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_choices\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_choices\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_data\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_data\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_value\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:get_value\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:pre_settings_save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:pre_settings_save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:pre_settings_save\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\BaseSetting\\:\\:pre_settings_save\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/BaseSetting.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/BaseSetting.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) has parameter \\$fields with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/FormSettings.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/FormSettings.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/FormSettings.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/FormSettings.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:add_settings_section\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/FormSettings.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/FormSettings.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:get\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\FormSettings\\:\\:get\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/FormSettings.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/FormSettings.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\IsSelligentForm\\:\\:pre_settings_save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\IsSelligentForm\\:\\:pre_settings_save\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/IsSelligentForm.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/IsSelligentForm.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\GravityForms\\\\FormSettings\\\\IsSelligentForm\\:\\:pre_settings_save\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\GravityForms\\\\FormSettings\\\\IsSelligentForm\\:\\:pre_settings_save\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/GravityForms/FormSettings/IsSelligentForm.php
+			path: themes/fdmg-labels/app/FDMGLabels/GravityForms/FormSettings/IsSelligentForm.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\KokoAnalytics\\\\KokoAnalytics\\:\\:get_most_viewed_articles\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\KokoAnalytics\\\\KokoAnalytics\\:\\:get_most_viewed_articles\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/KokoAnalytics/KokoAnalytics.php
+			path: themes/fdmg-labels/app/FDMGLabels/KokoAnalytics/KokoAnalytics.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\LogLine\\:\\:from_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\LogLine\\:\\:from_data\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/LogLine.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/LogLine.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\LogLine\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\LogLine\\:\\:get_data\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/LogLine.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/LogLine.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$boxes with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$boxes with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/Selligent/MetaBoxes.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/Selligent/MetaBoxes.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$entry with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$entry with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/Selligent/MetaBoxes.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/Selligent/MetaBoxes.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/Selligent/MetaBoxes.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/Selligent/MetaBoxes.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:add_gravityforms_entry_meta_box\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/Selligent/MetaBoxes.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/Selligent/MetaBoxes.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:render_gravityforms_entry_meta_box\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Logging\\\\Selligent\\\\MetaBoxes\\:\\:render_gravityforms_entry_meta_box\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Logging/Selligent/MetaBoxes.php
+			path: themes/fdmg-labels/app/FDMGLabels/Logging/Selligent/MetaBoxes.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Sync\\\\BaseSync\\:\\:__sleep\\(\\) should return array\\<int, string\\> but return statement is missing\\.$#"
+			message: "#^Method FDMGLabels\\\\Sync\\\\BaseSync\\:\\:__sleep\\(\\) should return array\\<int, string\\> but return statement is missing\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Sync/BaseSync.php
+			path: themes/fdmg-labels/app/FDMGLabels/Sync/BaseSync.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Sync\\\\OptinNewsletter\\:\\:schedule_sync\\(\\) has parameter \\$entry with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Sync\\\\OptinNewsletter\\:\\:schedule_sync\\(\\) has parameter \\$entry with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Sync/OptinNewsletter.php
+			path: themes/fdmg-labels/app/FDMGLabels/Sync/OptinNewsletter.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Sync\\\\OptinNewsletter\\:\\:schedule_sync\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Sync\\\\OptinNewsletter\\:\\:schedule_sync\\(\\) has parameter \\$form with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Sync/OptinNewsletter.php
+			path: themes/fdmg-labels/app/FDMGLabels/Sync/OptinNewsletter.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Widgets\\\\WidgetAreas\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Widgets\\\\WidgetAreas\\:\\:add_context_args\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Widgets/WidgetAreas.php
+			path: themes/fdmg-labels/app/FDMGLabels/Widgets/WidgetAreas.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Widgets\\\\WidgetAreas\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
+			message: "#^Method FDMGLabels\\\\Widgets\\\\WidgetAreas\\:\\:add_context_args\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Widgets/WidgetAreas.php
+			path: themes/fdmg-labels/app/FDMGLabels/Widgets/WidgetAreas.php
 
 		-
-			message: "#^Method ImpactInvestor\\\\Widgets\\\\WidgetAreas\\:\\:get_widgetarea\\(\\) should return string but returns string\\|false\\.$#"
+			message: "#^Method FDMGLabels\\\\Widgets\\\\WidgetAreas\\:\\:get_widgetarea\\(\\) should return string but returns string\\|false\\.$#"
 			count: 1
-			path: themes/impact-investor/app/ImpactInvestor/Widgets/WidgetAreas.php
+			path: themes/fdmg-labels/app/FDMGLabels/Widgets/WidgetAreas.php
 
 		-
 			message: "#^Method Clarkson_Core\\\\WordPress_Object\\\\ii_team\\:\\:get_posts_by_author\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/WordPress_Objects/ii_team.php
+			path: themes/fdmg-labels/app/WordPress_Objects/ii_team.php
 
 		-
 			message: "#^Method Clarkson_Core\\\\WordPress_Object\\\\post\\:\\:get_authors\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
-			path: themes/impact-investor/app/WordPress_Objects/post.php
+			path: themes/fdmg-labels/app/WordPress_Objects/post.php
 
 		-
 			message: "#^Parameter \\#2 \\$comments of function wp_list_comments expects array\\<WP_Comment\\>\\|null, array\\<int\\|WP_Comment\\>\\|int given\\.$#"
 			count: 1
-			path: themes/impact-investor/app/WordPress_Objects/post.php
+			path: themes/fdmg-labels/app/WordPress_Objects/post.php

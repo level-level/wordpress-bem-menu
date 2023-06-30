@@ -1,12 +1,12 @@
 {
-  "name": "impact-investor",
+  "name": "fdmg-labels",
   "version": "0.0.1",
-  "description": "impact-investor",
+  "description": "fdmg-labels",
   "author": "Level Level",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/level-level/impact-investor.git"
+    "url": "https://github.com/level-level/fdmg-labels.git"
   },
   "scripts": {
     "build": "dawn build",

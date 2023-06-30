@@ -16,7 +16,7 @@ class Capabilities {
 
 		$admin      = get_role( 'administrator' );
 		$admin_caps = $admin->capabilities ?? array();
-		$role       = add_role( 'client_administrator', __( 'Client administrator', 'impact-investor' ), $admin_caps );
+		$role       = add_role( 'client_administrator', __( 'Client administrator', 'fdmg-labels' ), $admin_caps );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}

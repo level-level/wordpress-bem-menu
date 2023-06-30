@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Comments;
+namespace FDMGLabels\Comments;
 
 use Clarkson_Core\Templates;
 

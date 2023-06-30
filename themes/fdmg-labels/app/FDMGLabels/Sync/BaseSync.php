@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Sync;
+namespace FDMGLabels\Sync;
 
 class BaseSync {
 

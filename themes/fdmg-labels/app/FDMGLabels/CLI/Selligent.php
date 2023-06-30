@@ -1,10 +1,10 @@
 <?php
 
-namespace ImpactInvestor\CLI;
+namespace FDMGLabels\CLI;
 
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
-use ImpactInvestor\Connectors\Selligent\Client;
+use FDMGLabels\Connectors\Selligent\Client;
 use WP_CLI;
 use WP_Error;
 

@@ -34,14 +34,14 @@
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
 
-// Impact Investor
-( new \ImpactInvestor\Comments\Comments() )->register_hooks();
-( new \ImpactInvestor\Search\Search() )->register_hooks();
-( new \ImpactInvestor\Widgets\WidgetAreas() )->register_hooks();
-( new \ImpactInvestor\Articles\BlockTemplate() )->register_hooks();
-( new \ImpactInvestor\GravityForms\Init() )->register_hooks();
-( new \ImpactInvestor\Logging\Init() )->register_hooks();
-( new \ImpactInvestor\Sync\Init() )->register_hooks();
+// FDMG Labels
+( new \FDMGLabels\Comments\Comments() )->register_hooks();
+( new \FDMGLabels\Search\Search() )->register_hooks();
+( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
+( new \FDMGLabels\Articles\BlockTemplate() )->register_hooks();
+( new \FDMGLabels\GravityForms\Init() )->register_hooks();
+( new \FDMGLabels\Logging\Init() )->register_hooks();
+( new \FDMGLabels\Sync\Init() )->register_hooks();
 
-// Impact Investor CLI
-( new \ImpactInvestor\CLI\Init() )->register_commands();
+// FDMG Labels CLI
+( new \FDMGLabels\CLI\Init() )->register_commands();

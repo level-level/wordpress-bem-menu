@@ -42,7 +42,7 @@ const coreBlocks = [
 
 wp.hooks.addFilter(
 	'blocks.registerBlockType',
-	'impact-investor/blocks',
+	'fdmg-labels/blocks',
 	function( settings: any, name: string ) {
 		if ( coreBlocks.includes( name ) ) {
 			return lodash.assign( {}, settings, {

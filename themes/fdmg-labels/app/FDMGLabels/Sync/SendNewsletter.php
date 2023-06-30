@@ -1,14 +1,14 @@
 <?php
-namespace ImpactInvestor\Sync;
+namespace FDMGLabels\Sync;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
-use ImpactInvestor\Connectors\Selligent\Client;
-use ImpactInvestor\Logging\LogLine;
-use ImpactInvestor\Logging\Selligent\SelligentLogger;
+use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\Logging\LogLine;
+use FDMGLabels\Logging\Selligent\SelligentLogger;
 use WP_Error;
 
 class SendNewsletter extends BaseSync {

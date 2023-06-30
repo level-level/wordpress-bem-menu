@@ -1,9 +1,9 @@
 <?php
 
-namespace ImpactInvestor\GravityForms\FormSettings;
+namespace FDMGLabels\GravityForms\FormSettings;
 
+use FDMGLabels\GravityForms\FormSettings\FormSettings;
 use GFCommon;
-use ImpactInvestor\GravityForms\FormSettings\FormSettings;
 
 abstract class BaseSetting {
 	/** @var mixed */

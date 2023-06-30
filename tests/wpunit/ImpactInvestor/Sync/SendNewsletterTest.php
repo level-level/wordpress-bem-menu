@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Sync;
+namespace FDMGLabels\Sync;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
@@ -8,8 +8,8 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Codeception\TestCase\WPTestCase;
 use DateTime;
-use ImpactInvestor\Logging\LogLine;
-use ImpactInvestor\Logging\Selligent\SelligentLogger;
+use FDMGLabels\Logging\LogLine;
+use FDMGLabels\Logging\Selligent\SelligentLogger;
 
 class SendNewsletterTest extends WPTestCase {
 

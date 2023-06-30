@@ -1,7 +1,7 @@
 <?php
-namespace ImpactInvestor\Logging\Selligent;
+namespace FDMGLabels\Logging\Selligent;
 
-use ImpactInvestor\Logging\BaseLogger;
+use FDMGLabels\Logging\BaseLogger;
 
 class SelligentLogger extends BaseLogger {
 

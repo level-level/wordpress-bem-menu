@@ -22,7 +22,7 @@ class Gutenberg {
 			'editor-font-sizes',
 			array(
 				array(
-					'name' => _x( 'Intro', 'Block', 'impact-investor' ),
+					'name' => _x( 'Intro', 'Block', 'fdmg-labels' ),
 					'size' => 28,
 					'slug' => 'intro',
 				),

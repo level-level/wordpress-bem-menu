@@ -4,7 +4,7 @@ namespace Gutenberg\Blocks;
 
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
-use ImpactInvestor\Articles\ArticleBlockRegister;
+use FDMGLabels\Articles\ArticleBlockRegister;
 use WP_Post;
 use WP_Query;
 

@@ -31,7 +31,7 @@ export default {
 	args: {
 		title: 'Kevinio Level',
 		subtitle: '',
-		excerpt: '<p>Kevin Level coordinates the background articles for Imapct investor. He previously worked at FD, de Volkskrant and Consumer Money Guide, among others.</p>',
+		excerpt: '<p>Kevin Level coordinates the background articles for FDMG Labels. He previously worked at FD, de Volkskrant and Consumer Money Guide, among others.</p>',
 		image: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		logo: '',
 		email: 'email@email.com',

@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Articles;
+namespace FDMGLabels\Articles;
 
 class ArticleBlockRegister {
 	/** @var ArticleBlockRegister|null */
