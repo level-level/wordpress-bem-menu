@@ -30,7 +30,7 @@ class MailStyling {
 		// Extract content from complete HTML e-mails
 		$content              = html_entity_decode( $mail_data['message'] );
 		$content              = preg_split( '/<body(.)*>/', $content );
-		$content              = array_pop( $content );
+		$content              = is_array( $content ) ? (string) array_pop( $content ) : '';
 		$content              = explode( '</body>', $content );
 		$content              = array_shift( $content );
 		$mail_data['message'] = $content;

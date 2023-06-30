@@ -67,7 +67,7 @@
             "composer validate"
         ],
         "test:phpcs": [
-            "phpcs --runtime-set testVersion 7.4-"
+            "phpcs --runtime-set testVersion 8.0-"
         ],
         "test:twigcs": [
             "twigcs themes/impact-investor/templates --severity error"
@@ -119,7 +119,7 @@
         "niels-de-blaauw/php-doc-check": "^0.2.1",
         "wpackagist-plugin/user-switching": "^1.5",
         "level-level/coding-standards": "^3.0",
-        "friendsoftwig/twigcs": "^6.1",
+        "friendsoftwig/twigcs": "v6.1.0",
         "lucatume/wp-browser": "^3.0",
         "codeception/module-asserts": "^1.3",
         "codeception/module-phpbrowser": "^1.0",
