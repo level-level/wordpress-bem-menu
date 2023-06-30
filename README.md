@@ -3,6 +3,12 @@
 # FDMG Labels
 Clarkson Theme is a modern set of tools to rocket WordPress theme development into the 21st century without losing touch with WordPress platform conventions. It uses [Clarkson Core](https://github.com/level-level/Clarkson-Core) to integrate Twig as the preferred templating engine.
 
+> :exclamation: **This project has been renamed from "Impact Investor" to "FDMG Labels"**.
+>
+> You might find some prefixes still of `ii_` or `II_`.
+> These exist for backward compatibility reasons, as otherwise a complete migration is needed.
+> Please only use a new prefix (like `fdmgl`) for new post types, taxonomies, fields, settings, etc.
+
 ## Local install
 Setup a new WordPress install with [VVV](https://varyingvagrantvagrants.org/) (for example my-site)
 Remove the existing `wp-content` folder and from the WordPress install root run the following commands:
