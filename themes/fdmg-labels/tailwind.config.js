@@ -32,38 +32,6 @@ module.exports = {
 			16: '64px',
 		},
 	},
-
-	// corePlugins: [
-	// 	'preflight',
-	// 	'gap',
-	// 	'gridAutoColumns',
-	// 	'gridAutoFlow',
-	// 	'gridAutoRows',
-	// 	'gridColumn',
-	// 	'gridColumnEnd',
-	// 	'gridColumnStart',
-	// 	'gridRow',
-	// 	'gridRowEnd',
-	// 	'gridRowStart',
-	// 	'gridTemplateColumns',
-	// 	'gridTemplateRows',
-	// 	'order',
-	// 	'alignContent',
-	// 	'alignItems',
-	// 	'alignSelf',
-	// 	'justifyContent',
-	// 	'justifyItems',
-	// 	'justifySelf',
-	// 	'display',
-	// 	'flex',
-	// 	'flexDirection',
-	// 	'flexGrow',
-	// 	'flexShrink',
-	// 	'flexWrap',
-	// 	'flexBasis',
-	// 	'position',
-	// 	'left'
-	// ],
 	plugins: [
 		plugin(function ({ addVariant, e }) {
 			addVariant('hocus', ['&:hover', '&:focus-visible', '&:focus-within']);
