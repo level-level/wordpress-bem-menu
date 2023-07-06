@@ -1,0 +1,37 @@
+<div
+	class="header-search"
+	data-module="header-search"
+	data-config='{
+		"trigger": ".js-header-search",
+		"target": ".header-search__dropdown",
+		"focusInput": true
+}'>
+	{% include 'styleguide/components/buttons/button-element.twig' with {
+		text: __('Search', 'fdmg-labels'),
+		aria_expanded_support: true,
+		class: 'btn--header js-header-search js-header-search-open',
+		aria_label: __('Open search', 'fdmg-labels'),
+		aria_expanded_text: __('Close search', 'fdmg-labels'),
+		aria_collapsed_text: __('Open search', 'fdmg-labels'),
+		icon: 'search',
+		icon_left: true,
+	} %}
+	<div class="header-search__dropdown" aria-hidden="true">
+		<div class="container">
+			<div class="flex gap-3 items-center flex-nowrap">
+				<div class="grow">
+					{% include 'partials/components/search-header.twig' %}
+				</div>
+				<div>
+					{% include 'styleguide/components/buttons/button-element.twig' with {
+						text: '',
+						class: 'btn--secondary btn--search js-header-search',
+						aria_label: __('Close search', 'fdmg-labels'),
+						icon: 'close',
+					} %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="header-search__backdrop"></div>
+</div>

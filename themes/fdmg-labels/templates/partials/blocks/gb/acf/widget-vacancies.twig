@@ -1,0 +1,22 @@
+{% set objects = block.get_posts() %}
+
+{% if objects %}
+	<div class="align{{ align }}" data-name="{{ block.name }}">
+		{% include 'styleguide/components/list-component.twig' with {
+			heading: __('Jobs', 'fdmg-labels'),
+			objects: objects ? objects|map(vacancy => {
+				title: vacancy.get_title(),
+				url: vacancy.get_permalink(),
+				date: vacancy.get_date_i18n(get_option('date_format')),
+				date_full: vacancy.get_date_i18n('F j Y'),
+				datetime: vacancy.get_date_i18n('Y-m-d'),
+				date_full: vacancy.get_date_i18n('F j Y'),
+			}),
+			style: 'light',
+		} %}
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Vacancies']
+	} %}
+{% endif %}

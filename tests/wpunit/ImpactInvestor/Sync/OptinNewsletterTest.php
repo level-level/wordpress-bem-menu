@@ -1,13 +1,13 @@
 <?php
 
-namespace ImpactInvestor\Sync;
+namespace FDMGLabels\Sync;
 
 use Codeception\TestCase\WPTestCase;
+use FDMGLabels\GravityForms\FormSettings\IsSelligentForm;
+use FDMGLabels\Logging\LogLine;
+use FDMGLabels\Logging\Selligent\SelligentLogger;
 use GF_Field_Email;
 use GFAPI;
-use ImpactInvestor\GravityForms\FormSettings\IsSelligentForm;
-use ImpactInvestor\Logging\LogLine;
-use ImpactInvestor\Logging\Selligent\SelligentLogger;
 
 class OptinNewsletterTest extends WPTestCase {
 

@@ -1,0 +1,14 @@
+{% if slot %}
+	<div class="advertisement">
+		<div class="advertisement__element">
+
+			{% if is_admin() %}
+				<div class="advertisement__selected">
+					{{ __('Selected slot: <strong>%s</strong>', 'fdmg-labels')|format(slot)|raw }}
+				</div>
+			{% endif %}
+
+			<div class="ii-message" data-slot="{{ slot }}"></div>
+		</div>
+	</div>
+{% endif %}

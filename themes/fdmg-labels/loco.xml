@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle name="FDMG Labels">
+	<domain name="fdmg-labels">
+		<project name="Clarkson Theme" slug="fdmg-labels">
+			<source>
+				<directory>.</directory>
+			</source>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template locked="true">
+				<file>languages/fdmg-labels.pot</file>
+			</template>
+		</project>
+	</domain>
+	<domain name="fdmg-labels-slugs">
+		<project name="Clarkson Theme slugs" slug="fdmg-labels-slugs">
+			<source>
+				<directory>.</directory>
+			</source>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template locked="true">
+				<file>languages/fdmg-labels-slugs.pot</file>
+			</template>
+		</project>
+	</domain>
+</bundle>

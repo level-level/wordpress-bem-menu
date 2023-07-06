@@ -1,0 +1,38 @@
+{% if title or image or content or button %}
+	<div class="newsletter">
+		<div class="newsletter__inner">
+			<div class="flex flex-col gap-6">
+
+				{% if title %}
+					<h3 class="newsletter__title">
+						{{ title }}
+					</h3>
+				{% endif %}
+
+				{% if image %}
+					<div class="newsletter__thumbnail">
+						{{ image|raw }}
+					</div>
+				{% endif %}
+
+				{% if content %}
+					<div class="newsletter__content">
+						{{ content|raw }}
+					</div>
+				{% endif %}
+
+				{% if button.title and button.url %}
+					<div>
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: button.title,
+							url: button.url,
+							class: 'btn--primary btn--full',
+							is_external: button.target ? true,
+							aria_label: __('Sign up to our weekly newsletter', 'fdmg-labels'),
+						} %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endif %}
