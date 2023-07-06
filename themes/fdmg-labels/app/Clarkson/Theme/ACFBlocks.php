@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
@@ -8,9 +9,20 @@ use WP_Block_Type_Registry;
 
 class ACFBlocks {
 
+	protected const ACF_BLOCKS = array(
+		CTA::class,
+	);
+
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
 		add_filter( 'acf/register_block_type_args', array( $this, 'set_default_block_type_args' ) );
+		$this->register_acf_blocks();
+	}
+
+	public function register_acf_blocks(): void {
+		foreach ( self::ACF_BLOCKS as $field ) {
+			( new $field() )->register_hooks();
+		}
 	}
 
 	/**
@@ -21,7 +33,7 @@ class ACFBlocks {
 		$block['category']                    = 'fdmg-labels';
 		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['supports']['customClassName'] = false;
-
+		$block['render_callback']             = $block['render_callback'] ?: array( $this, 'block_render_callback' );
 		return $block;
 	}
 
@@ -321,28 +333,28 @@ class ACFBlocks {
 			)
 		);
 
-		acf_register_block_type(
-			array(
-				'name'            => 'block-cta',
-				'title'           => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
-				'icon'            => 'megaphone',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'call to action', 'cta' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
+		// acf_register_block_type(
+		// 	array(
+		// 		'name'            => 'block-cta',
+		// 		'title'           => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
+		// 		'description'     => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
+		// 		'icon'            => 'megaphone',
+		// 		'align'           => 'center', // full, wide, left, center, right
+		// 		'keywords'        => array( 'call to action', 'cta' ),
+		// 		'supports'        => array(
+		// 			'align'    => array( 'center' ),
+		// 			'multiple' => true,
+		// 		),
+		// 		'render_callback' => array( $this, 'block_render_callback' ),
+		// 		'example'         => array(
+		// 			'attributes' => array(
+		// 				'data' => array(
+		// 					'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
+		// 				),
+		// 			),
+		// 		),
+		// 	)
+		// );
 	}
 
 	/**
