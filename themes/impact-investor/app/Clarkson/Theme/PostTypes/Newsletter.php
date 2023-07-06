@@ -1,16 +1,16 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
-use WordPlate\Acf\ConditionalLogic;
-use WordPlate\Acf\Fields\DateTimePicker;
-use WordPlate\Acf\Fields\Group;
-use WordPlate\Acf\Fields\Message;
-use WordPlate\Acf\Fields\PostObject;
-use WordPlate\Acf\Fields\Repeater;
-use WordPlate\Acf\Fields\Text;
-use WordPlate\Acf\Fields\TrueFalse;
-use WordPlate\Acf\Fields\WysiwygEditor;
-use WordPlate\Acf\Location;
+use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\DateTimePicker;
+use Extended\ACF\Fields\Group;
+use Extended\ACF\Fields\Message;
+use Extended\ACF\Fields\PostObject;
+use Extended\ACF\Fields\Repeater;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\TrueFalse;
+use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Location;
 
 class Newsletter {
 	public const POST_TYPE_NAME      = 'ii_newsletter';
@@ -128,7 +128,7 @@ class Newsletter {
 									->defaultValue( true )
 									->conditionalLogic(
 										array(
-											ConditionalLogic::if( self::META_SEND . '_' . self::META_SEND_ACTION )->equals( 1 ),
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 										)
 									),
 								TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'impact-investor' ), self::META_SEND_SCHEDULE )
@@ -137,7 +137,7 @@ class Newsletter {
 									->defaultValue( false )
 									->conditionalLogic(
 										array(
-											ConditionalLogic::if( self::META_SEND . '_' . self::META_SEND_ACTION )->equals( 1 ),
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 										)
 									),
 								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'impact-investor' ), self::META_SEND_DATE )
@@ -146,14 +146,14 @@ class Newsletter {
 									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
 									->conditionalLogic(
 										array(
-											ConditionalLogic::if( self::META_SEND . '_' . self::META_SEND_SCHEDULE )->equals( 1 ),
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_SCHEDULE, '==', '1' ),
 										)
 									),
 							)
 						),
 				),
 				'location' => array(
-					Location::if( 'post_type', self::POST_TYPE_NAME ),
+					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),
 				),
 				'position' => 'normal',
 			)

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f25c00aa2056b1e169d7e60c891bed1a",
+    "content-hash": "e10a41055bc3f3d5959d79bff2a1fdd2",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1550,6 +1550,11 @@
                 "stream",
                 "uri"
             ],
+            "support": {
+                "issues": "https://github.com/php-http/message-factory/issues",
+                "source": "https://github.com/php-http/message-factory/tree/master"
+            },
+            "abandoned": "psr/http-factory",
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
@@ -3976,16 +3981,16 @@
         },
         {
             "name": "vinkla/extended-acf",
-            "version": "11.2.0",
+            "version": "13.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/extended-acf.git",
-                "reference": "4ed02a95435b49e37459b8a0c4759797314aafd1"
+                "reference": "aeec911534d852ddcbc54ad673c19a16fc93d801"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/4ed02a95435b49e37459b8a0c4759797314aafd1",
-                "reference": "4ed02a95435b49e37459b8a0c4759797314aafd1",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/aeec911534d852ddcbc54ad673c19a16fc93d801",
+                "reference": "aeec911534d852ddcbc54ad673c19a16fc93d801",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -3995,16 +4000,15 @@
                 ]
             },
             "require": {
-                "php": "^7.4 || ^8.0"
+                "php": "^8.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^9.5",
-                "squizlabs/php_codesniffer": "^3.6"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "11.2-dev"
+                    "dev-master": "13.3-dev"
                 }
             },
             "autoload": {
@@ -4012,7 +4016,7 @@
                     "src/helpers.php"
                 ],
                 "psr-4": {
-                    "WordPlate\\Acf\\": "src/"
+                    "Extended\\ACF\\": "src/"
                 }
             },
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
@@ -4023,10 +4027,6 @@
                 {
                     "name": "Vincent Klaiber",
                     "email": "hello@doubledip.se"
-                },
-                {
-                    "name": "Chris Andersson",
-                    "email": "hello@puredazzle.se"
                 }
             ],
             "description": "Register advanced custom fields with object oriented PHP",
@@ -4034,15 +4034,15 @@
                 "acf",
                 "advanced",
                 "custom",
+                "extended",
                 "fields",
-                "wordplate",
                 "wordpress"
             ],
             "support": {
                 "issues": "https://github.com/vinkla/extended-acf/issues",
-                "source": "https://github.com/vinkla/extended-acf/tree/11.2.0"
+                "source": "https://github.com/vinkla/extended-acf/tree/13.3.0"
             },
-            "time": "2021-11-03T13:41:55+00:00"
+            "time": "2023-04-17T09:31:15+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
@@ -6289,9 +6289,6 @@
                 "bordoni/phpass": "0.3.*",
                 "illuminate/support": ">=4.0.0",
                 "php": ">=5.3.0"
-            },
-            "replace": {
-                "mikemclin/laravel-wp-password": "self.version"
             },
             "require-dev": {
                 "mockery/mockery": "~0.9",
@@ -10606,5 +10603,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
