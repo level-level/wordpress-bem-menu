@@ -20,7 +20,9 @@
 		color: var(--base-50);
 		text-decoration: none;
 		padding: 4px 10px;
-		transition: background-color $time, color $time;
+		transition:
+			background-color $time,
+			color $time;
 
 		@include dark-theme {
 			background-color: var(--primary-300);

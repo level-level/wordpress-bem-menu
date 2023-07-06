@@ -27,13 +27,13 @@
 
 			&__thumbnail {
 				@include breakpoint(sm) {
-					@include image-ratio(13,9);
+					@include image-ratio(13, 9);
 					width: 230px;
 					height: 100%;
 				}
 
 				@include breakpoint(lg) {
-					@include image-ratio(16,9);
+					@include image-ratio(16, 9);
 					width: auto;
 					height: auto;
 				}

@@ -5,14 +5,8 @@ module.exports = {
 	},
 	dist: './dist',
 	src: './src',
-	webpack( { module } ) {
-
-	},
-	webpackDev( { mode, devtool } ) {
-
-	},
-	webpackProd( { mode, devtool } ) {
-
-	},
+	webpack({ module }) {},
+	webpackDev({ mode, devtool }) {},
+	webpackProd({ mode, devtool }) {},
 	useTailwindCSS: true,
 };

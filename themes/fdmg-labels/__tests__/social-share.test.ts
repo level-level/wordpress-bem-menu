@@ -2,8 +2,7 @@ import { describe, test, expect, beforeEach, afterEach } from '@jest/globals';
 import Socials from '../src/scripts/modules/social-share';
 
 const createDOM = () => {
-	document.body.innerHTML =
-		`<ul class="list-social-share" data-module="social-share">
+	document.body.innerHTML = `<ul class="list-social-share" data-module="social-share">
 			<li class="list-social-share__item">
 				<button class="btn btn--share js--share" data-config="{&quot;type&quot;: &quot;facebook&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via Facebook — This button opens a share-on-Facebook dialog in a new window.">
 					Facebook
@@ -31,65 +30,65 @@ const createDOM = () => {
 			</li>
 		</ul>`;
 
-	const element: HTMLElement = document.querySelector( '[data-module="social-share"]' );
-	return new Socials( element );
+	const element: HTMLElement = document.querySelector('[data-module="social-share"]');
+	return new Socials(element);
 };
 
 let windowSpy;
 
-beforeEach( () => {
-	windowSpy = jest.spyOn( window, "window", "get" );
+beforeEach(() => {
+	windowSpy = jest.spyOn(window, 'window', 'get');
 
 	return createDOM();
-} );
+});
 
-afterEach( () => {
+afterEach(() => {
 	windowSpy.mockRestore();
-} );
+});
 
-describe( 'Social Share', () => {
-	test( `Share button: Should call the window.open function`, () => {
-		const element = document.querySelector( '[data-module="social-share"]' );
+describe('Social Share', () => {
+	test(`Share button: Should call the window.open function`, () => {
+		const element = document.querySelector('[data-module="social-share"]');
 
 		const mockedOpen = jest.fn();
 
 		const originalWindow = { ...window };
-		windowSpy.mockImplementation( () => ( {
+		windowSpy.mockImplementation(() => ({
 			...originalWindow,
-			open: mockedOpen
-		} ) );
+			open: mockedOpen,
+		}));
 
-		element.querySelector<HTMLElement>( '.js--share' ).click();
+		element.querySelector<HTMLElement>('.js--share').click();
 
-		expect( mockedOpen ).toBeCalled();
-	} );
+		expect(mockedOpen).toBeCalled();
+	});
 
-	test( `Email button: href should contain javascript:void(0); by default`, () => {
-		const element = document.querySelector( '[data-module="social-share"]' );
+	test(`Email button: href should contain javascript:void(0); by default`, () => {
+		const element = document.querySelector('[data-module="social-share"]');
 
 		let emailButton: HTMLElement;
-		element.querySelectorAll<HTMLElement>( '.js--share' ).forEach( el => {
-			if ( el.textContent.trim() === 'E-mail' ) {
+		element.querySelectorAll<HTMLElement>('.js--share').forEach((el) => {
+			if (el.textContent.trim() === 'E-mail') {
 				emailButton = el;
 			}
-		} );
+		});
 
-		const href = emailButton.getAttribute( 'href' );
-		expect( href ).not.toMatch( /mailto/ );
-	} );
+		const href = emailButton.getAttribute('href');
+		expect(href).not.toMatch(/mailto/);
+	});
 
-	test( `Email button: After click, href should change URL from javascript:void to mailto`, () => {
-		const element = document.querySelector( '[data-module="social-share"]' );
+	test(`Email button: After click, href should change URL from javascript:void to mailto`, () => {
+		const element = document.querySelector('[data-module="social-share"]');
 
-		let emailButton : HTMLElement;
-		element.querySelectorAll<HTMLElement>( '.js--share' ).forEach( el => {
-			if ( el.textContent.trim() === 'E-mail' ) {
+		let emailButton: HTMLElement;
+		element.querySelectorAll<HTMLElement>('.js--share').forEach((el) => {
+			if (el.textContent.trim() === 'E-mail') {
 				emailButton = el;
 				emailButton.click();
 			}
-		} );
+		});
 
-		const href = emailButton.getAttribute( 'href' );
-		expect( href ).toMatch( /mailto/ );
-	} );
-} );
+		const href = emailButton.getAttribute('href');
+		expect(href).toMatch(/mailto/);
+	});
+});

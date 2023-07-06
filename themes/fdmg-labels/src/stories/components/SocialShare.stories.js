@@ -8,7 +8,7 @@ export default {
 	argTypes: {
 		socials: {
 			control: 'array',
-		}
+		},
 	},
 	args: {
 		socials: [
@@ -28,11 +28,11 @@ export default {
 				title: 'E-mail',
 				type: 'email',
 			},
-		]
-	}
+		],
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

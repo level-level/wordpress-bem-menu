@@ -2,11 +2,11 @@ import { themes } from '@storybook/theming';
 import '../src/styles/main.scss';
 
 let localConfig = '';
-if ( process.env.NODE_ENV === 'development' ){
-	localConfig = require( '../config.local.json' );
+if (process.env.NODE_ENV === 'development') {
+	localConfig = require('../config.local.json');
 }
 
-const storybook = require( '@level-level/storybook-config' )( localConfig );
+const storybook = require('@level-level/storybook-config')(localConfig);
 
 export const parameters = {
 	server: storybook.server,
@@ -24,6 +24,6 @@ export const parameters = {
 		},
 		light: {
 			...themes.normal,
-		}
-	}
+		},
+	},
 };

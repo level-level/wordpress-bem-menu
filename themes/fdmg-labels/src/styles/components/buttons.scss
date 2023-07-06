@@ -12,7 +12,10 @@
 	user-select: none;
 	color: var(--base-800);
 	cursor: pointer;
-	transition: background-color $time, color $time, border-color $time;
+	transition:
+		background-color $time,
+		color $time,
+		border-color $time;
 	appearance: none;
 
 	@include breakpoint(sm) {

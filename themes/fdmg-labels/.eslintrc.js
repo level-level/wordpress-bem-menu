@@ -1,8 +1,6 @@
 module.exports = {
 	root: true,
-	extends: [
-		'@level-level/eslint-config-level-level',
-	],
+	extends: ['@level-level/eslint-config-level-level', 'prettier'],
 
 	globals: {
 		lodash: true,
@@ -17,5 +15,5 @@ module.exports = {
 
 	env: {
 		browser: true,
-	}
+	},
 };

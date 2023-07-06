@@ -7,7 +7,7 @@ export default {
 	},
 	argTypes: {
 		test_args: {
-			control: 'object'
+			control: 'object',
 		},
 	},
 	args: {
@@ -20,9 +20,9 @@ export default {
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 
-export const ManyPagesStart = Template.bind( {} );
+export const ManyPagesStart = Template.bind({});
 ManyPagesStart.args = {
 	test_args: {
 		current: 1,
@@ -30,7 +30,7 @@ ManyPagesStart.args = {
 	},
 };
 
-export const ManyPagesMiddle = Template.bind( {} );
+export const ManyPagesMiddle = Template.bind({});
 ManyPagesMiddle.args = {
 	test_args: {
 		current: 142,
@@ -38,7 +38,7 @@ ManyPagesMiddle.args = {
 	},
 };
 
-export const ManyPagesEnd = Template.bind( {} );
+export const ManyPagesEnd = Template.bind({});
 ManyPagesEnd.args = {
 	test_args: {
 		current: 435,
@@ -46,7 +46,7 @@ ManyPagesEnd.args = {
 	},
 };
 
-export const FewPages = Template.bind( {} );
+export const FewPages = Template.bind({});
 FewPages.args = {
 	test_args: {
 		current: 2,

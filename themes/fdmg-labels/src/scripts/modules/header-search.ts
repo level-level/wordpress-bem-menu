@@ -8,11 +8,11 @@ class HeaderSearch implements IModule {
 	headerOpen: HTMLInputElement | null;
 	dropdown: HTMLElement | null;
 
-	constructor ( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
-		this.backdrop = this.element.querySelector( '.header-search__backdrop' );
-		this.headerOpen = this.element.querySelector( '.js-header-search-open' );
-		this.dropdown = this.element.querySelector( '.header-search__dropdown' );
+		this.backdrop = this.element.querySelector('.header-search__backdrop');
+		this.headerOpen = this.element.querySelector('.js-header-search-open');
+		this.dropdown = this.element.querySelector('.header-search__dropdown');
 
 		this.initialize();
 	}
@@ -22,43 +22,43 @@ class HeaderSearch implements IModule {
 			useHover: false,
 		};
 
-		const toggle = new MrToggle( this.element, <IOptions>options );
+		const toggle = new MrToggle(this.element, <IOptions>options);
 
-		this.element.addEventListener( 'openMrToggle', () => {
-			setTimeout( () => {
-				if ( this.headerOpen ) {
+		this.element.addEventListener('openMrToggle', () => {
+			setTimeout(() => {
+				if (this.headerOpen) {
 					this.headerOpen.disabled = true;
 				}
-			}, 300 );
-		} );
+			}, 300);
+		});
 
-		this.element.addEventListener( 'closeMrToggle', () => {
-			if ( this.headerOpen ) {
+		this.element.addEventListener('closeMrToggle', () => {
+			if (this.headerOpen) {
 				this.headerOpen.disabled = false;
 			}
-		} );
+		});
 
-		this.backdrop?.addEventListener( 'click', () => {
+		this.backdrop?.addEventListener('click', () => {
 			toggle.closeAllToggles();
-		} );
+		});
 
-		this.element.addEventListener( 'openMrToggle', () => {
+		this.element.addEventListener('openMrToggle', () => {
 			this.showBackdrop();
-		} );
+		});
 
-		this.element.addEventListener( 'closeMrToggle', () => {
-			if ( this.dropdown?.getAttribute( 'aria-hidden' ) === 'true' ) {
+		this.element.addEventListener('closeMrToggle', () => {
+			if (this.dropdown?.getAttribute('aria-hidden') === 'true') {
 				this.hideBackdrop();
 			}
-		} );
+		});
 	}
 
 	showBackdrop() {
-		this.backdrop?.classList.add( 'header-search__backdrop--active' );
+		this.backdrop?.classList.add('header-search__backdrop--active');
 	}
 
 	hideBackdrop() {
-		this.backdrop?.classList.remove( 'header-search__backdrop--active' );
+		this.backdrop?.classList.remove('header-search__backdrop--active');
 	}
 }
 

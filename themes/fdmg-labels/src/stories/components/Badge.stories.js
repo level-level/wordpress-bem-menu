@@ -7,19 +7,19 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		url: {
-			control: 'text'
+			control: 'text',
 		},
 	},
 	args: {
 		title: 'Interview',
 		url: '#remove-me-to-see-default-badge',
-	}
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

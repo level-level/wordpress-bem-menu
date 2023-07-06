@@ -8,13 +8,13 @@ class UserTabs {
 	}
 
 	addEventsListener() {
-		window.addEventListener( 'keydown', this.handleFirstTab.bind( this ) );
+		window.addEventListener('keydown', this.handleFirstTab.bind(this));
 	}
 
-	handleFirstTab( event: KeyboardEvent ) {
-		if ( event.key === 'Tab' ) {
-			document.querySelector( 'body' )?.classList.add( 'user-is-tabbing' );
-			window.removeEventListener( 'keydown', this.handleFirstTab.bind( this ) );
+	handleFirstTab(event: KeyboardEvent) {
+		if (event.key === 'Tab') {
+			document.querySelector('body')?.classList.add('user-is-tabbing');
+			window.removeEventListener('keydown', this.handleFirstTab.bind(this));
 		}
 	}
 }

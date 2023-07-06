@@ -9,10 +9,10 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		terms: {
-			control: 'array'
+			control: 'array',
 		},
 	},
 	args: {
@@ -26,5 +26,5 @@ export default {
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

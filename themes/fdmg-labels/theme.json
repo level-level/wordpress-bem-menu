@@ -2,17 +2,17 @@
   "version": 1,
   "settings": {
     "color": {
-        "custom": false,
-        "customDuotone": false,
-        "customGradient": false,
-        "duotone": [],
-        "gradients": [],
-        "link": false,
-        "palette": []
+      "custom": false,
+      "customDuotone": false,
+      "customGradient": false,
+      "duotone": [],
+      "gradients": [],
+      "link": false,
+      "palette": []
     },
     "layout": {
-        "contentSize": "var(--article-width)",
-        "wideSize": "var(--content-width)"
+      "contentSize": "var(--article-width)",
+      "wideSize": "var(--content-width)"
     },
     "typography": {
       "customFontSize": false,

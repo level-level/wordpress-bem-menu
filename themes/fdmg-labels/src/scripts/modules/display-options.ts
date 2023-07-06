@@ -6,20 +6,20 @@ class DisplayOptions implements IModule {
 	headerProfile: HTMLElement | null | undefined;
 	responsiveHelper: ResponsiveHelper;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
-		this.headerProfile = document.querySelector( '.header-profile' )?.querySelector( '.btn' );
+		this.headerProfile = document.querySelector('.header-profile')?.querySelector('.btn');
 		this.responsiveHelper = new ResponsiveHelper();
 
 		this.initialize();
 	}
 
 	initialize() {
-		this.element.addEventListener( 'keydown', this.handleKeyboard.bind( this ) );
+		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
 	}
 
-	handleKeyboard( event: KeyboardEvent ) {
-		if ( event.key === 'Tab' && this.responsiveHelper.atLeastTabletPortrait() ) {
+	handleKeyboard(event: KeyboardEvent) {
+		if (event.key === 'Tab' && this.responsiveHelper.atLeastTabletPortrait()) {
 			event.preventDefault();
 			this.headerProfile?.focus();
 		}

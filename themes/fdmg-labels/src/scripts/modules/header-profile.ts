@@ -5,7 +5,7 @@ import { IModule } from '../../globals';
 class HeaderProfile implements IModule {
 	element: HTMLElement;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
 		this.initialize();
 	}
@@ -15,14 +15,14 @@ class HeaderProfile implements IModule {
 			useHover: false,
 		};
 
-		const toggle = new MrToggle( this.element, <IOptions>options );
+		const toggle = new MrToggle(this.element, <IOptions>options);
 
 		// Close toggle when clicking outside of element
-		document.addEventListener( 'click', ( event: Event ) => {
-			if ( ! this.element.contains( <HTMLElement>event.target ) ) {
+		document.addEventListener('click', (event: Event) => {
+			if (!this.element.contains(<HTMLElement>event.target)) {
 				toggle.closeAllToggles();
 			}
-		} );
+		});
 	}
 }
 

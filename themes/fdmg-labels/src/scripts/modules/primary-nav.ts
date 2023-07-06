@@ -17,18 +17,18 @@ class PrimaryNav implements IModule {
 	header: HTMLElement;
 	responsiveHelper: ResponsiveHelper;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
 		this.mainClass = 'primary-nav';
 		this.classNames = {
-			parent: `${ this.mainClass }__item--parent`,
-			link:   `${ this.mainClass }__link`,
-			arrow:  `${ this.mainClass }__arrow`,
-			sub:    `${ this.mainClass }-sub`,
+			parent: `${this.mainClass}__item--parent`,
+			link: `${this.mainClass}__link`,
+			arrow: `${this.mainClass}__arrow`,
+			sub: `${this.mainClass}-sub`,
 		};
 
-		this.parentItem = Array.from( element.querySelectorAll( `.${ this.classNames.parent }` ) );
-		this.header = <HTMLElement>element.closest( 'header' );
+		this.parentItem = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
+		this.header = <HTMLElement>element.closest('header');
 		this.responsiveHelper = new ResponsiveHelper();
 
 		this.initialize();
@@ -40,57 +40,55 @@ class PrimaryNav implements IModule {
 	}
 
 	createSubmenuButton() {
-		const button =
-			`<button class="${ this.classNames.arrow }" aria-expanded="false">
-				<span class="icon-inline" aria-hidden="true">${ icons.arrowDown }</span>
-				<span class="screen-reader-text">${ i18n.navigation.subMenu }</span>
+		const button = `<button class="${this.classNames.arrow}" aria-expanded="false">
+				<span class="icon-inline" aria-hidden="true">${icons.arrowDown}</span>
+				<span class="screen-reader-text">${i18n.navigation.subMenu}</span>
 			</button>`;
 
 		// Add button before sub menu
-		this.parentItem.forEach( el => {
-			el.querySelector( `.${ this.classNames.sub }` )?.insertAdjacentHTML( 'beforebegin', button );
-		} );
+		this.parentItem.forEach((el) => {
+			el.querySelector(`.${this.classNames.sub}`)?.insertAdjacentHTML('beforebegin', button);
+		});
 
 		// Add aria attribute to all sub-menu's
-		this.element.querySelectorAll( `.${ this.classNames.sub }` ).forEach( el => {
-			el.setAttribute( 'aria-hidden', 'true' );
-		} );
+		this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
+			el.setAttribute('aria-hidden', 'true');
+		});
 	}
 
 	addEventListeners() {
-		[ 'load', 'resize', 'orientationchange' ].forEach( e => {
-			window.addEventListener( e, this.determineViewport.bind( this ) );
-		} );
+		['load', 'resize', 'orientationchange'].forEach((e) => {
+			window.addEventListener(e, this.determineViewport.bind(this));
+		});
 
 		// On click on the new dropdown button
-		this.element.querySelectorAll( `.${ this.classNames.arrow }` ).forEach( el => {
-			el.addEventListener( 'click', this.showMobileDropdown.bind( this ) );
-		} );
+		this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
+			el.addEventListener('click', this.showMobileDropdown.bind(this));
+		});
 
-		this.element.addEventListener( 'keydown', this.handleKeyboard.bind( this ) );
-		this.header.addEventListener( 'keyup', this.closeAllWhenNotActive.bind( this ) );
+		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
+		this.header.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
 	}
 
 	determineViewport() {
-
 		// Dropdowns for desktops are using the mouseenter/mouseleave functionality
-		if ( this.responsiveHelper.isDesktop() ) {
-			this.parentItem.forEach( el => {
-				el.addEventListener( 'mouseenter', this.showDropdown.bind( this ) );
-				el.addEventListener( 'mouseleave', this.hideDropdown.bind( this ) );
-			} );
+		if (this.responsiveHelper.isDesktop()) {
+			this.parentItem.forEach((el) => {
+				el.addEventListener('mouseenter', this.showDropdown.bind(this));
+				el.addEventListener('mouseleave', this.hideDropdown.bind(this));
+			});
 		} else {
-			this.parentItem.forEach( el => {
-				el.removeEventListener( 'mouseenter', this.showDropdown.bind( this ) );
-				el.removeEventListener( 'mouseleave', this.hideDropdown.bind( this ) );
-			} );
+			this.parentItem.forEach((el) => {
+				el.removeEventListener('mouseenter', this.showDropdown.bind(this));
+				el.removeEventListener('mouseleave', this.hideDropdown.bind(this));
+			});
 		}
 
 		// Only on viewports that are atleast the tablet landscape size close dropdowns that are not active
-		if ( this.responsiveHelper.atLeastTabletLandscape() ) {
-			this.element.addEventListener( 'keyup', this.handleTab.bind( this ) );
+		if (this.responsiveHelper.atLeastTabletLandscape()) {
+			this.element.addEventListener('keyup', this.handleTab.bind(this));
 		} else {
-			this.element.removeEventListener( 'keyup', this.handleTab.bind( this ) );
+			this.element.removeEventListener('keyup', this.handleTab.bind(this));
 		}
 	}
 
@@ -99,18 +97,18 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	showDropdown( event: Event ) {
+	showDropdown(event: Event) {
 		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
 
-		Array.from( currentTarget.children ).forEach( el => {
-			if ( el.classList.contains( this.classNames.sub ) ) {
-				el.setAttribute( 'aria-hidden', 'false' );
+		Array.from(currentTarget.children).forEach((el) => {
+			if (el.classList.contains(this.classNames.sub)) {
+				el.setAttribute('aria-hidden', 'false');
 			}
 
-			if ( el.classList.contains( this.classNames.arrow ) ) {
-				el.setAttribute( 'aria-expanded', 'true' );
+			if (el.classList.contains(this.classNames.arrow)) {
+				el.setAttribute('aria-expanded', 'true');
 			}
-		} );
+		});
 	}
 
 	/**
@@ -118,31 +116,31 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	hideDropdown( event: Event ) {
+	hideDropdown(event: Event) {
 		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
 
-		Array.from( currentTarget.children ).forEach( el => {
-			if ( el.classList.contains( this.classNames.sub ) ) {
-				el.setAttribute( 'aria-hidden', 'true' );
+		Array.from(currentTarget.children).forEach((el) => {
+			if (el.classList.contains(this.classNames.sub)) {
+				el.setAttribute('aria-hidden', 'true');
 			}
 
-			if ( el.classList.contains( this.classNames.arrow ) ) {
-				el.setAttribute( 'aria-expanded', 'false' );
+			if (el.classList.contains(this.classNames.arrow)) {
+				el.setAttribute('aria-expanded', 'false');
 			}
-		} );
+		});
 	}
 
 	/**
 	 * Close all open dropdowns
 	 */
 	closeAll() {
-		this.element.querySelectorAll( `.${ this.classNames.sub }` ).forEach( el => {
-			el.setAttribute( 'aria-hidden', 'true' );
-		} );
+		this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
+			el.setAttribute('aria-hidden', 'true');
+		});
 
-		this.element.querySelectorAll( `.${ this.classNames.arrow }` ).forEach( el => {
-			el.setAttribute( 'aria-expanded', 'false' );
-		} );
+		this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
+			el.setAttribute('aria-expanded', 'false');
+		});
 	}
 
 	/**
@@ -150,18 +148,18 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	showMobileDropdown( event: Event ) {
+	showMobileDropdown(event: Event) {
 		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
 
 		// Show dropdown
-		if ( currentTarget.getAttribute( 'aria-expanded' ) === 'false' ) {
-			currentTarget.setAttribute( 'aria-expanded', 'true' );
-			currentTarget.nextElementSibling?.setAttribute( 'aria-hidden', 'false' );
+		if (currentTarget.getAttribute('aria-expanded') === 'false') {
+			currentTarget.setAttribute('aria-expanded', 'true');
+			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'false');
 
-		// Hide dropdown
+			// Hide dropdown
 		} else {
-			currentTarget.setAttribute( 'aria-expanded', 'false' );
-			currentTarget.nextElementSibling?.setAttribute( 'aria-hidden', 'true' );
+			currentTarget.setAttribute('aria-expanded', 'false');
+			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'true');
 		}
 	}
 
@@ -170,10 +168,9 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	handleKeyboard( event: KeyboardEvent ) {
-
+	handleKeyboard(event: KeyboardEvent) {
 		// Close dropdowns with the escape key
-		if ( event.key === 'Escape' ) {
+		if (event.key === 'Escape') {
 			this.closeAll();
 		}
 	}
@@ -183,32 +180,36 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	handleTab( event: KeyboardEvent ) {
-		if ( event.key === 'Tab' ) {
-
+	handleTab(event: KeyboardEvent) {
+		if (event.key === 'Tab') {
 			// Current element that is focused
-			const focusedElement: HTMLElement = <HTMLElement>this.element.querySelector( ':focus' );
+			const focusedElement: HTMLElement = <HTMLElement>this.element.querySelector(':focus');
 
 			// When tabbing through top level links, close all dropdowns
-			if ( focusedElement.getAttribute( 'class' ) === this.classNames.link ) {
-				this.element.querySelectorAll( `.${ this.classNames.sub }` ).forEach( el => {
-					el.setAttribute( 'aria-hidden', 'true' );
-				} );
+			if (focusedElement.getAttribute('class') === this.classNames.link) {
+				this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
+					el.setAttribute('aria-hidden', 'true');
+				});
 
-				this.element.querySelectorAll( `.${ this.classNames.arrow }` ).forEach( el => {
-					el.setAttribute( 'aria-expanded', 'false' );
-				} );
+				this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
+					el.setAttribute('aria-expanded', 'false');
+				});
 
-			// When tabbing through sub menu links, close all sub dropdowns
-			} else if ( focusedElement.closest( `.${ this.classNames.sub }` ) ) {
-				focusedElement.closest( `.${ this.classNames.sub }` )?.querySelectorAll( `.${ this.classNames.sub }` ).forEach( el => {
-					el.setAttribute( 'aria-hidden', 'true' );
-				} );
+				// When tabbing through sub menu links, close all sub dropdowns
+			} else if (focusedElement.closest(`.${this.classNames.sub}`)) {
+				focusedElement
+					.closest(`.${this.classNames.sub}`)
+					?.querySelectorAll(`.${this.classNames.sub}`)
+					.forEach((el) => {
+						el.setAttribute('aria-hidden', 'true');
+					});
 
-				focusedElement.closest( `.${ this.classNames.sub }` )?.querySelectorAll( `.${ this.classNames.arrow }` ).forEach( el => {
-					el.setAttribute( 'aria-expanded', 'false' );
-				} );
-
+				focusedElement
+					.closest(`.${this.classNames.sub}`)
+					?.querySelectorAll(`.${this.classNames.arrow}`)
+					.forEach((el) => {
+						el.setAttribute('aria-expanded', 'false');
+					});
 			}
 		}
 	}
@@ -218,10 +219,9 @@ class PrimaryNav implements IModule {
 	 *
 	 * @param  event
 	 */
-	closeAllWhenNotActive( event: KeyboardEvent ) {
-		if ( event.key === 'Tab' && ! event.shiftKey ) {
-
-			if ( ! this.element.querySelector( ':focus' )?.closest( `.${ this.mainClass }` ) ) {
+	closeAllWhenNotActive(event: KeyboardEvent) {
+		if (event.key === 'Tab' && !event.shiftKey) {
+			if (!this.element.querySelector(':focus')?.closest(`.${this.mainClass}`)) {
 				this.closeAll();
 			}
 		}

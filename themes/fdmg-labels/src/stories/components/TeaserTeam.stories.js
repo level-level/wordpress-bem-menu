@@ -7,21 +7,22 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		excerpt: {
-			control: 'text'
+			control: 'text',
 		},
 	},
 	args: {
 		image: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		title: 'Kevinio Level',
 		url: '#',
-		excerpt: '<p>Kevin Level Kevin Level coordinates the background articles for FDMG Labels. He previously worked at FD, de Volkskrant and Consumer Money Guide, among others.</p>',
+		excerpt:
+			'<p>Kevin Level Kevin Level coordinates the background articles for FDMG Labels. He previously worked at FD, de Volkskrant and Consumer Money Guide, among others.</p>',
 	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

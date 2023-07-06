@@ -5,6 +5,7 @@ Selligent is a tool used by FD to send newsletters. This is used in the website 
 ## Flow
 
 The general flow for creating and sending a newsletter consists of three steps:
+
 1. Registering posts to Selligent
 2. Registering a newsletter to Selligent, with the already registerd posts
 3. Sending the newsletter.
@@ -36,6 +37,7 @@ For local testing, the Pritnl VPN connection has been whitelisted.
 For test, acceptance and production environments, the server IP's should be whitelisted as well.
 
 ### Authorization request
+
 Authentication is done via an authorization header that is send with the request:
 
 (See `FDMGLabels\Connectors\Selligent\Client::get_auth_headers`)
@@ -74,6 +76,7 @@ $data = [
 ### Example response:
 
 **Success:**
+
 ```json
 {
 	"publication": "IMPACT_INVESTOR",
@@ -93,6 +96,7 @@ $data = [
 Endpoint: /lists/[[LIST_ID_ARTICLE]]/articles
 
 Data:
+
 ```php
 $data = [
   'publication' => 'IMPACT_INVESTOR',
@@ -111,6 +115,7 @@ $data = [
 ### Example response:
 
 **Success:**
+
 ```json
 {
 	"publication": "IMPACT_INVESTOR",
@@ -125,12 +130,12 @@ $data = [
 }
 ```
 
-
 ## Send a newsletter
 
 Endpoint: /campaigns/triggerbyjsonwithresult
 
 Data:
+
 ```php
 $data = [
   'Gate' => 'NEWSLETTER_IMPACTINVESTOR',
@@ -144,6 +149,7 @@ $data = [
 ### Example response:
 
 **Success:**
+
 ```json
 {
 	"IsSuccess": true,
@@ -157,6 +163,7 @@ $data = [
 Endpoint: /campaigns/triggerbyjsonwithresult
 
 Data:
+
 ```php
 $data = [
   'Gate' => 'OPTIN_IMPACTINVESTOR',
@@ -169,6 +176,7 @@ $data = [
 ### Example response:
 
 **Success:**
+
 ```json
 {
 	"IsSuccess": true,
