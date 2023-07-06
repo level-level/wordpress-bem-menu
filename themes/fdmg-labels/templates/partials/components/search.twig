@@ -1,8 +1,8 @@
 {% set random_id = uniqid('searchbar-') %}
 <form class="search-component" method="get" action="{{ get_home_url() }}" role="search">
-	<div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+	<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
 		<div class="basis-full sm:basis-auto sm:grow">
-			<label for="{{ random_id }}" class="screen-reader-text">{{ __('Search', 'fdmg-labels') }}</label>
+			<label for="{{ random_id }}" class="screen-reader-text">{{ _x('Search', 'Screen reader text', 'fdmg-labels') }}</label>
 			<input
 				type="search"
 				name="s"
