@@ -67,7 +67,7 @@
             "composer validate"
         ],
         "test:phpcs": [
-            "phpcs --runtime-set testVersion 7.4-"
+            "phpcs --runtime-set testVersion 8.0-"
         ],
         "test:twigcs": [
             "twigcs themes/impact-investor/templates --severity error"
