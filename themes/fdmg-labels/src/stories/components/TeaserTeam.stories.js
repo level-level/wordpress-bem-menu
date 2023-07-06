@@ -14,8 +14,7 @@ export default {
 		},
 	},
 	args: {
-		image:
-			'<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
+		image: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		title: 'Kevinio Level',
 		url: '#',
 		excerpt:

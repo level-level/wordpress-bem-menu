@@ -48,9 +48,7 @@ const createDOM = () => {
 			</nav>
 		</header>`;
 
-	const element: HTMLElement = document.querySelector(
-		'[data-module="primary-nav"]',
-	);
+	const element: HTMLElement = document.querySelector('[data-module="primary-nav"]');
 	return new PrimaryNav(element);
 };
 
@@ -77,28 +75,20 @@ describe('Primary Nav', () => {
 
 	test(`Primary Nav: Arrow click: handle aria values`, () => {
 		const element = document.querySelector('[data-module="primary-nav"]');
-		const submenuButton = element.querySelector<HTMLElement>(
-			'.primary-nav__arrow',
-		);
+		const submenuButton = element.querySelector<HTMLElement>('.primary-nav__arrow');
 
 		submenuButton.click();
 		expect(submenuButton.getAttribute('aria-expanded')).toEqual('true');
-		expect(
-			submenuButton.nextElementSibling.getAttribute('aria-hidden'),
-		).toEqual('false');
+		expect(submenuButton.nextElementSibling.getAttribute('aria-hidden')).toEqual('false');
 
 		submenuButton.click();
 		expect(submenuButton.getAttribute('aria-expanded')).toEqual('false');
-		expect(
-			submenuButton.nextElementSibling.getAttribute('aria-hidden'),
-		).toEqual('true');
+		expect(submenuButton.nextElementSibling.getAttribute('aria-hidden')).toEqual('true');
 	});
 
 	test(`Primary Nav: Close all with escape key`, () => {
 		const element = document.querySelector('[data-module="primary-nav"]');
-		const submenuButton = element.querySelector<HTMLElement>(
-			'.primary-nav__arrow',
-		);
+		const submenuButton = element.querySelector<HTMLElement>('.primary-nav__arrow');
 
 		// First open a submenu
 		submenuButton.click();

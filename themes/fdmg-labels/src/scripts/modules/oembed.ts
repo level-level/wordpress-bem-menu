@@ -52,63 +52,53 @@ class OEmbed implements IModule {
 		});
 
 		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
-		window.__tcfapi(
-			'addEventListener',
-			2,
-			(tcData: { eventStatus: string }) => {
-				if (
-					tcData.eventStatus === 'tcloaded' ||
-					tcData.eventStatus === 'useractioncomplete'
-				) {
-					// Get the consent data
-					window.__tcfapi(
-						'getCustomVendorConsents',
-						2,
-						(data: {
-							consentedPurposes: {
-								_id: string;
-								name: string;
-							}[];
-							consentedVendors: {
-								_id: string;
-								name: string;
-							}[];
-						}) => {
-							const embedSource = this.source;
+		window.__tcfapi('addEventListener', 2, (tcData: { eventStatus: string }) => {
+			if (tcData.eventStatus === 'tcloaded' || tcData.eventStatus === 'useractioncomplete') {
+				// Get the consent data
+				window.__tcfapi(
+					'getCustomVendorConsents',
+					2,
+					(data: {
+						consentedPurposes: {
+							_id: string;
+							name: string;
+						}[];
+						consentedVendors: {
+							_id: string;
+							name: string;
+						}[];
+					}) => {
+						const embedSource = this.source;
 
-							// Check if we have consent for the specific purpose of showing embeds in content
-							let purposeConsent = false;
-							data.consentedPurposes.forEach((element) => {
-								if (
-									element.name === 'Verrijken van artikelen' ||
-									element._id === '62a1c6502b246104cd6ebda5'
-								) {
-									purposeConsent = true;
-								}
-							});
-
-							// Check if we have consent for the vendor of the current embed
-							let vendorConsent = false;
-							data.consentedVendors.forEach((element) => {
-								if (embedSource.includes(element.name.toLowerCase())) {
-									vendorConsent = true;
-								}
-							});
-
-							// Show the embed if we have both purpose and vendor consent
-							if (purposeConsent && vendorConsent) {
-								this.showEmbed();
+						// Check if we have consent for the specific purpose of showing embeds in content
+						let purposeConsent = false;
+						data.consentedPurposes.forEach((element) => {
+							if (element.name === 'Verrijken van artikelen' || element._id === '62a1c6502b246104cd6ebda5') {
+								purposeConsent = true;
 							}
+						});
 
-							// If the user has withdrawn his/her consent, we reload the page
-							else if (tcData.eventStatus === 'useractioncomplete') {
-								window.location.reload();
+						// Check if we have consent for the vendor of the current embed
+						let vendorConsent = false;
+						data.consentedVendors.forEach((element) => {
+							if (embedSource.includes(element.name.toLowerCase())) {
+								vendorConsent = true;
 							}
-						},
-					);
-				}
-			},
-		);
+						});
+
+						// Show the embed if we have both purpose and vendor consent
+						if (purposeConsent && vendorConsent) {
+							this.showEmbed();
+						}
+
+						// If the user has withdrawn his/her consent, we reload the page
+						else if (tcData.eventStatus === 'useractioncomplete') {
+							window.location.reload();
+						}
+					},
+				);
+			}
+		});
 	}
 
 	initDefault() {
@@ -117,11 +107,9 @@ class OEmbed implements IModule {
 			this.showEmbed();
 
 			// Show all available embeds with the same source
-			document
-				.querySelectorAll<HTMLElement>(`[data-source="${this.source}"]`)
-				.forEach((el: HTMLElement) => {
-					this.showEmbed(el);
-				});
+			document.querySelectorAll<HTMLElement>(`[data-source="${this.source}"]`).forEach((el: HTMLElement) => {
+				this.showEmbed(el);
+			});
 		});
 
 		if (window.localStorage.getItem(this.source)) {
@@ -155,8 +143,7 @@ class OEmbed implements IModule {
 	}
 
 	lazyLoadVideo(embed: HTMLElement) {
-		const videoElement: HTMLElement | null =
-			embed.querySelector('.oembed-video');
+		const videoElement: HTMLElement | null = embed.querySelector('.oembed-video');
 
 		if (!videoElement) {
 			return;
@@ -168,8 +155,7 @@ class OEmbed implements IModule {
 	}
 
 	lazyLoadAudio(embed: HTMLElement) {
-		const audioElement: HTMLElement | null =
-			embed.querySelector('.oembed-audio');
+		const audioElement: HTMLElement | null = embed.querySelector('.oembed-audio');
 
 		if (!audioElement) {
 			return;
@@ -178,9 +164,7 @@ class OEmbed implements IModule {
 		const title = audioElement?.querySelector('iframe')?.getAttribute('title');
 
 		if (title && title?.length > 0) {
-			const titleElement = audioElement.querySelector(
-				'.oembed-audio--js-title',
-			);
+			const titleElement = audioElement.querySelector('.oembed-audio--js-title');
 
 			if (!titleElement) {
 				return;

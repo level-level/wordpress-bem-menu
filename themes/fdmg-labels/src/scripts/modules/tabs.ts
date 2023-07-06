@@ -7,12 +7,8 @@ class Tabs implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.tabLinks = Array.from(
-			this.element.querySelectorAll('.tab-list__link'),
-		);
-		this.tabSections = Array.from(
-			this.element.querySelectorAll('.tab-list__section'),
-		);
+		this.tabLinks = Array.from(this.element.querySelectorAll('.tab-list__link'));
+		this.tabSections = Array.from(this.element.querySelectorAll('.tab-list__section'));
 
 		this.initialize();
 	}
@@ -34,8 +30,7 @@ class Tabs implements IModule {
 		const target = <HTMLElement>event.currentTarget;
 
 		if (target?.getAttribute('aria-selected') !== 'true') {
-			const currentTab =
-				this.element.querySelector<HTMLElement>('[aria-selected]');
+			const currentTab = this.element.querySelector<HTMLElement>('[aria-selected]');
 			if (target !== currentTab) {
 				this.switchTab(currentTab, target);
 			}

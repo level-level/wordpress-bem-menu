@@ -7,9 +7,7 @@ declare const lodash: any; // eslint-disable-line
 /**
  * Disable default WordPress fullscreen mode
  */
-const isFullscreenMode = wp.data
-	.select('core/edit-post')
-	.isFeatureActive('fullscreenMode');
+const isFullscreenMode = wp.data.select('core/edit-post').isFeatureActive('fullscreenMode');
 if (isFullscreenMode) {
 	wp.data.dispatch('core/edit-post').toggleFeature('fullscreenMode');
 }
@@ -39,20 +37,16 @@ wp.domReady(() => {
 // Disable default options for following core blocks
 const coreBlocks = ['core/heading'];
 
-wp.hooks.addFilter(
-	'blocks.registerBlockType',
-	'fdmg-labels/blocks',
-	function (settings: any, name: string) {
-		if (coreBlocks.includes(name)) {
-			return lodash.assign({}, settings, {
-				supports: lodash.assign({}, settings.supports, {
-					align: false,
-					anchor: false,
-					className: false,
-					customClassName: false,
-				}),
-			});
-		}
-		return settings;
-	},
-);
+wp.hooks.addFilter('blocks.registerBlockType', 'fdmg-labels/blocks', function (settings: any, name: string) {
+	if (coreBlocks.includes(name)) {
+		return lodash.assign({}, settings, {
+			supports: lodash.assign({}, settings.supports, {
+				align: false,
+				anchor: false,
+				className: false,
+				customClassName: false,
+			}),
+		});
+	}
+	return settings;
+});

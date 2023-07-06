@@ -8,9 +8,7 @@ class Table implements IModule {
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.tableHeader = Array.from(this.element.querySelectorAll('th'));
-		this.tableRows = Array.from(
-			this.element.querySelectorAll('tbody tr, tfoot tr'),
-		);
+		this.tableRows = Array.from(this.element.querySelectorAll('tbody tr, tfoot tr'));
 		this.initialize();
 	}
 

@@ -8,9 +8,7 @@ class DisplayOptions implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.headerProfile = document
-			.querySelector('.header-profile')
-			?.querySelector('.btn');
+		this.headerProfile = document.querySelector('.header-profile')?.querySelector('.btn');
 		this.responsiveHelper = new ResponsiveHelper();
 
 		this.initialize();

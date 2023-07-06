@@ -27,9 +27,7 @@ class PrimaryNav implements IModule {
 			sub: `${this.mainClass}-sub`,
 		};
 
-		this.parentItem = Array.from(
-			element.querySelectorAll(`.${this.classNames.parent}`),
-		);
+		this.parentItem = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
 		this.header = <HTMLElement>element.closest('header');
 		this.responsiveHelper = new ResponsiveHelper();
 
@@ -49,9 +47,7 @@ class PrimaryNav implements IModule {
 
 		// Add button before sub menu
 		this.parentItem.forEach((el) => {
-			el
-				.querySelector(`.${this.classNames.sub}`)
-				?.insertAdjacentHTML('beforebegin', button);
+			el.querySelector(`.${this.classNames.sub}`)?.insertAdjacentHTML('beforebegin', button);
 		});
 
 		// Add aria attribute to all sub-menu's
@@ -71,10 +67,7 @@ class PrimaryNav implements IModule {
 		});
 
 		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
-		this.header.addEventListener(
-			'keyup',
-			this.closeAllWhenNotActive.bind(this),
-		);
+		this.header.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
 	}
 
 	determineViewport() {
@@ -190,23 +183,17 @@ class PrimaryNav implements IModule {
 	handleTab(event: KeyboardEvent) {
 		if (event.key === 'Tab') {
 			// Current element that is focused
-			const focusedElement: HTMLElement = <HTMLElement>(
-				this.element.querySelector(':focus')
-			);
+			const focusedElement: HTMLElement = <HTMLElement>this.element.querySelector(':focus');
 
 			// When tabbing through top level links, close all dropdowns
 			if (focusedElement.getAttribute('class') === this.classNames.link) {
-				this.element
-					.querySelectorAll(`.${this.classNames.sub}`)
-					.forEach((el) => {
-						el.setAttribute('aria-hidden', 'true');
-					});
+				this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
+					el.setAttribute('aria-hidden', 'true');
+				});
 
-				this.element
-					.querySelectorAll(`.${this.classNames.arrow}`)
-					.forEach((el) => {
-						el.setAttribute('aria-expanded', 'false');
-					});
+				this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
+					el.setAttribute('aria-expanded', 'false');
+				});
 
 				// When tabbing through sub menu links, close all sub dropdowns
 			} else if (focusedElement.closest(`.${this.classNames.sub}`)) {
@@ -234,9 +221,7 @@ class PrimaryNav implements IModule {
 	 */
 	closeAllWhenNotActive(event: KeyboardEvent) {
 		if (event.key === 'Tab' && !event.shiftKey) {
-			if (
-				!this.element.querySelector(':focus')?.closest(`.${this.mainClass}`)
-			) {
+			if (!this.element.querySelector(':focus')?.closest(`.${this.mainClass}`)) {
 				this.closeAll();
 			}
 		}

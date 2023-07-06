@@ -61,13 +61,8 @@
 
 // Positions the anchor link
 #comments {
-	padding-top: calc(
-		#{var(--header-height)} + #{var(--wp-admin--admin-bar--height, 0px)} + #{$spacing-6}
-	);
-	margin-top: calc(
-		-1 * (#{var(--header-height)} + #{var(--wp-admin--admin-bar--height, 0px)} +
-					#{$spacing-6})
-	);
+	padding-top: calc(#{var(--header-height)} + #{var(--wp-admin--admin-bar--height, 0px)} + #{$spacing-6});
+	margin-top: calc(-1 * (#{var(--header-height)} + #{var(--wp-admin--admin-bar--height, 0px)} + #{$spacing-6}));
 }
 
 .comments-area {

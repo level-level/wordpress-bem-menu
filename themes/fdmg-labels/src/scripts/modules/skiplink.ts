@@ -15,9 +15,7 @@ class Skiplink implements IModule {
 	addEventListeners() {
 		this.element.addEventListener('click', (event: Event) => {
 			const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
-			const target: HTMLElement | null = document.querySelector(
-				`${currentTarget?.getAttribute('href')}`,
-			);
+			const target: HTMLElement | null = document.querySelector(`${currentTarget?.getAttribute('href')}`);
 
 			if (!target) {
 				return;

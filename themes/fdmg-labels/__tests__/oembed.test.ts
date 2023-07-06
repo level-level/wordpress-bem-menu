@@ -43,8 +43,7 @@ beforeEach(() => {
 describe('OEmbed', () => {
 	test(`YouTube: consent to allow cookies.`, () => {
 		const element = document.querySelector('[data-module="oembed"]');
-		const consentButton =
-			element.querySelector<HTMLElement>('.js-consent-button');
+		const consentButton = element.querySelector<HTMLElement>('.js-consent-button');
 
 		// Before giving consent the 'consent_embed_youtube' property should be null in localstorage
 		expect(window.localStorage.getItem('consent_embed_youtube')).toBeNull();
@@ -80,8 +79,6 @@ describe('OEmbed', () => {
 		video.click();
 
 		// Src is now set with additional parameters and video is loaded
-		expect(iframe.getAttribute('src')).toMatch(
-			'&autoplay=1&disablekb=1&keyboard=0',
-		);
+		expect(iframe.getAttribute('src')).toMatch('&autoplay=1&disablekb=1&keyboard=0');
 	});
 });

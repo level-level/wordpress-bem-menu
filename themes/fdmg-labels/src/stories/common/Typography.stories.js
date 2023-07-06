@@ -34,8 +34,7 @@ Paragraphs.parameters = {
 
 export const Blockquote = Template.bind({});
 Blockquote.args = {
-	content:
-		"If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success",
+	content: "If you set your goals ridiculously high and it's a failure, you will fail above everyone else's success",
 };
 
 Blockquote.parameters = {

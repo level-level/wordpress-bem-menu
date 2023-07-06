@@ -143,8 +143,7 @@
 
 @mixin select {
 	@include form-control;
-	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>")
-		no-repeat;
+	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>");
 	background-size: 12px;
 	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
 	background-repeat: no-repeat;

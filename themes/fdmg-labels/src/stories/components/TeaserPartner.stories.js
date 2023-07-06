@@ -14,8 +14,7 @@ export default {
 		},
 	},
 	args: {
-		image:
-			'<img src="https://place-hold.it/300x100" loading="lazy" width="300" height="100" alt="">',
+		image: '<img src="https://place-hold.it/300x100" loading="lazy" width="300" height="100" alt="">',
 		title: 'Actiam',
 		url: '#',
 		excerpt:

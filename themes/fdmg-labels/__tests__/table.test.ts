@@ -41,9 +41,7 @@ describe('Table', () => {
 	test(`Table: Should add a "data-th" property to all table cells based on the existing table head elements`, () => {
 		const element = document.querySelector('[data-module="table"]');
 
-		const firstItem = element
-			.querySelector('tbody tr td')
-			.getAttribute('data-th');
+		const firstItem = element.querySelector('tbody tr td').getAttribute('data-th');
 		expect(firstItem).toMatch(/Name/);
 	});
 });

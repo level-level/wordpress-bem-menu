@@ -29,10 +29,8 @@ export default {
 		},
 	},
 	args: {
-		image:
-			'<img src="https://place-hold.it/1024x578" loading="lazy" width="1024" height="578" alt="">',
-		image_square:
-			'<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
+		image: '<img src="https://place-hold.it/1024x578" loading="lazy" width="1024" height="578" alt="">',
+		image_square: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		title: 'Example Post teaser',
 		url: '#',
 		excerpt:

@@ -38,11 +38,7 @@ Primary.args = {
 };
 Primary.argTypes = {
 	class: {
-		options: [
-			Primary.args.class,
-			`${Primary.args.class} btn--full`,
-			`${Primary.args.class} btn--no-padding`,
-		],
+		options: [Primary.args.class, `${Primary.args.class} btn--full`, `${Primary.args.class} btn--no-padding`],
 		control: {
 			type: 'select',
 		},
@@ -56,11 +52,7 @@ Secondary.args = {
 };
 Secondary.argTypes = {
 	class: {
-		options: [
-			Secondary.args.class,
-			`${Secondary.args.class} btn--full`,
-			`${Secondary.args.class} btn--no-padding`,
-		],
+		options: [Secondary.args.class, `${Secondary.args.class} btn--full`, `${Secondary.args.class} btn--no-padding`],
 		control: {
 			type: 'select',
 		},
@@ -91,11 +83,7 @@ Link.args = {
 };
 Link.argTypes = {
 	class: {
-		options: [
-			Link.args.class,
-			`${Link.args.class} btn--full`,
-			`${Link.args.class} btn--no-padding`,
-		],
+		options: [Link.args.class, `${Link.args.class} btn--full`, `${Link.args.class} btn--no-padding`],
 		control: {
 			type: 'select',
 		},

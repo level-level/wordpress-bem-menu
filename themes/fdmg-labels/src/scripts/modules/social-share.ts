@@ -42,9 +42,7 @@ class Socials implements IModule {
 		const config: {
 			type: keyof IPlatforms;
 			shareText: string;
-		} = currentTarget.dataset.config
-			? JSON.parse(currentTarget.dataset.config)
-			: {};
+		} = currentTarget.dataset.config ? JSON.parse(currentTarget.dataset.config) : {};
 
 		const text: string = config.shareText || i18n.socialShare;
 		const body = `${window.location.href}&text=${text}`;
@@ -57,10 +55,7 @@ class Socials implements IModule {
 		};
 
 		if (config.type === 'email') {
-			currentTarget.setAttribute(
-				'href',
-				`mailto:?subject=${text}&body=${window.location.href}`,
-			);
+			currentTarget.setAttribute('href', `mailto:?subject=${text}&body=${window.location.href}`);
 		} else if (typeof location[config.type] !== 'undefined') {
 			const width = 550;
 			const height = 450;
@@ -68,8 +63,7 @@ class Socials implements IModule {
 
 			window.open(
 				location[config.type],
-				location[config.type].charAt(0).toUpperCase() +
-					location[config.type].slice(1),
+				location[config.type].charAt(0).toUpperCase() + location[config.type].slice(1),
 				`height=${height}, width=${width} top=${top} toolbar=0, location=0, menubar=0, directories=0, scrollbars=0`,
 			);
 

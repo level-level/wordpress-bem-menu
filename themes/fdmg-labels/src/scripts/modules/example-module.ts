@@ -11,9 +11,7 @@ class Example implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.config = this.element.dataset.config
-			? JSON.parse(this.element.dataset.config)
-			: {};
+		this.config = this.element.dataset.config ? JSON.parse(this.element.dataset.config) : {};
 		this.randomGreeting = this.element.querySelector('.random-greeting');
 		this.random = '';
 		this.initialize();
@@ -43,10 +41,7 @@ class Example implements IModule {
 					return;
 				}
 
-				this.random =
-					this.config.greetings[
-						Math.floor(Math.random() * this.config.greetings.length)
-					];
+				this.random = this.config.greetings[Math.floor(Math.random() * this.config.greetings.length)];
 				this.randomGreeting.textContent = this.random;
 			}
 		}, 500);

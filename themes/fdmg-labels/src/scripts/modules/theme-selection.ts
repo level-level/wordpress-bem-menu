@@ -7,9 +7,7 @@ class ThemeSelection implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.radios = Array.from(
-			this.element.querySelectorAll('input[type="radio"]'),
-		);
+		this.radios = Array.from(this.element.querySelectorAll('input[type="radio"]'));
 		this.html = document.querySelector('html');
 
 		this.initialize();
@@ -37,11 +35,9 @@ class ThemeSelection implements IModule {
 		this.html?.setAttribute('data-theme', theme);
 
 		// Check radiobutton with active theme
-		document
-			.querySelectorAll<HTMLInputElement>(`[value="${theme}"]`)
-			.forEach((radio) => {
-				radio.checked = true;
-			});
+		document.querySelectorAll<HTMLInputElement>(`[value="${theme}"]`).forEach((radio) => {
+			radio.checked = true;
+		});
 
 		// Save theme preference in the localStorage
 		localStorage.setItem('theme-style', theme);

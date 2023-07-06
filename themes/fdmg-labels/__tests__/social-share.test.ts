@@ -30,9 +30,7 @@ const createDOM = () => {
 			</li>
 		</ul>`;
 
-	const element: HTMLElement = document.querySelector(
-		'[data-module="social-share"]',
-	);
+	const element: HTMLElement = document.querySelector('[data-module="social-share"]');
 	return new Socials(element);
 };
 
