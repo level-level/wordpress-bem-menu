@@ -55,6 +55,16 @@
 		@include dark-mode {
 			color: var(--primary-300);
 		}
+
+		@include theme-pp(true) {
+			color: var(--base-50);
+			background-color: transparent;
+		}
+
+		@include theme-energeia(true) {
+			color: var(--base-50);
+			background-color: transparent;
+		}
 	}
 }
 
