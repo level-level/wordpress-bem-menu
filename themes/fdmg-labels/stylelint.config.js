@@ -1,8 +1,4 @@
 module.exports = {
-	extends: [
-		'@level-level/stylelint-config-level-level'
-	],
-	rules: {
-
-	}
-}
+	extends: ['@level-level/stylelint-config-level-level'],
+	rules: {},
+};

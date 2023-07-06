@@ -1,5 +1,5 @@
 // Lists
-@mixin list-horizontal( $margin: $spacing-6 ) {
+@mixin list-horizontal($margin: $spacing-6) {
 	display: flex;
 	flex-wrap: wrap;
 	margin-top: -#{$margin};

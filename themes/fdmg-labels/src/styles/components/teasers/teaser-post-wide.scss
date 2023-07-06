@@ -21,12 +21,12 @@
 
 			&__thumbnail {
 				@include breakpoint(sm) {
-					@include image-ratio(14,9);
+					@include image-ratio(14, 9);
 					width: 210px;
 				}
 
 				@include breakpoint(lg) {
-					@include image-ratio(14,9);
+					@include image-ratio(14, 9);
 					width: 260px;
 				}
 

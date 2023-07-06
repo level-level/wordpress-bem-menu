@@ -2,8 +2,7 @@ import { describe, test, expect, beforeEach } from '@jest/globals';
 import Table from '../src/scripts/modules/table';
 
 const createDOM = () => {
-	document.body.innerHTML =
-		`<div data-module="table">
+	document.body.innerHTML = `<div data-module="table">
 			<table>
 				<thead>
 					<tr>
@@ -30,19 +29,21 @@ const createDOM = () => {
 			</table>
 		</div>`;
 
-	const element: HTMLElement = document.querySelector( '[data-module="table"]' );
-	return new Table( element );
+	const element: HTMLElement = document.querySelector('[data-module="table"]');
+	return new Table(element);
 };
 
-beforeEach( () => {
+beforeEach(() => {
 	return createDOM();
-} );
+});
 
-describe( 'Table', () => {
-	test( `Table: Should add a "data-th" property to all table cells based on the existing table head elements`, () => {
-		const element = document.querySelector( '[data-module="table"]' );
+describe('Table', () => {
+	test(`Table: Should add a "data-th" property to all table cells based on the existing table head elements`, () => {
+		const element = document.querySelector('[data-module="table"]');
 
-		const firstItem = element.querySelector( 'tbody tr td' ).getAttribute( 'data-th' );
-		expect( firstItem ).toMatch( /Name/ );
-	} );
-} );
+		const firstItem = element
+			.querySelector('tbody tr td')
+			.getAttribute('data-th');
+		expect(firstItem).toMatch(/Name/);
+	});
+});

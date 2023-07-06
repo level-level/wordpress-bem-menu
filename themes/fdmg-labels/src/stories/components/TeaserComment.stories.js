@@ -7,23 +7,24 @@ export default {
 	},
 	argTypes: {
 		author: {
-			control: 'text'
+			control: 'text',
 		},
 		time: {
-			control: 'text'
+			control: 'text',
 		},
 		content: {
-			control: 'text'
-		}
+			control: 'text',
+		},
 	},
 	args: {
 		author: 'Kevinio',
 		time: '20 minutes ago',
-		content: 'Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.',
+		content:
+			'Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.',
 	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

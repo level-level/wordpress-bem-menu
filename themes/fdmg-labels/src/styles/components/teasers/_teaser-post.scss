@@ -60,7 +60,7 @@
 	}
 
 	&__thumbnail {
-		@include image-ratio(16,9);
+		@include image-ratio(16, 9);
 
 		img {
 			@include center-element;

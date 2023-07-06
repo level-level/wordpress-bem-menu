@@ -2,8 +2,7 @@ import { describe, test, expect, beforeEach } from '@jest/globals';
 import OEmbed from '../src/scripts/modules/oembed';
 
 const createDOM = () => {
-	document.body.innerHTML =
-		`<div class="oembed-component" data-module="oembed" data-source="consent_embed_youtube" data-type="video" data-cookiebot="" data-disable-notice="">
+	document.body.innerHTML = `<div class="oembed-component" data-module="oembed" data-source="consent_embed_youtube" data-type="video" data-cookiebot="" data-disable-notice="">
 			<div class="oembed-component__content">
 				<div class="oembed-placeholder">
 					<div class="oembed-placeholder__content">
@@ -33,54 +32,56 @@ const createDOM = () => {
 			</template>
 		</div>`;
 
-	const element: HTMLElement = document.querySelector( '[data-module="oembed"]' );
-	return new OEmbed( element );
+	const element: HTMLElement = document.querySelector('[data-module="oembed"]');
+	return new OEmbed(element);
 };
 
-beforeEach( () => {
+beforeEach(() => {
 	return createDOM();
-} );
+});
 
-describe( 'OEmbed', () => {
-
-	test( `YouTube: consent to allow cookies.`, () => {
-		const element = document.querySelector( '[data-module="oembed"]' );
-		const consentButton = element.querySelector<HTMLElement>( '.js-consent-button' );
+describe('OEmbed', () => {
+	test(`YouTube: consent to allow cookies.`, () => {
+		const element = document.querySelector('[data-module="oembed"]');
+		const consentButton =
+			element.querySelector<HTMLElement>('.js-consent-button');
 
 		// Before giving consent the 'consent_embed_youtube' property should be null in localstorage
-		expect( window.localStorage.getItem( 'consent_embed_youtube' ) ).toBeNull();
+		expect(window.localStorage.getItem('consent_embed_youtube')).toBeNull();
 
 		// Click to simulate consent
 		consentButton.click();
 
 		// Consent for YouTube embeds should now be set to true in the localstorage
-		expect( window.localStorage.getItem( 'consent_embed_youtube' ) ).toBe( 'true' );
-	} );
+		expect(window.localStorage.getItem('consent_embed_youtube')).toBe('true');
+	});
 
-	test( `YouTube: embed is visible and after click the correct src is loaded incl. autoplay and disabled keyboard.`, () => {
-		const element = document.querySelector( '[data-module="oembed"]' );
-		const video = element.querySelector<HTMLElement>( '.oembed-video' );
-		const placeholder = element.querySelector( '.oembed-placeholder' );
+	test(`YouTube: embed is visible and after click the correct src is loaded incl. autoplay and disabled keyboard.`, () => {
+		const element = document.querySelector('[data-module="oembed"]');
+		const video = element.querySelector<HTMLElement>('.oembed-video');
+		const placeholder = element.querySelector('.oembed-placeholder');
 
 		// Check if consent placeholder is removed and video is visible
-		expect( placeholder ).toBeNull();
-		expect( video ).toBeDefined();
+		expect(placeholder).toBeNull();
+		expect(video).toBeDefined();
 
-		const iframe = video.querySelector( 'iframe' );
-		const playButton = video.querySelector( '.btn--js-video-play' );
-		const thumbnail = video.querySelector( '.oembed-video__thumbnail' );
+		const iframe = video.querySelector('iframe');
+		const playButton = video.querySelector('.btn--js-video-play');
+		const thumbnail = video.querySelector('.oembed-video__thumbnail');
 
 		// Src should be null before clicking
-		expect( iframe.getAttribute( 'src' ) ).toBeNull();
+		expect(iframe.getAttribute('src')).toBeNull();
 
 		// Video play button and thumbnail should be visible
-		expect( playButton ).toBeDefined();
-		expect( thumbnail ).toBeDefined();
+		expect(playButton).toBeDefined();
+		expect(thumbnail).toBeDefined();
 
 		// Play video
 		video.click();
 
 		// Src is now set with additional parameters and video is loaded
-		expect( iframe.getAttribute( 'src' ) ).toMatch( '&autoplay=1&disablekb=1&keyboard=0' );
-	} );
-} );
+		expect(iframe.getAttribute('src')).toMatch(
+			'&autoplay=1&disablekb=1&keyboard=0',
+		);
+	});
+});

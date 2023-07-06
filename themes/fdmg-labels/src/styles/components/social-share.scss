@@ -21,7 +21,12 @@
 			z-index: 2;
 			margin-top: $spacing-6;
 			position: sticky;
-			top: calc(#{var(--header-height)} + #{$spacing-6} + #{var(--wp-admin--admin-bar--height, 0px)});
+			top: calc(
+				#{var(--header-height)} + #{$spacing-6} + #{var(
+						--wp-admin--admin-bar--height,
+						0px
+					)}
+			);
 		}
 	}
 }

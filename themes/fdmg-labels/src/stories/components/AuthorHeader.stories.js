@@ -7,19 +7,19 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		subtitle: {
-			control: 'text'
-		}
+			control: 'text',
+		},
 	},
 	args: {
 		title: 'Kevinio Level',
 		subtitle: 'Author',
-	}
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

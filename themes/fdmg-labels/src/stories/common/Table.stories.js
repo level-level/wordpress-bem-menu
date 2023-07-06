@@ -5,13 +5,9 @@ export default {
 			id: 'styleguide/common/table.twig',
 		},
 	},
-	argTypes: {
-
-	},
-	args: {
-
-	}
+	argTypes: {},
+	args: {},
 };
 
 const Template = () => {};
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});

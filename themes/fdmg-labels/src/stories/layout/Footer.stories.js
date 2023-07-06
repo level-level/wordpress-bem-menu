@@ -9,5 +9,5 @@ export default {
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

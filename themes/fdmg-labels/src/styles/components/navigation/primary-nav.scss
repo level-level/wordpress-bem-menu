@@ -92,7 +92,9 @@
 			border-bottom: 0;
 			height: var(--menu-height);
 			color: var(--secondary-600);
-			transition: background-color $time, color $time;
+			transition:
+				background-color $time,
+				color $time;
 
 			@include dark-theme {
 				color: var(--base-50);

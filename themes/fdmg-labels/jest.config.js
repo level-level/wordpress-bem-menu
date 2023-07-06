@@ -12,8 +12,8 @@ module.exports = {
 		},
 		i18n: {
 			navigation: {
-				subMenu: true
-			}
-		}
+				subMenu: true,
+			},
+		},
 	},
 };

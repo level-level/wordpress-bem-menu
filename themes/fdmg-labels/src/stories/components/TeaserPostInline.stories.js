@@ -9,16 +9,19 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		terms: {
-			control: 'array'
+			control: 'array',
 		},
 	},
 	args: {
-		image: '<img src="https://place-hold.it/300x195" loading="lazy" width="300" height="195" alt="">',
-		image_square: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
-		title: 'CDC Climate Strategy director: Focus on nature to build climate resilience',
+		image:
+			'<img src="https://place-hold.it/300x195" loading="lazy" width="300" height="195" alt="">',
+		image_square:
+			'<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
+		title:
+			'CDC Climate Strategy director: Focus on nature to build climate resilience',
 		url: '#',
 		terms: Terms,
 	},
@@ -26,5 +29,5 @@ export default {
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

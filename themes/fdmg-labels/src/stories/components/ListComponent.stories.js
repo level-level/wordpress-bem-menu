@@ -9,26 +9,22 @@ export default {
 	},
 	argTypes: {
 		heading: {
-			control: 'text'
+			control: 'text',
 		},
 		objects: {
-			control: 'array'
+			control: 'array',
 		},
 		button_text: {
-			control: 'text'
+			control: 'text',
 		},
 		button_link: {
-			control: 'text'
+			control: 'text',
 		},
 		style: {
-			options: [
-				'default',
-				'dark',
-				'light',
-			],
+			options: ['default', 'dark', 'light'],
 			control: {
 				type: 'select',
-			}
+			},
 		},
 	},
 	args: {
@@ -37,10 +33,10 @@ export default {
 		button_text: 'More articles',
 		button_link: '#',
 		style: '',
-	}
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

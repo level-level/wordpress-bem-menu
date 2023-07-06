@@ -9,15 +9,15 @@ export default {
 	},
 	argTypes: {
 		badges: {
-			control: 'array'
+			control: 'array',
 		},
 	},
 	args: {
-		badges: Terms
-	}
+		badges: Terms,
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

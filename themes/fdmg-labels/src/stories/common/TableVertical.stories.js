@@ -5,15 +5,11 @@ export default {
 			id: 'styleguide/common/vertical-table.twig',
 		},
 	},
-	argTypes: {
-
-	},
-	args: {
-
-	}
+	argTypes: {},
+	args: {},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

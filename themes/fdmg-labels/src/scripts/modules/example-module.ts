@@ -9,10 +9,12 @@ class Example implements IModule {
 	randomGreeting: HTMLElement | null;
 	random: string;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
-		this.config = this.element.dataset.config ? JSON.parse( this.element.dataset.config ) : {};
-		this.randomGreeting = this.element.querySelector( '.random-greeting' );
+		this.config = this.element.dataset.config
+			? JSON.parse(this.element.dataset.config)
+			: {};
+		this.randomGreeting = this.element.querySelector('.random-greeting');
 		this.random = '';
 		this.initialize();
 	}
@@ -22,30 +24,32 @@ class Example implements IModule {
 	}
 
 	addEventListeners() {
-		this.element.addEventListener( 'click', ( event: Event ) => {
+		this.element.addEventListener('click', (event: Event) => {
 			const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
 
-			if ( currentTarget.matches( 'button' ) ) {
-				const buttonText = currentTarget.querySelector( '.btn__text' );
+			if (currentTarget.matches('button')) {
+				const buttonText = currentTarget.querySelector('.btn__text');
 
-				if ( ! buttonText ) {
+				if (!buttonText) {
 					return;
 				}
 				buttonText.textContent = this.config.clicked;
 			}
-		} );
+		});
 
-		setInterval( () => {
-			if ( this.config?.greetings ) {
-
-				if ( ! this.randomGreeting ) {
+		setInterval(() => {
+			if (this.config?.greetings) {
+				if (!this.randomGreeting) {
 					return;
 				}
 
-				this.random = this.config.greetings[ Math.floor( Math.random() * this.config.greetings.length ) ];
+				this.random =
+					this.config.greetings[
+						Math.floor(Math.random() * this.config.greetings.length)
+					];
 				this.randomGreeting.textContent = this.random;
 			}
-		}, 500 );
+		}, 500);
 	}
 }
 

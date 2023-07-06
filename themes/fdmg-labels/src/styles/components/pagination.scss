@@ -68,7 +68,9 @@
 			padding: 0;
 			border-radius: 50%;
 			border: 0;
-			transition: color $time, background-color $time;
+			transition:
+				color $time,
+				background-color $time;
 
 			@include dark-theme {
 				background-color: var(--primary-300);

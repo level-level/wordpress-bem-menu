@@ -5,10 +5,12 @@ class ThemeSelection implements IModule {
 	radios: HTMLInputElement[] | null;
 	html: HTMLElement | null;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
-		this.radios = Array.from( this.element.querySelectorAll( 'input[type="radio"]' ) );
-		this.html = document.querySelector( 'html' );
+		this.radios = Array.from(
+			this.element.querySelectorAll('input[type="radio"]'),
+		);
+		this.html = document.querySelector('html');
 
 		this.initialize();
 	}
@@ -19,29 +21,30 @@ class ThemeSelection implements IModule {
 
 	// Set active theme based on radiobutton selection
 	addEventListeners() {
-		this.radios?.forEach( radio => {
-			radio.addEventListener( 'change', () => {
-				this.setActiveTheme( radio.value );
-			} );
-		} );
+		this.radios?.forEach((radio) => {
+			radio.addEventListener('change', () => {
+				this.setActiveTheme(radio.value);
+			});
+		});
 	}
 
-	setActiveTheme( theme: string ) {
-
+	setActiveTheme(theme: string) {
 		// Uncheck any checked radiobuttons
-		this.radios?.forEach( radio => {
+		this.radios?.forEach((radio) => {
 			radio.checked = false;
-		} );
+		});
 
-		this.html?.setAttribute( 'data-theme', theme );
+		this.html?.setAttribute('data-theme', theme);
 
 		// Check radiobutton with active theme
-		document.querySelectorAll<HTMLInputElement>( `[value="${ theme }"]` ).forEach( radio => {
-			radio.checked = true;
-		} );
+		document
+			.querySelectorAll<HTMLInputElement>(`[value="${theme}"]`)
+			.forEach((radio) => {
+				radio.checked = true;
+			});
 
 		// Save theme preference in the localStorage
-		localStorage.setItem( 'theme-style', theme );
+		localStorage.setItem('theme-style', theme);
 	}
 }
 

@@ -10,16 +10,16 @@ export default {
 	},
 	argTypes: {
 		title: {
-			control: 'text'
+			control: 'text',
 		},
 		terms: {
-			control: 'array'
+			control: 'array',
 		},
 		authors: {
-			control: 'array'
+			control: 'array',
 		},
 		label: {
-			control: 'text'
+			control: 'text',
 		},
 	},
 	args: {
@@ -29,10 +29,10 @@ export default {
 		datetime: '2021-04-21',
 		authors: Authors,
 		label: '',
-	}
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

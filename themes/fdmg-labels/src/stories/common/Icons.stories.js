@@ -5,12 +5,10 @@ export default {
 			id: 'styleguide/common/icons.twig',
 		},
 	},
-	argTypes: {
-
-	},
-	args: {}
+	argTypes: {},
+	args: {},
 };
 
 const Template = () => {};
 
-export const Icons = Template.bind( {} );
+export const Icons = Template.bind({});

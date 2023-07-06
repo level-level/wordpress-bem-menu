@@ -18,32 +18,37 @@ const modules: any = {
 	'header-search': HeaderSearch,
 	'header-profile': HeaderProfile,
 	'header-menu': HeaderMenu,
-	'oembed': OEmbed,
-	'tabs': Tabs,
-	'skiplink': Skiplink,
-	'table': Table,
+	oembed: OEmbed,
+	tabs: Tabs,
+	skiplink: Skiplink,
+	table: Table,
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
 };
 
-Array.from( document.querySelectorAll<HTMLElement>( '[data-module]' ) ).forEach( ( element: HTMLElement ) => {
-	if ( element === undefined ) {
-		return;
-	}
+Array.from(document.querySelectorAll<HTMLElement>('[data-module]')).forEach(
+	(element: HTMLElement) => {
+		if (element === undefined) {
+			return;
+		}
 
-	const name = element.dataset.module;
+		const name = element.dataset.module;
 
-	if ( ! name ) {
-		return;
-	}
+		if (!name) {
+			return;
+		}
 
-	const module = modules[ name ];
+		const module = modules[name];
 
-	if ( module ) {
-		new module( element );
-		element.setAttribute( 'data-initialized', 'true' );
-	}
-} );
+		if (module) {
+			new module(element);
+			element.setAttribute('data-initialized', 'true');
+		}
+	},
+);
 
-console.log( '%c  Powered by level-level.com 💪  ', 'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;' ); //eslint-disable-line no-console
+console.log(
+	'%c  Powered by level-level.com 💪  ',
+	'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;',
+); //eslint-disable-line no-console

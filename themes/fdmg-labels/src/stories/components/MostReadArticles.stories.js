@@ -9,15 +9,15 @@ export default {
 	},
 	argTypes: {
 		objects: {
-			control: 'array'
+			control: 'array',
 		},
 	},
 	args: {
 		objects: Posts,
-	}
+	},
 };
 
 const Template = () => {};
 
-export const Default = Template.bind( {} );
+export const Default = Template.bind({});
 Default.args = {};

@@ -3,7 +3,7 @@ import { IModule } from '../../globals';
 class Skiplink implements IModule {
 	element: HTMLElement;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
 		this.initialize();
 	}
@@ -13,22 +13,23 @@ class Skiplink implements IModule {
 	}
 
 	addEventListeners() {
-		this.element.addEventListener( 'click', ( event: Event ) => {
+		this.element.addEventListener('click', (event: Event) => {
 			const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
-			const target: HTMLElement|null = document.querySelector( `${ currentTarget?.getAttribute( 'href' ) }` );
+			const target: HTMLElement | null = document.querySelector(
+				`${currentTarget?.getAttribute('href')}`,
+			);
 
-			if ( ! target ) {
+			if (!target) {
 				return;
 			}
 
-			setTimeout( () => {
-				scroll( {
+			setTimeout(() => {
+				scroll({
 					top: target.offsetTop,
-					behavior: 'smooth'
-				} );
-			}, 20 );
-
-		} );
+					behavior: 'smooth',
+				});
+			}, 20);
+		});
 	}
 }
 

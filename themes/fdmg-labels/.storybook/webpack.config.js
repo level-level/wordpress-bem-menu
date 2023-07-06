@@ -3,8 +3,11 @@ const customConfig = require('@level-level/webpack-config/src/dev.js')({
 });
 
 module.exports = async ({ config }) => {
-	if( process.env.NODE_ENV === 'development' ){
-		return { ...config, module: { ...config.module, rules: customConfig.module.rules } };
+	if (process.env.NODE_ENV === 'development') {
+		return {
+			...config,
+			module: { ...config.module, rules: customConfig.module.rules },
+		};
 	}
 
 	return config;

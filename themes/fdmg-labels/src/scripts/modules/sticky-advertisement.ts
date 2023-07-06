@@ -4,9 +4,9 @@ class StickyAdvertisment implements IModule {
 	element: HTMLElement;
 	sections: HTMLElement[] | null;
 
-	constructor( element: HTMLElement ) {
+	constructor(element: HTMLElement) {
 		this.element = element;
-		this.sections = Array.from( this.element.querySelectorAll( '.section' ) );
+		this.sections = Array.from(this.element.querySelectorAll('.section'));
 		this.initialize();
 	}
 
@@ -15,16 +15,16 @@ class StickyAdvertisment implements IModule {
 	}
 
 	addStickyClass() {
-		if ( !this.sections ) {
+		if (!this.sections) {
 			return;
 		}
 
-		this.sections.map( ( item: HTMLElement ) => {
-			const ad = item.querySelector( '.advertisement' );
-			if ( ad !== null ) {
-				item.classList.add( 'section--has-advertisement' );
+		this.sections.map((item: HTMLElement) => {
+			const ad = item.querySelector('.advertisement');
+			if (ad !== null) {
+				item.classList.add('section--has-advertisement');
 			}
-		} );
+		});
 	}
 }
 
