@@ -4,7 +4,7 @@
 	padding: $spacing-9 0;
 	background-color: var(--secondary-300);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-400);
 	}
 
@@ -34,7 +34,7 @@
 		@include font-size(22px, 24px);
 		color: var(--secondary-600);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 	}
@@ -43,7 +43,7 @@
 		&--link {
 			color: var(--secondary-600);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--base-50);
 			}
 
@@ -59,7 +59,7 @@
 	border-top: 1px solid var(--secondary-400);
 	background-color: var(--secondary-300);
 
-	@include dark-theme {
+	@include dark-mode {
 		border-color: var(--base-800);
 		background-color: var(--base-400);
 	}
@@ -74,7 +74,7 @@
 		color: var(--secondary-600);
 		margin-bottom: $spacing-3;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 

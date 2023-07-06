@@ -11,7 +11,7 @@
 	left: 0;
 	z-index: 101;
 
-	@include dark-theme {
+	@include dark-mode {
 		background: var(--primary-300);
 		border: 3px solid var(--primary-300);
 	}

@@ -14,7 +14,7 @@
 		opacity: 1;
 		transition: $time;
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-800);
 		}
 
@@ -46,7 +46,7 @@
 		opacity: 0;
 		transition: $time;
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: rgb(0 0 0 / 80%);
 		}
 

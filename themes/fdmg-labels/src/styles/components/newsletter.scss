@@ -2,7 +2,7 @@
 	position: relative;
 	background-color: var(--secondary-200);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 	}
 
@@ -28,7 +28,7 @@
 		margin-left: calc(-1 * #{$spacing-3});
 		margin-right: calc(-1 * #{$spacing-3});
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-800);
 			background-color: var(--base-600);
 		}

@@ -8,7 +8,7 @@
 	@include font-size(16px, 24px);
 	color: var(--base-500);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--base-100);
 	}
 
@@ -24,7 +24,7 @@
 	padding: 0;
 	color: var(--base-700);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--base-100);
 	}
 }
@@ -34,7 +34,7 @@
 	@include font-size(26px, 36px);
 	color: var(--secondary-600);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 	}
 
@@ -95,7 +95,7 @@
 		font-style: italic;
 		color: var(--primary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 
@@ -112,7 +112,7 @@
 		display: block;
 		font-style: normal;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 	}
@@ -128,7 +128,7 @@
 		background-color: var(--secondary-300);
 		mask-image: url('../images/quote.svg');
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--primary-300);
 		}
 	}
@@ -154,7 +154,7 @@
 			content: counter(counter);
 			z-index: 1;
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 
@@ -182,7 +182,7 @@
 			color: var(--primary-400);
 			content: '\2022';
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 		}

@@ -10,14 +10,14 @@
 			border: 1px solid var(--secondary-300);
 			border-bottom: 0;
 
-			@include dark-theme {
+			@include dark-mode {
 				border-color: var(--base-300);
 			}
 
 			&:last-child {
 				border-bottom: 1px solid var(--secondary-300);
 
-				@include dark-theme {
+				@include dark-mode {
 					border-color: var(--base-300);
 				}
 			}
@@ -140,7 +140,7 @@ table:not(#{$excluded_tables}) {
 		&:nth-child(odd) {
 			background-color: var(--secondary-200);
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--base-300);
 			}
 		}

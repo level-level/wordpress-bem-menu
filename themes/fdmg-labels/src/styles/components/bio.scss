@@ -4,7 +4,7 @@
 	position: relative;
 	background-color: var(--secondary-200);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 	}
 
@@ -23,7 +23,7 @@
 	&__footer {
 		border-top: 1px solid rgb(0 0 0 / 10%);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-800);
 		}
 	}
@@ -39,7 +39,7 @@
 		padding: $spacing-3 0 $spacing-6;
 		background-color: transparent;
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-50);
 		}
 
@@ -55,7 +55,7 @@
 		@include font-size(16px, 24px);
 		color: var(--primary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 
@@ -67,7 +67,7 @@
 	&__subtitle {
 		color: var(--primary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 	}

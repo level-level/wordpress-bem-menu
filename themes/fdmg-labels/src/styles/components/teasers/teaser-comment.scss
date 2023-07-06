@@ -4,7 +4,7 @@
 	padding: $spacing-3;
 	background-color: var(--secondary-200);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 	}
 
@@ -18,7 +18,7 @@
 		@include font-size(16px);
 		color: var(--secondary-600);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 	}

@@ -34,7 +34,7 @@
 		color: var(--primary-400);
 		hyphens: auto;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 

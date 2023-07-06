@@ -2,7 +2,7 @@
 	background-color: var(--secondary-300);
 	padding: $spacing-5;
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 	}
 
@@ -42,7 +42,7 @@
 			align-items: flex-start;
 		}
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-50);
 		}
 	}
@@ -51,7 +51,7 @@
 		@include font-heading-normal;
 		color: var(--base-600);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-50);
 		}
 	}

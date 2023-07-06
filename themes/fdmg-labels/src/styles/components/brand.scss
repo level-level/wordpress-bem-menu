@@ -15,7 +15,7 @@
 		height: 100%;
 		background-size: contain;
 
-		@include dark-theme {
+		@include dark-mode {
 			background-image: url('../images/logo-impact-investor-darkmode.svg');
 		}
 	}

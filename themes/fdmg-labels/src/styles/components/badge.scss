@@ -4,7 +4,7 @@
 	position: relative;
 	color: var(--primary-400);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 	}
 
@@ -24,7 +24,7 @@
 			background-color $time,
 			color $time;
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--primary-300);
 			border: 2px solid var(--primary-300);
 			color: var(--base-800);
@@ -40,7 +40,7 @@
 			background-color: transparent;
 			color: var(--base-800);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 		}

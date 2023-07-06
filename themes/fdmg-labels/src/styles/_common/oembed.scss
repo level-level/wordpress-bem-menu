@@ -41,7 +41,7 @@
 		line-height: 0;
 		background-color: var(--secondary-300);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-300);
 		}
 	}
@@ -69,7 +69,7 @@
 	justify-content: center;
 	align-items: center;
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-300);
 	}
 

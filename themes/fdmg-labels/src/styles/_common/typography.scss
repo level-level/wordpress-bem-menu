@@ -2,7 +2,7 @@ body {
 	@include body-styles;
 	background-color: var(--secondary-100);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-700);
 	}
 }
@@ -37,7 +37,7 @@ h4 {
 	border-bottom: 4px solid var(--secondary-400);
 	padding-bottom: $spacing-3;
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 		border-color: var(--primary-300);
 	}
@@ -51,7 +51,7 @@ a {
 	text-decoration: underline;
 	color: var(--base-500);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--base-100);
 	}
 }
@@ -106,7 +106,7 @@ body.user-is-tabbing {
 		&:focus {
 			@include focus-style;
 
-			@include dark-theme {
+			@include dark-mode {
 				@include focus-style(var(--base-50));
 			}
 		}

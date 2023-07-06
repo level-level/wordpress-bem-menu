@@ -111,7 +111,7 @@
 			padding: 5px;
 			color: var(--primary-400);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 
@@ -126,7 +126,7 @@
 		color: var(--primary-400);
 		text-transform: lowercase;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 
@@ -179,7 +179,7 @@
 			padding-top: 10px;
 			color: var(--base-800);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--base-50);
 			}
 		}
@@ -188,7 +188,7 @@
 		legend {
 			color: var(--base-800);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--base-50);
 			}
 		}
@@ -213,7 +213,7 @@
 		* {
 			color: var(--base-800);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--base-50);
 			}
 		}

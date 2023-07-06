@@ -6,7 +6,7 @@
 	color: var(--base-50);
 	height: 100%;
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 	}
 
@@ -37,7 +37,7 @@
 					&__icon {
 						color: var(--base-50);
 
-						@include dark-theme {
+						@include dark-mode {
 							color: var(--base-800);
 						}
 					}
@@ -55,7 +55,7 @@
 		padding: 10px $spacing-3;
 		border-top: 1px solid var(--secondary-600);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-800);
 		}
 	}
@@ -65,7 +65,7 @@
 		border-top: 1px solid var(--secondary-300);
 		height: calc(#{var(--header-height)} + 10px);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-400);
 		}
 	}

@@ -8,7 +8,7 @@
 		height: 100%;
 
 		button {
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--base-50);
 			}
 		}
@@ -21,7 +21,7 @@
 			border: 0;
 			padding-right: $input-height;
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--base-500);
 				color: var(--base-50);
 			}
@@ -33,7 +33,7 @@
 			@include placeholder {
 				color: var(--secondary-500);
 
-				@include dark-theme {
+				@include dark-mode {
 					color: var(--base-50);
 				}
 			}

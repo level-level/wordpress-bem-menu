@@ -32,7 +32,7 @@
 				text-decoration: underline;
 				color: var(--primary-400);
 
-				@include dark-theme {
+				@include dark-mode {
 					color: var(--primary-300);
 				}
 			}
@@ -44,7 +44,7 @@
 				padding: $spacing-3;
 				border-bottom: 3px solid var(--primary-400);
 
-				@include dark-theme {
+				@include dark-mode {
 					border-color: var(--primary-300);
 				}
 			}
@@ -72,7 +72,7 @@
 				color $time,
 				background-color $time;
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--primary-300);
 			}
 
@@ -81,7 +81,7 @@
 				text-decoration: none;
 				background-color: var(--secondary-400);
 
-				@include dark-theme {
+				@include dark-mode {
 					color: var(--base-50);
 					background-color: var(--secondary-300);
 				}

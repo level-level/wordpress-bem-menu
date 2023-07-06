@@ -40,9 +40,10 @@
 	}
 }
 
-@mixin dark-theme {
+@mixin dark-mode {
 	[data-theme='dark'] &,
-	[data-theme='dark'].theme-pp & {
+	[data-theme='dark'].theme-pp &,
+	[data-theme='dark'].theme-energeia & {
 		@content;
 	}
 
@@ -64,9 +65,7 @@
 				@content;
 			}
 		}
-	}
-
-	@else {
+	} @else {
 		.theme-energeia & {
 			@content;
 		}
@@ -84,9 +83,7 @@
 				@content;
 			}
 		}
-	}
-
-	@else {
+	} @else {
 		.theme-pp & {
 			@content;
 		}

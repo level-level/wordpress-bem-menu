@@ -7,7 +7,7 @@
 	box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 	z-index: 10;
 
-	@include dark-theme {
+	@include dark-mode {
 		box-shadow: none;
 	}
 
@@ -17,7 +17,7 @@
 		background-color: var(--secondary-200);
 		height: var(--header-height);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 		}
 
@@ -25,7 +25,7 @@
 			background-color: var(--base-50);
 			height: var(--header-top-height);
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--base-700);
 			}
 		}
@@ -37,7 +37,7 @@
 		background-color: var(--secondary-300);
 		height: var(--menu-height);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-400);
 		}
 	}
