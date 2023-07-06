@@ -8,7 +8,7 @@
 		color: var(--secondary-600);
 		margin-bottom: 10px;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-100);
 		}
 
@@ -27,7 +27,7 @@
 			color: var(--primary-400);
 			text-decoration: underline;
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 		}

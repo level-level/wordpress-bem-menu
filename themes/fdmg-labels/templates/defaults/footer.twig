@@ -19,7 +19,7 @@
 			<nav aria-labelledby="footer-heading">
 				<h2 class="screen-reader-text" id="footer-heading">{{ __('Important links', 'fdmg-labels') }}</h2>
 				<div class="container">
-					<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 						{% if has_nav_menu('about_navigation') %}
 							<div>
 								<h3 class="footer__heading">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
@@ -87,6 +87,7 @@
 				} %}
 			</div>
 		</div>
+
 	</footer>
 {{ wp_footer() }}
 </body>

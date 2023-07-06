@@ -31,7 +31,7 @@
 		padding: 10px;
 		background-color: var(--secondary-200);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-100);
 			background-color: var(--base-400);
 		}

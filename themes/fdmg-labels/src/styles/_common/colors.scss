@@ -2,6 +2,8 @@
 	// Brand colors
 	--primary-400: #cd3613;
 	--primary-300: #df593b;
+
+	// Secondary
 	--secondary-100: #f3f9fd;
 	--secondary-200: #e7f3fb;
 	--secondary-300: #a2c3d6;
@@ -19,4 +21,14 @@
 	--base-600: #191919;
 	--base-700: #0b0b0b;
 	--base-800: #000;
+}
+
+.theme-energeia {
+	--primary-400: #01b06d;
+	--primary-300: #97d7b5;
+}
+
+.theme-pp {
+	--primary-400: #2c3b60;
+	--primary-300: #5e7697;
 }

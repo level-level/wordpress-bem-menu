@@ -15,7 +15,7 @@
 		transition: $time;
 		border-bottom: 2px solid var(--secondary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 			border-color: transparent;
 		}

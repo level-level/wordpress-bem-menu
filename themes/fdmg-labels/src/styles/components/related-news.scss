@@ -3,7 +3,7 @@
 	border-bottom: 2px solid var(--secondary-400);
 	background-color: var(--secondary-200);
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-600);
 		border-color: transparent;
 	}
@@ -15,7 +15,7 @@
 		padding: $spacing-3;
 		border-bottom: 1px solid var(--secondary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-800);
 		}
 

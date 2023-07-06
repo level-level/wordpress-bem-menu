@@ -10,10 +10,10 @@
 
 	<div class="section section--no-top">
 		<div class="container">
-			<div class="layout-row">
+			<div class="md:flex md:flex-nowrap md:gap-6">
 
-				{% if block('offset') is defined %}
-					<div class="layout-offset hidden lg:block">
+				{% if block('offset') is defined and not is_front_page() %}
+					<div class="hidden layout-offset lg:block">
 						{% block offset %}{% endblock %}
 					</div>
 				{% endif %}

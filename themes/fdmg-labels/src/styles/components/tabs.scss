@@ -3,7 +3,7 @@
 	flex-wrap: nowrap;
 	border-bottom: 1px solid rgb(0 0 0 / 10%);
 
-	@include dark-theme {
+	@include dark-mode {
 		border-color: var(--base-800);
 	}
 
@@ -24,7 +24,7 @@
 		color: var(--primary-400);
 		transition: background-color $time;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 			background-color: var(--base-600);
 		}
@@ -33,7 +33,7 @@
 			background-color: var(--secondary-200);
 			text-decoration: underline;
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--base-400);
 				color: var(--primary-300);
 			}
@@ -43,7 +43,7 @@
 			border-color: var(--primary-400);
 			color: var(--primary-400);
 
-			@include dark-theme {
+			@include dark-mode {
 				border-color: var(--primary-300);
 				color: var(--primary-300);
 			}
@@ -52,7 +52,7 @@
 				background-color: var(--base-50);
 				text-decoration: none;
 
-				@include dark-theme {
+				@include dark-mode {
 					background-color: var(--base-600);
 				}
 			}
@@ -63,7 +63,7 @@
 		display: none;
 		background-color: var(--base-50);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 		}
 
@@ -76,7 +76,7 @@
 .tablist {
 	border-bottom: 2px solid var(--secondary-400);
 
-	@include dark-theme {
+	@include dark-mode {
 		border-color: transparent;
 	}
 }

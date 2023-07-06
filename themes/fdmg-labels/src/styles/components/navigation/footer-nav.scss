@@ -10,7 +10,7 @@
 		display: block;
 		text-decoration: none;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-100);
 		}
 

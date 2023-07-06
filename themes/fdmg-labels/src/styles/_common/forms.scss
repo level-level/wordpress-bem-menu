@@ -18,7 +18,7 @@
 	color: var(--base-500);
 	appearance: none;
 
-	@include dark-theme {
+	@include dark-mode {
 		border-color: var(--primary-300);
 		color: var(--base-100);
 		background-color: var(--base-700);
@@ -32,7 +32,7 @@
 	&:active {
 		@include focus-style;
 
-		@include dark-theme {
+		@include dark-mode {
 			@include focus-style(--base-50);
 		}
 	}
@@ -41,7 +41,7 @@
 		color: var(--base-500);
 		opacity: 0.8;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-100);
 		}
 	}
@@ -82,7 +82,7 @@
 	&:focus + label:before {
 		@include focus-style;
 
-		@include dark-theme {
+		@include dark-mode {
 			@include focus-style(--base-50);
 		}
 	}
@@ -105,7 +105,7 @@
 		border-radius: 50%;
 		content: '';
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--primary-300);
 			background-color: transparent;
 		}
@@ -122,7 +122,7 @@
 		border-radius: 50%;
 		content: '';
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--primary-300);
 		}
 	}
@@ -150,7 +150,7 @@
 	background-color: var(--base-50);
 	padding-right: calc(#{$spacing-6} + #{$spacing-3});
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--base-700);
 	}
 

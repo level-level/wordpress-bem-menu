@@ -26,14 +26,14 @@
 		color: var(--secondary-600);
 		transition: color $time;
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--base-100);
 		}
 
 		@include hover-focus-style {
 			color: var(--primary-400);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 		}
@@ -62,7 +62,7 @@
 					border-radius: 0;
 					border: 0;
 
-					@include dark-theme {
+					@include dark-mode {
 						background-color: var(--base-600);
 						color: var(--primary-300);
 					}
@@ -88,7 +88,7 @@
 	& > * + * {
 		border-top: 1px solid rgb(0 0 0 / 10%);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-400);
 		}
 	}
@@ -109,7 +109,7 @@
 			width: 50px;
 			flex-shrink: 0;
 
-			@include dark-theme {
+			@include dark-mode {
 				border-color: var(--primary-300);
 			}
 		}
@@ -126,7 +126,7 @@
 	& > * + * {
 		border-top: 1px solid rgb(0 0 0 / 10%);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-400);
 		}
 	}
@@ -144,7 +144,7 @@
 		@include font-size(16px, 24px);
 		color: var(--primary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
 		}
 	}
@@ -152,7 +152,7 @@
 	&--dark {
 		background-color: var(--secondary-200);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 		}
 
@@ -160,7 +160,7 @@
 			&__item {
 				border-color: var(--secondary-400);
 
-				@include dark-theme {
+				@include dark-mode {
 					border-color: var(--base-800);
 				}
 			}
@@ -170,7 +170,7 @@
 	&--light {
 		border: 1px solid var(--secondary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-600);
 		}
 
@@ -178,7 +178,7 @@
 			&__item {
 				border-color: var(--secondary-400);
 
-				@include dark-theme {
+				@include dark-mode {
 					border-color: var(--base-600);
 				}
 			}
@@ -190,7 +190,7 @@
 	&__item {
 		border-bottom: 1px solid var(--secondary-400);
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-800);
 		}
 
@@ -229,7 +229,7 @@
 		align-items: center;
 		justify-content: center;
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-400);
 		}
 
@@ -257,7 +257,7 @@
 		height: var(--header-top-height);
 		justify-content: center;
 
-		@include dark-theme {
+		@include dark-mode {
 			border-color: var(--base-400);
 		}
 
@@ -274,7 +274,7 @@
 		&:last-child {
 			border-right: 1px solid rgb(0 0 0 / 10%);
 
-			@include dark-theme {
+			@include dark-mode {
 				border-color: var(--base-400);
 			}
 		}

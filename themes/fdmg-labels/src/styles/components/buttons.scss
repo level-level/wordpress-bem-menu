@@ -38,18 +38,32 @@
 	display: inline-flex;
 	justify-content: center;
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: var(--primary-300);
 		border-color: var(--primary-300);
 		color: var(--base-800);
+	}
+
+	@include theme-pp(true) {
+		color: var(--base-50);
 	}
 
 	@include hover-focus-style {
 		background-color: transparent;
 		color: var(--base-500);
 
-		@include dark-theme {
+		@include dark-mode {
 			color: var(--primary-300);
+		}
+
+		@include theme-pp(true) {
+			color: var(--base-50);
+			background-color: transparent;
+		}
+
+		@include theme-energeia(true) {
+			color: var(--base-50);
+			background-color: transparent;
 		}
 	}
 }
@@ -58,7 +72,7 @@
 	@include font-bold;
 	color: var(--primary-400);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 	}
 
@@ -84,7 +98,7 @@
 	padding-right: 12px;
 	border-radius: 20px;
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 	}
 
@@ -102,9 +116,13 @@
 		background-color: var(--primary-400);
 		color: var(--base-50);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--primary-300);
 			color: var(--base-50);
+		}
+
+		@include theme-energeia(true) {
+			color: var(--base-700);
 		}
 
 		.btn {
@@ -125,7 +143,7 @@
 	text-decoration: none;
 	color: var(--secondary-500);
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--primary-300);
 	}
 
@@ -165,7 +183,7 @@
 	color: var(--base-500);
 	border-radius: 0;
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--base-100);
 	}
 
@@ -174,7 +192,7 @@
 			@include font-size(20px);
 			color: var(--primary-400);
 
-			@include dark-theme {
+			@include dark-mode {
 				color: var(--primary-300);
 			}
 		}
@@ -184,7 +202,7 @@
 		background-color: var(--secondary-200);
 		color: var(--base-800);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 			color: var(--primary-300);
 		}
@@ -193,7 +211,7 @@
 	&[aria-expanded='true'] {
 		background-color: var(--secondary-200);
 
-		@include dark-theme {
+		@include dark-mode {
 			background-color: var(--base-600);
 		}
 	}
@@ -210,7 +228,7 @@
 	color: var(--base-500);
 	min-width: 32px;
 
-	@include dark-theme {
+	@include dark-mode {
 		color: var(--base-100);
 	}
 
@@ -238,6 +256,10 @@
 	min-width: calc(#{$input-height} + 14px);
 	justify-content: center;
 	border: 0;
+
+	&.js-header-search {
+		color: var(--base-50);
+	}
 
 	.btn {
 		&__icon {
@@ -276,7 +298,7 @@ input[type='button'] {
 	@include btn--primary;
 	line-height: inherit;
 
-	@include dark-theme {
+	@include dark-mode {
 		background-color: transparent;
 		border-color: transparent;
 	}
@@ -326,7 +348,7 @@ input[type='button'] {
 			border-color: var(--secondary-400);
 			color: var(--base-800);
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--secondary-400);
 				border-color: var(--secondary-400);
 				color: var(--base-800);
@@ -390,8 +412,12 @@ input[type='button'] {
 			justify-content: center;
 			transition: $time;
 
-			@include dark-theme {
+			@include dark-mode {
 				background-color: var(--primary-300);
+			}
+
+			@include theme-energeia(true) {
+				color: var(--base-700);
 			}
 		}
 
