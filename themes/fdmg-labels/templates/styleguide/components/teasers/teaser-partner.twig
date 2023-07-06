@@ -1,0 +1,38 @@
+<div class="teaser-partner">
+	<div class="teaser-partner__inner">
+		<div class="flex gap-3 flex-wrap sm:flex-nowrap">
+
+			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
+				<div class="teaser-partner__thumbnail">
+					{% if image %}
+						{{ image|raw }}
+					{% endif %}
+				</div>
+			</div>
+
+			<div class="basis-full sm:basis-auto">
+				<div class="flex flex-col gap-3">
+					<h3 class="teaser-partner__title">
+						{{ title|raw }}
+					</h3>
+
+					{% if excerpt %}
+						{{ excerpt|raw }}
+					{% endif %}
+
+					<div>
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: __('View partner', 'fdmg-labels'),
+							url: url,
+							class: 'btn--tertiary',
+							aria_label: __('View partner, %s', 'fdmg-labels')|format(title),
+							icon: 'arrow-right',
+							icon_left: true,
+							highlight_icon: true,
+						} %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

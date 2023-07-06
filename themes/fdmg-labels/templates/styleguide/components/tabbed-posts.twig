@@ -1,0 +1,52 @@
+{% if most_read or latest %}
+	<div class="tablist" data-module="tabs">
+		<ul class="tab-list" role="tablist">
+
+			{% if most_read %}
+				<li role="presentation" class="tab-list__item">
+					<a role="tab" href="#most-read" id="tab1" class="tab-list__link" aria-selected="true">
+						{{ __('Most read', 'fdmg-labels') }}
+					</a>
+				</li>
+			{% endif %}
+
+			{% if latest %}
+				<li role="presentation" class="tab-list__item">
+					<a role="tab" href="#latest" id="tab2" class="tab-list__link" tabindex="-1" {{ not most_read ? 'aria-selected="true"' }}>
+						{{ __('Latest articles', 'fdmg-labels') }}
+					</a>
+				</li>
+			{% endif %}
+		</ul>
+
+		{% if most_read %}
+			<div id="most-read" class="tab-list__section" aria-hidden="false">
+				{% include 'styleguide/components/most-read-articles.twig' with {
+					objects: most_read ? most_read|map(post => {
+						title: post.get_title(),
+						url: post.get_permalink(),
+					}),
+				} %}
+			</div>
+		{% endif %}
+
+		{% if latest %}
+			<div id="latest" class="tab-list__section" {{ not most_read ? 'aria-hidden="false"' }}>
+				{% include 'styleguide/components/list-component.twig' with {
+					objects: latest ? latest|map(post => {
+						title: post.get_title(),
+						url: post.get_permalink(),
+						terms: post.get_terms('category')|map(term => {
+							name: term.get_name(),
+						}),
+						date: post.get_date_i18n(get_option('time_format')),
+						datetime: post.get_date_i18n('H:i'),
+						date_full: post.get_date_i18n(get_option('time_format')),
+					}),
+					button_text: __('More articles', 'fdmg-labels'),
+					button_link: get_post_type_archive_link('post'),
+				} %}
+			</div>
+		{% endif %}
+	</div>
+{% endif %}

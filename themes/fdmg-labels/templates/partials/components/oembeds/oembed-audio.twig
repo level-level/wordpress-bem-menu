@@ -1,0 +1,21 @@
+<div class="oembed-audio">
+	<div class="oembed-audio__content">
+		<div class="oembed-audio__placeholder">
+
+			<div class="oembed-audio__button">
+				{% include 'styleguide/components/buttons/button-element.twig' with {
+					class: 'btn--play btn--js-audio-play',
+					aria_label: __('Play audio', 'fdmg-labels'),
+					icon: 'play',
+				} %}
+			</div>
+
+			<div class="oembed-audio__title oembed-audio--js-title">
+				{{ source }}
+				{# Gets populated via JS and replaces current content #}
+			</div>
+		</div>
+
+		{{ html|raw }}
+	</div>
+</div>

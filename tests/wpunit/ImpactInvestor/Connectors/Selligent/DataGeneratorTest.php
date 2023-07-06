@@ -1,6 +1,6 @@
 <?php
 
-namespace ImpactInvestor\Connectors\Selligent;
+namespace FDMGLabels\Connectors\Selligent;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;

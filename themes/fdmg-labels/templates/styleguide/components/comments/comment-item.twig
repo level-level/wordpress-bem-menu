@@ -1,0 +1,7 @@
+<li class="list-comments__item">
+	{% include 'styleguide/components/teasers/teaser-comment.twig' with {
+		author: object.comment_author,
+		time: __('%s ago', 'fdmg-labels')|format(human_time_diff(get_comment_time('U'), current_time('timestamp'))),
+		content: object.comment_content,
+	} %}
+</li>

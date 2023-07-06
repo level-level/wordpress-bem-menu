@@ -1,0 +1,12 @@
+{% set latest_articles = block.get_latest_articles() %}
+{% set most_read_articles = block.get_most_read_articles() %}
+
+{% if latest_articles or most_read_articles %}
+	<div class="align{{ align }}" data-name="{{ block.name }}">
+		<h3 class="screen-reader-text">{{ __('Latest and most read articles', 'fdmg-labels') }}</h3>
+		{% include 'styleguide/components/tabbed-posts.twig' with {
+			latest: latest_articles,
+			most_read: most_read_articles,
+		} %}
+	</div>
+{% endif %}

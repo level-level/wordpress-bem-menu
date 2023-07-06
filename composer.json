@@ -1,5 +1,5 @@
 {
-    "name": "level-level/impact-investor",
+    "name": "level-level/fdmg-labels",
     "type": "project",
     "license": "proprietary",
     "description": "Level Level starter theme",
@@ -16,11 +16,11 @@
     },
     "autoload": {
         "psr-4": {
-            "Hooks\\": "themes/impact-investor/app/Hooks",
-            "Clarkson\\": "themes/impact-investor/app/Clarkson",
-            "Gutenberg\\Blocks\\": "themes/impact-investor/app/Gutenberg/",
-            "Clarkson_Core\\WordPress_Object\\": "themes/impact-investor/app/WordPress_Objects/",
-            "ImpactInvestor\\": "themes/impact-investor/app/ImpactInvestor/"
+            "Hooks\\": "themes/fdmg-labels/app/Hooks",
+            "Clarkson\\": "themes/fdmg-labels/app/Clarkson",
+            "Gutenberg\\Blocks\\": "themes/fdmg-labels/app/Gutenberg/",
+            "Clarkson_Core\\WordPress_Object\\": "themes/fdmg-labels/app/WordPress_Objects/",
+            "FDMGLabels\\": "themes/fdmg-labels/app/FDMGLabels/"
         }
     },
     "require": {
@@ -46,7 +46,7 @@
         "wpackagist-plugin/popup-maker": "^1.17",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
-        "vinkla/extended-acf": "^11.2"
+        "vinkla/extended-acf": "^13.3"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -67,10 +67,10 @@
             "composer validate"
         ],
         "test:phpcs": [
-            "phpcs --runtime-set testVersion 7.4-"
+            "phpcs --runtime-set testVersion 8.0-"
         ],
         "test:twigcs": [
-            "twigcs themes/impact-investor/templates --severity error"
+            "twigcs themes/fdmg-labels/templates --severity error"
         ],
         "test:psalm": [
             "echo Deprecated: use 'test:phpstan' instead.",
@@ -93,12 +93,12 @@
             "codecept run wpunit"
         ],
         "test:docs": [
-            "php-doc-check ./themes/impact-investor/app -x vendor"
+            "php-doc-check ./themes/fdmg-labels/app -x vendor"
         ],
         "make-pot": [
-            "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/impact-investor/templates --output-dir=./themes/impact-investor/dist/rendered-templates",
-            "wp i18n make-pot ./themes/impact-investor --path=./themes/impact-investor/ --slug=impact-investor",
-            "wp i18n make-pot ./themes/impact-investor --path=./themes/impact-investor/ --slug=impact-investor-slugs --domain=impact-investor-slugs"
+            "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs"
         ]
     },
     "extra": {
@@ -119,7 +119,7 @@
         "niels-de-blaauw/php-doc-check": "^0.2.1",
         "wpackagist-plugin/user-switching": "^1.5",
         "level-level/coding-standards": "^3.0",
-        "friendsoftwig/twigcs": "^6.1",
+        "friendsoftwig/twigcs": "v6.1.0",
         "lucatume/wp-browser": "^3.0",
         "codeception/module-asserts": "^1.3",
         "codeception/module-phpbrowser": "^1.0",

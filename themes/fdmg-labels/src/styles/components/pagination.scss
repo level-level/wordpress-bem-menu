@@ -1,0 +1,99 @@
+// Pagination styling for the default WordPress styling and the FacetWP Pager
+.pagination {
+	--item-width: 34px;
+
+	ul {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		li {
+			@include font-size(16px, 16px);
+			display: block;
+			margin-right: $spacing-3;
+
+			&:last-child {
+				margin-right: 0;
+			}
+
+			@include breakpoint(sm) {
+				@include font-size(18px, 18px);
+			}
+		}
+
+		a {
+			display: block;
+			padding: $spacing-3;
+			border-bottom: 3px solid transparent;
+			cursor: pointer;
+			text-decoration: none;
+
+			@include hover-focus-style {
+				text-decoration: underline;
+				color: var(--primary-400);
+
+				@include dark-theme {
+					color: var(--primary-300);
+				}
+			}
+		}
+
+		span {
+			&.current {
+				display: block;
+				padding: $spacing-3;
+				border-bottom: 3px solid var(--primary-400);
+
+				@include dark-theme {
+					border-color: var(--primary-300);
+				}
+			}
+
+			&.dots {
+				display: block;
+				padding: $spacing-3;
+				border: 0;
+			}
+		}
+
+		.next,
+		.prev {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: var(--primary-400);
+			color: var(--base-50);
+			width: var(--item-width);
+			height: var(--item-width);
+			padding: 0;
+			border-radius: 50%;
+			border: 0;
+			transition:
+				color $time,
+				background-color $time;
+
+			@include dark-theme {
+				background-color: var(--primary-300);
+			}
+
+			@include hover-focus-style {
+				color: var(--base-50);
+				text-decoration: none;
+				background-color: var(--secondary-400);
+
+				@include dark-theme {
+					color: var(--base-50);
+					background-color: var(--secondary-300);
+				}
+			}
+
+			@include breakpoint(sm) {
+				@include font-size(18px, 18px);
+			}
+		}
+	}
+
+	&__icon {
+		display: flex;
+	}
+}

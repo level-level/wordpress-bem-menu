@@ -1,0 +1,18 @@
+<div class="oembed-video">
+	{% if thumbnail %}
+		<img class="oembed-video__thumbnail" src="{{ thumbnail }}" alt="" loading="lazy">
+	{% endif %}
+	<div class="oembed-video__content">
+		{{ html|raw }}
+
+		{% if thumbnail %}
+			<div class="oembed-video__button">
+				{% include 'styleguide/components/buttons/button-element.twig' with {
+					class: 'btn--play btn--js-video-play',
+					aria_label: __('Play video', 'fdmg-labels'),
+					icon: 'play',
+				} %}
+			</div>
+		{% endif %}
+	</div>
+</div>

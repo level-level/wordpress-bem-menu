@@ -1,0 +1,33 @@
+<div class="list-item">
+
+	<a href="{{ url }}" class="list-item__link">
+		{{ title|raw }}
+	</a>
+
+	{% if datetime and date or terms %}
+		<div class="list-item__meta">
+			<div class="flex gap-6 flex-nowrap">
+
+				{% if terms %}
+					<div class="grow">
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: terms,
+						} %}
+					</div>
+				{% endif %}
+
+				{% if datetime and date %}
+					<div class="shrink-0">
+						{% if date_full %}
+							<span class="screen-reader-text">{{ __('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
+							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						{% else %}
+							<span class="screen-reader-text">{{ __('Published on:', 'fdmg-labels') }}</span>
+							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+</div>

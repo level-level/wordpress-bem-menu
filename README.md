@@ -1,19 +1,25 @@
-[![GitHub Actions status](https://github.com/level-level/impact-investor/workflows/Build%20%26%20test/badge.svg)](https://github.com/level-level/impact-investor/actions)
+[![GitHub Actions status](https://github.com/level-level/fdmg-labels/workflows/Build%20%26%20test/badge.svg)](https://github.com/level-level/fdmg-labels/actions)
 
-# Impact Investor
+# FDMG Labels
 Clarkson Theme is a modern set of tools to rocket WordPress theme development into the 21st century without losing touch with WordPress platform conventions. It uses [Clarkson Core](https://github.com/level-level/Clarkson-Core) to integrate Twig as the preferred templating engine.
+
+> :exclamation: **This project has been renamed from "Impact Investor" to "FDMG Labels"**.
+>
+> You might find some prefixes still of `ii_` or `II_`.
+> These exist for backward compatibility reasons, as otherwise a complete migration is needed.
+> Please only use a new prefix (like `fdmgl`) for new post types, taxonomies, fields, settings, etc.
 
 ## Local install
 Setup a new WordPress install with [VVV](https://varyingvagrantvagrants.org/) (for example my-site)
 Remove the existing `wp-content` folder and from the WordPress install root run the following commands:
 ```
-git clone git@github.com:level-level/impact-investor.git wp-content
+git clone git@github.com:level-level/fdmg-labels.git wp-content
 cd wp-content
 composer install -o
 ```
 
 ### Install dependencies and build theme assets
-In the theme directory impact-investor run in the command line:
+In the theme directory fdmg-labels run in the command line:
 
 ```bash
 npm ci
@@ -33,10 +39,10 @@ Default text language for this repo is:
 - [x] English
 
 ### Text domain
-The default text domain for this project is `impact-investor`.
+The default text domain for this project is `fdmg-labels`.
 
 ### Slugs
-We use a different textdomain specific for custom post type slugs for example: `impact-investor-slugs`.
+We use a different textdomain specific for custom post type slugs for example: `fdmg-labels-slugs`.
 
 ### Javascript translations
 Add new Javascript string translations via `ScriptTranslations.php`, all string will be available with the `i18n` javascript variable.

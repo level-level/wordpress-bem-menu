@@ -1,0 +1,34 @@
+{% set title = data.title|default(__('Related news', 'fdmg-labels')) %}
+{% set objects = block.get_posts() %}
+
+{% if objects %}
+	<div class="align{{ align }}" data-name="{{ block.name }}">
+		<div class="related-news">
+			<h2 class="related-news__title">{{ title|raw }}</h2>
+			<ul class="list-related-news">
+				{% for object in objects %}
+					<li class="list-related-news__item">
+
+						{% set image_id = object.get_thumbnail_id() %}
+						{% set terms = object.get_terms('category') %}
+
+						{% include 'styleguide/components/teasers/teaser-post-inline.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'medium'),
+							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							title: object.get_title(),
+							url: object.get_permalink(),
+							terms: terms ? terms|map(term => {
+								name: term.get_name(),
+							}),
+							useH3: true,
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/gb-placeholder.twig' with {
+		required_fields: ['Articles']
+	} %}
+{% endif %}

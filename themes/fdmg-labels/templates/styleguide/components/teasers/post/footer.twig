@@ -1,0 +1,42 @@
+{% if authors or comments > 0 %}
+	<div class="teaser-post__footer">
+		<div class="flex justify-between flex-nowrap items-center">
+
+			{% if authors %}
+				<div>
+					<span class="screen-reader-text">
+						{{ __('Written by:', 'fdmg-labels') }}
+					</span>
+					<ul class="flex gap-3">
+						{% for object in authors %}
+							<li>
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: object.name,
+									url: object.url,
+									class: 'btn--link',
+								} %}
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+
+			{% if comments > 0 %}
+				<div class="shrink-0">
+					<div class="flex justify-between flex-nowrap items-center">
+						<div>
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: comments,
+								url: url ~ '#comments',
+								class: 'btn--link',
+								aria_label: _n('%s comment on %s', '%s comments on %s', comments, 'fdmg-labels')|format(comments, title),
+								icon: 'comment',
+								icon_left: true,
+							} %}
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+{% endif %}

@@ -1,0 +1,94 @@
+	<footer>
+		<div class="footer">
+			<div class="container">
+				<div class="footer__brand">
+					<a
+						class="brand-footer"
+						href="{{ esc_url(home_url('/')) }}"
+						aria-label="{{ __('%s logo, go to the homepage', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
+						>
+						<img
+							src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor-white.svg"
+							width="284"
+							height="50"
+							alt=""
+						/>
+					</a>
+				</div>
+			</div>
+			<nav aria-labelledby="footer-heading">
+				<h2 class="screen-reader-text" id="footer-heading">{{ __('Important links', 'fdmg-labels') }}</h2>
+				<div class="container">
+					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+						{% if has_nav_menu('about_navigation') %}
+							<div>
+								<h3 class="footer__heading">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
+								{{ bem_menu('about_navigation', 'footer-nav') }}
+							</div>
+						{% endif %}
+						{% if has_nav_menu('general_navigation') %}
+							<div>
+								<h3 class="footer__heading">{{ wp_get_nav_menu_name('general_navigation')|raw }}</h3>
+								{{ bem_menu('general_navigation', 'footer-nav') }}
+							</div>
+						{% endif %}
+						{% if has_nav_menu('services_navigation') %}
+							<div>
+								<h3 class="footer__heading">{{ wp_get_nav_menu_name('services_navigation')|raw }}</h3>
+								{{ bem_menu('services_navigation', 'footer-nav') }}
+							</div>
+						{% endif %}
+						{% if has_nav_menu('fdmg_navigation') %}
+							<div>
+								<h3 class="footer__heading">{{ wp_get_nav_menu_name('fdmg_navigation')|raw }}</h3>
+								{{ bem_menu('fdmg_navigation', 'footer-nav') }}
+							</div>
+						{% endif %}
+					</div>
+
+					{% if options.enable_sourcepoint_cmp %}
+						<button
+							class="btn btn--link"
+							onclick="window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes')"
+							aria-label="{{ __('Privacy Settings, open cookie preference dialog', 'fdmg-labels') }}"
+						>
+							{{ __('Privacy Settings', 'fdmg-labels') }}
+						</button>
+					{% endif %}
+				</div>
+			</nav>
+		</div>
+		<div class="footer-socials">
+			<div class="container">
+				<h3 class="footer-socials__heading">{{ __('Follow us on social media', 'fdmg-labels') }}</h3>
+				{% include 'styleguide/components/social-media-links.twig' with {
+					socials: [
+						{
+							title: 'Facebook',
+							url: socials.facebook_site,
+							icon: 'facebook',
+						},
+						{
+							title: 'Twitter',
+							url: socials.twitter ? 'https://twitter.com/' ~ socials.twitter_site,
+							icon: 'twitter',
+						},
+						{
+							title: 'LinkedIn',
+							url: socials.linkedin_url,
+							icon: 'linkedin',
+						},
+						{
+							title: 'YouTube',
+							url: socials.youtube_url,
+							icon: 'youtube',
+						}
+					]
+				} %}
+			</div>
+		</div>
+
+	</footer>
+{{ wp_footer() }}
+</body>
+</html>

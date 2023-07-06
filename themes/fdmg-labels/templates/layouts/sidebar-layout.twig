@@ -1,0 +1,46 @@
+{% include 'defaults/head.twig' %}
+
+<main class="main" id="main-content">
+
+	{% if is_active_sidebar('widget-area-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-header-ad')|raw }}
+		</div>
+	{% endif %}
+
+	<div class="section section--no-top">
+		<div class="container">
+			<div class="md:flex md:flex-nowrap md:gap-6">
+
+				{% if block('offset') is defined and not is_front_page() %}
+					<div class="hidden layout-offset lg:block">
+						{% block offset %}{% endblock %}
+					</div>
+				{% endif %}
+
+				{% if block('responsibility') is defined %}
+						{% block responsibility %}{% endblock %}
+				{% endif %}
+
+				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
+					<div class="section-wrapper">
+						{% block header %}{% endblock %}
+						{% block content %}{% endblock %}
+					</div>
+				</div>
+				<div class="layout-small">
+					<aside class="sidebar" data-module="sticky-advertisement">
+						<h2 class="screen-reader-text">
+							{{ __('Additional', 'fdmg-labels') }}
+						</h2>
+						<div class="section-wrapper">
+							{% block sidebar %}{% endblock %}
+						</div>
+					</aside>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+{% include 'defaults/footer.twig' %}

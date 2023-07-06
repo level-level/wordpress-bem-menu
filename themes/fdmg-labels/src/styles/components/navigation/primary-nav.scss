@@ -1,0 +1,228 @@
+.primary-nav {
+	@include font-normal;
+	display: flex;
+	flex-direction: column;
+
+	@include breakpoint(sm) {
+		flex-direction: row;
+	}
+
+	&__item {
+		display: block;
+	}
+
+	&__item--parent {
+		position: relative;
+
+		.primary-nav__link {
+			padding-right: calc(#{$spacing-6} + 10px);
+		}
+
+		&:focus-within {
+			background-color: var(--secondary-500);
+
+			@include breakpoint(sm) {
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
+			}
+
+			.primary-nav__link,
+			.primary-nav__arrow {
+				color: var(--base-50);
+			}
+		}
+
+		@include hover-focus-style {
+			background-color: var(--secondary-500);
+
+			@include breakpoint(sm) {
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
+			}
+
+			.primary-nav__link,
+			.primary-nav__arrow {
+				color: var(--base-50);
+			}
+		}
+	}
+
+	&__item--active {
+		.primary-nav__link {
+			color: var(--base-50);
+
+			@include breakpoint(sm) {
+				background-color: var(--secondary-500);
+
+				@include dark-theme {
+					background-color: var(--base-300);
+				}
+			}
+		}
+
+		.primary-nav__arrow {
+			color: var(--base-50);
+		}
+	}
+
+	&__link {
+		@include font-bold;
+		@include font-size(16px);
+		display: flex;
+		align-items: center;
+		padding: 10px $spacing-3;
+		color: var(--base-100);
+		text-decoration: none;
+
+		@include hover-focus-style {
+			background-color: var(--secondary-500);
+			color: var(--base-50);
+
+			@include dark-theme {
+				background-color: var(--base-300);
+				color: var(--base-100);
+			}
+		}
+
+		@include breakpoint(sm) {
+			@include font-size(18px);
+			padding: 0 20px;
+			border-bottom: 0;
+			height: var(--menu-height);
+			color: var(--secondary-600);
+			transition:
+				background-color $time,
+				color $time;
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
+		}
+	}
+
+	&__arrow {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background-color: transparent;
+		line-height: inherit;
+		padding: 0 $spacing-3;
+		height: 44px;
+		color: var(--base-50);
+		border: 0;
+		transform: scaleY(1);
+		transition: $time;
+
+		@include dark-theme {
+			color: var(--base-50);
+		}
+
+		&[aria-expanded='true'] {
+			transform: scaleY(-1);
+			color: var(--secondary-600);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
+		}
+
+		@include breakpoint(sm) {
+			padding: 0;
+			right: 15px;
+			color: var(--secondary-600);
+			height: var(--menu-height);
+
+			@include dark-theme {
+				color: var(--base-50);
+			}
+		}
+	}
+}
+
+.primary-nav-sub {
+	position: relative;
+	background-color: var(--secondary-600);
+	padding: $spacing-3;
+	display: none;
+
+	@include dark-theme {
+		background-color: var(--base-400);
+	}
+
+	@include breakpoint(sm) {
+		position: absolute;
+		top: var(--menu-height);
+		left: 0;
+		min-width: 300px;
+		border-bottom: 2px solid var(--primary-400) -border;
+		z-index: 2;
+		background-color: var(--base-50);
+		padding: calc(#{$spacing-6} - 5px) $spacing-6;
+		box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
+		display: block;
+		visibility: hidden;
+		opacity: 0;
+		transition: $time;
+
+		@include dark-theme {
+			background-color: var(--base-400);
+		}
+
+		.primary-nav-sub {
+			left: 100%;
+			top: 0;
+		}
+
+		.primary-nav__arrow {
+			transform: rotate(-90deg);
+			color: var(--secondary-600);
+			right: 10px;
+
+			@include dark-theme {
+				color: var(--base-100);
+			}
+		}
+	}
+
+	&[aria-hidden='false'] {
+		display: block;
+
+		@include breakpoint(sm) {
+			display: block;
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+
+	& > * + * {
+		margin-top: $spacing-3;
+	}
+
+	&__link {
+		@include font-normal;
+		text-decoration: none;
+		color: var(--base-50);
+
+		@include hover-focus-style {
+			text-decoration: underline;
+			background-color: transparent;
+		}
+
+		@include breakpoint(sm) {
+			@include font-size(18px);
+			color: var(--secondary-600);
+			height: auto;
+			padding: 0;
+
+			@include hover-focus-style {
+				color: var(--secondary-600);
+
+				@include dark-theme {
+					color: var(--base-50);
+				}
+			}
+		}
+	}
+}

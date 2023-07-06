@@ -1,0 +1,17 @@
+{% if message is not empty %}
+	<p><strong>{{ message }}</strong></p>
+{% endif %}
+<p>
+	<strong>{{ __('Last newsletter sent: ', 'fdmg-labels') }}</strong><br>
+	{{ status.time }}
+</p>
+<p>
+	<strong>{{ __('Articles:', 'fdmg-labels') }}</strong><br />
+	<ol>
+		{% for article in status.articles %}
+		<li>
+			<a href="{{ get_edit_post_link(article.body.articleId, '') }}">{{ article.body.title }}</a>
+		</li>
+		{% endfor %}
+	</ol>
+</p>

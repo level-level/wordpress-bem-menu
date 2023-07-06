@@ -1,0 +1,49 @@
+<p>
+	<strong>{{ __('Time:', 'fdmg-labels') }} </strong> {{ status.time }} {{ __('(server time)', 'fdmg-labels') }}
+</p>
+
+<p>
+	<h2>{{ __('Articles', 'fdmg-labels') }}</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>{{ __('Code', 'fdmg-labels') }}</th>
+				<th>{{ __('Message', 'fdmg-labels') }}</th>
+				<th>{{ __('Body', 'fdmg-labels') }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for article in status.articles %}
+			<tr>
+				<td>{{ article.code }}</td>
+				<td>{{ article.message }}</td>
+				<td>{{ article.body|json_encode }}</td>
+			<tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</p>
+
+{% if status.newsletter %}
+	<p>
+		{{ __('Registering the newsletter resulted in the following error:', 'fdmg-labels') }}<br>
+		[{{ status.newsletter.code }}] {{ status.newsletter.message }}<br>
+		{{ status.newsletter.body|json_encode }}
+	</p>
+{% else %}
+	<p>
+		{{ __('Since there was an error while registering the articles, the newsletter registration was canceled.', 'fdmg-labels') }}
+	</p>
+{% endif %}
+
+{% if status.send %}
+	<p>
+		{{ __('Sending the newsletter resulted in the following error:', 'fdmg-labels') }}<br>
+		[{{ status.newsletter.code }}] {{ status.newsletter.message }}<br>
+		{{ status.newsletter.body|json_encode }}
+	</p>
+{% else %}
+	<p>
+		{{ __('Since there was an error while registering the newsletter, the newsletter sending was canceled.', 'fdmg-labels') }}
+	</p>
+{% endif %}
