@@ -4,6 +4,7 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
@@ -15,6 +16,7 @@ class ACFBlocks {
 		CTA::class,
 		ArticlesInColumns::class,
 		FeaturedArticle::class,
+		RelatedArticles::class,
 	);
 
 	public function register_hooks(): void {
@@ -49,31 +51,6 @@ class ACFBlocks {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-related-articles',
-				'title'           => _x( 'Related articles', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of related articles based on multiple options.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'format-aside',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'related', 'articles', 'news', 'posts' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => false,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(

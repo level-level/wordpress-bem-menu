@@ -139,6 +139,15 @@ class AcfJsonToAcfExtended {
 				'field_616d8a91a3aef' => 'field_1d203b38',
 				'field_616d8a91a3af0' => 'field_1d203b38',
 			),
+			'related-articles'    => array(
+				'group_618a27e85624f' => 'group_53bccfec',
+				'field_618a27e8856a3' => 'field_e3d1345c',
+				'field_618a2bd8cfc99' => 'field_ce559145',
+				'field_618a27e8856d2' => 'field_aeff6b6c',
+				'field_618a27e8856d7' => 'field_e71de6c8',
+				'field_618a27e8856f6' => 'field_57bae3f0',
+				'field_618a27e88573a' => 'field_90bdab05',
+			),
 		);
 	}
 
