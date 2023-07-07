@@ -30,8 +30,8 @@ class ACFBlocks {
 	);
 
 	public function register_hooks(): void {
-		add_action( 'acf/init', array( $this, 'register_acf_block_types' ) );
 		add_filter( 'acf/register_block_type_args', array( $this, 'set_default_block_type_args' ) );
+
 		$this->register_acf_blocks();
 	}
 
@@ -51,132 +51,6 @@ class ACFBlocks {
 		$block['supports']['customClassName'] = false;
 		$block['render_callback']             = $block['render_callback'] ?: array( $this, 'block_render_callback' );
 		return $block;
-	}
-
-	/**
-	 * Register ACF GB blocks here
-	 * https://www.advancedcustomfields.com/resources/acf_register_block_type/
-	 */
-	public function register_acf_block_types(): void {
-		if ( ! function_exists( 'acf_register_block_type' ) ) {
-			return;
-		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-vacancies',
-				'title'           => _x( 'Vacancies/Jobs', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'money',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'vacancies', 'jobs' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-latest-and-most-read-posts',
-				'title'           => _x( 'Latest and most read posts', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'star-filled',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'latest', 'most read', 'popular' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-newsletter',
-				'title'           => _x( 'Newsletter', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'email-alt',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'newsletter', 'subscribe', 'signup', 'call to action', 'cta' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-latest-articles',
-				'title'           => _x( 'Latest articles', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'list-view',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'latest', 'posts', 'articles' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'amount'          => 4,
-						),
-					),
-				),
-			)
-		);
-	}
-
-	/**
-	 * Register GB blocks here
-	 *
-	 * To use custom GB blocks, add the following line to the register_hooks function:
-	 * add_action( 'init', array( $this, 'register_block_types' ) );
-	 *
-	 * https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
-	 */
-	public function register_block_types(): void {
-		if ( ! function_exists( 'register_block_type' ) ) {
-			return;
-		}
-
-		register_block_type(
-			'll/block-example', array(
-				'name'            => 'block-example',
-				'render_callback' => array( $this, 'block_render_callback' ),
-			)
-		);
 	}
 
 	/**

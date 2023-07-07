@@ -16,6 +16,7 @@
 // Clarkson Theme
 ( new \Clarkson\Theme\Assets() )->register_hooks();
 ( new \Clarkson\Theme\ACFBlocks() )->register_hooks();
+( new \Clarkson\Theme\ACFWidgets() )->register_hooks();
 ( new \Clarkson\Theme\ACF() )->register_hooks();
 ( new \Clarkson\Theme\Blocks() )->register_hooks();
 ( new \Clarkson\Theme\Cleanup() )->register_hooks();

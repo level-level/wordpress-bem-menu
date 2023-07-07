@@ -57,6 +57,7 @@ class AcfJsonToAcfExtended {
 	 */
 	public function objects( array $args, array $assoc_args ): void {
 		$this->process_blocks();
+		$this->process_widgets();
 		WP_CLI::success( 'All items have been processed' );
 	}
 
@@ -171,6 +172,55 @@ class AcfJsonToAcfExtended {
 	}
 
 	/**
+	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF widgets.
+	 */
+	protected function process_widgets(): void {
+		/** @var \wpdb $wpdb */
+		global $wpdb;
+
+		WP_CLI::log( 'Processing widgets' );
+		$widgets_map = $this->get_widgets_map();
+
+		$command_options = array(
+			'return'     => true,                // Return 'STDOUT'; use 'all' for full object.
+			'parse'      => 'json',              // Parse captured STDOUT to JSON array.
+			'launch'     => false,               // Reuse the current process.
+			'exit_error' => true,                // Halt script execution on error.
+		);
+
+		foreach ( $widgets_map as $widget => $widget_map ) {
+			WP_CLI::log( sprintf( 'Processing widget %s', $widget ) );
+			foreach ( $widget_map as $old_acf_key => $new_acf_key ) {
+				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
+				WP_CLI::runcommand(
+					sprintf(
+						'search-replace "%s" "%s" %s --report-changed-only',
+						$old_acf_key,
+						$new_acf_key,
+						$wpdb->options,
+					), $command_options
+				);
+			}
+		}
+	}
+
+	/**
+	 * Get key-value array of ACF widgets and a field map for each.
+	 * @return array<string,array<string,string>>
+	 */
+	protected function get_widgets_map(): array {
+		return array(
+			'vacancies' => array(
+				'group_618263e04e3ed' => 'group_27e7ee3f',
+				'field_618263e092dcd' => 'field_ef0ee867',
+				'field_618263e092df7' => 'field_45a23355',
+				'field_618263e092e2d' => 'field_c958cf25',
+				'field_618263e092eab' => 'field_8bf45d5c',
+			),
+		);
+	}
+
+	/**
 	 * The key-value array where the key is the old field key, and the value the new field key.
 	 *
 	 * @return array<string,string>
@@ -181,6 +231,11 @@ class AcfJsonToAcfExtended {
 		$blocks_map = $this->get_blocks_map();
 		foreach ( $blocks_map as $block_map ) {
 			$map = array_merge( $map, $block_map );
+		}
+
+		$widgets_map = $this->get_widgets_map();
+		foreach ( $widgets_map as $widget_map ) {
+			$map = array_merge( $map, $widget_map );
 		}
 
 		return $map;
