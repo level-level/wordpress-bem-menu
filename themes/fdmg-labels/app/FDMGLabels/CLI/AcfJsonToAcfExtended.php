@@ -210,7 +210,12 @@ class AcfJsonToAcfExtended {
 	 */
 	protected function get_widgets_map(): array {
 		return array(
-			'vacancies' => array(
+			// Advertisement is the only block that's also made available as widget
+			'advertisement' => array(
+				'group_618140098fa4b' => 'group_8fdb3fac',
+				'field_61a772bbd72bc' => 'field_d4ba69db',
+			),
+			'vacancies'     => array(
 				'group_618263e04e3ed' => 'group_27e7ee3f',
 				'field_618263e092dcd' => 'field_ef0ee867',
 				'field_618263e092df7' => 'field_45a23355',
