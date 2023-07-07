@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
+use Clarkson\Theme\ACFWidgets\LatestArticles;
 use Clarkson\Theme\ACFWidgets\Newsletter;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
@@ -15,10 +16,10 @@ class ACFWidgets {
 		Vacancies::class,
 		LatestAndMostReadPosts::class,
 		Newsletter::class,
+		LatestArticles::class,
 	);
 
 	public function register_hooks(): void {
-		add_action( 'acf/init', array( $this, 'register_acf_widget_types' ) );
 		add_filter( 'acf/register_block_type_args', array( $this, 'set_default_widgets_type_args' ) );
 
 		$this->register_acf_widgets();
@@ -43,40 +44,6 @@ class ACFWidgets {
 		$block['supports']['customClassName'] = false;
 
 		return $block;
-	}
-
-	/**
-	 * Register ACF GB blocks here
-	 * https://www.advancedcustomfields.com/resources/acf_register_block_type/
-	 */
-	public function register_acf_widget_types(): void {
-		if ( ! function_exists( 'acf_register_block_type' ) ) {
-			return;
-		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-latest-articles',
-				'title'           => _x( 'Latest articles', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'list-view',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'latest', 'posts', 'articles' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'amount'          => 4,
-						),
-					),
-				),
-			)
-		);
 	}
 
 	/**
