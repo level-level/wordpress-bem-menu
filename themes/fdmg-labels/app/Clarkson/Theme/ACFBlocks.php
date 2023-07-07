@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
@@ -11,6 +12,7 @@ class ACFBlocks {
 
 	protected const ACF_BLOCKS = array(
 		CTA::class,
+		ArticlesInColumns::class,
 	);
 
 	public function register_hooks(): void {
@@ -65,31 +67,6 @@ class ACFBlocks {
 							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
 							'is_fill_disabled' => false,
 							'amount'           => 1,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-articles-in-columns',
-				'title'           => _x( 'Articles in columns', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'columns',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'articles', 'column', 'two', '2', 'three', '3', 'post' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
 						),
 					),
 				),

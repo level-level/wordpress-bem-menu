@@ -63,6 +63,16 @@ class AcfJsonToAcfExtended {
 			'field_62b97b192ceb6' => 'field_5296ae18',
 			'field_62b97b472ceb7' => 'field_8d77fc04',
 			'field_62b97b6b2ceb8' => 'field_1628aecb',
+
+			// Block: Articles in columns
+			'group_607fe6ec214d3' => 'group_4289d8da',
+			'field_607feb7bba1f8' => 'field_c97f5cae',
+			'field_61810e09b64be' => 'field_239ae05a',
+			'field_607fec20ed911' => 'field_5a948ea2',
+			'field_607fed05ed912' => 'field_4b86982e',
+			'field_607fef3dcd8ae' => 'field_0f185aa2',
+			'field_607feff1cd8af' => 'field_d23b7dcb',
+
 		);
 	}
 
