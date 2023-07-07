@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
+use Clarkson\Theme\ACFWidgets\Newsletter;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
@@ -13,6 +14,7 @@ class ACFWidgets {
 	protected const ACF_WIDGETS = array(
 		Vacancies::class,
 		LatestAndMostReadPosts::class,
+		Newsletter::class,
 	);
 
 	public function register_hooks(): void {
@@ -51,29 +53,6 @@ class ACFWidgets {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-newsletter',
-				'title'           => _x( 'Newsletter', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'email-alt',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'newsletter', 'subscribe', 'signup', 'call to action', 'cta' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
