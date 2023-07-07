@@ -69,6 +69,9 @@ class Advertisement {
 		);
 	}
 
+	/**
+	 * @return array<string>
+	 */
 	protected function get_ad_slots(): array {
 		return array(
 			'Web/Header',
