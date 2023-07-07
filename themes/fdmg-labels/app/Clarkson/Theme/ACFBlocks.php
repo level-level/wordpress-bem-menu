@@ -3,6 +3,7 @@ namespace Clarkson\Theme;
 
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
+use Clarkson\Theme\ACFBlocks\FeaturedArticle;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
@@ -13,6 +14,7 @@ class ACFBlocks {
 	protected const ACF_BLOCKS = array(
 		CTA::class,
 		ArticlesInColumns::class,
+		FeaturedArticle::class,
 	);
 
 	public function register_hooks(): void {
@@ -47,31 +49,6 @@ class ACFBlocks {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-featured-article',
-				'title'           => _x( 'Featured article', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a single featured article.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'welcome-view-site',
-				'align'           => 'wide', // full, wide, left, center, right
-				'keywords'        => array( 'featured article', 'post' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 1,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
