@@ -24,7 +24,7 @@ class AcfJsonToAcfExtended {
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp nexus fix-attachment-dirs run --start-index=0
+	 * wp fdmg-labels acf-json-to-acf-extended run --start-index=0
 	 */
 	public function run( array $args, array $assoc_args ): void {
 		$start_index = (int) get_flag_value( $assoc_args, 'start-index', 0 );
@@ -43,7 +43,7 @@ class AcfJsonToAcfExtended {
 				continue;
 			}
 
-			WP_CLI::log( sprintf( 'Processing index %d', $loop ) );
+			WP_CLI::log( sprintf( 'Processing index %d, replacing %s with %s', $loop, $old_key, $new_key ) );
 			WP_CLI::runcommand( sprintf(
 				'search-replace "%s" "%s" --all-tables',
 				$old_key,
