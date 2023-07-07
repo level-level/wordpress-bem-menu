@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
@@ -11,6 +12,7 @@ class ACFWidgets {
 
 	protected const ACF_WIDGETS = array(
 		Vacancies::class,
+		LatestAndMostReadPosts::class,
 	);
 
 	public function register_hooks(): void {
@@ -49,29 +51,6 @@ class ACFWidgets {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'widget-latest-and-most-read-posts',
-				'title'           => _x( 'Latest and most read posts', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'star-filled',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'posts', 'latest', 'most read', 'popular' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
