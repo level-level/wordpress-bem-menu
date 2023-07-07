@@ -8,6 +8,7 @@ use Clarkson\Theme\ACFBlocks\FeaturedArticle;
 use Clarkson\Theme\ACFBlocks\HighlightedContent;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
@@ -25,6 +26,7 @@ class ACFBlocks {
 		Partners::class,
 		HighlightedContent::class,
 		Advertisement::class,
+		SocialShare::class,
 	);
 
 	public function register_hooks(): void {
@@ -59,30 +61,6 @@ class ACFBlocks {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-social-share',
-				'title'           => _x( 'Social share', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of social share buttons.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'share',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail' ),
-				'post_types'      => array( 'post' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => false,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
