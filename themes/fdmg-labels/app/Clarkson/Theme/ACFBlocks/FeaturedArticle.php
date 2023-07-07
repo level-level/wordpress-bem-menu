@@ -40,7 +40,7 @@ class FeaturedArticle {
 					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'example'         => array(
+				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
@@ -75,7 +75,7 @@ class FeaturedArticle {
 								'featured_image',
 							)
 						)
-						->max( 1)
+						->max( 1 )
 						->returnFormat( 'object' ),
 					TrueFalse::make( _x( 'Disallow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_DISABLED )
 						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
