@@ -332,29 +332,6 @@ class ACFBlocks {
 				),
 			)
 		);
-
-		// acf_register_block_type(
-		// 	array(
-		// 		'name'            => 'block-cta',
-		// 		'title'           => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
-		// 		'description'     => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
-		// 		'icon'            => 'megaphone',
-		// 		'align'           => 'center', // full, wide, left, center, right
-		// 		'keywords'        => array( 'call to action', 'cta' ),
-		// 		'supports'        => array(
-		// 			'align'    => array( 'center' ),
-		// 			'multiple' => true,
-		// 		),
-		// 		'render_callback' => array( $this, 'block_render_callback' ),
-		// 		'example'         => array(
-		// 			'attributes' => array(
-		// 				'data' => array(
-		// 					'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-		// 				),
-		// 			),
-		// 		),
-		// 	)
-		// );
 	}
 
 	/**
