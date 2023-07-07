@@ -4,6 +4,7 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\HighlightedContent;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\Team;
@@ -21,6 +22,7 @@ class ACFBlocks {
 		RelatedArticles::class,
 		Team::class,
 		Partners::class,
+		HighlightedContent::class,
 	);
 
 	public function register_hooks(): void {
@@ -55,30 +57,6 @@ class ACFBlocks {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-highlighted-content',
-				'title'           => _x( 'Highlighted content', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays content in a box to make it stand out more.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'text-page',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'highlight', 'summary', 'in short', 'content' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'content'         => '<p>Example feature content</p>',
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
