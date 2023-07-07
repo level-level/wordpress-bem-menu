@@ -153,6 +153,11 @@ class AcfJsonToAcfExtended {
 				'field_618bd9c8a0cac' => 'field_0da8d7eb',
 				'field_618bd9e77079a' => 'field_3286ae42',
 			),
+			'partners'            => array(
+				'group_618be121e8146' => 'group_520c0ba8',
+				'field_618be1222774f' => 'field_c12b2879',
+				'field_618be1222776d' => 'field_37e4fbee',
+			),
 		);
 	}
 

@@ -4,6 +4,7 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson_Core\Gutenberg\Block_Manager;
@@ -19,6 +20,7 @@ class ACFBlocks {
 		FeaturedArticle::class,
 		RelatedArticles::class,
 		Team::class,
+		Partners::class,
 	);
 
 	public function register_hooks(): void {
@@ -113,29 +115,6 @@ class ACFBlocks {
 				'supports'        => array(
 					'align'    => array( 'center' ),
 					'multiple' => false,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-partners',
-				'title'           => _x( 'Partners', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of partners.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'image-filter',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'partners' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
 				),
 				'render_callback' => array( $this, 'block_render_callback' ),
 				'example'         => array(
