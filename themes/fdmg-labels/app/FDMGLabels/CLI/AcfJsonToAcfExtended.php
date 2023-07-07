@@ -45,7 +45,7 @@ class AcfJsonToAcfExtended {
 
 			WP_CLI::log( sprintf( 'Processing index %d, replacing %s with %s', $loop, $old_key, $new_key ) );
 			WP_CLI::runcommand( sprintf(
-				'search-replace "%s" "%s" --all-tables',
+				'search-replace "%s" "%s" --all-tables --report-changed-only',
 				$old_key,
 				$new_key
 			), $command_options );
