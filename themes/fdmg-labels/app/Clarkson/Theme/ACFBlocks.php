@@ -5,6 +5,7 @@ use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson_Core\Gutenberg\Block_Manager;
 use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
@@ -17,6 +18,7 @@ class ACFBlocks {
 		ArticlesInColumns::class,
 		FeaturedArticle::class,
 		RelatedArticles::class,
+		Team::class,
 	);
 
 	public function register_hooks(): void {
@@ -111,29 +113,6 @@ class ACFBlocks {
 				'supports'        => array(
 					'align'    => array( 'center' ),
 					'multiple' => false,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-team',
-				'title'           => _x( 'Team', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a list of team members.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'groups',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'team', 'editors', 'members' ),
-				'supports'        => array(
-					'align'    => array( 'center' ),
-					'multiple' => true,
 				),
 				'render_callback' => array( $this, 'block_render_callback' ),
 				'example'         => array(
