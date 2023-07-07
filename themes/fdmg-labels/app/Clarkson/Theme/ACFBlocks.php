@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFBlocks\Advertisement;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
@@ -23,6 +24,7 @@ class ACFBlocks {
 		Team::class,
 		Partners::class,
 		HighlightedContent::class,
+		Advertisement::class,
 	);
 
 	public function register_hooks(): void {
@@ -57,29 +59,6 @@ class ACFBlocks {
 		if ( ! function_exists( 'acf_register_block_type' ) ) {
 			return;
 		};
-
-		acf_register_block_type(
-			array(
-				'name'            => 'block-advertisement',
-				'title'           => _x( 'Advertisement', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays an advertisement.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'schedule',
-				'align'           => 'full', // full, wide, left, center, right
-				'keywords'        => array( 'advertisement', 'ad' ),
-				'supports'        => array(
-					'align'    => array( 'full' ),
-					'multiple' => true,
-				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
-					'attributes' => array(
-						'data' => array(
-							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-						),
-					),
-				),
-			)
-		);
 
 		acf_register_block_type(
 			array(
