@@ -15,12 +15,12 @@ class CTA {
 
 	protected const FIELD_GROUP = 'block_cta';
 
-	public const BLOCK_META_USAGE = 'usage';
+	public const BLOCK_META_USAGE   = 'usage';
 	public const BLOCK_META_GROUP   = 'cta';
-	public const BLOCK_META_TITLE = 'title';
-	public const BLOCK_META_IMAGE = 'image';
+	public const BLOCK_META_TITLE   = 'title';
+	public const BLOCK_META_IMAGE   = 'image';
 	public const BLOCK_META_CONTENT = 'content';
-	public const BLOCK_META_BUTTON = 'button';
+	public const BLOCK_META_BUTTON  = 'button';
 
 
 	public function register_hooks(): void {
@@ -32,8 +32,8 @@ class CTA {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'           => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
+				'description' => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
 				'icon'        => 'megaphone',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'call to action', 'cta' ),
@@ -41,7 +41,7 @@ class CTA {
 					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'example'         => array(
+				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
