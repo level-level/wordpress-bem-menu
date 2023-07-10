@@ -7,18 +7,18 @@
 		"focusInput": true
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
-		text: __('Search', 'fdmg-labels'),
+		text: _x('Search', 'Search', 'fdmg-labels'),
 		aria_expanded_support: true,
 		class: 'btn--header js-header-search js-header-search-open',
-		aria_label: __('Open search', 'fdmg-labels'),
-		aria_expanded_text: __('Close search', 'fdmg-labels'),
-		aria_collapsed_text: __('Open search', 'fdmg-labels'),
+		aria_label: _x('Open search', 'Search', 'fdmg-labels'),
+		aria_expanded_text: _x('Close search', 'Search', 'fdmg-labels'),
+		aria_collapsed_text: _x('Open search', 'Search', 'fdmg-labels'),
 		icon: 'search',
 		icon_left: true,
 	} %}
 	<div class="header-search__dropdown" aria-hidden="true">
 		<div class="container">
-			<div class="flex gap-3 items-center flex-nowrap">
+			<div class="flex items-center gap-3 flex-nowrap">
 				<div class="grow">
 					{% include 'partials/components/search-header.twig' %}
 				</div>
@@ -26,7 +26,7 @@
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
 						class: 'btn--secondary btn--search js-header-search',
-						aria_label: __('Close search', 'fdmg-labels'),
+						aria_label: _x('Close search', 'Search', 'fdmg-labels'),
 						icon: 'close',
 					} %}
 				</div>

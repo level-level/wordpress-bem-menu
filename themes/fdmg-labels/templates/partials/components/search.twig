@@ -8,7 +8,7 @@
 				name="s"
 				value="{{ the_search_query() }}"
 				id="{{ random_id }}"
-				placeholder="{{ __('Search by keyword', 'fdmg-labels') }}"
+				placeholder="{{ _x('Search by keyword', 'Search', 'fdmg-labels') }}"
 				autocomplete="off"
 				autocapitalize="off"
 				spellcheck="false"
@@ -16,7 +16,7 @@
 		</div>
 		<div class="basis-full sm:basis-auto">
 			{% include 'styleguide/components/buttons/button-element.twig' with {
-				text: __('Search', 'fdmg-labels'),
+				text: _x('Search', 'Search', 'fdmg-labels'),
 				class: 'btn--primary btn--full',
 				icon: 'search',
 				icon_left: true,
