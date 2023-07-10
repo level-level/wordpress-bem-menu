@@ -14,7 +14,7 @@ class ThemeOptions {
 
 	protected const FIELD_GROUP = 'theme_options';
 
-	public const MENU_SLUG    = 'acf-options';
+	public const MENU_SLUG = 'acf-options';
 
 	public const OPTION_GROUP                 = 'theme_options';
 	public const OPTION_NEWSLETTER_TAB        = 'newsletter_tab';
