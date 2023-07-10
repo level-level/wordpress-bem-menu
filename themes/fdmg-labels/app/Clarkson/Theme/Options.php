@@ -12,17 +12,19 @@ use Extended\ACF\Location;
 
 class Options {
 
-	public const OPTION_THEME_NAME          = 'theme_options';
-	public const OPTION_NEWSLETTER_TAB      = 'newsletter_tab';
-	public const OPTION_NEWSLETTER_GROUP    = 'newsletter_group';
-	public const OPTION_NEWSLETTER_TITLE    = 'newsletter_title';
-	public const OPTION_NEWSLETTER_TEXTAREA = 'newsletter_textarea';
-	public const OPTION_NEWSLETTER_LINK     = 'newsletter_link';
-	public const OPTION_NEWSLETTER_IMAGE    = 'newsletter_image';
-	public const OPTION_COOKIEWALL_TAB      = 'cookiewall_tab';
-	public const OPTION_SOURCEPOINT         = 'sourcepoint';
-	public const OPTION_ADVERTISEMENT_TAB   = 'advertisement_tab';
-	public const OPTION_ADVERTISEMENT       = 'advertisement';
+	public const FIELD_GROUP = 'theme_options';
+
+	public const OPTION_GROUP                 = 'theme_options';
+	public const OPTION_NEWSLETTER_TAB        = 'newsletter_tab';
+	public const OPTION_NEWSLETTER_GROUP      = 'newsletter';
+	public const OPTION_NEWSLETTER_TITLE      = 'title';
+	public const OPTION_NEWSLETTER_TEXTAREA   = 'textarea';
+	public const OPTION_NEWSLETTER_LINK       = 'link';
+	public const OPTION_NEWSLETTER_IMAGE      = 'image';
+	public const OPTION_COOKIEWALL_TAB        = 'cookiewall_tab';
+	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
+	public const OPTION_ADVERTISEMENTS_TAB    = 'advertisements_tab';
+	public const OPTION_ADVERTISEMENTS_ENABLE = 'enable_advertisements';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'add_options_pages' ) );
@@ -46,10 +48,10 @@ class Options {
 	public function register_fields(): void {
 		register_extended_field_group(
 			array(
-				'key'      => self::OPTION_THEME_NAME,
-				'title'    => 'Theme options',
+				'key'      => self::FIELD_GROUP,
+				'title'    => _x( 'Theme options', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
-					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels' ), self::OPTION_THEME_NAME )
+					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
 						->fields(
 							array(
 								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TAB )
@@ -64,24 +66,24 @@ class Options {
 										Link::make( _x( 'Button', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_LINK )
 											->instructions( 'This button will be used in the header of the site and in the newsletter block.' )
 											->returnFormat( 'array' ),
-										Image::make( _x( 'Image', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_IMAGE )
-										->returnFormat( 'id' )
-										->previewSize( 'medium' )
-										->library( 'all' ),
+										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_IMAGE )
+											->returnFormat( 'id' )
+											->previewSize( 'medium' )
+											->library( 'all' ),
 									)
 								),
 								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels' ), self::OPTION_COOKIEWALL_TAB )
-										->placement( 'left' ),
-								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels' ), self::OPTION_SOURCEPOINT )
-										->stylisedUi( 'Enabled', 'Disabled' )
-										->defaultValue( 'true' )
-										->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
-								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENT_TAB )
-										->placement( 'left' ),
-								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENT )
-										->stylisedUi( 'Enabled', 'Disabled' )
-										->defaultValue( 'true' )
-										->instructions( 'Enables or disables the advertisements' ),
+									->placement( 'left' ),
+								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels' ), self::OPTION_SOURCEPOINT_ENABLE )
+									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels' ), _x( 'Disabled', 'Fields', 'fdmg-labels' ) )
+									->defaultValue( 1 )
+									->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
+								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENTS_TAB )
+									->placement( 'left' ),
+								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENTS_ENABLE )
+									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels' ), _x( 'Disabled', 'Fields', 'fdmg-labels' ) )
+									->defaultValue( 1 )
+									->instructions( 'Enables or disables the advertisements' ),
 							)
 						),
 				),
