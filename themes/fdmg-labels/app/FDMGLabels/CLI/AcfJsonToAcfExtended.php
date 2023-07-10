@@ -178,7 +178,7 @@ class AcfJsonToAcfExtended {
 	}
 
 	/**
-	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF widgets.
+	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF postmeta.
 	 */
 	protected function process_post_meta(): void {
 		/** @var \wpdb $wpdb */
@@ -211,7 +211,7 @@ class AcfJsonToAcfExtended {
 	}
 
 	/**
-	 * Get key-value array of ACF widgets and a field map for each.
+	 * Get key-value array of post types and an ACF field map for each.
 	 * @return array<string,array<string,string>>
 	 */
 	protected function get_post_meta_map(): array {
@@ -221,9 +221,9 @@ class AcfJsonToAcfExtended {
 				'group_618baba9b6a83' => 'group_5e08b792',
 				'field_618baba9ea2f0' => 'field_d69ed47b',
 			),
-			'post'       => array(
-				'group_617a402184288' => 'group_89e7fa47',
-				'field_617a40444752a' => 'field_380998db',
+			'post_authors' => array(
+				'group_617a402184288' => 'group_df1b5078',
+				'field_617a40444752a' => 'field_148aff5f',
 			),
 			'ii-team'    => array(
 				'group_617a60ad5295b' => 'group_d81d40a1',
@@ -234,8 +234,8 @@ class AcfJsonToAcfExtended {
 		);
 	}
 
-		/**
-	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF blocks.
+	/**
+	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF options.
 	 */
 	protected function process_options(): void {
 		/** @var \wpdb $wpdb */
@@ -268,7 +268,7 @@ class AcfJsonToAcfExtended {
 	}
 
 	/**
-	 * Get key-value array of ACF blocks and a field map for each.
+	 * Get key-value array of ACF options and a field map for each.
 	 * @return array<string,array<string,string>>
 	 */
 	protected function get_options_map(): array {
