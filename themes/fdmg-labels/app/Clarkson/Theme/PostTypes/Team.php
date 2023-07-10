@@ -9,6 +9,8 @@ use Extended\ACF\Location;
 class Team {
 	public const POST_TYPE_NAME = 'ii_team';
 
+	public const FIELD_GROUP = 'author_data';
+
 	public const META_EMAIL    = 'email';
 	public const META_LINKEDIN = 'linkedin';
 	public const META_LOCATION = 'location';
@@ -65,7 +67,7 @@ class Team {
 	public function register_fields(): void {
 		register_extended_field_group(
 			array(
-				'key'      => self::POST_TYPE_NAME,
+				'key'      => self::FIELD_GROUP,
 				'title'    => _x( '[Author] Data', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Email::make( _x( 'E-mail address', 'Fields', 'fdmg-labels' ), self::META_EMAIL ),

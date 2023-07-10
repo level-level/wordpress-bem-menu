@@ -225,11 +225,11 @@ class AcfJsonToAcfExtended {
 				'group_617a402184288' => 'group_df1b5078',
 				'field_617a40444752a' => 'field_148aff5f',
 			),
-			'ii-team'    => array(
-				'group_617a60ad5295b' => 'group_d81d40a1',
-				'field_617a6114e4517' => 'field_49567726',
-				'field_617a6143e4518' => 'field_d9a0ecf0',
-				'field_618923758495d' => 'field_415d1b89',
+			'team_author_data'    => array(
+				'group_617a60ad5295b' => 'group_b85016b3',
+				'field_617a6114e4517' => 'field_a9f68cbc',
+				'field_617a6143e4518' => 'field_6d100c7e',
+				'field_618923758495d' => 'field_4f031873',
 			),
 		);
 	}
