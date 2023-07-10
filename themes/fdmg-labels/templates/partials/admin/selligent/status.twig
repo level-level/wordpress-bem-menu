@@ -2,11 +2,11 @@
 	<p><strong>{{ message }}</strong></p>
 {% endif %}
 <p>
-	<strong>{{ __('Last newsletter sent: ', 'fdmg-labels') }}</strong><br>
+	<strong>{{ _x('Last newsletter sent: ', 'Selligent', 'fdmg-labels') }}</strong><br>
 	{{ status.time }}
 </p>
 <p>
-	<strong>{{ __('Articles:', 'fdmg-labels') }}</strong><br />
+	<strong>{{ _x('Articles:', 'Selligent', 'fdmg-labels') }}</strong><br />
 	<ol>
 		{% for article in status.articles %}
 		<li>

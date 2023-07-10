@@ -1,4 +1,4 @@
-{% set title = data.title|default(__('In short', 'fdmg-labels')) %}
+{% set title = data.title|default(_x('In short', 'Block', 'fdmg-labels')) %}
 {% set content = data.content %}
 
 {% if content %}

@@ -6,7 +6,7 @@
 	<div class="section">
 		{% include 'styleguide/components/article-header.twig' with {
 			title: object.get_title(),
-			label: __('Partner', 'fdmg-labels'),
+			label: _x('Partner', 'Label', 'fdmg-labels'),
 		} %}
 
 		{% if content %}

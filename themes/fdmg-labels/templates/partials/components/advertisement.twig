@@ -4,7 +4,7 @@
 
 			{% if is_admin() %}
 				<div class="advertisement__selected">
-					{{ __('Selected slot: <strong>%s</strong>', 'fdmg-labels')|format(slot)|raw }}
+					{{ _x('Selected slot: <strong>%s</strong>', 'Advertisement', 'fdmg-labels')|format(slot)|raw }}
 				</div>
 			{% endif %}
 

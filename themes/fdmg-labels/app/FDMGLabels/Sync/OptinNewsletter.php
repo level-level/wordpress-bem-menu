@@ -78,7 +78,7 @@ class OptinNewsletter extends BaseSync {
 			$this->selligent_logger->add_gravityforms_entry_log(
 				$entry_id, sprintf(
 					'Could not subscribe to the newsletter because the form does not contain a field of the type "%s".',
-					__( 'Email', 'gravityforms' )
+					_x( 'Email', 'GravityForms', 'gravityforms' )
 				), LogLine::LEVEL_ERROR
 			);
 			return;

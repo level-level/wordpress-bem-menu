@@ -1,11 +1,11 @@
 {% if authors or comments > 0 %}
 	<div class="teaser-post__footer">
-		<div class="flex justify-between flex-nowrap items-center">
+		<div class="flex items-center justify-between flex-nowrap">
 
 			{% if authors %}
 				<div>
 					<span class="screen-reader-text">
-						{{ __('Written by:', 'fdmg-labels') }}
+						{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 					</span>
 					<ul class="flex gap-3">
 						{% for object in authors %}
@@ -23,7 +23,7 @@
 
 			{% if comments > 0 %}
 				<div class="shrink-0">
-					<div class="flex justify-between flex-nowrap items-center">
+					<div class="flex items-center justify-between flex-nowrap">
 						<div>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: comments,

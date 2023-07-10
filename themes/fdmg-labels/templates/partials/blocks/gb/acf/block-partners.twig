@@ -1,4 +1,4 @@
-{% set title = data.title|default(__('Our partners', 'fdmg-labels')) %}
+{% set title = data.title|default(_x('Our partners', 'Block', 'fdmg-labels')) %}
 {% set objects = data.partners %}
 
 {% if objects %}
