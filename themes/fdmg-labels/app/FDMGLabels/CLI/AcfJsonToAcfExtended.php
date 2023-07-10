@@ -4,58 +4,19 @@ namespace FDMGLabels\CLI;
 
 use WP_CLI;
 
-use function WP_CLI\Utils\get_flag_value;
-
 class AcfJsonToAcfExtended {
 
 	/**
-	 * Map old ACF JSON field keys to new ACF JSON field keys using DB search-replace actions.
-	 *
-	 * @param string[] $args
-	 * @param array<string,string> $assoc_args
-	 *
-	 * @subcommand search-replace
-	 *
-	 * ## EXAMPLES
-	 *
-	 * wp fdmg-labels acf-json-to-acf-extended search-replace
-	 */
-	public function search_replace( array $args, array $assoc_args ): void {
-		$map = $this->get_full_map();
-
-		$loop = 0;
-
-		$command_options = array(
-			'return'     => true,                // Return 'STDOUT'; use 'all' for full object.
-			'parse'      => 'json',              // Parse captured STDOUT to JSON array.
-			'launch'     => false,               // Reuse the current process.
-			'exit_error' => true,                // Halt script execution on error.
-		);
-		foreach ( $map as $old_key => $new_key ) {
-			WP_CLI::log( sprintf( 'Processing index %d, replacing %s with %s', $loop, $old_key, $new_key ) );
-			WP_CLI::runcommand(
-				sprintf(
-					'search-replace "%s" "%s" --all-tables --report-changed-only',
-					$old_key,
-					$new_key
-				), $command_options
-			);
-			$loop++;
-		}
-		WP_CLI::success( 'All items have been processed' );
-	}
-
-	/**
-	 * Map old ACF JSON field keys to new ACF JSON field keys updating objects separately.
+	 * Map old ACF JSON field keys to new ACF JSON field keys.
 	 *
 	 * @param string[] $args
 	 * @param array<string,string> $assoc_args
 	 *
 	 * ## EXAMPLES
 	 *
-	 * wp fdmg-labels acf-json-to-acf-extended objects
+	 * wp fdmg-labels acf-json-to-acf-extended run
 	 */
-	public function objects( array $args, array $assoc_args ): void {
+	public function run( array $args, array $assoc_args ): void {
 		$this->process_blocks();
 		$this->process_widgets();
 		WP_CLI::success( 'All items have been processed' );
