@@ -217,15 +217,15 @@ class AcfJsonToAcfExtended {
 	protected function get_post_meta_map(): array {
 		return array(
 			// Advertisement is the only block that's also made available as widget
-			'partner_data' => array(
+			'partner_data'     => array(
 				'group_618baba9b6a83' => 'group_2a93cfc2',
 				'field_618baba9ea2f0' => 'field_1aae7aeb',
 			),
-			'post_authors' => array(
+			'post_authors'     => array(
 				'group_617a402184288' => 'group_df1b5078',
 				'field_617a40444752a' => 'field_148aff5f',
 			),
-			'team_author_data'    => array(
+			'team_author_data' => array(
 				'group_617a60ad5295b' => 'group_b85016b3',
 				'field_617a6114e4517' => 'field_a9f68cbc',
 				'field_617a6143e4518' => 'field_6d100c7e',
