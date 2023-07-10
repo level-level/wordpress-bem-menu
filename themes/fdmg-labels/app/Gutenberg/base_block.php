@@ -8,6 +8,7 @@ use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
 use Exception;
+use WP_Block;
 use WP_Error;
 
 class base_block extends Block_Type {
@@ -16,7 +17,7 @@ class base_block extends Block_Type {
 	public const PREVIEW_MODE_NONE  = 'none';
 
 	/**
-	 * @var array|bool $content_attributes
+	 * @var array<string,mixed>|bool $content_attributes
 	 */
 	public $content_attributes = false;
 
@@ -52,7 +53,7 @@ class base_block extends Block_Type {
 	 * @see \WP_Block_Type::__construct()
 	 *
 	 * @param string       $block_type Block type name including namespace.
-	 * @param array|string $args       Optional. Array or string of arguments for registering a block type.
+	 * @param array<string,mixed>|string $args       Optional. Array or string of arguments for registering a block type.
 	 *                                 Default empty array.
 	 */
 	public function __construct( string $block_type, $args = array() ) {
@@ -77,13 +78,13 @@ class base_block extends Block_Type {
 	 * Tries to find a twig file to use for rendering. If the twig file doesn't
 	 * exists it falls back to the original render callback.
 	 *
-	 * @param array  $attributes
+	 * @param array<string,mixed>  $attributes
 	 * @param string $content
-	 * @param mixed  $block (WP_Block $block or with acf it is a bool $is_preview)
+	 * @param WP_Block|bool  $block (WP_Block $block or with acf it is a bool $is_preview)
 	 * @param mixed  $post_id
 	 * @return string
 	 */
-	public function clarkson_render_callback( $attributes, $content, $block = null, $post_id = 0 ) {
+	public function clarkson_render_callback( $attributes, $content, $block = false, $post_id = 0 ) {
 		if ( file_exists( $this->get_twig_template_path() ) ) {
 			$cc_template = Templates::get_instance();
 
@@ -116,13 +117,15 @@ class base_block extends Block_Type {
 			}
 
 			if ( is_null( $data ) ) {
+
 				try {
-					if ( isset( $attributes['id'] ) ) {
-						acf_setup_meta( $attributes['data'], $attributes['id'], true );
-						$data = get_fields( $attributes['id'] );
-						acf_reset_meta( $attributes['id'] );
-						$this->is_acf = true;
-					}
+					// Generate a block id
+					$block_id = acf_get_block_id( $attributes );
+
+					acf_setup_meta( $attributes['data'], $block_id, true );
+					$data = get_fields( $block_id );
+					acf_reset_meta( $block_id );
+					$this->is_acf = true;
 				} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 					// This is not an ACF block.
 				}
@@ -136,7 +139,7 @@ class base_block extends Block_Type {
 				'data'       => $this->content_attributes,
 				'content'    => $content,
 				'block'      => $this,
-				'align'      => $attributes['align'] ?? '',
+				'align'      => 'align' . ( $attributes['align'] ?? '' ),
 				'post_id'    => $this->post_id,
 				'is_acf'     => $this->is_acf,
 				'is_preview' => $this->is_preview,
@@ -147,12 +150,18 @@ class base_block extends Block_Type {
 
 			$errors = $this->validate( $attributes );
 
-			if ( $errors->has_errors() ) {
-				$block_args['errors'] = $errors;
-				return $cc_template->render_twig( 'partials/components/gb-invalid.twig', $block_args, true );
-			}
+			do_action( 'clarkson_core_block_pre_render', $this, $block_args );
 
-			$block_content = $cc_template->render_twig( $this->get_twig_template_path(), $block_args, true );
+			if ( $errors->has_errors() ) {
+				$block_content = $cc_template->render_twig(
+					'partials/components/gb-invalid.twig', array(
+						'required_fields' => $errors->get_error_messages(),
+					),
+					true
+				);
+			} else {
+				$block_content = $cc_template->render_twig( $this->get_twig_template_path(), $block_args, true );
+			}
 
 			if ( is_admin() && $block === true ) {
 				return '<div class="clarkson-acf-preview-block">' . $block_content . '</div>';
@@ -161,14 +170,21 @@ class base_block extends Block_Type {
 			}
 		}
 		if ( is_callable( $this->original_render_callback ) ) {
-			return (string) call_user_func( $this->original_render_callback, $attributes, $content );
+			return (string) call_user_func( $this->original_render_callback, $attributes, $content, $block );
 		}
 
 		return $content;
 	}
 
+	/**
+	 *
+	 * @return string|null
+	 */
 	protected function get_preview_image(): ?string {
 		$filename = realpath( $this->get_twig_template_path() . '-preview.png' );
+		if ( ! $filename ) {
+			return null;
+		}
 		if ( file_exists( $filename ) ) {
 			$filename = str_replace( array( realpath( get_stylesheet_directory() ), realpath( get_template_directory() ) ), '', $filename );
 			$filename = get_stylesheet_directory_uri() . $filename;
@@ -178,7 +194,9 @@ class base_block extends Block_Type {
 	}
 
 	/**
-	 * @param array $attributes
+	 *
+	 * @param array<string,mixed> $attributes
+	 * @return string
 	 */
 	protected function get_preview_mode( $attributes ): string {
 		if ( isset( $attributes['data']['ll-preview-mode'] ) && $attributes['data']['ll-preview-mode'] ) {
@@ -188,22 +206,25 @@ class base_block extends Block_Type {
 	}
 
 	/**
-	 * @param array $attributes
+	 * @param array<string,mixed> $attributes
 	 */
 	protected function has_example( $attributes ): bool {
 		return ! empty( $attributes['example'] );
 	}
 
 	/**
-	 * @param mixed  $block (WP_Block $block or with acf it is a bool $is_preview)
-	 * @param array $attributes
+	 * @param WP_Block|bool $block
+	 * @param array<string,mixed> $attributes
+	 * @return boolean
 	 */
 	protected function is_preview( $block, $attributes ): bool {
 		return is_bool( $block ) && $block && $this->get_preview_mode( $attributes ) !== self::PREVIEW_MODE_NONE;
 	}
 
 	/**
-	 * @param array $attributes
+	 *
+	 * @param array<string,mixed> $attributes
+	 * @return WP_Error
 	 */
 	public function validate( $attributes ): WP_Error {
 		$errors = new WP_Error();
@@ -214,17 +235,19 @@ class base_block extends Block_Type {
 				if ( $field_object ) {
 					acf_validate_value( $attribute, $field_object, $key );
 					$acf_errors = acf_get_validation_errors() ?: array();
-					foreach ( $acf_errors as $acf_error ) {
-						$matches = array();
-						preg_match_all( '/field_[a-z0-9]+/', $acf_error['input'], $matches );
-						$match_fields = array();
-						foreach ( $matches[0] as $match ) {
-							$match_field = get_field_object( $match, false, false, false );
-							if ( $match_field ) {
-								$match_fields[] = $match_field['label'];
+					if ( is_array( $acf_errors ) ) {
+						foreach ( $acf_errors as $acf_error ) {
+							$matches = array();
+							preg_match_all( '/field_[a-z0-9]+/', $acf_error['input'], $matches );
+							$match_fields = array();
+							foreach ( $matches[0] as $match ) {
+								$match_field = get_field_object( $match, false, false, false );
+								if ( $match_field ) {
+									$match_fields[] = $match_field['label'];
+								}
 							}
+							$errors->add( $acf_error['input'] . uniqid(), sprintf( '%s: %s', implode( ' / ', $match_fields ), $acf_error['message'] ) );
 						}
-						$errors->add( $acf_error['input'] . uniqid(), sprintf( '%s: %s', implode( ' / ', $match_fields ), $acf_error['message'] ) );
 					}
 					acf_reset_validation_errors();
 				}
@@ -235,6 +258,13 @@ class base_block extends Block_Type {
 
 	/**
 	 * Create query args based on given terms, post types and excluded objects
+	 *
+	 * @param array<string,mixed> $terms
+	 * @param array<string> $post_types
+	 * @param array<string,Clarkson_Object> $exluded_objects
+	 * @param integer $count
+	 * @param string $tax_relation
+	 * @return array<string,mixed>
 	 */
 	public function get_query_args( array $terms, array $post_types, array $exluded_objects = array(), int $count = 2, string $tax_relation = 'OR' ): array {
 		$exclude_ids = array_map(
