@@ -2,7 +2,7 @@
 
 <div class="dark-mode" data-module="display-options">
 	<div class="dark-mode__title">
-		{{ __('Display preferences', 'fdmg-labels') }}
+		{{ _x('Display preferences', 'DarkMode', 'fdmg-labels') }}
 	</div>
 	<div class="dark-mode__dropdown">
 		<div class="dark-mode__inner">
@@ -15,15 +15,15 @@
 						id="theme-system-{{ radio_id }}"
 						checked
 					/>
-					<label for="theme-system-{{ radio_id }}">{{ __('System (device settings)', 'fdmg-labels') }}</label>
+					<label for="theme-system-{{ radio_id }}">{{ _x('System (device settings)', 'DarkMode', 'fdmg-labels') }}</label>
 				</li>
 				<li>
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light-{{ radio_id }}" />
-					<label for="theme-light-{{ radio_id }}">{{ __('Light theme', 'fdmg-labels') }}</label>
+					<label for="theme-light-{{ radio_id }}">{{ _x('Light theme', 'DarkMode', 'fdmg-labels') }}</label>
 				</li>
 				<li>
 					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="dark-mode-{{ radio_id }}" />
-					<label for="dark-mode-{{ radio_id }}">{{ __('Dark theme', 'fdmg-labels') }}</label>
+					<label for="dark-mode-{{ radio_id }}">{{ _x('Dark theme', 'DarkMode', 'fdmg-labels') }}</label>
 				</li>
 			</ul>
 		</div>

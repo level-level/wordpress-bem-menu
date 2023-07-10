@@ -5,7 +5,7 @@
 			{% if most_read %}
 				<li role="presentation" class="tab-list__item">
 					<a role="tab" href="#most-read" id="tab1" class="tab-list__link" aria-selected="true">
-						{{ __('Most read', 'fdmg-labels') }}
+						{{ _x('Most read', 'Block', 'fdmg-labels') }}
 					</a>
 				</li>
 			{% endif %}
@@ -13,7 +13,7 @@
 			{% if latest %}
 				<li role="presentation" class="tab-list__item">
 					<a role="tab" href="#latest" id="tab2" class="tab-list__link" tabindex="-1" {{ not most_read ? 'aria-selected="true"' }}>
-						{{ __('Latest articles', 'fdmg-labels') }}
+						{{ _x('Latest articles', 'Block', 'fdmg-labels') }}
 					</a>
 				</li>
 			{% endif %}
@@ -43,7 +43,7 @@
 						datetime: post.get_date_i18n('H:i'),
 						date_full: post.get_date_i18n(get_option('time_format')),
 					}),
-					button_text: __('More articles', 'fdmg-labels'),
+					button_text: _x('More articles', 'Block', 'fdmg-labels'),
 					button_link: get_post_type_archive_link('post'),
 				} %}
 			</div>

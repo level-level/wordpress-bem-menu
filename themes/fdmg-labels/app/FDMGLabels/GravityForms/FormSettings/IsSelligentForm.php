@@ -36,7 +36,7 @@ final class IsSelligentForm extends BaseSetting {
 	public function get_description(): string {
 		return sprintf(
 			_x( 'To use this functionality, a form field of the type "%s" must be present in the form.', 'GravityForms', 'fdmg-labels' ),
-			__( 'Email', 'gravityforms' )
+			_x( 'Email', 'GravityForms', 'gravityforms' )
 		);
 	}
 }

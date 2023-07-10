@@ -1,4 +1,4 @@
-{% set title = data.title|default(__('Related news', 'fdmg-labels')) %}
+{% set title = data.title|default(_x('Related news', 'Block', 'fdmg-labels')) %}
 {% set objects = block.get_posts() %}
 
 {% if objects %}

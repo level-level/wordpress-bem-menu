@@ -8,10 +8,10 @@ class ScriptTranslations {
 			'i18n',
 			array(
 				'navigation'  => array(
-					'subMenu' => __( 'Sub menu', 'fdmg-labels' ),
+					'subMenu' => _x( 'Sub menu', 'Navigation', 'fdmg-labels' ),
 				),
 				'socialShare' => sprintf(
-					__( 'I read this article via %s and I would like to share it with you:', 'fdmg-labels' ),
+					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels' ),
 					get_bloginfo( 'name' )
 				),
 			)

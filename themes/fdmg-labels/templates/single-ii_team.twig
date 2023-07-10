@@ -9,7 +9,7 @@
 		<div class="container">
 			<div class="layout-header-wrapper">
 				{% include 'styleguide/components/author-header.twig' with {
-					label: __('Author', 'fdmg-labels'),
+					label: _x('Author', 'Label', 'fdmg-labels'),
 					title: title,
 				} %}
 			</div>
@@ -30,7 +30,7 @@
 	{% if author_posts %}
 		<div class="section">
 			<h2 class="screen-reader-text">
-				{{ __('Articles written by %s', 'fdmg-labels')|format(title) }}
+				{{ _x('Articles written by %s', 'Screen reader text', 'fdmg-labels')|format(title) }}
 			</h2>
 			<ul class="flex flex-col gap-3 sm:gap-6">
 				{% set date_format = get_option('date_format') %}

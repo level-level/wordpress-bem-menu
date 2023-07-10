@@ -1,6 +1,6 @@
 <div class="teaser-partner">
 	<div class="teaser-partner__inner">
-		<div class="flex gap-3 flex-wrap sm:flex-nowrap">
+		<div class="flex flex-wrap gap-3 sm:flex-nowrap">
 
 			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
 				<div class="teaser-partner__thumbnail">
@@ -22,10 +22,10 @@
 
 					<div>
 						{% include 'styleguide/components/buttons/button-link.twig' with {
-							text: __('View partner', 'fdmg-labels'),
+							text: _x('View partner', 'Block', 'fdmg-labels'),
 							url: url,
 							class: 'btn--tertiary',
-							aria_label: __('View partner, %s', 'fdmg-labels')|format(title),
+							aria_label: _x('View partner, %s', 'Screen reader text', 'fdmg-labels')|format(title),
 							icon: 'arrow-right',
 							icon_left: true,
 							highlight_icon: true,

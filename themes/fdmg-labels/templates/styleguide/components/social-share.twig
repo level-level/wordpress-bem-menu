@@ -16,14 +16,14 @@
 								class: 'btn--share js--share',
 								icon: social.type,
 								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
-								aria_label: __('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'fdmg-labels')|format(social.title),
+								aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
 								focusable: sticky ? false,
 							} %}
 
 							{% if social.type == 'email' %}
 								{% set args = args|merge({
 									url: 'javascript:void(0);',
-									aria_label: __('%1$s share — This opens your e-mail client.', 'fdmg-labels')|format(social.title),
+									aria_label: _x('%1$s share — This opens your e-mail client.', 'Screen reader text', 'fdmg-labels')|format(social.title),
 								}) %}
 								{% include 'styleguide/components/buttons/button-link.twig' with args %}
 							{% else %}

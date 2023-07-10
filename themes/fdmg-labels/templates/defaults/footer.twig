@@ -5,7 +5,7 @@
 					<a
 						class="brand-footer"
 						href="{{ esc_url(home_url('/')) }}"
-						aria-label="{{ __('%s logo, go to the homepage', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
+						aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
 						>
 						<img
 							src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor-white.svg"
@@ -17,7 +17,7 @@
 				</div>
 			</div>
 			<nav aria-labelledby="footer-heading">
-				<h2 class="screen-reader-text" id="footer-heading">{{ __('Important links', 'fdmg-labels') }}</h2>
+				<h2 class="screen-reader-text" id="footer-heading">{{ _x('Important links', 'Screen reader text', 'fdmg-labels') }}</h2>
 				<div class="container">
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 						{% if has_nav_menu('about_navigation') %}
@@ -50,9 +50,9 @@
 						<button
 							class="btn btn--link"
 							onclick="window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes')"
-							aria-label="{{ __('Privacy Settings, open cookie preference dialog', 'fdmg-labels') }}"
+							aria-label="{{ _x('Privacy Settings, open cookie preference dialog', 'Screen reader text', 'fdmg-labels') }}"
 						>
-							{{ __('Privacy Settings', 'fdmg-labels') }}
+							{{ _x('Privacy Settings', 'Block', 'fdmg-labels') }}
 						</button>
 					{% endif %}
 				</div>
@@ -60,7 +60,7 @@
 		</div>
 		<div class="footer-socials">
 			<div class="container">
-				<h3 class="footer-socials__heading">{{ __('Follow us on social media', 'fdmg-labels') }}</h3>
+				<h3 class="footer-socials__heading">{{ _x('Follow us on social media', 'Social', 'fdmg-labels') }}</h3>
 				{% include 'styleguide/components/social-media-links.twig' with {
 					socials: [
 						{

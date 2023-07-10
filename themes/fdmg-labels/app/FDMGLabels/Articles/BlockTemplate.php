@@ -21,7 +21,7 @@ class BlockTemplate {
 			array(
 				'core/paragraph',
 				array(
-					'placeholder' => _x( 'Introduction text.', 'Block', 'fdmg-labels' ),
+					'placeholder' => _x( 'Introduction text..', 'Block', 'fdmg-labels' ),
 					'fontSize'    => 'intro',
 				),
 			),
