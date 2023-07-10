@@ -217,9 +217,9 @@ class AcfJsonToAcfExtended {
 	protected function get_post_meta_map(): array {
 		return array(
 			// Advertisement is the only block that's also made available as widget
-			'ii-partner' => array(
-				'group_618baba9b6a83' => 'group_5e08b792',
-				'field_618baba9ea2f0' => 'field_d69ed47b',
+			'partner_data' => array(
+				'group_618baba9b6a83' => 'group_2a93cfc2',
+				'field_618baba9ea2f0' => 'field_1aae7aeb',
 			),
 			'post_authors' => array(
 				'group_617a402184288' => 'group_df1b5078',

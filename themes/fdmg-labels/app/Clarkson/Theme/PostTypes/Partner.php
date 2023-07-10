@@ -7,6 +7,8 @@ use Extended\ACF\Location;
 class Partner {
 	public const POST_TYPE_NAME = 'ii_partner';
 
+	public const FIELD_GROUP = 'partner_data';
+
 	public const META_SUBTITLE = 'subtitle';
 
 	public function register_hooks(): void {
@@ -61,7 +63,7 @@ class Partner {
 	public function register_fields(): void {
 		register_extended_field_group(
 			array(
-				'key'      => self::POST_TYPE_NAME,
+				'key'      => self::FIELD_GROUP,
 				'title'    => _x( '[Partner] Data', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Text::make( _x( 'Subtitle', 'Fields', 'fdmg-labels' ), self::META_SUBTITLE )
