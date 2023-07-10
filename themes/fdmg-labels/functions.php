@@ -16,6 +16,7 @@
 // Clarkson Theme
 ( new \Clarkson\Theme\Assets() )->register_hooks();
 ( new \Clarkson\Theme\ACFBlocks() )->register_hooks();
+( new \Clarkson\Theme\ACFPages() )->register_hooks();
 ( new \Clarkson\Theme\ACF() )->register_hooks();
 ( new \Clarkson\Theme\Blocks() )->register_hooks();
 ( new \Clarkson\Theme\Cleanup() )->register_hooks();
@@ -42,6 +43,7 @@
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Sync\Init() )->register_hooks();
+( new \FDMGLabels\FeatureManager() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
