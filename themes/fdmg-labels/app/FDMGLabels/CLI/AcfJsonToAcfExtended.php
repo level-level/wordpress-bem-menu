@@ -252,7 +252,7 @@ class AcfJsonToAcfExtended {
 		);
 
 		foreach ( $options_map as $option => $option_map ) {
-			WP_CLI::log( sprintf( 'Processing options %s', $option ) );
+			WP_CLI::log( sprintf( 'Processing option %s', $option ) );
 			foreach ( $option_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
 				WP_CLI::runcommand(
@@ -276,16 +276,16 @@ class AcfJsonToAcfExtended {
 			'theme_options' => array(
 				'group_607e75073ae16' => 'group_542ec9a3',
 				'field_607e751d8bd50' => 'field_87022bd4',
-				'field_618232653bfac' => 'field_88cac3a2',
-				'field_6182327a3bfad' => 'field_4fe8f2b7',
-				'field_6182328e3bfae' => 'field_5296ae18',
-				'field_618232ac3bfaf' => 'field_8d77fc04',
-				'field_618232d03bfb0' => 'field_1628aecb',
-				'field_618233073bfb1' => 'group_4289d8da',
-				'field_619e47f21b38f' => 'field_c97f5cae',
-				'field_619e47fc1b390' => 'field_239ae05a',
-				'field_61a7754ea9949' => 'field_5a948ea2',
-				'field_61a7755da994a' => 'field_4b86982e',
+				'field_618232653bfac' => 'field_88692ed2',
+				'field_6182327a3bfad' => 'field_1ffc2416',
+				'field_6182328e3bfae' => 'field_9049852b',
+				'field_618232ac3bfaf' => 'field_9de7fd8d',
+				'field_618232d03bfb0' => 'field_e644e86f',
+				'field_618233073bfb1' => 'field_e3a68c50',
+				'field_619e47f21b38f' => 'field_4fe8f2b7',
+				'field_619e47fc1b390' => 'field_70de407b',
+				'field_61a7754ea9949' => 'field_373d51cb',
+				'field_61a7755da994a' => 'field_631e8895',
 			),
 		);
 	}
