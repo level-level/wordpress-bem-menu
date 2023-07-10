@@ -14,11 +14,11 @@ class Navigation {
 	public function register_custom_nav_menus(): void {
 		register_nav_menus(
 			array(
-				'primary_navigation'  => __( 'Primary navigation', 'fdmg-labels' ),
-				'about_navigation'    => __( 'About navigation', 'fdmg-labels' ),
-				'general_navigation'  => __( 'General navigation', 'fdmg-labels' ),
-				'services_navigation' => __( 'Services navigation', 'fdmg-labels' ),
-				'fdmg_navigation'     => __( 'FDMG navigation', 'fdmg-labels' ),
+				'primary_navigation'  => _x( 'Primary navigation', 'Navigation', 'fdmg-labels' ),
+				'about_navigation'    => _x( 'About navigation', 'Navigation', 'fdmg-labels' ),
+				'general_navigation'  => _x( 'General navigation', 'Navigation', 'fdmg-labels' ),
+				'services_navigation' => _x( 'Services navigation', 'Navigation', 'fdmg-labels' ),
+				'fdmg_navigation'     => _x( 'FDMG navigation', 'Navigation', 'fdmg-labels' ),
 			)
 		);
 	}

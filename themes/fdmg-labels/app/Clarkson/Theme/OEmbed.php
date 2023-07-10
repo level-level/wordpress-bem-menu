@@ -48,8 +48,8 @@ class OEmbed {
 			'source'         => $source,
 			'embed_type'     => $type,
 			'thumbnail'      => $thumbnail,
-			'notice_text'    => __( 'This content is available after accepting the cookies.', 'fdmg-labels' ),
-			'button_text'    => __( 'I agree', 'fdmg-labels' ),
+			'notice_text'    => _x( 'This content is available after accepting the cookies.', 'OEmbed', 'fdmg-labels' ),
+			'button_text'    => _x( 'I agree', 'OEmbed', 'fdmg-labels' ),
 			'disable_notice' => $this->maybe_disable_notice( $source, $html ),
 			'svg_icons'      => SVGIcons::get_instance(),
 		);
@@ -57,8 +57,8 @@ class OEmbed {
 		$options = get_field( 'theme_options', 'option' );
 
 		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
-			$args['notice_text'] = __( 'This content is available after accepting the social media cookies.', 'fdmg-labels' );
-			$args['button_text'] = __( 'Change cookie-settings', 'fdmg-labels' );
+			$args['notice_text'] = _x( 'This content is available after accepting the social media cookies.', 'OEmbed', 'fdmg-labels' );
+			$args['button_text'] = _x( 'Change cookie-settings', 'OEmbed', 'fdmg-labels' );
 		}
 
 		return Templates::get_instance()->render_twig( 'partials/components/oembeds/oembed.twig', $args, true );
