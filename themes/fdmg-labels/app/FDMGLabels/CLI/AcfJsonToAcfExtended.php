@@ -19,6 +19,8 @@ class AcfJsonToAcfExtended {
 	public function run( array $args, array $assoc_args ): void {
 		$this->process_blocks();
 		$this->process_widgets();
+		$this->process_post_meta();
+		$this->process_options();
 		WP_CLI::success( 'All items have been processed' );
 	}
 
@@ -176,6 +178,119 @@ class AcfJsonToAcfExtended {
 	}
 
 	/**
+	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF widgets.
+	 */
+	protected function process_post_meta(): void {
+		/** @var \wpdb $wpdb */
+		global $wpdb;
+
+		WP_CLI::log( 'Processing post meta' );
+		$post_meta_map = $this->get_post_meta_map();
+
+		$command_options = array(
+			'return'     => true,                // Return 'STDOUT'; use 'all' for full object.
+			'parse'      => 'json',              // Parse captured STDOUT to JSON array.
+			'launch'     => false,               // Reuse the current process.
+			'exit_error' => true,                // Halt script execution on error.
+		);
+
+		foreach ( $post_meta_map as $post_meta => $post_meta_map ) {
+			WP_CLI::log( sprintf( 'Processing post meta %s', $post_meta ) );
+			foreach ( $post_meta_map as $old_acf_key => $new_acf_key ) {
+				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
+				WP_CLI::runcommand(
+					sprintf(
+						'search-replace "%s" "%s" %s --report-changed-only',
+						$old_acf_key,
+						$new_acf_key,
+						$wpdb->postmeta,
+					), $command_options
+				);
+			}
+		}
+	}
+
+	/**
+	 * Get key-value array of ACF widgets and a field map for each.
+	 * @return array<string,array<string,string>>
+	 */
+	protected function get_post_meta_map(): array {
+		return array(
+			// Advertisement is the only block that's also made available as widget
+			'ii-partner' => array(
+				'group_618baba9b6a83' => 'group_5e08b792',
+				'field_618baba9ea2f0' => 'field_d69ed47b',
+			),
+			'post'       => array(
+				'group_617a402184288' => 'group_89e7fa47',
+				'field_617a40444752a' => 'field_380998db',
+			),
+			'ii-team'    => array(
+				'group_617a60ad5295b' => 'group_d81d40a1',
+				'field_617a6114e4517' => 'field_49567726',
+				'field_617a6143e4518' => 'field_d9a0ecf0',
+				'field_618923758495d' => 'field_415d1b89',
+			),
+		);
+	}
+
+		/**
+	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF blocks.
+	 */
+	protected function process_options(): void {
+		/** @var \wpdb $wpdb */
+		global $wpdb;
+
+		WP_CLI::log( 'Processing options' );
+		$options_map = $this->get_options_map();
+
+		$command_options = array(
+			'return'     => true,                // Return 'STDOUT'; use 'all' for full object.
+			'parse'      => 'json',              // Parse captured STDOUT to JSON array.
+			'launch'     => false,               // Reuse the current process.
+			'exit_error' => true,                // Halt script execution on error.
+		);
+
+		foreach ( $options_map as $option => $option_map ) {
+			WP_CLI::log( sprintf( 'Processing options %s', $option ) );
+			foreach ( $option_map as $old_acf_key => $new_acf_key ) {
+				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
+				WP_CLI::runcommand(
+					sprintf(
+						'search-replace "%s" "%s" %s --report-changed-only',
+						$old_acf_key,
+						$new_acf_key,
+						$wpdb->options,
+					), $command_options
+				);
+			}
+		}
+	}
+
+	/**
+	 * Get key-value array of ACF blocks and a field map for each.
+	 * @return array<string,array<string,string>>
+	 */
+	protected function get_options_map(): array {
+		return array(
+			'theme_options' => array(
+				'group_607e75073ae16' => 'group_542ec9a3',
+				'field_607e751d8bd50' => 'field_87022bd4',
+				'field_618232653bfac' => 'field_88cac3a2',
+				'field_6182327a3bfad' => 'field_4fe8f2b7',
+				'field_6182328e3bfae' => 'field_5296ae18',
+				'field_618232ac3bfaf' => 'field_8d77fc04',
+				'field_618232d03bfb0' => 'field_1628aecb',
+				'field_618233073bfb1' => 'group_4289d8da',
+				'field_619e47f21b38f' => 'field_c97f5cae',
+				'field_619e47fc1b390' => 'field_239ae05a',
+				'field_61a7754ea9949' => 'field_5a948ea2',
+				'field_61a7755da994a' => 'field_4b86982e',
+			),
+		);
+	}
+
+	/**
 	 * The key-value array where the key is the old field key, and the value the new field key.
 	 *
 	 * @return array<string,string>
@@ -191,6 +306,16 @@ class AcfJsonToAcfExtended {
 		$widgets_map = $this->get_widgets_map();
 		foreach ( $widgets_map as $widget_map ) {
 			$map = array_merge( $map, $widget_map );
+		}
+
+		$posts_meta_map = $this->get_post_meta_map();
+		foreach ( $posts_meta_map as $post_meta_map ) {
+			$map = array_merge( $map, $post_meta_map );
+		}
+
+		$options_map = $this->get_options_map();
+		foreach ( $options_map as $option_map ) {
+			$map = array_merge( $map, $option_map );
 		}
 
 		return $map;
