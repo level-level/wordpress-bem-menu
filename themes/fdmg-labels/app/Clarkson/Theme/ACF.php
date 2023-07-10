@@ -27,6 +27,9 @@ class ACF {
 
 	/**
 	 * Prevent field groups from syncing when you are not on an development environment (like production).
+	 *
+	 * @param array<string,mixed> $field_group
+	 * @return array<string,mixed>
 	 */
 	public function prevent_field_group_sync( array $field_group ): array {
 		$is_debug   = ( defined( 'WP_DEBUG' ) && (bool) constant( 'WP_DEBUG' ) );
@@ -43,11 +46,15 @@ class ACF {
 	 * @return mixed
 	 */
 	public function convert_post_object( $value ) {
+		// single object
 		if ( ! empty( $value ) && $value instanceof WP_Post ) {
-			$post = get_post( $value );
+			return $this->core_objects->get_object( $value );
+		}
 
-			if ( $post instanceof WP_Post ) {
-				$value = $this->core_objects->get_object( $post );
+		// array
+		if ( is_array( $value ) ) {
+			if ( ! empty( $value[0] ) && $value[0] instanceof WP_Post ) {
+				return $this->core_objects->get_objects( $value );
 			}
 		}
 
@@ -60,10 +67,9 @@ class ACF {
 	 */
 	public function convert_relationship_objects( $value ) {
 		if ( is_array( $value ) ) {
-			if ( empty( $value[0] ) || is_int( $value[0] ) ) {
-				return $value;
+			if ( ! empty( $value[0] ) && $value[0] instanceof WP_Post ) {
+				return $this->core_objects->get_objects( $value );
 			}
-			$value = $this->core_objects->get_objects( $value );
 		}
 
 		return $value;
