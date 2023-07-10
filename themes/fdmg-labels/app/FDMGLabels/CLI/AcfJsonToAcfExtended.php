@@ -70,41 +70,26 @@ class AcfJsonToAcfExtended {
 
 		WP_CLI::log( 'Processing blocks' );
 		$blocks_map = $this->get_blocks_map();
+
+		$command_options = array(
+			'return'     => true,                // Return 'STDOUT'; use 'all' for full object.
+			'parse'      => 'json',              // Parse captured STDOUT to JSON array.
+			'launch'     => false,               // Reuse the current process.
+			'exit_error' => true,                // Halt script execution on error.
+		);
+
 		foreach ( $blocks_map as $block => $block_map ) {
 			WP_CLI::log( sprintf( 'Processing block %s', $block ) );
 			foreach ( $block_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
-
-				$posts = $wpdb->get_results(
-					$wpdb->prepare( // @phpstan-ignore-line
-						"SELECT ID, post_content FROM {$wpdb->posts} WHERE post_content LIKE %s",
-						'%' . $wpdb->esc_like( $old_acf_key ) . '%',
-					)
-				);
-				if ( ! is_array( $posts ) ) {
-					continue;
-				}
-
-				foreach ( $posts as $post ) {
-					WP_CLI::log( sprintf( 'Replacing %s with %s in post ID %d', $old_acf_key, $new_acf_key, $post->ID ) );
-					$post_content = $post->post_content;
-					$post_content = str_replace( $old_acf_key, $new_acf_key, $post_content );
-					$wpdb->update(
+				WP_CLI::runcommand(
+					sprintf(
+						'search-replace "%s" "%s" %s --report-changed-only',
+						$old_acf_key,
+						$new_acf_key,
 						$wpdb->posts,
-						array(
-							'post_content' => $post_content,
-						),
-						array(
-							'ID' => $post->ID,
-						),
-						array(
-							'%s',
-						),
-						array(
-							'%d',
-						)
-					);
-				}
+					), $command_options
+				);
 			}
 		}
 	}
