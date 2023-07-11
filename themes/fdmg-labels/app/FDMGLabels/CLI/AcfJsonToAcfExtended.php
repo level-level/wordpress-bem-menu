@@ -4,6 +4,8 @@ namespace FDMGLabels\CLI;
 
 use WP_CLI;
 
+use function WP_CLI\Utils\get_flag_value;
+
 class AcfJsonToAcfExtended {
 
 	/**
@@ -12,22 +14,32 @@ class AcfJsonToAcfExtended {
 	 * @param string[] $args
 	 * @param array<string,string> $assoc_args
 	 *
+	 * ## Options
+	 *
+	 * [--rollback]
+	 * : Defines if rolling back changes. Defaults to false.
+	 * ---
+	 * default: false
+	 * ---
+	 *
 	 * ## EXAMPLES
 	 *
 	 * wp fdmg-labels acf-json-to-acf-extended run
 	 */
 	public function run( array $args, array $assoc_args ): void {
-		$this->process_blocks();
-		$this->process_widgets();
-		$this->process_post_meta();
-		$this->process_options();
+		$rollback = filter_var( get_flag_value( $assoc_args, 'rollback', 'false' ), FILTER_VALIDATE_BOOLEAN );
+
+		$this->process_blocks( $rollback );
+		$this->process_widgets( $rollback );
+		$this->process_post_meta( $rollback );
+		$this->process_options( $rollback );
 		WP_CLI::success( 'All items have been processed' );
 	}
 
 	/**
 	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF blocks.
 	 */
-	protected function process_blocks(): void {
+	protected function process_blocks( bool $rollback ): void {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 
@@ -43,6 +55,10 @@ class AcfJsonToAcfExtended {
 
 		foreach ( $blocks_map as $block => $block_map ) {
 			WP_CLI::log( sprintf( 'Processing block %s', $block ) );
+			if ( $rollback ) {
+				$block_map = array_flip( $block_map );
+			}
+
 			foreach ( $block_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
 				WP_CLI::runcommand(
@@ -122,7 +138,7 @@ class AcfJsonToAcfExtended {
 	/**
 	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF widgets.
 	 */
-	protected function process_widgets(): void {
+	protected function process_widgets( bool $rollback ): void {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 
@@ -138,6 +154,10 @@ class AcfJsonToAcfExtended {
 
 		foreach ( $widgets_map as $widget => $widget_map ) {
 			WP_CLI::log( sprintf( 'Processing widget %s', $widget ) );
+			if ( $rollback ) {
+				$widget_map = array_flip( $widget_map );
+			}
+
 			foreach ( $widget_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
 				WP_CLI::runcommand(
@@ -180,7 +200,7 @@ class AcfJsonToAcfExtended {
 	/**
 	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF postmeta.
 	 */
-	protected function process_post_meta(): void {
+	protected function process_post_meta( bool $rollback ): void {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 
@@ -196,6 +216,10 @@ class AcfJsonToAcfExtended {
 
 		foreach ( $post_meta_map as $post_meta => $post_meta_map ) {
 			WP_CLI::log( sprintf( 'Processing post meta %s', $post_meta ) );
+			if ( $rollback ) {
+				$post_meta_map = array_flip( $post_meta_map );
+			}
+
 			foreach ( $post_meta_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
 				WP_CLI::runcommand(
@@ -237,7 +261,7 @@ class AcfJsonToAcfExtended {
 	/**
 	 * Map old ACF JSON field keys to new ACF JSON field keys for ACF options.
 	 */
-	protected function process_options(): void {
+	protected function process_options( bool $rollback ): void {
 		/** @var \wpdb $wpdb */
 		global $wpdb;
 
@@ -253,6 +277,10 @@ class AcfJsonToAcfExtended {
 
 		foreach ( $options_map as $option => $option_map ) {
 			WP_CLI::log( sprintf( 'Processing option %s', $option ) );
+			if ( $rollback ) {
+				$option_map = array_flip( $option_map );
+			}
+
 			foreach ( $option_map as $old_acf_key => $new_acf_key ) {
 				WP_CLI::log( sprintf( 'Replacing %s with %s', $old_acf_key, $new_acf_key ) );
 				WP_CLI::runcommand(
@@ -289,36 +317,4 @@ class AcfJsonToAcfExtended {
 			),
 		);
 	}
-
-	/**
-	 * The key-value array where the key is the old field key, and the value the new field key.
-	 *
-	 * @return array<string,string>
-	 */
-	protected function get_full_map(): array {
-		$map = array();
-
-		$blocks_map = $this->get_blocks_map();
-		foreach ( $blocks_map as $block_map ) {
-			$map = array_merge( $map, $block_map );
-		}
-
-		$widgets_map = $this->get_widgets_map();
-		foreach ( $widgets_map as $widget_map ) {
-			$map = array_merge( $map, $widget_map );
-		}
-
-		$posts_meta_map = $this->get_post_meta_map();
-		foreach ( $posts_meta_map as $post_meta_map ) {
-			$map = array_merge( $map, $post_meta_map );
-		}
-
-		$options_map = $this->get_options_map();
-		foreach ( $options_map as $option_map ) {
-			$map = array_merge( $map, $option_map );
-		}
-
-		return $map;
-	}
-
 }
