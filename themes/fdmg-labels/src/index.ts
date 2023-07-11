@@ -5,3 +5,7 @@ import './scripts/main';
 import './images/logo-impact-investor.svg';
 import './images/logo-impact-investor-white.svg';
 import './images/logo-impact-investor-darkmode.svg';
+
+import './images/logo-energeia.svg';
+import './images/logo-energeia-white.svg';
+import './images/logo-pensioen-pro.svg';

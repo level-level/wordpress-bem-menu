@@ -6,7 +6,7 @@ The styling for the individual FDMG labels are implemented with a single class o
 | ------------------------- | ------------------------------------------------------- |
 | -                         | The default styling which is used for `Impact-investor` |
 | `theme-energeia`          | The styling for `Energeia`                              |
-| `theme-pp`                | The styling for `Pensioen pro`                          |
+| `theme-pensioen-pro`                | The styling for `Pensioen pro`                          |
 
 ## Color variables
 
@@ -23,7 +23,7 @@ The styling for the individual FDMG labels are implemented with a single class o
 	}
 
 	// Pensioen Pro
-	.theme-pp {
+	.theme-pensioen-pro {
 		--primary-400: #2c3b60;
 		--primary-300: #5e7697;
 	}
@@ -50,11 +50,11 @@ If styling needs to be adjusted on component level, there are a few mixins to us
 		background-color: darkgreen; // energeia:dark mode
 	}
 
-	@include theme-pp {
+	@include theme-pensioen-pro {
 		background-color: blue; // pensioen pro
 	}
 
-	@include theme-pp(true) {
+	@include theme-pensioen-pro(true) {
 		background-color: darkblue; // pensioen pro:dark mode
 	}
 }

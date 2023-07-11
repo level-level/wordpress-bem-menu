@@ -42,7 +42,7 @@
 
 @mixin dark-mode {
 	[data-theme='dark'] &,
-	[data-theme='dark'].theme-pp &,
+	[data-theme='dark'].theme-pensioen-pro &,
 	[data-theme='dark'].theme-energeia & {
 		@content;
 	}
@@ -72,19 +72,19 @@
 	}
 }
 
-@mixin theme-pp($dark: false) {
+@mixin theme-pensioen-pro($dark: false) {
 	@if $dark {
-		[data-theme='dark'].theme-pp & {
+		[data-theme='dark'].theme-pensioen-pro & {
 			@content;
 		}
 
 		@media (prefers-color-scheme: dark) {
-			[data-theme='system'].theme-pp & {
+			[data-theme='system'].theme-pensioen-pro & {
 				@content;
 			}
 		}
 	} @else {
-		.theme-pp & {
+		.theme-pensioen-pro & {
 			@content;
 		}
 	}

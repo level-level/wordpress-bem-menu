@@ -44,7 +44,7 @@
 		color: var(--base-800);
 	}
 
-	@include theme-pp(true) {
+	@include theme-pensioen-pro(true) {
 		color: var(--base-50);
 	}
 
@@ -56,7 +56,7 @@
 			color: var(--primary-300);
 		}
 
-		@include theme-pp(true) {
+		@include theme-pensioen-pro(true) {
 			color: var(--base-50);
 			background-color: transparent;
 		}
