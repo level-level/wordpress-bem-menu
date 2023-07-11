@@ -46,7 +46,7 @@ If styling needs to be adjusted on component level, there are a few mixins to us
 		background-color: green; // energeia
 	}
 
-	@include theme-energeia(true) {
+	@include theme-energeia(dark) {
 		background-color: darkgreen; // energeia:dark mode
 	}
 
@@ -54,7 +54,7 @@ If styling needs to be adjusted on component level, there are a few mixins to us
 		background-color: blue; // pensioen pro
 	}
 
-	@include theme-pensioen-pro(true) {
+	@include theme-pensioen-pro(dark) {
 		background-color: darkblue; // pensioen pro:dark mode
 	}
 }

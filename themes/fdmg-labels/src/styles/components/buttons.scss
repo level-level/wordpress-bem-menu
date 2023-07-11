@@ -44,7 +44,7 @@
 		color: var(--base-800);
 	}
 
-	@include theme-pensioen-pro(true) {
+	@include theme-pensioen-pro(dark) {
 		color: var(--base-50);
 	}
 
@@ -56,12 +56,12 @@
 			color: var(--primary-300);
 		}
 
-		@include theme-pensioen-pro(true) {
+		@include theme-pensioen-pro(dark) {
 			color: var(--base-50);
 			background-color: transparent;
 		}
 
-		@include theme-energeia(true) {
+		@include theme-energeia(dark) {
 			color: var(--base-50);
 			background-color: transparent;
 		}
@@ -121,7 +121,7 @@
 			color: var(--base-50);
 		}
 
-		@include theme-energeia(true) {
+		@include theme-energeia(dark) {
 			color: var(--base-700);
 		}
 
@@ -416,7 +416,7 @@ input[type='button'] {
 				background-color: var(--primary-300);
 			}
 
-			@include theme-energeia(true) {
+			@include theme-energeia(dark) {
 				color: var(--base-700);
 			}
 		}
