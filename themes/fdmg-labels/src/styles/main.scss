@@ -1,5 +1,21 @@
 @tailwind base;
 @tailwind components;
+
+:root {
+	--color-primary: #cd3613;
+	--color-secondary: #df593b;
+}
+
+.theme-energeia {
+	--color-primary: #01b06d;
+	--color-secondary: #97d7b5;
+}
+
+.theme-pensioen-pro {
+	--color-primary: #2c3b60;
+	--color-secondary: #5e7697;
+}
+
 @tailwind utilities;
 
 // Common
