@@ -30,20 +30,6 @@
 
 	&__search {
 		margin: $spacing-3 0;
-
-		.search-component {
-			.btn--search {
-				.btn {
-					&__icon {
-						color: var(--base-50);
-
-						@include dark-mode {
-							color: var(--base-800);
-						}
-					}
-				}
-			}
-		}
 	}
 
 	&__body {
