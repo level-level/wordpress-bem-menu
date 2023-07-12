@@ -41,7 +41,9 @@
 
 		{{ wp_head() }}
 	</head>
-	<body {{ body_class() }}>
+
+	{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
+	<body {{ body_class(use_compact_header ? 'has-compact-header') }}>
 
 	{% if function_exists('gtm4wp_the_gtm_tag') %}
 		{{ gtm4wp_the_gtm_tag() }}

@@ -217,6 +217,15 @@
 	}
 }
 
+@mixin btn--profile {
+	@include btn--header;
+	padding: 0;
+	width: 44px;
+	height: 44px;
+	border: 1px solid;
+	border-color: var(--primary-400);
+}
+
 @mixin btn--menu {
 	@include font-size(22px);
 	display: flex;
@@ -330,6 +339,10 @@ input[type='button'] {
 
 	&--header {
 		@include btn--header;
+	}
+
+	&--profile {
+		@include btn--profile;
 	}
 
 	&--menu {

@@ -7,7 +7,7 @@
 		"focusInput": true
 }'>
 	{% include 'styleguide/components/buttons/button-element.twig' with {
-		text: _x('Search', 'Search', 'fdmg-labels'),
+		text: show_button_label ? _x('Search', 'Search', 'fdmg-labels') : '',
 		aria_expanded_support: true,
 		class: 'btn--header js-header-search js-header-search-open',
 		aria_label: _x('Open search', 'Search', 'fdmg-labels'),

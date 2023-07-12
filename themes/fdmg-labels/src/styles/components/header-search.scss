@@ -56,3 +56,12 @@
 		}
 	}
 }
+
+// When the compact header option is selected
+.has-compact-header {
+	.header-search {
+		&__dropdown {
+			height: 100%;
+		}
+	}
+}

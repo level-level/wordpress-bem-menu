@@ -4,7 +4,7 @@ namespace FDMGLabels;
 use Clarkson\Theme\ACFPages\Features;
 
 class FeatureManager {
-	public const FEATURE_EXAMPLE = 'example';
+	public const COMPACT_HEADER = 'compact_header';
 
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );

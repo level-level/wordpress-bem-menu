@@ -31,3 +31,12 @@
 		padding: 20px;
 	}
 }
+
+// When the compact header option is selected
+.has-compact-header {
+	.header-profile {
+		&__dropdown {
+			top: 100%;
+		}
+	}
+}

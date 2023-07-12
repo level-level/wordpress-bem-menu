@@ -280,3 +280,20 @@
 		}
 	}
 }
+
+// When the compact header option is selected
+.has-compact-header {
+	.list-header-buttons {
+		gap: $spacing-2;
+
+		&__item {
+			border: 0;
+
+			& > * {
+				.btn {
+					height: 44px;
+				}
+			}
+		}
+	}
+}

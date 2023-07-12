@@ -1,61 +1,16 @@
-<header class="header">
+{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
+<header class="header {{ use_compact_header ? 'header--compact' }}">
 
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>
 
-	<div class="header__top">
-		<div class="container">
-			<div class="flex items-center justify-between">
-				<div class="sm:hidden">
-					{% if has_nav_menu('primary_navigation') %}
-						{% include 'partials/components/header/header-menu.twig' %}
-					{% endif %}
-				</div>
-				<div class="grow sm:grow-0">
-					<div class="header__brand">
-						<a
-							class="brand"
-							href="{{ esc_url(home_url('/')) }}"
-							aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
-							>
-							<span class="brand__logo"></span>
-						</a>
-					</div>
-				</div>
-
-				<div class="hidden shrink-0 sm:block">
-					<div class="flex items-center gap-2 flex-nowrap">
-						{% set newsletter = options.newsletter %}
-						{% if newsletter.button.title and newsletter.button.url %}
-							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: newsletter.button.title,
-								url: newsletter.button.url,
-								class: 'btn--primary',
-								is_external: newsletter.button.target ? true,
-								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
-							} %}
-						{% endif %}
-						<ul class="list-header-buttons">
-							<li class="list-header-buttons__item">
-								{% include 'partials/components/header/header-profile.twig' %}
-							</li>
-							<li class="list-header-buttons__item">
-								{% include 'partials/components/header/header-search.twig' %}
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	{% if has_nav_menu('primary_navigation') %}
-		<div class="hidden sm:block">
-			<div class="header__bottom">
-				<div class="container">
-					{% include 'partials/components/header/header-menu.twig' %}
-				</div>
-			</div>
-		</div>
+	{% if use_compact_header %}
+		{% include 'partials/components/header/header-single-row.twig' with {
+			use_compact_header: true,
+		} %}
+	{% else %}
+		{% include 'partials/components/header/header-multi-row.twig' with {
+			use_compact_header: false,
+		} %}
 	{% endif %}
 </header>

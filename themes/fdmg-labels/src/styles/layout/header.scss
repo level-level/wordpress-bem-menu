@@ -6,9 +6,11 @@
 	height: var(--header-height);
 	box-shadow: 0 2px 4px rgb(115 166 191 / 15%);
 	z-index: 10;
+	background-color: var(--base-50);
 
 	@include dark-mode {
 		box-shadow: none;
+		background-color: var(--base-700);
 	}
 
 	&__top {
@@ -53,6 +55,11 @@
 			left: auto;
 			transform: none;
 		}
+	}
+
+	&--compact {
+		display: flex;
+		align-items: center;
 	}
 }
 
