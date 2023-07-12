@@ -1,4 +1,6 @@
 .menu-dropdown {
+	@include focus-style(var(--base-50));
+	outline-offset: -2px;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -8,16 +10,6 @@
 
 	@include dark-mode {
 		background-color: var(--base-600);
-	}
-
-	&,
-	body.user-is-tabbing & {
-		* {
-			&:focus {
-				@include focus-style(var(--base-50));
-				outline-offset: -2px;
-			}
-		}
 	}
 
 	&__inner {

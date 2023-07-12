@@ -90,6 +90,13 @@
 	}
 }
 
+// Mixin that applies styling when the compact header is active
+@mixin when-compact-header {
+	.has-compact-header & {
+		@content;
+	}
+}
+
 // Image ratio
 // @include image-ratio($x, $y);
 // Calculating the padding-bottom based on image ratio
@@ -146,12 +153,26 @@
 
 // Focus style
 // @include focus-style { ..code }
-// Adds properties of focus styling
-@mixin focus-style($color: var(--base-800)) {
-	outline: 2px solid;
-	outline-color: $color;
-	outline-offset: 2px;
-	transition: none;
+// $color: the color of the outline
+// $styleOnly: when you only need the actual styling of a focus state
+@mixin focus-style($color: var(--base-800), $styleOnly: false) {
+	@if $styleOnly {
+		outline: 2px solid;
+		outline-color: $color;
+		outline-offset: 2px;
+		transition: none;
+	}
+
+	@else {
+		* {
+			&:focus-visible {
+				outline: 2px solid;
+				outline-color: $color;
+				outline-offset: 2px;
+				transition: none;
+			}
+		}
+	}
 }
 
 @mixin absolute-link {

@@ -1,5 +1,6 @@
 .header-search {
 	&__dropdown {
+		@include focus-style(var(--base-50));
 		display: flex;
 		align-items: center;
 		position: absolute;
@@ -18,18 +19,13 @@
 			background-color: var(--base-800);
 		}
 
+		@include when-compact-header {
+			height: 100%;
+		}
+
 		&[aria-hidden='true'] {
 			visibility: hidden;
 			opacity: 0;
-		}
-
-		&,
-		body.user-is-tabbing & {
-			* {
-				&:focus {
-					@include focus-style(var(--base-50));
-				}
-			}
 		}
 	}
 
@@ -53,15 +49,6 @@
 		&--active {
 			visibility: visible;
 			opacity: 1;
-		}
-	}
-}
-
-// When the compact header option is selected
-.has-compact-header {
-	.header-search {
-		&__dropdown {
-			height: 100%;
 		}
 	}
 }

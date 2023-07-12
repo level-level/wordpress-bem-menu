@@ -44,7 +44,9 @@
 						</li>
 					{% endif %}
 					<li class="list-header-buttons__item">
-						{% include 'partials/components/header/header-profile.twig' %}
+						{% include 'partials/components/header/header-profile.twig' with {
+							button_class: use_compact_header ? 'btn--profile' : 'btn--header',
+						} %}
 					</li>
 				</ul>
 			</div>

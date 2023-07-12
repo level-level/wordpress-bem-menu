@@ -1,4 +1,3 @@
-import './utilities/user-tabs';
 import ThemeSelection from './modules/theme-selection';
 import PrimaryNav from './modules/primary-nav';
 import HeaderMenu from './modules/header-menu';
@@ -46,7 +45,7 @@ Array.from(document.querySelectorAll<HTMLElement>('[data-module]')).forEach((ele
 	}
 });
 
-//eslint-disable-next-line
+// eslint-disable-next-line
 console.log(
 	'%c  Powered by level-level.com 💪  ',
 	'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;',

@@ -15,6 +15,10 @@
 		transition: $time;
 		border-bottom: 2px solid var(--secondary-400);
 
+		@include when-compact-header {
+			top: 100%;
+		}
+
 		@include dark-mode {
 			background-color: var(--base-600);
 			border-color: transparent;
@@ -29,14 +33,5 @@
 	&__inner {
 		@include font-size(16px, 24px);
 		padding: 20px;
-	}
-}
-
-// When the compact header option is selected
-.has-compact-header {
-	.header-profile {
-		&__dropdown {
-			top: 100%;
-		}
 	}
 }

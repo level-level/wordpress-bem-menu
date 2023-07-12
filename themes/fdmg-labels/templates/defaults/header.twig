@@ -1,15 +1,15 @@
 {% set use_compact_header = feature_manager.is_enabled('compact_header') %}
-<header class="header {{ use_compact_header ? 'header--compact' }}">
+<header class="header">
 
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>
 
 	{% if use_compact_header %}
-		{% include 'partials/components/header/header-single-row.twig' with {
+		{% include 'partials/components/header/variants/header-single-row.twig' with {
 			use_compact_header: true,
 		} %}
 	{% else %}
-		{% include 'partials/components/header/header-multi-row.twig' with {
+		{% include 'partials/components/header/variants/header-multi-row.twig' with {
 			use_compact_header: false,
 		} %}
 	{% endif %}

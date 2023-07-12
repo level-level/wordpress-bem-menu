@@ -11,7 +11,7 @@
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: '',
 		aria_expanded_support: true,
-		class: 'btn--profile ' ~ trigger,
+		class: button_class ~ ' ' ~ trigger,
 		aria_label: _x('Open profile', 'Profile', 'fdmg-labels'),
 		aria_expanded_text: _x('Close profile', 'Profile', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open profile', 'Profile', 'fdmg-labels'),
