@@ -1,6 +1,9 @@
 const plugin = require('tailwindcss/plugin'); // eslint-disable-line
 
 /** @type {import('tailwindcss').Config} */
+
+const customThemes = ['theme-energeia', 'theme-pensioen-pro'];
+
 module.exports = {
 	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx, ts}'],
 	darkMode: ['class', '[data-theme="dark"]'],
@@ -35,7 +38,65 @@ module.exports = {
 		colors: {
 			transparent: 'transparent',
 			primary: 'var(--color-primary)',
-			secondary: 'var(--color-secondary)',
+			'primary-300': 'var(--color-primary-300)',
+			'base-50': 'var(--base-50)',
+			'base-100': 'var(--base-100)',
+			'base-200': 'var(--base-200)',
+			'base-300': 'var(--base-300)',
+			'base-400': 'var(--base-400)',
+			'base-500': 'var(--base-500)',
+			'base-600': 'var(--base-600)',
+			'base-700': 'var(--base-700)',
+			'base-800': 'var(--base-800)',
+		},
+		fontFamily: {
+			body: ['"ProximaNovaRegular"', 'sans-serif'],
+			bold: ['"ProximaNovaBold"', 'sans-serif'],
+			heading: ['"Libre Caslon Text"', 'sans-serif'],
+		},
+		fontSize: {
+			sm: [
+				'0.875rem',
+				{
+					lineHeight: '1.125rem',
+				},
+			],
+			base: [
+				'1rem',
+				{
+					lineHeight: '1.375rem',
+				},
+			],
+			md: [
+				'1.125rem',
+				{
+					lineHeight: '1.5rem',
+				},
+			],
+			lg: [
+				'1.375rem',
+				{
+					lineHeight: '1.875rem',
+				},
+			],
+			xl: [
+				'1.875rem',
+				{
+					lineHeight: '2.625rem',
+				},
+			],
+			'2xl': [
+				'2.625rem',
+				{
+					lineHeight: '3.5rem',
+				},
+			],
+			'3xl': [
+				'3.625rem',
+				{
+					lineHeight: '4.5rem',
+				},
+			],
 		},
 	},
 	plugins: [
@@ -44,14 +105,12 @@ module.exports = {
 			addVariant('image', '& > img');
 			addVariant('iframe', '& > iframe');
 			addVariant('svg', '& > svg');
-			addVariant('theme-energeia', ({ modifySelectors, separator }) => {
-				modifySelectors(({ className }) => {
-					return `.theme-energeia .${e(`theme-energeia${separator}${className}`)}`;
-				});
-			});
-			addVariant('theme-pensioen-pro', ({ modifySelectors, separator }) => {
-				modifySelectors(({ className }) => {
-					return `.theme-pensioen-pro .${e(`theme-pensioen-pro${separator}${className}`)}`;
+
+			customThemes.forEach((theme) => {
+				addVariant(`${theme}`, ({ modifySelectors, separator }) => {
+					modifySelectors(({ className }) => {
+						return `.${theme} .${e(`${theme}${separator}${className}`)}`;
+					});
 				});
 			});
 		}),

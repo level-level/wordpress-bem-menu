@@ -3,17 +3,28 @@
 
 :root {
 	--color-primary: #cd3613;
-	--color-secondary: #df593b;
+	--color-primary-300: #df593b;
+
+	// Base
+	--base-50: #fff;
+	--base-100: #fbfeff;
+	--base-200: #e4e4e4;
+	--base-300: #313131;
+	--base-400: #222;
+	--base-500: #1a1a1a;
+	--base-600: #191919;
+	--base-700: #0b0b0b;
+	--base-800: #000;
 }
 
 .theme-energeia {
 	--color-primary: #01b06d;
-	--color-secondary: #97d7b5;
+	--color-primary-300: #97d7b5;
 }
 
 .theme-pensioen-pro {
 	--color-primary: #2c3b60;
-	--color-secondary: #5e7697;
+	--color-primary-300: #5e7697;
 }
 
 @tailwind utilities;
