@@ -2,13 +2,55 @@ const plugin = require('tailwindcss/plugin'); // eslint-disable-line
 
 /** @type {import('tailwindcss').Config} */
 
-const customThemes = ['theme-energeia', 'theme-pensioen-pro'];
+const customThemes = [
+	{
+		theme: 'theme-impact-investor',
+		name: 'impact-investor',
+		logos: {
+			default: '../images/logo-impact-investor.svg',
+			darkMode: '../images/logo-impact-investor-darkmode.svg',
+		},
+	},
+	{
+		theme: 'theme-energeia',
+		name: 'energeia',
+		logos: {
+			default: '../images/logo-energeia.svg',
+			darkMode: '../images/logo-energeia-white.svg',
+		},
+	},
+	{
+		theme: 'theme-pensioen-pro',
+		name: 'pensioen-pro',
+		logos: {
+			default: '../images/logo-pensioen-pro.svg',
+			darkMode: '../images/logo-pensioen-pro-white.svg',
+		},
+	},
+];
+
+const themeLogos = {};
+
+for (const theme of customThemes) {
+	themeLogos[`logo-${theme.name}`] = `url('${theme.logos.default}')`;
+	themeLogos[`logo-${theme.name}-darkmode`] = `url('${theme.logos.darkMode}')`;
+}
 
 module.exports = {
 	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx, ts}'],
 	darkMode: ['class', '[data-theme="dark"]'],
 	theme: {
-		extend: {},
+		extend: {
+			spacing: {
+				'admin-bar': 'var(--wp-admin--admin-bar--height, 0px)',
+			},
+			boxShadow: {
+				header: '0 2px 4px rgb(115 166 191 / 15%)',
+			},
+			backgroundImage: {
+				...themeLogos,
+			},
+		},
 		screens: {
 			sm: '768px',
 			md: '992px',
@@ -48,6 +90,12 @@ module.exports = {
 			'base-600': 'var(--base-600)',
 			'base-700': 'var(--base-700)',
 			'base-800': 'var(--base-800)',
+			'secondary-100': 'var(--secondary-100)',
+			'secondary-200': 'var(--secondary-200)',
+			'secondary-300': 'var(--secondary-300)',
+			'secondary-400': 'var(--secondary-400)',
+			'secondary-500': 'var(--secondary-500)',
+			'secondary-600': 'var(--secondary-600)',
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],
@@ -107,11 +155,13 @@ module.exports = {
 			addVariant('svg', '& > svg');
 
 			customThemes.forEach((theme) => {
-				addVariant(`${theme}`, ({ modifySelectors, separator }) => {
-					modifySelectors(({ className }) => {
-						return `.${theme} .${e(`${theme}${separator}${className}`)}`;
+				if (theme.theme !== 'theme-impact-investor') {
+					addVariant(`${theme.theme}`, ({ modifySelectors, separator }) => {
+						modifySelectors(({ className }) => {
+							return `.${theme.theme} .${e(`${theme.theme}${separator}${className}`)}`;
+						});
 					});
-				});
+				}
 			});
 		}),
 	],

@@ -57,27 +57,14 @@
 	}
 
 	&__text {
-		ul:not([class]) {
-			margin-top: 0;
+		// ul:not([class]) {
+		// 	margin-top: 0;
 
-			> li:before {
-				color: var(--base-50);
-			}
-		}
+		// 	> li:before {
+		// 		color: var(--base-50);
+		// 	}
+		// }
 
 		@include font-size(18px, 27px);
-	}
-
-	&__button {
-		display: block;
-		text-align: center;
-
-		@include breakpoint(600px) {
-			align-self: flex-start;
-		}
-
-		&:hover {
-			color: var(--base-50);
-		}
 	}
 }
