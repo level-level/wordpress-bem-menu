@@ -346,27 +346,6 @@ class ACFBlocks {
 	}
 
 	/**
-	 * Register GB blocks here
-	 *
-	 * To use custom GB blocks, add the following line to the register_hooks function:
-	 * add_action( 'init', array( $this, 'register_block_types' ) );
-	 *
-	 * https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
-	 */
-	public function register_block_types(): void {
-		if ( ! function_exists( 'register_block_type' ) ) {
-			return;
-		}
-
-		register_block_type(
-			'll/block-example', array(
-				'name'            => 'block-example',
-				'render_callback' => array( $this, 'block_render_callback' ),
-			)
-		);
-	}
-
-	/**
 	 * @psalm-suppress InvalidStringClass
 	 * @param array  $block
 	 * @param string $content
