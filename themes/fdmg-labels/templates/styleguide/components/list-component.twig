@@ -9,18 +9,23 @@
 
 #}
 {% if objects %}
-	<ul class="list-bordered {{ style ? 'list-bordered--' ~ style ~ '' }}">
+	<ul class="text-base sm:text-md
+		{{ style is same as('dark') ? 'bg-secondary-200 dark:bg-base-600' }}
+		{{ style is same as('light') ? 'border border-secondary-400 dark:border-base-600' }}
+	">
 
 		{% if heading %}
-			<li class="list-bordered__item">
-				<h3 class="list-bordered__heading">
+			<li class="p-3 sm:p-4">
+				<h3 class="text-base font-bold text-primary dark:text-primary-300">
 					{{ heading }}
 				</h3>
 			</li>
 		{% endif %}
 
 		{% for object in objects %}
-			<li class="list-bordered__item">
+			<li class="p-3 border-t sm:p-4 border-[rgb(0,0,0,0.1)] dark:border-base-400
+			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800' }}
+			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600' }}">
 				{% include 'styleguide/components/list-item.twig' with {
 					title: object.title,
 					url: object.url,
@@ -33,7 +38,7 @@
 		{% endfor %}
 
 		{% if button_text and button_link %}
-			<li class="list-bordered__item">
+			<li class="p-3 border-t sm:p-4 border-[rgb(0,0,0,0.1)] dark:border-base-400">
 				{% include 'styleguide/components/buttons/button-link.twig' with {
 					text: button_text,
 					url: button_link,
