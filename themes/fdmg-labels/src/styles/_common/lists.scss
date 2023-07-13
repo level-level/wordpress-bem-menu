@@ -40,43 +40,6 @@
 	}
 }
 
-.list-social-share {
-	@include list-horizontal();
-
-	&--vertical {
-		@include breakpoint(lg) {
-			flex-direction: column;
-			margin-top: 0;
-		}
-
-		.list-social-share {
-			&__item {
-				margin: 0;
-
-				.btn--share {
-					background-color: var(--secondary-200);
-					color: var(--primary-400);
-					padding: 0;
-					width: 45px;
-					height: 45px;
-					border-radius: 0;
-					border: 0;
-
-					@include dark-mode {
-						background-color: var(--base-600);
-						color: var(--primary-300);
-					}
-
-					@include hover-focus-style {
-						background-color: var(--secondary-400);
-						color: var(--base-50);
-					}
-				}
-			}
-		}
-	}
-}
-
 .list-styled-ordered {
 	@include font-size(16px, 24px);
 	counter-reset: counter;

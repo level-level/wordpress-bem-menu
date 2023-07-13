@@ -43,7 +43,7 @@
 	</head>
 
 	{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
-	<body {{ body_class(use_compact_header ? 'pt-[var(--header-height)] has-compact-header' : 'pt-[var(--header-height)]') }}>
+	<body {{ body_class(use_compact_header ? 'pt-header-height has-compact-header' : 'pt-header-height') }}>
 
 	{% if function_exists('gtm4wp_the_gtm_tag') %}
 		{{ gtm4wp_the_gtm_tag() }}

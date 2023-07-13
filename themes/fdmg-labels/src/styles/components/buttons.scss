@@ -178,6 +178,27 @@
 	align-items: center;
 }
 
+@mixin btn--share-small {
+	@include btn--share;
+	background-color: var(--secondary-200);
+	color: var(--primary-400);
+	padding: 0;
+	width: 45px;
+	height: 45px;
+	border-radius: 0;
+	border: 0;
+
+	@include dark-mode {
+		background-color: var(--base-600);
+		color: var(--primary-300);
+	}
+
+	@include hover-focus-style {
+		background-color: var(--secondary-400);
+		color: var(--base-50);
+	}
+}
+
 @mixin btn--header {
 	@include font-normal;
 	color: var(--base-500);
@@ -335,6 +356,10 @@ input[type='button'] {
 
 	&--share {
 		@include btn--share;
+	}
+
+	&--share-small {
+		@include btn--share-small;
 	}
 
 	&--header {
