@@ -1,34 +1,18 @@
 .highlighted-content {
-	position: relative;
-	border-top: 3px solid var(--primary-400);
-	border-bottom: 1px solid var(--base-800);
-	padding: $spacing-3 0;
+	@include font-normal;
+	@include font-size(17px);
 
-	@include dark-mode {
-		border-top-color: var(--primary-300);
-	}
+	ul {
+		& > * + * {
+			margin-top: 15px;
+		}
 
-	&__title {
-		padding-bottom: $spacing-3;
-		border-bottom: 1px solid var(--base-800);
-	}
+		li {
+			@include font-bold;
+			@include font-size(16px, 24px);
 
-	&__content {
-		@include font-normal;
-		@include font-size(17px);
-
-		ul {
-			& > * + * {
-				margin-top: 15px;
-			}
-
-			li {
-				@include font-bold;
-				@include font-size(16px, 24px);
-
-				@include breakpoint(sm) {
-					@include font-size(18px, 26px);
-				}
+			@include breakpoint(sm) {
+				@include font-size(18px, 26px);
 			}
 		}
 	}
