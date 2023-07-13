@@ -102,7 +102,7 @@ class AcfJsonToAcfExtended {
 				'field_616d8a91a3ab9' => 'field_c1bdad2c',
 				'field_616d8a91a3aea' => 'field_78b140fc',
 				'field_616d8a91a3aef' => 'field_1d203b38',
-				'field_616d8a91a3af0' => 'field_1d203b38',
+				'field_616d8a91a3b0d' => 'field_0b2765e0',
 			),
 			'related-articles'    => array(
 				'group_618a27e85624f' => 'group_53bccfec',
