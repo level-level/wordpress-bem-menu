@@ -21,8 +21,8 @@ class ThemeOptions {
 	public const OPTION_NEWSLETTER_TAB        = 'newsletter_tab';
 	public const OPTION_NEWSLETTER_GROUP      = 'newsletter';
 	public const OPTION_NEWSLETTER_TITLE      = 'title';
-	public const OPTION_NEWSLETTER_TEXTAREA   = 'content';
-	public const OPTION_NEWSLETTER_LINK       = 'button';
+	public const OPTION_NEWSLETTER_CONTENT    = 'content';
+	public const OPTION_NEWSLETTER_BUTTON     = 'button';
 	public const OPTION_NEWSLETTER_IMAGE      = 'image';
 	public const OPTION_COOKIEWALL_TAB        = 'cookiewall_tab';
 	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
@@ -85,9 +85,9 @@ class ThemeOptions {
 								->fields(
 									array(
 										Text::make( _x( 'Title in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TITLE ),
-										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TEXTAREA )
+										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_CONTENT )
 											->newLines( 'wpautop' ),
-										Link::make( _x( 'Button', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_LINK )
+										Link::make( _x( 'Button', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_BUTTON )
 											->instructions( 'This button will be used in the header of the site and in the newsletter block.' )
 											->returnFormat( 'array' ),
 										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_IMAGE )
