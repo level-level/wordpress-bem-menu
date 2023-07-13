@@ -101,7 +101,7 @@ class ThemeOptions {
 				),
 				'layout'   => 'block',
 				'location' => array(
-					Location::where( 'options_page', '==', 'acf-options' ),
+					Location::where( 'options_page', '==', self::MENU_SLUG ),
 				),
 			)
 		);
