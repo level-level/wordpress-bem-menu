@@ -7,9 +7,15 @@
 		right: 0;
 		height: 100%;
 
-		button {
+		.btn__icon {
+			color: var(--base-50);
+
 			@include dark-mode {
 				color: var(--base-50);
+			}
+
+			@include breakpoint(sm) {
+				color: var(--base-700);
 			}
 		}
 	}
@@ -18,12 +24,13 @@
 		input[type='search'] {
 			background-color: var(--secondary-600);
 			color: var(--secondary-100);
-			border: 0;
+			border: 1px solid transparent;
 			padding-right: $input-height;
 
 			@include dark-mode {
 				background-color: var(--base-500);
 				color: var(--base-50);
+				border-color: var(--base-200);
 			}
 
 			&:focus {
@@ -31,7 +38,7 @@
 			}
 
 			@include placeholder {
-				color: var(--secondary-500);
+				color: var(--base-50);
 
 				@include dark-mode {
 					color: var(--base-50);

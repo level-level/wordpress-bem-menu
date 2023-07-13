@@ -4,6 +4,7 @@ namespace Clarkson\Theme\ACFPages;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
+use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\Textarea;
@@ -27,6 +28,7 @@ class ThemeOptions {
 	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
 	public const OPTION_ADVERTISEMENTS_TAB    = 'advertisements_tab';
 	public const OPTION_ADVERTISEMENTS_ENABLE = 'enable_advertisements';
+	public const OPTION_ACTIVE_THEME          = 'active_theme';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -66,6 +68,16 @@ class ThemeOptions {
 					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
 						->fields(
 							array(
+								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels' ), self::OPTION_ACTIVE_THEME )
+									->choices(
+										array(
+											'impact-investor' => 'Impact Investor',
+											'energeia'     => 'Energeia',
+											'pensioen-pro' => 'Pensioen Pro',
+										),
+									)
+									->required()
+									->defaultValue( 'impact-investor' ),
 								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TAB )
 									->placement( 'left' ),
 								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_GROUP )
