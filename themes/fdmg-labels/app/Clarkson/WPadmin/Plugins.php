@@ -10,6 +10,9 @@ class Plugins {
 		// Remove Yoast version number by default
 		add_filter( 'wpseo_hide_version', '__return_true' );
 
+		// Hide ACF admin interface, use Extended ACF. See https://github.com/vinkla/extended-acf
+		add_filter( 'acf/settings/show_admin', '__return_false' );
+
 		// Used to change the tabindex start value or to disable the tabindex attribute for gravity forms
 		add_filter( 'gform_tabindex', '__return_false' );
 
