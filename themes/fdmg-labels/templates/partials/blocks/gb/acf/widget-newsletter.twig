@@ -1,4 +1,5 @@
 {% set newsletter = options.newsletter %}
+{{ dump( newsletter )}}
 {% if newsletter.title or newsletter.image or newsletter.content or newsletter.button %}
 	<div class="align{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/newsletter.twig' with {

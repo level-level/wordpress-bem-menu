@@ -21,8 +21,8 @@ class ThemeOptions {
 	public const OPTION_NEWSLETTER_TAB        = 'newsletter_tab';
 	public const OPTION_NEWSLETTER_GROUP      = 'newsletter';
 	public const OPTION_NEWSLETTER_TITLE      = 'title';
-	public const OPTION_NEWSLETTER_TEXTAREA   = 'textarea';
-	public const OPTION_NEWSLETTER_LINK       = 'link';
+	public const OPTION_NEWSLETTER_TEXTAREA   = 'content';
+	public const OPTION_NEWSLETTER_LINK       = 'button';
 	public const OPTION_NEWSLETTER_IMAGE      = 'image';
 	public const OPTION_COOKIEWALL_TAB        = 'cookiewall_tab';
 	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
