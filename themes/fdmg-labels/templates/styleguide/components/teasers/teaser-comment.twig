@@ -1,15 +1,13 @@
-<div class="teaser-comment">
-	<div class="teaser-comment__header">
-		<div class="flex gap-6 justify-between items-center flex-nowrap">
-			<div class="teaser-comment__author">
-				{{ author }}
-			</div>
-			<div class="teaser-comment__meta">
-				{{ time|raw }}
-			</div>
+<div data-component="teaser-comment" class="relative font-body p3 bg-secondary-200 dark:bg-base-600 sm:p-6">
+	<div class="flex items-center justify-between gap-6 flex-nowrap">
+		<div class="text-base font-body-bold text-secondary-600 dark:text-primary-300">
+			{{ author }}
+		</div>
+		<div class="text-base font-body text-secondary-600 dark:text-primary-300">
+			{{ time|raw }}
 		</div>
 	</div>
-	<div class="teaser-comment__content">
+	<div class="text-base mt-[5px] sm:text-md">
 		<p>
 			{{ content }}
 		</p>
