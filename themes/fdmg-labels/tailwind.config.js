@@ -16,7 +16,7 @@ const customThemes = [
 		name: 'energeia',
 		logos: {
 			default: '../images/logo-energeia.svg',
-			darkMode: '../images/logo-energeia-white.svg',
+			darkMode: '../images/logo-energeia-darkmode.svg',
 		},
 	},
 	{
@@ -24,7 +24,7 @@ const customThemes = [
 		name: 'pensioen-pro',
 		logos: {
 			default: '../images/logo-pensioen-pro.svg',
-			darkMode: '../images/logo-pensioen-pro-white.svg',
+			darkMode: '../images/logo-pensioen-pro-darkmode.svg',
 		},
 	},
 ];
