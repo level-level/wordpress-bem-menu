@@ -130,22 +130,6 @@
 	}
 }
 
-.list-related-news {
-	padding: $spacing-3 0;
-
-	&__item {
-		@include breakpoint(sm) {
-			margin: 0 $spacing-6;
-		}
-
-		&:last-child {
-			& > * {
-				border: 0;
-			}
-		}
-	}
-}
-
 .list-dropdown-buttons {
 	display: flex;
 	flex-wrap: nowrap;

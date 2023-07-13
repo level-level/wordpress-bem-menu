@@ -1,9 +1,9 @@
-<div class="teaser-post teaser-post--inline">
+<div class="teaser-post teaser-post--inline {{ is_last_item ? '!border-0'}}">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
 		<div class="teaser-post__inner">
-			<div class="flex gap-6 items-center">
+			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
@@ -27,7 +27,7 @@
 	{# Tablet >= #}
 	<div class="hidden sm:block">
 		<div class="teaser-post__inner">
-			<div class="flex gap-6 items-center">
+			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
