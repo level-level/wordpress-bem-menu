@@ -38,6 +38,11 @@
 }
 
 @tailwind utilities;
+
+.absolute-link {
+	@apply before:absolute before:inset-0 before:z-10;
+}
+
 @config '../../tailwind.editor.config.js';
 
 // WP editor
@@ -68,7 +73,6 @@
 	@import 'components/teasers/teaser-team';
 	@import 'components/teasers/teaser-partner';
 	@import 'components/social-share';
-	@import 'components/list-item';
 	@import 'components/highlighted-content';
 	@import 'components/advertisement';
 	@import 'components/newsletter';

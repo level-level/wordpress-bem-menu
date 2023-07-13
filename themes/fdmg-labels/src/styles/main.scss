@@ -36,6 +36,10 @@
 	--color-primary-300: #5e7697;
 }
 
+.absolute-link {
+	@apply before:absolute before:inset-0 before:z-10;
+}
+
 @tailwind utilities;
 
 // Common
@@ -86,7 +90,6 @@
 @import 'components/teasers/teaser-partner';
 @import 'components/social-share';
 @import 'components/responsibility';
-@import 'components/list-item';
 @import 'components/comment-form';
 @import 'components/highlighted-content';
 @import 'components/article-header';
