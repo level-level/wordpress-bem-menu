@@ -99,7 +99,7 @@ module.exports = {
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],
-			bold: ['"ProximaNovaBold"', 'sans-serif'],
+			'body-bold': ['"ProximaNovaBold"', 'sans-serif'],
 			heading: ['"Libre Caslon Text"', 'sans-serif'],
 		},
 		fontSize: {

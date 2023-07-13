@@ -23,25 +23,25 @@
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 						{% if has_nav_menu('about_navigation') %}
 							<div>
-								<h3 class="mb-3 text-lg font-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
 								{{ bem_menu('about_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('general_navigation') %}
 							<div>
-								<h3 class="mb-3 text-lg font-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('general_navigation')|raw }}</h3>
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('general_navigation')|raw }}</h3>
 								{{ bem_menu('general_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('services_navigation') %}
 							<div>
-								<h3 class="mb-3 text-lg font-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('services_navigation')|raw }}</h3>
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('services_navigation')|raw }}</h3>
 								{{ bem_menu('services_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu('fdmg_navigation') %}
 							<div>
-								<h3 class="mb-3 text-lg font-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('fdmg_navigation')|raw }}</h3>
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-600 dark:text-primary-300">{{ wp_get_nav_menu_name('fdmg_navigation')|raw }}</h3>
 								{{ bem_menu('fdmg_navigation', 'footer-nav') }}
 							</div>
 						{% endif %}
@@ -61,7 +61,7 @@
 		</div>
 		<div class="py-6 border-t border-secondary-400 bg-secondary-300 dark:border-base-800 dark:bg-base-400 lg:py-9">
 			<div class="container">
-				<h3 class="mb-3 font-bold text-md text-secondary-600 dark:text-primary-300 lg:text-lg">{{ _x('Follow us on social media', 'Social', 'fdmg-labels') }}</h3>
+				<h3 class="mb-3 font-body-bold text-md text-secondary-600 dark:text-primary-300 lg:text-lg">{{ _x('Follow us on social media', 'Social', 'fdmg-labels') }}</h3>
 				{% include 'styleguide/components/social-media-links.twig' with {
 					socials: [
 						{
