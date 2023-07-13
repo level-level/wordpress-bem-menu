@@ -68,11 +68,11 @@ class ThemeOptions {
 					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
 						->fields(
 							array(
-								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels'), self::OPTION_ACTIVE_THEME )
+								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels' ), self::OPTION_ACTIVE_THEME )
 									->choices(
 										array(
 											'impact-investor' => 'Impact Investor',
-											'energeia' => 'Energeia',
+											'energeia'     => 'Energeia',
 											'pensioen-pro' => 'Pensioen Pro',
 										),
 									)
