@@ -82,8 +82,8 @@ module.exports = {
 		},
 		colors: {
 			transparent: 'transparent',
-			primary: 'var(--color-primary)',
-			'primary-300': 'var(--color-primary-300)',
+			primary: 'var(--primary)',
+			'primary-300': 'var(--primary-300)',
 			'base-50': 'var(--base-50)',
 			'base-100': 'var(--base-100)',
 			'base-200': 'var(--base-200)',

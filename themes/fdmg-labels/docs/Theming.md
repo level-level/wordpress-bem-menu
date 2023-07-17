@@ -13,17 +13,17 @@ The styling for the individual FDMG labels are implemented with a single class o
 ```scss
 :root {
 	// Impact investor
-	--color-primary: #cd3613;
-	--color-primary-300: #df593b;
+	--primary: #cd3613;
+	--primary-300: #df593b;
 
 	.theme-energeia {
-		--color-primary: #01b06d;
-		--color-primary-300: #97d7b5;
+		--primary: #01b06d;
+		--primary-300: #97d7b5;
 	}
 
 	.theme-pensioen-pro {
-		--color-primary: #2c3b60;
-		--color-primary-300: #5e7697;
+		--primary: #2c3b60;
+		--primary-300: #5e7697;
 	}
 }
 ```

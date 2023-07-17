@@ -156,7 +156,7 @@
 		top: var(--menu-height);
 		left: 0;
 		min-width: 300px;
-		border-bottom: 2px solid var(--primary-400) -border;
+		border-bottom: 2px solid var(--primary) -border;
 		z-index: 2;
 		background-color: var(--base-50);
 		padding: calc(#{$spacing-6} - 5px) $spacing-6;

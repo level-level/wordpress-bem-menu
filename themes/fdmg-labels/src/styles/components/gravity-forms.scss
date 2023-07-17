@@ -109,7 +109,7 @@
 
 		button {
 			padding: 5px;
-			color: var(--primary-400);
+			color: var(--primary);
 
 			@include dark-mode {
 				color: var(--primary-300);
@@ -123,7 +123,7 @@
 
 	.gfield_required {
 		@include font-normal();
-		color: var(--primary-400);
+		color: var(--primary);
 		text-transform: lowercase;
 
 		@include dark-mode {

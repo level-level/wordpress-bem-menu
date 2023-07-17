@@ -31,8 +31,8 @@
 }
 
 @mixin btn--primary {
-	background-color: var(--primary-400);
-	border-color: var(--primary-400);
+	background-color: var(--primary);
+	border-color: var(--primary);
 	color: var(--base-50);
 	border-radius: 3px;
 	display: inline-flex;
@@ -70,7 +70,7 @@
 
 @mixin btn--secondary {
 	@include font-bold;
-	color: var(--primary-400);
+	color: var(--primary);
 
 	@include dark-mode {
 		color: var(--primary-300);
@@ -113,7 +113,7 @@
 	}
 
 	@include hover-focus-style {
-		background-color: var(--primary-400);
+		background-color: var(--primary);
 		color: var(--base-50);
 
 		@include dark-mode {
@@ -181,7 +181,7 @@
 @mixin btn--share-small {
 	@include btn--share;
 	background-color: var(--secondary-200);
-	color: var(--primary-400);
+	color: var(--primary);
 	padding: 0;
 	width: 45px;
 	height: 45px;
@@ -211,7 +211,7 @@
 	.btn {
 		&__icon {
 			@include font-size(20px);
-			color: var(--primary-400);
+			color: var(--primary);
 
 			@include dark-mode {
 				color: var(--primary-300);
@@ -244,7 +244,7 @@
 	width: 44px;
 	height: 44px;
 	border: 1px solid;
-	border-color: var(--primary-400);
+	border-color: var(--primary);
 }
 
 @mixin btn--menu {
@@ -440,7 +440,7 @@ input[type='button'] {
 		}
 
 		&--highlight {
-			background-color: var(--primary-400);
+			background-color: var(--primary);
 			color: var(--base-50);
 			width: 34px;
 			height: 34px;

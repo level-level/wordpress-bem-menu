@@ -31,7 +31,7 @@
 	}
 
 	a:not([class]) {
-		color: var(--primary-400);
+		color: var(--primary);
 		hyphens: auto;
 
 		@include dark-mode {

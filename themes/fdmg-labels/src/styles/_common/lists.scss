@@ -31,7 +31,7 @@
 		}
 
 		@include hover-focus-style {
-			color: var(--primary-400);
+			color: var(--primary);
 
 			@include dark-mode {
 				color: var(--primary-300);
@@ -67,7 +67,7 @@
 			@include font-bold;
 			@include font-size(28px);
 			content: counter(counter);
-			color: var(--primary-400);
+			color: var(--primary);
 			text-align: center;
 			width: 50px;
 			flex-shrink: 0;

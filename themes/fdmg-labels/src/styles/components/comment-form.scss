@@ -11,7 +11,7 @@
 	.comment-reply-title {
 		@include font-bold;
 		@include font-size(16px, 24px);
-		color: var(--primary-400);
+		color: var(--primary);
 		padding: 11px $spacing-3;
 		border-bottom: 1px solid var(--secondary-400);
 
@@ -91,7 +91,7 @@
 	&__title {
 		@include font-bold;
 		@include font-size(18px, 26px);
-		color: var(--primary-400);
+		color: var(--primary);
 
 		@include dark-mode {
 			color: var(--primary-300);

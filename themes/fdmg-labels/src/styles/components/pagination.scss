@@ -30,7 +30,7 @@
 
 			@include hover-focus-style {
 				text-decoration: underline;
-				color: var(--primary-400);
+				color: var(--primary);
 
 				@include dark-mode {
 					color: var(--primary-300);
@@ -42,7 +42,7 @@
 			&.current {
 				display: block;
 				padding: $spacing-3;
-				border-bottom: 3px solid var(--primary-400);
+				border-bottom: 3px solid var(--primary);
 
 				@include dark-mode {
 					border-color: var(--primary-300);
@@ -61,7 +61,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background-color: var(--primary-400);
+			background-color: var(--primary);
 			color: var(--base-50);
 			width: var(--item-width);
 			height: var(--item-width);
