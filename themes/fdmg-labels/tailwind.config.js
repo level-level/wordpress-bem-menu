@@ -157,6 +157,32 @@ module.exports = {
 			addVariant('iframe', '& > iframe');
 			addVariant('svg', '& > svg');
 
+			addVariant('btn-text', ({ modifySelectors, separator }) => {
+				modifySelectors(({ className }) => {
+					const modifiedClassName = e(`btn-text${separator}${className}`);
+
+					return [
+						`.${modifiedClassName} .btn__text`,
+						`.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__text`,
+						`.${modifiedClassName}:focus .btn__text`,
+						`.${modifiedClassName}:focus-within .btn__text`,
+					];
+				});
+			});
+
+			addVariant('btn-icon', ({ modifySelectors, separator }) => {
+				modifySelectors(({ className }) => {
+					const modifiedClassName = e(`btn-icon${separator}${className}`);
+
+					return [
+						`.${modifiedClassName} .btn__icon`,
+						`.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__icon`,
+						`.${modifiedClassName}:focus .btn__icon`,
+						`.${modifiedClassName}:focus-within .btn__icon`,
+					];
+				});
+			});
+
 			customThemes.forEach((theme) => {
 				if (theme.theme !== 'theme-impact-investor') {
 					addVariant(`${theme.theme}`, ({ modifySelectors, separator }) => {

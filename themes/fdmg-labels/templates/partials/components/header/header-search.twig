@@ -9,7 +9,7 @@
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: show_button_label ? _x('Search', 'Search', 'fdmg-labels') : '',
 		aria_expanded_support: true,
-		class: 'btn--header js-header-search js-header-search-open',
+		class: 'btn-header js-header-search js-header-search-open',
 		aria_label: _x('Open search', 'Search', 'fdmg-labels'),
 		aria_expanded_text: _x('Close search', 'Search', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open search', 'Search', 'fdmg-labels'),
@@ -25,7 +25,7 @@
 				<div>
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
-						class: 'btn--secondary btn--search js-header-search',
+						class: 'btn-secondary !text-base-50 js-header-search',
 						aria_label: _x('Close search', 'Search', 'fdmg-labels'),
 						icon: 'close',
 					} %}

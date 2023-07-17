@@ -29,7 +29,7 @@
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
 								url: newsletter.button.url,
-								class: 'btn--primary',
+								class: 'btn-primary',
 								is_external: newsletter.button.target ? true,
 								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 							} %}
@@ -37,7 +37,7 @@
 					{% endif %}
 					<li>
 						{% include 'partials/components/header/header-profile.twig' with {
-							button_class: use_compact_header ? 'btn--profile' : 'btn--header',
+							button_class: use_compact_header ? 'btn-profile' : 'btn-header',
 						} %}
 					</li>
 				</ul>

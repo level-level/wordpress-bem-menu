@@ -4,27 +4,27 @@ import Socials from '../src/scripts/modules/social-share';
 const createDOM = () => {
 	document.body.innerHTML = `<ul class="list-social-share" data-module="social-share">
 			<li class="list-social-share__item">
-				<button class="btn btn--share js--share" data-config="{&quot;type&quot;: &quot;facebook&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via Facebook — This button opens a share-on-Facebook dialog in a new window.">
+				<button class="btn btn-share js--share" data-config="{&quot;type&quot;: &quot;facebook&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via Facebook — This button opens a share-on-Facebook dialog in a new window.">
 					Facebook
 				</button>
 			</li>
 			<li class="list-social-share__item">
-				<button class="btn btn--share js--share" data-config="{&quot;type&quot;: &quot;twitter&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via Twitter — This button opens a share-on-Twitter dialog in a new window.">
+				<button class="btn btn-share js--share" data-config="{&quot;type&quot;: &quot;twitter&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via Twitter — This button opens a share-on-Twitter dialog in a new window.">
 					Twitter
 				</button>
 			</li>
 			<li class="list-social-share__item">
-				<button class="btn btn--share js--share" data-config="{&quot;type&quot;: &quot;linkedin&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via LinkedIn — This button opens a share-on-LinkedIn dialog in a new window.">
+				<button class="btn btn-share js--share" data-config="{&quot;type&quot;: &quot;linkedin&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via LinkedIn — This button opens a share-on-LinkedIn dialog in a new window.">
 					LinkedIn
 				</button>
 			</li>
 			<li class="list-social-share__item">
-				<a href="javascript:void(0);" class="btn btn--share js--share" target="_blank" rel="noopener" aria-label="Share via E-mail — This opens your e-mail client" data-config="{&quot;type&quot;: &quot;email&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}">
+				<a href="javascript:void(0);" class="btn btn-share js--share" target="_blank" rel="noopener" aria-label="Share via E-mail — This opens your e-mail client" data-config="{&quot;type&quot;: &quot;email&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}">
 					E-mail
 				</a>
 			</li>
 			<li class="list-social-share__item">
-				<button class="btn btn--share js--share" data-config="{&quot;type&quot;: &quot;whatsapp&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via WhatsApp — This button opens a share-on-WhatsApp dialog in a new window.">
+				<button class="btn btn-share js--share" data-config="{&quot;type&quot;: &quot;whatsapp&quot;, &quot;shareText&quot;: &quot;Post without image&quot;}" aria-label="Share via WhatsApp — This button opens a share-on-WhatsApp dialog in a new window.">
 					WhatsApp
 				</button>
 			</li>
