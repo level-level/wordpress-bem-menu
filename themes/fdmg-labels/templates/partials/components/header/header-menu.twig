@@ -44,14 +44,14 @@
 
 			{% set newsletter = options.newsletter %}
 			<div class="menu-dropdown__footer">
-				<ul class="list-dropdown-buttons">
+				<ul class="flex justify-between h-full flex-nowrap">
 
 					{% if newsletter.button.title and newsletter.button.url %}
-						<li class="list-dropdown-buttons__item">
+						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
 								url: newsletter.button.url,
-								class: '',
+								class: 'w-full justify-center h-full !text-base-50 !text-[20px]',
 								is_external: newsletter.button.target ? true,
 								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 								icon: 'email',

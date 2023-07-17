@@ -97,29 +97,6 @@
 	}
 }
 
-// Image ratio
-// @include image-ratio($x, $y);
-// Calculating the padding-bottom based on image ratio
-// For example X:Y
-// 4:3 ratio
-// 16:9 ratio
-// 21:9 ratio
-// $x (int) 16 - Width of the ratio
-// $y (int) 9 - Height of the ratio
-@mixin image-ratio($x, $y) {
-	position: relative;
-	aspect-ratio: #{$x} / #{$y};
-	overflow: hidden;
-
-	@if type-of($x) != 'number' {
-		@error ' Variable `$x` should be a integer.';
-	}
-
-	@if type-of($y) != 'number' {
-		@error ' Variable `$y` should be a integer.';
-	}
-}
-
 // Center element
 // @include center-element();
 // Enables perfect centering on the X and Y axis
@@ -172,18 +149,6 @@
 				transition: none;
 			}
 		}
-	}
-}
-
-@mixin absolute-link {
-	&:before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		content: '';
-		z-index: 1;
 	}
 }
 

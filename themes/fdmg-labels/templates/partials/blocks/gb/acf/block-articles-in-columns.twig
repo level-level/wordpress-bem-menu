@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if objects %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
+	<div class="{{ align }}" data-name="{{ block.name }}">
 
 		<ul class="grid {{ grid }}">
 			{% set date_format = get_option('date_format') %}
