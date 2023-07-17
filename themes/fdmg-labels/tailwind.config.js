@@ -44,7 +44,10 @@ module.exports = {
 			spacing: {
 				'admin-bar': 'var(--wp-admin--admin-bar--height, 0px)',
 				'header-height': 'var(--header-height)',
+				'menu-height': 'var(--menu-height)',
 				'sidebar-width': 'var(--sidebar-width)',
+				'article-width': 'var(--article-width)',
+				'article-offset': 'var(--article-offset)',
 			},
 			boxShadow: {
 				header: '0 2px 4px rgb(115 166 191 / 15%)',
@@ -180,6 +183,12 @@ module.exports = {
 						`.${modifiedClassName}:focus .btn__icon`,
 						`.${modifiedClassName}:focus-within .btn__icon`,
 					];
+				});
+			});
+
+			addVariant(`compact-header`, ({ modifySelectors, separator }) => {
+				modifySelectors(({ className }) => {
+					return `.has-compact-header .${e(`compact-header${separator}${className}`)}`;
 				});
 			});
 

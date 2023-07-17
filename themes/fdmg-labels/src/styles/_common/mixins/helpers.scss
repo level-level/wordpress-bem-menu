@@ -90,13 +90,6 @@
 	}
 }
 
-// Mixin that applies styling when the compact header is active
-@mixin when-compact-header {
-	.has-compact-header & {
-		@content;
-	}
-}
-
 // Center element
 // @include center-element();
 // Enables perfect centering on the X and Y axis

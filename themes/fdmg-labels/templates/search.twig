@@ -3,7 +3,7 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			<div class="layout-header-wrapper">
+			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				<h1 class="rich-title">
 					{% set query = get_search_query() %}
 					{{ _n('%s result found for %s', '%s results found for &lsquo;%s&rsquo;', found_posts, 'fdmg-labels')|format(found_posts, query)|raw }}

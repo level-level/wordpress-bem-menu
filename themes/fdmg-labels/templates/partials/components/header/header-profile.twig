@@ -1,8 +1,9 @@
 {% set trigger = uniqid('js-header-profile-') %}
-{% set target = uniqid('header-profile__dropdown-') %}
+{% set target = uniqid('js-header-profile-dropdown-') %}
 
 <div
-	class="flex header-profile"
+	data-component="header-profile"
+	class="relative flex"
 	data-module="header-profile"
 	data-config='{
 		"trigger": ".{{ trigger }}",
@@ -18,8 +19,8 @@
 		icon: 'user',
 		icon_left: true,
 	} %}
-	<div class="header-profile__dropdown {{ target }}" aria-hidden="true">
-		<div class="header-profile__inner">
+	<div class="block absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] right-0 p-0 bg-secondary-200 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
+		<div class="p-5 text-base">
 			{% include 'partials/components/header/header-display-options.twig' %}
 		</div>
 	</div>

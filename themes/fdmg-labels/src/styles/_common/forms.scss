@@ -226,6 +226,6 @@ fieldset {
 
 .form-group {
 	& > * + * {
-		margin-top: $spacing-6;
+		@apply mt-6;
 	}
 }
