@@ -1,8 +1,8 @@
-<div class="teaser-post teaser-post--wide">
+<div data-component="teaser-post-wide" class="relative flex flex-col h-full transition-shadow border-b sm:border-b-2 font-body bg-base-50 border-secondary-400 dark:border-transparent dark:bg-base-600 hocus:shadow-teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="teaser-post__inner">
+		<div class="p-3 sm:p-6">
 			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
@@ -10,12 +10,13 @@
 						url: url,
 						title: title,
 						terms: terms,
+						wide: true,
 					} only %}
 				</div>
 
 				{% if image_square %}
 					<div class="shrink-0">
-						<div class="teaser-post__square-thumbnail">
+						<div class="max-w-[65px]">
 							{{ image_square|raw }}
 						</div>
 					</div>
@@ -26,7 +27,7 @@
 
 	{# Tablet >= #}
 	<div class="hidden sm:block">
-		<div class="teaser-post__inner">
+		<div class="p-3 sm:p-6">
 			<div class="flex gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
@@ -37,10 +38,11 @@
 						date: date,
 						datetime: datetime,
 						date_full: date_full,
+						wide: true,
 					} only %}
 
 					{% if excerpt %}
-						<div class="teaser-post__excerpt">
+						<div class="mt-3 text-base sm:text-md">
 							{{ excerpt|raw }}
 						</div>
 					{% endif %}
@@ -48,7 +50,7 @@
 
 				{% if image %}
 					<div class="shrink">
-						<div class="teaser-post__thumbnail">
+						<div class="relative overflow-hidden aspect-[14/9] sm:w-[210px] lg:aspect-[14/9] lg:w-[260px] image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none lg:image:w-full lg:image:h-auto lg:image:top-1/2 lg:image:left-1/2 lg:image:-translate-x-1/2 lg:image:-translate-y-1/2">
 							{{ image|raw }}
 						</div>
 					</div>
