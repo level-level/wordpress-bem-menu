@@ -44,6 +44,7 @@ module.exports = {
 			spacing: {
 				'admin-bar': 'var(--wp-admin--admin-bar--height, 0px)',
 				'header-height': 'var(--header-height)',
+				'sidebar-width': 'var(--sidebar-width)',
 			},
 			boxShadow: {
 				header: '0 2px 4px rgb(115 166 191 / 15%)',

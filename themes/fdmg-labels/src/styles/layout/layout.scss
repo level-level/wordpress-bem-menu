@@ -26,13 +26,6 @@
 	}
 }
 
-.layout-small-responsibility {
-	@include breakpoint(md) {
-		width: var(--sidebar-width);
-		flex-shrink: 1;
-	}
-}
-
 .layout-header-wrapper {
 	width: 100%;
 
