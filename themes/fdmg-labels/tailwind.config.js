@@ -48,6 +48,7 @@ module.exports = {
 			},
 			boxShadow: {
 				header: '0 2px 4px rgb(115 166 191 / 15%)',
+				teaser: '0 2px 4px rgb(0 0 0 / 15%)',
 			},
 			backgroundImage: {
 				...themeLogos,
