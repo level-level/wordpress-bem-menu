@@ -4,8 +4,16 @@ namespace Clarkson\WPadmin;
 use WP_Role;
 
 class Capabilities {
+	// Custom roles (paywall)
+	public const ROLE_ACCOUNT_HOLDER = 'account_holder';
+	// @todo 1 or 3 paid roles?
+	public const ROLE_TRIAL_SUBSCRIBER            = 'trial_subscriber';
+	public const ROLE_YEARLY_SUBSCRIBER           = 'yearly_subscriber';
+	public const ROLE_COMPANY_LICENSED_SUBSCRIBER = 'company_licensed_subscriber';
+
 	public function register_hooks(): void {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_account_holder_role' ) );
 	}
 
 	/**
@@ -16,7 +24,7 @@ class Capabilities {
 
 		$admin      = get_role( 'administrator' );
 		$admin_caps = $admin->capabilities ?? array();
-		$role       = add_role( 'client_administrator', __( 'Client administrator', 'fdmg-labels' ), $admin_caps );
+		$role       = add_role( 'client_administrator', __( 'Client administrator', 'impact-investor' ), $admin_caps );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}
@@ -36,5 +44,14 @@ class Capabilities {
 		$role->remove_cap( 'delete_site' );
 
 		$role->add_cap( 'gform_full_access' );
+	}
+
+	public function update_account_holder_role(): void {
+		remove_role( self::ROLE_ACCOUNT_HOLDER );
+		$role = add_role( self::ROLE_ACCOUNT_HOLDER, __( 'Account holder', 'impact-investor' ), array() );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->remove_cap( 'read' );
 	}
 }

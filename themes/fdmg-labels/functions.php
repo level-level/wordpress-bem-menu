@@ -45,6 +45,7 @@
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Sync\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
+( new \FDMGLabels\OpenIDConnect() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
