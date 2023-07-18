@@ -64,7 +64,7 @@ class Partner {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Partner] Data', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Partner', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Text::make( _x( 'Subtitle', 'Fields', 'fdmg-labels' ), self::META_SUBTITLE )
 						->instructions( 'The subtitle that is displayed in the right sidebar underneath the logo.' ),

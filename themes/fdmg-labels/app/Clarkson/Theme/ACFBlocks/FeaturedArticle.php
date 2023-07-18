@@ -57,7 +57,7 @@ class FeaturedArticle {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Featured article', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Featured article', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
 						->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels' ) )

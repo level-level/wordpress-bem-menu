@@ -48,7 +48,7 @@ class Advertisement {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Advertisement', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Advertisement', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Select::make( _x( 'Advertisement slot', 'Fields', 'fdmg-labels' ), self::BLOCK_META_ADVERTISEMENT_SLOT )
 						->instructions( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels' ) )
