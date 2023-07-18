@@ -75,7 +75,7 @@
 		}
 
 		a:not([class]) {
-			color: var(--primary-400);
+			color: var(--primary);
 		}
 	}
 }
@@ -144,4 +144,9 @@
 	.wp-block-widget-area__panel-body-content {
 		background-color: var(--secondary-100);
 	}
+}
+
+/* Editor sidebar styling */
+.interface-complementary-area {
+	width: 400px;
 }

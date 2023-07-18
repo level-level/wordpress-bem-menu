@@ -1,7 +1,7 @@
 {% set objects = block.get_latest_articles() %}
 
 {% if objects %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
+	<div class="{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/list-component.twig' with {
 			heading: _x('Latest news', 'Block', 'fdmg-labels'),
 			objects: objects ? objects|map(post => {

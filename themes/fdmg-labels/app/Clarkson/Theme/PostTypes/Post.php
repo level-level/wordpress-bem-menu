@@ -19,7 +19,7 @@ class Post {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Post] Authors', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Authors', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Relationship::make( _x( 'Authors', 'Fields', 'fdmg-labels' ), self::META_AUTHORS )
 						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels' ) )

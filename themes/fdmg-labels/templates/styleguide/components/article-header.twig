@@ -1,31 +1,32 @@
-<div class="article-header">
+<div data-component="article-header" class="relative mb-6 sm:mb-12">
 
 	{% if label %}
-		<div class="article-header__label">
+		<div class="mb-3 sm:mb-9">
 			<ul class="flex gap-1">
 				<li>
-					<div class="badge badge--rich">
-						{{ label|raw }}
-					</div>
+					{% include 'styleguide/components/badges/badge.twig' with {
+						title: label,
+						rich: true,
+					} %}
 				</li>
 			</ul>
 		</div>
 	{% endif %}
 
 	{% if terms %}
-		<div class="article-header__terms">
+		<div class="mb-3 sm:mb-9">
 			{% include 'styleguide/components/post-terms.twig' with {
 				terms: terms,
 			} %}
 		</div>
 	{% endif %}
 
-	<div class="article-header__title">
+	<div>
 		<h1>{{ title|raw }}</h1>
 	</div>
 
 	{% if authors or date and datetime and date_full %}
-		<div class="article-header__meta">
+		<div class="mt-3">
 			<div class="flex items-center gap-6">
 
 				{% if authors %}
@@ -39,7 +40,7 @@
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
-										class: 'btn--secondary btn--no-padding',
+										class: 'btn-secondary !p-0 !text-[17px]',
 									} %}
 								</li>
 							{% endfor %}
@@ -50,7 +51,7 @@
 				{% if date and datetime and date_full %}
 					<div>
 						<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						<time datetime="{{ datetime|raw }}" aria-hidden="true" class="font-body-bold text-[17px]">{{ date|raw }}</time>
 					</div>
 				{% endif %}
 

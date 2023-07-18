@@ -1,19 +1,19 @@
 {% if socials %}
-	<div class="social-share {{ sticky ? 'social-share--sticky' }}" {{ sticky ? 'aria-hidden="true"' }}>
+	<div data-component="social-share" class="{{ sticky ? 'hidden lg:block z-[2] mt-6 sticky top-[calc(theme(space.header-height)+theme(space.6)+theme(space.admin-bar))]' }}" {{ sticky ? 'aria-hidden="true"' }}>
 		<div class="flex flex-col gap-3">
 
 			{% if heading %}
-				<p class="social-share__heading h4">{{ heading|raw }}</p>
+				<p class="text-base font-body-bold text-primary dark:text-primary-300 sm:text-md">{{ heading|raw }}</p>
 			{% endif %}
 
 			{% if socials %}
-				<ul class="list-social-share {{ sticky ? 'list-social-share--vertical' }}" data-module="social-share">
+				<ul class="flex gap-4 {{ sticky ? 'lg:flex-col lg:mt-0 lg:gap-0' }}" data-module="social-share">
 					{% for social in socials %}
-						<li class="list-social-share__item">
+						<li>
 
 							{% set args = {
 								text: '',
-								class: 'btn--share js--share',
+								class: sticky ? 'btn-share btn-share-small js--share' : 'btn-share js--share',
 								icon: social.type,
 								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
 								aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),

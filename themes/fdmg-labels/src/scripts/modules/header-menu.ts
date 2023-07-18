@@ -10,9 +10,9 @@ class HeaderMenu implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.backdrop = this.element.querySelector('.header-menu__backdrop');
+		this.backdrop = this.element.querySelector('.js-header-menu-backdrop');
 		this.html = document.querySelector('html');
-		this.dropdown = this.element.querySelector('.header-menu__dropdown');
+		this.dropdown = this.element.querySelector('.js-header-menu-dropdown');
 
 		this.initialize();
 	}
@@ -50,11 +50,11 @@ class HeaderMenu implements IModule {
 	}
 
 	showBackdrop() {
-		this.backdrop?.classList.add('header-menu__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'false');
 	}
 
 	hideBackdrop() {
-		this.backdrop?.classList.remove('header-menu__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'true');
 	}
 }
 

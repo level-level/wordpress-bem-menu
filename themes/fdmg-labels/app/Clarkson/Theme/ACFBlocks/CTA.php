@@ -56,7 +56,7 @@ class CTA {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Call to action', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Call to action', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
 						->message( _x( 'Add a call to action. Image, title, text and link are required fields.', 'Fields', 'fdmg-labels' ) )

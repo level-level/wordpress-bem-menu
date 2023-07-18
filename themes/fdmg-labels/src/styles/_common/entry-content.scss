@@ -10,7 +10,7 @@
 	}
 
 	& > * + * {
-		margin-top: $spacing-6;
+		@apply mt-6;
 	}
 
 	> h2 + *:not([class*=' has-']),
@@ -21,7 +21,7 @@
 	}
 
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
-		margin-top: $spacing-6;
+		@apply mt-6;
 	}
 
 	p {
@@ -31,7 +31,7 @@
 	}
 
 	a:not([class]) {
-		color: var(--primary-400);
+		color: var(--primary);
 		hyphens: auto;
 
 		@include dark-mode {

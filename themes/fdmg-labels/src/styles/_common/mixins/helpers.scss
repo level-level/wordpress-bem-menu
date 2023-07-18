@@ -41,82 +41,8 @@
 }
 
 @mixin dark-mode {
-	[data-theme='dark'] &,
-	[data-theme='dark'].theme-pensioen-pro &,
-	[data-theme='dark'].theme-energeia & {
+	[data-theme='dark'] & {
 		@content;
-	}
-
-	@media (prefers-color-scheme: dark) {
-		[data-theme='system'] & {
-			@content;
-		}
-	}
-}
-
-@mixin theme-energeia($dark: false) {
-	@if $dark {
-		[data-theme='dark'].theme-energeia & {
-			@content;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			[data-theme='system'].theme-energeia & {
-				@content;
-			}
-		}
-	} @else {
-		.theme-energeia & {
-			@content;
-		}
-	}
-}
-
-@mixin theme-pensioen-pro($dark: false) {
-	@if $dark {
-		[data-theme='dark'].theme-pensioen-pro & {
-			@content;
-		}
-
-		@media (prefers-color-scheme: dark) {
-			[data-theme='system'].theme-pensioen-pro & {
-				@content;
-			}
-		}
-	} @else {
-		.theme-pensioen-pro & {
-			@content;
-		}
-	}
-}
-
-// Mixin that applies styling when the compact header is active
-@mixin when-compact-header {
-	.has-compact-header & {
-		@content;
-	}
-}
-
-// Image ratio
-// @include image-ratio($x, $y);
-// Calculating the padding-bottom based on image ratio
-// For example X:Y
-// 4:3 ratio
-// 16:9 ratio
-// 21:9 ratio
-// $x (int) 16 - Width of the ratio
-// $y (int) 9 - Height of the ratio
-@mixin image-ratio($x, $y) {
-	position: relative;
-	aspect-ratio: #{$x} / #{$y};
-	overflow: hidden;
-
-	@if type-of($x) != 'number' {
-		@error ' Variable `$x` should be a integer.';
-	}
-
-	@if type-of($y) != 'number' {
-		@error ' Variable `$y` should be a integer.';
 	}
 }
 
@@ -156,35 +82,10 @@
 // $color: the color of the outline
 // $styleOnly: when you only need the actual styling of a focus state
 @mixin focus-style($color: var(--base-800), $styleOnly: false) {
-	@if $styleOnly {
-		outline: 2px solid;
-		outline-color: $color;
-		outline-offset: 2px;
-		transition: none;
-	}
-
-	@else {
-		* {
-			&:focus-visible {
-				outline: 2px solid;
-				outline-color: $color;
-				outline-offset: 2px;
-				transition: none;
-			}
-		}
-	}
-}
-
-@mixin absolute-link {
-	&:before {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		content: '';
-		z-index: 1;
-	}
+	outline: 2px solid;
+	outline-color: $color;
+	outline-offset: 2px;
+	transition: none;
 }
 
 // WP Alignments

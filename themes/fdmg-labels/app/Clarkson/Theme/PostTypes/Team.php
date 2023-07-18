@@ -68,7 +68,7 @@ class Team {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Author] Data', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Author', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Email::make( _x( 'E-mail address', 'Fields', 'fdmg-labels' ), self::META_EMAIL ),
 					Url::make( _x( 'LinkedIn', 'Fields', 'fdmg-labels' ), self::META_LINKEDIN )

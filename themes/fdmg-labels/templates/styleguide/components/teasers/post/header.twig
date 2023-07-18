@@ -1,14 +1,14 @@
-<div class="teaser-post-header">
-	<div class="teaser-post-header__item teaser-post-header__item--order-2">
-		<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
-			<a href="{{ url }}" class="teaser-post__link">
+<div class="flex flex-col">
+	<div class="order-2 mt-3">
+		<{{ useH3 ? 'h3' : 'h2' }} class="text-[24px] {{ large ? 'sm:text-[28px]' }} {{ small ? 'text-base sm:text-[20px] sm:leading-7' }} {{ wide ? 'text-md sm:text-[20px] sm:leading-7' }}">
+			<a href="{{ url }}" class="no-underline transition-colors absolute-link hocus:text-primary hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300">
 				{{ title|raw }}
 			</a>
 		</{{ useH3 ? 'h3' : 'h2' }}>
 	</div>
 
 	{% if terms or date and datetime and date_full %}
-		<div class="teaser-post-header__item">
+		<div>
 			<div class="flex items-center justify-between flex-nowrap">
 
 				{% if terms %}
@@ -21,7 +21,7 @@
 
 				{% if date and datetime and date_full %}
 					<div class="shrink-0">
-						<div class="teaser-post__date">
+						<div class="text-sm text-secondary-600 dark:text-base-100 sm:text-base">
 							<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
 							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 						</div>

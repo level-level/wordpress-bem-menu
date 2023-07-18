@@ -1,396 +1,83 @@
-@mixin btn {
-	@include font-bold;
-	@include font-size(16px);
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	padding: 10px 12px;
-	background-color: transparent;
-	text-decoration: none;
-	border: 2px solid transparent;
-	line-height: 1;
-	user-select: none;
-	color: var(--base-800);
-	cursor: pointer;
-	transition:
-		background-color $time,
-		color $time,
-		border-color $time;
-	appearance: none;
 
-	@include breakpoint(sm) {
-		@include font-size(18px, 20px);
-		padding: 10px 17px;
-	}
-
-	// Button disabled
-	&:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
-	}
-}
-
-@mixin btn--primary {
-	background-color: var(--primary-400);
-	border-color: var(--primary-400);
-	color: var(--base-50);
-	border-radius: 3px;
-	display: inline-flex;
-	justify-content: center;
-
-	@include dark-mode {
-		background-color: var(--primary-300);
-		border-color: var(--primary-300);
-		color: var(--base-800);
-	}
-
-	@include theme-pensioen-pro(dark) {
-		color: var(--base-50);
-	}
-
-	@include hover-focus-style {
-		background-color: transparent;
-		color: var(--base-500);
-
-		@include dark-mode {
-			color: var(--primary-300);
-		}
-
-		@include theme-pensioen-pro(dark) {
-			color: var(--base-50);
-			background-color: transparent;
-		}
-
-		@include theme-energeia(dark) {
-			color: var(--base-50);
-			background-color: transparent;
-		}
-	}
-}
-
-@mixin btn--secondary {
-	@include font-bold;
-	color: var(--primary-400);
-
-	@include dark-mode {
-		color: var(--primary-300);
-	}
-
-	.btn {
-		&__text {
-			text-decoration: none;
-		}
-	}
-
-	@include hover-focus-style {
-		.btn {
-			&__text {
-				text-decoration: underline;
-			}
-		}
-	}
-}
-
-@mixin btn--tertiary {
-	@include font-bold;
-	color: var(--secondary-600);
-	padding: 0;
-	padding-right: 12px;
-	border-radius: 20px;
-
-	@include dark-mode {
-		color: var(--primary-300);
-	}
-
-	@include breakpoint(sm) {
-		padding-right: 17px;
-	}
-
-	.btn {
-		&__text {
-			text-decoration: none;
-		}
-	}
-
-	@include hover-focus-style {
-		background-color: var(--primary-400);
-		color: var(--base-50);
-
-		@include dark-mode {
-			background-color: var(--primary-300);
-			color: var(--base-50);
-		}
-
-		@include theme-energeia(dark) {
-			color: var(--base-700);
-		}
-
-		.btn {
-			&__icon {
-				&--highlight {
-					background-color: transparent;
-					transform: translateX(8px);
-				}
-			}
-		}
-	}
-}
-
-@mixin btn--link {
-	@include font-normal;
-	@include font-size(14px);
-	padding: 0;
-	text-decoration: none;
-	color: var(--secondary-500);
-
-	@include dark-mode {
-		color: var(--primary-300);
-	}
-
-	@include hover-focus-style {
-		.btn {
-			&__text {
-				text-decoration: underline;
-			}
-		}
-	}
-
-	.btn {
-		&__icon {
-			@include font-size(18px);
-
-			& + * {
-				padding-left: 5px;
-			}
-		}
-
-		&__text {
-			top: 2px;
-		}
-	}
-}
-
-@mixin btn--share {
-	@include btn--primary;
-	@include font-size(22px);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-@mixin btn--header {
-	@include font-normal;
-	color: var(--base-500);
-	border-radius: 0;
-
-	@include dark-mode {
-		color: var(--base-100);
-	}
-
-	.btn {
-		&__icon {
-			@include font-size(20px);
-			color: var(--primary-400);
-
-			@include dark-mode {
-				color: var(--primary-300);
-			}
-		}
-	}
-
-	@include hover-focus-style {
-		background-color: var(--secondary-200);
-		color: var(--base-800);
-
-		@include dark-mode {
-			background-color: var(--base-600);
-			color: var(--primary-300);
-		}
-	}
-
-	&[aria-expanded='true'] {
-		background-color: var(--secondary-200);
-
-		@include dark-mode {
-			background-color: var(--base-600);
-		}
-	}
-}
-
-@mixin btn--profile {
-	@include btn--header;
-	padding: 0;
-	width: 44px;
-	height: 44px;
-	border: 1px solid;
-	border-color: var(--primary-400);
-}
-
-@mixin btn--menu {
-	@include font-size(22px);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 0;
-	border: 0;
-	color: var(--base-500);
-	min-width: 32px;
-
-	@include dark-mode {
-		color: var(--base-100);
-	}
-
-	.btn {
-		&__text {
-			@include font-size(12px);
-			text-transform: lowercase;
-			padding-left: 0;
-		}
-	}
-
-	&[aria-expanded='true'] {
-		z-index: 11;
-		color: var(--base-50);
-
-		&:focus {
-			@include focus-style(var(--base-50));
-		}
-	}
-}
-
-@mixin btn--search {
-	@include font-normal;
-	min-height: $input-height;
-	min-width: calc(#{$input-height} + 14px);
-	justify-content: center;
-	border: 0;
-
-	&.js-header-search {
-		color: var(--base-50);
-	}
-
-	.btn {
-		&__icon {
-			@include font-size(20px);
-		}
-
-		&__text {
-			display: none;
-
-			@include breakpoint(sm) {
-				display: block;
-			}
-		}
-	}
-
-	&[aria-expanded='true'] {
-		.btn {
-			&__icon {
-				@include font-size(20px);
-				color: var(--base-50);
-			}
-		}
-	}
-}
-
-// Styles to reset a styled button
-@mixin reset-button-styles {
-	background-color: transparent;
-	padding: 0;
-}
-
-button,
-input[type='submit'],
-input[type='button'] {
-	@include btn;
-	@include btn--primary;
-	line-height: inherit;
-
-	@include dark-mode {
-		background-color: transparent;
-		border-color: transparent;
-	}
-}
-
-// Color variations
 .btn {
-	@include btn;
+	@apply font-body-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:text-md sm:py-[10px] sm:px-[17px];
+}
 
-	&--primary {
-		@include btn--primary;
-	}
+.btn-primary {
+	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
+	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
+	@apply theme-energeia:dark:text-base-600;
+}
 
-	&--secondary {
-		@include btn--secondary;
-	}
+.btn-secondary {
+	@apply text-primary dark:text-primary-300;
+}
 
-	&--tertiary {
-		@include btn--tertiary;
-	}
+.btn-menu {
+	@apply text-lg flex flex-col items-center justify-center p-0 min-w-[32px] dark:text-base-100;
+	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] aria-expanded:text-base-50 aria-expanded:z-20 leading-none focus:outline-base-50;
+}
 
-	&--link {
-		@include btn--link;
-	}
+.btn-header {
+	@apply font-body text-base-500 rounded-none dark:text-base-100;
+	@apply btn-icon:text-[20px] btn-icon:text-primary dark:btn-icon:text-primary-300;
+	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
+	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600;
+}
 
-	&--share {
-		@include btn--share;
-	}
+.btn-profile {
+	@apply font-body text-base-500 rounded-none dark:text-base-100 p-0;
+	@apply w-[48px] h-[48px] border border-primary dark:border-primary-300;
+	@apply btn-icon:text-[20px] btn-icon:text-primary dark:btn-icon:text-primary-300;
+	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
+	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600 justify-center;
+}
 
-	&--header {
-		@include btn--header;
-	}
+.btn-share {
+	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800;
+	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:text-base-50 theme-energeia:hocus:dark:text-base-50;
+	@apply text-lg flex items-center btn-icon:text-lg;
+}
 
-	&--profile {
-		@include btn--profile;
-	}
+.btn-share-small {
+	@apply w-[45px] h-[44px] bg-secondary-200 text-primary p-0 border-0 dark:bg-base-600 dark:text-primary-300 hocus:bg-secondary-400 hocus:text-base-50 rounded-none text-lg;
+}
 
-	&--menu {
-		@include btn--menu;
-	}
+.btn-play {
+	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
+	@apply hocus:bg-secondary-400 hocus:border-secondary-400 hocus:text-base-800 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
+	@apply theme-energeia:dark:text-base-600;
+}
 
-	&--search {
-		@include btn--search;
-	}
+.btn-tertiary {
+	@apply font-body-bold text-secondary-600 p-0 pr-3 rounded-[20px] dark:text-primary-300 sm:pr-[17px];
+	@apply btn-text:no-underline;
+	@apply hocus:bg-primary hocus:text-base-50 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
+}
 
-	&--play {
-		@include btn--primary;
+.btn-link {
+	@apply font-body text-sm p-0 no-underline text-secondary-500 dark:text-primary-300;
+	@apply hocus:btn-text:underline;
+	@apply btn-icon:text-md btn-text:top-[2px];
+}
 
-		@include hover-focus-style {
-			background-color: var(--secondary-400);
-			border-color: var(--secondary-400);
-			color: var(--base-800);
+.btn-full {
+	@apply w-full justify-center;
+}
 
-			@include dark-mode {
-				background-color: var(--secondary-400);
-				border-color: var(--secondary-400);
-				color: var(--base-800);
-			}
-		}
-	}
+.btn-mobile-full {
+	@apply w-full justify-center sm:w-auto;
+}
+
+input[type='submit'] {
+	@apply font-body-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:text-md sm:py-[10px] sm:px-[17px];
+	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
+	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
+	@apply theme-energeia:dark:text-base-600;
 }
 
 // Button utilities
 .btn {
-	// Force full width
-	&--full {
-		width: 100%;
-		justify-content: center;
-	}
-
-	&--mobile-full {
-		width: 100%;
-		justify-content: center;
-
-		@include breakpoint(sm) {
-			width: auto;
-		}
-	}
-
-	&--no-padding {
-		padding: 0;
-	}
-
 	// To make sure the button and icon(s) are always on top when working with psuedo elements
 	&__text,
 	&__icon {
@@ -412,26 +99,6 @@ input[type='button'] {
 
 		& + * {
 			padding-left: $spacing-3;
-		}
-
-		&--highlight {
-			background-color: var(--primary-400);
-			color: var(--base-50);
-			width: 34px;
-			height: 34px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			transition: $time;
-
-			@include dark-mode {
-				background-color: var(--primary-300);
-			}
-
-			@include theme-energeia(dark) {
-				color: var(--base-700);
-			}
 		}
 
 		.icon-comment {

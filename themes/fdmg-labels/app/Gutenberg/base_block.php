@@ -2,6 +2,7 @@
 
 namespace Gutenberg\Blocks;
 
+use Clarkson\Theme\ACFPages\ThemeOptions;
 use Clarkson\Theme\SVGIcons;
 use Clarkson_Core\Gutenberg\Block_Type;
 use Clarkson_Core\Templates;
@@ -164,7 +165,13 @@ class base_block extends Block_Type {
 			}
 
 			if ( is_admin() && $block === true ) {
-				return '<div class="clarkson-acf-preview-block">' . $block_content . '</div>';
+
+				/**
+				 * Get active theme from options
+				 */
+				$active_theme = 'theme-' . get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
+
+				return '<div class="clarkson-acf-preview-block ' . $active_theme . ' ">' . $block_content . '</div>';
 			} else {
 				return $block_content;
 			}

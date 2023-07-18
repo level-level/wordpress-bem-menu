@@ -6,15 +6,7 @@
 			{% endif %}
 		</div>
 		<div class="grow sm:grow-0">
-			<div class="header__brand">
-				<a
-					class="brand"
-					href="{{ esc_url(home_url('/')) }}"
-					aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
-				>
-					<span class="brand__logo"></span>
-				</a>
-			</div>
+			{% include 'partials/components/header/logo.twig' %}
 		</div>
 
 		{% if has_nav_menu('primary_navigation') %}
@@ -25,27 +17,27 @@
 
 		<div class="hidden shrink-0 sm:block">
 			<div class="flex items-center gap-2 flex-nowrap">
-				<ul class="list-header-buttons">
-					<li class="list-header-buttons__item">
+				<ul class="flex items-center gap-2">
+					<li>
 						{% include 'partials/components/header/header-search.twig' with {
 							show_button_label: use_compact_header ? false : true,
 						} %}
 					</li>
 					{% set newsletter = options.newsletter %}
 					{% if newsletter.button.title and newsletter.button.url %}
-						<li class="list-header-buttons__item">
+						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
 								url: newsletter.button.url,
-								class: 'btn--primary',
+								class: 'btn-primary',
 								is_external: newsletter.button.target ? true,
 								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 							} %}
 						</li>
 					{% endif %}
-					<li class="list-header-buttons__item">
+					<li>
 						{% include 'partials/components/header/header-profile.twig' with {
-							button_class: use_compact_header ? 'btn--profile' : 'btn--header',
+							button_class: use_compact_header ? 'btn-profile' : 'btn-header',
 						} %}
 					</li>
 				</ul>

@@ -49,7 +49,7 @@ class HighlightedContent {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Highlighted content', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Highlighted content', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Text::make( _x( 'Use this title to overwrite the default title: \'In short\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
 					WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels' ), self::BLOCK_META_CONTENT )

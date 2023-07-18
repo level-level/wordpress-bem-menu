@@ -33,7 +33,7 @@ h4 {
 }
 
 .rich-title {
-	color: var(--primary-400);
+	color: var(--primary);
 	border-bottom: 4px solid var(--secondary-400);
 	padding-bottom: $spacing-3;
 
@@ -88,9 +88,11 @@ address {
 
 // Focus style
 * {
-	@include focus-style;
+	&:focus-visible {
+		@include focus-style(var(--base-800));
 
-	@include dark-mode {
-		@include focus-style(var(--base-50));
+		@include dark-mode {
+			@include focus-style(var(--base-50));
+		}
 	}
 }

@@ -2,7 +2,7 @@
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
-	<div class="align{{ align }}">
+	<div class="{{ align }}">
 		{% include 'partials/components/advertisement.twig' with {
 			slot: slot
 		} only %}
@@ -13,6 +13,6 @@
 	} %}
 {% else %}
 	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Slot']
+		required_fields: [_x('Slot', 'Block', 'fdmg-labels')]
 	} %}
 {% endif %}

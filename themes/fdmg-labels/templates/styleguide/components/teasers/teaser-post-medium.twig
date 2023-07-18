@@ -1,12 +1,12 @@
-<div class="teaser-post teaser-post--medium">
+<div data-component="teaser-post-medium" class="relative flex flex-col h-full transition-shadow border-b-2 font-body bg-base-50 border-secondary-400 dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{% if image %}
-		<div class="teaser-post__thumbnail">
+		<div class="relative overflow-hidden aspect-video image:absolute image:top-1/2 image:left-1/2 image:-translate-x-1/2 image:-translate-y-1/2">
 			{{ image|raw }}
 		</div>
 	{% endif %}
 
-	<div class="teaser-post__inner">
+	<div class="p-3 sm:p-6">
 		{% include 'styleguide/components/teasers/post/header.twig' with {
 			useH3: useH3,
 			url: url,
@@ -18,7 +18,7 @@
 		} only %}
 
 		{% if excerpt %}
-			<div class="teaser-post__excerpt">
+			<div class="mt-3 text-base sm:text-md">
 				{{ excerpt|raw }}
 			</div>
 		{% endif %}

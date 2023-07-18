@@ -1,5 +1,5 @@
 {% set use_compact_header = feature_manager.is_enabled('compact_header') %}
-<header class="header">
+<header class="fixed z-50 top-admin-bar left-0 right-0 h-header-height shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex items-center' }}">
 
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>

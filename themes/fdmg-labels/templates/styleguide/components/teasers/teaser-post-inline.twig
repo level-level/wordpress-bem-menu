@@ -1,21 +1,22 @@
-<div class="teaser-post teaser-post--inline">
+<div data-component="teaser-post-inline" class="relative flex flex-col h-full transition-shadow border-b font-body bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0'}}">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="teaser-post__inner">
-			<div class="flex gap-6 items-center">
+		<div class="p-3 sm:p-6">
+			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
 						terms: terms,
+						wide: true,
 					} only %}
 				</div>
 
 				{% if image_square %}
 					<div class="shrink-0">
-						<div class="teaser-post__square-thumbnail">
+						<div class="max-w-[65px]">
 							{{ image_square|raw }}
 						</div>
 					</div>
@@ -26,20 +27,21 @@
 
 	{# Tablet >= #}
 	<div class="hidden sm:block">
-		<div class="teaser-post__inner">
-			<div class="flex gap-6 items-center">
+		<div class="p-3 sm:px-0">
+			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
 						terms: terms,
+						wide: true,
 					} only %}
 				</div>
 
 				{% if image %}
 					<div class="shrink-0">
-						<div class="teaser-post__thumbnail">
+						<div class="sm:relative sm:overflow-hidden sm:aspect-[14/9] sm:w-[155px] sm:image:absolute sm:image:w-auto sm:image:h-full sm:image:top-auto sm:image:left-1/2 sm:image:-translate-x-1/2 sm:image:max-w-none">
 							{{ image|raw }}
 						</div>
 					</div>

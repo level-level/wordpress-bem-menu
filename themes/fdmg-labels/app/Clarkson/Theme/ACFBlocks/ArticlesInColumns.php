@@ -60,7 +60,7 @@ class ArticlesInColumns {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Articles in columns', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Articles in columns', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
 						->message( _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
