@@ -165,8 +165,11 @@ class base_block extends Block_Type {
 			}
 
 			if ( is_admin() && $block === true ) {
-				$options      = get_field( ThemeOptions::OPTION_GROUP, 'options' ) ?: array();
-				$active_theme = 'theme-' . $options[ ThemeOptions::OPTION_ACTIVE_THEME ] ?? '';
+
+				/**
+				 * Get active theme from options
+				 */
+				$active_theme = 'theme-' . get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) ) ?? '';
 
 				return '<div class="clarkson-acf-preview-block ' . $active_theme . ' ">' . $block_content . '</div>';
 			} else {
