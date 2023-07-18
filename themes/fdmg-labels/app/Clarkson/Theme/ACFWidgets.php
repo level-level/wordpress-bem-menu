@@ -6,7 +6,6 @@ use Clarkson\Theme\ACFWidgets\LatestArticles;
 use Clarkson\Theme\ACFWidgets\Newsletter;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
-use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
 use WP_Block_Type_Registry;
 
