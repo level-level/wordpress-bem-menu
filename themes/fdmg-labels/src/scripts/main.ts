@@ -1,4 +1,5 @@
 import './utilities/user-tabs';
+import ModuleInitializer from './utilities/module-initializer';
 import ThemeSelection from './modules/theme-selection';
 import PrimaryNav from './modules/primary-nav';
 import HeaderMenu from './modules/header-menu';
@@ -12,7 +13,7 @@ import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
 
-const modules: any = {
+ModuleInitializer({
 	'theme-selection': ThemeSelection,
 	'primary-nav': PrimaryNav,
 	'header-search': HeaderSearch,
@@ -25,25 +26,17 @@ const modules: any = {
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
-};
+});
 
-Array.from(document.querySelectorAll<HTMLElement>('[data-module]')).forEach((element: HTMLElement) => {
-	if (element === undefined) {
-		return;
-	}
-
-	const name = element.dataset.module;
-
-	if (!name) {
-		return;
-	}
-
-	const module = modules[name];
-
-	if (module) {
-		new module(element);
-		element.setAttribute('data-initialized', 'true');
-	}
+/**
+ * Reinitialize modules after the paywall is removed
+ */
+document.addEventListener('onLLPaywallRemoved', () => {
+	ModuleInitializer({
+		oembed: OEmbed,
+		table: Table,
+		'social-share': SocialShare,
+	});
 });
 
 //eslint-disable-next-line
