@@ -169,7 +169,7 @@ class base_block extends Block_Type {
 				/**
 				 * Get active theme from options
 				 */
-				$active_theme = 'theme-' . get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) ) ?? '';
+				$active_theme = 'theme-' . get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
 
 				return '<div class="clarkson-acf-preview-block ' . $active_theme . ' ">' . $block_content . '</div>';
 			} else {
