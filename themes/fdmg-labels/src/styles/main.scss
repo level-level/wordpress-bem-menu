@@ -1,5 +1,6 @@
 @tailwind base;
 @tailwind components;
+@tailwind utilities;
 
 :root {
 	// Brand
@@ -40,8 +41,6 @@
 	@apply before:absolute before:inset-0 before:z-10;
 }
 
-@tailwind utilities;
-
 // Common
 @import '_common/mixins';
 @import '_common/breakpoints';
@@ -67,15 +66,11 @@
 
 // Components
 @import 'components/buttons';
-@import 'components/datepicker';
 @import 'components/skip-to-content';
 @import 'components/gravity-forms';
 @import 'components/pagination';
 @import 'components/navigation/primary-nav';
 @import 'components/navigation/footer-nav';
-@import 'components/header-menu';
-@import 'components/menu-dropdown';
 @import 'components/comment-form';
-@import 'components/highlighted-content';
 @import 'components/advertisement';
 @import 'components/popup-maker';

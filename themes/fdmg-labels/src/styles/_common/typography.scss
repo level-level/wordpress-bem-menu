@@ -88,9 +88,11 @@ address {
 
 // Focus style
 * {
-	@include focus-style;
+	&:focus-visible {
+		@include focus-style(var(--base-800));
 
-	@include dark-mode {
-		@include focus-style(var(--base-50));
+		@include dark-mode {
+			@include focus-style(var(--base-50));
+		}
 	}
 }

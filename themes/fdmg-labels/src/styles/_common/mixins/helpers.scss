@@ -126,23 +126,10 @@
 // $color: the color of the outline
 // $styleOnly: when you only need the actual styling of a focus state
 @mixin focus-style($color: var(--base-800), $styleOnly: false) {
-	@if $styleOnly {
-		outline: 2px solid;
-		outline-color: $color;
-		outline-offset: 2px;
-		transition: none;
-	}
-
-	@else {
-		* {
-			&:focus-visible {
-				outline: 2px solid;
-				outline-color: $color;
-				outline-offset: 2px;
-				transition: none;
-			}
-		}
-	}
+	outline: 2px solid;
+	outline-color: $color;
+	outline-offset: 2px;
+	transition: none;
 }
 
 // WP Alignments

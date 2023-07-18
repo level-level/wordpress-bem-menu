@@ -114,6 +114,8 @@
 		border: 0;
 		transform: scaleY(1);
 		transition: $time;
+		display: flex;
+		align-items: center;
 
 		@include dark-mode {
 			color: var(--base-50);

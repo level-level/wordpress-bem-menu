@@ -1,237 +1,109 @@
-.gravity-forms {
-	form {
-		& > * + * {
-			margin-top: $spacing-6;
-		}
-	}
+/* stylelint-disable selector-not-notation */
 
-	.gform_fields {
-		grid-row-gap: $spacing-8 !important;
+/* Style inputs here */
+.gravity-forms input[type='text'],
+.gravity-forms input[type='email'],
+.gravity-forms input[type='search'],
+.gravity-forms input[type='url'],
+.gravity-forms input[type='number'],
+.gravity-forms input[type='tel'],
+.gravity-forms input[type='password'],
+.gravity-forms select,
+.gravity-forms textarea {
+	@apply border-b-2 border-transparent border-b-primary;
+}
 
-		@include breakpoint(sm) {
-			grid-column-gap: $spacing-8 !important;
-		}
-	}
+.gravity-forms .gfield_checkbox .gchoice,
+.gravity-forms .gfield_radio .gchoice {
+	@apply mt-2;
+}
 
-	.ginput_complex {
-		display: flex;
-		flex-direction: column;
+.gravity-forms input[type='checkbox'],
+.gravity-forms input[type='radio'] {
+	@apply mr-1 shadow-sm border-base-300;
+}
 
-		@include breakpoint(sm) {
-			flex-direction: row;
-			flex-wrap: nowrap;
+.gravity-forms .gform_title {
+	@apply mb-3 text-xl font-bold;
+}
 
-			// Represents every item (span) in a complex element
-			& > * + * {
-				margin-left: $spacing-6;
-			}
+.gravity-forms .gform-icon::before {
+	@apply hidden;
+}
 
-			span {
-				width: 100%;
-			}
-		}
+.gravity-forms .gform_validation_errors {
+	@apply p-6 mb-6 border-2 border-base-700 border-solid;
+}
 
-		& > * + * {
-			margin-top: $spacing-3;
+.gravity-forms .gform_submission_error {
+	@apply mb-3 font-bold text-md;
+}
 
-			@include breakpoint(sm) {
-				margin-top: 0;
-			}
-		}
+.gravity-forms .gform_validation_errors li {
+	@apply ml-6 list-disc before:hidden;
+	@apply pl-0 #{!important};
+}
 
-		&.ginput_container_address {
-			@include breakpoint(sm) {
-				flex-wrap: wrap;
-				justify-content: space-between;
+.gravity-forms .gform_validation_errors a {
+	@apply underline hocus:no-underline;
+}
 
-				& > * + * {
-					margin-left: 0;
-				}
-			}
+.gravity-forms .gfield_validation_message {
+	@apply mt-2 text-sm text-base-700;
+}
 
-			span {
-				&.ginput_full + .ginput_full {
-					margin-top: $spacing-3;
+.gravity-forms fieldset .ginput_complex > * {
+	@apply flex flex-col items-stretch w-1/2;
+}
 
-					@include breakpoint(sm) {
-						margin-top: $spacing-6;
-					}
-				}
+.gravity-forms fieldset .ginput_complex {
+	@apply inline-flex gap-2;
+}
 
-				&.ginput_left,
-				&.ginput_right {
-					@include breakpoint(sm) {
-						width: calc(50% - #{$spacing-3});
-						margin-top: $spacing-6;
-					}
-				}
-			}
-		}
+.gravity-forms fieldset .ginput_complex input[type='number'] {
+	@apply min-w-[100px];
+}
 
-		.gf_clear_complex {
-			display: none;
-		}
-	}
+.gravity-forms .gfield_required {
+	@apply ml-1;
+}
 
-	.gform-icon {
-		display: none;
-	}
+fieldset .ginput_complex.ginput_container_name {
+	@apply flex gap-5 justify-items-stretch;
+}
 
-	.gform_drop_area {
-		display: flex;
-		align-items: center;
+.gform_footer {
+	@apply my-4;
+}
 
-		.gform_drop_instructions {
-			display: block;
-			margin-right: $spacing-3;
-			margin-bottom: 0;
-		}
+.gravity-forms .gform_fileupload_rules {
+	@apply text-sm;
+}
 
-		button {
-			padding: 5px 10px;
-		}
-	}
+.gfield_description a {
+	@apply underline hocus:no-underline;
+}
 
-	.gform_fileupload_rules {
-		@include font-size(14px);
-	}
+.gform_required_legend {
+	@apply mb-8 text-right;
+}
 
-	// Upload items in the file field (multi-upload enabled)
-	div[id^='gform_preview'] {
-		& > * + * {
-			margin-top: 15px;
-		}
+.ginput_container {
+	@apply mt-2;
+}
 
-		& > * {
-			display: flex;
-			align-items: center;
-		}
+.gfield--type-consent legend {
+	@apply sr-only;
+}
 
-		button {
-			padding: 5px;
-			color: var(--primary);
+.gfield--type-consent {
+	@apply text-sm;
+}
 
-			@include dark-mode {
-				color: var(--primary-300);
-			}
+.gform_footer {
+	@apply mt-8;
+}
 
-			& + * {
-				margin-left: 10px;
-			}
-		}
-	}
-
-	.gfield_required {
-		@include font-normal();
-		color: var(--primary);
-		text-transform: lowercase;
-
-		@include dark-mode {
-			color: var(--primary-300);
-		}
-
-		&.gfield_required_text,
-		&.gfield_required_custom {
-			margin-left: 5px;
-		}
-	}
-
-	.gsection,
-	.gform_heading {
-		& > * + * {
-			margin-top: $spacing-3;
-		}
-
-		.gform_description {
-			display: block;
-		}
-	}
-
-	.gform_heading {
-		margin-bottom: $spacing-3;
-	}
-
-	.gfield_consent_label,
-	.gfield_consent_description {
-		@include font-size(16px);
-	}
-
-	.gfield_consent_description {
-		padding-left: $spacing-6;
-	}
-
-	.hidden_label {
-		.gfield_label,
-		.gfield_required {
-			display: none;
-		}
-	}
-
-	.gfield_error {
-		position: relative;
-		padding: $spacing-3 !important;
-		background-color: var(--error) !important;
-
-		.validation_message {
-			@include font-size(14px);
-			margin-top: 10px;
-			border-top: 1px solid var(--base-800);
-			padding-top: 10px;
-			color: var(--base-800);
-
-			@include dark-mode {
-				color: var(--base-50);
-			}
-		}
-
-		label,
-		legend {
-			color: var(--base-800);
-
-			@include dark-mode {
-				color: var(--base-50);
-			}
-		}
-
-		legend {
-			background-color: var(--error) !important;
-			margin-left: calc(-1 * #{$spacing-3}) !important;
-			padding: $spacing-3 !important;
-			padding-top: 5px !important;
-			margin-bottom: 0 !important;
-		}
-	}
-
-	.gform_validation_errors,
-	.validation_error {
-		@include font-size(16px);
-		position: relative;
-		padding: $spacing-3;
-		background-color: var(--error);
-		margin: $spacing-3 0;
-
-		* {
-			color: var(--base-800);
-
-			@include dark-mode {
-				color: var(--base-50);
-			}
-		}
-
-		ol {
-			margin-bottom: 0;
-		}
-	}
-
-	.gform_submission_error {
-		@include font-size(20px);
-	}
-
-	// Honeypot hidden input
-	.gform_validation_container,
-	.gfield_visibility_hidden,
-	.gform_hidden,
-	.hour_minute_colon {
-		display: none !important;
-	}
+.gravity-forms .gform_wrapper.gravity-theme .gform_fields {
+	grid-row-gap: 36px;
 }

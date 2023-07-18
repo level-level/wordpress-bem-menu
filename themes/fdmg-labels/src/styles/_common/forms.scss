@@ -28,15 +28,6 @@
 		@include font-size(16px);
 	}
 
-	&:focus,
-	&:active {
-		@include focus-style;
-
-		@include dark-mode {
-			@include focus-style(--base-50);
-		}
-	}
-
 	@include placeholder {
 		color: var(--base-500);
 		opacity: 0.8;
@@ -62,6 +53,7 @@
 @mixin label {
 	@include font-bold;
 	@include font-size(16px);
+	line-height: 1;
 	display: block;
 	margin-bottom: 5px;
 	cursor: pointer;
@@ -83,7 +75,7 @@
 		@include focus-style;
 
 		@include dark-mode {
-			@include focus-style(--base-50);
+			@include focus-style(var(--base-50));
 		}
 	}
 }
@@ -97,7 +89,7 @@
 	&:before {
 		position: absolute;
 		left: 0;
-		top: 4px;
+		top: 0;
 		width: 16px;
 		height: 16px;
 		border: 2px solid var(--secondary-400);
@@ -115,7 +107,7 @@
 		display: none;
 		position: absolute;
 		left: 2px;
-		top: 6px;
+		top: 2px;
 		width: 12px;
 		height: 12px;
 		background-color: var(--primary);

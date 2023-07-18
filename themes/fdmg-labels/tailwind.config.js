@@ -56,6 +56,9 @@ module.exports = {
 			backgroundImage: {
 				...themeLogos,
 			},
+			transitionTimingFunction: {
+				'theme-bezier': 'cubic-bezier(0.2, 0.91, 0.53, 1)',
+			},
 		},
 		screens: {
 			sm: '768px',
@@ -159,6 +162,8 @@ module.exports = {
 			addVariant('image', '& > img');
 			addVariant('iframe', '& > iframe');
 			addVariant('svg', '& > svg');
+			addVariant('owl', '& > * + *');
+			addVariant('ulli', '& > ul li');
 
 			addVariant('btn-text', ({ modifySelectors, separator }) => {
 				modifySelectors(({ className }) => {
