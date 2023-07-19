@@ -23,12 +23,12 @@ class FeatureManagerTest extends WPTestCase {
 	public function test_can_check_if_feature_is_enabled(): void {
 		update_field( 'features', array( 'example' => true ), 'options' );
 
-		$this->assertTrue( $this->feature_manager->is_enabled( FeatureManager::FEATURE_EXAMPLE ) );
+		$this->assertTrue( $this->feature_manager->is_enabled( FeatureManager::FEATURE_COMPACT_HEADER ) );
 	}
 
 	public function test_can_check_if_feature_is_disabled(): void {
 		update_field( 'features', array( 'example' => false ), 'options' );
 
-		$this->assertFalse( $this->feature_manager->is_enabled( FeatureManager::FEATURE_EXAMPLE ) );
+		$this->assertFalse( $this->feature_manager->is_enabled( FeatureManager::FEATURE_COMPACT_HEADER ) );
 	}
 }
