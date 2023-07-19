@@ -118,7 +118,6 @@ class base_block extends Block_Type {
 			}
 
 			if ( is_null( $data ) ) {
-
 				try {
 					// Generate a block id
 					$block_id = acf_get_block_id( $attributes );
@@ -154,15 +153,11 @@ class base_block extends Block_Type {
 			do_action( 'clarkson_core_block_pre_render', $this, $block_args );
 
 			if ( $errors->has_errors() ) {
-				$block_content = $cc_template->render_twig(
-					'partials/components/gb-invalid.twig', array(
-						'required_fields' => $errors->get_error_messages(),
-					),
-					true
-				);
-			} else {
-				$block_content = $cc_template->render_twig( $this->get_twig_template_path(), $block_args, true );
+				$block_args['errors'] = $errors;
+				return $cc_template->render_twig( 'partials/components/block-placeholder.twig', $block_args, true );
 			}
+
+			$block_content = $cc_template->render_twig( $this->get_twig_template_path(), $block_args, true );
 
 			if ( is_admin() && $block === true ) {
 

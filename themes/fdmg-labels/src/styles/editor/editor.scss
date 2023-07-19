@@ -92,21 +92,6 @@
 	}
 }
 
-.gb-placeholder,
-.gb-invalid {
-	position: relative;
-	padding: $spacing-6;
-	background-color: var(--error);
-
-	&__required {
-		margin-top: 15px;
-
-		ul {
-			margin: 0;
-		}
-	}
-}
-
 .block-editor-block-list {
 	&__layout {
 		> * + * {
@@ -144,6 +129,10 @@
 	.wp-block-widget-area__panel-body-content {
 		background-color: var(--secondary-100);
 	}
+}
+
+strong {
+	@include font-bold;
 }
 
 /* Editor sidebar styling */
