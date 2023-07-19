@@ -47,7 +47,7 @@ class LatestArticles {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Widget] Latest articles', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Latest articles', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Number::make( _x( 'Overwrite the default amount (5) of articles to be shown.', 'Fields', 'fdmg-labels' ), self::WIDGET_META_AMOUNT )
 						->defaultValue( 5 )

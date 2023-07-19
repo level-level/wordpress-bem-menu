@@ -7,7 +7,7 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			<div class="layout-header-wrapper">
+			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				{% include 'styleguide/components/author-header.twig' with {
 					label: _x('Author', 'Label', 'fdmg-labels'),
 					title: title,

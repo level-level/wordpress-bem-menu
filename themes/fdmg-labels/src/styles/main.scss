@@ -2,17 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	// Brand
+	--primary: #cd3613;
+	--primary-300: #df593b;
+
+	// Secondary
+	--secondary-100: #f3f9fd;
+	--secondary-200: #e7f3fb;
+	--secondary-300: #a2c3d6;
+	--secondary-400: #73a6bf;
+	--secondary-500: #4a738c;
+	--secondary-600: #335061;
+
+	// Base
+	--base-50: #fff;
+	--base-100: #fbfeff;
+	--base-200: #e4e4e4;
+	--base-300: #313131;
+	--base-400: #222;
+	--base-500: #1a1a1a;
+	--base-600: #191919;
+	--base-700: #0b0b0b;
+	--base-800: #000;
+}
+
+.theme-energeia {
+	--primary: #01b06d;
+	--primary-300: #97d7b5;
+}
+
+.theme-pensioen-pro {
+	--primary: #2c3b60;
+	--primary-300: #5e7697;
+}
+
+.absolute-link {
+	@apply before:absolute before:inset-0 before:z-10;
+}
+
 // Common
 @import '_common/mixins';
 @import '_common/breakpoints';
 @import '_common/default';
 @import '_common/icons';
 @import '_common/variables';
-@import '_common/colors';
 @import '_common/fonts';
 @import '_common/images';
 @import '_common/print';
-@import '_common/lists';
 @import '_common/screen-reader';
 @import '_common/blockquote';
 @import '_common/tables';
@@ -23,49 +60,17 @@
 @import '_common/entry-content';
 
 // Layout
-@import 'layout/header';
-@import 'layout/footer';
 @import 'layout/container';
 @import 'layout/section';
-@import 'layout/layout';
 @import 'layout/sidebar';
 
 // Components
 @import 'components/buttons';
-@import 'components/datepicker';
 @import 'components/skip-to-content';
-@import 'components/brand';
 @import 'components/gravity-forms';
 @import 'components/pagination';
 @import 'components/navigation/primary-nav';
 @import 'components/navigation/footer-nav';
-@import 'components/header-menu';
-@import 'components/header-search';
-@import 'components/header-profile';
-@import 'components/menu-dropdown';
-@import 'components/teasers/_teaser-post';
-@import 'components/teasers/teaser-post-large';
-@import 'components/teasers/teaser-post-wide';
-@import 'components/teasers/teaser-post-small';
-@import 'components/teasers/teaser-post-inline';
-@import 'components/teasers/teaser-comment';
-@import 'components/teasers/teaser-team';
-@import 'components/teasers/teaser-partner';
-@import 'components/badge';
-@import 'components/social-share';
-@import 'components/responsibility';
-@import 'components/tabs';
-@import 'components/list-item';
 @import 'components/comment-form';
-@import 'components/highlighted-content';
-@import 'components/article-header';
-@import 'components/bio';
-@import 'components/author-header';
 @import 'components/advertisement';
-@import 'components/newsletter';
-@import 'components/author-location';
-@import 'components/related-news';
-@import 'components/search-component';
-@import 'components/dark-mode';
 @import 'components/popup-maker';
-@import 'components/cta';

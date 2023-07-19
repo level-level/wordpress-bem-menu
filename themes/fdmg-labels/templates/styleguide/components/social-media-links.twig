@@ -1,9 +1,9 @@
 {% if socials %}
-	<ul class="list-social">
+	<ul class="flex gap-8">
 		{% for social in socials %}
 			{% if social.url %}
-				<li class="list-social__item">
-					<a href="{{ social.url }}" class="list-social__link" aria-label="{{ social.label ? social.label : social.title }}">
+				<li>
+					<a href="{{ social.url }}" class="text-[20px] flex justify-center items-center no-underline text-secondary-600 transition-colors dark:text-base-100 hocus:text-primary hocus:dark:text-primary-300" aria-label="{{ social.label ? social.label : social.title }}">
 						<span class="icon-inline" aria-hidden="true">{{ svg_icons.get(social.icon)|raw }}</span>
 					</a>
 				</li>

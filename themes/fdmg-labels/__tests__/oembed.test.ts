@@ -7,7 +7,7 @@ const createDOM = () => {
 				<div class="oembed-placeholder">
 					<div class="oembed-placeholder__content">
 						<p>This content is available if you agree to the cookies from Youtube.</p>
-						<button class="btn btn--primary js-consent-button">
+						<button class="btn btn-primary js-consent-button">
 							<span class="btn__text">
 								I agree
 							</span>
@@ -21,7 +21,7 @@ const createDOM = () => {
 					<div class="oembed-video__content">
 						<iframe loading="lazy" title="Nero - Crush On You" width="500" height="281" data-src="https://www.youtube.com/embed/124VzSLy7d0?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 						<div class="oembed-video__button">
-							<button class="btn btn--play btn--js-video-play" aria-label="Play video">
+							<button class="btn btn-play btn--js-video-play" aria-label="Play video">
 								<span class="btn__icon">
 									<span class="icon-inline icon-play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="m2 0 17 10L2 20z"></path></svg></span>
 								</span>

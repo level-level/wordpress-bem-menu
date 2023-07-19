@@ -40,8 +40,8 @@ class Features {
 					->instructions( _x( 'Enable or disable features.', 'Fields', 'fdmg-labels' ) )
 						->fields(
 							array(
-								TrueFalse::make( _x( 'Example feature', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_EXAMPLE )
-									->instructions( _x( 'This is an example functionality.', 'Fields', 'fdmg-labels' ) )
+								TrueFalse::make( _x( 'Enable compact page header', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_COMPACT_HEADER )
+									->instructions( _x( 'Enables a more compact header element on top of every page.', 'Fields', 'fdmg-labels' ) )
 									->stylisedUi(),
 							)
 						),

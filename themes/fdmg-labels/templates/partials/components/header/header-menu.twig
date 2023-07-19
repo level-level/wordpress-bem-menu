@@ -1,8 +1,9 @@
 {% set trigger = uniqid('js-header-menu-') %}
-{% set target = uniqid('header-menu__dropdown-') %}
-{% set scrollarea = uniqid('header-menu__inner-') %}
+{% set target = uniqid('js-header-menu-dropdown-') %}
+{% set scrollarea = uniqid('js-header-menu-inner-') %}
 <div
-	class="header-menu sm:hidden"
+	data-component="header-menu"
+	class="relative sm:hidden"
 	data-module="header-menu"
 	data-config='{
 		"trigger": ".{{ trigger }}",
@@ -15,7 +16,7 @@
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: _x('Menu', 'Menu', 'fdmg-labels'),
 		aria_expanded_support: true,
-		class: 'btn--menu ' ~ trigger,
+		class: 'btn-menu ' ~ trigger,
 		aria_label: _x('Open menu', 'Menu', 'fdmg-labels'),
 		aria_expanded_text: _x('Close menu', 'Menu', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open menu', 'Menu', 'fdmg-labels'),
@@ -23,35 +24,36 @@
 		icon_expanded: 'close',
 		icon_left: true,
 	} %}
-	<div class="header-menu__dropdown {{ target }}" aria-hidden="true">
-		<div class="menu-dropdown">
-			<div class="menu-dropdown__inner {{ scrollarea }}">
-				<div class="menu-dropdown__search">
+	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] bg-secondary-200 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-600 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
+
+		<div data-component="menu-dropdown" class="relative flex flex-col h-full outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-600">
+			<div class="mt-[theme(space.header-height)] max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
+				<div class="my-3">
 					<div class="container">
 						{% include 'partials/components/search-header.twig' %}
 					</div>
 				</div>
-				<div class="menu-dropdown__body">
+				<div class="pb-[2px]">
 					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
 						{{ bem_menu('primary_navigation', 'primary-nav') }}
 					</nav>
 
-					<div class="menu-dropdown__item">
+					<div class="mt-auto py-[10px] px-3 border-t border-secondary-600 dark:border-base-800">
 						{% include 'partials/components/header/header-display-options.twig' %}
 					</div>
 				</div>
 			</div>
 
 			{% set newsletter = options.newsletter %}
-			<div class="menu-dropdown__footer">
-				<ul class="list-dropdown-buttons">
+			<div class="mt-auto border-t border-secondary-300 height-[calc(theme(space.header-height+10px))] dark:border-base-400">
+				<ul class="flex justify-between h-full flex-nowrap">
 
 					{% if newsletter.button.title and newsletter.button.url %}
-						<li class="list-dropdown-buttons__item">
+						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
 								url: newsletter.button.url,
-								class: '',
+								class: 'w-full justify-center h-full !text-base-50 !text-[20px]',
 								is_external: newsletter.button.target ? true,
 								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 								icon: 'email',
@@ -62,8 +64,9 @@
 				</ul>
 			</div>
 		</div>
+
 	</div>
-	<div class="header-menu__backdrop"></div>
+	<div data-component="backdrop" aria-hidden="true" class="js-header-menu-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[2] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>
 </div>
 
 <div class="hidden sm:block">

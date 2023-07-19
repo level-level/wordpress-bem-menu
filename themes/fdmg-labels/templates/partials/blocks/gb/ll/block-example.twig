@@ -1,8 +1,0 @@
-{% set image_id = get_post_thumbnail_id(post_id) %}
-{% if image_id %}
-	<div class="section--core">
-		<div class="container">
-			{{ wp_get_attachment_image(image_id, 'large')|raw }}
-		</div>
-	</div>
-{% endif %}

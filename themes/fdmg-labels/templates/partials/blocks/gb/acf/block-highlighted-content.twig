@@ -2,26 +2,26 @@
 {% set content = data.content %}
 
 {% if content %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
-		<div class="highlighted-content">
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="relative border-t-[3px] border-t-primary border-b border-b-base-800 py-3 dark:border-t-primary-300">
 			<div class="flex flex-col gap-3">
 
 				{% if title %}
-					<div class="highlighted-content__title">
+					<div class="pb-3 border-b border-b-base-800">
 						<h2>
 							{{ title|raw }}
 						</h2>
 					</div>
 				{% endif %}
 
-				<div class="highlighted-content__content">
+				<div class="font-body text-[17px] owl:mt-4 ulli:font-body-bold ulli:text-base sm:ulli:text-md">
 					{{ content|raw }}
 				</div>
 			</div>
 		</div>
 	</div>
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Content']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Content', 'Block', 'fdmg-labels')]
 	} %}
 {% endif %}

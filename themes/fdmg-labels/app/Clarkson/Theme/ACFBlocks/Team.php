@@ -48,7 +48,7 @@ class Team {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Team', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Team', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Text::make( _x( 'Use this title to overwrite the default title: \'Meet our editorial team\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
 					Relationship::make( _x( 'Select the team members', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TEAM )

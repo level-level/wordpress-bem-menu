@@ -75,7 +75,7 @@
 		}
 
 		a:not([class]) {
-			color: var(--primary-400);
+			color: var(--primary);
 		}
 	}
 }
@@ -89,21 +89,6 @@
 		list-style-type: none;
 		margin: 0;
 		padding: 0;
-	}
-}
-
-.gb-placeholder,
-.gb-invalid {
-	position: relative;
-	padding: $spacing-6;
-	background-color: var(--error);
-
-	&__required {
-		margin-top: 15px;
-
-		ul {
-			margin: 0;
-		}
 	}
 }
 
@@ -144,4 +129,13 @@
 	.wp-block-widget-area__panel-body-content {
 		background-color: var(--secondary-100);
 	}
+}
+
+strong {
+	@include font-bold;
+}
+
+/* Editor sidebar styling */
+.interface-complementary-area {
+	width: 400px;
 }

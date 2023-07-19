@@ -13,9 +13,16 @@
 		#}
 		<script>
 			try {
-				if ( localStorage.getItem( 'theme-style' ) === null ) {
-					localStorage.setItem( 'theme-style', 'system' );
+				var isDarkPreference = window.matchMedia("(prefers-color-scheme: dark)");
+
+				if ( localStorage.getItem( 'theme-style' ) === null || localStorage.getItem( 'theme-style' ) === 'system' ) {
+					if (isDarkPreference.matches) {
+						localStorage.setItem( 'theme-style', 'dark' );
+					} else {
+						localStorage.setItem( 'theme-style', 'light' );
+					}
 				}
+
 				var preference = localStorage.getItem( 'theme-style' );
 				document.documentElement.setAttribute( 'data-theme', preference );
 			} catch (e) {}
@@ -41,7 +48,9 @@
 
 		{{ wp_head() }}
 	</head>
-	<body {{ body_class() }}>
+
+	{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
+	<body {{ body_class(use_compact_header ? 'pt-header-height has-compact-header' : 'pt-header-height') }}>
 
 	{% if function_exists('gtm4wp_the_gtm_tag') %}
 		{{ gtm4wp_the_gtm_tag() }}

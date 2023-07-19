@@ -56,7 +56,7 @@ class Vacancies {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Widget] Vacancies/Jobs', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Vacancies/Jobs', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::WIDGET_META_USAGE )
 						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels' ) )

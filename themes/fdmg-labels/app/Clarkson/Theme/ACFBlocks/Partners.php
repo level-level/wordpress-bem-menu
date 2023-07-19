@@ -48,7 +48,7 @@ class Partners {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Partners', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Partners', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Text::make( _x( 'Use this title to overwrite the default title: \'Our partners\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
 					Relationship::make( _x( 'Select the partners', 'Fields', 'fdmg-labels' ), self::BLOCK_META_PARTNERS )

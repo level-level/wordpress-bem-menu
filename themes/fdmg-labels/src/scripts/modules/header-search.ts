@@ -10,9 +10,9 @@ class HeaderSearch implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.backdrop = this.element.querySelector('.header-search__backdrop');
+		this.backdrop = this.element.querySelector('.js-header-search-backdrop');
 		this.headerOpen = this.element.querySelector('.js-header-search-open');
-		this.dropdown = this.element.querySelector('.header-search__dropdown');
+		this.dropdown = this.element.querySelector('.js-header-dropdown');
 
 		this.initialize();
 	}
@@ -54,11 +54,11 @@ class HeaderSearch implements IModule {
 	}
 
 	showBackdrop() {
-		this.backdrop?.classList.add('header-search__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'false');
 	}
 
 	hideBackdrop() {
-		this.backdrop?.classList.remove('header-search__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'true');
 	}
 }
 

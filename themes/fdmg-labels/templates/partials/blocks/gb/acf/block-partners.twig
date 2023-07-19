@@ -2,7 +2,7 @@
 {% set objects = data.partners %}
 
 {% if objects %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
+	<div class="{{ align }}" data-name="{{ block.name }}">
 		<div class="flex flex-col gap-3">
 			<h2>{{ title|raw }}</h2>
 			<ul class="flex flex-col gap-6">
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Team member(s)']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Partners', 'Block', 'fdmg-labels')]
 	} %}
 {% endif %}

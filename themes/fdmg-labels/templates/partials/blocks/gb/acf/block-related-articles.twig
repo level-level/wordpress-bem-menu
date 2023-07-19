@@ -2,12 +2,14 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
-		<div class="related-news">
-			<h2 class="related-news__title">{{ title|raw }}</h2>
-			<ul class="list-related-news">
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="relative border-b-2 border-secondary-400 bg-secondary-200 dark:bg-base-600 dark:border-transparent">
+
+			<h2 class="font-body-bold text-lg text-primary p-3 border-b border-secondary-400 dark:border-base-800 sm:text-[24px] sm:py-3 sm:px-6">{{ title|raw }}</h2>
+
+			<ul class="py-3">
 				{% for object in objects %}
-					<li class="list-related-news__item">
+					<li class="sm:mx-6">
 
 						{% set image_id = object.get_thumbnail_id() %}
 						{% set terms = object.get_terms('category') %}
@@ -21,6 +23,7 @@
 								name: term.get_name(),
 							}),
 							useH3: true,
+							is_last_item: loop.last,
 						} %}
 					</li>
 				{% endfor %}
@@ -28,7 +31,7 @@
 		</div>
 	</div>
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Articles']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Articles', 'Block', 'fdmg-labels')]
 	} %}
 {% endif %}

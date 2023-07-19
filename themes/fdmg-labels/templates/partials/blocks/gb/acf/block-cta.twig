@@ -12,7 +12,7 @@
 		}
 	} %}
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Title', 'Image', 'Text', 'Button link']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Title', 'Block', 'fdmg-labels'), _x('Image', 'Block', 'fdmg-labels'), _x('Text', 'Block', 'fdmg-labels'), _x('Button link', 'Block', 'fdmg-labels')]
 	} %}
 {% endif %}

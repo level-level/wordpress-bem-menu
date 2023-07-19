@@ -7,8 +7,8 @@ class Tabs implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.tabLinks = Array.from(this.element.querySelectorAll('.tab-list__link'));
-		this.tabSections = Array.from(this.element.querySelectorAll('.tab-list__section'));
+		this.tabLinks = Array.from(this.element.querySelectorAll('.js-link'));
+		this.tabSections = Array.from(this.element.querySelectorAll('.js-section'));
 
 		this.initialize();
 	}
@@ -43,20 +43,20 @@ class Tabs implements IModule {
 		if (event.key === 'ArrowLeft') {
 			const previousTab = target?.parentElement?.previousElementSibling;
 
-			if (previousTab?.classList.contains('tab-list__item')) {
+			if (previousTab?.classList.contains('js-item')) {
 				target.blur();
-				previousTab?.querySelector<HTMLElement>('.tab-list__link')?.focus();
-				this.switchTab(target, previousTab.querySelector('.tab-list__link'));
+				previousTab?.querySelector<HTMLElement>('.js-link')?.focus();
+				this.switchTab(target, previousTab.querySelector('.js-link'));
 			}
 		}
 
 		if (event.key === 'ArrowRight') {
 			const nextTab = target?.parentElement?.nextElementSibling;
 
-			if (nextTab?.classList.contains('tab-list__item')) {
+			if (nextTab?.classList.contains('js-item')) {
 				target.blur();
-				nextTab?.querySelector<HTMLElement>('.tab-list__link')?.focus();
-				this.switchTab(target, nextTab.querySelector('.tab-list__link'));
+				nextTab?.querySelector<HTMLElement>('.js-link')?.focus();
+				this.switchTab(target, nextTab.querySelector('.js-link'));
 			}
 		}
 	}

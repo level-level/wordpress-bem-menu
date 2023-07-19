@@ -1,8 +1,9 @@
 {% set trigger = uniqid('js-header-profile-') %}
-{% set target = uniqid('header-profile__dropdown-') %}
+{% set target = uniqid('js-header-profile-dropdown-') %}
 
 <div
-	class="header-profile"
+	data-component="header-profile"
+	class="relative flex"
 	data-module="header-profile"
 	data-config='{
 		"trigger": ".{{ trigger }}",
@@ -11,15 +12,15 @@
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: '',
 		aria_expanded_support: true,
-		class: 'btn--header ' ~ trigger,
+		class: button_class ~ ' ' ~ trigger,
 		aria_label: _x('Open profile', 'Profile', 'fdmg-labels'),
 		aria_expanded_text: _x('Close profile', 'Profile', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open profile', 'Profile', 'fdmg-labels'),
 		icon: 'user',
 		icon_left: true,
 	} %}
-	<div class="header-profile__dropdown {{ target }}" aria-hidden="true">
-		<div class="header-profile__inner">
+	<div class="block absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] right-0 p-0 bg-secondary-200 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
+		<div class="p-5 text-base">
 			{% include 'partials/components/header/header-display-options.twig' %}
 		</div>
 	</div>

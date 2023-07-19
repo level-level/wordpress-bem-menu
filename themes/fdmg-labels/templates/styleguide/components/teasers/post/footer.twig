@@ -1,5 +1,5 @@
 {% if authors or comments > 0 %}
-	<div class="teaser-post__footer">
+	<div class="text-sm relative z-10 leading-none border-t border-[rgb(0,0,0,0.1)] p-3 mt-auto min-h-[47px] dark:border-base-800 sm:px-6">
 		<div class="flex items-center justify-between flex-nowrap">
 
 			{% if authors %}
@@ -13,7 +13,7 @@
 								{% include 'styleguide/components/buttons/button-link.twig' with {
 									text: object.name,
 									url: object.url,
-									class: 'btn--link',
+									class: 'btn-link',
 								} %}
 							</li>
 						{% endfor %}
@@ -28,7 +28,7 @@
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: comments,
 								url: url ~ '#comments',
-								class: 'btn--link',
+								class: 'btn-link',
 								aria_label: _n('%s comment on %s', '%s comments on %s', comments, 'fdmg-labels')|format(comments, title),
 								icon: 'comment',
 								icon_left: true,
