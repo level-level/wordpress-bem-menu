@@ -12,8 +12,9 @@ class Feed extends GFFeedAddOn {
 	// Changable fields
 	public const META_ENABLED = 'selligent_enabled';
 
-	// Field maps
-	public const META_FIELD_MAP = 'selligent_field_map';
+	// Field map
+	public const META_FIELD_MAP       = 'selligent_field_map';
+	public const META_FIELD_MAP_EMAIL = 'email';
 
 	// Automatically set meta
 	public const META_IS_SELLIGENT_ENTRY = 'is_selligent_entry';
@@ -88,7 +89,7 @@ class Feed extends GFFeedAddOn {
 				'tooltip'    => __( 'Koppel velden die naar Selligent moeten worden gestuurd.', 'fdmg-labels' ),
 				'field_map'  => array(
 					array(
-						'name'       => 'email',
+						'name'       => self::META_FIELD_MAP_EMAIL,
 						'label'      => __( 'E-mail address', 'fdmg-labels' ),
 						'field_type' => array( 'email' ),
 						'required'   => true,
