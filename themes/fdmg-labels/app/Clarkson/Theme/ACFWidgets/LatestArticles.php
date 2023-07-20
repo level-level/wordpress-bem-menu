@@ -20,18 +20,17 @@ class LatestArticles {
 	public function register(): void {
 		acf_register_block_type(
 			array(
-				'name'            => 'widget-' . self::WIDGET_NAME,
-				'title'           => _x( 'Latest articles', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'list-view',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'latest', 'posts', 'articles' ),
-				'supports'        => array(
+				'name'        => 'widget-' . self::WIDGET_NAME,
+				'title'       => _x( 'Latest articles', 'Block', 'fdmg-labels' ),
+				'description' => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels' ),
+				'icon'        => 'list-view',
+				'align'       => 'center', // full, wide, left, center, right
+				'keywords'    => array( 'latest', 'posts', 'articles' ),
+				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
+				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
