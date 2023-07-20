@@ -12,18 +12,18 @@ use GFAPI;
 class OptinNewsletterOnSubmissionTest extends WPTestCase {
 
 	public function test_schedule(): void {
-		$form            = GFAPI::get_form(
+		$form = GFAPI::get_form(
 			GFAPI::add_form(
 				array(
-					'title'                               => 'form title',
-					'fields'                              => array(
+					'title'  => 'form title',
+					'fields' => array(
 						new GF_Field_Email(
 							array(
 								'label'      => 'Email',
 								'isRequired' => true,
 							)
 						),
-					)
+					),
 				)
 			)
 		);
