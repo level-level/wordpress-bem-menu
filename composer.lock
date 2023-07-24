@@ -6104,16 +6104,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.1.9",
+            "version": "3.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "38e15758d2960d31ce6347bff843574f147d2630"
+                "reference": "d591a12891305b29ff0e1e08e2a173e6f915abf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/38e15758d2960d31ce6347bff843574f147d2630",
-                "reference": "38e15758d2960d31ce6347bff843574f147d2630",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/d591a12891305b29ff0e1e08e2a173e6f915abf4",
+                "reference": "d591a12891305b29ff0e1e08e2a173e6f915abf4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6148,11 +6148,10 @@
             },
             "require-dev": {
                 "erusev/parsedown": "^1.7",
-                "ext-pcntl": "*",
-                "ext-sockets": "*",
                 "gumlet/php-image-resize": "^1.6",
                 "lucatume/codeception-snapshot-assertions": "^0.2",
                 "mikey179/vfsstream": "^1.6",
+                "symfony/translation": "^3.4",
                 "victorjonsson/markdowndocs": "dev-master",
                 "vlucas/phpdotenv": "^3.0",
                 "wp-cli/wp-cli-bundle": "*"
@@ -6203,7 +6202,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.1.9"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.1.10"
             },
             "funding": [
                 {
@@ -6211,7 +6210,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-11T07:42:24+00:00"
+            "time": "2023-07-20T16:11:45+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
