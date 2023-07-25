@@ -4,7 +4,7 @@
 
 			{% if most_read %}
 				<li role="presentation" class="grow js-item">
-					<a role="tab" href="#most-read" id="tab1" class="font-body-bold text-md relative block py-4 px-6 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-200 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 js-link" aria-selected="true">
+					<a role="tab" href="#most-read" id="tab1" class="font-body-bold text-md relative block py-4 px-6 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-200 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-secondary-700 js-link" aria-selected="true">
 						{{ _x('Most read', 'Block', 'fdmg-labels') }}
 					</a>
 				</li>
@@ -12,7 +12,7 @@
 
 			{% if latest %}
 				<li role="presentation" class="grow js-item">
-					<a role="tab" href="#latest" id="tab2" class="font-body-bold text-md relative block py-4 px-6 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-200 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 js-link" tabindex="-1" {{ not most_read ? 'aria-selected="true"' }}>
+					<a role="tab" href="#latest" id="tab2" class="font-body-bold text-md relative block py-4 px-6 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-200 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-secondary-700 js-link" tabindex="-1" {{ not most_read ? 'aria-selected="true"' }}>
 						{{ _x('Latest articles', 'Block', 'fdmg-labels') }}
 					</a>
 				</li>
