@@ -2,6 +2,7 @@
 
 namespace Gutenberg\Blocks;
 
+use Clarkson\Theme\PostTypes\Vacancy;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use WP_Post;
@@ -9,7 +10,7 @@ use WP_Query;
 
 class acf_widget_vacancies extends base_block {
 
-	public const POST_TYPES   = array( 'ii_vacancy' );
+	public const POST_TYPES   = array( Vacancy::POST_TYPE_NAME );
 	public const TAX_RELATION = 'OR';
 
 	/**
