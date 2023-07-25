@@ -7,6 +7,7 @@
 	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
 	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
 	@apply theme-energeia:dark:text-base-600;
+	@apply theme-energeia:text-base-800;
 }
 
 .btn-secondary {
@@ -27,8 +28,8 @@
 
 .btn-profile {
 	@apply font-body text-base-500 rounded-none dark:text-base-100 p-0;
-	@apply w-[48px] h-[48px] border border-primary dark:border-primary-300;
-	@apply btn-icon:text-[20px] btn-icon:text-primary dark:btn-icon:text-primary-300;
+	@apply w-[48px] h-[48px] border border-primary theme-energeia:border-secondary-700 dark:border-primary-300;
+	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-secondary-700 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600 justify-center;
 }
@@ -36,7 +37,7 @@
 .btn-share {
 	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800;
 	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:text-base-50 theme-energeia:hocus:dark:text-base-50;
-	@apply text-lg flex items-center btn-icon:text-lg;
+	@apply text-lg flex items-center btn-icon:text-lg theme-energeia:text-base-800;
 }
 
 .btn-share-small {
@@ -52,7 +53,7 @@
 .btn-tertiary {
 	@apply font-body-bold text-secondary-600 p-0 pr-3 rounded-[20px] dark:text-primary-300 sm:pr-[17px];
 	@apply btn-text:no-underline;
-	@apply hocus:bg-primary hocus:text-base-50 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
+	@apply hocus:bg-primary hocus:text-base-50 theme-energeia:hocus:text-base-800 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
 }
 
 .btn-link {
@@ -73,7 +74,7 @@ input[type='submit'] {
 	@apply font-body-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:text-md sm:py-[10px] sm:px-[17px];
 	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
 	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
-	@apply theme-energeia:dark:text-base-600;
+	@apply theme-energeia:dark:text-base-600 theme-energeia:text-base-800;
 }
 
 // Button utilities

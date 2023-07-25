@@ -43,6 +43,7 @@ module.exports = {
 		extend: {
 			spacing: {
 				'admin-bar': 'var(--wp-admin--admin-bar--height, 0px)',
+				container: 'var(--container)',
 				'header-height': 'var(--header-height)',
 				'menu-height': 'var(--menu-height)',
 				'sidebar-width': 'var(--sidebar-width)',
@@ -105,6 +106,7 @@ module.exports = {
 			'secondary-400': 'var(--secondary-400)',
 			'secondary-500': 'var(--secondary-500)',
 			'secondary-600': 'var(--secondary-600)',
+			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],

@@ -1,0 +1,15 @@
+.section-wrapper > *:last-child {
+	@apply pb-6 lg:pb-12;
+}
+
+.section {
+	@apply pt-6;
+}
+
+.section--no-top {
+	@apply pt-0;
+}
+
+.section--no-bottom {
+	@apply pb-0;
+}

@@ -1,5 +1,5 @@
 {% if title and url %}
-	<a data-component="badge" href="{{ url }}" class="relative block text-sm font-body-bold border-2 sm:text-base hocus:text-base-800 hocus:dark:text-primary-300 bg-primary border-primary text-base-50 no-underline py-1 px-[10px] dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 hocus:bg-transparent hocus:dark:bg-transparent transition-[background,color] theme-energeia:dark:text-base-700 hocus:theme-energeia:dark:text-base-50" data-component="badge">
+	<a data-component="badge" href="{{ url }}" class="relative block text-sm font-body-bold border-2 sm:text-base hocus:text-base-800 hocus:dark:text-primary-300 bg-primary border-primary text-base-50 no-underline py-1 px-[10px] dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 hocus:bg-transparent hocus:dark:bg-transparent transition-[background,color] theme-energeia:text-base-800 theme-energeia:dark:text-base-700 hocus:theme-energeia:dark:text-base-50" data-component="badge">
 		{{ title|raw }}
 	</a>
 {% elseif title and rich %}
@@ -7,7 +7,7 @@
 		{{ title|raw }}
 	</div>
 {% elseif title %}
-	<div data-component="badge" class="relative text-sm font-body-bold text-primary dark:text-primary-300 sm:text-base" data-component="badge">
+	<div data-component="badge" class="relative text-sm font-body-bold text-primary theme-energeia:text-secondary-700 dark:text-primary-300 sm:text-base" data-component="badge">
 		{{ title|raw }}
 	</div>
 {% endif %}
