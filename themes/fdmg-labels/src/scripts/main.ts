@@ -10,6 +10,7 @@ import OEmbed from './modules/oembed';
 import Table from './modules/table';
 import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
+import StickyAdvertisement from './modules/sticky-advertisement';
 
 ModuleInitializer({
 	'theme-selection': ThemeSelection,
@@ -23,6 +24,7 @@ ModuleInitializer({
 	table: Table,
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
+	'sticky-advertisement': StickyAdvertisement,
 });
 
 /**

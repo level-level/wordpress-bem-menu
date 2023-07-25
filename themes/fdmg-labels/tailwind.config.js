@@ -37,7 +37,7 @@ for (const theme of customThemes) {
 }
 
 module.exports = {
-	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx, ts}'],
+	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}'],
 	darkMode: ['class', '[data-theme="dark"]'],
 	theme: {
 		extend: {
