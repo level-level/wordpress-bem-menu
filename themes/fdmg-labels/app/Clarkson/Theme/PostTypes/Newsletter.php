@@ -19,6 +19,8 @@ class Newsletter {
 		'core/heading',
 	);
 
+	protected const FIELD_GROUP_NEWSLETTER_META = 'newsletter_meta';
+
 	public const META_MESSAGE          = 'message';
 	public const META_SUBJECT          = 'subject';
 	public const META_PRE_HEADER       = 'pre_header';
@@ -78,6 +80,7 @@ class Newsletter {
 	public function register_fields(): void {
 		register_extended_field_group(
 			array(
+				'key'      => self::FIELD_GROUP_NEWSLETTER_META,
 				'title'    => _x( 'Newsletter meta', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( __( 'Creating a newsletter', 'fdmg-labels' ), self::META_MESSAGE )
