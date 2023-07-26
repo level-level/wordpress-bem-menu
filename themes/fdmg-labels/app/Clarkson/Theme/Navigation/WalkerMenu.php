@@ -47,7 +47,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 
 		$class_names = implode( ' ', $classes );
 
-		$output .= "<ul class='{$class_names} HGAHAHA' aria-hidden='true'>";
+		$output .= "<ul class='{$class_names}' aria-hidden='true'>";
 	}
 
 	/**
@@ -78,7 +78,12 @@ class WalkerMenu extends Walker_Nav_Menu {
 		$prefix     = $this->css_class_prefix;
 		$suffix     = $this->item_css_class_suffixes;
 
-		$has_submenu = isset( $args_array['walker'] ) ? $args_array['walker']->has_children && $args_array['depth'] !== 1 : false;
+		$has_children = isset( $args_array['walker'] ) && $args_array['walker']->has_children;
+		$has_submenu  = false;
+
+		if ( $has_children && ( $args_array['depth'] === 0 || $args_array['depth'] > $depth + 1 ) ) {
+			$has_submenu = true;
+		}
 
 		$class_names = implode( ' ', $this->get_bem_classes( $menu_item, $has_submenu, $depth ) );
 
@@ -115,6 +120,14 @@ class WalkerMenu extends Walker_Nav_Menu {
 	/**
 	 * Ends the element output, if needed.
 	 */
+	/**
+	 *
+	 * @param string $output
+	 * @param object $data_object
+	 * @param integer $depth
+	 * @param object $args
+	 * @return void
+	 */
 	public function end_el( &$output, $data_object, $depth = 0, $args = null ): void {
 		$output .= '</li>';
 	}
@@ -137,11 +150,10 @@ class WalkerMenu extends Walker_Nav_Menu {
 		$active_parent_class   = '';
 		$active_ancestor_class = '';
 
-		// Checks if a single (custom) post is active and add an active parent class to the archive link.
-		$active_post_type  = ! is_archive() && $post ? in_array( 'menu-item-object-' . $post->post_type, $item->classes, true ) && in_array( 'menu-item-type-post_type_archive', $item->classes, true ) : false;
-		$active_posts_page = ! is_home() && $post && $post->post_type === 'post' ? in_array( 'current_page_parent', $item->classes, true ) : false;
-
 		if ( is_array( $item->classes ) ) {
+			// Checks if a single (custom) post is active and add an active parent class to the archive link.
+			$active_post_type      = ! is_archive() && $post ? in_array( 'menu-item-object-' . $post->post_type, $item->classes, true ) && in_array( 'menu-item-type-post_type_archive', $item->classes, true ) : false;
+			$active_posts_page     = ! is_home() && $post && $post->post_type === 'post' ? in_array( 'current_page_parent', $item->classes, true ) : false;
 			$active_page_class     = in_array( 'current-menu-item', $item->classes, true ) ? $prefix . $suffix['active_item'] : '';
 			$active_parent_class   = in_array( 'current-menu-parent', $item->classes, true ) || $active_posts_page || $active_post_type ? $prefix . $suffix['parent_of_active_item'] : '';
 			$active_ancestor_class = in_array( 'current-menu-ancestor', $item->classes, true ) || in_array( 'current-page-ancestor', $item->classes, true ) ? $prefix . $suffix['ancestor_of_active_item'] : '';
@@ -160,7 +172,10 @@ class WalkerMenu extends Walker_Nav_Menu {
 	}
 
 	/**
-	 * @psalm-suppress UndefinedMagicPropertyFetch, InvalidScalarArgument
+	 * Returns the correct link attributes for the menu item.
+	 *
+	 * @param WP_Post $menu_item
+	 * @return string
 	 */
 	protected function get_link_attributes( WP_Post $menu_item ): string {
 		$atts           = array();
@@ -171,13 +186,16 @@ class WalkerMenu extends Walker_Nav_Menu {
 		} else {
 			$atts['rel'] = $menu_item->xfn;
 		}
+		if ( '_blank' === $menu_item->target ) {
+			$atts['aria-label'] = sprintf( _x( '%s - opens in a new window', 'Navigation', 'fdmg-labels' ), $menu_item->title );
+		}
 		$atts['href']         = ! empty( $menu_item->url ) ? $menu_item->url : '';
 		$atts['aria-current'] = $menu_item->current ? 'page' : '';
 
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {
 			if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
-				$value       = ( 'href' === $attr ) ? esc_url( (string) $value ) : ( esc_attr( (string) $value ) );
+				$value       = ( 'href' === $attr ) ? esc_url( (string) $value ) : esc_attr( (string) $value );
 				$attributes .= ' ' . $attr . '="' . $value . '"';
 			}
 		}
