@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="flex items-center justify-between">
 			<div class="sm:hidden">
-				{% if has_nav_menu('primary_navigation') %}
+				{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
 					{% include 'partials/components/header/header-menu.twig' %}
 				{% endif %}
 			</div>
@@ -40,7 +40,7 @@
 	</div>
 </div>
 
-{% if has_nav_menu('primary_navigation') %}
+{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
 	<div class="hidden sm:block">
 		<div class="flex items-center bg-secondary-300 h-[var(--menu-height)] dark:bg-base-400">
 			<div class="container">
