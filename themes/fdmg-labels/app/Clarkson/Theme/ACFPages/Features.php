@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme\ACFPages;
 
+use Extended\ACF\Fields\Checkbox;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
@@ -58,6 +59,30 @@ class Features {
 								TrueFalse::make( _x( 'Enable section taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY )
 									->instructions( _x( 'Enables the section taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
 									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable sharing via Facebook', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_FACEBOOK )
+									->instructions( _x( 'Enables sharing an article via Facebook.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+								TrueFalse::make( _x( 'Enable sharing via Twitter', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_TWITTER )
+									->instructions( _x( 'Enables sharing an article via Twitter.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( true ),
+								TrueFalse::make( _x( 'Enable sharing via LinkedIn', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_LINKEDIN )
+									->instructions( _x( 'Enables sharing an article via LinkedIn.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( true ),
+								TrueFalse::make( _x( 'Enable sharing via WhatsApp', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_WHATSAPP )
+									->instructions( _x( 'Enables sharing an article via WhatsApp.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+								TrueFalse::make( _x( 'Enable sharing via E-mail', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_EMAIL )
+									->instructions( _x( 'Enables sharing an article via E-mail.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( true ),
+								TrueFalse::make( _x( 'Enable copying to clipboard', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_COPY_CLIPBOARD )
+									->instructions( _x( 'Enables sharing by copying the link to the clipboard.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( false ),
 							)
 						),
 				),

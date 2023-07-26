@@ -1,3 +1,59 @@
+{% set socials = [] %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_FACEBOOK', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'Facebook',
+			type: 'facebook',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_TWITTER', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'Twitter',
+			type: 'twitter',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_LINKEDIN', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'LinkedIn',
+			type: 'linkedin',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_WHATSAPP', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'WhatsApp',
+			type: 'whatsapp',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_EMAIL', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'E-mail',
+			type: 'email',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_COPY_CLIPBOARD', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: _x('Copy to clipboard', 'Share', 'fdmg-labels'),
+			type: 'copy',
+		}
+	]) %}
+{% endif %}
+
 {% if socials %}
 	<div data-component="social-share" class="{{ sticky ? 'hidden lg:block z-[2] mt-6 sticky top-[calc(theme(space.header-height)+theme(space.6)+theme(space.admin-bar))]' }}" {{ sticky ? 'aria-hidden="true"' }}>
 		<div class="flex flex-col gap-3">
