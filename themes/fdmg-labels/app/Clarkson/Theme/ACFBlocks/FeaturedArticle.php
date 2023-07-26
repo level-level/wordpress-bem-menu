@@ -16,7 +16,6 @@ class FeaturedArticle {
 	protected const FIELD_GROUP = 'block_featured_article';
 
 	public const BLOCK_META_USAGE            = 'usage';
-	public const BLOCK_META_COLUMNS          = 'columns';
 	public const BLOCK_META_SELECTED_POSTS   = 'selected_posts';
 	public const BLOCK_META_IS_FILL_DISABLED = 'is_fill_disabled';
 	public const BLOCK_META_TERMS            = 'terms';
