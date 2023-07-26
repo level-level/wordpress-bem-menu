@@ -1,7 +1,7 @@
 {% set objects = block.get_posts() %}
 {% set columns = data.columns|default('2') %}
 
-{# Based on column amount (2 or 3) use a different teaser and column width #}
+{# Based on column amount (1, 2 or 3) use a different teaser and column width #}
 {% if columns is same as('2') %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-medium.twig' %}
 	{% set grid = 'gap-6 sm:grid-cols-2' %}
@@ -9,6 +9,10 @@
 {% elseif columns is same as('3') %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-small.twig' %}
 	{% set grid = 'sm:gap-6 lg:grid-cols-3' %}
+	{% set image_size = 'medium' %}
+{% elseif columns is same as('1') %}
+	{% set teaser = 'styleguide/components/teasers/teaser-post-wide.twig' %}
+	{% set grid = 'sm:gap-6 lg:grid-cols-1' %}
 	{% set image_size = 'medium' %}
 {% endif %}
 
