@@ -79,14 +79,14 @@ class Feed extends GFFeedAddOn {
 			array(
 				'name'          => self::META_ENABLED,
 				'type'          => 'toggle',
-				'label'         => __( 'Verstuur inzendingen naar Selligent', 'fdmg-labels' ),
+				'label'         => __( 'Send entries to Selligent', 'fdmg-labels' ),
 				'default_value' => 0,
 			),
 			array(
 				'name'       => self::META_FIELD_MAP,
 				'type'       => 'field_map',
-				'label'      => __( 'Velden koppelen', 'fdmg-labels' ),
-				'tooltip'    => __( 'Koppel velden die naar Selligent moeten worden gestuurd.', 'fdmg-labels' ),
+				'label'      => __( 'Connect fields', 'fdmg-labels' ),
+				'tooltip'    => __( 'Connect fields that should be sent to Selligent.', 'fdmg-labels' ),
 				'field_map'  => array(
 					array(
 						'name'       => self::META_FIELD_MAP_EMAIL,
@@ -108,7 +108,7 @@ class Feed extends GFFeedAddOn {
 
 		return array(
 			array(
-				'title'  => __( 'Selligent instellingen', 'fdmg-labels' ),
+				'title'  => __( 'Selligent settings', 'fdmg-labels' ),
 				'fields' => $fields,
 			),
 		);
