@@ -80,7 +80,7 @@ class Feed extends GFFeedAddOn {
 				'name'          => self::META_ENABLED,
 				'type'          => 'toggle',
 				'label'         => __( 'Verstuur inzendingen naar Selligent', 'fdmg-labels' ),
-				'default_value' => 1,
+				'default_value' => 0,
 			),
 			array(
 				'name'       => self::META_FIELD_MAP,
