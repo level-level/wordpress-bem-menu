@@ -35,10 +35,10 @@ class ArticlesInColumns {
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
 				'title'       => _x( 'Articles in columns', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Block', 'fdmg-labels' ),
+				'description' => _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Block', 'fdmg-labels' ),
 				'icon'        => 'columns',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'articles', 'column', 'two', '2', 'three', '3', 'post' ),
+				'keywords'    => array( 'posts', 'articles', 'column', 'two', '1', '2', 'three', '3', 'post', 'nieuws', 'artikel', 'news' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -63,11 +63,12 @@ class ArticlesInColumns {
 				'title'    => _x( 'Articles in columns', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
-						->message( _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
+						->message( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
 						->newLines( 'wpautop' ),
 					Select::make( _x( 'Select amount of columns', 'Fields', 'fdmg-labels' ), self::BLOCK_META_COLUMNS )
 						->choices(
 							array(
+								1 => _x( 'One (1) column', 'Fields', 'fdmg-labels' ),
 								2 => _x( 'Two (2) columns', 'Fields', 'fdmg-labels' ),
 								3 => _x( 'Three (3) columns', 'Fields', 'fdmg-labels' ),
 							)
