@@ -8,6 +8,7 @@ interface IPlatforms {
 	linkedin: string;
 	whatsapp: string;
 	email?: string;
+	copy?: string;
 }
 
 class Socials implements IModule {
@@ -37,7 +38,7 @@ class Socials implements IModule {
 		});
 	}
 
-	handleClick(event: Event) {
+	async handleClick(event: Event) {
 		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
 		const config: {
 			type: keyof IPlatforms;
@@ -56,6 +57,12 @@ class Socials implements IModule {
 
 		if (config.type === 'email') {
 			currentTarget.setAttribute('href', `mailto:?subject=${text}&body=${window.location.href}`);
+		} else if (config.type === 'copy') {
+			try {
+				await navigator.clipboard.writeText(window.location.href);
+			} catch (err) {
+				console.error('Failed to copy: ', err); // eslint-disable-line
+			}
 		} else if (typeof location[config.type] !== 'undefined') {
 			const width = 550;
 			const height = 450;

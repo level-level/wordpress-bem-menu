@@ -1,4 +1,4 @@
-{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
+{% set use_compact_header = feature_manager.is_enabled(constant('FEATURE_COMPACT_HEADER', feature_manager)) %}
 <header class="fixed z-50 top-admin-bar left-0 right-0 h-header-height shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex items-center' }}">
 
 	<!-- Skiplink -->

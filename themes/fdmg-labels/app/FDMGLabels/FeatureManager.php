@@ -17,6 +17,14 @@ class FeatureManager {
 	// Other
 	public const FEATURE_COMPACT_HEADER = 'compact_header';
 
+	// Share options
+	public const FEATURE_SHARE_VIA_FACEBOOK       = 'enable_share_via_facebook';
+	public const FEATURE_SHARE_VIA_TWITTER        = 'enable_share_via_twitter';
+	public const FEATURE_SHARE_VIA_LINKEDIN       = 'enable_share_via_linkedin';
+	public const FEATURE_SHARE_VIA_WHATSAPP       = 'enable_share_via_whatsapp';
+	public const FEATURE_SHARE_VIA_EMAIL          = 'enable_share_via_email';
+	public const FEATURE_SHARE_VIA_COPY_CLIPBOARD = 'enable_share_via_copy_clipboard';
+
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
 	}
