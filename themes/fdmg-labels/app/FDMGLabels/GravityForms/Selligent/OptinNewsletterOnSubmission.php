@@ -115,6 +115,6 @@ class OptinNewsletterOnSubmission {
 			);
 			return;
 		}
-		$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Subscribing to the newsletter has finished.', LogLine::LEVEL_SUCCESS );
+		$this->selligent_logger->add_gravityforms_entry_log( $entry_id, sprintf( 'Subscribing %s to the newsletter has finished.', $field_email_value ), LogLine::LEVEL_SUCCESS );
 	}
 }
