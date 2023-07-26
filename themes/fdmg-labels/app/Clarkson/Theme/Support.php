@@ -35,7 +35,6 @@ class Support {
 			'get_home_url',
 			'the_search_query',
 			'sanitize_title',
-			'bem_menu',
 			'function_exists',
 			'yoast_breadcrumb',
 			'get_search_query',

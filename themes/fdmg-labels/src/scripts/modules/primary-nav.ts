@@ -1,8 +1,5 @@
 import { ResponsiveHelper } from '@level-level/recyclops';
-import { Icons, I18n, IModule } from '../../globals';
-
-declare const icons: Icons;
-declare const i18n: I18n;
+import { IModule } from '../../globals';
 
 class PrimaryNav implements IModule {
 	element: HTMLElement;
@@ -14,7 +11,7 @@ class PrimaryNav implements IModule {
 		sub: string;
 	};
 	parentItem: HTMLElement[];
-	header: HTMLElement;
+	header: HTMLElement | null;
 	responsiveHelper: ResponsiveHelper;
 
 	constructor(element: HTMLElement) {
@@ -28,32 +25,14 @@ class PrimaryNav implements IModule {
 		};
 
 		this.parentItem = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
-		this.header = <HTMLElement>element.closest('header');
+		this.header = element.closest('header');
 		this.responsiveHelper = new ResponsiveHelper();
 
 		this.initialize();
 	}
 
 	initialize() {
-		this.createSubmenuButton();
 		this.addEventListeners();
-	}
-
-	createSubmenuButton() {
-		const button = `<button class="${this.classNames.arrow}" aria-expanded="false">
-				<span class="icon-inline" aria-hidden="true">${icons.arrowDown}</span>
-				<span class="screen-reader-text">${i18n.navigation.subMenu}</span>
-			</button>`;
-
-		// Add button before sub menu
-		this.parentItem.forEach((el) => {
-			el.querySelector(`.${this.classNames.sub}`)?.insertAdjacentHTML('beforebegin', button);
-		});
-
-		// Add aria attribute to all sub-menu's
-		this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
-			el.setAttribute('aria-hidden', 'true');
-		});
 	}
 
 	addEventListeners() {
@@ -67,7 +46,7 @@ class PrimaryNav implements IModule {
 		});
 
 		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
-		this.header.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
+		this.header?.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
 	}
 
 	determineViewport() {
@@ -98,7 +77,7 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	showDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		Array.from(currentTarget.children).forEach((el) => {
 			if (el.classList.contains(this.classNames.sub)) {
@@ -117,7 +96,7 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	hideDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		Array.from(currentTarget.children).forEach((el) => {
 			if (el.classList.contains(this.classNames.sub)) {
@@ -149,7 +128,7 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	showMobileDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		// Show dropdown
 		if (currentTarget.getAttribute('aria-expanded') === 'false') {
@@ -183,7 +162,7 @@ class PrimaryNav implements IModule {
 	handleTab(event: KeyboardEvent) {
 		if (event.key === 'Tab') {
 			// Current element that is focused
-			const focusedElement: HTMLElement = <HTMLElement>this.element.querySelector(':focus');
+			const focusedElement = this.element.querySelector(':focus') as HTMLElement;
 
 			// When tabbing through top level links, close all dropdowns
 			if (focusedElement.getAttribute('class') === this.classNames.link) {
