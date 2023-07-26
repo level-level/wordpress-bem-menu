@@ -19,11 +19,11 @@ class StickyAdvertisment implements IModule {
 			return;
 		}
 
-		const lastSection = this.sections[this.sections.length - 1];
-		const ad = lastSection.querySelector('.advertisement');
+		const lastSection = this.sections[this.sections.length - 1] as HTMLElement | null;
+		const ad = lastSection?.querySelector('.advertisement');
 
 		if (ad !== null) {
-			lastSection.classList.add(
+			lastSection?.classList.add(
 				'md:sticky',
 				'md:mb-6',
 				'top-[calc(theme(space.admin-bar)+theme(space.header-height)+theme(space.6))]',

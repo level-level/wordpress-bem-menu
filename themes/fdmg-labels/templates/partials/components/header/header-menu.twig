@@ -34,8 +34,8 @@
 					</div>
 				</div>
 				<div class="pb-[2px]">
-					<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
-						{{ bem_menu('primary_navigation', 'primary-nav') }}
+					<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav">
+						{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav')|raw }}
 					</nav>
 
 					<div class="mt-auto py-[10px] px-3 border-t border-secondary-600 dark:border-base-800">
@@ -70,7 +70,7 @@
 </div>
 
 <div class="hidden sm:block">
-	<nav aria-label="{{ wp_get_nav_menu_name('primary_navigation') }}" data-module="primary-nav">
-		{{ bem_menu('primary_navigation', 'primary-nav') }}
+	<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav">
+		{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav')|raw }}
 	</nav>
 </div>
