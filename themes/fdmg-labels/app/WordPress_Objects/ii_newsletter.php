@@ -5,7 +5,7 @@ namespace Clarkson_Core\WordPress_Object;
 use Clarkson\Theme\PostTypes\Newsletter;
 
 class ii_newsletter extends base_object {
-	public static $type = 'ii_newsletter';
+	public static $type = Newsletter::POST_TYPE_NAME;
 
 	public function get_subject(): string {
 		return $this->get_meta( Newsletter::META_SUBJECT, true );

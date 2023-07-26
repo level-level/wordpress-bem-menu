@@ -2,10 +2,11 @@
 
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson\Theme\PostTypes\Team;
 use Clarkson_Core\WordPress_Object\post;
 
 class ii_team extends base_object {
-	public static $type = 'ii_team';
+	public static $type = Team::POST_TYPE_NAME;
 
 	public function get_posts_by_author( int $amount = -1 ): array {
 		$args = array(
