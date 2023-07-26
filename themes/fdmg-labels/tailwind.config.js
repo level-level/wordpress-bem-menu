@@ -106,7 +106,6 @@ module.exports = {
 			'secondary-400': 'var(--secondary-400)',
 			'secondary-500': 'var(--secondary-500)',
 			'secondary-600': 'var(--secondary-600)',
-			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],

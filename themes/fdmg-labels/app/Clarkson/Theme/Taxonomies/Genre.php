@@ -25,7 +25,7 @@ class Genre {
 			'show_ui'               => true,
 			'show_admin_column'     => true,
 			'query_var'             => true,
-			'rewrite'               => true,
+			'rewrite'               => array( 'slug' => __( 'genre', 'fdmg-labels-slugs' ) ),
 			'capabilities'          => array(
 				'manage_terms' => 'edit_posts',
 				'edit_terms'   => 'edit_posts',

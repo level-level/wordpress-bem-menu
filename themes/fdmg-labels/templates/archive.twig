@@ -4,7 +4,7 @@
 	<div class="section">
 		<div class="container">
 			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
-				<h1 class="pb-3 border-b-4 text-primary theme-energeia:text-secondary-700 border-secondary-400 dark:text-primary-300 dark:border-primary-300">{{ post_type.get_archive_title() }}</h1>
+				<h1 class="font-bold font-heading text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem] pb-3 border-b-4 text-primary theme-energeia:text-base-800 border-secondary-400 dark:text-primary-300 dark:border-primary-300">{{ single_cat_title() ? single_cat_title() : post_type.get_archive_title() }}</h1>
 			</div>
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 				{% for object in objects %}
 
 					{% set image_id = object.get_thumbnail_id() %}
-					{% set terms = object.get_terms('category') %}
+					{% set terms = object.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category') %}
 					{% set authors = object.get_authors() %}
 
 					<li>
