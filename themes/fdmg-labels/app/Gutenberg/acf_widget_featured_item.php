@@ -16,6 +16,7 @@ class acf_widget_featured_item extends base_block {
 
 	/**
 	* Get latest posts based on user defined options
+	* @return Clarkson_Object[]
 	*/
 	public function get_posts(): array {
 		$register         = ArticleBlockRegister::get_instance();
