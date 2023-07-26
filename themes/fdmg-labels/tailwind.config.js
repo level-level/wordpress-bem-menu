@@ -37,12 +37,13 @@ for (const theme of customThemes) {
 }
 
 module.exports = {
-	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx, ts}'],
+	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}'],
 	darkMode: ['class', '[data-theme="dark"]'],
 	theme: {
 		extend: {
 			spacing: {
 				'admin-bar': 'var(--wp-admin--admin-bar--height, 0px)',
+				container: 'var(--container)',
 				'header-height': 'var(--header-height)',
 				'menu-height': 'var(--menu-height)',
 				'sidebar-width': 'var(--sidebar-width)',

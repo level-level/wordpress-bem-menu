@@ -5,14 +5,14 @@
 	<div class="{{ align }}" data-name="{{ block.name }}">
 		<div class="relative border-b-2 border-secondary-400 bg-secondary-200 dark:bg-base-600 dark:border-transparent">
 
-			<h2 class="font-body-bold text-lg text-primary p-3 border-b border-secondary-400 dark:border-base-800 sm:text-[24px] sm:py-3 sm:px-6">{{ title|raw }}</h2>
+			<h2 class="font-body-bold text-lg text-primary p-3 border-b border-secondary-400 dark:border-base-800 sm:text-[24px] sm:py-3 sm:px-6 theme-energeia:text-base-800 dark:text-primary-300">{{ title|raw }}</h2>
 
 			<ul class="py-3">
 				{% for object in objects %}
 					<li class="sm:mx-6">
 
 						{% set image_id = object.get_thumbnail_id() %}
-						{% set terms = object.get_terms('category') %}
+						{% set terms = object.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category') %}
 
 						{% include 'styleguide/components/teasers/teaser-post-inline.twig' with {
 							image: image_id ? wp_get_attachment_image(image_id, 'medium'),

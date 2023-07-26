@@ -1,6 +1,6 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
-{% set terms = object.get_terms('category') %}
+{% set terms = object.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category') %}
 
 {% block content %}
 	<article class="section">
@@ -38,23 +38,5 @@
 {% block offset %}
 	{% include 'styleguide/components/social-share.twig' with {
 		sticky: true,
-		socials: [
-			{
-				title: 'Twitter',
-				type: 'twitter',
-			},
-			{
-				title: 'Facebook',
-				type: 'facebook',
-			},
-			{
-				title: 'LinkedIn',
-				type: 'linkedin',
-			},
-			{
-				title: 'E-mail',
-				type: 'email',
-			},
-		]
 	} %}
 {% endblock %}
