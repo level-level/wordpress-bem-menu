@@ -5,6 +5,7 @@ use Clarkson\Theme\PostTypes\Partner;
 use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class Partners {
@@ -16,8 +17,10 @@ class Partners {
 	public const BLOCK_META_PARTNERS = 'partners';
 
 	public function register_hooks(): void {
-		add_action( 'acf/init', array( $this, 'register' ) );
-		add_action( 'acf/init', array( $this, 'register_fields' ) );
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE ) ) {
+			add_action( 'acf/init', array( $this, 'register' ) );
+			add_action( 'acf/init', array( $this, 'register_fields' ) );
+		}
 	}
 
 	public function register(): void {

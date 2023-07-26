@@ -4,6 +4,17 @@ namespace FDMGLabels;
 use Clarkson\Theme\ACFPages\Features;
 
 class FeatureManager {
+
+	// Post types
+	public const FEATURE_ENABLE_PARTNER_POST_TYPE = 'enable_partner_post_type';
+	public const FEATURE_ENABLE_PODCAST_POST_TYPE = 'enable_podcast_post_type';
+	public const FEATURE_ENABLE_EVENT_POST_TYPE   = 'enable_event_post_type';
+
+	// Taxonomies
+	public const FEATURE_ENABLE_GENRE_TAXONOMY   = 'enable_genre_taxonomy';
+	public const FEATURE_ENABLE_SECTION_TAXONOMY = 'enable_section_taxonomy';
+
+	// Other
 	public const FEATURE_COMPACT_HEADER = 'compact_header';
 
 	public function register_hooks(): void {

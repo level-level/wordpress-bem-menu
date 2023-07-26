@@ -1,9 +1,18 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\PostTypes\Post;
+use Clarkson\Theme\Taxonomies\Category;
+use Clarkson\Theme\Taxonomies\Genre;
+use Clarkson\Theme\Taxonomies\Section;
+
 class Taxonomies {
 
-	protected const TAXONOMIES = array();
+	public const TAXONOMIES = array(
+		Category::class,
+		Genre::class,
+		Section::class,
+	);
 
 	public function register_hooks(): void {
 		foreach ( self::TAXONOMIES as $taxonomy_class ) {
@@ -14,6 +23,6 @@ class Taxonomies {
 	}
 
 	public function unregister_post_tags(): void {
-		unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+		unregister_taxonomy_for_object_type( 'post_tag', Post::POST_TYPE_NAME );
 	}
 }

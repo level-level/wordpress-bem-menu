@@ -2,11 +2,12 @@
 
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
 
 class post extends base_object {
-	public static $type = 'post';
+	public static $type = PostTypesPost::POST_TYPE_NAME;
 
 	public function get_authors(): array {
 		return get_field( 'authors', $this->get_id() ) ?: array();

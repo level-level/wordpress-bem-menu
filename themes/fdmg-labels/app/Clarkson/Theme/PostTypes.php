@@ -1,8 +1,10 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\PostTypes\Event;
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Partner;
+use Clarkson\Theme\PostTypes\Podcast;
 use Clarkson\Theme\PostTypes\Post;
 use Clarkson\Theme\PostTypes\Team;
 use Clarkson\Theme\PostTypes\Vacancy;
@@ -15,6 +17,8 @@ class PostTypes {
 		Vacancy::class,
 		Newsletter::class,
 		Post::class,
+		Podcast::class,
+		Event::class,
 	);
 
 	public function register_hooks(): void {
