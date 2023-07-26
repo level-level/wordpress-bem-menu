@@ -7,17 +7,12 @@ body {
 	}
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
 	@include heading;
-}
-
-h1 {
-	@include heading-h1;
 }
 
 h2 {

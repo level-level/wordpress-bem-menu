@@ -64,6 +64,6 @@
 .primary-nav-sub .primary-nav-sub__link {
 	@apply font-body no-underline text-base-50;
 	@apply hocus:underline hocus:bg-transparent;
-	@apply sm:text-md sm:text-secondary-600 sm:h-auto sm:p-0;
+	@apply sm:text-md sm:text-secondary-600 sm:dark:text-base-50 sm:h-auto sm:p-0;
 	@apply sm:hocus:text-secondary-600 sm:hocus:dark:text-base-50;
 }

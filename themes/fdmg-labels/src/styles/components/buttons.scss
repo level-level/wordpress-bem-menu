@@ -21,15 +21,15 @@
 
 .btn-header {
 	@apply font-body text-base-500 rounded-none dark:text-base-100;
-	@apply btn-icon:text-[20px] btn-icon:text-primary dark:btn-icon:text-primary-300;
+	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600;
 }
 
 .btn-profile {
 	@apply font-body text-base-500 rounded-none dark:text-base-100 p-0;
-	@apply w-[48px] h-[48px] border border-primary theme-energeia:border-secondary-700 dark:border-primary-300;
-	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-secondary-700 dark:btn-icon:text-primary-300;
+	@apply w-[48px] h-[48px] border border-primary theme-energeia:border-base-800 dark:border-primary-300;
+	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600 justify-center;
 }
