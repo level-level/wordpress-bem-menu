@@ -63,14 +63,14 @@ Data:
 
 ```php
 $data = [
-  'publication' => 'IMPACT_INVESTOR',
-  'articleId' => '[[ARTICLEID]]',
-  'title' => '[[ARTICLETITLE]]',
-  'teaser' => '[[ARTICLETEASER]]',
-  'news_section' => '[[ARTICLECATEGORY]]',
-  'img' => '[[ARTICLEIMGURL]]',
+	'publication' => 'IMPACT_INVESTOR',
+	'articleId' => '[[ARTICLEID]]',
+	'title' => '[[ARTICLETITLE]]',
+	'teaser' => '[[ARTICLETEASER]]',
+	'news_section' => '[[ARTICLECATEGORY]]',
+	'img' => '[[ARTICLEIMGURL]]',
 	'img_square' => '[[ARTICLEIMGSQUAREURL]]',
-  'cta' => '[[ARTICLEURL]]'
+	'cta' => '[[ARTICLEURL]]'
 	'reading_time' => '[[READINGTIMEINMINUTES]]'
 	'publication_time' => '[[FORMATTEDPUBLICATIONTIME]]'
 ];
@@ -105,13 +105,13 @@ Data:
 
 ```php
 $data = [
-  'publication' => 'IMPACT_INVESTOR',
-  'type' => 'WEEKLY',
-  'subject' => '[[SUBJECT]]'
-  'preheader' => '[[PREHEADER]]',
-  'introduction' => '[[INTRO]]',
-  'articlegroup_1' => '[[ARTILCEID,ARTILCEID]]',
-  'articlegroup_2' => '[[ARTILCEID,ARTILCEID]]',
+	'publication' => 'IMPACT_INVESTOR',
+	'type' => 'WEEKLY',
+	'subject' => '[[SUBJECT]]'
+	'preheader' => '[[PREHEADER]]',
+	'introduction' => '[[INTRO]]',
+	'articlegroup_1' => '[[ARTILCEID,ARTILCEID]]',
+	'articlegroup_2' => '[[ARTILCEID,ARTILCEID]]',
 	'articlegroup_3' => '[[ARTILCEID,ARTILCEID]]',
 	'articlegroup_4' => '[[ARTILCEID,ARTILCEID]]',
 	'test' => '[[TESTMODE]]'
