@@ -2,6 +2,9 @@
 namespace Clarkson\Theme\ACFBlocks;
 
 use Clarkson\Theme\PostTypes\Post;
+use Clarkson\Theme\Taxonomies\Category;
+use Clarkson\Theme\Taxonomies\Genre;
+use Clarkson\Theme\Taxonomies\Section;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Number;
@@ -10,6 +13,7 @@ use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class ArticlesInColumns {
@@ -22,6 +26,8 @@ class ArticlesInColumns {
 	public const BLOCK_META_SELECTED_POSTS  = 'selected_posts';
 	public const BLOCK_META_IS_FILL_ENABLED = 'is_fill_enabled';
 	public const BLOCK_META_TERMS           = 'terms';
+	public const BLOCK_META_GENRES          = 'genres';
+	public const BLOCK_META_SECTIONS        = 'sections';
 	public const BLOCK_META_AMOUNT          = 'amount';
 
 
@@ -57,66 +63,112 @@ class ArticlesInColumns {
 	}
 
 	public function register_fields(): void {
+
+		// Conditional fields
+		$taxonomy_fields = array();
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_GENRES )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Genre::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SECTIONS )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Section::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Category::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		// Default fields
+		$fields = array(
+			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
+				->message( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
+				->newLines( 'wpautop' ),
+			Select::make( _x( 'Select amount of columns', 'Fields', 'fdmg-labels' ), self::BLOCK_META_COLUMNS )
+				->choices(
+					array(
+						1 => _x( 'One (1) column', 'Fields', 'fdmg-labels' ),
+						2 => _x( 'Two (2) columns', 'Fields', 'fdmg-labels' ),
+						3 => _x( 'Three (3) columns', 'Fields', 'fdmg-labels' ),
+					)
+				)
+				->defaultValue( 2 )
+				->returnFormat( 'value' )
+				->required(),
+			Relationship::make( _x( 'Select articles to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SELECTED_POSTS )
+				->postTypes( array( Post::POST_TYPE_NAME ) )
+				->filters(
+					array(
+						'search',
+						'taxonomy',
+					)
+				)
+				->elements(
+					array(
+						'featured_image',
+					)
+				),
+			TrueFalse::make( _x( 'Allow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
+				->stylisedUi()
+				->defaultValue( true ),
+		);
+
+		// Fields after the conditional fields
+		$fields_after = array(
+			Number::make( _x( 'Select the maximum amount of articles to be shown', 'Fields', 'fdmg-labels' ), self::BLOCK_META_AMOUNT )
+				->conditionalLogic(
+					array(
+						ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+					)
+				)
+				->defaultValue( 2 )
+				->min( 1 )
+				->step( 1 )
+				->append( _x( 'Articles', 'Fields', 'fdmg-labels' ) )
+				->required(),
+		);
+
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'Articles in columns', 'Fields', 'fdmg-labels' ),
-				'fields'   => array(
-					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
-						->message( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
-						->newLines( 'wpautop' ),
-					Select::make( _x( 'Select amount of columns', 'Fields', 'fdmg-labels' ), self::BLOCK_META_COLUMNS )
-						->choices(
-							array(
-								1 => _x( 'One (1) column', 'Fields', 'fdmg-labels' ),
-								2 => _x( 'Two (2) columns', 'Fields', 'fdmg-labels' ),
-								3 => _x( 'Three (3) columns', 'Fields', 'fdmg-labels' ),
-							)
-						)
-						->defaultValue( 2 )
-						->returnFormat( 'value' )
-						->required(),
-					Relationship::make( _x( 'Select articles to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SELECTED_POSTS )
-						->postTypes( array( Post::POST_TYPE_NAME ) )
-						->filters(
-							array(
-								'search',
-								'taxonomy',
-							)
-						)
-						->elements(
-							array(
-								'featured_image',
-							)
-						),
-					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
-						->stylisedUi()
-						->defaultValue( true ),
-					Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
-						->conditionalLogic(
-							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
-							)
-						)
-						->taxonomy( 'category' )
-						->appearance( 'multi_select' )
-						->allowNull()
-						->addTerm( false )
-						->saveTerms( false )
-						->loadTerms( false )
-						->returnFormat( 'object' ),
-					Number::make( _x( 'Select the maximum amount of articles to be shown', 'Fields', 'fdmg-labels' ), self::BLOCK_META_AMOUNT )
-						->conditionalLogic(
-							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
-							)
-						)
-						->defaultValue( 2 )
-						->min( 1 )
-						->step( 1 )
-						->append( _x( 'Articles', 'Fields', 'fdmg-labels' ) )
-						->required(),
-				),
+				'fields'   => array_merge( $fields, $taxonomy_fields, $fields_after ),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),
 				),

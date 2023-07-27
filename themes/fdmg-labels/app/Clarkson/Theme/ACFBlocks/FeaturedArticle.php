@@ -2,12 +2,16 @@
 namespace Clarkson\Theme\ACFBlocks;
 
 use Clarkson\Theme\PostTypes\Post;
+use Clarkson\Theme\Taxonomies\Category;
+use Clarkson\Theme\Taxonomies\Genre;
+use Clarkson\Theme\Taxonomies\Section;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class FeaturedArticle {
@@ -19,6 +23,8 @@ class FeaturedArticle {
 	public const BLOCK_META_SELECTED_POSTS  = 'selected_posts';
 	public const BLOCK_META_IS_FILL_ENABLED = 'is_fill_enabled';
 	public const BLOCK_META_TERMS           = 'terms';
+	public const BLOCK_META_GENRES          = 'genres';
+	public const BLOCK_META_SECTIONS        = 'sections';
 
 
 	public function register_hooks(): void {
@@ -52,46 +58,88 @@ class FeaturedArticle {
 	}
 
 	public function register_fields(): void {
+
+		// Conditional fields
+		$taxonomy_fields = array();
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_GENRES )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Genre::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SECTIONS )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Section::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
+			->conditionalLogic(
+				array(
+					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
+				)
+			)
+			->taxonomy( Category::TAXONOMY_NAME )
+			->appearance( 'multi_select' )
+			->allowNull()
+			->addTerm( false )
+			->saveTerms( false )
+			->loadTerms( false )
+			->returnFormat( 'object' );
+		}
+
+		// Default fields
+		$fields = array(
+			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
+				->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels' ) )
+				->newLines( 'wpautop' ),
+			Relationship::make( _x( 'Select featured article to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SELECTED_POSTS )
+				->postTypes( array( Post::POST_TYPE_NAME ) )
+				->filters(
+					array(
+						'search',
+						'taxonomy',
+					)
+				)
+				->elements(
+					array(
+						'featured_image',
+					)
+				)
+				->max( 1 )
+				->returnFormat( 'object' ),
+			TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
+				->defaultValue( true )
+				->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
+		);
+
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'Featured article', 'Fields', 'fdmg-labels' ),
-				'fields'   => array(
-					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
-						->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels' ) )
-						->newLines( 'wpautop' ),
-					Relationship::make( _x( 'Select featured article to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SELECTED_POSTS )
-						->postTypes( array( Post::POST_TYPE_NAME ) )
-						->filters(
-							array(
-								'search',
-								'taxonomy',
-							)
-						)
-						->elements(
-							array(
-								'featured_image',
-							)
-						)
-						->max( 1 )
-						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
-						->defaultValue( true )
-						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
-					Taxonomy::make( _x( 'Select one or more categories to show a featured article from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
-						->conditionalLogic(
-							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
-							)
-						)
-						->taxonomy( 'category' )
-						->appearance( 'multi_select' )
-						->allowNull()
-						->addTerm( false )
-						->saveTerms( false )
-						->loadTerms( false )
-						->returnFormat( 'object' ),
-				),
+				'fields'   => array_merge( $fields, $taxonomy_fields ),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),
 				),
