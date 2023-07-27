@@ -1,8 +1,8 @@
 <?php
 namespace Clarkson\Theme\ACFPages;
 
-use Extended\ACF\Fields\Checkbox;
 use Extended\ACF\Fields\Group;
+use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
 use FDMGLabels\FeatureManager;
@@ -41,6 +41,8 @@ class Features {
 					->instructions( _x( 'Enable or disable features.', 'Fields', 'fdmg-labels-admin' ) )
 						->fields(
 							array(
+								Tab::make( _x( 'Content types', 'Fields', 'fdmg-labels-admin' ) )
+									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable Partner post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
 									->instructions( _x( 'Enables the Partner post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
@@ -59,9 +61,16 @@ class Features {
 								TrueFalse::make( _x( 'Enable Section taxonomy', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY )
 									->instructions( _x( 'Enables the Section taxonomy for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable compact page header', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_COMPACT_HEADER )
+								Tab::make( _x( 'Layout', 'Fields', 'fdmg-labels-admin' ) )
+									->placement( 'left' ),
+								TrueFalse::make( _x( 'Enable compact page header', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_COMPACT_HEADER )
 									->instructions( _x( 'Enables a more compact header element on top of every page.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
+								TrueFalse::make( _x( 'Disable article teaser footer', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_ARTICLE_TEASER_FOOTER )
+									->instructions( _x( 'Disables the footer of the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi(),
+								Tab::make( _x( 'Share options', 'Fields', 'fdmg-labels-admin' ) )
+									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable sharing via Facebook', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_FACEBOOK )
 									->instructions( _x( 'Enables sharing an article via Facebook.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
@@ -86,6 +95,8 @@ class Features {
 									->instructions( _x( 'Enables sharing by copying the link to the clipboard.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
+								Tab::make( _x( 'Block level options', 'Fields', 'fdmg-labels-admin' ) )
+									->placement( 'left' ),
 								TrueFalse::make( _x( 'Disable autofilling the related articles block', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK )
 									->instructions( _x( 'Make sure the related article block does not automatically load any related articles when creating a new article thus making it invisible.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
