@@ -9,14 +9,14 @@ use FDMGLabels\Logging\Selligent\SelligentLogger;
 use GF_Field_Email;
 use GFAPI;
 
-class OptinNewsletterTest extends WPTestCase {
+class OptinNewsletterOnSubmissionTest extends WPTestCase {
 
 	public function test_schedule(): void {
-		$form            = GFAPI::get_form(
+		$form = GFAPI::get_form(
 			GFAPI::add_form(
 				array(
-					'title'                               => 'form title',
-					'fields'                              => array(
+					'title'  => 'form title',
+					'fields' => array(
 						new GF_Field_Email(
 							array(
 								'label'      => 'Email',
@@ -24,24 +24,31 @@ class OptinNewsletterTest extends WPTestCase {
 							)
 						),
 					),
-					( new IsSelligentForm() )->get_slug() => true,
 				)
 			)
 		);
+		GFAPI::add_feed(
+			$form['id'],
+			array(
+				'selligent_enabled' => true,
+			),
+			'selligent'
+		);
+
 		$submission_data = GFAPI::submit_form(
 			$form['id'], array(
 				sprintf( 'input_%s', (string) $form['fields'][0]->id ) => 'mail@example.test',
 			)
 		);
 
-		$scheduled = wp_next_scheduled( OptinNewsletter::TRIGGER, array( (int) $submission_data['entry_id'] ) );
+		$scheduled = wp_next_scheduled( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
 		$this->assertIsInt( $scheduled, 'Sync should be scheduled' );
 
 		$this->assert_is_logged( (int) $submission_data['entry_id'], false );
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );
 		GFAPI::delete_form( $form['id'] );
-		wp_unschedule_event( $scheduled, OptinNewsletter::TRIGGER, array( (int) $submission_data['entry_id'] ) );
+		wp_unschedule_event( $scheduled, 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
 	}
 
 	public function test_no_schedule(): void {
@@ -61,13 +68,21 @@ class OptinNewsletterTest extends WPTestCase {
 			)
 		);
 
+		GFAPI::add_feed(
+			$form['id'],
+			array(
+				'selligent_enabled' => false,
+			),
+			'selligent'
+		);
+
 		$submission_data = GFAPI::submit_form(
 			$form['id'], array(
 				sprintf( 'input_%s', (string) $form['fields'][0]->id ) => 'mail@example.test',
 			)
 		);
 
-		$scheduled = wp_next_scheduled( OptinNewsletter::TRIGGER, array( (int) $submission_data['entry_id'] ) );
+		$scheduled = wp_next_scheduled( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );
