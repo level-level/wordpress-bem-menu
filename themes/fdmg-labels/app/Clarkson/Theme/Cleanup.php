@@ -37,7 +37,7 @@ class Cleanup {
 
 		// Add a page number if necessary:
 		if ( $paged >= 2 || $page >= 2 ) {
-			$title .= " {$sep} " . sprintf( _x( 'Page %s', 'SEO', 'fdmg-labels' ), max( $paged, $page ) );
+			$title .= " {$sep} " . sprintf( _x( 'Page %s', 'SEO', 'fdmg-labels-admin' ), max( $paged, $page ) );
 		}
 		return $title;
 	}

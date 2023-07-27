@@ -25,10 +25,10 @@ class Post {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Authors', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Authors', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Relationship::make( _x( 'Authors', 'Fields', 'fdmg-labels' ), self::META_AUTHORS )
-						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels' ) )
+					Relationship::make( _x( 'Authors', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
+						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels-admin' ) )
 						->postTypes( array( Team::POST_TYPE_NAME ) )
 						->filters( array( 'search' ) )
 						->returnFormat( 'object' )
@@ -53,7 +53,7 @@ class Post {
 			array(
 				'core/paragraph',
 				array(
-					'placeholder' => _x( 'Introduction text..', 'Block', 'fdmg-labels' ),
+					'placeholder' => _x( 'Introduction text..', 'Block', 'fdmg-labels-admin' ),
 					'fontSize'    => 'intro',
 				),
 			),
@@ -61,7 +61,7 @@ class Post {
 			array(
 				'core/paragraph',
 				array(
-					'placeholder' => _x( 'Start article text..', 'Block', 'fdmg-labels' ),
+					'placeholder' => _x( 'Start article text..', 'Block', 'fdmg-labels-admin' ),
 				),
 			),
 			array( 'acf/block-' . HighlightedContent::BLOCK_NAME ),

@@ -46,7 +46,7 @@ class ACFBlocks {
 	 * Available supports settings: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/
 	 */
 	public function set_default_block_type_args( array $block ): array {
-		$block['category']                    = 'fdmg-labels';
+		$block['category']                    = 'fdmg-labels-admin';
 		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['supports']['customClassName'] = false;
 		$block['render_callback']             = $block['render_callback'] ?: array( $this, 'block_render_callback' );

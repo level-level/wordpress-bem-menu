@@ -12,9 +12,9 @@ class WidgetAreas {
 	public function register_widget_areas(): void {
 		register_sidebar(
 			array(
-				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-header-ad',
-				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -24,9 +24,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Homepage', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Homepage', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-homepage',
-				'description'   => _x( 'Add widgets to appear on the homepage.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the homepage.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -36,9 +36,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Article', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Article', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-article',
-				'description'   => _x( 'Add widgets to appear on article pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on article pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -48,9 +48,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Page', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Page', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-page',
-				'description'   => _x( 'Add widgets to appear on the content pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the content pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -60,9 +60,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Author', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Author', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-author',
-				'description'   => _x( 'Add widgets to appear on the author pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the author pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -72,9 +72,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Partner', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Partner', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-partner',
-				'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -84,9 +84,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Vacancy', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Vacancy', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-vacancy',
-				'description'   => _x( 'Add widgets to appear on the vacancy pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the vacancy pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -96,9 +96,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Category', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Category', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-category',
-				'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',
@@ -108,9 +108,9 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Search results', 'Widgets', 'fdmg-labels' ),
+				'name'          => _x( 'Search results', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-search-results',
-				'description'   => _x( 'Add widgets to appear on the search results page.', 'Widgets', 'fdmg-labels' ),
+				'description'   => _x( 'Add widgets to appear on the search results page.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
 				'before_title'  => '<h2 class="widget-title">',

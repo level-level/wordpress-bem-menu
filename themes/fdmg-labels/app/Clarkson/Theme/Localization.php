@@ -5,7 +5,7 @@ namespace Clarkson\Theme;
 use WP_Post_Type;
 
 class Localization {
-	protected const SLUGS_DOMAIN = 'fdmg-labels-slugs';
+	protected const SLUGS_DOMAIN = 'fdmg-labels-admin-slugs';
 
 	public function register_hooks(): void {
 		add_action( 'after_setup_theme', array( $this, 'load_extra_textdomains' ) );

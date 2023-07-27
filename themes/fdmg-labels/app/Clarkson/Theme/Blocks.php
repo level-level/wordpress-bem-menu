@@ -31,7 +31,7 @@ class Blocks {
 			$categories,
 			array(
 				array(
-					'slug'  => 'fdmg-labels',
+					'slug'  => 'fdmg-labels-admin',
 					'title' => get_bloginfo( 'name' ),
 				),
 			)

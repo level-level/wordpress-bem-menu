@@ -105,7 +105,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 				'styleguide/components/buttons/button-element.twig',
 				array(
 					'class'                 => $this->css_class_prefix . '__arrow',
-					'aria_label'            => __( 'Sub menu', 'fdmg-labels' ),
+					'aria_label'            => __( 'Sub menu', 'fdmg-labels-admin' ),
 					'aria_expanded_support' => true,
 					'icon'                  => 'carret-down',
 					'svg_icons'             => SVGIcons::get_instance(),
@@ -187,7 +187,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 			$atts['rel'] = $menu_item->xfn;
 		}
 		if ( '_blank' === $menu_item->target ) {
-			$atts['aria-label'] = sprintf( _x( '%s - opens in a new window', 'Navigation', 'fdmg-labels' ), $menu_item->title );
+			$atts['aria-label'] = sprintf( _x( '%s - opens in a new window', 'Navigation', 'fdmg-labels-admin' ), $menu_item->title );
 		}
 		$atts['href']         = ! empty( $menu_item->url ) ? $menu_item->url : '';
 		$atts['aria-current'] = $menu_item->current ? 'page' : '';

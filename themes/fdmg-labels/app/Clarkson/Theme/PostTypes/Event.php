@@ -19,18 +19,18 @@ class Event {
 	public function register(): void {
 		$args = array(
 			'labels'                => array(
-				'name'               => _x( 'Events', 'Post Type', 'fdmg-labels' ),
-				'singular_name'      => _x( 'Event', 'Post Type', 'fdmg-labels' ),
-				'all_items'          => _x( 'All events', 'Post Type', 'fdmg-labels' ),
-				'archives'           => _x( 'Events archives', 'Post Type', 'fdmg-labels' ),
-				'add_new'            => _x( 'New event', 'Post Type', 'fdmg-labels' ),
-				'edit_item'          => _x( 'Edit event', 'Post Type', 'fdmg-labels' ),
-				'view_item'          => _x( 'View event', 'Post Type', 'fdmg-labels' ),
-				'view_items'         => _x( 'View events', 'Post Type', 'fdmg-labels' ),
-				'search_items'       => _x( 'Search events', 'Post Type', 'fdmg-labels' ),
-				'not_found'          => _x( 'No events found', 'Post Type', 'fdmg-labels' ),
-				'not_found_in_trash' => _x( 'No events found in trash', 'Post Type', 'fdmg-labels' ),
-				'parent_item_colon'  => _x( 'Parent event:', 'Post Type', 'fdmg-labels' ),
+				'name'               => _x( 'Events', 'Post Type', 'fdmg-labels-admin' ),
+				'singular_name'      => _x( 'Event', 'Post Type', 'fdmg-labels-admin' ),
+				'all_items'          => _x( 'All events', 'Post Type', 'fdmg-labels-admin' ),
+				'archives'           => _x( 'Events archives', 'Post Type', 'fdmg-labels-admin' ),
+				'add_new'            => _x( 'New event', 'Post Type', 'fdmg-labels-admin' ),
+				'edit_item'          => _x( 'Edit event', 'Post Type', 'fdmg-labels-admin' ),
+				'view_item'          => _x( 'View event', 'Post Type', 'fdmg-labels-admin' ),
+				'view_items'         => _x( 'View events', 'Post Type', 'fdmg-labels-admin' ),
+				'search_items'       => _x( 'Search events', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found'          => _x( 'No events found', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found_in_trash' => _x( 'No events found in trash', 'Post Type', 'fdmg-labels-admin' ),
+				'parent_item_colon'  => _x( 'Parent event:', 'Post Type', 'fdmg-labels-admin' ),
 			),
 			'public'                => true,
 			'hierarchical'          => false,
@@ -38,7 +38,7 @@ class Event {
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'has_archive'           => true,
-			'rewrite'               => array( 'slug' => __( 'event', 'fdmg-labels-slugs' ) ),
+			'rewrite'               => array( 'slug' => __( 'event', 'fdmg-labels-admin-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,
 			'menu_icon'             => 'dashicons-calendar',
@@ -54,7 +54,7 @@ class Event {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Event', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Event', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(),
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),

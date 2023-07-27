@@ -22,18 +22,18 @@ class Partner {
 	public function register(): void {
 		$args = array(
 			'labels'                => array(
-				'name'               => _x( 'Partner', 'Post Type', 'fdmg-labels' ),
-				'singular_name'      => _x( 'Partner', 'Post Type', 'fdmg-labels' ),
-				'all_items'          => _x( 'All partners', 'Post Type', 'fdmg-labels' ),
-				'archives'           => _x( 'Partner archives', 'Post Type', 'fdmg-labels' ),
-				'add_new'            => _x( 'New partner', 'Post Type', 'fdmg-labels' ),
-				'edit_item'          => _x( 'Edit partner', 'Post Type', 'fdmg-labels' ),
-				'view_item'          => _x( 'View partner', 'Post Type', 'fdmg-labels' ),
-				'view_items'         => _x( 'View partners', 'Post Type', 'fdmg-labels' ),
-				'search_items'       => _x( 'Search partners', 'Post Type', 'fdmg-labels' ),
-				'not_found'          => _x( 'No partners found', 'Post Type', 'fdmg-labels' ),
-				'not_found_in_trash' => _x( 'No partners found in trash', 'Post Type', 'fdmg-labels' ),
-				'parent_item_colon'  => _x( 'Parent partner:', 'Post Type', 'fdmg-labels' ),
+				'name'               => _x( 'Partner', 'Post Type', 'fdmg-labels-admin' ),
+				'singular_name'      => _x( 'Partner', 'Post Type', 'fdmg-labels-admin' ),
+				'all_items'          => _x( 'All partners', 'Post Type', 'fdmg-labels-admin' ),
+				'archives'           => _x( 'Partner archives', 'Post Type', 'fdmg-labels-admin' ),
+				'add_new'            => _x( 'New partner', 'Post Type', 'fdmg-labels-admin' ),
+				'edit_item'          => _x( 'Edit partner', 'Post Type', 'fdmg-labels-admin' ),
+				'view_item'          => _x( 'View partner', 'Post Type', 'fdmg-labels-admin' ),
+				'view_items'         => _x( 'View partners', 'Post Type', 'fdmg-labels-admin' ),
+				'search_items'       => _x( 'Search partners', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found'          => _x( 'No partners found', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found_in_trash' => _x( 'No partners found in trash', 'Post Type', 'fdmg-labels-admin' ),
+				'parent_item_colon'  => _x( 'Parent partner:', 'Post Type', 'fdmg-labels-admin' ),
 			),
 			'public'                => true,
 			'hierarchical'          => false,
@@ -41,7 +41,7 @@ class Partner {
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'has_archive'           => false,
-			'rewrite'               => array( 'slug' => __( 'partner', 'fdmg-labels-slugs' ) ),
+			'rewrite'               => array( 'slug' => __( 'partner', 'fdmg-labels-admin-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,
 			'menu_icon'             => 'dashicons-image-filter',
@@ -57,9 +57,9 @@ class Partner {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Partner', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Partner', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Subtitle', 'Fields', 'fdmg-labels' ), self::META_SUBTITLE )
+					Text::make( _x( 'Subtitle', 'Fields', 'fdmg-labels-admin' ), self::META_SUBTITLE )
 						->instructions( 'The subtitle that is displayed in the right sidebar underneath the logo.' ),
 				),
 				'location' => array(
