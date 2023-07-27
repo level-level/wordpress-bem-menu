@@ -1,6 +1,9 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
+use Clarkson\Theme\ACFBlocks\HighlightedContent;
+use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\PostTypes\Team;
 use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Location;
@@ -61,9 +64,9 @@ class Post {
 					'placeholder' => _x( 'Start article text..', 'Block', 'fdmg-labels' ),
 				),
 			),
-			array( 'acf/block-highlighted-content' ),
-			array( 'acf/block-social-share' ),
-			array( 'acf/block-related-articles' ),
+			array( 'acf/block-' . HighlightedContent::BLOCK_NAME ),
+			array( 'acf/block-' . SocialShare::BLOCK_NAME ),
+			array( 'acf/block-' . RelatedArticles::BLOCK_NAME ),
 		);
 	}
 
