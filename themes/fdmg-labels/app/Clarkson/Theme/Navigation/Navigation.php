@@ -30,11 +30,11 @@ class Navigation {
 	public function register_custom_nav_menus(): void {
 		register_nav_menus(
 			array(
-				self::PRIMARY_NAV  => _x( 'Primary navigation', 'Navigation', 'fdmg-labels' ),
-				self::ABOUT_NAV    => _x( 'About navigation', 'Navigation', 'fdmg-labels' ),
-				self::GENERAL_NAV  => _x( 'General navigation', 'Navigation', 'fdmg-labels' ),
-				self::SERVICES_NAV => _x( 'Services navigation', 'Navigation', 'fdmg-labels' ),
-				self::FDMG_NAV     => _x( 'FDMG navigation', 'Navigation', 'fdmg-labels' ),
+				self::PRIMARY_NAV  => _x( 'Primary navigation', 'Navigation', 'fdmg-labels-admin' ),
+				self::ABOUT_NAV    => _x( 'About navigation', 'Navigation', 'fdmg-labels-admin' ),
+				self::GENERAL_NAV  => _x( 'General navigation', 'Navigation', 'fdmg-labels-admin' ),
+				self::SERVICES_NAV => _x( 'Services navigation', 'Navigation', 'fdmg-labels-admin' ),
+				self::FDMG_NAV     => _x( 'FDMG navigation', 'Navigation', 'fdmg-labels-admin' ),
 			)
 		);
 	}

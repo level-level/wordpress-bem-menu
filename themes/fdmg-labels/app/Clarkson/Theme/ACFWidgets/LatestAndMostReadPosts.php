@@ -14,8 +14,8 @@ class LatestAndMostReadPosts {
 		acf_register_block_type(
 			array(
 				'name'        => 'widget-' . self::WIDGET_NAME,
-				'title'       => _x( 'Latest and most read posts', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Latest and most read posts', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'star-filled',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'posts', 'latest', 'most read', 'popular' ),

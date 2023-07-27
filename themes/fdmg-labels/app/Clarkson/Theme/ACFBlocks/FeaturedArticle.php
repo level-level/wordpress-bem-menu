@@ -36,8 +36,8 @@ class FeaturedArticle {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Featured article', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a single featured article.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Featured article', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a single featured article.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'welcome-view-site',
 				'align'       => 'wide', // full, wide, left, center, right
 				'keywords'    => array( 'featured article', 'post' ),
@@ -63,7 +63,7 @@ class FeaturedArticle {
 		$taxonomy_fields = array();
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
-			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_GENRES )
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to show articles from (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_GENRES )
 			->conditionalLogic(
 				array(
 					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
@@ -79,7 +79,7 @@ class FeaturedArticle {
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
-			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SECTIONS )
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to show articles from (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SECTIONS )
 			->conditionalLogic(
 				array(
 					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
@@ -95,7 +95,7 @@ class FeaturedArticle {
 		}
 
 		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
-			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
+			$taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TERMS )
 			->conditionalLogic(
 				array(
 					ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
@@ -112,10 +112,10 @@ class FeaturedArticle {
 
 		// Default fields
 		$fields = array(
-			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
-				->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels' ) )
+			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
+				->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 				->newLines( 'wpautop' ),
-			Relationship::make( _x( 'Select featured article to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_SELECTED_POSTS )
+			Relationship::make( _x( 'Select featured article to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SELECTED_POSTS )
 				->postTypes( array( Post::POST_TYPE_NAME ) )
 				->filters(
 					array(
@@ -130,15 +130,15 @@ class FeaturedArticle {
 				)
 				->max( 1 )
 				->returnFormat( 'object' ),
-			TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
+			TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IS_FILL_ENABLED )
 				->defaultValue( true )
-				->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
+				->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels-admin' ), _x( 'No', 'Fields', 'fdmg-labels-admin' ) ),
 		);
 
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Featured article', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Featured article', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array_merge( $fields, $taxonomy_fields ),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),
