@@ -59,18 +59,10 @@
 @import '_common/forms';
 @import '_common/entry-content';
 
-// Layout
-@import 'layout/container';
-@import 'layout/section';
-@import 'layout/sidebar';
-
 // Components
 @import 'components/buttons';
-@import 'components/skip-to-content';
 @import 'components/gravity-forms';
 @import 'components/pagination';
-@import 'components/navigation/primary-nav';
-@import 'components/navigation/footer-nav';
 @import 'components/comment-form';
 @import 'components/advertisement';
 @import 'components/popup-maker';

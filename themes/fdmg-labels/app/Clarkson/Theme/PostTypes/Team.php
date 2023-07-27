@@ -23,28 +23,18 @@ class Team {
 	public function register(): void {
 		$args = array(
 			'labels'                => array(
-				'name'                  => _x( 'Team', 'Post Type', 'fdmg-labels' ),
-				'singular_name'         => _x( 'Team', 'Post Type', 'fdmg-labels' ),
-				'all_items'             => _x( 'All team members', 'Post Type', 'fdmg-labels' ),
-				'archives'              => _x( 'Team archives', 'Post Type', 'fdmg-labels' ),
-				'attributes'            => _x( 'Team attributes', 'Post Type', 'fdmg-labels' ),
-				'insert_into_item'      => _x( 'Insert into team member', 'Post Type', 'fdmg-labels' ),
-				'uploaded_to_this_item' => _x( 'Uploaded to this team member', 'Post Type', 'fdmg-labels' ),
-				'featured_image'        => _x( 'Featured image', 'Post Type', 'fdmg-labels' ),
-				'filter_items_list'     => _x( 'Filter team members list', 'Post Type', 'fdmg-labels' ),
-				'items_list_navigation' => _x( 'Team list navigation', 'Post Type', 'fdmg-labels' ),
-				'items_list'            => _x( 'Team list', 'Post Type', 'fdmg-labels' ),
-				'new_item'              => _x( 'New team member', 'Post Type', 'fdmg-labels' ),
-				'add_new'               => _x( 'New team member', 'Post Type', 'fdmg-labels' ),
-				'add_new_item'          => _x( 'Add new team member', 'Post Type', 'fdmg-labels' ),
-				'edit_item'             => _x( 'Edit team member', 'Post Type', 'fdmg-labels' ),
-				'view_item'             => _x( 'View team member', 'Post Type', 'fdmg-labels' ),
-				'view_items'            => _x( 'View team members', 'Post Type', 'fdmg-labels' ),
-				'search_items'          => _x( 'Search team members', 'Post Type', 'fdmg-labels' ),
-				'not_found'             => _x( 'No team members found', 'Post Type', 'fdmg-labels' ),
-				'not_found_in_trash'    => _x( 'No team members found in trash', 'Post Type', 'fdmg-labels' ),
-				'parent_item_colon'     => _x( 'Parent team member:', 'Post Type', 'fdmg-labels' ),
-				'menu_name'             => _x( 'Team', 'Post Type', 'fdmg-labels' ),
+				'name'               => _x( 'Team/Author', 'Post Type', 'fdmg-labels-admin' ),
+				'singular_name'      => _x( 'Team', 'Post Type', 'fdmg-labels-admin' ),
+				'all_items'          => _x( 'All team members', 'Post Type', 'fdmg-labels-admin' ),
+				'archives'           => _x( 'Team archives', 'Post Type', 'fdmg-labels-admin' ),
+				'add_new'            => _x( 'New team member', 'Post Type', 'fdmg-labels-admin' ),
+				'edit_item'          => _x( 'Edit team member', 'Post Type', 'fdmg-labels-admin' ),
+				'view_item'          => _x( 'View team member', 'Post Type', 'fdmg-labels-admin' ),
+				'view_items'         => _x( 'View team members', 'Post Type', 'fdmg-labels-admin' ),
+				'search_items'       => _x( 'Search team members', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found'          => _x( 'No team members found', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found_in_trash' => _x( 'No team members found in trash', 'Post Type', 'fdmg-labels-admin' ),
+				'parent_item_colon'  => _x( 'Parent team member:', 'Post Type', 'fdmg-labels-admin' ),
 			),
 			'public'                => true,
 			'hierarchical'          => false,
@@ -68,12 +58,12 @@ class Team {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Author', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Author', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Email::make( _x( 'E-mail address', 'Fields', 'fdmg-labels' ), self::META_EMAIL ),
-					Url::make( _x( 'LinkedIn', 'Fields', 'fdmg-labels' ), self::META_LINKEDIN )
+					Email::make( _x( 'E-mail address', 'Fields', 'fdmg-labels-admin' ), self::META_EMAIL ),
+					Url::make( _x( 'LinkedIn', 'Fields', 'fdmg-labels-admin' ), self::META_LINKEDIN )
 					->placeholder( 'https://linkedin.com/' ),
-					Text::make( _x( 'Location', 'Fields', 'fdmg-labels' ), self::META_LOCATION ),
+					Text::make( _x( 'Location', 'Fields', 'fdmg-labels-admin' ), self::META_LOCATION ),
 				),
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),

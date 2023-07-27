@@ -11,7 +11,7 @@
 	.comment-reply-title {
 		@include font-bold;
 		@include font-size(16px, 24px);
-		color: var(--primary);
+		@apply text-primary theme-energeia:text-base-800;
 		padding: 11px $spacing-3;
 		border-bottom: 1px solid var(--secondary-400);
 

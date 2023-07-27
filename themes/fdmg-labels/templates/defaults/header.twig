@@ -1,8 +1,8 @@
-{% set use_compact_header = feature_manager.is_enabled('compact_header') %}
+{% set use_compact_header = feature_manager.is_enabled(constant('FEATURE_ENABLE_COMPACT_HEADER', feature_manager)) %}
 <header class="fixed z-50 top-admin-bar left-0 right-0 h-header-height shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex items-center' }}">
 
 	<!-- Skiplink -->
-	<a href="#main-content" data-module="skiplink" class="skip-to-content">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>
+	<a href="#main-content" data-module="skiplink" class="absolute top-0 left-0 z-50 p-4 text-lg underline -translate-x-full border-2 hover:no-underline active:translate-x-0 focus-visible:outline-base-50 focus:translate-x-0 bg-base-50 border-base-800 text-base-800">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>
 
 	{% if use_compact_header %}
 		{% include 'partials/components/header/variants/header-single-row.twig' with {

@@ -9,9 +9,6 @@ export type Icons = {
  * Data is defined in ScriptTranslations.php via wp_localize_script()
  */
 export type I18n = {
-	navigation: {
-		subMenu: string;
-	};
 	socialShare: string;
 };
 

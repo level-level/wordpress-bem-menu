@@ -26,4 +26,17 @@
 			</template>
 		</project>
 	</domain>
+	<domain name="fdmg-labels-admin">
+		<project name="Clarkson Theme admin" slug="fdmg-labels-admin">
+			<source>
+				<directory>.</directory>
+			</source>
+			<target>
+				<directory>languages</directory>
+			</target>
+			<template locked="true">
+				<file>languages/fdmg-labels-admin.pot</file>
+			</template>
+		</project>
+	</domain>
 </bundle>

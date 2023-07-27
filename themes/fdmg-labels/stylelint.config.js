@@ -3,5 +3,7 @@ module.exports = {
 	rules: {
 		'length-zero-no-unit': null,
 		'scss/operator-no-newline-after': null,
+		'scss/operator-no-unspaced': null,
+		'selector-pseudo-element-no-unknown': null,
 	},
 };

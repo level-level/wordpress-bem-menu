@@ -1,6 +1,6 @@
 <?php
 
-namespace FDMGLabels\Sync;
+namespace FDMGLabels\Newsletter;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
@@ -42,12 +42,12 @@ class SendNewsletterTest extends WPTestCase {
 				)
 			)
 		);
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '1', $newsletter->get_id() );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, '0', $newsletter->get_id() );
+		update_field( 'send_action', '1', $newsletter->get_id() );
+		update_field( 'send_test', '0', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), false ) );
+		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
+		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
 		$this->assertFalse( $scheduled_testmode, 'Sync should not be scheduled in testmode' );
 		$this->assertIsInt( $scheduled, 'Sync should be scheduled' );
 
@@ -55,7 +55,7 @@ class SendNewsletterTest extends WPTestCase {
 		$this->assert_is_logged( $newsletter, false );
 
 		wp_delete_post( $newsletter, true );
-		wp_unschedule_event( $scheduled, SendNewsletter::TRIGGER, array( $newsletter->get_id(), false ) );
+		wp_unschedule_event( $scheduled, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
 	}
 
 	public function test_schedule_testmode_now(): void {
@@ -68,12 +68,12 @@ class SendNewsletterTest extends WPTestCase {
 				)
 			)
 		);
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '1', $newsletter->get_id() );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, '1', $newsletter->get_id() );
+		update_field( 'send_action', '1', $newsletter->get_id() );
+		update_field( 'send_test', '1', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), false ) );
+		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
+		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
 		$this->assertIsInt( $scheduled_testmode, 'Sync should be scheduled in testmode' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
@@ -81,7 +81,7 @@ class SendNewsletterTest extends WPTestCase {
 		$this->assert_is_logged( $newsletter, true );
 
 		wp_delete_post( $newsletter, true );
-		wp_unschedule_event( $scheduled_testmode, SendNewsletter::TRIGGER, array( $newsletter->get_id(), true ) );
+		wp_unschedule_event( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
 	}
 
 	public function test_dont_schedule(): void {
@@ -95,8 +95,8 @@ class SendNewsletterTest extends WPTestCase {
 			)
 		);
 
-		$scheduled_testmode = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), false ) );
+		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
+		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
 		$this->assertFalse( $scheduled_testmode, 'Sync should not be scheduled in testmode' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
@@ -113,21 +113,21 @@ class SendNewsletterTest extends WPTestCase {
 				)
 			)
 		);
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '1', $newsletter->get_id() );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, '1', $newsletter->get_id() );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, '1', $newsletter->get_id() );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, '2040-03-01 09:30:00', $newsletter->get_id() );
+		update_field( 'send_action', '1', $newsletter->get_id() );
+		update_field( 'send_test', '1', $newsletter->get_id() );
+		update_field( 'send_schedule', '1', $newsletter->get_id() );
+		update_field( 'send_date', '2040-03-01 09:30:00', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( SendNewsletter::TRIGGER, array( $newsletter->get_id(), true ) );
+		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
 		$this->assertEquals( ( new DateTime( '2040-03-01 09:30:00', wp_timezone() ) )->getTimestamp(), $scheduled_testmode, 'Sync should be scheduled at the selected future timestamp' );
 	}
 
 	protected function assert_send_meta_reset( ii_newsletter $newsletter ): void {
-		$this->assertEquals( '0', get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, $newsletter->get_id() ), 'Send switch should be set to false' );
-		$this->assertEquals( '1', get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, $newsletter->get_id() ), 'Testmode switch should be set to true' );
-		$this->assertEquals( '0', get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, $newsletter->get_id() ), 'Custom schedule switch should be set to false' );
-		$this->assertEmpty( get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, $newsletter->get_id() ), 'Custom schedule date should be empty' );
+		$this->assertEquals( '0', get_field( 'send_action', $newsletter->get_id() ), 'Send switch should be set to false' );
+		$this->assertEquals( '1', get_field( 'send_test', $newsletter->get_id() ), 'Testmode switch should be set to true' );
+		$this->assertEquals( '0', get_field( 'send_schedule', $newsletter->get_id() ), 'Custom schedule switch should be set to false' );
+		$this->assertEmpty( get_field( 'send_date', $newsletter->get_id() ), 'Custom schedule date should be empty' );
 	}
 
 	protected function assert_is_logged( ii_newsletter $newsletter, bool $testmode ) {

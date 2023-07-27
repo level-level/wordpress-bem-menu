@@ -7,17 +7,12 @@ body {
 	}
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
 	@include heading;
-}
-
-h1 {
-	@include heading-h1;
 }
 
 h2 {
@@ -30,17 +25,6 @@ h3 {
 
 h4 {
 	@include heading-h4;
-}
-
-.rich-title {
-	color: var(--primary);
-	border-bottom: 4px solid var(--secondary-400);
-	padding-bottom: $spacing-3;
-
-	@include dark-mode {
-		color: var(--primary-300);
-		border-color: var(--primary-300);
-	}
 }
 
 p {

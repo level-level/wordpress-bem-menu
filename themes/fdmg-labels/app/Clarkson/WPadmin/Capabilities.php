@@ -16,7 +16,7 @@ class Capabilities {
 
 		$admin      = get_role( 'administrator' );
 		$admin_caps = $admin->capabilities ?? array();
-		$role       = add_role( 'client_administrator', __( 'Client administrator', 'fdmg-labels' ), $admin_caps );
+		$role       = add_role( 'client_administrator', __( 'Client administrator', 'fdmg-labels-admin' ), $admin_caps );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}
@@ -36,5 +36,6 @@ class Capabilities {
 		$role->remove_cap( 'delete_site' );
 
 		$role->add_cap( 'gform_full_access' );
+		$role->add_cap( 'gravityforms_selligent' );
 	}
 }

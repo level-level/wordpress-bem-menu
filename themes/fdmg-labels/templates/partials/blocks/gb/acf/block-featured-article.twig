@@ -7,7 +7,7 @@
 
 			{% for object in objects %}
 				{% set image_id = object.get_thumbnail_id() %}
-				{% set terms = object.get_terms('category') %}
+				{% set terms = object.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category') %}
 				{% set authors = object.get_authors() %}
 
 				<li>
@@ -35,6 +35,6 @@
 	</div>
 {% else %}
 	{% include 'partials/components/block-placeholder.twig' with {
-		required_fields: [_x('Featured article', 'Block', 'fdmg-labels')]
+		required_fields: [_x('Featured article', 'Block', 'fdmg-labels-admin')]
 	} %}
 {% endif %}

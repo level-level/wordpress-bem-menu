@@ -7,11 +7,8 @@ class ScriptTranslations {
 			'clarkson_main',
 			'i18n',
 			array(
-				'navigation'  => array(
-					'subMenu' => _x( 'Sub menu', 'Navigation', 'fdmg-labels' ),
-				),
 				'socialShare' => sprintf(
-					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels' ),
+					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels-admin' ),
 					get_bloginfo( 'name' )
 				),
 			)

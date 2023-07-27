@@ -65,10 +65,6 @@
 	@import 'components/buttons';
 	@import 'components/advertisement';
 
-	// Layout
-	@import 'layout/container';
-	@import 'layout/section';
-
 	@extend .entry-content;
 
 	// Make everything not clickable in the backend

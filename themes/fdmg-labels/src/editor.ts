@@ -1,5 +1,8 @@
 import './styles/editor.scss';
 
+import './styles/layout/section.css';
+import './styles/layout/container.css';
+
 // Global variable provided by WordPress
 declare const wp: any; // eslint-disable-line
 declare const lodash: any; // eslint-disable-line

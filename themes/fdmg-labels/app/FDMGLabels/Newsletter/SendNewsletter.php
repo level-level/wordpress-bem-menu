@@ -1,5 +1,5 @@
 <?php
-namespace FDMGLabels\Sync;
+namespace FDMGLabels\Newsletter;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
@@ -11,9 +11,9 @@ use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use WP_Error;
 
-class SendNewsletter extends BaseSync {
+class SendNewsletter {
 
-	public const TRIGGER = 'ii_send_newsletter';
+	public const TRIGGER = 'fdmg_labels_send_newsletter';
 
 	protected SelligentLogger $selligent_logger;
 
@@ -22,16 +22,8 @@ class SendNewsletter extends BaseSync {
 	}
 
 	public function register_hooks(): void {
-		parent::register_hooks();
-		add_action( self::TRIGGER, array( $this, 'sync' ), 10, 2 );
-	}
-
-	public function add_schedule_action(): void {
 		add_action( 'save_post', array( $this, 'schedule_sync' ) );
-	}
-
-	public function remove_schedule_action(): void {
-		remove_action( 'save_post', array( $this, 'schedule_sync' ) );
+		add_action( self::TRIGGER, array( $this, 'sync' ), 10, 2 );
 	}
 
 	/**

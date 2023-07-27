@@ -29,24 +29,6 @@
 	}
 }
 
-@mixin heading-h1 {
-	@include heading;
-	@include font-size(26px, 36px);
-	color: var(--secondary-600);
-
-	@include dark-mode {
-		color: var(--primary-300);
-	}
-
-	@include breakpoint(sm) {
-		@include font-size(40px, 56px);
-	}
-
-	@include breakpoint(lg) {
-		@include font-size(48px, 62px);
-	}
-}
-
 @mixin heading-h2 {
 	@include heading;
 	@include font-size(24px, 32px);
