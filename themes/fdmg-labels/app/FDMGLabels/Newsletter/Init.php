@@ -1,5 +1,5 @@
 <?php
-namespace FDMGLabels\Sync;
+namespace FDMGLabels\Newsletter;
 
 class Init {
 
