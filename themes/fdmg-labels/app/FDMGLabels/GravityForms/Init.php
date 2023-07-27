@@ -2,11 +2,11 @@
 
 namespace FDMGLabels\GravityForms;
 
-use FDMGLabels\GravityForms\FormSettings\FormSettings;
+use FDMGLabels\GravityForms\Selligent\OptinNewsletterOnSubmission;
 
 class Init {
 
 	public function register_hooks(): void {
-		( new FormSettings() )->register_hooks();
+		( new OptinNewsletterOnSubmission() )->register_hooks();
 	}
 }
