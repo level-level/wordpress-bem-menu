@@ -31,7 +31,7 @@ class Client {
 	 * @psalm-suppress RedundantCast
 	 */
 	public function __construct() {
-		$this->settings           = Settings::get_instance();
+		$this->settings = Settings::get_instance();
 	}
 
 	/**
