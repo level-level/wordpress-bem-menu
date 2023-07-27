@@ -10,7 +10,7 @@ class Selligent {
 
 	public const MENU_SLUG = 'acf-selligent-options';
 
-	public const OPTION_GROUP                 = 'selligent';
+	public const OPTION_GROUP = 'selligent';
 
 
 	public function register_hooks(): void {
@@ -37,9 +37,9 @@ class Selligent {
 				'title'    => _x( 'Selligent options', 'Fields', 'fdmg-labels' ),
 				'fields'   => array(
 					Group::make( _x( 'Selligent options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
-						->fields( array (
-
-						) ),
+						->fields(
+							array()
+						),
 				),
 				'layout'   => 'block',
 				'location' => array(
