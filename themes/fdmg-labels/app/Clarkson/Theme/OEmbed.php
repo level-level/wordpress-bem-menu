@@ -58,9 +58,9 @@ class OEmbed {
 			'cookiebot'          => $cookiebot,
 			'embed_type'         => $type,
 			'thumbnail'          => $thumbnail,
-			'notice_text'        => sprintf( _x( 'This content is available after accepting the cookies from %s.', 'OEmbed', 'clarkson-theme-dawn' ), $service_name ),
-			'button_text'        => _x( 'I agree', 'OEmbed', 'clarkson-theme-dawn' ),
-			'open_original_text' => sprintf( _x( 'View on %s.', 'OEmbed', 'clarkson-theme-dawn' ), $service_name ),
+			'notice_text'        => sprintf( _x( 'This content is available after accepting the cookies from %s.', 'OEmbed', 'fdmg-labels' ), $service_name ),
+			'button_text'        => _x( 'I agree', 'OEmbed', 'fdmg-labels' ),
+			'open_original_text' => sprintf( _x( 'View on %s.', 'OEmbed', 'fdmg-labels' ), $service_name ),
 			'disable_notice'     => $this->maybe_disable_notice( $source, $html ),
 			'svg_icons'          => SVGIcons::get_instance(),
 		);
@@ -68,8 +68,8 @@ class OEmbed {
 		$options = get_field( 'theme_options', 'option' );
 
 		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
-			$args['notice_text'] = _x( 'This content is available after accepting the social media cookies.', 'OEmbed', 'clarkson-theme-dawn' );
-			$args['button_text'] = _x( 'Change cookie-settings', 'OEmbed', 'clarkson-theme-dawn' );
+			$args['notice_text'] = _x( 'This content is available after accepting the social media cookies.', 'OEmbed', 'fdmg-labels' );
+			$args['button_text'] = _x( 'Change cookie-settings', 'OEmbed', 'fdmg-labels' );
 		}
 
 		return Templates::get_instance()->render_twig( 'partials/components/oembeds/oembed.twig', $args, true );
