@@ -41,23 +41,26 @@ class Features {
 					->instructions( _x( 'Enable or disable features.', 'Fields', 'fdmg-labels' ) )
 						->fields(
 							array(
+								TrueFalse::make( _x( 'Enable Partner post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
+									->instructions( _x( 'Enables the Partner post type for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable Podcast post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE )
+									->instructions( _x( 'Enables the Podcast post type for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable Event post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_EVENT_POST_TYPE )
+									->instructions( _x( 'Enables the Event post type for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
+								TrueFalse::make( _x( 'Disable Category taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY )
+									->instructions( _x( 'Disable the Category taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable Genre taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY )
+									->instructions( _x( 'Enables the Genre taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable Section taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY )
+									->instructions( _x( 'Enables the Section taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable compact page header', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_COMPACT_HEADER )
 									->instructions( _x( 'Enables a more compact header element on top of every page.', 'Fields', 'fdmg-labels' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable partner post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
-									->instructions( _x( 'Enables the partner post type for this site.', 'Fields', 'fdmg-labels' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable podcast post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE )
-									->instructions( _x( 'Enables the podcast post type for this site.', 'Fields', 'fdmg-labels' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable event post type', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_EVENT_POST_TYPE )
-									->instructions( _x( 'Enables the event post type for this site.', 'Fields', 'fdmg-labels' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable genre taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY )
-									->instructions( _x( 'Enables the genre taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable section taxonomy', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY )
-									->instructions( _x( 'Enables the section taxonomy for this site.', 'Fields', 'fdmg-labels' ) )
 									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable sharing via Facebook', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_SHARE_VIA_FACEBOOK )
 									->instructions( _x( 'Enables sharing an article via Facebook.', 'Fields', 'fdmg-labels' ) )
