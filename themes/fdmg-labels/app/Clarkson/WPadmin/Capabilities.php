@@ -36,5 +36,6 @@ class Capabilities {
 		$role->remove_cap( 'delete_site' );
 
 		$role->add_cap( 'gform_full_access' );
+		$role->add_cap( 'gravityforms_selligent' );
 	}
 }
