@@ -64,6 +64,7 @@ class ArticlesInColumns {
 
 	public function register_fields(): void {
 
+		// Conditional fields
 		$taxonomy_fields = array();
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
@@ -114,6 +115,7 @@ class ArticlesInColumns {
 			->returnFormat( 'object' );
 		}
 
+		// Default fields
 		$fields = array(
 			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
 				->message( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels' ) )
@@ -147,6 +149,7 @@ class ArticlesInColumns {
 				->defaultValue( true ),
 		);
 
+		// Fields after the conditional fields
 		$fields_after = array(
 			Number::make( _x( 'Select the maximum amount of articles to be shown', 'Fields', 'fdmg-labels' ), self::BLOCK_META_AMOUNT )
 				->conditionalLogic(
