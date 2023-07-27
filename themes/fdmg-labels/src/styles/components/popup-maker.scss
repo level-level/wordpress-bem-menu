@@ -1,6 +1,6 @@
 [class*='pum-theme-'] {
 	.pum-container {
-		@include body-styles;
+		@apply font-body text-base leading-6 text-base-500 dark:text-base-100 sm:text-[20px] sm:leading-7;
 		position: absolute;
 		left: 50%;
 		top: 50%;

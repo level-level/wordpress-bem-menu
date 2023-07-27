@@ -19,10 +19,10 @@
 				{% if datetime and date %}
 					<div class="shrink-0">
 						{% if date_full %}
-							<span class="screen-reader-text">{{ _x('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
+							<span class="sr-only">{{ _x('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
 							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 						{% else %}
-							<span class="screen-reader-text">{{ _x('Published on:', 'Screen reader text', 'fdmg-labels') }}</span>
+							<span class="sr-only">{{ _x('Published on:', 'Screen reader text', 'fdmg-labels') }}</span>
 							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
 						{% endif %}
 					</div>

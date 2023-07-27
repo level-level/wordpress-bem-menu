@@ -22,7 +22,7 @@
 				{% if date and datetime and date_full %}
 					<div class="shrink-0">
 						<div class="text-sm text-secondary-600 dark:text-base-100 sm:text-base">
-							<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
+							<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
 							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
 						</div>
 					</div>

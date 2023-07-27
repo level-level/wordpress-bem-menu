@@ -49,6 +49,7 @@ module.exports = {
 				'sidebar-width': 'var(--sidebar-width)',
 				'article-width': 'var(--article-width)',
 				'article-offset': 'var(--article-offset)',
+				'content-width': 'var(--content-width)',
 			},
 			boxShadow: {
 				header: '0 2px 4px rgb(115 166 191 / 15%)',

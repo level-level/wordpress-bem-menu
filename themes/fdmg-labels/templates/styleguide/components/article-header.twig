@@ -31,7 +31,7 @@
 
 				{% if authors %}
 					<div>
-						<span class="screen-reader-text">
+						<span class="sr-only">
 							{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 						</span>
 						<ul class="flex gap-3">
@@ -50,7 +50,7 @@
 
 				{% if date and datetime and date_full %}
 					<div>
-						<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
+						<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
 						<time datetime="{{ datetime|raw }}" aria-hidden="true" class="font-body-bold text-[17px]">{{ date|raw }}</time>
 					</div>
 				{% endif %}
