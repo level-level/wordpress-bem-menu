@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
+use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Monolog\Registry;
@@ -57,8 +58,8 @@ class Client {
 	 *
 	 * @return array|WP_Error
 	 */
-	public function register_post( Clarkson_Object $post ) {
-		return $this->post( $this->get_list_path( $this->list_id_article ), DataGenerator::get_article_data( $post ) );
+	public function register_post( base_object $post ) {
+		return $this->post( $this->get_list_path( $this->list_id_article ), ( new DataGenerator() )->get_article_data( $post ) );
 	}
 
 	/**
@@ -69,7 +70,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_newsletter( ii_newsletter $newsletter, bool $test_mode ) {
-		return $this->post( $this->get_list_path( $this->list_id_newsletter ), DataGenerator::get_newsletter_data( $newsletter, $test_mode ) );
+		return $this->post( $this->get_list_path( $this->list_id_newsletter ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
 	}
 
 	/**

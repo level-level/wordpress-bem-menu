@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\CLI;
 
+use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use FDMGLabels\Connectors\Selligent\Client;
@@ -42,12 +43,12 @@ class Selligent {
 		$client   = new Client();
 		$post_ids = $this->filter_post_ids( $args );
 
-		/** @var Clarkson_Object[] */
+		/** @var base_object[] */
 		$posts = array();
 		foreach ( $post_ids as $post_id ) {
 			$post = Clarkson_Object::get( $post_id );
 
-			if ( ! is_null( $post ) ) {
+			if ( $post instanceof base_object ) {
 				$posts[] = $post;
 			}
 		}
