@@ -5,6 +5,7 @@ namespace FDMGLabels\Connectors\Selligent;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use Monolog\Registry;
 use WP_Error;
 
@@ -42,13 +43,13 @@ class Client {
 
 	protected int $list_id_newsletter;
 
+	protected Settings $settings;
+
 	/**
 	 * @psalm-suppress RedundantCast
 	 */
 	public function __construct() {
-		$this->base_url           = defined( 'II_SELLIGENT_BASE_URL' ) ? constant( 'II_SELLIGENT_BASE_URL' ) : '';
-		$this->user               = defined( 'II_SELLIGENT_USER' ) ? constant( 'II_SELLIGENT_USER' ) : '';
-		$this->pass               = defined( 'II_SELLIGENT_PASS' ) ? constant( 'II_SELLIGENT_PASS' ) : '';
+		$this->settings           = Settings::get_instance();
 		$this->list_id_article    = defined( 'II_SELLIGENT_LIST_ID_ARTICLE' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ) : 0;
 		$this->list_id_newsletter = defined( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) : 0;
 	}
@@ -127,7 +128,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function post( string $path, array $data ) {
-		$url      = $this->base_url . self::BASE_PATH . $path;
+		$url      = untrailingslashit( $this->settings->get_base_url() ) . self::BASE_PATH . $path;
 		$response = wp_remote_post(
 			$url, array(
 				'headers' => $this->get_auth_headers( self::BASE_PATH . $path ),
@@ -170,10 +171,10 @@ class Client {
 	 */
 	protected function get_auth_headers( string $endpoint ): array {
 		$timestamp = time();
-		$auth_hash = hash_hmac( 'sha256', sprintf( '%s-POST-%s', $timestamp, $endpoint ), $this->pass );
+		$auth_hash = hash_hmac( 'sha256', sprintf( '%s-POST-%s', $timestamp, $endpoint ), $this->settings->get_password() );
 
 		return array(
-			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->user, $auth_hash, $timestamp ),
+			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->settings->get_username(), $auth_hash, $timestamp ),
 			'Content-Type'  => 'application/json',
 		);
 	}
