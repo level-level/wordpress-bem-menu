@@ -2,10 +2,11 @@
 
 namespace Gutenberg\Blocks;
 
+use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
+use Clarkson\Theme\ContentBlockRegister;
 use Clarkson\Theme\PostTypes\Post;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
-use FDMGLabels\Articles\ArticleBlockRegister;
 use WP_Post;
 use WP_Query;
 
@@ -18,34 +19,20 @@ class acf_block_articles_in_columns extends base_block {
 	* Get latest posts based on user defined options
 	*/
 	public function get_posts(): array {
-		$register         = ArticleBlockRegister::get_instance();
-		$selected_posts   = ( $this->content_attributes['selected_posts'] ?? null ) ?: array();
-		$is_fill_disabled = ( $this->content_attributes['is_fill_disabled'] ?? null ) ?: false;
+		$register        = ContentBlockRegister::get_instance();
+		$selected_posts  = ( $this->content_attributes[ ArticlesInColumns::BLOCK_META_SELECTED_POSTS ] ?? null ) ?: array();
+		$selected_posts  = $this->get_public_posts_only( $selected_posts );
+		$is_fill_enabled = (bool) ( $this->content_attributes[ ArticlesInColumns::BLOCK_META_IS_FILL_ENABLED ] ?? true );
 
-		// Only show published posts even when future/drafts posts are selected
-		$selected_posts = array_filter(
-			$selected_posts,
-			function( Clarkson_Object $object ) {
-				return $object->get_status() === 'publish';
-			}
-		);
+		$this->register_ids( $register, $selected_posts );
 
-		$ids = array_map(
-			function( $post ): int {
-				return $post->get_id();
-			},
-			$selected_posts
-		);
-
-		$register->add_ids( $ids );
-
-		if ( $is_fill_disabled ) {
+		if ( $is_fill_enabled === false ) {
 			return $selected_posts;
 		}
 
 		$objects = array();
-		$terms   = ( $this->content_attributes['terms'] ?? null ) ?: array();
-		$amount  = ( $this->content_attributes['amount'] ?? null ) ?: 2;
+		$terms   = ( $this->content_attributes[ ArticlesInColumns::BLOCK_META_TERMS ] ?? null ) ?: array();
+		$amount  = ( $this->content_attributes[ ArticlesInColumns::BLOCK_META_AMOUNT ] ?? null ) ?: 2;
 
 		$query_args = $this->get_query_args( $terms, self::POST_TYPES, $selected_posts, (int) $amount, self::TAX_RELATION );
 
@@ -66,15 +53,41 @@ class acf_block_articles_in_columns extends base_block {
 
 		$posts = array_merge( $selected_posts, $objects );
 
+		$this->register_ids( $register, $posts );
+
+		return $posts;
+	}
+
+	/**
+	 * Map posts IDs and add to content block register
+	 *
+	 * @param ContentBlockRegister $register
+	 * @param array<Clarkson_Object> $posts
+	 * @return void
+	 */
+	public function register_ids( ContentBlockRegister $register, array $posts ): void {
 		$ids = array_map(
-			function( $post ) {
+			function( $post ): int {
 				return $post->get_id();
 			},
 			$posts
 		);
 
 		$register->add_ids( $ids );
+	}
 
-		return $posts;
+	/**
+	 * Only show published posts even when future/drafts posts are selected
+	 *
+	 * @param array<Clarkson_Object> $posts
+	 * @return array<Clarkson_Object>
+	 */
+	public function get_public_posts_only( array $posts ): array {
+		return array_filter(
+			$posts,
+			function( Clarkson_Object $object ) {
+				return $object->get_status() === 'publish';
+			}
+		);
 	}
 }
