@@ -10,6 +10,7 @@ use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class RelatedArticles {
@@ -81,7 +82,8 @@ class RelatedArticles {
 						)
 						->returnFormat( 'object' ),
 					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
-							->defaultValue( true )
+						// The default value is based on the feature flag.
+						->defaultValue( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK ) )
 						->stylisedUi(),
 					Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
 						->conditionalLogic(
