@@ -83,6 +83,10 @@ class Features {
 									->instructions( _x( 'Enables sharing by copying the link to the clipboard.', 'Fields', 'fdmg-labels' ) )
 									->stylisedUi()
 									->defaultValue( false ),
+								TrueFalse::make( _x( 'Disable autofilling the related articles block', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK )
+									->instructions( _x( 'Make sure the related article block does not automatically load any related articles when creating a new article thus making it invisible.', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( false ),
 							)
 						),
 				),

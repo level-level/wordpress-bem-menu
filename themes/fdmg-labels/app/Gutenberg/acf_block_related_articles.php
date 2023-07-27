@@ -6,6 +6,7 @@ use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\PostTypes\Post;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use FDMGLabels\FeatureManager;
 use WP_Post;
 use WP_Query;
 
@@ -20,7 +21,9 @@ class acf_block_related_articles extends base_block {
 	public function get_posts(): array {
 		$selected_posts  = ( $this->content_attributes[ RelatedArticles::BLOCK_META_SELECTED_POSTS ] ?? null ) ?: array();
 		$selected_posts  = $this->get_public_posts_only( $selected_posts );
-		$is_fill_enabled = (bool) ( $this->content_attributes[ RelatedArticles::BLOCK_META_IS_FILL_ENABLED ] ?? true );
+
+		// The default value is based on the feature flag.
+		$is_fill_enabled = (bool) ( $this->content_attributes[ RelatedArticles::BLOCK_META_IS_FILL_ENABLED ] ?? ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK ) );
 
 		if ( $is_fill_enabled === false ) {
 			return $selected_posts;
