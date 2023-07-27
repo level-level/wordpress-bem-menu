@@ -25,8 +25,7 @@
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@include body-styles;
-		background-color: var(--secondary-100);
+		@apply font-body text-base leading-6 text-base-500 dark:text-base-100 sm:text-[20px] sm:leading-7 bg-secondary-100;
 
 		h2[data-type='core/heading'] {
 			@include heading-h2;
@@ -112,8 +111,7 @@
 .blocks-widgets-container {
 	.block-editor-block-list {
 		&__layout {
-			@include body-styles;
-			background-color: var(--secondary-100);
+			@apply font-body text-base leading-6 text-base-500 dark:text-base-100 sm:text-[20px] sm:leading-7 bg-secondary-100;
 		}
 	}
 

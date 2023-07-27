@@ -1,5 +1,7 @@
 import { IModule } from '../../globals';
 
+type EmbedType = 'video' | 'audio';
+
 declare global {
 	interface Window {
 		__tcfapi: any;
@@ -16,17 +18,23 @@ declare global {
 
 class OEmbed implements IModule {
 	element: HTMLElement;
-	button: HTMLElement;
-	source: string;
-	type: string | undefined;
+	button: HTMLElement | null;
+	dataAttribute: string;
+	playBtnClass: string;
+	isCookiebot: string | undefined;
+	source: string | undefined;
+	type: EmbedType;
 	disableNotice: string | undefined;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.button = <HTMLElement>this.element.querySelector('.js-consent-button');
-		this.source = <string>this.element.dataset.source;
-		this.type = <string>this.element.dataset.type;
-		this.disableNotice = this.element.dataset['disable-notice'];
+		this.dataAttribute = 'data-oembed';
+		this.playBtnClass = `btn--js-video-play`;
+		this.button = this.element.querySelector(`.js-consent-button`);
+		this.isCookiebot = this.element.dataset.cookiebot;
+		this.source = this.element.dataset.source;
+		this.type = this.element.dataset.type as EmbedType;
+		this.disableNotice = this.element.dataset.disableNotice;
 		this.initialize();
 	}
 
@@ -47,7 +55,7 @@ class OEmbed implements IModule {
 	 * Use Sourcepoint to handle user consent
 	 */
 	initSourcepoint() {
-		this.button.addEventListener('click', () => {
+		this.button?.addEventListener('click', () => {
 			window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes');
 		});
 
@@ -81,7 +89,7 @@ class OEmbed implements IModule {
 						// Check if we have consent for the vendor of the current embed
 						let vendorConsent = false;
 						data.consentedVendors.forEach((element) => {
-							if (embedSource.includes(element.name.toLowerCase())) {
+							if (embedSource?.includes(element.name.toLowerCase())) {
 								vendorConsent = true;
 							}
 						});
@@ -102,17 +110,20 @@ class OEmbed implements IModule {
 	}
 
 	initDefault() {
-		this.button.addEventListener('click', () => {
-			window.localStorage.setItem(this.source, 'true');
+		this.button?.addEventListener('click', () => {
+			if (this.source) {
+				window.localStorage.setItem(this.source, 'true');
+			}
 			this.showEmbed();
 
 			// Show all available embeds with the same source
-			document.querySelectorAll<HTMLElement>(`[data-source="${this.source}"]`).forEach((el: HTMLElement) => {
-				this.showEmbed(el);
+			const sourceElements = Array.from(document.querySelectorAll(`[data-source="${this.source}"]`)) as HTMLElement[];
+			sourceElements.forEach((element) => {
+				this.showEmbed(element);
 			});
 		});
 
-		if (window.localStorage.getItem(this.source)) {
+		if (this.source && window.localStorage.getItem(this.source)) {
 			this.showEmbed();
 		}
 	}
@@ -127,7 +138,7 @@ class OEmbed implements IModule {
 		if (!content) {
 			return;
 		}
-		const OEmbedContent = embed.querySelector('.oembed-component__content');
+		const OEmbedContent = embed.querySelector(`[${this.dataAttribute}="content"]`);
 
 		if (!OEmbedContent) {
 			return;
@@ -143,7 +154,7 @@ class OEmbed implements IModule {
 	}
 
 	lazyLoadVideo(embed: HTMLElement) {
-		const videoElement: HTMLElement | null = embed.querySelector('.oembed-video');
+		const videoElement = embed.querySelector(`[${this.dataAttribute}="video"]`) as HTMLElement | null;
 
 		if (!videoElement) {
 			return;
@@ -155,7 +166,7 @@ class OEmbed implements IModule {
 	}
 
 	lazyLoadAudio(embed: HTMLElement) {
-		const audioElement: HTMLElement | null = embed.querySelector('.oembed-audio');
+		const audioElement = embed.querySelector(`[${this.dataAttribute}="audio"]`) as HTMLElement | null;
 
 		if (!audioElement) {
 			return;
@@ -164,7 +175,7 @@ class OEmbed implements IModule {
 		const title = audioElement?.querySelector('iframe')?.getAttribute('title');
 
 		if (title && title?.length > 0) {
-			const titleElement = audioElement.querySelector('.oembed-audio--js-title');
+			const titleElement = audioElement.querySelector(`[${this.dataAttribute}="audio-title"]`);
 
 			if (!titleElement) {
 				return;
@@ -184,8 +195,8 @@ class OEmbed implements IModule {
 
 		iframe?.setAttribute('src', src + '&autoplay=1&disablekb=1&keyboard=0');
 
-		const playButton = videoElement.querySelector('.btn--js-video-play');
-		const thumbnail = videoElement.querySelector('.oembed-video__thumbnail');
+		const playButton = videoElement.querySelector(`.${this.playBtnClass}`);
+		const thumbnail = videoElement.querySelector(`[${this.dataAttribute}="thumbnail"]`);
 
 		playButton?.remove();
 		thumbnail?.remove();
@@ -195,17 +206,15 @@ class OEmbed implements IModule {
 		const iframe = embedElement.querySelector('iframe');
 		const src = iframe?.getAttribute('data-src');
 
-		if (!src) {
+		if (!src || !iframe) {
 			return;
 		}
 
-		iframe?.setAttribute('src', src);
+		iframe.allow = 'autoplay';
+		iframe.setAttribute('src', src + '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false');
 
-		const playButton = embedElement.querySelector('.btn--js-audio-play');
-		const title = embedElement.querySelector('.oembed-audio--js-title');
-
-		playButton?.remove();
-		title?.remove();
+		const placeholder = embedElement.querySelector(`[${this.dataAttribute}="placeholder"]`);
+		placeholder?.remove();
 	}
 }
 

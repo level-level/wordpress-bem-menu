@@ -2,7 +2,7 @@
 <form data-component="search-header" class="relative" method="get" action="{{ get_home_url() }}" role="search">
 	<div class="flex items-center flex-nowrap">
 		<div class="grow">
-			<label for="{{ random_id }}" class="screen-reader-text">{{ _x('Search', 'Screen reader text', 'fdmg-labels') }}</label>
+			<label for="{{ random_id }}" class="sr-only">{{ _x('Search', 'Screen reader text', 'fdmg-labels') }}</label>
 			<input
 				type="search"
 				name="s"
