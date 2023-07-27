@@ -57,6 +57,20 @@ class Selligent {
 									->placeholder( 'https://messagent.fdmediagroep.nl' ),
 								Text::make( _x( 'Username', 'Fields', 'fdmg-labels' ), self::OPTION_USERNAME ),
 								Password::make( _x( 'Password', 'Fields', 'fdmg-labels' ), self::OPTION_PASSWORD ),
+								Group::make( _x( 'Gates', 'Fields', 'fdmg-labels' ), self::OPTION_GATES )
+									->fields(
+										array(
+											Text::make( _x( 'Send newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_SEND_NEWSLETTER ),
+											Text::make( _x( 'Optin', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_OPTIN ),
+										)
+									),
+								Group::make( _x( 'List ID\'s', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_IDS )
+									->fields(
+										array(
+											Text::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_NEWSLETTER ),
+											Text::make( _x( 'Article', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_ARTICLE ),
+										)
+									),
 							)
 						),
 				),

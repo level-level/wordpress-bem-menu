@@ -21,8 +21,8 @@ class Selligent {
 		WP_CLI::line( 'Base url: ' . $settings->get_base_url() );
 		WP_CLI::line( 'User: ' . $settings->get_username() );
 		WP_CLI::line( 'Password: ' . $settings->get_password() );
-		WP_CLI::line( 'Newsletter list ID: ' . ( defined( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) ? constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) : 'Newsletter list ID is not set' ) );
-		WP_CLI::line( 'Article list ID: ' . ( defined( 'II_SELLIGENT_LIST_ID_ARTICLE' ) ? constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ) : 'Article List ID is not set' ) );
+		WP_CLI::line( 'Newsletter list ID: ' . $settings->get_newsletter_list_id() );
+		WP_CLI::line( 'Article list ID: ' . $settings->get_article_list_id() );
 		WP_CLI::line( 'Type: ' . Client::get_type() );
 	}
 

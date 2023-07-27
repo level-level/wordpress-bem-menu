@@ -26,14 +26,30 @@ class Settings {
 	}
 
 	public function get_base_url(): string {
-		return $this->data[ Selligent::OPTION_BASE_URL ] ?? '';
+		return (string) ( $this->data[ Selligent::OPTION_BASE_URL ] ?? '' );
 	}
 
 	public function get_username(): string {
-		return $this->data[ Selligent::OPTION_USERNAME ] ?? '';
+		return (string) ( $this->data[ Selligent::OPTION_USERNAME ] ?? '' );
 	}
 
 	public function get_password(): string {
-		return $this->data[ Selligent::OPTION_PASSWORD ] ?? '';
+		return (string) ( $this->data[ Selligent::OPTION_PASSWORD ] ?? '' );
+	}
+
+	public function get_send_newsletter_gate(): string {
+		return (string) ( $this->data[ Selligent::OPTION_GATE_SEND_NEWSLETTER ] ?? '' );
+	}
+
+	public function get_optin_gate(): string {
+		return (string) ( $this->data[ Selligent::OPTION_GATE_OPTIN ] ?? '' );
+	}
+
+	public function get_article_list_id(): int {
+		return (int) ( $this->data[ Selligent::OPTION_LIST_ID_ARTICLE ] ?? 0 );
+	}
+
+	public function get_newsletter_list_id(): int {
+		return (int) ( $this->data[ Selligent::OPTION_LIST_ID_NEWSLETTER ] ?? 0 );
 	}
 }

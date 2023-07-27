@@ -23,8 +23,6 @@ The following credentials are required in the wp-config.
 
 ```php
 define( 'II_SELLIGENT_TYPE', 'xxx' );
-define( 'II_SELLIGENT_LIST_ID_NEWSLETTER', 'xxx' );
-define( 'II_SELLIGENT_LIST_ID_ARTICLE', 'xxx' );
 ```
 
 The rest of the settings can be configured in Theme options -> Selligent

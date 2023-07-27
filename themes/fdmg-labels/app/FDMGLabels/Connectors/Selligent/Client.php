@@ -17,20 +17,6 @@ class Client {
 	 */
 	public const PUBLICATION = 'IMPACT_INVESTOR';
 
-	/**
-	 * Defines the gate used for sending a newsletter
-	 *
-	 * @var string
-	 */
-	public const SEND_NEWSLETTER_GATE = 'NEWSLETTER_IMPACTINVESTOR';
-
-	/**
-	 * Defines the gate used for subscribing to a newsletter
-	 *
-	 * @var string
-	 */
-	public const OPTIN_GATE = 'OPTIN_IMPACTINVESTOR';
-
 	public const BASE_PATH = '/restapi/api/sync/';
 
 	protected string $base_url;
@@ -39,10 +25,6 @@ class Client {
 
 	protected string $pass;
 
-	protected int $list_id_article;
-
-	protected int $list_id_newsletter;
-
 	protected Settings $settings;
 
 	/**
@@ -50,8 +32,6 @@ class Client {
 	 */
 	public function __construct() {
 		$this->settings           = Settings::get_instance();
-		$this->list_id_article    = defined( 'II_SELLIGENT_LIST_ID_ARTICLE' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ) : 0;
-		$this->list_id_newsletter = defined( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) : 0;
 	}
 
 	/**
@@ -60,7 +40,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_post( base_object $post ) {
-		return $this->post( $this->get_list_path( $this->list_id_article ), ( new DataGenerator() )->get_article_data( $post ) );
+		return $this->post( $this->get_list_path( $this->settings->get_article_list_id() ), ( new DataGenerator() )->get_article_data( $post ) );
 	}
 
 	/**
@@ -71,7 +51,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_newsletter( ii_newsletter $newsletter, bool $test_mode ) {
-		return $this->post( $this->get_list_path( $this->list_id_newsletter ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
+		return $this->post( $this->get_list_path( $this->settings->get_newsletter_list_id() ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
 	}
 
 	/**
@@ -82,7 +62,7 @@ class Client {
 	public function send_newsletter() {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => self::SEND_NEWSLETTER_GATE,
+			'Gate'      => $this->settings->get_send_newsletter_gate(),
 			'Gateinput' => array(
 				'PUBLICATION' => self::PUBLICATION,
 				'TYPE'        => self::get_type(),
@@ -100,7 +80,7 @@ class Client {
 	public function optin_email( string $email ) {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => self::OPTIN_GATE,
+			'Gate'      => $this->settings->get_optin_gate(),
 			'Gateinput' => array(
 				'MAIL' => $email,
 			),
