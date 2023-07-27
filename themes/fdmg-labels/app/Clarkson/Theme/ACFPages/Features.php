@@ -83,6 +83,10 @@ class Features {
 									->instructions( _x( 'Enables sharing by copying the link to the clipboard.', 'Fields', 'fdmg-labels' ) )
 									->stylisedUi()
 									->defaultValue( false ),
+								TrueFalse::make( _x( 'Enable autofill related articles', 'Fields', 'fdmg-labels' ), FeatureManager::FEATURE_AUTOFILL_RELATED_ARTICLES )
+									->instructions( _x( 'Enables autofilling the related articles block', 'Fields', 'fdmg-labels' ) )
+									->stylisedUi()
+									->defaultValue( true ),
 							)
 						),
 				),

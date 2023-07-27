@@ -15,10 +15,10 @@ class Vacancies {
 
 	protected const FIELD_GROUP = 'widget_vacancies';
 
-	public const WIDGET_META_USAGE            = 'usage';
-	public const WIDGET_META_SELECTED_POSTS   = 'selected_posts';
-	public const WIDGET_META_IS_FILL_DISABLED = 'is_fill_disabled';
-	public const WIDGET_META_AMOUNT           = 'amount';
+	public const WIDGET_META_USAGE           = 'usage';
+	public const WIDGET_META_SELECTED_POSTS  = 'selected_posts';
+	public const WIDGET_META_IS_FILL_ENABLED = 'is_fill_enabled';
+	public const WIDGET_META_AMOUNT          = 'amount';
 
 
 	public function register_hooks(): void {
@@ -42,9 +42,9 @@ class Vacancies {
 				'example'     => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
+							'll-preview-mode'        => base_block::PREVIEW_MODE_DATA,
+							self::WIDGET_META_IS_FILL_ENABLED => true,
+							self::WIDGET_META_AMOUNT => 2,
 						),
 					),
 				),
@@ -69,12 +69,13 @@ class Vacancies {
 							)
 						)
 						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Disallow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels' ), self::WIDGET_META_IS_FILL_DISABLED )
-						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
+					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels' ), self::WIDGET_META_IS_FILL_ENABLED )
+						->defaultValue( true )
+						->stylisedUi(),
 					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels' ), self::WIDGET_META_AMOUNT )
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::WIDGET_META_IS_FILL_DISABLED, '!=', '1' ),
+								ConditionalLogic::where( self::WIDGET_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
 						->defaultValue( 3 )
