@@ -69,7 +69,10 @@ $data = [
   'teaser' => '[[ARTICLETEASER]]',
   'news_section' => '[[ARTICLECATEGORY]]',
   'img' => '[[ARTICLEIMGURL]]',
+	'img_square' => '[[ARTICLEIMGSQUAREURL]]',
   'cta' => '[[ARTICLEURL]]'
+	'reading_time' => '[[READINGTIMEINMINUTES]]'
+	'publication_time' => '[[FORMATTEDPUBLICATIONTIME]]'
 ];
 ```
 
@@ -85,7 +88,10 @@ $data = [
 	"teaser": "<p>Although blended finance is on everyone’s lips, deal flow and transaction sizes dropped sharply in 2020, a new Convergence report finds. The industry tracker makes recommendations on how to achieve scale. “We’re into the last decade of the 2030 agenda and we are nowhere near the trillions we will need to achieve it,” said Joan [&hellip;]</p>\n",
 	"news_section": "",
 	"img": "http://fdmg-labels.local/wp-content/uploads/2021/11/anp-375469043-1280x.jpg",
+	"img_square": "http://fdmg-labels.local/wp-content/uploads/2021/11/anp-375469043-1280x.jpg",
 	"cta": "http://fdmg-labels.local/keep-it-simple-and-familiar-to-convince-institutional-investors-on-blended-finance/",
+	"reading_time": 3,
+	"publication_time": "08:12",
 	"CREATED_DT": "2021-11-04T16:26:13.8569101+01:00",
 	"Id": 14680
 }
@@ -104,11 +110,11 @@ $data = [
   'subject' => '[[SUBJECT]]'
   'preheader' => '[[PREHEADER]]',
   'introduction' => '[[INTRO]]',
-  'article_1' => '[[ARTILCEID]]',
-  'article_2' => '[[ARTILCEID]]',
-  'article_3' => '[[ARTILCEID]]',
-  'article_4' => '[[ARTILCEID]]',
-  'article_5' => '[[ARTILCEID]]'
+  'articlegroup_1' => '[[ARTILCEID,ARTILCEID]]',
+  'articlegroup_2' => '[[ARTILCEID,ARTILCEID]]',
+	'articlegroup_3' => '[[ARTILCEID,ARTILCEID]]',
+	'articlegroup_4' => '[[ARTILCEID,ARTILCEID]]',
+	'test' => '[[TESTMODE]]'
 ];
 ```
 
@@ -123,8 +129,11 @@ $data = [
 	"subject": "Newsletter test",
 	"preheader": "Pre header",
 	"introduction": "Introduction",
-	"article_1": "6",
-	"article_2": "9",
+	"articlegroup_1": "6,7",
+	"articlegroup_2": "9",
+	"articlegroup_3": "9,10,11",
+	"articlegroup_4": "20,30,45",
+	"test": "2",
 	"CREATED_DT": "2021-11-04T11:34:04.6474839+01:00",
 	"Id": 1019
 }
