@@ -10,6 +10,7 @@ use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class RelatedArticles {
@@ -17,12 +18,12 @@ class RelatedArticles {
 
 	protected const FIELD_GROUP = 'block_related_articles';
 
-	public const BLOCK_META_USAGE            = 'usage';
-	public const BLOCK_META_TITLE            = 'title';
-	public const BLOCK_META_SELECTED_POSTS   = 'selected_posts';
-	public const BLOCK_META_IS_FILL_DISABLED = 'is_fill_disabled';
-	public const BLOCK_META_TERMS            = 'terms';
-	public const BLOCK_META_AMOUNT           = 'amount';
+	public const BLOCK_META_USAGE           = 'usage';
+	public const BLOCK_META_TITLE           = 'title';
+	public const BLOCK_META_SELECTED_POSTS  = 'selected_posts';
+	public const BLOCK_META_IS_FILL_ENABLED = 'is_fill_enabled';
+	public const BLOCK_META_TERMS           = 'terms';
+	public const BLOCK_META_AMOUNT          = 'amount';
 
 
 	public function register_hooks(): void {
@@ -46,9 +47,9 @@ class RelatedArticles {
 				'example'     => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
+							'll-preview-mode'       => base_block::PREVIEW_MODE_DATA,
+							self::BLOCK_META_IS_FILL_ENABLED => true,
+							self::BLOCK_META_AMOUNT => 2,
 						),
 					),
 				),
@@ -80,12 +81,14 @@ class RelatedArticles {
 							)
 						)
 						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Disallow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_DISABLED )
-						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
+					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
+						// The default value is based on the feature flag.
+						->defaultValue( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK ) )
+						->stylisedUi(),
 					Taxonomy::make( _x( 'Select one or more categories to show articles from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_DISABLED, '!=', '1' ),
+								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
 						->taxonomy( 'category' )
@@ -98,7 +101,7 @@ class RelatedArticles {
 					Number::make( _x( 'Select the maximum amount of articles to be shown', 'Fields', 'fdmg-labels' ), self::BLOCK_META_AMOUNT )
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_DISABLED, '!=', '1' ),
+								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
 						->defaultValue( 3 )

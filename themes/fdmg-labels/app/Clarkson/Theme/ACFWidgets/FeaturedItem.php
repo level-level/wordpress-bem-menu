@@ -14,9 +14,9 @@ class FeaturedItem {
 
 	protected const FIELD_GROUP = 'widget_featured_item';
 
-	public const BLOCK_META_SELECTED_POSTS   = 'selected_posts';
-	public const BLOCK_META_IS_FILL_DISABLED = 'is_fill_disabled';
-	public const BLOCK_META_TERMS            = 'terms';
+	public const BLOCK_META_SELECTED_POSTS  = 'selected_posts';
+	public const BLOCK_META_IS_FILL_ENABLED = 'is_fill_enabled';
+	public const BLOCK_META_TERMS           = 'terms';
 
 
 	public function register_hooks(): void {
@@ -40,7 +40,7 @@ class FeaturedItem {
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							self::BLOCK_META_IS_FILL_DISABLED => false,
+							self::BLOCK_META_IS_FILL_ENABLED => true,
 						),
 					),
 				),
@@ -69,12 +69,13 @@ class FeaturedItem {
 						)
 						->max( 1 )
 						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Disallow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_DISABLED )
-						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
+					TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IS_FILL_ENABLED )
+							->defaultValue( true )
+						->stylisedUi(),
 					Taxonomy::make( _x( 'Select one or more categories to show a featured article from (optional)', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TERMS )
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::BLOCK_META_IS_FILL_DISABLED, '!=', '1' ),
+								ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
 						->taxonomy( 'category' )
