@@ -25,9 +25,6 @@ class FeatureManager {
 	public const FEATURE_SHARE_VIA_EMAIL          = 'enable_share_via_email';
 	public const FEATURE_SHARE_VIA_COPY_CLIPBOARD = 'enable_share_via_copy_clipboard';
 
-	// Block options
-	public const FEATURE_AUTOFILL_RELATED_ARTICLES = 'enable_autofil_related_articles';
-
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
 	}
