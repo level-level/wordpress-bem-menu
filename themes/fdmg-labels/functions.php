@@ -40,7 +40,6 @@
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
-( new \FDMGLabels\Articles\BlockTemplate() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Sync\Init() )->register_hooks();
