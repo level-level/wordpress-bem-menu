@@ -63,7 +63,7 @@ class Newsletter {
 			'supports'              => array( 'title', 'revisions' ),
 			'has_archive'           => false,
 			'rewrite'               => array(
-				'slug'       => __( 'newsletters', 'fdmg-labels-admin-slugs' ),
+				'slug'       => __( 'newsletters', 'fdmg-labels-slugs' ),
 				'with_front' => false,
 			),
 			'query_var'             => true,

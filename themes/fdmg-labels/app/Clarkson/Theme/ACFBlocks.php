@@ -11,7 +11,6 @@ use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson_Core\Gutenberg\Block_Manager;
-use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
 use WP_Block_Type_Registry;
 
@@ -46,7 +45,7 @@ class ACFBlocks {
 	 * Available supports settings: https://developer.wordpress.org/block-editor/reference-guides/block-api/block-supports/
 	 */
 	public function set_default_block_type_args( array $block ): array {
-		$block['category']                    = 'fdmg-labels-admin';
+		$block['category']                    = 'fdmg-labels';
 		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['supports']['customClassName'] = false;
 		$block['render_callback']             = $block['render_callback'] ?: array( $this, 'block_render_callback' );

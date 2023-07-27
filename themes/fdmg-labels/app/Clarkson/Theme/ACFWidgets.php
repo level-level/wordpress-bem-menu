@@ -39,7 +39,7 @@ class ACFWidgets {
 	 * @return array<string,mixed>
 	 */
 	public function set_default_widgets_type_args( array $block ): array {
-		$block['category']                    = 'fdmg-labels-admin';
+		$block['category']                    = 'fdmg-labels';
 		$block['mode']                        = 'preview'; // auto, preview, edit
 		$block['render_callback']             = $block['render_callback'] ?: array( $this, 'widget_render_callback' );
 		$block['supports']['customClassName'] = false;

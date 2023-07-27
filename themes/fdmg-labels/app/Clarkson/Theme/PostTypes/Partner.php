@@ -41,7 +41,7 @@ class Partner {
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'has_archive'           => false,
-			'rewrite'               => array( 'slug' => __( 'partner', 'fdmg-labels-admin-slugs' ) ),
+			'rewrite'               => array( 'slug' => __( 'partner', 'fdmg-labels-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,
 			'menu_icon'             => 'dashicons-image-filter',

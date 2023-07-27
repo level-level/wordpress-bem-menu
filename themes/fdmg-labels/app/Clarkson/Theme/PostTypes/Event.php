@@ -38,7 +38,7 @@ class Event {
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
 			'has_archive'           => true,
-			'rewrite'               => array( 'slug' => __( 'event', 'fdmg-labels-admin-slugs' ) ),
+			'rewrite'               => array( 'slug' => __( 'event', 'fdmg-labels-slugs' ) ),
 			'query_var'             => true,
 			'menu_position'         => null,
 			'menu_icon'             => 'dashicons-calendar',
