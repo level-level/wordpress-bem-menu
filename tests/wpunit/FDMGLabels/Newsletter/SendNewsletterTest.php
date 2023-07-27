@@ -46,16 +46,16 @@ class SendNewsletterTest extends WPTestCase {
 		update_field( 'send_test', '0', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
+		$scheduled_testmode = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ), 'fdmg_labels' );
+		$scheduled          = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ), 'fdmg_labels' );
 		$this->assertFalse( $scheduled_testmode, 'Sync should not be scheduled in testmode' );
-		$this->assertIsInt( $scheduled, 'Sync should be scheduled' );
+		$this->assertTrue( $scheduled, 'Sync should be scheduled' );
 
 		$this->assert_send_meta_reset( $newsletter );
 		$this->assert_is_logged( $newsletter, false );
 
 		wp_delete_post( $newsletter, true );
-		wp_unschedule_event( $scheduled, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
+		as_unschedule_action( $scheduled, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ), 'fdmg_labels' );
 	}
 
 	public function test_schedule_testmode_now(): void {
@@ -72,16 +72,16 @@ class SendNewsletterTest extends WPTestCase {
 		update_field( 'send_test', '1', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
-		$this->assertIsInt( $scheduled_testmode, 'Sync should be scheduled in testmode' );
+		$scheduled_testmode = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ), 'fdmg_labels' );
+		$scheduled          = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ), 'fdmg_labels' );
+		$this->assertTrue( $scheduled_testmode, 'Sync should be scheduled in testmode' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
 		$this->assert_send_meta_reset( $newsletter );
 		$this->assert_is_logged( $newsletter, true );
 
 		wp_delete_post( $newsletter, true );
-		wp_unschedule_event( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
+		as_unschedule_action( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ), 'fdmg_labels' );
 	}
 
 	public function test_dont_schedule(): void {
@@ -95,8 +95,8 @@ class SendNewsletterTest extends WPTestCase {
 			)
 		);
 
-		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
-		$scheduled          = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ) );
+		$scheduled_testmode = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ), 'fdmg_labels' );
+		$scheduled          = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), false ), 'fdmg_labels' );
 		$this->assertFalse( $scheduled_testmode, 'Sync should not be scheduled in testmode' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
@@ -119,7 +119,7 @@ class SendNewsletterTest extends WPTestCase {
 		update_field( 'send_date', '2040-03-01 09:30:00', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
-		$scheduled_testmode = wp_next_scheduled( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ) );
+		$scheduled_testmode = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), true ), 'fdmg_labels' );
 		$this->assertEquals( ( new DateTime( '2040-03-01 09:30:00', wp_timezone() ) )->getTimestamp(), $scheduled_testmode, 'Sync should be scheduled at the selected future timestamp' );
 	}
 
