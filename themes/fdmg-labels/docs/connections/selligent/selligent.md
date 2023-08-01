@@ -12,21 +12,20 @@ The general flow for creating and sending a newsletter consists of three steps:
 
 ## Environments
 
-There is a testing and a production environment available for connecting to the Selligent API. The login credentials for each environment can be found in Lastpass.
+There is a testing and a production environment available for connecting to the Selligent API. The login credentials for each environment can be found in the password manager.
 
-- API Url test: https://selligent.devfd.nl/restapi/api/sync/
-- API Url prod: https://messagent.fdmediagroep.nl/restapi/api/sync/
+- API Base Url test: https://selligent.devfd.nl
+- API Base Url prod: https://messagent.fdmediagroep.nl
+
+API base path: /restapi/api/sync/
 
 The following credentials are required in the wp-config.
 
 ```php
-define( 'II_SELLIGENT_BASE_URL', 'https://selligent.devfd.nl' );
-define( 'II_SELLIGENT_USER', 'xxx' );
-define( 'II_SELLIGENT_PASS', 'xxx' );
 define( 'II_SELLIGENT_TYPE', 'xxx' );
-define( 'II_SELLIGENT_LIST_ID_NEWSLETTER', 'xxx' );
-define( 'II_SELLIGENT_LIST_ID_ARTICLE', 'xxx' );
 ```
+
+The rest of the settings can be configured in Theme options -> Selligent
 
 ## Authentication
 

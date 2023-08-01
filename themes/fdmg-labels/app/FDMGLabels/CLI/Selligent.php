@@ -6,6 +6,7 @@ use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use WP_CLI;
 use WP_Error;
 
@@ -16,11 +17,12 @@ class Selligent {
 	 * Shows information about the current status of the API.
 	 */
 	public function status( array $args, array $args_assoc ): void {
-		WP_CLI::line( 'Base url: ' . ( defined( 'II_SELLIGENT_BASE_URL' ) ? constant( 'II_SELLIGENT_BASE_URL' ) : 'Base url is not set' ) );
-		WP_CLI::line( 'User: ' . ( defined( 'II_SELLIGENT_USER' ) ? constant( 'II_SELLIGENT_USER' ) : 'User is not set' ) );
-		WP_CLI::line( 'Password: ' . ( defined( 'II_SELLIGENT_PASS' ) ? 'Password is set' : 'Password is not set' ) );
-		WP_CLI::line( 'Newsletter list ID: ' . ( defined( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) ? constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) : 'Newsletter list ID is not set' ) );
-		WP_CLI::line( 'Article list ID: ' . ( defined( 'II_SELLIGENT_LIST_ID_ARTICLE' ) ? constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ) : 'Article List ID is not set' ) );
+		$settings = Settings::get_instance();
+		WP_CLI::line( 'Base url: ' . $settings->get_base_url() );
+		WP_CLI::line( 'User: ' . $settings->get_username() );
+		WP_CLI::line( 'Password: ' . $settings->get_password() );
+		WP_CLI::line( 'Newsletter list ID: ' . $settings->get_newsletter_list_id() );
+		WP_CLI::line( 'Article list ID: ' . $settings->get_article_list_id() );
 		WP_CLI::line( 'Type: ' . Client::get_type() );
 	}
 

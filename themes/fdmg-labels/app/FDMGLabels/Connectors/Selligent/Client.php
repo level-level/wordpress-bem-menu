@@ -5,6 +5,7 @@ namespace FDMGLabels\Connectors\Selligent;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use Monolog\Registry;
 use WP_Error;
 
@@ -16,20 +17,6 @@ class Client {
 	 */
 	public const PUBLICATION = 'IMPACT_INVESTOR';
 
-	/**
-	 * Defines the gate used for sending a newsletter
-	 *
-	 * @var string
-	 */
-	public const SEND_NEWSLETTER_GATE = 'NEWSLETTER_IMPACTINVESTOR';
-
-	/**
-	 * Defines the gate used for subscribing to a newsletter
-	 *
-	 * @var string
-	 */
-	public const OPTIN_GATE = 'OPTIN_IMPACTINVESTOR';
-
 	public const BASE_PATH = '/restapi/api/sync/';
 
 	protected string $base_url;
@@ -38,19 +25,13 @@ class Client {
 
 	protected string $pass;
 
-	protected int $list_id_article;
-
-	protected int $list_id_newsletter;
+	protected Settings $settings;
 
 	/**
 	 * @psalm-suppress RedundantCast
 	 */
 	public function __construct() {
-		$this->base_url           = defined( 'II_SELLIGENT_BASE_URL' ) ? constant( 'II_SELLIGENT_BASE_URL' ) : '';
-		$this->user               = defined( 'II_SELLIGENT_USER' ) ? constant( 'II_SELLIGENT_USER' ) : '';
-		$this->pass               = defined( 'II_SELLIGENT_PASS' ) ? constant( 'II_SELLIGENT_PASS' ) : '';
-		$this->list_id_article    = defined( 'II_SELLIGENT_LIST_ID_ARTICLE' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ) : 0;
-		$this->list_id_newsletter = defined( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) ? (int) constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ) : 0;
+		$this->settings = Settings::get_instance();
 	}
 
 	/**
@@ -59,7 +40,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_post( base_object $post ) {
-		return $this->post( $this->get_list_path( $this->list_id_article ), ( new DataGenerator() )->get_article_data( $post ) );
+		return $this->post( $this->get_list_path( $this->settings->get_article_list_id() ), ( new DataGenerator() )->get_article_data( $post ) );
 	}
 
 	/**
@@ -70,7 +51,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_newsletter( ii_newsletter $newsletter, bool $test_mode ) {
-		return $this->post( $this->get_list_path( $this->list_id_newsletter ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
+		return $this->post( $this->get_list_path( $this->settings->get_newsletter_list_id() ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
 	}
 
 	/**
@@ -81,7 +62,7 @@ class Client {
 	public function send_newsletter() {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => self::SEND_NEWSLETTER_GATE,
+			'Gate'      => $this->settings->get_send_newsletter_gate(),
 			'Gateinput' => array(
 				'PUBLICATION' => self::PUBLICATION,
 				'TYPE'        => self::get_type(),
@@ -99,7 +80,7 @@ class Client {
 	public function optin_email( string $email ) {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => self::OPTIN_GATE,
+			'Gate'      => $this->settings->get_optin_gate(),
 			'Gateinput' => array(
 				'MAIL' => $email,
 			),
@@ -127,7 +108,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function post( string $path, array $data ) {
-		$url      = $this->base_url . self::BASE_PATH . $path;
+		$url      = untrailingslashit( $this->settings->get_base_url() ) . self::BASE_PATH . $path;
 		$response = wp_remote_post(
 			$url, array(
 				'headers' => $this->get_auth_headers( self::BASE_PATH . $path ),
@@ -170,10 +151,10 @@ class Client {
 	 */
 	protected function get_auth_headers( string $endpoint ): array {
 		$timestamp = time();
-		$auth_hash = hash_hmac( 'sha256', sprintf( '%s-POST-%s', $timestamp, $endpoint ), $this->pass );
+		$auth_hash = hash_hmac( 'sha256', sprintf( '%s-POST-%s', $timestamp, $endpoint ), $this->settings->get_password() );
 
 		return array(
-			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->user, $auth_hash, $timestamp ),
+			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->settings->get_username(), $auth_hash, $timestamp ),
 			'Content-Type'  => 'application/json',
 		);
 	}
