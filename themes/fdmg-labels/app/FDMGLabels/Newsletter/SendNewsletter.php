@@ -6,6 +6,7 @@ use Clarkson\Utilities\I18n;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
+use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
 use FDMGLabels\Connectors\Selligent\Client;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
@@ -51,7 +52,7 @@ class SendNewsletter {
 
 		// Schedule single event
 		$test_mode = (bool) get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, $newsletter_id );
-		wp_schedule_single_event( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $test_mode ) );
+		as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $test_mode ), ActionSchedulerSetup::GROUP );
 
 		// Reset the field values
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '0', $newsletter_id );

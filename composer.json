@@ -46,7 +46,8 @@
         "wpackagist-plugin/popup-maker": "^1.17",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
-        "vinkla/extended-acf": "^13.3"
+        "vinkla/extended-acf": "^13.3",
+        "woocommerce/action-scheduler": "^3.6"
     },
     "scripts": {
         "post-autoload-dump": [
