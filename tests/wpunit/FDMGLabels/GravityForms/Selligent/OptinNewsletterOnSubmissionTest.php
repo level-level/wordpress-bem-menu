@@ -41,14 +41,14 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 			)
 		);
 
-		$scheduled = wp_next_scheduled( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
-		$this->assertIsInt( $scheduled, 'Sync should be scheduled' );
+		$scheduled = as_has_scheduled_action( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
+		$this->assertTrue( $scheduled, 'Sync should be scheduled' );
 
 		$this->assert_is_logged( (int) $submission_data['entry_id'], false );
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );
 		GFAPI::delete_form( $form['id'] );
-		wp_unschedule_event( $scheduled, 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
+		as_unschedule_action( $scheduled, 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
 	}
 
 	public function test_no_schedule(): void {
@@ -82,7 +82,7 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 			)
 		);
 
-		$scheduled = wp_next_scheduled( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ) );
+		$scheduled = as_has_scheduled_action( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );

@@ -11,7 +11,6 @@ use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson_Core\Gutenberg\Block_Manager;
-use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
 use WP_Block_Type_Registry;
 

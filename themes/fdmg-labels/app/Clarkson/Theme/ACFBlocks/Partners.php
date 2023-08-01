@@ -27,8 +27,8 @@ class Partners {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Partners', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of partners.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Partners', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of partners.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'image-filter',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'partners' ),
@@ -51,10 +51,10 @@ class Partners {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Partners', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Partners', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Use this title to overwrite the default title: \'Our partners\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
-					Relationship::make( _x( 'Select the partners', 'Fields', 'fdmg-labels' ), self::BLOCK_META_PARTNERS )
+					Text::make( _x( 'Use this title to overwrite the default title: \'Our partners\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+					Relationship::make( _x( 'Select the partners', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_PARTNERS )
 						->postTypes( array( Partner::POST_TYPE_NAME ) )
 						->filters(
 							array(

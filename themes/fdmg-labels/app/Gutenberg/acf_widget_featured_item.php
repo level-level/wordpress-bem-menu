@@ -32,7 +32,7 @@ class acf_widget_featured_item extends base_block {
 		}
 
 		$objects = array();
-		$terms   = ( $this->content_attributes[ FeaturedItem::BLOCK_META_TERMS ] ?? null ) ?: array();
+		$terms   = $this->get_selected_terms();
 		$amount  = 1;
 
 		$query_args = $this->get_query_args( $terms, self::POST_TYPES, $selected_posts, $amount, self::TAX_RELATION );
@@ -90,5 +90,20 @@ class acf_widget_featured_item extends base_block {
 				return $object->get_status() === 'publish';
 			}
 		);
+	}
+
+	/**
+	 * Returns array of selected terms
+	 * @return array<Clarkson_Object>
+	 */
+	public function get_selected_terms(): array {
+		$categories = $this->content_attributes[ FeaturedItem::BLOCK_META_TERMS ] ?? null;
+		$categories = $categories ?: array();
+		$genres     = $this->content_attributes[ FeaturedItem::BLOCK_META_GENRES ] ?? null;
+		$genres     = $genres ?: array();
+		$sections   = $this->content_attributes[ FeaturedItem::BLOCK_META_SECTIONS ] ?? null;
+		$sections   = $sections ?: array();
+
+		return array_merge( $categories, $genres, $sections );
 	}
 }

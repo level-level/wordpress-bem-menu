@@ -14,8 +14,8 @@ class Newsletter {
 		acf_register_block_type(
 			array(
 				'name'        => 'widget-' . self::WIDGET_NAME,
-				'title'       => _x( 'Newsletter', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Newsletter', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a newsletter block. The content for this block can be edited on the Theme Options page.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'email-alt',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'newsletter', 'subscribe', 'signup', 'call to action', 'cta' ),

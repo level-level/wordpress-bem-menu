@@ -45,9 +45,9 @@
 }
 
 .btn-play {
-	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
-	@apply hocus:bg-secondary-400 hocus:border-secondary-400 hocus:text-base-800 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
-	@apply theme-energeia:dark:text-base-600;
+	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 theme-energeia:text-base-800 dark:text-base-800 theme-pensioen-pro:dark:text-base-50;
+	@apply hocus:bg-secondary-400 hocus:border-secondary-400 hocus:text-base-800 hocus:dark:text-primary-300;
+	@apply theme-energeia:dark:text-base-600 theme-pensioen-pro:dark:hocus:text-base-800;
 }
 
 .btn-tertiary {

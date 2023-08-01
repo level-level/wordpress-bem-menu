@@ -1,6 +1,7 @@
 <?php
 namespace FDMGLabels\GravityForms\Selligent;
 
+use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
 use FDMGLabels\Connectors\Selligent\Client;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
@@ -43,7 +44,7 @@ class OptinNewsletterOnSubmission {
 		}
 
 		// Schedule single event
-		wp_schedule_single_event( time(), self::TRIGGER, array( (int) $entry['id'] ) );
+		as_schedule_single_action( time(), self::TRIGGER, array( (int) $entry['id'] ), ActionSchedulerSetup::GROUP );
 
 		$this->selligent_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Subscribing to the newsletter has been queued.', LogLine::LEVEL_INFO );
 	}

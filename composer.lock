@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c5371f2dc34d13e0bc0d8c6fae9e42f",
+    "content-hash": "5bbadb7700ec5573e1a0f1146498cbff",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -992,11 +992,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.1.6",
+            "version": "6.1.7",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.1.6",
-                "shasum": "1500f523815c38ab04ee29a7c1f4e40949ad6604",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.1.7",
+                "shasum": "f152886de8cf3e560ffa6c77bc5f2cdc865f7999",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1018,11 +1018,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.9",
+            "version": "2.7.10",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.9",
-                "shasum": "87430ac44e755e05b52e999fa82254b9db9e01cc",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.10",
+                "shasum": "0f9cf62780e814c82bc7e99a89e8e2cc4ca32e24",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1078,11 +1078,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.1",
-                "shasum": "223b1294e42be354cf4b554d10e3b7dc9cc052e0",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.2",
+                "shasum": "dec91d7b7b6420e859350cad79b72c244b702cd2",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4045,6 +4045,52 @@
             "time": "2023-04-17T09:31:15+00:00"
         },
         {
+            "name": "woocommerce/action-scheduler",
+            "version": "3.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/woocommerce/action-scheduler.git",
+                "reference": "7fd383cad3d64b419ec81bcd05bab44355a6e6ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/7fd383cad3d64b419ec81bcd05bab44355a6e6ef",
+                "reference": "7fd383cad3d64b419ec81bcd05bab44355a6e6ef",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5",
+                "woocommerce/woocommerce-sniffs": "0.1.0",
+                "wp-cli/wp-cli": "~2.5.0",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "scripts-description": {
+                    "test": "Run unit tests",
+                    "phpcs": "Analyze code against the WordPress coding standards with PHP_CodeSniffer",
+                    "phpcbf": "Fix coding standards warnings/errors automatically with PHP Code Beautifier"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "description": "Action Scheduler for WordPress and WooCommerce",
+            "homepage": "https://actionscheduler.org/",
+            "support": {
+                "issues": "https://github.com/woocommerce/action-scheduler/issues",
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.6.1"
+            },
+            "time": "2023-06-14T19:23:12+00:00"
+        },
+        {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
             "version": "3.1",
             "source": {
@@ -4071,15 +4117,15 @@
         },
         {
             "name": "wpackagist-plugin/disable-emojis",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/disable-emojis/",
-                "reference": "tags/1.7.4"
+                "reference": "tags/1.7.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.5.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4171,15 +4217,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.18.1",
+            "version": "1.18.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.18.1"
+                "reference": "tags/1.18.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.18.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.18.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4196,15 +4242,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.5.7",
+            "version": "2.5.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.5.7"
+                "reference": "tags/2.5.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.9.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4246,15 +4292,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.10.0",
+            "version": "7.10.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.10.0"
+                "reference": "tags/7.10.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.10.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.10.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4271,15 +4317,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "20.9",
+            "version": "20.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/20.9"
+                "reference": "tags/20.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.9.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.20.11.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -6104,16 +6150,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.1.9",
+            "version": "3.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "38e15758d2960d31ce6347bff843574f147d2630"
+                "reference": "d591a12891305b29ff0e1e08e2a173e6f915abf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/38e15758d2960d31ce6347bff843574f147d2630",
-                "reference": "38e15758d2960d31ce6347bff843574f147d2630",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/d591a12891305b29ff0e1e08e2a173e6f915abf4",
+                "reference": "d591a12891305b29ff0e1e08e2a173e6f915abf4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6148,11 +6194,10 @@
             },
             "require-dev": {
                 "erusev/parsedown": "^1.7",
-                "ext-pcntl": "*",
-                "ext-sockets": "*",
                 "gumlet/php-image-resize": "^1.6",
                 "lucatume/codeception-snapshot-assertions": "^0.2",
                 "mikey179/vfsstream": "^1.6",
+                "symfony/translation": "^3.4",
                 "victorjonsson/markdowndocs": "dev-master",
                 "vlucas/phpdotenv": "^3.0",
                 "wp-cli/wp-cli-bundle": "*"
@@ -6203,7 +6248,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.1.9"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.1.10"
             },
             "funding": [
                 {
@@ -6211,7 +6256,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-04-11T07:42:24+00:00"
+            "time": "2023-07-20T16:11:45+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -10603,5 +10648,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }
