@@ -28,7 +28,7 @@ class WPSEO {
 		$pages_total = $wp_query->max_num_pages === 0 ? 1 : $wp_query->max_num_pages;
 		$search_term = get_search_query();
 		$separator   = function_exists( 'YoastSEO' ) ? YoastSEO()->helpers->options->get_title_separator() : '-';
-		$title       = sprintf( _x( 'Search results for "%1$s", page %2$s of %3$s', 'Search', 'fdmg-labels' ), $search_term, $page, $pages_total );
+		$title       = sprintf( _x( 'Search results for "%1$s", page %2$s of %3$s', 'Search', 'fdmg-labels-admin' ), $search_term, $page, $pages_total );
 
 		return $title . ' ' . $separator . ' ' . get_bloginfo( 'name' );
 	}

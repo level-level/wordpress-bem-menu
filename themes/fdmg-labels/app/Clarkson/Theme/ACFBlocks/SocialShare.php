@@ -15,8 +15,8 @@ class SocialShare {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Social share', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of social share buttons.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Social share', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of social share buttons.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'share',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail' ),

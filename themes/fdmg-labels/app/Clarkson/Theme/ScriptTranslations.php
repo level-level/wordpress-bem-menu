@@ -8,7 +8,7 @@ class ScriptTranslations {
 			'i18n',
 			array(
 				'socialShare' => sprintf(
-					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels' ),
+					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels-admin' ),
 					get_bloginfo( 'name' )
 				),
 			)

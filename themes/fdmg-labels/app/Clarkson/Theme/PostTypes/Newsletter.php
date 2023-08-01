@@ -43,18 +43,18 @@ class Newsletter {
 	public function register(): void {
 		$args = array(
 			'labels'                => array(
-				'name'               => _x( 'Newsletter', 'Post Type', 'fdmg-labels' ),
-				'singular_name'      => _x( 'Newsletter', 'Post Type', 'fdmg-labels' ),
-				'all_items'          => _x( 'All newsletters', 'Post Type', 'fdmg-labels' ),
-				'archives'           => _x( 'Newsletter archives', 'Post Type', 'fdmg-labels' ),
-				'add_new'            => _x( 'New newsletter', 'Post Type', 'fdmg-labels' ),
-				'edit_item'          => _x( 'Edit newsletter', 'Post Type', 'fdmg-labels' ),
-				'view_item'          => _x( 'View newsletter', 'Post Type', 'fdmg-labels' ),
-				'view_items'         => _x( 'View newsletters', 'Post Type', 'fdmg-labels' ),
-				'search_items'       => _x( 'Search newsletters', 'Post Type', 'fdmg-labels' ),
-				'not_found'          => _x( 'No newsletters found', 'Post Type', 'fdmg-labels' ),
-				'not_found_in_trash' => _x( 'No newsletters found in trash', 'Post Type', 'fdmg-labels' ),
-				'parent_item_colon'  => _x( 'Parent newsletter:', 'Post Type', 'fdmg-labels' ),
+				'name'               => _x( 'Newsletter', 'Post Type', 'fdmg-labels-admin' ),
+				'singular_name'      => _x( 'Newsletter', 'Post Type', 'fdmg-labels-admin' ),
+				'all_items'          => _x( 'All newsletters', 'Post Type', 'fdmg-labels-admin' ),
+				'archives'           => _x( 'Newsletter archives', 'Post Type', 'fdmg-labels-admin' ),
+				'add_new'            => _x( 'New newsletter', 'Post Type', 'fdmg-labels-admin' ),
+				'edit_item'          => _x( 'Edit newsletter', 'Post Type', 'fdmg-labels-admin' ),
+				'view_item'          => _x( 'View newsletter', 'Post Type', 'fdmg-labels-admin' ),
+				'view_items'         => _x( 'View newsletters', 'Post Type', 'fdmg-labels-admin' ),
+				'search_items'       => _x( 'Search newsletters', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found'          => _x( 'No newsletters found', 'Post Type', 'fdmg-labels-admin' ),
+				'not_found_in_trash' => _x( 'No newsletters found in trash', 'Post Type', 'fdmg-labels-admin' ),
+				'parent_item_colon'  => _x( 'Parent newsletter:', 'Post Type', 'fdmg-labels-admin' ),
 			),
 			'public'                => false,
 			'hierarchical'          => false,
@@ -81,42 +81,42 @@ class Newsletter {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP_NEWSLETTER_META,
-				'title'    => _x( 'Newsletter meta', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Newsletter meta', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Message::make( __( 'Creating a newsletter', 'fdmg-labels' ), self::META_MESSAGE )
-						->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels' ) ),
-					Text::make( _x( 'Subject', 'Fields', 'fdmg-labels' ), self::META_SUBJECT )
-						->instructions( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels' ) )
+					Message::make( __( 'Creating a newsletter', 'fdmg-labels-admin' ), self::META_MESSAGE )
+						->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
+					Text::make( _x( 'Subject', 'Fields', 'fdmg-labels-admin' ), self::META_SUBJECT )
+						->instructions( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels-admin' ) )
 						->characterLimit( 255 )
 						->required(),
-					Text::make( _x( 'Pre header', 'Fields', 'fdmg-labels' ), self::META_PRE_HEADER )
-						->instructions( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels' ) )
+					Text::make( _x( 'Pre header', 'Fields', 'fdmg-labels-admin' ), self::META_PRE_HEADER )
+						->instructions( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels-admin' ) )
 						->characterLimit( 255 ),
-					WysiwygEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels' ), self::META_INTRODUCTION )
-						->instructions( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels' ) )
+					WysiwygEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels-admin' ), self::META_INTRODUCTION )
+						->instructions( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels-admin' ) )
 						->toolbar( 'basic' )
 						->tabs( 'visual' )
 						->mediaUpload( false ),
-					Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels' ), self::META_ARTICLES )
-						->instructions( _x( 'Add the articles that should be shown in the newsletter.', 'Fields', 'fdmg-labels' ) )
+					Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLES )
+						->instructions( _x( 'Add the articles that should be shown in the newsletter.', 'Fields', 'fdmg-labels-admin' ) )
 						->min( 0 )
 						->max( 6 )
 						->collapsed( 'article' )
-						->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels' ) )
+						->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
 						->fields(
 							array(
-								PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels' ), self::META_ARTICLES_ARTICLE )
+								PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLES_ARTICLE )
 									->postTypes( array( Post::POST_TYPE_NAME ) )
 									->returnFormat( 'id' )
 									->required(),
 							)
 						),
-					Group::make( _x( 'Sending newsletter', 'Fields', 'fdmg-labels' ), self::META_SEND )
+					Group::make( _x( 'Sending newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND )
 						->fields(
 							array(
-								TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels' ), self::META_SEND_ACTION )
+								TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
 									->stylisedUi(),
-								TrueFalse::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels' ), self::META_SEND_TEST )
+								TrueFalse::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
 									->stylisedUi()
 									->defaultValue( true )
 									->conditionalLogic(
@@ -124,8 +124,8 @@ class Newsletter {
 											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 										)
 									),
-								TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'fdmg-labels' ), self::META_SEND_SCHEDULE )
-									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels' ) )
+								TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_SCHEDULE )
+									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false )
 									->conditionalLogic(
@@ -133,7 +133,7 @@ class Newsletter {
 											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 										)
 									),
-								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels' ), self::META_SEND_DATE )
+								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DATE )
 									->required()
 									->returnFormat( 'Y-m-d H:i:s' )
 									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
@@ -167,7 +167,7 @@ class Newsletter {
 		}
 
 		if ( strlen( $value ) > 2000 ) {
-			$valid = _x( 'The HTML of this field may not be longer than 2000 characters.', 'Fields', 'fdmg-labels' );
+			$valid = _x( 'The HTML of this field may not be longer than 2000 characters.', 'Fields', 'fdmg-labels-admin' );
 		}
 		return $valid;
 	}
@@ -187,14 +187,14 @@ class Newsletter {
 
 		$datetime = date_create_from_format( 'Y-m-d H:i:s', $value, wp_timezone() );
 		if ( ! $datetime ) {
-			$valid = _x( 'The chosen date is invalid.', 'Fields', 'fdmg-labels' );
+			$valid = _x( 'The chosen date is invalid.', 'Fields', 'fdmg-labels-admin' );
 		}
 
 		if ( $datetime->getTimestamp() < time() ) {
-			$valid = _x( 'The chosen date must be in the future.', 'Fields', 'fdmg-labels' );
+			$valid = _x( 'The chosen date must be in the future.', 'Fields', 'fdmg-labels-admin' );
 		}
 		if ( $datetime->getTimestamp() > time() + ( DAY_IN_SECONDS * 7 ) ) {
-			$valid = _x( 'The chosen date may not be more than 7 days from now.', 'Fields', 'fdmg-labels' );
+			$valid = _x( 'The chosen date may not be more than 7 days from now.', 'Fields', 'fdmg-labels-admin' );
 		}
 		return $valid;
 	}

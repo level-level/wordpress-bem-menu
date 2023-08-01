@@ -28,6 +28,7 @@ class Support {
 
 		// Make theme available for translation
 		load_theme_textdomain( 'fdmg-labels', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'fdmg-labels-admin', get_template_directory() . '/languages' );
 	}
 
 	public function add_custom_functions( array $functions ): array {

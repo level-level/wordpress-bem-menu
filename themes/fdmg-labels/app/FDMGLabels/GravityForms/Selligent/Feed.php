@@ -56,8 +56,8 @@ class Feed extends GFFeedAddOn {
 	// phpcs:enable PSR2.Classes.PropertyDeclaration.Underscore
 
 	public function __construct() {
-		$this->_title       = __( 'Selligent', 'fdmg-labels' );
-		$this->_short_title = __( 'Selligent', 'fdmg-labels' );
+		$this->_title       = __( 'Selligent', 'fdmg-labels-admin' );
+		$this->_short_title = __( 'Selligent', 'fdmg-labels-admin' );
 		parent::__construct();
 	}
 
@@ -79,18 +79,18 @@ class Feed extends GFFeedAddOn {
 			array(
 				'name'          => self::META_ENABLED,
 				'type'          => 'toggle',
-				'label'         => __( 'Send entries to Selligent', 'fdmg-labels' ),
+				'label'         => __( 'Send entries to Selligent', 'fdmg-labels-admin' ),
 				'default_value' => 0,
 			),
 			array(
 				'name'       => self::META_FIELD_MAP,
 				'type'       => 'field_map',
-				'label'      => __( 'Connect fields', 'fdmg-labels' ),
-				'tooltip'    => __( 'Connect fields that should be sent to Selligent.', 'fdmg-labels' ),
+				'label'      => __( 'Connect fields', 'fdmg-labels-admin' ),
+				'tooltip'    => __( 'Connect fields that should be sent to Selligent.', 'fdmg-labels-admin' ),
 				'field_map'  => array(
 					array(
 						'name'       => self::META_FIELD_MAP_EMAIL,
-						'label'      => __( 'E-mail address', 'fdmg-labels' ),
+						'label'      => __( 'E-mail address', 'fdmg-labels-admin' ),
 						'field_type' => array( 'email' ),
 						'required'   => true,
 					),
@@ -108,7 +108,7 @@ class Feed extends GFFeedAddOn {
 
 		return array(
 			array(
-				'title'  => __( 'Selligent settings', 'fdmg-labels' ),
+				'title'  => __( 'Selligent settings', 'fdmg-labels-admin' ),
 				'fields' => $fields,
 			),
 		);

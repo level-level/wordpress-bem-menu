@@ -1,9 +1,8 @@
 .icon-inline {
-	display: inline-flex;
+	@apply inline-flex;
 
 	svg {
-		width: 1em;
-		height: 1em;
+		@apply w-[1em] h-[1em];
 
 		* {
 			fill: currentcolor;

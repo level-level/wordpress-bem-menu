@@ -30,8 +30,8 @@ class Vacancies {
 		acf_register_block_type(
 			array(
 				'name'        => 'widget-' . self::WIDGET_NAME,
-				'title'       => _x( 'Vacancies/Jobs', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Vacancies/Jobs', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'money',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array( 'vacancies', 'jobs' ),
@@ -56,12 +56,12 @@ class Vacancies {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Vacancies/Jobs', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Vacancies/Jobs', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::WIDGET_META_USAGE )
-						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels' ) )
+					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_USAGE )
+						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
-					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::WIDGET_META_SELECTED_POSTS )
+					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_SELECTED_POSTS )
 						->postTypes( array( Vacancy::POST_TYPE_NAME ) )
 						->filters(
 							array(
@@ -69,10 +69,10 @@ class Vacancies {
 							)
 						)
 						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels' ), self::WIDGET_META_IS_FILL_ENABLED )
+					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_IS_FILL_ENABLED )
 						->defaultValue( true )
 						->stylisedUi(),
-					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels' ), self::WIDGET_META_AMOUNT )
+					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::WIDGET_META_IS_FILL_ENABLED, '==', '1' ),
@@ -81,7 +81,7 @@ class Vacancies {
 						->defaultValue( 3 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'vacancies', 'Fields', 'fdmg-labels' ) )
+						->append( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
 				),
 				'location' => array(

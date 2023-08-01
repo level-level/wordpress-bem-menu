@@ -2,7 +2,7 @@
 {% set object = objects|first %}
 
 {% block content %}
-	<h1 class="screen-reader-text">{{ object.get_title()|raw }}</h1>
+	<h1 class="sr-only">{{ object.get_title()|raw }}</h1>
 	<div class="section">
 		<div class="entry-content">
 			{{ object.get_content()|raw }}

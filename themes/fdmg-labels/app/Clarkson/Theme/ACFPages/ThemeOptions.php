@@ -50,8 +50,8 @@ class ThemeOptions {
 	public function register(): void {
 		acf_add_options_page(
 			array(
-				'menu_title' => _x( 'Theme options', 'Options', 'fdmg-labels' ),
-				'page_title' => _x( 'Options', 'Options', 'fdmg-labels' ),
+				'menu_title' => _x( 'Theme options', 'Options', 'fdmg-labels-admin' ),
+				'page_title' => _x( 'Options', 'Options', 'fdmg-labels-admin' ),
 				'menu_slug'  => self::MENU_SLUG,
 				'icon_url'   => 'dashicons-admin-settings',
 				'redirect'   => false,
@@ -63,12 +63,12 @@ class ThemeOptions {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Theme options', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Theme options', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
+					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP )
 						->fields(
 							array(
-								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels' ), self::OPTION_ACTIVE_THEME )
+								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ACTIVE_THEME )
 									->choices(
 										array(
 											'impact-investor' => 'Impact Investor',
@@ -78,34 +78,34 @@ class ThemeOptions {
 									)
 									->required()
 									->defaultValue( 'impact-investor' ),
-								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TAB )
+								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TAB )
 									->placement( 'left' ),
-								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_GROUP )
+								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_GROUP )
 								->layout( 'block' )
 								->fields(
 									array(
-										Text::make( _x( 'Title in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TITLE ),
-										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_CONTENT )
+										Text::make( _x( 'Title in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TITLE ),
+										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_CONTENT )
 											->newLines( 'wpautop' ),
-										Link::make( _x( 'Button', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_BUTTON )
+										Link::make( _x( 'Button', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_BUTTON )
 											->instructions( 'This button will be used in the header of the site and in the newsletter block.' )
 											->returnFormat( 'array' ),
-										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_IMAGE )
+										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_IMAGE )
 											->returnFormat( 'id' )
 											->previewSize( 'medium' )
 											->library( 'all' ),
 									)
 								),
-								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels' ), self::OPTION_COOKIEWALL_TAB )
+								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels-admin' ), self::OPTION_COOKIEWALL_TAB )
 									->placement( 'left' ),
-								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels' ), self::OPTION_SOURCEPOINT_ENABLE )
-									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels' ), _x( 'Disabled', 'Fields', 'fdmg-labels' ) )
+								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENABLE )
+									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
 									->defaultValue( 1 )
 									->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
-								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENTS_TAB )
+								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_TAB )
 									->placement( 'left' ),
-								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels' ), self::OPTION_ADVERTISEMENTS_ENABLE )
-									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels' ), _x( 'Disabled', 'Fields', 'fdmg-labels' ) )
+								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_ENABLE )
+									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
 									->defaultValue( 1 )
 									->instructions( 'Enables or disables the advertisements' ),
 							)

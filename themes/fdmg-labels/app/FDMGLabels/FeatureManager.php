@@ -11,11 +11,13 @@ class FeatureManager {
 	public const FEATURE_ENABLE_EVENT_POST_TYPE   = 'enable_event_post_type';
 
 	// Taxonomies
-	public const FEATURE_ENABLE_GENRE_TAXONOMY   = 'enable_genre_taxonomy';
-	public const FEATURE_ENABLE_SECTION_TAXONOMY = 'enable_section_taxonomy';
+	public const FEATURE_ENABLE_GENRE_TAXONOMY     = 'enable_genre_taxonomy';
+	public const FEATURE_ENABLE_SECTION_TAXONOMY   = 'enable_section_taxonomy';
+	public const FEATURE_DISABLE_CATEGORY_TAXONOMY = 'disable_category_taxonomy';
 
-	// Other
-	public const FEATURE_COMPACT_HEADER = 'compact_header';
+	// Layout options
+	public const FEATURE_ENABLE_COMPACT_HEADER         = 'enable_compact_header';
+	public const FEATURE_DISABLE_ARTICLE_TEASER_FOOTER = 'disable_artice_teaser_footer';
 
 	// Share options
 	public const FEATURE_SHARE_VIA_FACEBOOK       = 'enable_share_via_facebook';
