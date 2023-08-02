@@ -13,7 +13,7 @@
 				<li>
 					{% include 'styleguide/components/teasers/teaser-post-medium.twig' with {
 						image: image_id ? wp_get_attachment_image(image_id, 'large'),
-						title: object.get_title(),
+						title: object.get_alternative_title()|default(object.get_title()),
 						url: object.get_permalink(),
 						date: object.get_date_i18n(date_format),
 						date_full: object.get_date_i18n('F j Y'),

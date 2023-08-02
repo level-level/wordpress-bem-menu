@@ -23,7 +23,7 @@
 			<div id="most-read" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section" aria-hidden="false">
 				{% include 'styleguide/components/most-read-articles.twig' with {
 					objects: most_read ? most_read|map(post => {
-						title: post.get_title(),
+						title: post.get_alternative_title()|default(post.get_title()),
 						url: post.get_permalink(),
 					}),
 				} %}
@@ -34,7 +34,7 @@
 			<div id="latest" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section" {{ not most_read ? 'aria-hidden="false"' : 'aria-hidden="true"' }}>
 				{% include 'styleguide/components/list-component.twig' with {
 					objects: latest ? latest|map(post => {
-						title: post.get_title(),
+						title: post.get_alternative_title()|default(post.get_title()),
 						url: post.get_permalink(),
 						terms: post.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category')|map(term => {
 							name: term.get_name(),
