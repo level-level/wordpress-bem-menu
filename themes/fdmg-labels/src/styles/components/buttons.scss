@@ -28,7 +28,7 @@
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600;
 	@apply compact-header:btn-icon:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300 compact-header:hocus:text-base-800 compact-header:dark:hocus:text-base-50;
 	@apply compact-header:btn-icon:hocus:text-base-800 compact-header:dark:btn-icon:hocus:text-base-50;
-	@apply py-[10px] rounded-[3px];
+	@apply compact-header:p-[10px] rounded-[3px];
 }
 
 .btn-profile {
