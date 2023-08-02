@@ -5,7 +5,7 @@
 		{% include 'styleguide/components/list-component.twig' with {
 			heading: _x('Latest news', 'Block', 'fdmg-labels'),
 			objects: objects ? objects|map(post => {
-				title: post.get_title(),
+				title: post.get_alternative_title()|default(post.get_title()),
 				url: post.get_permalink(),
 				date: post.get_date_i18n('H:i'),
 				datetime: post.get_date_i18n('H:i'),
