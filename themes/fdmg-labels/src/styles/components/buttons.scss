@@ -1,6 +1,6 @@
 
 .btn {
-	@apply font-body-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:text-md sm:py-[10px] sm:px-[17px];
+	@apply font-body-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:py-3 sm:px-[17px];
 }
 
 .btn-primary {
@@ -8,6 +8,7 @@
 	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-primary-300 theme-pensioen-pro:hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:bg-transparent theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent;
 	@apply theme-energeia:dark:text-base-600;
 	@apply theme-energeia:text-base-800;
+	@apply compact-header:hocus:text-base-50;
 }
 
 .btn-secondary {
@@ -27,11 +28,12 @@
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600;
 	@apply compact-header:btn-icon:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300 compact-header:hocus:text-base-800 compact-header:dark:hocus:text-base-50;
 	@apply compact-header:btn-icon:hocus:text-base-800 compact-header:dark:btn-icon:hocus:text-base-50;
+	@apply py-[10px] rounded-[3px];
 }
 
 .btn-profile {
 	@apply font-body text-base-500 rounded-none dark:text-base-100 p-0;
-	@apply w-[48px] h-[48px] border border-primary theme-energeia:border-base-800 dark:border-primary-300;
+	@apply w-[44px] h-[44px] border border-primary theme-energeia:border-base-800 dark:border-primary-300;
 	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600 justify-center;

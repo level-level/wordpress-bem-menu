@@ -28,6 +28,7 @@ class ThemeOptions {
 	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
 	public const OPTION_ADVERTISEMENTS_TAB    = 'advertisements_tab';
 	public const OPTION_ADVERTISEMENTS_ENABLE = 'enable_advertisements';
+	public const OPTION_THEME_TAB             = 'theme_tab';
 	public const OPTION_ACTIVE_THEME          = 'active_theme';
 
 	public function register_hooks(): void {
@@ -68,6 +69,8 @@ class ThemeOptions {
 					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP )
 						->fields(
 							array(
+								Tab::make( _x( 'Theme', 'Fields', 'fdmg-labels-admin' ), self::OPTION_THEME_TAB )
+									->placement( 'left' ),
 								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ACTIVE_THEME )
 									->choices(
 										array(

@@ -56,6 +56,7 @@ $spacing-16: theme('spacing.16');
 
 		@include breakpoint(sm) {
 			--header-height: 72px;
+			--menu-height: 44px;
 		}
 	}
 }

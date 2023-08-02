@@ -7,7 +7,7 @@ class ImageSizes {
 	}
 
 	public function register_custom_sizes(): void {
-		add_image_size( 'thumbnail', 115, 115, array( 'center', 'top' ) );
+		add_image_size( 'thumbnail', 170, 170, array( 'center', 'top' ) );
 		add_image_size( 'teaser_medium', 512, 288, array( 'center', 'top' ) );
 	}
 }

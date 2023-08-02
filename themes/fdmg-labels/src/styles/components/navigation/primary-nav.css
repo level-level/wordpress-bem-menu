@@ -16,14 +16,14 @@
 
 .primary-nav__item--parent:focus-within,
 .primary-nav__item--parent:hover {
-	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 text-base-50;
+	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 text-base-50 compact-header:bg-secondary-400;
 }
 
 .primary-nav__item--parent:focus-within .primary-nav__link,
 .primary-nav__item--parent:focus-within .primary-nav__arrow,
 .primary-nav__item--parent:hover .primary-nav__link,
 .primary-nav__item--parent:hover .primary-nav__arrow  {
-	@apply text-base-50 sm:text-base-50;
+	@apply text-base-50 sm:text-base-50 compact-header:text-base-800 compact-header:dark:text-base-50;
 }
 
 .primary-nav__item--active .primary-nav__link {
@@ -32,6 +32,7 @@
 
 .primary-nav__item--active .primary-nav__arrow {
 	@apply text-base-50;
+	@apply compact-header:text-base-800 compact-header:dark:text-base-50;
 }
 
 .primary-nav__link {
