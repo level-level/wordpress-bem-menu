@@ -6,7 +6,9 @@
 			{% endif %}
 		</div>
 		<div class="grow sm:grow-0">
-			{% include 'partials/components/header/logo.twig' %}
+			{% include 'partials/components/header/logo.twig' with {
+				use_compact_header: true,
+			} %}
 		</div>
 
 		{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}

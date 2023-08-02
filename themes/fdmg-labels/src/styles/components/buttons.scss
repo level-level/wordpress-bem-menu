@@ -17,6 +17,7 @@
 .btn-menu {
 	@apply text-lg flex flex-col items-center justify-center p-0 min-w-[32px] dark:text-base-100;
 	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] aria-expanded:text-base-50 aria-expanded:z-20 leading-none focus:outline-base-50;
+	@apply compact-header:text-base-50;
 }
 
 .btn-header {
@@ -24,6 +25,8 @@
 	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600;
+	@apply compact-header:btn-icon:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300 compact-header:hocus:text-base-800 compact-header:dark:hocus:text-base-50;
+	@apply compact-header:btn-icon:hocus:text-base-800 compact-header:dark:btn-icon:hocus:text-base-50;
 }
 
 .btn-profile {
@@ -32,6 +35,8 @@
 	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-200 aria-expanded:dark:bg-base-600 justify-center;
+	@apply compact-header:btn-icon:text-base-50 compact-header:border-base-50 compact-header:dark:border-base-500 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300;
+	@apply compact-header:aria-expanded:bg-secondary-400 compact-header:dark:aria-expanded:bg-base-300;
 }
 
 .btn-share {

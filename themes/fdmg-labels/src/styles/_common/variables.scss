@@ -55,7 +55,7 @@ $spacing-16: theme('spacing.16');
 		--header-top-height: auto;
 
 		@include breakpoint(sm) {
-			--header-height: 80px;
+			--header-height: 72px;
 		}
 	}
 }

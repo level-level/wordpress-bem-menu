@@ -52,7 +52,7 @@ module.exports = {
 				'content-width': 'var(--content-width)',
 			},
 			boxShadow: {
-				header: '0 2px 4px rgb(115 166 191 / 15%)',
+				header: '0 4px 16px rgb(0 0 0 / 10%)',
 				teaser: '0 2px 4px rgb(0 0 0 / 15%)',
 			},
 			backgroundImage: {
@@ -107,6 +107,7 @@ module.exports = {
 			'secondary-400': 'var(--secondary-400)',
 			'secondary-500': 'var(--secondary-500)',
 			'secondary-600': 'var(--secondary-600)',
+			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],
