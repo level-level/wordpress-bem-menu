@@ -38,7 +38,9 @@
 		{% endfor %}
 
 		{% if button_text and button_link %}
-			<li class="p-3 border-t sm:p-4 border-[rgb(0,0,0,0.1)] dark:border-base-400">
+			<li class="p-3 border-t sm:py-2 sm:px-4 border-[rgb(0,0,0,0.1)] dark:border-base-400
+			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800' }}
+			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600' }}">
 				{% include 'styleguide/components/buttons/button-link.twig' with {
 					text: button_text,
 					url: button_link,

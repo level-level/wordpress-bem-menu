@@ -2,7 +2,7 @@
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="p-3 sm:p-6">
+		<div class="p-3 sm:p-4">
 			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
@@ -14,10 +14,10 @@
 					} only %}
 				</div>
 
-				{% if image_square %}
+				{% if image %}
 					<div class="shrink-0">
 						<div class="max-w-[65px]">
-							{{ image_square|raw }}
+							{{ image|raw }}
 						</div>
 					</div>
 				{% endif %}
@@ -27,7 +27,7 @@
 
 	{# Tablet >= #}
 	<div class="hidden sm:block">
-		<div class="p-3 sm:p-6">
+		<div class="p-3 sm:p-4">
 			<div class="flex gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
@@ -50,7 +50,7 @@
 
 				{% if image %}
 					<div class="shrink">
-						<div class="relative overflow-hidden aspect-[14/9] sm:w-[210px] lg:aspect-[14/9] lg:w-[260px] image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none lg:image:w-full lg:image:h-auto lg:image:top-1/2 lg:image:left-1/2 lg:image:-translate-x-1/2 lg:image:-translate-y-1/2">
+						<div class="relative overflow-hidden aspect-[1/1] sm:w-[170px] image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none lg:image:w-full lg:image:h-auto lg:image:top-1/2 lg:image:left-1/2 lg:image:-translate-x-1/2 lg:image:-translate-y-1/2">
 							{{ image|raw }}
 						</div>
 					</div>

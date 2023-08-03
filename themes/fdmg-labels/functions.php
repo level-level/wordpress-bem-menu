@@ -32,6 +32,7 @@
 ( new \Clarkson\Theme\ImageSizes() )->register_hooks();
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
+( new \Clarkson\Theme\LoginLogo() )->register_hooks();
 
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
