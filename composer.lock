@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bbadb7700ec5573e1a0f1146498cbff",
+    "content-hash": "713952b7db7bc55977602603798c9455",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1101,6 +1101,58 @@
             },
             "description": "The best WordPress search you can find",
             "homepage": "https://searchwp.com/"
+        },
+        {
+            "name": "ll-premium/wp-all-import-pro",
+            "version": "4.7.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/wp-all-import-pro/ll-premium-wp-all-import-pro-4.7.8.zip",
+                "shasum": "0094c4e79c551fd7b09f7858399d1de80fc65583",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "authors": {
+                "name": "Soflyy",
+                "homepage": ""
+            },
+            "description": "The most powerful solution for importing XML and CSV files to WordPress. Import to Posts, Pages, and Custom Post Types. Support for imports that run on a schedule, ability to update existing imports, and much more.",
+            "homepage": "http://www.wpallimport.com/"
+        },
+        {
+            "name": "ll-premium/wpai-acf-add-on",
+            "version": "3.3.8",
+            "dist": {
+                "type": "zip",
+                "url": "https://satis.level-level.com/packages/ll-premium/wpai-acf-add-on/ll-premium-wpai-acf-add-on-3.3.8.zip",
+                "shasum": "5a0ea50ecdf4c1e134ada1806f64f0d469ea4a4a",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "authors": {
+                "name": "Soflyy",
+                "homepage": ""
+            },
+            "description": "Import to Advanced Custom Fields. Requires WP All Import & Advanced Custom Fields.",
+            "homepage": "http://www.wpallimport.com/"
         },
         {
             "name": "monolog/monolog",

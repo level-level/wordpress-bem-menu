@@ -47,7 +47,9 @@
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "vinkla/extended-acf": "^13.3",
-        "woocommerce/action-scheduler": "^3.6"
+        "woocommerce/action-scheduler": "^3.6",
+        "ll-premium/wp-all-import-pro": "^4.7",
+        "ll-premium/wpai-acf-add-on": "^3.3"
     },
     "scripts": {
         "post-autoload-dump": [
