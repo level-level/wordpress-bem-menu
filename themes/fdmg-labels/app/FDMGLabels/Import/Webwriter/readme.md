@@ -129,13 +129,13 @@
 ### article => post
 - id
 - escenic_id  -> Oude CMS
-- state
+- state -> Status
 - X target_state  -> Is altijd publish als het ingevuld is en alleen van toepassing bij embargo
 - last_modified_date
 - X embargoed_until_date -> Hoeft niet mee omdate we FUTURE post status gebuiken
 - X broadcast_date -> Overal null dus hoeft niet mee
 - X teaser_title     -> Komt uit teaser tabel
-- prefix
+- prefix -> Genre taxonomie
 - title
 - publication_date
 - publication_url
@@ -156,15 +156,15 @@
 - X redirect_url         --> nvt op ARTICLE article_type
 - X full_width           --> nvt
 - X top_html_content_item_id --> nvt
-- X free                 --> nvt want paywall gaat eruit
-- taxonomy               --> Jrg. X, editie Y eruit filteren
+- free                   --> of er een paywall getoond moet worden
+- X taxonomy               --> Leeg
 - X article_length       --> Leeg
 - X version              --> nvt
 - X last_update_date     --> Leeg
 - X canonical_url        --> Leeg
 - X do_auto_tag          --> Leeg
 - X category             --> Leeg
-- template               --> NEWS, 22 met BACKGROUND. Nodig? Eventueel handmatig.
+- X template             --> NEWS, 101 met BACKGROUND. Nodig? Eventueel handmatig.
 
 ### author => team
 - id
@@ -220,6 +220,13 @@ Andere redirects tabel?
 - url
 - target_url
 - redirect
+
+### section => section
+- name
+- title
+- parent_name
+- directory
+- full_path
 
 ### teaser
 Excerpts maar moeilijker
