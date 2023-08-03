@@ -1,14 +1,17 @@
 <?php
 namespace Clarkson\Theme\ACFPages;
 
+use Clarkson\Theme\Fields\Socials;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
+use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\Textarea;
 use Extended\ACF\Fields\TrueFalse;
+use Extended\ACF\Fields\Url;
 use Extended\ACF\Location;
 
 class ThemeOptions {
@@ -32,6 +35,9 @@ class ThemeOptions {
 	public const OPTION_ACTIVE_THEME          = 'active_theme';
 	public const OPTION_SUBSCRIBE_TAB         = 'subscribe_tab';
 	public const OPTION_SUBSCRIBE_BUTTON      = 'subscribe_button';
+	public const OPTIONS_SOCIALS              = 'socials';
+	public const OPTIONS_SOCIALS_TYPE         = 'type';
+	public const OPTIONS_SOCIALS_URL          = 'url';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -118,6 +124,20 @@ class ThemeOptions {
 								Link::make( _x( 'Subscribe page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_BUTTON )
 										->instructions( _x( 'Once set, will display a button next to the navigation. Only when using the compact header option.', 'Fields', 'fdmg-labels-admin' ) )
 										->returnFormat( 'array' ),
+								Tab::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ) )
+										->placement( 'left' ),
+								Repeater::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS )
+									->instructions( _x( 'Add links to your social media channels', 'Fields', 'fdmg-labels-admin' ) )
+									->fields(
+										array(
+											Socials::get_list( self::OPTIONS_SOCIALS_TYPE ),
+											Url::make( _x( 'URL', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS_URL )
+												->placeholder( 'https://' )
+												->required(),
+										)
+									)
+									->buttonLabel( _x( 'Add social media channel', 'Fields', 'fdmg-labels-admin' ) )
+									->layout( 'table' ),
 							)
 						),
 				),
