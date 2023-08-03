@@ -2,7 +2,9 @@
 	<div class="flex items-center justify-between">
 		<div class="sm:hidden">
 			{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
-				{% include 'partials/components/header/header-menu.twig' %}
+				{% include 'partials/components/header/header-menu.twig' with {
+					use_compact_header: true,
+				} %}
 			{% endif %}
 		</div>
 		<div class="grow sm:grow-0">
@@ -25,18 +27,19 @@
 							show_button_label: use_compact_header ? false : true,
 						} %}
 					</li>
-					{% set newsletter = options.newsletter %}
-					{% if newsletter.button.title and newsletter.button.url %}
+
+					{% set subscribe = options.subscribe_button %}
+					{% if subscribe.url %}
 						<li>
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: newsletter.button.title,
-								url: newsletter.button.url,
+								text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
+								url: subscribe.url,
 								class: 'btn-primary',
-								is_external: newsletter.button.target ? true,
-								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
+								is_external: subscribe.target ? true,
 							} %}
 						</li>
 					{% endif %}
+
 					<li>
 						{% include 'partials/components/header/header-profile.twig' with {
 							button_class: use_compact_header ? 'btn-profile' : 'btn-header',

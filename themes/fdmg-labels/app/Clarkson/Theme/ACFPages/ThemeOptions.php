@@ -30,6 +30,8 @@ class ThemeOptions {
 	public const OPTION_ADVERTISEMENTS_ENABLE = 'enable_advertisements';
 	public const OPTION_THEME_TAB             = 'theme_tab';
 	public const OPTION_ACTIVE_THEME          = 'active_theme';
+	public const OPTION_SUBSCRIBE_TAB         = 'subscribe_tab';
+	public const OPTION_SUBSCRIBE_BUTTON      = 'subscribe_button';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -82,16 +84,16 @@ class ThemeOptions {
 									->required()
 									->defaultValue( 'impact-investor' ),
 								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TAB )
-									->placement( 'left' ),
+										->placement( 'left' ),
 								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_GROUP )
-								->layout( 'block' )
+									->layout( 'block' )
 								->fields(
 									array(
 										Text::make( _x( 'Title in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TITLE ),
 										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_CONTENT )
 											->newLines( 'wpautop' ),
 										Link::make( _x( 'Button', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_BUTTON )
-											->instructions( 'This button will be used in the header of the site and in the newsletter block.' )
+											->instructions( _x( 'This button will be used in the header of the site (when not using the compact header option) and in the newsletter block.', 'Fields', 'fdmg-labels-admin' ) )
 											->returnFormat( 'array' ),
 										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_IMAGE )
 											->returnFormat( 'id' )
@@ -100,17 +102,22 @@ class ThemeOptions {
 									)
 								),
 								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels-admin' ), self::OPTION_COOKIEWALL_TAB )
-									->placement( 'left' ),
+										->placement( 'left' ),
 								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENABLE )
-									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
-									->defaultValue( 1 )
-									->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
+										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
+										->defaultValue( 1 )
+										->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
 								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_TAB )
-									->placement( 'left' ),
+										->placement( 'left' ),
 								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_ENABLE )
-									->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
-									->defaultValue( 1 )
-									->instructions( 'Enables or disables the advertisements' ),
+										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
+										->defaultValue( 1 )
+										->instructions( _x( 'Enables or disables the advertisements', 'Fields', 'fdmg-labels-admin' ) ),
+								Tab::make( _x( 'Subscribe', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_TAB )
+										->placement( 'left' ),
+								Link::make( _x( 'Subscribe page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_BUTTON )
+										->instructions( _x( 'Once set, will display a button next to the navigation. Only when using the compact header option.', 'Fields', 'fdmg-labels-admin' ) )
+										->returnFormat( 'array' ),
 							)
 						),
 				),
