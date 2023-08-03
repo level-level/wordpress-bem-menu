@@ -31,6 +31,7 @@
 	a:not([class]) {
 		@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
 		@apply dark:text-primary-300;
+		@apply theme-energeia:text-base-800;
 	}
 
 	ul,
