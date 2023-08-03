@@ -17,11 +17,32 @@
 		</div>
 	{% endif %}
 
-	{% if terms %}
+	{% if categories or genres or sections %}
 		<div class="order-1 mb-3 sm:mb-9">
-			{% include 'styleguide/components/post-terms.twig' with {
-				terms: terms,
-			} %}
+
+			<div class="flex gap-2">
+				{% if categories %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: categories,
+						label: _x('category', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+
+				{% if genres %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: genres,
+						label: _x('genre', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+
+				{% if sections %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: sections,
+						label: _x('section', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+			</div>
+
 		</div>
 	{% endif %}
 

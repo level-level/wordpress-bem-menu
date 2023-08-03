@@ -1,5 +1,5 @@
 <div class="flex flex-col">
-	<div class="order-2 mt-3">
+	<div class="order-2 mt-2 sm:mt-3">
 		<{{ useH3 ? 'h3' : 'h2' }} class="text-[24px] {{ large ? 'sm:text-[28px]' }} {{ small ? 'text-base sm:text-[20px] sm:leading-7' }} {{ wide ? 'text-md sm:text-[20px] sm:leading-7' }}">
 			<a href="{{ url }}" class="no-underline transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800">
 				{{ title|raw }}
@@ -7,17 +7,36 @@
 		</{{ useH3 ? 'h3' : 'h2' }}>
 	</div>
 
-	{% if terms or date and datetime and date_full %}
-		<div>
+	{% if categories or genres or sections or date and datetime and date_full %}
+		<div data-component="terms" class="text-base">
 			<div class="flex items-center justify-between flex-nowrap">
 
-				{% if terms %}
-					<div>
+				<div class="flex gap-1">
+					{% if categories %}
 						{% include 'styleguide/components/post-terms.twig' with {
-							terms: terms,
+							terms: categories,
+							label: _x('category', 'Screen reader text', 'fdmg-labels'),
 						} %}
-					</div>
-				{% endif %}
+					{% endif %}
+
+					{% if genres %}
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: genres,
+							label: _x('genre', 'Screen reader text', 'fdmg-labels'),
+						} %}
+					{% endif %}
+
+					{% if genres and sections %}
+						<div class="leading-none text-md" aria-hidden="true">•</div>
+					{% endif %}
+
+					{% if sections %}
+						{% include 'styleguide/components/post-terms.twig' with {
+							terms: sections,
+							label: _x('section', 'Screen reader text', 'fdmg-labels'),
+						} %}
+					{% endif %}
+				</div>
 
 				{% if date and datetime and date_full %}
 					<div class="shrink-0">
