@@ -97,9 +97,15 @@ class SendNewsletter {
 			$this->selligent_logger->add_post_log( $newsletter_id, 'Sending the newsletter in testmode has started.', LogLine::LEVEL_INFO );
 		}
 
+		// Get unique list of article ids
+		$article_ids = array();
+		foreach ( $newsletter->get_article_groups() as $article_group ) {
+			$article_ids = array_merge( $article_ids, $article_group->get_article_ids() );
+		}
+		$article_ids = array_unique( $article_ids );
+
 		// Register the articles
-		$client      = new Client();
-		$article_ids = $newsletter->get_article_ids();
+		$client = new Client();
 		foreach ( $article_ids as $article_id ) {
 			$article = post::get( $article_id );
 			if ( ! $article instanceof post ) {

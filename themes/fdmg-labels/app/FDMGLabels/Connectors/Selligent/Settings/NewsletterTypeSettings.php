@@ -21,7 +21,7 @@ class NewsletterTypeSettings {
 	}
 
 	public function get_type(): string {
-		return (string) ( $this->data[ Selligent::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUPS ] ?? '' );
+		return (string) ( $this->data[ Selligent::OPTION_NEWSLETTER_TYPE_TYPE ] ?? '' );
 	}
 
 	/**

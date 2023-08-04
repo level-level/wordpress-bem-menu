@@ -20,8 +20,17 @@ class NewsletterSettings {
 		$this->data = $data;
 	}
 
-	public function get_publication(): string {
-		return (string) ( $this->data[ Selligent::OPTION_NEWSLETTER_PUBLICATION ] ?? '' );
+	/**
+	 * @return array<NewsletterPublicationSettings>
+	 */
+	public function get_publications(): array {
+		$publications = $this->data[ Selligent::OPTION_NEWSLETTER_PUBLICATIONS ] ?? array();
+		$publications = is_array( $publications ) ? $publications : array();
+		return array_map(
+			function( array $publication_data ): NewsletterPublicationSettings {
+				return new NewsletterPublicationSettings( $publication_data );
+			}, $publications
+		);
 	}
 
 	/**

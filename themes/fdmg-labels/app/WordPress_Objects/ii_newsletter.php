@@ -3,9 +3,20 @@
 namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\PostTypes\Newsletter;
+use Extended\ACF\Key;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
+use FDMGLabels\Newsletter\ArticleGroup;
 
 class ii_newsletter extends base_object {
 	public static $type = Newsletter::POST_TYPE_NAME;
+
+	public function get_publication(): string {
+		return $this->get_meta( Newsletter::META_PUBLICATION, true );
+	}
+
+	public function get_type(): string {
+		return $this->get_meta( Newsletter::META_TYPE, true );
+	}
 
 	public function get_subject(): string {
 		return $this->get_meta( Newsletter::META_SUBJECT, true );
@@ -20,49 +31,34 @@ class ii_newsletter extends base_object {
 	}
 
 	/**
-	 * Get the articles that should be displayed in the newsletter
+	 * Get the article groups of the newsletter.
+	 * Always returns the amount of article groups corresponding to the newsletter type
 	 *
-	 * @return array<int,array<string,mixed>>
+	 * @return array<ArticleGroup>
 	 */
-	public function get_articles(): array {
-		$articles = get_field( Newsletter::META_ARTICLES, $this->get_id() );
-		if ( ! is_array( $articles ) ) {
+	public function get_article_groups(): array {
+		// Detect the current newsletter type settings
+		$newsletter_type_settings = Settings::get_instance()->get_newsletter()->get_types();
+		$current_type             = array_filter(
+			$newsletter_type_settings,
+			function( $type_setting ) {
+				return $type_setting->get_type() === $this->get_type();
+			}
+		);
+		$current_type             = array_shift( $current_type );
+		if ( ! $current_type ) {
 			return array();
 		}
-		return $articles;
-	}
 
-	/**
-	 * Get the articles that should be displayed in the newsletter
-	 *
-	 * @return int[]
-	 */
-	public function get_article_ids(): array {
-		$articles = $this->get_articles();
-
-		$article_ids = array_map(
-			function( array $articles_row ): int {
-				return (int) ( $articles_row[ Newsletter::META_ARTICLES_ARTICLE ] ?? 0 );
-			}, $articles
-		);
-
-		return array_filter( $article_ids );
-	}
-
-	/**
-	 * Get the tips that should be displayed in the newsletter
-	 *
-	 * @return post[]
-	 */
-	public function get_article_objects(): array {
-		$ids      = $this->get_article_ids();
-		$articles = array();
-		foreach ( $ids as $id ) {
-			$article = post::get( $id );
-			if ( $article instanceof post ) {
-				$articles[] = $article;
-			}
+		// Get newsletter article groups based on the current newsletter type settings
+		$meta_article_groups                        = get_field( Newsletter::META_ARTICLE_GROUPS_PREFIX . Key::sanitize( $this->get_type() ), $this->get_id() );
+		$article_groups                             = array();
+		$settings_current_type_article_groups_count = count( $current_type->get_article_groups() );
+		for ( $index = 0; $index < $settings_current_type_article_groups_count; $index++ ) {
+			$acf_article_group = $meta_article_groups[ $index ] ?? array();
+			$acf_article_group = is_array( $acf_article_group ) ? $acf_article_group : array();
+			$article_groups[]  = new ArticleGroup( $acf_article_group );
 		}
-		return $articles;
+		return $article_groups;
 	}
 }

@@ -7,10 +7,15 @@ use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\PostObject;
 use Extended\ACF\Fields\Repeater;
+use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Key;
 use Extended\ACF\Location;
+use FDMGLabels\Connectors\Selligent\Settings\NewsletterPublicationSettings;
+use FDMGLabels\Connectors\Selligent\Settings\NewsletterTypeSettings;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 
 class Newsletter {
 	public const POST_TYPE_NAME      = 'ii_newsletter';
@@ -21,17 +26,21 @@ class Newsletter {
 
 	protected const FIELD_GROUP_NEWSLETTER_META = 'newsletter_meta';
 
-	public const META_MESSAGE          = 'message';
-	public const META_SUBJECT          = 'subject';
-	public const META_PRE_HEADER       = 'pre_header';
-	public const META_INTRODUCTION     = 'introduction';
-	public const META_ARTICLES         = 'articles';
-	public const META_ARTICLES_ARTICLE = 'article';
-	public const META_SEND             = 'send';
-	public const META_SEND_ACTION      = 'action';
-	public const META_SEND_TEST        = 'test';
-	public const META_SEND_SCHEDULE    = 'schedule';
-	public const META_SEND_DATE        = 'date';
+	public const META_MESSAGE                       = 'message';
+	public const META_PUBLICATION                   = 'publication';
+	public const META_TYPE                          = 'type';
+	public const META_SUBJECT                       = 'subject';
+	public const META_PRE_HEADER                    = 'pre_header';
+	public const META_INTRODUCTION                  = 'introduction';
+	public const META_ARTICLE_GROUPS_PREFIX         = 'article_groups_';
+	public const META_ARTICLE_GROUP_PREFIX          = 'article_group_';
+	public const META_ARTICLE_GROUP_ARTICLES        = 'articles';
+	public const META_ARTICLE_GROUP_ARTICLE_ARTICLE = 'article';
+	public const META_SEND                          = 'send';
+	public const META_SEND_ACTION                   = 'action';
+	public const META_SEND_TEST                     = 'test';
+	public const META_SEND_SCHEDULE                 = 'schedule';
+	public const META_SEND_DATE                     = 'date';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
@@ -78,73 +87,118 @@ class Newsletter {
 	}
 
 	public function register_fields(): void {
+		$fields = array(
+			Message::make( __( 'Creating a newsletter', 'fdmg-labels-admin' ), self::META_MESSAGE )
+				->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
+		);
+
+		$publications        = Settings::get_instance()->get_newsletter()->get_publications();
+		$publication_choices = array_map(
+			function( NewsletterPublicationSettings $publication_settings ): string {
+				return $publication_settings->get_name();
+			}, $publications
+		);
+		$fields[]            = Select::make( _x( 'Publication', 'Fields', 'fdmg-labels-admin' ), self::META_PUBLICATION )
+			->choices( array_combine( $publication_choices, $publication_choices ) )
+			->required();
+
+		$types        = Settings::get_instance()->get_newsletter()->get_types();
+		$type_choices = array_map(
+			function( NewsletterTypeSettings $type_settings ): string {
+				return $type_settings->get_type();
+			}, $types
+		);
+		$fields[]     = Select::make( _x( 'Type', 'Fields', 'fdmg-labels-admin' ), self::META_TYPE )
+			->choices( array_combine( $type_choices, $type_choices ) )
+			->required();
+
+		$fields[] = Text::make( _x( 'Subject', 'Fields', 'fdmg-labels-admin' ), self::META_SUBJECT )
+			->instructions( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels-admin' ) )
+			->characterLimit( 255 )
+			->required();
+
+		$fields[] = Text::make( _x( 'Pre header', 'Fields', 'fdmg-labels-admin' ), self::META_PRE_HEADER )
+			->instructions( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels-admin' ) )
+			->characterLimit( 255 );
+
+		$fields[] = WysiwygEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels-admin' ), self::META_INTRODUCTION )
+			->instructions( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels-admin' ) )
+			->toolbar( 'basic' )
+			->tabs( 'visual' )
+			->mediaUpload( false );
+
+		foreach ( $types as $type ) {
+			$article_group_fields = array();
+			foreach ( $type->get_article_groups() as $index => $article_group ) {
+				$article_group_fields[] = Group::make( sprintf( _x( 'Article group %1$d: %2$s', 'Fields', 'fdmg-labels-admin' ), $index + 1, $article_group->get_name() ), self::META_ARTICLE_GROUP_PREFIX . $index )
+					->fields(
+						array(
+							Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLES )
+								->instructions( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
+								->min( 0 )
+								->max( 6 )
+								->collapsed( 'article' )
+								->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
+								->fields(
+									array(
+										PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_ARTICLE )
+											->postTypes( array( Post::POST_TYPE_NAME ) )
+											->returnFormat( 'id' )
+											->required(),
+									)
+								),
+						)
+					);
+			}
+
+			$fields[] = Group::make( sprintf( _x( '%s article groups', 'Fields', 'fdmg-labels-admin' ), $type->get_type() ), self::META_ARTICLE_GROUPS_PREFIX . Key::sanitize( $type->get_type() ) )
+				->fields( $article_group_fields )
+				->conditionalLogic(
+					array(
+						ConditionalLogic::where( self::META_TYPE, '==', $type->get_type() ),
+					)
+				);
+		}
+
+		$fields[] = Group::make( _x( 'Sending newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND )
+			->fields(
+				array(
+					TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
+						->stylisedUi(),
+					TrueFalse::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
+						->stylisedUi()
+						->defaultValue( true )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
+							)
+						),
+					TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_SCHEDULE )
+						->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
+						->stylisedUi()
+						->defaultValue( false )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
+							)
+						),
+					DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DATE )
+						->required()
+						->returnFormat( 'Y-m-d H:i:s' )
+						->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_SCHEDULE, '==', '1' ),
+							)
+						),
+				)
+			);
+
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP_NEWSLETTER_META,
 				'title'    => _x( 'Newsletter meta', 'Fields', 'fdmg-labels-admin' ),
-				'fields'   => array(
-					Message::make( __( 'Creating a newsletter', 'fdmg-labels-admin' ), self::META_MESSAGE )
-						->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
-					Text::make( _x( 'Subject', 'Fields', 'fdmg-labels-admin' ), self::META_SUBJECT )
-						->instructions( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels-admin' ) )
-						->characterLimit( 255 )
-						->required(),
-					Text::make( _x( 'Pre header', 'Fields', 'fdmg-labels-admin' ), self::META_PRE_HEADER )
-						->instructions( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels-admin' ) )
-						->characterLimit( 255 ),
-					WysiwygEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels-admin' ), self::META_INTRODUCTION )
-						->instructions( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels-admin' ) )
-						->toolbar( 'basic' )
-						->tabs( 'visual' )
-						->mediaUpload( false ),
-					Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLES )
-						->instructions( _x( 'Add the articles that should be shown in the newsletter.', 'Fields', 'fdmg-labels-admin' ) )
-						->min( 0 )
-						->max( 6 )
-						->collapsed( 'article' )
-						->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
-						->fields(
-							array(
-								PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLES_ARTICLE )
-									->postTypes( array( Post::POST_TYPE_NAME ) )
-									->returnFormat( 'id' )
-									->required(),
-							)
-						),
-					Group::make( _x( 'Sending newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND )
-						->fields(
-							array(
-								TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
-									->stylisedUi()
-									->defaultValue( true )
-									->conditionalLogic(
-										array(
-											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
-										)
-									),
-								TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_SCHEDULE )
-									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi()
-									->defaultValue( false )
-									->conditionalLogic(
-										array(
-											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
-										)
-									),
-								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DATE )
-									->required()
-									->returnFormat( 'Y-m-d H:i:s' )
-									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
-									->conditionalLogic(
-										array(
-											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_SCHEDULE, '==', '1' ),
-										)
-									),
-							)
-						),
-				),
+				'fields'   => $fields,
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),
 				),

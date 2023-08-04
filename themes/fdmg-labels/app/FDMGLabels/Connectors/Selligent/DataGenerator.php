@@ -64,15 +64,20 @@ class DataGenerator {
 	 * mind that the post ids given should already have been registered.
 	 */
 	public function get_newsletter_data( ii_newsletter $newsletter, bool $test_mode ): array {
-		return array(
-			'publication'    => Client::PUBLICATION,
-			'type'           => Client::get_type(),
-			'subject'        => substr( $newsletter->get_subject(), 0, 255 ),
-			'preheader'      => substr( $newsletter->get_pre_header(), 0, 255 ),
-			'introduction'   => substr( $newsletter->get_introduction(), 0, 2000 ),
-			'test'           => $test_mode ? '1' : '0',
-			'articlegroup_1' => implode( ',', $newsletter->get_article_ids() ),
+		$data = array(
+			'publication'  => $newsletter->get_publication(),
+			'type'         => $newsletter->get_type(),
+			'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
+			'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
+			'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),
+			'test'         => $test_mode ? '1' : '0',
 		);
+
+		foreach ( $newsletter->get_article_groups() as $index => $article_group ) {
+			$data[ 'articlegroup_' . ( $index + 1 ) ] = implode( ',', $article_group->get_article_ids() );
+		}
+
+		return $data;
 	}
 
 	protected function format_publish_date( base_object $object ): string {

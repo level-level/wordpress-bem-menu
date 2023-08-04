@@ -2,7 +2,6 @@
 namespace Clarkson\Theme\ACFPages;
 
 use Extended\ACF\Fields\Group;
-use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Password;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Text;
@@ -29,11 +28,12 @@ class Selligent {
 	public const OPTION_LIST_ID_NEWSLETTER = 'newsletter';
 
 	public const OPTION_NEWSLETTER                         = 'newsletter';
-	public const OPTION_NEWSLETTER_PUBLICATION             = 'publication';
+	public const OPTION_NEWSLETTER_PUBLICATIONS            = 'publications';
+	public const OPTION_NEWSLETTER_PUBLICATION_NAME        = 'name';
 	public const OPTION_NEWSLETTER_TYPES                   = 'types';
 	public const OPTION_NEWSLETTER_TYPE_TYPE               = 'type';
 	public const OPTION_NEWSLETTER_TYPE_ARTICLE_GROUPS     = 'article_groups';
-	public const OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME = 'article_group_name';
+	public const OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME = 'name';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -89,7 +89,15 @@ class Selligent {
 								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER )
 									->fields(
 										array(
-											Text::make( _x( 'Publication', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_PUBLICATION )
+											Repeater::make( _x( 'Publications', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_PUBLICATIONS )
+												->min( 1 )
+												->fields(
+													array(
+														Text::make( _x( 'Name', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_PUBLICATION_NAME )
+															->required(),
+													)
+												)
+												->collapsed( self::OPTION_NEWSLETTER_PUBLICATION_NAME )
 												->required(),
 											Repeater::make( _x( 'Types', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TYPES )
 												->min( 1 )
