@@ -44,58 +44,18 @@
 // @include blockquote;
 // Adds properties for blockquote styling
 @mixin blockquote {
-	position: relative;
-	border: 0;
-	margin-left: 0;
-	margin-right: 0;
-	margin-bottom: 0;
-	padding: 0;
-
-	& > * + * {
-		margin-top: $spacing-3;
-	}
+	@apply relative border-0 mx-0 mb-0 p-0 flex flex-col gap-3;
+	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-primary-300;
 
 	p {
-		@include font-normal;
-		font-style: italic;
-		color: var(--primary);
-
-		@include dark-mode {
-			color: var(--primary-300);
-		}
-
-		@include breakpoint(sm) {
-			@include font-size(22px);
-		}
+		@apply font-body italic text-primary dark:text-primary-300 sm:text-lg;
+		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-pensioen-pro:dark:text-base-50;
 	}
 
 	cite,
 	.wp-block-quote__citation {
-		@include font-bold;
-		@include font-size(14px);
-		color: var(--primary);
-		display: block;
-		font-style: normal;
-
-		@include dark-mode {
-			color: var(--primary-300);
-		}
-	}
-
-	&:after {
-		position: absolute;
-		bottom: 0;
-		right: 12px;
-		width: 71px;
-		height: 58px;
-		content: '';
-		z-index: -1;
-		background-color: var(--secondary-300);
-		mask-image: url('../images/quote.svg');
-
-		@include dark-mode {
-			background-color: var(--primary-300);
-		}
+		@apply font-body-bold text-sm text-primary dark:text-primary-300 not-italic;
+		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-pensioen-pro:dark:text-base-50;
 	}
 }
 

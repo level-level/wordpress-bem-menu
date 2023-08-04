@@ -6,12 +6,14 @@
 		</div>
 	{% endif %}
 
-	<div class="p-3 sm:p-6">
+	<div class="p-3 sm:p-4">
 		{% include 'styleguide/components/teasers/post/header.twig' with {
 			useH3: useH3,
 			url: url,
 			title: title,
-			terms: terms,
+			categories: categories,
+			genres: genres,
+			sections: sections,
 			date: date,
 			datetime: datetime,
 			date_full: date_full,

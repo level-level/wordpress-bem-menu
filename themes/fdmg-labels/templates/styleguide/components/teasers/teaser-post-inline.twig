@@ -2,14 +2,16 @@
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="p-3 sm:p-6">
+		<div class="p-3 sm:p-4">
 			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
 						wide: true,
 					} only %}
 				</div>
@@ -34,7 +36,9 @@
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
 						wide: true,
 					} only %}
 				</div>

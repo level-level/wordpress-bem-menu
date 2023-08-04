@@ -19,21 +19,37 @@
 				{% for object in objects %}
 
 					{% set image_id = object.get_thumbnail_id() %}
-					{% set terms = object.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category') %}
 					{% set authors = object.get_authors() %}
+
+					{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
+						{% set categories = object.get_terms('category') %}
+					{% endif %}
+
+					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) %}
+						{% set genres = object.get_terms('fdmg_genre') %}
+					{% endif %}
+
+					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_SECTION_TAXONOMY', feature_manager)) %}
+						{% set sections = object.get_terms('fdmg_section') %}
+					{% endif %}
 
 					<li>
 						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
-							image: image_id ? wp_get_attachment_image(image_id, 'large'),
-							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
-							title: object.get_title(),
+							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							title: object.get_alternative_title()|default(object.get_title()),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
 							date: object.get_date_i18n(date_format),
 							date_full: object.get_date_i18n('F j Y'),
 							datetime: object.get_date_i18n('Y-m-d'),
-							terms: terms ? terms|map(term => {
-								name: term.get_name(),
+							categories: categories ? categories|map(category => {
+								name: category.get_name(),
+							}),
+							genres: genres ? genres|map(genre => {
+								name: genre.get_name(),
+							}),
+							sections: sections ? sections|map(section => {
+								name: section.get_name(),
 							}),
 							authors: authors ? authors|map(author => {
 								name: author.get_title(),

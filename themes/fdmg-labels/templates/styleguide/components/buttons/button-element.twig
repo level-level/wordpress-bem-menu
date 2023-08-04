@@ -57,7 +57,7 @@
 	{% set icon_expanded = icon_expanded ? icon_expanded : icon %}
 {% endif %}
 
-{% set highlighted_icon_style = 'bg-primary text-base-50 w-[34px] h-[34px] rounded-full flex items-center justify-center transition-all dark:bg-primary-300 theme-energeia:dark:text-base-700 group-hover/button:translate-x-2 group-hover/button:bg-transparent group-focus/button:translate-x-2 group-focus/button:bg-transparent' %}
+{% set highlighted_icon_style = 'bg-primary text-base-50 w-[28px] h-[28px] rounded-full flex items-center justify-center transition-all dark:bg-primary-300 theme-energeia:dark:text-base-700 group-hover/button:translate-x-2 group-hover/button:bg-transparent group-focus/button:translate-x-2 group-focus/button:bg-transparent' %}
 
 <button class="btn {{ class|raw }} group/button" {{ id|raw }} {{ data_module|raw }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }} {{ tabindex|raw }}>
 	{% if icon and icon_left %}

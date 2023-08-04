@@ -9,8 +9,12 @@ use FDMGLabels\Comments\CommentWalker;
 class post extends base_object {
 	public static $type = PostTypesPost::POST_TYPE_NAME;
 
+	public function get_alternative_title(): string {
+		return get_field( PostTypesPost::META_ALTERNATIVE_TITLE, $this->get_id() ) ?: '';
+	}
+
 	public function get_authors(): array {
-		return get_field( 'authors', $this->get_id() ) ?: array();
+		return get_field( PostTypesPost::META_AUTHORS, $this->get_id() ) ?: array();
 	}
 
 	public function has_comments_enabled(): bool {

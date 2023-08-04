@@ -1,17 +1,18 @@
 <div data-component="list-item" class="relative flex flex-col">
 
-	<a href="{{ url }}" class="order-2 block no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link">
+	<a href="{{ url }}" class="text-[15px] leading-5 order-2 block no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 		{{ title|raw }}
 	</a>
 
 	{% if datetime and date or terms %}
-		<div class="text-sm text-secondary-600 mb-[10px] dark:text-base-100 sm:text-base">
+		<div class="text-sm text-secondary-600 mb-[5px] dark:text-base-100">
 			<div class="flex gap-6 flex-nowrap">
 
 				{% if terms %}
 					<div class="grow">
 						{% include 'styleguide/components/post-terms.twig' with {
 							terms: terms,
+							term_label: term_label,
 						} %}
 					</div>
 				{% endif %}

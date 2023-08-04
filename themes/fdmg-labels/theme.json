@@ -8,7 +8,9 @@
       "duotone": [],
       "gradients": [],
       "link": false,
-      "palette": []
+      "palette": [],
+      "background": false,
+      "text": false
     },
     "layout": {
       "contentSize": "var(--article-width)",

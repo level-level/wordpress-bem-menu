@@ -7,7 +7,7 @@
 }
 
 .primary-nav__item--parent {
-	@apply relative hocus:bg-secondary-500 sm:dark:bg-base-300;
+	@apply relative hocus:bg-secondary-500;
 }
 
 .primary-nav__item--parent .primary-nav__link {
@@ -16,22 +16,23 @@
 
 .primary-nav__item--parent:focus-within,
 .primary-nav__item--parent:hover {
-	@apply bg-secondary-500 sm:dark:bg-base-300 text-base-50;
+	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 text-base-50 compact-header:bg-secondary-400;
 }
 
 .primary-nav__item--parent:focus-within .primary-nav__link,
 .primary-nav__item--parent:focus-within .primary-nav__arrow,
 .primary-nav__item--parent:hover .primary-nav__link,
 .primary-nav__item--parent:hover .primary-nav__arrow  {
-	@apply text-base-50 sm:text-base-50;
+	@apply text-base-50 sm:text-base-50 compact-header:text-base-800 compact-header:dark:text-base-50;
 }
 
 .primary-nav__item--active .primary-nav__link {
-	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300;
+	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50 compact-header:dark:bg-base-300;
 }
 
 .primary-nav__item--active .primary-nav__arrow {
 	@apply text-base-50;
+	@apply compact-header:text-base-800 compact-header:dark:text-base-50;
 }
 
 .primary-nav__link {
@@ -39,12 +40,14 @@
 	@apply hocus:bg-secondary-500 hocus:text-base-50 hocus:dark:bg-base-300 hocus:dark:text-base-100;
 	@apply sm:text-md sm:py-0 sm:px-5 sm:border-b-0 sm:h-[theme(space.menu-height)] sm:text-secondary-600 sm:transition-colors;
 	@apply sm:dark:text-base-50;
+	@apply compact-header:text-base-50 compact-header:text-base compact-header:hocus:bg-secondary-400 compact-header:hocus:text-base-800 compact-header:dark:hocus:bg-base-300 compact-header:dark:hocus:text-base-50;
 }
 
 .primary-nav__arrow {
 	@apply absolute top-0 right-0 bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
 	@apply sm:p-0 sm:right-4 sm:text-secondary-600 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
+	@apply compact-header:text-base-50;
 }
 
 .primary-nav-sub {
@@ -66,4 +69,5 @@
 	@apply hocus:underline hocus:bg-transparent;
 	@apply sm:text-md sm:text-secondary-600 sm:dark:text-base-50 sm:h-auto sm:p-0;
 	@apply sm:hocus:text-secondary-600 sm:hocus:dark:text-base-50;
+	@apply compact-header:text-base;
 }

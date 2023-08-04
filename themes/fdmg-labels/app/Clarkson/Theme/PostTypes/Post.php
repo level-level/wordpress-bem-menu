@@ -6,6 +6,7 @@ use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\PostTypes\Team;
 use Extended\ACF\Fields\Relationship;
+use Extended\ACF\Fields\Text;
 use Extended\ACF\Location;
 use WP_Post_Type;
 
@@ -14,7 +15,8 @@ class Post {
 
 	public const FIELD_GROUP = 'post_authors';
 
-	public const META_AUTHORS = 'authors';
+	public const META_AUTHORS           = 'authors';
+	public const META_ALTERNATIVE_TITLE = 'alternative_title';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
@@ -25,9 +27,11 @@ class Post {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Authors', 'Fields', 'fdmg-labels-admin' ),
+				'title'    => _x( 'Post', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Relationship::make( _x( 'Authors', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
+					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
+						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
+					Relationship::make( _x( 'Author', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
 						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels-admin' ) )
 						->postTypes( array( Team::POST_TYPE_NAME ) )
 						->filters( array( 'search' ) )

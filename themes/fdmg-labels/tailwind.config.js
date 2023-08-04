@@ -9,6 +9,7 @@ const customThemes = [
 		logos: {
 			default: '../images/logo-impact-investor.svg',
 			darkMode: '../images/logo-impact-investor-darkmode.svg',
+			white: '../images/logo-impact-investor-white.svg',
 		},
 	},
 	{
@@ -34,6 +35,9 @@ const themeLogos = {};
 for (const theme of customThemes) {
 	themeLogos[`logo-${theme.name}`] = `url('${theme.logos.default}')`;
 	themeLogos[`logo-${theme.name}-darkmode`] = `url('${theme.logos.darkMode}')`;
+	if (theme.logos.white) {
+		themeLogos[`logo-${theme.name}-white`] = `url('${theme.logos.white}')`;
+	}
 }
 
 module.exports = {
@@ -52,7 +56,7 @@ module.exports = {
 				'content-width': 'var(--content-width)',
 			},
 			boxShadow: {
-				header: '0 2px 4px rgb(115 166 191 / 15%)',
+				header: '0 4px 16px rgb(0 0 0 / 10%)',
 				teaser: '0 2px 4px rgb(0 0 0 / 15%)',
 			},
 			backgroundImage: {
@@ -103,10 +107,12 @@ module.exports = {
 			'base-800': 'var(--base-800)',
 			'secondary-100': 'var(--secondary-100)',
 			'secondary-200': 'var(--secondary-200)',
+			'secondary-250': 'var(--secondary-250)',
 			'secondary-300': 'var(--secondary-300)',
 			'secondary-400': 'var(--secondary-400)',
 			'secondary-500': 'var(--secondary-500)',
 			'secondary-600': 'var(--secondary-600)',
+			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
 			body: ['"ProximaNovaRegular"', 'sans-serif'],
