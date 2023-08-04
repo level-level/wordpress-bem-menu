@@ -40,7 +40,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_post( base_object $post ) {
-		return $this->post( $this->get_list_path( $this->settings->get_article_list_id() ), ( new DataGenerator() )->get_article_data( $post ) );
+		return $this->post( $this->get_list_path( $this->settings->get_list_ids()->get_article() ), ( new DataGenerator() )->get_article_data( $post ) );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Client {
 	 * @return array|WP_Error
 	 */
 	public function register_newsletter( ii_newsletter $newsletter, bool $test_mode ) {
-		return $this->post( $this->get_list_path( $this->settings->get_newsletter_list_id() ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
+		return $this->post( $this->get_list_path( $this->settings->get_list_ids()->get_newsletter() ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
 	}
 
 	/**
@@ -62,7 +62,7 @@ class Client {
 	public function send_newsletter() {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => $this->settings->get_send_newsletter_gate(),
+			'Gate'      => $this->settings->get_gates()->get_send_newsletter(),
 			'Gateinput' => array(
 				'PUBLICATION' => self::PUBLICATION,
 				'TYPE'        => self::get_type(),
@@ -80,7 +80,7 @@ class Client {
 	public function optin_email( string $email ) {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
-			'Gate'      => $this->settings->get_optin_gate(),
+			'Gate'      => $this->settings->get_gates()->get_optin(),
 			'Gateinput' => array(
 				'MAIL' => $email,
 			),

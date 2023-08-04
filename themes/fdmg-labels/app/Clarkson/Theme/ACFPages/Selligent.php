@@ -4,6 +4,7 @@ namespace Clarkson\Theme\ACFPages;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Password;
+use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\Url;
 use Extended\ACF\Location;
@@ -26,6 +27,13 @@ class Selligent {
 	public const OPTION_LIST_IDS           = 'list_ids';
 	public const OPTION_LIST_ID_ARTICLE    = 'article';
 	public const OPTION_LIST_ID_NEWSLETTER = 'newsletter';
+
+	public const OPTION_NEWSLETTER                         = 'newsletter';
+	public const OPTION_NEWSLETTER_PUBLICATION             = 'publication';
+	public const OPTION_NEWSLETTER_TYPES                   = 'types';
+	public const OPTION_NEWSLETTER_TYPE_TYPE               = 'type';
+	public const OPTION_NEWSLETTER_TYPE_ARTICLE_GROUPS     = 'article_groups';
+	public const OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME = 'article_group_name';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -54,21 +62,53 @@ class Selligent {
 						->fields(
 							array(
 								Url::make( _x( 'Selligent base URL', 'Fields', 'fdmg-labels' ), self::OPTION_BASE_URL )
-									->placeholder( 'https://messagent.fdmediagroep.nl' ),
-								Text::make( _x( 'Username', 'Fields', 'fdmg-labels' ), self::OPTION_USERNAME ),
-								Password::make( _x( 'Password', 'Fields', 'fdmg-labels' ), self::OPTION_PASSWORD ),
+									->placeholder( 'https://messagent.fdmediagroep.nl' )
+									->required(),
+								Text::make( _x( 'Username', 'Fields', 'fdmg-labels' ), self::OPTION_USERNAME )
+									->required(),
+								Password::make( _x( 'Password', 'Fields', 'fdmg-labels' ), self::OPTION_PASSWORD )
+									->required(),
 								Group::make( _x( 'Gates', 'Fields', 'fdmg-labels' ), self::OPTION_GATES )
 									->fields(
 										array(
-											Text::make( _x( 'Send newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_SEND_NEWSLETTER ),
-											Text::make( _x( 'Optin', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_OPTIN ),
+											Text::make( _x( 'Send newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_SEND_NEWSLETTER )
+												->required(),
+											Text::make( _x( 'Optin', 'Fields', 'fdmg-labels' ), self::OPTION_GATE_OPTIN )
+												->required(),
 										)
 									),
 								Group::make( _x( 'List ID\'s', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_IDS )
 									->fields(
 										array(
-											Text::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_NEWSLETTER ),
-											Text::make( _x( 'Article', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_ARTICLE ),
+											Text::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_NEWSLETTER )
+												->required(),
+											Text::make( _x( 'Article', 'Fields', 'fdmg-labels' ), self::OPTION_LIST_ID_ARTICLE )
+												->required(),
+										)
+									),
+								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER )
+									->fields(
+										array(
+											Text::make( _x( 'Publication', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_PUBLICATION )
+												->required(),
+											Repeater::make( _x( 'Types', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TYPES )
+												->min( 1 )
+												->fields(
+													array(
+														Text::make( _x( 'Type', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TYPE_TYPE )
+															->required(),
+														Repeater::make( _x( 'Article groups', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUPS )
+															->fields(
+																array(
+																	Text::make( _x( 'Name', 'Fields', 'fdmg-labels' ), self::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME )
+																		->required(),
+																)
+															)
+															->collapsed( self::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME ),
+													)
+												)
+												->collapsed( self::OPTION_NEWSLETTER_TYPE_TYPE )
+												->required(),
 										)
 									),
 							)

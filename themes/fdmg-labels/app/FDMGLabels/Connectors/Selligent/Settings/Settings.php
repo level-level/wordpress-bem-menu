@@ -45,33 +45,15 @@ class Settings {
 		return (string) ( $this->data[ Selligent::OPTION_PASSWORD ] ?? '' );
 	}
 
-	/**
-	 * @return array<string,mixed>
-	 */
-	protected function get_gates(): array {
-		return $this->data[ Selligent::OPTION_GATES ] ?? array();
+	public function get_gates(): GatesSettings {
+		return new GatesSettings( $this->data[ Selligent::OPTION_GATES ] ?? array() );
 	}
 
-	public function get_send_newsletter_gate(): string {
-		return (string) ( $this->get_gates()[ Selligent::OPTION_GATE_SEND_NEWSLETTER ] ?? '' );
+	public function get_list_ids(): ListIdsSettings {
+		return new ListIdsSettings( $this->data[ Selligent::OPTION_LIST_IDS ] ?? array() );
 	}
 
-	public function get_optin_gate(): string {
-		return (string) ( $this->get_gates()[ Selligent::OPTION_GATE_OPTIN ] ?? '' );
-	}
-
-	/**
-	 * @return array<string,mixed>
-	 */
-	protected function get_list_ids(): array {
-		return $this->data[ Selligent::OPTION_LIST_IDS ] ?? array();
-	}
-
-	public function get_article_list_id(): int {
-		return (int) ( $this->get_list_ids()[ Selligent::OPTION_LIST_ID_ARTICLE ] ?? 0 );
-	}
-
-	public function get_newsletter_list_id(): int {
-		return (int) ( $this->get_list_ids()[ Selligent::OPTION_LIST_ID_NEWSLETTER ] ?? 0 );
+	public function get_newsletter(): NewsletterSettings {
+		return new NewsletterSettings( $this->data[ Selligent::OPTION_NEWSLETTER ] ?? array() );
 	}
 }
