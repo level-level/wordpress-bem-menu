@@ -10,6 +10,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Codeception\TestCase\WPTestCase;
 use DateTime;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 
 class DataGeneratorTest extends WPTestCase {
 
@@ -41,6 +42,32 @@ class DataGeneratorTest extends WPTestCase {
 				)
 			)
 		);
+
+		update_field(
+			'selligent', array(
+				'newsletter' => array(
+					'publications' => array(
+						array(
+							'name' => 'PUBLICATION_NAME',
+						),
+					),
+					'types'        => array(
+						array(
+							'type'           => 'WEEKLY',
+							'article_groups' => array(
+								array(
+									'name' => 'Articles',
+								),
+								array(
+									'name' => 'Podcasts',
+								),
+							),
+						),
+					),
+				),
+			), 'options'
+		);
+		Settings::get_instance()->clear_cache();
 	}
 
 	public function tearDown(): void {
@@ -51,7 +78,7 @@ class DataGeneratorTest extends WPTestCase {
 
 	public function test_get_article_data(): void {
 		$expected = array(
-			'publication'      => Client::PUBLICATION,
+			'publication'      => 'PUBLICATION_NAME',
 			'articleId'        => $this->post->get_id(),
 			'title'            => 'Test tip selligent',
 			'teaser'           => "<p>Some excerpt here<br />\nWith newline</p>\n",
@@ -102,19 +129,23 @@ class DataGeneratorTest extends WPTestCase {
 			)
 		);
 
+		update_field( 'publication', 'PUBLICATION_NAME', $newsletter->get_id() );
+		update_field( 'type', 'WEEKLY', $newsletter->get_id() );
 		update_field( 'subject', 'Subject', $newsletter->get_id() );
 		update_field( 'pre_header', 'Pre header', $newsletter->get_id() );
 		update_field( 'introduction', "Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.\n\nAnd multiple lines.", $newsletter->get_id() );
 		update_field(
-			'articles', array(
-				array( 'article' => $this->post->get_id() ),
-				array( 'article' => $this->post2->get_id() ),
+			'article_group_0', array(
+				'articles' => array(
+					array( 'article' => $this->post->get_id() ),
+					array( 'article' => $this->post2->get_id() ),
+				),
 			), $newsletter->get_id()
 		);
 
 		$expected = array(
-			'publication'    => Client::PUBLICATION,
-			'type'           => Client::get_type(),
+			'publication'    => 'PUBLICATION_NAME',
+			'type'           => 'WEEKLY',
 			'subject'        => 'Subject',
 			'preheader'      => 'Pre header',
 			'introduction'   => "<p>Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.</p>\n<p>And multiple lines.</p>\n",
@@ -149,8 +180,8 @@ class DataGeneratorTest extends WPTestCase {
 		);
 
 		$expected = array(
-			'publication'    => Client::PUBLICATION,
-			'type'           => Client::get_type(),
+			'publication'    => 'PUBLICATION_NAME',
+			'type'           => 'WEEKLY',
 			'subject'        => 'Subject',
 			'preheader'      => 'Pre header',
 			'introduction'   => "<p>Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.</p>\n<p>And multiple lines.</p>\n",

@@ -15,22 +15,23 @@ class Settings {
 	 */
 	protected array $data;
 
-	/**
-	 * @param array<string,mixed> $data
-	 */
-	protected function __construct( array $data ) {
-		$this->data = $data;
+	protected function __construct() {
+		$this->clear_cache();
 	}
 
 	public static function get_instance(): self {
 		static $instance = null;
 
 		if ( null === $instance ) {
-			$acf_options = get_field( Selligent::OPTION_GROUP, 'options' );
-			$instance    = new self( is_array( $acf_options ) ? $acf_options : array() );
+			$instance = new self();
 		}
 
 		return $instance;
+	}
+
+	public function clear_cache(): void {
+		$acf_options = get_field( Selligent::OPTION_GROUP, 'options' );
+		$this->data  = is_array( $acf_options ) ? $acf_options : array();
 	}
 
 	public function get_base_url(): string {
