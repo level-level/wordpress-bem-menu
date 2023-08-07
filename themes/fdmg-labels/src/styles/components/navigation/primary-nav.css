@@ -7,7 +7,7 @@
 }
 
 .primary-nav__item--parent {
-	@apply relative hocus:bg-secondary-500 sm:dark:bg-base-300;
+	@apply relative hocus:bg-secondary-500;
 }
 
 .primary-nav__item--parent .primary-nav__link {
@@ -27,7 +27,7 @@
 }
 
 .primary-nav__item--active .primary-nav__link {
-	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50;
+	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50 compact-header:dark:bg-base-300;
 }
 
 .primary-nav__item--active .primary-nav__arrow {

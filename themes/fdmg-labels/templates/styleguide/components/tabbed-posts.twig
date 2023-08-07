@@ -39,6 +39,7 @@
 						terms: post.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category')|map(term => {
 							name: term.get_name(),
 						}),
+						term_label: feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? _x('genre', 'Screen reader text', 'fdmg-labels') : _x('category', 'Screen reader text', 'fdmg-labels'),
 						date: post.get_date_i18n(get_option('time_format')),
 						datetime: post.get_date_i18n('H:i'),
 						date_full: post.get_date_i18n(get_option('time_format')),
