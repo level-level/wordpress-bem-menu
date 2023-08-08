@@ -28,7 +28,7 @@
 	{% set tabindex = 'tabindex="-1"' %}
 {% endif %}
 
-{% set highlighted_icon_style = 'bg-primary text-base-50 w-[28px] h-[28px] rounded-full flex items-center justify-center transition-all theme-energeia:text-base-800 dark:bg-primary-300 theme-energeia:dark:text-base-700 group-hover/button:translate-x-2 group-hover/button:bg-transparent group-focus/button:translate-x-2 group-focus/button:bg-transparent' %}
+{% set highlighted_icon_style = 'bg-primary text-base-50 w-[28px] h-[28px] rounded-full flex items-center justify-center transition-all theme-energeia:text-base-800 dark:bg-primary-300 theme-energeia:dark:text-base-700 theme-pensioen-pro:dark:text-base-700 group-hover/button:translate-x-2 group-hover/button:bg-transparent group-focus/button:translate-x-2 group-focus/button:bg-transparent' %}
 
 {% if url %}
 	<a href="{{ url|raw }}" class="group/button btn {{ class|raw }}" {{ external|raw }} {{ aria_label|raw }} {{ data_config|raw }} {{ tabindex|raw }}>
