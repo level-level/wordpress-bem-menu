@@ -19,7 +19,7 @@ class Podcast {
 	public function register(): void {
 		$args = array(
 			'labels'                => array(
-				'name'               => _x( 'Podcast', 'Post Type', 'fdmg-labels-admin' ),
+				'name'               => _x( 'Podcasts', 'Post Type', 'fdmg-labels-admin' ),
 				'singular_name'      => _x( 'Podcast', 'Post Type', 'fdmg-labels-admin' ),
 				'all_items'          => _x( 'All podcasts', 'Post Type', 'fdmg-labels-admin' ),
 				'archives'           => _x( 'Podcast archives', 'Post Type', 'fdmg-labels-admin' ),

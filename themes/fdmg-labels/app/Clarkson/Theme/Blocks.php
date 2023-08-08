@@ -28,13 +28,13 @@ class Blocks {
 	 */
 	public function create_custom_gutenberg_categories( array $categories ): array {
 		return array_merge(
-			$categories,
 			array(
 				array(
 					'slug'  => 'fdmg-labels',
 					'title' => get_bloginfo( 'name' ),
 				),
-			)
+			),
+			$categories,
 		);
 	}
 
