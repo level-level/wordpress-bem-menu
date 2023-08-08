@@ -11,32 +11,34 @@
 		<div data-component="terms" class="text-base">
 			<div class="flex items-center justify-between flex-nowrap">
 
-				<div class="flex gap-1">
-					{% if categories %}
-						{% include 'styleguide/components/post-terms.twig' with {
-							terms: categories,
-							label: _x('category', 'Screen reader text', 'fdmg-labels'),
-						} %}
-					{% endif %}
+				{% if categories or genres or sections %}
+					<div class="flex gap-1">
+						{% if categories %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: categories,
+								label: _x('category', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
 
-					{% if genres %}
-						{% include 'styleguide/components/post-terms.twig' with {
-							terms: genres,
-							label: _x('genre', 'Screen reader text', 'fdmg-labels'),
-						} %}
-					{% endif %}
+						{% if genres %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: genres,
+								label: _x('genre', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
 
-					{% if genres and sections %}
-						<div class="leading-none text-md" aria-hidden="true">•</div>
-					{% endif %}
+						{% if genres and sections %}
+							<div class="leading-none text-md" aria-hidden="true">•</div>
+						{% endif %}
 
-					{% if sections %}
-						{% include 'styleguide/components/post-terms.twig' with {
-							terms: sections,
-							label: _x('section', 'Screen reader text', 'fdmg-labels'),
-						} %}
-					{% endif %}
-				</div>
+						{% if sections %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: sections,
+								label: _x('section', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
+					</div>
+				{% endif %}
 
 				{% if date and datetime and date_full %}
 					<div class="shrink-0">
