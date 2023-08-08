@@ -5,6 +5,7 @@ use Clarkson\Theme\PostTypes\Podcast;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 
 class PodcastOptions {
 	public const POST_TYPE = Podcast::POST_TYPE_NAME;
@@ -16,9 +17,11 @@ class PodcastOptions {
 	public const POST_TYPE_GROUP_INTRO = 'intro';
 
 	public function register_hooks(): void {
-		add_action( 'acf/init', array( $this, 'register' ) );
-		add_action( 'acf/init', array( $this, 'register_fields' ) );
-		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE ) ) {
+			add_action( 'acf/init', array( $this, 'register' ) );
+			add_action( 'acf/init', array( $this, 'register_fields' ) );
+			add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
+		}
 	}
 
 	/**
