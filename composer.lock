@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5bbadb7700ec5573e1a0f1146498cbff",
+    "content-hash": "9abe387deca511ce90222aa33b0be479",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1040,6 +1040,32 @@
                 "homepage": "https://gravityforms.com"
             },
             "description": "Easily create web forms and manage form entries within the WordPress admin.",
+            "homepage": "https://gravityforms.com"
+        },
+        {
+            "name": "ll-premium/gravityformspolls",
+            "version": "4.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.0",
+                "shasum": "8d40e5611127be4bedacfd3f67838bc19ee6bc1f",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "authors": {
+                "name": "Gravity Forms",
+                "homepage": "https://gravityforms.com"
+            },
+            "description": "Allows you to quickly and easily deploy Polls on your web site using the power of Gravity Forms.",
             "homepage": "https://gravityforms.com"
         },
         {
@@ -10648,5 +10674,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
