@@ -4,6 +4,7 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\Taxonomies\Category;
 use Clarkson\Theme\Taxonomies\Genre;
 use Clarkson\Theme\Taxonomies\Section;
+use Clarkson\Theme\Taxonomies\Serie;
 use FDMGLabels\FeatureManager;
 
 class Taxonomies {
@@ -12,6 +13,7 @@ class Taxonomies {
 		Category::class,
 		Genre::class,
 		Section::class,
+		Serie::class,
 	);
 
 	public function register_hooks(): void {

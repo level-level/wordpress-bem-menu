@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use Clarkson\Theme\ACFPages\Features;
+use Clarkson\Theme\ACFPages\PodcastOptions;
 use Clarkson\Theme\ACFPages\Selligent;
 use Clarkson\Theme\ACFPages\ThemeOptions;
 class ACFPages {
@@ -9,7 +10,8 @@ class ACFPages {
 	protected const ACF_PAGES = array(
 		ThemeOptions::class,
 		Features::class,
-		Selligent::class,
+		PodcastOptions::class,
+    Selligent::class,
 	);
 
 	public function register_hooks(): void {
