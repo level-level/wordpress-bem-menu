@@ -113,7 +113,7 @@ class SendNewsletter {
 				return;
 			}
 
-			$response = $client->register_post( $article );
+			$response = $client->register_post( $article, $newsletter );
 			if ( $response instanceof WP_Error ) {
 				$this->selligent_logger->add_post_log(
 					$newsletter_id, sprintf(
@@ -142,7 +142,7 @@ class SendNewsletter {
 		}
 
 		// Send the newsletter
-		$response = $client->send_newsletter();
+		$response = $client->send_newsletter( $newsletter );
 		if ( $response instanceof WP_Error ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id, sprintf(

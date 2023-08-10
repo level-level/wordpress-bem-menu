@@ -10,13 +10,6 @@ use Monolog\Registry;
 use WP_Error;
 
 class Client {
-	/**
-	 * Defines the platform for Selligent
-	 *
-	 * @var string
-	 */
-	public const PUBLICATION = 'IMPACT_INVESTOR';
-
 	public const BASE_PATH = '/restapi/api/sync/';
 
 	protected string $base_url;
@@ -39,8 +32,8 @@ class Client {
 	 *
 	 * @return array|WP_Error
 	 */
-	public function register_post( base_object $post ) {
-		return $this->post( $this->get_list_path( $this->settings->get_list_ids()->get_article() ), ( new DataGenerator() )->get_article_data( $post ) );
+	public function register_post( base_object $post, ii_newsletter $newsletter ) {
+		return $this->post( $this->get_list_path( $this->settings->get_list_ids()->get_article() ), ( new DataGenerator() )->get_article_data( $post, $newsletter ) );
 	}
 
 	/**
@@ -55,17 +48,18 @@ class Client {
 	}
 
 	/**
-	 * Sends the most recent registered newsletter to all recipients.
+	 * Sends the most recent registered newsletter of specific publication and type to all recipients.
+	 * Most recent newsletter needs to be provided to determine the publication and type.
 	 *
 	 * @return array|WP_Error
 	 */
-	public function send_newsletter() {
+	public function send_newsletter( ii_newsletter $newsletter ) {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
 			'Gate'      => $this->settings->get_gates()->get_send_newsletter(),
 			'Gateinput' => array(
-				'PUBLICATION' => self::PUBLICATION,
-				'TYPE'        => self::get_type(),
+				'PUBLICATION' => $newsletter->get_publication(),
+				'TYPE'        => $newsletter->get_type(),
 			),
 		);
 
@@ -157,14 +151,5 @@ class Client {
 			'Authorization' => sprintf( 'hmac %s:%s:%s', $this->settings->get_username(), $auth_hash, $timestamp ),
 			'Content-Type'  => 'application/json',
 		);
-	}
-
-	/**
-	 * The mailing list type. This type determines the mailing list that will
-	 * be used. The production mailing list is 'MVP'. Custom test lists can be
-	 * created if needed.
-	 */
-	public static function get_type(): string {
-		return defined( 'II_SELLIGENT_TYPE' ) ? constant( 'II_SELLIGENT_TYPE' ) : 'NONE';
 	}
 }

@@ -6,6 +6,7 @@ use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\Connectors\Selligent\Settings\NewsletterPublicationSettings;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use WP_CLI;
 use WP_Error;
@@ -20,10 +21,24 @@ class Selligent {
 		$settings = Settings::get_instance();
 		WP_CLI::line( 'Base url: ' . $settings->get_base_url() );
 		WP_CLI::line( 'User: ' . $settings->get_username() );
-		WP_CLI::line( 'Password: ' . $settings->get_password() );
+		WP_CLI::line( 'Password: ' . ( ! empty( $settings->get_password() ) ? 'Yes' : 'No' ) );
 		WP_CLI::line( 'Newsletter list ID: ' . $settings->get_list_ids()->get_newsletter() );
 		WP_CLI::line( 'Article list ID: ' . $settings->get_list_ids()->get_article() );
-		WP_CLI::line( 'Type: ' . Client::get_type() );
+
+		$types = array_map(
+			function( $type ) {
+				return $type->get_type();
+			}, $settings->get_newsletter()->get_types()
+		);
+		WP_CLI::line( 'Types: ' . implode( ',', $types ) );
+
+		// Get publication names as string
+		$publications = array_map(
+			function( NewsletterPublicationSettings $publication ) {
+				return $publication->get_name();
+			}, $settings->get_newsletter()->get_publications()
+		);
+		WP_CLI::line( 'Publications: ' . implode( ',', $publications ) );
 	}
 
 	/**
@@ -31,8 +46,11 @@ class Selligent {
 	 *
 	 * ## Options
 	 *
-	 * <id>...
-	 * : One or more IDs of posts to send
+	 * <post_ids>...
+	 * : One or more IDs of posts to send, separated by a comma.
+	 *
+	 * <newsletter_id>...
+	 * : Newsletter ID
 	 *
 	 * [--preview]
 	 * : Preview the body data without sending the request.
@@ -43,7 +61,7 @@ class Selligent {
 		$this->handle_default_flags( $args_assoc );
 
 		$client   = new Client();
-		$post_ids = $this->filter_post_ids( $args );
+		$post_ids = $this->filter_post_ids( $args[0] ?? '' );
 
 		/** @var base_object[] */
 		$posts = array();
@@ -60,9 +78,16 @@ class Selligent {
 			exit;
 		}
 
+		$newsletter_id = (int) ( $args[1] ?? 0 );
+		$newsletter    = ii_newsletter::get( $newsletter_id );
+		if ( ! $newsletter instanceof ii_newsletter ) {
+			WP_CLI::error( 'No valid newsletter ID was given' );
+			exit;
+		}
+
 		foreach ( $posts as $post ) {
 			WP_CLI::line( 'Sending post with ID ' . $post->get_id() );
-			$result = $client->register_post( $post );
+			$result = $client->register_post( $post, $newsletter );
 			$this->echo_response( $result );
 			WP_CLI::line( '' );
 		}
@@ -116,15 +141,24 @@ class Selligent {
 	 */
 	public function send_newsletter( array $args, array $args_assoc ): void {
 		$this->handle_default_flags( $args_assoc );
+
+		$newsletter_id = (int) ( $args[0] ?? 0 );
+		$newsletter    = ii_newsletter::get( $newsletter_id );
+		if ( ! $newsletter instanceof ii_newsletter ) {
+			WP_CLI::error( 'No valid newsletter ID was given' );
+			exit;
+		}
+
 		$client = new Client();
 
 		if ( ! get_flag_value( $args_assoc, 'preview', false ) ) {
 			WP_CLI::warning( 'This action triggers sending the newsletter to all recipients.' );
-			WP_CLI::line( 'Current newsletter type is: ' . Client::get_type() );
+			WP_CLI::line( 'Current newsletter publication is: ' . $newsletter->get_publication() );
+			WP_CLI::line( 'Current newsletter type is: ' . $newsletter->get_type() );
 			WP_CLI::confirm( 'Are you sure?' );
 		}
 
-		$this->echo_response( $client->send_newsletter() );
+		$this->echo_response( $client->send_newsletter( $newsletter ) );
 	}
 
 	/**
@@ -223,10 +257,10 @@ class Selligent {
 	 *
 	 * @return int[]
 	 */
-	protected function filter_post_ids( array $args ): array {
+	protected function filter_post_ids( string $comma_separated_post_ids ): array {
 		$post_ids = array();
 
-		foreach ( $args as $arg ) {
+		foreach ( explode( ',', $comma_separated_post_ids ) as $arg ) {
 			if ( (int) $arg !== 0 ) {
 				$post_ids[] = (int) $arg;
 			}

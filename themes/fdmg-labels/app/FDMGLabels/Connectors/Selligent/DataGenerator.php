@@ -8,17 +8,18 @@ use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 
 class DataGenerator {
 	/**
 	 * Returns an array with the required values to send to Selligent.
 	 */
-	public function get_article_data( base_object $post ): array {
+	public function get_article_data( base_object $post, ii_newsletter $newsletter ): array {
 		$feature_manager = new FeatureManager();
 		$data            = array(
-			'publication'      => Client::PUBLICATION,
-			'articleId'        => $post->get_id(),
+			'publication'      => $newsletter->get_publication(),
+			'articleId'        => $post->get_id() . '_' . $newsletter->get_id(),
 			'title'            => substr( $post->get_title(), 0, 255 ),
 			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
@@ -65,8 +66,8 @@ class DataGenerator {
 	 */
 	public function get_newsletter_data( ii_newsletter $newsletter, bool $test_mode ): array {
 		$data = array(
-			'publication'  => $newsletter->get_publication(),
-			'type'         => $newsletter->get_type(),
+			'publication'  => substr( $newsletter->get_publication(), 0, 50 ),
+			'type'         => substr( $newsletter->get_type(), 0, 50 ),
 			'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
 			'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
 			'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),

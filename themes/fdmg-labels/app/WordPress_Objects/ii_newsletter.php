@@ -4,6 +4,7 @@ namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Extended\ACF\Key;
+use FDMGLabels\Connectors\Selligent\Settings\NewsletterTypeSettings;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\Newsletter\ArticleGroup;
 
@@ -41,7 +42,7 @@ class ii_newsletter extends base_object {
 		$newsletter_type_settings = Settings::get_instance()->get_newsletter()->get_types();
 		$current_type             = array_filter(
 			$newsletter_type_settings,
-			function( $type_setting ) {
+			function( NewsletterTypeSettings $type_setting ) {
 				return $type_setting->get_type() === $this->get_type();
 			}
 		);
@@ -55,7 +56,7 @@ class ii_newsletter extends base_object {
 		$article_groups                             = array();
 		$settings_current_type_article_groups_count = count( $current_type->get_article_groups() );
 		for ( $index = 0; $index < $settings_current_type_article_groups_count; $index++ ) {
-			$acf_article_group = $meta_article_groups[ $index ] ?? array();
+			$acf_article_group = $meta_article_groups[ Newsletter::META_ARTICLE_GROUP_PREFIX . $index ] ?? array();
 			$acf_article_group = is_array( $acf_article_group ) ? $acf_article_group : array();
 			$article_groups[]  = new ArticleGroup( $acf_article_group );
 		}
