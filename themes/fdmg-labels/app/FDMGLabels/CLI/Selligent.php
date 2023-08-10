@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\CLI;
 
+use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
@@ -110,13 +111,18 @@ class Selligent {
 	 * options:
 	 *   - 0
 	 *   - 1
+	 *   - 2
 	 * ---
 	 *
 	 * @subcommand register-newsletter
 	 */
 	public function register_newsletter( array $args, array $args_assoc ): void {
 		$this->handle_default_flags( $args_assoc );
-		$test_mode = (bool) get_flag_value( $args_assoc, 'test-mode', true );
+
+		/**
+		 * @var Newsletter::META_SEND_TEST_OPTION_*
+		 */
+		$test_mode = (string) get_flag_value( $args_assoc, 'test-mode', Newsletter::META_SEND_TEST_OPTION_PREVIEW );
 
 		$newsletter_id = (int) ( $args[0] ?? 0 );
 		$newsletter    = ii_newsletter::get( $newsletter_id );

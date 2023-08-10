@@ -39,6 +39,9 @@ class Newsletter {
 	public const META_SEND                          = 'send';
 	public const META_SEND_ACTION                   = 'action';
 	public const META_SEND_TEST                     = 'test';
+	public const META_SEND_TEST_OPTION_NO           = '0';
+	public const META_SEND_TEST_OPTION_PREVIEW      = '1';
+	public const META_SEND_TEST_OPTION_DEBUG        = '2';
 	public const META_SEND_SCHEDULE                 = 'schedule';
 	public const META_SEND_DATE                     = 'date';
 
@@ -165,9 +168,16 @@ class Newsletter {
 				array(
 					TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
 						->stylisedUi(),
-					TrueFalse::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
-						->stylisedUi()
-						->defaultValue( true )
+					Select::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
+						->choices(
+							array(
+								self::META_SEND_TEST_OPTION_NO => _x( 'No, send it to subscribers', 'Fields', 'fdmg-labels-admin' ),
+								self::META_SEND_TEST_OPTION_PREVIEW => _x( 'Yes, send preview to editorial team', 'Fields', 'fdmg-labels-admin' ),
+								self::META_SEND_TEST_OPTION_DEBUG => _x( 'Yes, send to developers for debugging', 'Fields', 'fdmg-labels-admin' ),
+							)
+						)
+						->defaultValue( self::META_SEND_TEST_OPTION_PREVIEW )
+						->required()
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),

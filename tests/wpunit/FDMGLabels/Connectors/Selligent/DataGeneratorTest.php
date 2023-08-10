@@ -142,7 +142,7 @@ class DataGeneratorTest extends WPTestCase {
 		wp_delete_post( $post->get_id(), true );
 	}
 
-	public function test_get_newsletter_data_testmode(): void {
+	public function test_get_newsletter_data(): void {
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
@@ -181,50 +181,7 @@ class DataGeneratorTest extends WPTestCase {
 			'articlegroup_2' => implode( ',', array( $this->post->get_id(), $this->post2->get_id() ) ),
 		);
 
-		$this->assertSame( $expected, ( new DataGenerator() )->get_newsletter_data( $newsletter, true ) );
-
-		wp_delete_post( $newsletter->get_id() );
-	}
-
-	public function test_get_newsletter_data_prod(): void {
-		$newsletter = new ii_newsletter(
-			$this->factory()->post->create_and_get(
-				array(
-					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
-					'post_status' => 'publish',
-				)
-			)
-		);
-
-		update_field( 'publication', 'PUBLICATION_NAME', $newsletter->get_id() );
-		update_field( 'type', 'WEEKLY', $newsletter->get_id() );
-		update_field( 'subject', 'Subject', $newsletter->get_id() );
-		update_field( 'pre_header', 'Pre header', $newsletter->get_id() );
-		update_field( 'introduction', "Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.\n\nAnd multiple lines.", $newsletter->get_id() );
-		update_field(
-			'article_groups_weekly', array(
-				'article_group_1' => array(
-					'articles' => array(
-						array( 'article' => $this->post->get_id() ),
-						array( 'article' => $this->post2->get_id() ),
-					),
-				),
-			), $newsletter->get_id()
-		);
-
-		$expected = array(
-			'publication'    => 'PUBLICATION_NAME',
-			'type'           => 'WEEKLY',
-			'subject'        => 'Subject',
-			'preheader'      => 'Pre header',
-			'introduction'   => "<p>Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.</p>\n<p>And multiple lines.</p>\n",
-			'test'           => '0',
-			'articlegroup_1' => '',
-			'articlegroup_2' => implode( ',', array( $this->post->get_id(), $this->post2->get_id() ) ),
-		);
-
-		$this->assertSame( $expected, ( new DataGenerator() )->get_newsletter_data( $newsletter, false ) );
+		$this->assertSame( $expected, ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' ) );
 
 		wp_delete_post( $newsletter->get_id() );
 	}

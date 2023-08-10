@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
+use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
@@ -40,10 +41,10 @@ class Client {
 	 * Registers a new newsletter.
 	 *
 	 * @param ii_newsletter $newsletter
-	 * @param bool $test_mode
+	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
 	 * @return array|WP_Error
 	 */
-	public function register_newsletter( ii_newsletter $newsletter, bool $test_mode ) {
+	public function register_newsletter( ii_newsletter $newsletter, string $test_mode ) {
 		return $this->post( $this->get_list_path( $this->settings->get_list_ids()->get_newsletter() ), ( new DataGenerator() )->get_newsletter_data( $newsletter, $test_mode ) );
 	}
 
