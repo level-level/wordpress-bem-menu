@@ -3,16 +3,16 @@
 namespace FDMGLabels\Paywall;
 
 use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\Field;
 use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\TrueFalse;
-use Extended\ACF\Fields\Field;
-use LevelLevel\Paywall\ACFBlock;
 use Extended\ACF\Key;
+use LevelLevel\Paywall\ACFBlock;
 
 class ACFFields {
 
 	public const META_REQUIRE_ROLES_FOR_ACCESS = 'require_roles_for_access';
-	public const META_ALLOWED_USER_ROLES = 'allowed_user_roles';
+	public const META_ALLOWED_USER_ROLES       = 'allowed_user_roles';
 
 	public function register_hooks(): void {
 		add_filter( 'll_paywall_paywall_block_fields', array( $this, 'add_fields' ) );
@@ -23,9 +23,9 @@ class ACFFields {
 	 * @return array<array<string,mixed>>
 	 */
 	public function add_fields( array $fields ): array {
-		$wp_roles = wp_roles();
+		$wp_roles     = wp_roles();
 		$role_options = array();
-		foreach (Init::ROLE_OPTIONS as $role_option) {
+		foreach ( Init::ROLE_OPTIONS as $role_option ) {
 			$role_options[ $role_option ] = $wp_roles->get_names()[ $role_option ] ?? $role_option;
 		}
 
@@ -45,9 +45,13 @@ class ACFFields {
 				),
 		);
 
-		$fields = array_merge( $fields, array_map( function( Field $extra_field ): array {
-			return $extra_field->get( Key::sanitize( ACFBlock::FIELD_GROUP ) );
-		}, $extra_fields ) );
+		$fields = array_merge(
+			$fields, array_map(
+				function( Field $extra_field ): array {
+					return $extra_field->get( Key::sanitize( ACFBlock::FIELD_GROUP ) );
+				}, $extra_fields
+			)
+		);
 
 		return $fields;
 	}
