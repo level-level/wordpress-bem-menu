@@ -19,13 +19,7 @@ There is a testing and a production environment available for connecting to the 
 
 API base path: /restapi/api/sync/
 
-The following credentials are required in the wp-config.
-
-```php
-define( 'II_SELLIGENT_TYPE', 'xxx' );
-```
-
-The rest of the settings can be configured in Theme options -> Selligent
+The settings can be configured in Theme options -> Selligent
 
 ## Authentication
 

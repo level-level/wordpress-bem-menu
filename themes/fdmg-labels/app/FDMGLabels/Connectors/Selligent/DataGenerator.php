@@ -2,23 +2,25 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
+use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\Taxonomies\Section;
 use Clarkson\Utilities\Image;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
+use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 
 class DataGenerator {
 	/**
 	 * Returns an array with the required values to send to Selligent.
 	 */
-	public function get_article_data( base_object $post ): array {
+	public function get_article_data( base_object $post, ii_newsletter $newsletter ): array {
 		$feature_manager = new FeatureManager();
 		$data            = array(
-			'publication'      => Client::PUBLICATION,
-			'articleId'        => $post->get_id(),
+			'publication'      => $newsletter->get_publication(),
+			'articleId'        => $post->get_id() . '_' . $newsletter->get_id(),
 			'title'            => substr( $post->get_title(), 0, 255 ),
 			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
@@ -62,17 +64,26 @@ class DataGenerator {
 	/**
 	 * Returns an array with the required values to send to Selligent. Keep in
 	 * mind that the post ids given should already have been registered.
+	 *
+	 * @param ii_newsletter $newsletter
+	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
+	 * @return array<string,string>
 	 */
-	public function get_newsletter_data( ii_newsletter $newsletter, bool $test_mode ): array {
-		return array(
-			'publication'    => Client::PUBLICATION,
-			'type'           => Client::get_type(),
-			'subject'        => substr( $newsletter->get_subject(), 0, 255 ),
-			'preheader'      => substr( $newsletter->get_pre_header(), 0, 255 ),
-			'introduction'   => substr( $newsletter->get_introduction(), 0, 2000 ),
-			'test'           => $test_mode ? '1' : '0',
-			'articlegroup_1' => implode( ',', $newsletter->get_article_ids() ),
+	public function get_newsletter_data( ii_newsletter $newsletter, string $test_mode ): array {
+		$data = array(
+			'publication'  => substr( $newsletter->get_publication(), 0, 50 ),
+			'type'         => substr( $newsletter->get_type(), 0, 50 ),
+			'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
+			'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
+			'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),
+			'test'         => $test_mode,
 		);
+
+		foreach ( $newsletter->get_article_groups() as $index => $article_group ) {
+			$data[ 'articlegroup_' . ( $index + 1 ) ] = implode( ',', $article_group->get_article_ids() );
+		}
+
+		return $data;
 	}
 
 	protected function format_publish_date( base_object $object ): string {
