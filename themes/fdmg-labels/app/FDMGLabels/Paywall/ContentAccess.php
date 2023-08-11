@@ -1,17 +1,19 @@
 <?php
 namespace FDMGLabels\Paywall;
 
+use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\WordPress_Object\user;
 use WP_Post;
 use WP_User;
-use Clarkson\WPadmin\Capabilities;
 
 class ContentAccess {
 
 	/**
 	 * @var array<Capabilities::ROLE_*> Roles that can bypass the paywall.
 	 */
-	public const ALLOWED_ROLES = array();
+	public const ALLOWED_ROLES = array( // @phpstan-ignore-line TEMP, REMOVE THIS LINE WHEN ROLE IS ADDED
+		'some_role',
+	);
 
 	public function register_hooks(): void {
 		add_filter( 'll_paywall_user_can_access_restricted_post', array( $this, 'check_user_can_access' ), 10, 4 );
