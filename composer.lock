@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "77b72192b0ca0b4f26a7ddc79b46eb2b",
+    "content-hash": "feb14fbb023e1f75939f2725e431449b",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -842,16 +842,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "dev-main",
+            "version": "dev-main-build",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "c141130f697333e432403b336b8ee95b707afa20"
+                "reference": "08211fd662fd29ffc70fcfc2a6d3f56afd74c076"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/c141130f697333e432403b336b8ee95b707afa20",
-                "reference": "c141130f697333e432403b336b8ee95b707afa20",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/08211fd662fd29ffc70fcfc2a6d3f56afd74c076",
+                "reference": "08211fd662fd29ffc70fcfc2a6d3f56afd74c076",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -883,7 +883,6 @@
                 "wp-cli/wp-cli-bundle": "^2.8",
                 "wpackagist-plugin/user-switching": "^1.5"
             },
-            "default-branch": true,
             "type": "wordpress-plugin",
             "extra": {
                 "installer-paths": {
@@ -970,9 +969,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/main"
+                "source": "https://github.com/level-level/ll-paywall/tree/main-build"
             },
-            "time": "2023-08-11T07:41:22+00:00"
+            "time": "2023-08-11T07:43:06+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
