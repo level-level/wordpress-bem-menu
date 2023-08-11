@@ -30,6 +30,9 @@ class MigrateSelligentNewsletters {
 		WP_CLI::success( 'Selligent newsletters have been migrated' );
 	}
 
+	/**
+	 * Update Selligent options to support new Selligent structure.
+	 */
 	protected function process_settings(): void {
 		WP_CLI::log( 'Migrating settings.' );
 
@@ -115,7 +118,7 @@ class MigrateSelligentNewsletters {
 	}
 
 	/**
-	 * Process a single newsletter.
+	 * Update meta fields of a newsletter
 	 */
 	protected function process_newsletter( ii_newsletter $newsletter ): void {
 		WP_CLI::log( sprintf( 'Migrating newsletter %d.', $newsletter->get_id() ) );
