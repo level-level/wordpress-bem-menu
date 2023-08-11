@@ -846,12 +846,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "08211fd662fd29ffc70fcfc2a6d3f56afd74c076"
+                "reference": "fe325b6ff65c4bc852625b868a382a58ebc9b086"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/08211fd662fd29ffc70fcfc2a6d3f56afd74c076",
-                "reference": "08211fd662fd29ffc70fcfc2a6d3f56afd74c076",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/fe325b6ff65c4bc852625b868a382a58ebc9b086",
+                "reference": "fe325b6ff65c4bc852625b868a382a58ebc9b086",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -971,7 +971,7 @@
             "support": {
                 "source": "https://github.com/level-level/ll-paywall/tree/main-build"
             },
-            "time": "2023-08-11T07:43:06+00:00"
+            "time": "2023-08-11T11:17:08+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",

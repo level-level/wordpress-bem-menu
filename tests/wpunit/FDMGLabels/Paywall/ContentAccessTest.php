@@ -10,7 +10,23 @@ class ContentAccessTest extends WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$this->post = $this->factory()->post->create_and_get(
+		$this->post_no_role = $this->factory()->post->create_and_get(
+			array(
+				'post_title'   => 'test post with paywall',
+				'post_status'  => 'publish',
+				'post_content' => '<!-- wp:paragraph -->
+				<p>Text before paywall</p>
+				<!-- /wp:paragraph -->
+
+				<!-- wp:acf/block-ll-paywall-paywall {"name":"acf/block-ll-paywall-paywall","data":[],"align":"wide","mode":"preview"} /-->
+
+				<!-- wp:paragraph -->
+				<p>Text after paywall</p>
+				<!-- /wp:paragraph -->',
+			)
+		);
+
+		$this->post_for_role = $this->factory()->post->create_and_get(
 			array(
 				'post_title'   => 'test post with paywall',
 				'post_status'  => 'publish',
@@ -30,7 +46,7 @@ class ContentAccessTest extends WPTestCase {
 	}
 
 	public function test_user_cannot_access_restricted_post_no_user(): void {
-		$this->assertFalse( $this->content_access->user_can_access_restricted_post( $this->post ) );
+		$this->assertFalse( $this->content_access->user_can_access_restricted_post( $this->post_no_role ) );
 	}
 
 	public function test_user_cannot_access_restricted_post_with_non_edit_posts_user(): void {
@@ -42,7 +58,7 @@ class ContentAccessTest extends WPTestCase {
 			),
 		);
 
-		$this->assertFalse( $this->content_access->user_can_access_restricted_post( $this->post, $user ) );
+		$this->assertFalse( $this->content_access->user_can_access_restricted_post( $this->post_no_role, $user ) );
 	}
 
 	public function test_user_can_access_restricted_post_with_edit_posts_user(): void {
@@ -54,6 +70,6 @@ class ContentAccessTest extends WPTestCase {
 			),
 		);
 
-		$this->assertTrue( $this->content_access->user_can_access_restricted_post( $this->post, $user ) );
+		$this->assertTrue( $this->content_access->user_can_access_restricted_post( $this->post_no_role, $user ) );
 	}
 }

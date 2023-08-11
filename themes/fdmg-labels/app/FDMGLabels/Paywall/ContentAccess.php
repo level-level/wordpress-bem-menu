@@ -1,19 +1,11 @@
 <?php
 namespace FDMGLabels\Paywall;
 
-use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\WordPress_Object\user;
 use WP_Post;
 use WP_User;
 
 class ContentAccess {
-
-	/**
-	 * @var array<Capabilities::ROLE_*> Roles that can bypass the paywall.
-	 */
-	public const ALLOWED_ROLES = array( // @phpstan-ignore-line TEMP, REMOVE THIS LINE WHEN ROLE IS ADDED
-		'some_role',
-	);
 
 	public function register_hooks(): void {
 		add_filter( 'll_paywall_user_can_access_restricted_post', array( $this, 'check_user_can_access' ), 10, 4 );
@@ -40,10 +32,21 @@ class ContentAccess {
 			return true;
 		}
 
+		// If there is no paywall block, something is wrong, so allow
+		$paywall_block = PaywallObject::get_from_post( $post );
+		if ( ! $paywall_block instanceof PaywallObject ) {
+			return true;
+		}
+
+		// If the paywall block is not set to require roles, allow
+		if ( ! $paywall_block->get_require_roles_for_access() ) {
+			return true;
+		}
+
 		// If user has one of the allowed roles, allow
 		$user_roles = $user->get_roles();
-		foreach ( self::ALLOWED_ROLES as $allowed_role ) {
-			if ( in_array( $allowed_role, $user_roles, true ) ) {
+		foreach ( $paywall_block->get_allowed_user_roles() as $role_option ) {
+			if ( in_array( $role_option, $user_roles, true ) ) {
 				return true;
 			}
 		}
