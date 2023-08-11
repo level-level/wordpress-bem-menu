@@ -4,9 +4,9 @@ namespace FDMGLabels\CLI;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
+use Extended\ACF\Key;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use GFFormsModel;
-use Extended\ACF\Key;
 use WP_CLI;
 
 class MigrateSelligentNewsletters {
@@ -41,7 +41,7 @@ class MigrateSelligentNewsletters {
 			'II_SELLIGENT_LIST_ID_ARTICLE',
 			'II_SELLIGENT_TYPE',
 		);
-		foreach ($required_constants as $required_constant) {
+		foreach ( $required_constants as $required_constant ) {
 			if ( defined( $required_constant ) ) {
 				continue;
 			}
@@ -53,16 +53,16 @@ class MigrateSelligentNewsletters {
 
 		update_field(
 			'selligent', array(
-				'base_url' => constant( 'II_SELLIGENT_BASE_URL' ),
-				'username' => constant( 'II_SELLIGENT_USER' ),
-				'password' => constant( 'II_SELLIGENT_PASS' ),
-				'gates' => array(
-					'send_newsletter' => "NEWSLETTER_IMPACTINVESTOR",
-					'optin' => "OPTIN_IMPACTINVESTOR",
+				'base_url'   => constant( 'II_SELLIGENT_BASE_URL' ),
+				'username'   => constant( 'II_SELLIGENT_USER' ),
+				'password'   => constant( 'II_SELLIGENT_PASS' ),
+				'gates'      => array(
+					'send_newsletter' => 'NEWSLETTER_IMPACTINVESTOR',
+					'optin'           => 'OPTIN_IMPACTINVESTOR',
 				),
-				'list_ids' => array(
+				'list_ids'   => array(
 					'newsletter' => constant( 'II_SELLIGENT_LIST_ID_NEWSLETTER' ),
-					'article' => constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ),
+					'article'    => constant( 'II_SELLIGENT_LIST_ID_ARTICLE' ),
 				),
 				'newsletter' => array(
 					'publications' => array(
@@ -92,16 +92,18 @@ class MigrateSelligentNewsletters {
 		WP_CLI::log( 'Migrating settings.' );
 
 		/** @var ii_newsletter[] */
-		$newsletters = ii_newsletter::get_many( array(
-			'posts_per_page' => -1,
-			'post_status'    => 'any',
-			'meta_query'     => array(
-				array(
-					'key'     => Newsletter::META_PUBLICATION, // This should mean it's not migrated, and is an old version
-					'compare' => 'NOT EXISTS',
+		$newsletters = ii_newsletter::get_many(
+			array(
+				'posts_per_page' => -1,
+				'post_status'    => 'any',
+				'meta_query'     => array(
+					array(
+						'key'     => Newsletter::META_PUBLICATION, // This should mean it's not migrated, and is an old version
+						'compare' => 'NOT EXISTS',
+					),
 				),
 			)
-		) );
+		);
 
 		if ( empty( $newsletters ) ) {
 			WP_CLI::warning( 'No newsletters found' );
@@ -118,9 +120,9 @@ class MigrateSelligentNewsletters {
 	protected function process_newsletter( ii_newsletter $newsletter ): void {
 		WP_CLI::log( sprintf( 'Migrating newsletter %d.', $newsletter->get_id() ) );
 
-		$settings = Settings::get_instance();
+		$settings            = Settings::get_instance();
 		$newsletter_settings = $settings->get_newsletter();
-		$publication = $newsletter_settings->get_publications()[0] ?? null;
+		$publication         = $newsletter_settings->get_publications()[0] ?? null;
 		if ( ! $publication ) {
 			WP_CLI::error( 'No publication set. Please configure Selligent.' );
 			return;
@@ -135,9 +137,9 @@ class MigrateSelligentNewsletters {
 		update_field( Newsletter::META_PUBLICATION, $publication->get_name(), $newsletter->get_id() );
 		update_field( Newsletter::META_TYPE, $type->get_type(), $newsletter->get_id() );
 
-		$articles_data = array();
+		$articles_data           = array();
 		$acf_article_field_index = 0;
-		while (true) {
+		while ( true ) {
 			$value = get_post_meta( $newsletter->get_id(), sprintf( 'articles_%d_article', $acf_article_field_index ), true );
 			if ( ! $value ) {
 				break;
@@ -148,8 +150,6 @@ class MigrateSelligentNewsletters {
 			);
 			$acf_article_field_index++;
 		}
-
-
 
 		update_field(
 			Newsletter::META_ARTICLE_GROUPS_PREFIX . Key::sanitize( $type->get_type() ), array(
