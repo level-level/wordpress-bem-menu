@@ -48,7 +48,7 @@ class MigrateSelligentNewsletters {
 
 			WP_CLI::log( 'Missing one or more constants to migrate settings.' );
 			WP_CLI::log( 'Please make sure to migrate Selligent settings manually via the wp-admin before you continue migrating Selligent newsletters.' );
-			WP_CLI::confirm( 'Have you alrady migrated the Selligent settings manually, and do you want to continue migrating the newsletters?' );
+			WP_CLI::confirm( 'Have you already migrated the Selligent settings manually, and do you want to continue migrating the newsletters?' );
 		}
 
 		update_field(
