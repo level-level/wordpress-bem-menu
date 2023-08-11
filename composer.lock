@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "feb14fbb023e1f75939f2725e431449b",
+    "content-hash": "0667c52bee9b2bf02543eaae72e201db",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -842,16 +842,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "dev-main-build",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "55947e35078dac25620af8462214974aa9972cb8"
+                "reference": "fbe87e2283d27f33d9f9cc9ce082f702e0f7e482"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/55947e35078dac25620af8462214974aa9972cb8",
-                "reference": "55947e35078dac25620af8462214974aa9972cb8",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/fbe87e2283d27f33d9f9cc9ce082f702e0f7e482",
+                "reference": "fbe87e2283d27f33d9f9cc9ce082f702e0f7e482",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -969,9 +969,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/main-build"
+                "source": "https://github.com/level-level/ll-paywall/tree/v0.1.0"
             },
-            "time": "2023-08-11T11:49:11+00:00"
+            "time": "2023-08-11T14:26:26+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
@@ -10774,9 +10774,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "level-level/ll-paywall": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

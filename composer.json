@@ -48,7 +48,7 @@
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",
-        "level-level/ll-paywall": "dev-main-build"
+        "level-level/ll-paywall": "^0.1.0"
     },
     "scripts": {
         "post-autoload-dump": [
