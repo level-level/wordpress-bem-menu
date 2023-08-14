@@ -240,12 +240,16 @@ Excerpts maar moeilijker
 
 Because some content has dependencies to be rendered / imported correctly, it's required to import content in a specific order. The order is as follows:
 
-1. Categories
-2. Media
-3. Team
-4. Posts
-5. Media (only if required to fix relationships between media and posts)
-6. Redirects
+1. Genres (taxonomy) 
+2. Tag -> Categories (taxonomy)
+3. Sections (taxonomy)
+4. Picture/Binary files as Media
+5. Author as Team 
+6. Articles
+7. Podcast series (taxonomy)
+8. Podcasts
+9. Redirects
+10. Short URL as redirect
 
 ## Queries
 
