@@ -52,7 +52,7 @@ class SendNewsletterTest extends WPTestCase {
 		$this->assertTrue( $scheduled, 'Sync should be scheduled' );
 
 		$this->assert_send_meta_reset( $newsletter );
-		$this->assert_is_logged( $newsletter, false );
+		$this->assert_is_logged( $newsletter, '0' );
 
 		wp_delete_post( $newsletter, true );
 		as_unschedule_action( $scheduled, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '0' ), 'fdmg_labels' );
@@ -68,20 +68,36 @@ class SendNewsletterTest extends WPTestCase {
 				)
 			)
 		);
+
+		// Testmode 1
 		update_field( 'send_action', '1', $newsletter->get_id() );
 		update_field( 'send_test', '1', $newsletter->get_id() );
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
 		$scheduled_testmode = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '1' ), 'fdmg_labels' );
 		$scheduled          = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '0' ), 'fdmg_labels' );
-		$this->assertTrue( $scheduled_testmode, 'Sync should be scheduled in testmode' );
+		$this->assertTrue( $scheduled_testmode, 'Sync should be scheduled in testmode 1' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
 		$this->assert_send_meta_reset( $newsletter );
-		$this->assert_is_logged( $newsletter, true );
+		$this->assert_is_logged( $newsletter, '1' );
+		as_unschedule_action( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '1' ), 'fdmg_labels' );
+
+		// Testmode 2
+		update_field( 'send_action', '1', $newsletter->get_id() );
+		update_field( 'send_test', '2', $newsletter->get_id() );
+		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
+
+		$scheduled_testmode = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '2' ), 'fdmg_labels' );
+		$scheduled          = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '0' ), 'fdmg_labels' );
+		$this->assertTrue( $scheduled_testmode, 'Sync should be scheduled in testmode 2' );
+		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
+
+		$this->assert_send_meta_reset( $newsletter );
+		$this->assert_is_logged( $newsletter, '1' );
+		as_unschedule_action( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '2' ), 'fdmg_labels' );
 
 		wp_delete_post( $newsletter, true );
-		as_unschedule_action( $scheduled_testmode, 'fdmg_labels_send_newsletter', array( $newsletter->get_id(), '1' ), 'fdmg_labels' );
 	}
 
 	public function test_dont_schedule(): void {
@@ -130,15 +146,17 @@ class SendNewsletterTest extends WPTestCase {
 		$this->assertEmpty( get_field( 'send_date', $newsletter->get_id() ), 'Custom schedule date should be empty' );
 	}
 
-	protected function assert_is_logged( ii_newsletter $newsletter, bool $testmode ) {
+	protected function assert_is_logged( ii_newsletter $newsletter, string $testmode = '0' ) {
 		$logger    = new SelligentLogger();
 		$log_lines = $logger->get_post_logs( $newsletter->get_id() );
 
 		$this->assertInstanceOf( LogLine::class, $log_lines[0], 'A log line should have been added.' );
 		$this->assertEquals( 'info', $log_lines[0]->get_level(), 'The added log line should have error level \'info\'.' );
 
-		if ( $testmode ) {
-			$this->assertStringContainsString( 'test', $log_lines[0]->get_message(), 'The added log line should specify it is a test.' );
+		if ( $testmode === '0' ) {
+			$this->assertStringNotContainsString( 'testmode', $log_lines[0]->get_message(), 'The added log line should specify it is not a test.' );
+		} else {
+			$this->assertStringContainsString( 'testmode ' . $testmode, $log_lines[0]->get_message(), 'The added log line should specify it is a test.' );
 		}
 	}
 }
