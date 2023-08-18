@@ -48,7 +48,8 @@
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",
-        "ll-premium/gravityformspolls": "^4.0"
+        "ll-premium/gravityformspolls": "^4.0",
+        "wpackagist-plugin/elasticpress": "^4.7"
     },
     "scripts": {
         "post-autoload-dump": [
