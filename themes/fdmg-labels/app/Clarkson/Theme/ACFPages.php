@@ -11,7 +11,7 @@ class ACFPages {
 		ThemeOptions::class,
 		Features::class,
 		PodcastOptions::class,
-    Selligent::class,
+		Selligent::class,
 	);
 
 	public function register_hooks(): void {
