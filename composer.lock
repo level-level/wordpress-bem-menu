@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17128674140f2375da5adb42a631a15c",
+    "content-hash": "6dd81fdd5b12d54de739d8fcb1074aff",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -989,6 +989,48 @@
                 "source": "https://github.com/level-level/wordpress-bem-menu/tree/v1.0.9"
             },
             "time": "2022-06-27T13:10:13+00:00"
+        },
+        {
+            "name": "level-level/wp-file-mods",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:level-level/wp-file-mods.git",
+                "reference": "2ecdf57a02c5b1701c629e4493c0bab5b3cc5d19"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/level-level/wp-file-mods/zipball/2ecdf57a02c5b1701c629e4493c0bab5b3cc5d19",
+                "reference": "2ecdf57a02c5b1701c629e4493c0bab5b3cc5d19",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "wp-file-mods.php"
+                ]
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Level Level",
+                    "email": "info@level-level.com"
+                }
+            ],
+            "description": "Defaults for wp file mods",
+            "support": {
+                "source": "https://github.com/level-level/wp-file-mods/tree/v1.0.0"
+            },
+            "time": "2023-08-17T08:05:06+00:00"
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
