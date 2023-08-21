@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels\Paywall;
 
-use Clarkson\WPadmin\Capabilities;
+use Clarkson\Theme\ACFPages\Paywall;
 
 class Init {
 
@@ -17,9 +17,30 @@ class Init {
 		( new ContentAccess() )->register_hooks();
 
 		add_filter( 'll_paywall_paywall_object_classname', array( $this, 'change_paywall_object_class' ) );
+		add_filter( 'll_paywall_template_html', array( $this, 'render_paywall_component' ), 10, 3 );
 	}
 
 	public function change_paywall_object_class( string $classname ): string {
 		return PaywallObject::class;
+	}
+
+	/**
+	 * @param string|null $shortcircuit_template
+	 * @param string $template
+	 * @param array<string,mixed> $template_args
+	 */
+	public function render_paywall_component( $shortcircuit_template, $template, $template_args ): ?string {
+		if ( $template === 'paywall-component' ) {
+			return \Clarkson_Core\Templates::get_instance()->render_twig(
+				'styleguide/components/paywall.twig',
+				array_merge(
+					$template_args, array(
+						'paywall' => ( new Paywall() )->get_paywall_fields(),
+					),
+				),
+				true
+			);
+		}
+		return $shortcircuit_template;
 	}
 }
