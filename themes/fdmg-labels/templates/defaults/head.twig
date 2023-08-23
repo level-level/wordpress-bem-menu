@@ -50,7 +50,7 @@
 	</head>
 
 	{% set use_compact_header = feature_manager.is_enabled(constant('FEATURE_ENABLE_COMPACT_HEADER', feature_manager)) %}
-	<body {{ body_class(use_compact_header ? 'pt-header-height has-compact-header' : 'pt-header-height') }}>
+	<body {{ body_class(use_compact_header ? 'has-compact-header') }}>
 
 	{% if function_exists('gtm4wp_the_gtm_tag') %}
 		{{ gtm4wp_the_gtm_tag() }}
