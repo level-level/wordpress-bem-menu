@@ -19,7 +19,7 @@ class WidgetAreas {
 					'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-navigation-ad',
 					'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="section">',
+					'before_widget' => '<div>',
 					'after_widget'  => '</div>',
 					'before_title'  => '<h2 class="widget-title">',
 					'after_title'   => '</h2>',
