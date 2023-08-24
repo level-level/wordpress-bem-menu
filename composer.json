@@ -49,7 +49,9 @@
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",
         "ll-premium/gravityformspolls": "^4.0",
-        "level-level/ll-paywall": "^0.1.0"
+        "level-level/ll-paywall": "^0.1.0",
+        "wpackagist-plugin/elasticpress": "^4.7",
+        "level-level/wp-file-mods": "^1.0"
     },
     "scripts": {
         "post-autoload-dump": [
