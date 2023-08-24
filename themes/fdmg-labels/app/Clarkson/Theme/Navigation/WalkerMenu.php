@@ -105,7 +105,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 				'styleguide/components/buttons/button-element.twig',
 				array(
 					'class'                 => $this->css_class_prefix . '__arrow',
-					'aria_label'            => __( 'Sub menu', 'fdmg-labels' ),
+					'aria_label'            => sprintf( _x( 'Submenu %s', 'Navigation', 'fdmg-labels' ), $menu_item->title ),
 					'aria_expanded_support' => true,
 					'icon'                  => 'carret-down',
 					'svg_icons'             => SVGIcons::get_instance(),

@@ -1,4 +1,4 @@
-<div class="relative max-w-[124px] left-1/2 translate-x-[calc(-50%-16px)] sm:max-w-none sm:left-auto sm:transform-none">
+<div class="relative max-w-[124px] {{ not use_compact_header ? 'translate-x-[calc(-50%-16px)] left-1/2' }} sm:max-w-none sm:left-auto sm:transform-none">
 	<a
 		data-component="Logo"
 		class="{{ use_compact_header ? 'bg-base-50 dark:bg-base-300 h-[theme(space.header-height)] flex items-center px-2 lg:px-7' }}"
