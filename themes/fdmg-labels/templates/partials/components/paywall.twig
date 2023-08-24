@@ -1,7 +1,8 @@
-{% set title = paywall.title %}
-{% set content = paywall.content %}
-{% set login_button = paywall.login_button %}
-{% set subscription_button = paywall.subscription_button %}
+{% set paywall_content = paywall.get_paywall_fields() %}
+{% set title = paywall_content.title %}
+{% set content = paywall_content.content %}
+{% set login_button = paywall_content.login_button %}
+{% set subscription_button = paywall_content.subscription_button %}
 
 {% if title and content and login_button and subscription_button %}
 	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }}">

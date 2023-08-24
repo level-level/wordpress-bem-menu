@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels\Paywall;
 
-use Clarkson\Theme\ACFPages\Paywall;
+use LevelLevel\Paywall\ObjectPaywall;
 
 class Init {
 
@@ -31,11 +31,15 @@ class Init {
 	 */
 	public function render_paywall_component( $shortcircuit_template, $template, $template_args ): ?string {
 		if ( $template === 'paywall-component' ) {
+
+			$post           = get_post( (int) ( $template_args['post_id'] ?? null ) );
+			$paywall_object = $post ? ObjectPaywall::get_from_post( $post ) : null;
+
 			return \Clarkson_Core\Templates::get_instance()->render_twig(
 				'partials/components/paywall.twig',
 				array_merge(
 					$template_args, array(
-						'paywall' => ( new Paywall() )->get_paywall_fields(),
+						'paywall' => $paywall_object,
 					),
 				),
 				true

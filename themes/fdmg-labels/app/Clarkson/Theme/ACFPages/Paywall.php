@@ -26,13 +26,6 @@ class Paywall {
 		}
 	}
 
-	/**
-	 * @return array<string,mixed>
-	 */
-	public function get_paywall_fields(): array {
-		return get_field( self::META_PAYWALL, 'options' ) ?: array();
-	}
-
 	public function register(): void {
 		acf_add_options_sub_page(
 			array(
