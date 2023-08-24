@@ -1,12 +1,16 @@
+{% set config = {
+	trigger: '.js-header-search',
+	target: '.js-header-dropdown',
+	focusInput: true,
+} %}
+
 <div
 	data-component="header-search"
 	class="flex"
 	data-module="header-search"
-	data-config='{
-		"trigger": ".js-header-search",
-		"target": ".js-header-dropdown",
-		"focusInput": true
-}'>
+	data-config="{{ config|json_encode() }}"
+>
+
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: show_button_label ? _x('Search', 'Search', 'fdmg-labels') : '',
 		aria_expanded_support: true,
@@ -26,7 +30,7 @@
 				<div>
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
-						class: 'btn-secondary !text-base-50 focus:outline-base-50 js-header-search',
+						class: 'btn-secondary !text-base-50 focus:outline-base-50 btn-icon:text-[20px] !p-[10px] js-header-search hocus:dark:!text-primary-300',
 						aria_label: _x('Close search', 'Search', 'fdmg-labels'),
 						icon: 'close',
 					} %}

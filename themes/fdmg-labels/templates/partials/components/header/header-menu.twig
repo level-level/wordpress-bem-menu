@@ -1,18 +1,21 @@
 {% set trigger = uniqid('js-header-menu-') %}
 {% set target = uniqid('js-header-menu-dropdown-') %}
 {% set scrollarea = uniqid('js-header-menu-inner-') %}
+
+{% set config = {
+	trigger: '.' ~ trigger,
+	target: '.' ~ target,
+	disableScroll: true,
+	customScrollableElement: '.' ~ scrollarea,
+	defaultButtonText: _x('Menu', 'Menu', 'fdmg-labels'),
+	closeButtonText: _x('Close', 'Menu', 'fdmg-labels'),
+} %}
 <div
 	data-component="header-menu"
 	class="relative sm:hidden"
 	data-module="header-menu"
-	data-config='{
-		"trigger": ".{{ trigger }}",
-		"target": ".{{ target }}",
-		"disableScroll": true,
-		"customScrollableElement": ".{{ scrollarea }}",
-		"defaultButtonText": "{{ _x('Menu', 'Menu', 'fdmg-labels') }}",
-		"closeButtonText": "{{ _x('Close', 'Menu', 'fdmg-labels') }}"
-}'>
+	data-config="{{ config|json_encode() }}">
+
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: _x('Menu', 'Menu', 'fdmg-labels'),
 		aria_expanded_support: true,
@@ -45,11 +48,9 @@
 			</div>
 
 			{% set newsletter = options.newsletter %}
-			{% set subscribe = options.subscribe_button %}
 			<div class="mt-auto border-t border-secondary-300 height-[calc(theme(space.header-height+10px))] dark:border-base-400">
 				<ul class="flex justify-between h-full flex-nowrap">
-
-					{% if not use_compact_header and newsletter.button.title and newsletter.button.url %}
+					{% if newsletter.button.title and newsletter.button.url %}
 						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
@@ -59,17 +60,6 @@
 								aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 								icon: 'email',
 								icon_left: true,
-							} %}
-						</li>
-					{% endif %}
-
-					{% if use_compact_header and subscribe.url %}
-						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
-							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
-								url: subscribe.url,
-								class: 'w-full justify-center h-full !text-base-50 !text-[20px]',
-								is_external: subscribe.target ? true,
 							} %}
 						</li>
 					{% endif %}
