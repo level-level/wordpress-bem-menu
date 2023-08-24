@@ -1,0 +1,80 @@
+{% set trigger = uniqid('js-header-menu-') %}
+{% set target = uniqid('js-header-menu-dropdown-') %}
+{% set scrollarea = uniqid('js-header-menu-inner-') %}
+
+{% set config = {
+	trigger: '.' ~ trigger,
+	target: '.' ~ target,
+	disableScroll: true,
+	customScrollableElement: '.' ~ scrollarea,
+} %}
+
+<div
+	data-component="header-menu"
+	class="relative"
+	data-module="header-menu"
+	data-config="{{ config|json_encode() }}">
+	{% include 'styleguide/components/buttons/button-element.twig' with {
+		text: _x('Menu', 'Menu', 'fdmg-labels'),
+		aria_expanded_support: true,
+		class: 'btn-menu ' ~ trigger,
+		aria_label: _x('Open menu', 'Menu', 'fdmg-labels'),
+		icon: 'menu',
+		icon_left: true,
+	} %}
+	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] sm:w-[376px] bg-secondary-500 text-base-800 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-300 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
+
+		<div class="flex items-center px-3 border-b h-header-height border-secondary-600 dark:border-base-400">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				text: _x('Close', 'Menu', 'fdmg-labels'),
+				aria_expanded_support: false,
+				class: 'btn-menu-close js-close-menu',
+				aria_label: _x('Close menu', 'Menu', 'fdmg-labels'),
+				icon: 'close',
+				icon_left: true,
+			} %}
+		</div>
+
+		<div data-component="menu-dropdown" class="relative flex flex-col h-[calc(100%-theme(space.header-height))] outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-300">
+			<div class="max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
+				<div class="pb-4">
+					{% set config = {
+						mainClass: 'sidebar-nav',
+					} %}
+
+					<div class="border-b border-secondary-600 dark:border-base-400">
+						<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav" data-config="{{ config|json_encode() }}">
+							{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'sidebar-nav', 0, true)|raw }}
+						</nav>
+					</div>
+
+					{% if has_nav_menu(constant('SECONDARY_NAV', navigation)) %}
+						<div class="border-b border-secondary-600 dark:border-base-400">
+							<nav>
+								{{ navigation.get_menu(constant('SECONDARY_NAV', navigation), 'sidebar-nav-small', 1)|raw }}
+							</nav>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+
+			{% set subscribe = options.subscribe_button %}
+			{% if subscribe.url %}
+				<div class="mt-auto border-t border-secondary-300 dark:border-base-400 sm:hidden">
+					<ul class="flex justify-between h-full flex-nowrap">
+						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
+								url: subscribe.url,
+								class: 'w-full justify-center h-full !text-base-50 !text-[20px] sm:hidden',
+								is_external: subscribe.target ? true,
+							} %}
+						</li>
+					</ul>
+				</div>
+			{% endif %}
+		</div>
+
+	</div>
+	<div data-component="backdrop" aria-hidden="true" class="js-header-menu-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[2] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>
+</div>

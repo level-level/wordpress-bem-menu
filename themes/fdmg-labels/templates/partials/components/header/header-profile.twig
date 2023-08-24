@@ -1,18 +1,19 @@
 {% set trigger = uniqid('js-header-profile-') %}
 {% set target = uniqid('js-header-profile-dropdown-') %}
+{% set config = {
+	trigger: '.' ~ trigger,
+	target: '.' ~ target,
+} %}
 
 <div
 	data-component="header-profile"
 	class="relative flex"
 	data-module="header-profile"
-	data-config='{
-		"trigger": ".{{ trigger }}",
-		"target": ".{{ target }}"
-}'>
+	data-config="{{ config|json_encode() }}">
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: '',
 		aria_expanded_support: true,
-		class: button_class ~ ' ' ~ trigger,
+		class: 'btn-header' ~ ' ' ~ trigger,
 		aria_label: _x('Open profile', 'Profile', 'fdmg-labels'),
 		aria_expanded_text: _x('Close profile', 'Profile', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open profile', 'Profile', 'fdmg-labels'),

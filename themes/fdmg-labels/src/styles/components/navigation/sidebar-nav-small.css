@@ -1,0 +1,27 @@
+.sidebar-nav-small {
+	@apply font-body flex flex-col py-3;
+}
+
+.sidebar-nav-small__item {
+	@apply block px-2;
+}
+
+.sidebar-nav-small__item--active .sidebar-nav-small__link {
+	@apply text-base-50 dark:text-base-50 dark:bg-base-300;
+}
+
+.sidebar-nav-small__link {
+	@apply text-base flex items-center px-3 text-base-100 no-underline;
+	@apply sm:py-1;
+	@apply sm:dark:text-base-50;
+	@apply hocus:underline;
+	@apply focus:outline-base-50;
+}
+
+.sidebar-nav-sub__link {
+	@apply focus:outline-base-50;
+}
+
+.sidebar-nav-small__item--active .sidebar-nav-small__link {
+	@apply underline;
+}

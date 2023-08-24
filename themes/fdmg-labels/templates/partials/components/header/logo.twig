@@ -1,12 +1,12 @@
-<div class="relative max-w-[124px] left-1/2 translate-x-[calc(-50%-16px)] sm:max-w-none sm:left-auto sm:transform-none">
+<div class="relative {{ not use_compact_header ? 'max-w-[124px] translate-x-[calc(-50%-16px)] left-1/2' }} sm:max-w-none sm:left-auto sm:transform-none">
 	<a
 		data-component="Logo"
-		class="{{ use_compact_header ? 'bg-base-50 dark:bg-base-300 h-[theme(space.header-height)] flex items-center px-2 lg:px-7' }}"
+		class="flex {{ use_compact_header ? 'bg-base-50 dark:bg-base-300 h-[theme(space.header-height)] flex items-center px-4' }}"
 		href="{{ esc_url(home_url('/')) }}"
 		aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
 	>
 		<span
-			class="block bg-no-repeat bg-contain bg-logo-impact-investor dark:bg-logo-impact-investor-darkmode theme-energeia:bg-logo-energeia theme-energeia:dark:bg-logo-energeia-darkmode theme-pensioen-pro:bg-logo-pensioen-pro theme-pensioen-pro:dark:bg-logo-pensioen-pro-darkmode theme-pensioen-pro:h-[25px] theme-energeia:h-[30px] theme-energeia:w-[106px] sm:theme-energeia:w-[126px] sm:theme-energeia:h-[38px] theme-pensioen-pro:w-[127px] sm:theme-pensioen-pro:w-[151px] sm:theme-pensioen-pro:h-[30px] w-[124px] h-[22px] sm:w-[170px] sm:h-[30px]"
+			class="block bg-no-repeat bg-contain bg-logo-impact-investor dark:bg-logo-impact-investor-darkmode theme-energeia:bg-logo-energeia theme-energeia:dark:bg-logo-energeia-darkmode theme-pensioen-pro:bg-logo-pensioen-pro theme-pensioen-pro:dark:bg-logo-pensioen-pro-darkmode theme-pensioen-pro:h-[16px] theme-energeia:h-[29px] theme-energeia:w-[106px] sm:theme-energeia:w-[105px] sm:theme-energeia:h-[32px] theme-pensioen-pro:w-[135px] sm:theme-pensioen-pro:w-[151px] sm:theme-pensioen-pro:h-[20px] w-[124px] h-[22px] sm:w-[170px] sm:h-[30px]"
 		>
 		</span>
 	</a>

@@ -4,6 +4,9 @@ import { IModule } from '../../globals';
 class PrimaryNav implements IModule {
 	element: HTMLElement;
 	mainClass: string;
+	config: {
+		mainClass?: string;
+	};
 	classNames: {
 		parent: string;
 		link: string;
@@ -16,7 +19,8 @@ class PrimaryNav implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.mainClass = 'primary-nav';
+		this.config = this.element.dataset.config ? JSON.parse(this.element.dataset.config) : {};
+		this.mainClass = this.config.mainClass ? this.config.mainClass : 'primary-nav';
 		this.classNames = {
 			parent: `${this.mainClass}__item--parent`,
 			link: `${this.mainClass}__link`,
@@ -46,12 +50,15 @@ class PrimaryNav implements IModule {
 		});
 
 		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
-		this.header?.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
+
+		if (!this.config.mainClass) {
+			this.header?.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
+		}
 	}
 
 	determineViewport() {
 		// Dropdowns for desktops are using the mouseenter/mouseleave functionality
-		if (this.responsiveHelper.isDesktop()) {
+		if (this.responsiveHelper.isDesktop() && !this.config.mainClass) {
 			this.parentItem.forEach((el) => {
 				el.addEventListener('mouseenter', this.showDropdown.bind(this));
 				el.addEventListener('mouseleave', this.hideDropdown.bind(this));
@@ -134,11 +141,13 @@ class PrimaryNav implements IModule {
 		if (currentTarget.getAttribute('aria-expanded') === 'false') {
 			currentTarget.setAttribute('aria-expanded', 'true');
 			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'false');
+			currentTarget.closest(`.${this.classNames.parent}`)?.classList.add(`${this.classNames.parent}-is-open`);
 
 			// Hide dropdown
 		} else {
 			currentTarget.setAttribute('aria-expanded', 'false');
 			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'true');
+			currentTarget.closest(`.${this.classNames.parent}`)?.classList.remove(`${this.classNames.parent}-is-open`);
 		}
 	}
 
