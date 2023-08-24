@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Paywall;
 
+use Clarkson\Theme\ACFPages\Paywall;
 use LevelLevel\Paywall\ObjectPaywall;
 
 class PaywallObject extends ObjectPaywall {
@@ -18,4 +19,10 @@ class PaywallObject extends ObjectPaywall {
 		return is_array( $roles ) ? $roles : array();
 	}
 
+	/**
+	 * @return array<string,mixed>
+	 */
+	public function get_paywall_options(): array {
+		return get_field( Paywall::META_PAYWALL, 'options' ) ?: array();
+	}
 }
