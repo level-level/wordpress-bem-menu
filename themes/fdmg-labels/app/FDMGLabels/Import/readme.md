@@ -201,13 +201,13 @@
 
 ### tag => category
 - id
-- tag_category_id --> taxonomy id
-- value      --> term naam
-- intro_text --> mappen naar description
+- tag_category_id --> taxonomy id (is always 1)
+- value      --> term_name
+- intro_text --> description
 - enabled
-- X kvk_number --> leeg
+- X kvk_number --> empty
 - directory   --> slug
-- X image_path --> leeg
+- X image_path --> empty
 
 ### old_url => redirect
 Redirects tabel
