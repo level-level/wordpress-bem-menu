@@ -2,6 +2,8 @@
 
 namespace FDMGLabels\Widgets;
 
+use FDMGLabels\FeatureManager;
+
 class WidgetAreas {
 
 	public function register_hooks(): void {
@@ -10,6 +12,21 @@ class WidgetAreas {
 	}
 
 	public function register_widget_areas(): void {
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_COMPACT_HEADER ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-navigation-ad',
+					'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section">',
+					'after_widget'  => '</div>',
+					'before_title'  => '<h2 class="widget-title">',
+					'after_title'   => '</h2>',
+				)
+			);
+		}
+
 		register_sidebar(
 			array(
 				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
