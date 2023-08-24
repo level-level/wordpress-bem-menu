@@ -11,8 +11,10 @@ import Table from './modules/table';
 import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
+import NavigationAdvertisement from './modules/navigation-advertisement';
 
 ModuleInitializer({
+	'navigation-advertisement': NavigationAdvertisement,
 	'theme-selection': ThemeSelection,
 	'primary-nav': PrimaryNav,
 	'header-search': HeaderSearch,

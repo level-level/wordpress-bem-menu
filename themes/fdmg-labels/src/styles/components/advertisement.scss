@@ -4,7 +4,7 @@
 	padding: $spacing-3 0;
 
 	@include dark-mode {
-		background-color: var(--base-600);
+		background-color: var(--base-400);
 	}
 
 	&__element {

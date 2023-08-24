@@ -1,8 +1,18 @@
 {% set use_compact_header = feature_manager.is_enabled(constant('FEATURE_ENABLE_COMPACT_HEADER', feature_manager)) %}
-<header class="sticky z-50 top-admin-bar left-0 right-0 h-header-height shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex items-center bg-secondary-700 text-base-50 theme-pensioen-pro:bg-primary' }}">
+{% set navigation_ad_active = is_active_sidebar('widget-area-navigation-ad') %}
+
+<header class="{{ navigation_ad_active ? 'h-auto' : 'h-header-height items-center' }} sticky z-50 top-admin-bar left-0 right-0 shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex flex-col bg-secondary-700 text-base-50 theme-pensioen-pro:bg-primary' }}">
 
 	<!-- Skiplink -->
 	<a href="#main-content" data-module="skiplink" class="absolute top-0 left-0 z-50 p-4 text-lg underline -translate-x-full border-2 hover:no-underline active:translate-x-0 focus-visible:outline-base-50 focus:translate-x-0 bg-base-50 border-base-800 text-base-800 dark:bg-base-300">{{ _x('Straight to content', 'Screen reader text', 'fdmg-labels') }}</a>
+
+	{% if navigation_ad_active and use_compact_header %}
+		<div data-component="navigation-advertisement" class="bg-secondary-200 dark:bg-base-400" data-module="navigation-advertisement">
+			<div class="container">
+				{{ sidebar.get_widgetarea('widget-area-navigation-ad')|raw }}
+			</div>
+		</div>
+	{% endif %}
 
 	{% if use_compact_header %}
 		{% include 'partials/components/header/variants/header-single-row.twig' with {
