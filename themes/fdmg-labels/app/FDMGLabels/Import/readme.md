@@ -171,8 +171,8 @@
 - first_name
 - last_name
 - full_name
-- X type     --> Altijd 1
-- X esb_id   --> Oude content
+- X type --> always 1
+- X esb_id --> irrelevant
 
 ### binary_file => media
 - id
