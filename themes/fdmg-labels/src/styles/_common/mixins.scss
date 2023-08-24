@@ -63,11 +63,13 @@
 	padding: 0;
 	list-style-type: none;
 	counter-reset: counter;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
 	> li {
 		position: relative;
 		counter-increment: counter;
-		margin-top: 5px;
 		padding-left: 24px;
 
 		&:before {
@@ -93,11 +95,13 @@
 @mixin unordered-list-style {
 	padding: 0;
 	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
 	> li {
 		position: relative;
 		padding-left: 20px;
-		margin-top: 5px;
 
 		&:before {
 			@include font-size(24px);

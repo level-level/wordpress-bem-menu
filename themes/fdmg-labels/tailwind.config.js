@@ -171,6 +171,8 @@ module.exports = {
 			addVariant('iframe', '& > iframe');
 			addVariant('svg', '& > svg');
 			addVariant('owl', '& > * + *');
+			addVariant('ul', '& > ul');
+			addVariant('ol', '& > ol');
 			addVariant('ulli', '& > ul li');
 
 			addVariant('btn-text', ({ modifySelectors, separator }) => {

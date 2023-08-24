@@ -4,6 +4,17 @@ namespace Clarkson\WPadmin;
 use WP_Role;
 
 class Capabilities {
+
+	// WordPress default roles
+	public const ROLE_ADMINISTRATOR = 'administrator';
+	public const ROLE_EDITOR        = 'editor';
+	public const ROLE_AUTHOR        = 'author';
+	public const ROLE_CONTRIBUTOR   = 'contributor';
+	public const ROLE_SUBSCRIBER    = 'subscriber';
+
+	// Custom roles
+	public const ROLE_CLIENT_ADMINISTRATOR = 'client_administrator';
+
 	public function register_hooks(): void {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
 	}
@@ -12,11 +23,11 @@ class Capabilities {
 	 * Update client admin role capabilities
 	 */
 	public function update_client_admin_role(): void {
-		remove_role( 'client_administrator' );
+		remove_role( self::ROLE_CLIENT_ADMINISTRATOR );
 
 		$admin      = get_role( 'administrator' );
 		$admin_caps = $admin->capabilities ?? array();
-		$role       = add_role( 'client_administrator', __( 'Client administrator', 'fdmg-labels-admin' ), $admin_caps );
+		$role       = add_role( self::ROLE_CLIENT_ADMINISTRATOR, __( 'Client administrator', 'fdmg-labels-admin' ), $admin_caps );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}
