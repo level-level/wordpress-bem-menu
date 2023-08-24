@@ -31,6 +31,9 @@ class FDMGIdentificationTest extends WPTestCase {
 		// Assert cookies!
 		wp_logout();
 		// Assert no cookies!
+
+		// Temp failure to know this needs to be fixed
+		$this->assertTrue(false);
 	}
 }
 
