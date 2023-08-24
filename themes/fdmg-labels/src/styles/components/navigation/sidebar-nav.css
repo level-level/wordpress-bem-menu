@@ -48,6 +48,14 @@
 	@apply rounded-[3px];
 }
 
+.sidebar-nav__link-icon {
+	@apply mr-3 text-[20px];
+}
+
+.sidebar-nav-sub__link-icon {
+	@apply mr-3 relative top-[2px];
+}
+
 .sidebar-nav__arrow {
 	@apply absolute top-0 right-0 bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
@@ -60,8 +68,6 @@
 	@apply relative bg-secondary-600 pb-3 px-[18px] block dark:bg-base-400;
 	@apply aria-hidden:hidden sm:aria-hidden:invisible sm:aria-hidden:opacity-0;
 }
-
-
 
 .sidebar-nav-sub .sidebar-nav-sub {
 	@apply sm:left-full sm:top-0;

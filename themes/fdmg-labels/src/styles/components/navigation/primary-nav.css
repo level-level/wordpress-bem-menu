@@ -41,15 +41,15 @@
 	@apply sm:text-md sm:py-0 sm:px-[18px] sm:border-b-0 sm:h-[theme(space.menu-height)] sm:text-secondary-600 sm:transition-colors;
 	@apply sm:dark:text-base-50;
 	@apply compact-header:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:hocus:text-base-800 compact-header:dark:hocus:bg-base-300 compact-header:dark:hocus:text-base-50 rounded-[3px];
-	@apply focus:outline-base-50;
+	@apply compact-header:focus:outline-base-50;
 }
 
 .primary-nav__arrow {
-	@apply absolute top-0 right-0 bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
+	@apply absolute top-0 right-0 text-sm bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
 	@apply sm:p-0 sm:right-4 sm:text-secondary-600 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
 	@apply compact-header:text-base-50;
-	@apply focus:outline-base-50;
+	@apply compact-header:focus:outline-base-50;
 }
 
 .primary-nav-sub {
