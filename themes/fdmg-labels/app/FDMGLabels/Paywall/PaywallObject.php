@@ -22,7 +22,7 @@ class PaywallObject extends ObjectPaywall {
 	/**
 	 * @return array<string,mixed>
 	 */
-	public function get_paywall_fields(): array {
+	public function get_paywall_options(): array {
 		return get_field( Paywall::META_PAYWALL, 'options' ) ?: array();
 	}
 }
