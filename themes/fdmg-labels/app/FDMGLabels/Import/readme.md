@@ -176,28 +176,28 @@
 
 ### binary_file => media
 - id
-- X escenic_id
-- state (PUBLISH of DRAFT)
-- X alignment (RIGHT, LEFT of BLOCK) --> Nvt in nieuwe setup
-- X version   --> kan weg
+- X escenic_id --> irrelevant
+- state (PUBLISH or DRAFT)
+- X alignment (RIGHT, LEFT of BLOCK) --> irrelevant
+- X version --> irrelevant
 - filename
-- x binary_type  --> Altijd PDF
+- x binary_type --> is always pdf
 
 ### picture => media
 - id
 - caption
-- X escenic_id
-- state             --> status DELETED wordt overgeslagen
+- X escenic_id --> irrelevant
+- state --> status DELETED is skipped
 - photographer
 - title
-- X version         --> nvt
-- X alignment       --> nvt in nieuwe setup
-- X original_width  --> nvt
-- X original_height --> nvt
+- X version --> irrelevant
+- X alignment --> irrelevant
+- X original_width --> irrelevant
+- X original_height --> irrelevant
 - path
-- using_imgix
-- X source_url   --> leeg
-- X source_id    --> leeg
+- using_imgix -> always 0 in energeia
+- X source_url --> empty
+- X source_id --> empty
 
 ### tag => category
 - id
