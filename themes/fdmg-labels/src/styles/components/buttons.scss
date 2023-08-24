@@ -56,7 +56,7 @@
 .btn-tertiary {
 	@apply font-body-bold text-secondary-600 p-0 pr-3 rounded-[20px] dark:text-primary-300 sm:pr-[17px];
 	@apply btn-text:no-underline;
-	@apply hocus:bg-primary hocus:text-base-50 theme-energeia:hocus:text-base-800 theme-pensioen-pro:hocus:text-base-800 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
+	@apply hocus:bg-primary hocus:text-base-50 theme-energeia:hocus:text-base-800 theme-pensioen-pro:hocus:text-base-50 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
 }
 
 .btn-link {

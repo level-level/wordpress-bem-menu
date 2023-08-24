@@ -48,11 +48,13 @@
 						</nav>
 					</div>
 
-					<div class="border-b border-secondary-600 dark:border-base-400">
-						<nav>
-							{{ navigation.get_menu(constant('SECONDARY_NAV', navigation), 'sidebar-nav-small', 1)|raw }}
-						</nav>
-					</div>
+					{% if has_nav_menu(constant('SECONDARY_NAV', navigation)) %}
+						<div class="border-b border-secondary-600 dark:border-base-400">
+							<nav>
+								{{ navigation.get_menu(constant('SECONDARY_NAV', navigation), 'sidebar-nav-small', 1)|raw }}
+							</nav>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 
