@@ -17,6 +17,10 @@ class post extends base_object {
 		return get_field( PostTypesPost::META_AUTHORS, $this->get_id() ) ?: array();
 	}
 
+	public function has_paywall_block(): bool {
+		return has_block( 'acf/block-ll-paywall-paywall', $this->get_id() );
+	}
+
 	public function has_comments_enabled(): bool {
 		return comments_open( $this->get_id() );
 	}

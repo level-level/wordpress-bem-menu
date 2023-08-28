@@ -1,7 +1,18 @@
+{% set has_paywall_block = object.has_paywall_block() %}
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-12">
 
 	<div class="order-2">
-		<h1 class="font-bold font-heading text-secondary-600 dark:text-primary-300 text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem]">{{ title|raw }}</h1>
+		<h1 class="font-bold font-heading text-secondary-600 dark:text-primary-300 text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem]">
+			{{ title|raw }}
+
+			{% if has_paywall_block %}
+				<span class="screen-reader-text js-paywall-a11y-description" aria-describedby="a11y-paywall-description">&mdash; {{ _x('article includes a paywall', 'Screen Reader Text', 'fdmg-labels') }}</span>
+			{% endif %}
+		</h1>
+
+		{% if has_paywall_block %}
+			<p class="screen-reader-text js-paywall-a11y-description" id="a11y-paywall-description">{{ _x('This article has a paid access block, which means that some of the content cannot be read until you are logged in and have a valid subscription.', 'Screen Reader Text', 'fdmg-labels') }}</p>
+		{% endif %}
 	</div>
 
 	{% if label %}
