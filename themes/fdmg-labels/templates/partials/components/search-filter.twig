@@ -1,0 +1,116 @@
+<div class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
+
+	<div data-component="search-filter" class="relative bg-base-50 dark:bg-base-600 md:mt-[146px] md:border-b-2 md:border-primary md:dark:border-0 h-full md:h-auto">
+		<form class="flex flex-col h-full md:h-auto" method="get" action="{{ get_home_url() }}" data-module="filter-form">
+			<input type="hidden" name="s" value="{{ the_search_query() }}">
+
+			<div class="relative p-3 border-b border-primary dark:border-base-700 sm:p-4">
+				<div class="md:hidden">
+					<div class="flex justify-between gap-4 text-base">
+						<div>
+							<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
+							<div class="mt-2">
+								{% include 'styleguide/components/buttons/button-element.twig' with {
+									text: _x('Empty filter', 'Search', 'fdmg-labels'),
+									class: 'btn-link !underline js-reset-filter',
+									icon: 'trash',
+									icon_left: true,
+								} %}
+							</div>
+						</div>
+						<div>
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: '',
+								class: 'btn-link js-close-modal',
+								icon: 'close',
+								aria_label: _x('Close filter', 'Search', 'fdmg-labels'),
+							} %}
+						</div>
+
+					</div>
+				</div>
+				<div class="hidden md:block">
+					<div class="flex items-center justify-between gap-4 text-base">
+						<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
+						<div>
+							{% include 'styleguide/components/buttons/button-element.twig' with {
+								text: _x('Empty filter', 'Search', 'fdmg-labels'),
+								class: 'btn-link !underline js-reset-filter',
+								icon: 'trash',
+								icon_left: true,
+							} %}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="overflow-y-auto md:overflow-y-hidden js-modal-body">
+
+				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+					<label for="sort" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
+					<select name="sort">
+						<option value="date">{{ _x('Date', 'Search', 'fdmg-labels') }}</option>
+						<option value="relevance">{{ _x('Relevance', 'Search', 'fdmg-labels') }}</option>
+					</select>
+				</div>
+
+				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+					<legend for="period" class="block mb-2">{{ _x('Period', 'Search', 'fdmg-labels') }}</legend>
+					<ul class="flex flex-col gap-2">
+						<li>
+							<input type="radio" id="week" name="period" value="week">
+							<label for="week">{{ _x('Week', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="radio" id="month" name="period" value="month">
+							<label for="month">{{ _x('Month', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="radio" id="year" name="period" value="year">
+							<label for="year">{{ _x('Year', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="radio" id="3-years" name="period" value="3-years">
+							<label for="3-years">{{ _x('3 years', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="radio" id="2000-now" name="period" value="2000-now">
+							<label for="2000-now">{{ _x('2000 - now', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="radio" id="custom-period" name="period" value="custom-period">
+							<label for="custom-period">{{ _x('Custom period', 'Search', 'fdmg-labels') }}</label>
+						</li>
+					</ul>
+				</div>
+
+				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+					<legend class="block mb-2">{{ _x('Checkboxes', 'Search', 'fdmg-labels') }}</legend>
+					<ul class="flex flex-col gap-2">
+						<li>
+							<input type="checkbox" id="check1" name="check1" value="check1">
+							<label for="check1">{{ _x('Checkbox #1', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="checkbox" id="check2" name="check2" value="check2">
+							<label for="check2">{{ _x('Checkbox #2', 'Search', 'fdmg-labels') }}</label>
+						</li>
+						<li>
+							<input type="checkbox" id="check3" name="check3" value="check3">
+							<label for="check3">{{ _x('Checkbox #3', 'Search', 'fdmg-labels') }}</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
+				{% include 'styleguide/components/buttons/button-element.twig' with {
+					text: __('Apply filter', 'Search', 'fdmg-labels'),
+					class: 'btn-primary btn-full',
+					type: 'submit',
+				} %}
+			</div>
+		</form>
+	</div>
+</div>
+<div data-component="backdrop" aria-hidden="true" class="js-modal-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[59] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>

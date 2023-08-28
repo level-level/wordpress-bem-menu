@@ -12,6 +12,8 @@ import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
 import NavigationAdvertisement from './modules/navigation-advertisement';
+import FilterModal from './modules/filter-modal';
+import FilterForm from './modules/filter-form';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -27,6 +29,8 @@ ModuleInitializer({
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
+	'filter-modal': FilterModal,
+	'filter-form': FilterForm,
 });
 
 /**
