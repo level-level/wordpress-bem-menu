@@ -17,7 +17,7 @@ class Init {
 	public function register_hooks(): void {
 		( new ACFFields() )->register_hooks();
 		( new ContentAccess() )->register_hooks();
-		(  new ACFBlock() )->register_hooks();
+		( new ACFBlock() )->register_hooks();
 
 		add_filter( 'll_paywall_paywall_object_classname', array( $this, 'change_paywall_object_class' ) );
 		add_filter( 'll_paywall_template_html', array( $this, 'render_paywall_component' ), 10, 3 );
