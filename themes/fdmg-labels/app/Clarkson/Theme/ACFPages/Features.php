@@ -69,6 +69,9 @@ class Features {
 								TrueFalse::make( _x( 'Disable article teaser footer', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_ARTICLE_TEASER_FOOTER )
 									->instructions( _x( 'Disables the footer of the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable "Free article" paywall label', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PAYWALL_LABEL )
+									->instructions( _x( 'If the paywall plugin is active, show the "Free article" label in the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi(),
 								Tab::make( _x( 'Share options', 'Fields', 'fdmg-labels-admin' ) )
 									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable sharing via Facebook', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_FACEBOOK )
