@@ -19,6 +19,10 @@ class post extends base_object {
 	}
 
 	public function has_paywall_block(): bool {
+		if ( ! class_exists( '\\LevelLevel\\Paywall\\ContentExtractor' ) ) {
+			return false;
+		}
+
 		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
 	}
 
