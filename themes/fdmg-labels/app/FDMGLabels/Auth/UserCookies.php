@@ -10,8 +10,8 @@ class UserCookies {
 	protected const COOKIE_EDITOR = 'fdmg_labels_editor';
 
 	public function register_hooks(): void {
-		add_action( 'set_logged_in_cookie', array( $this, 'set_user_cookie' ), 10, 4 );
-		add_action( 'set_logged_in_cookie', array( $this, 'maybe_set_editor_cookie' ), 10, 4 );
+		add_action( 'set_auth_cookie', array( $this, 'set_user_cookie' ), 10, 4 );
+		add_action( 'set_auth_cookie', array( $this, 'maybe_set_editor_cookie' ), 10, 4 );
 
 		add_action( 'clear_auth_cookie', array( $this, 'clear_user_cookie' ) );
 		add_action( 'clear_auth_cookie', array( $this, 'clear_editor_cookie' ) );

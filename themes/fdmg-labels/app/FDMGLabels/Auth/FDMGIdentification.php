@@ -13,7 +13,7 @@ class FDMGIdentification {
 	protected const COOKIE_ORGANISATION = 'fdmg_organisation_id';
 
 	public function register_hooks(): void {
-		add_action( 'set_logged_in_cookie', array( $this, 'set_cookies' ), 10, 4 );
+		add_action( 'set_auth_cookie', array( $this, 'set_cookies' ), 10, 4 );
 		add_action( 'clear_auth_cookie', array( $this, 'clear_cookies' ) );
 	}
 
@@ -26,8 +26,8 @@ class FDMGIdentification {
 			return;
 		}
 
-		$this->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) $expire );
-		$this->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) $expire );
+		$this->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) ( $expire ?: $expiration ) );
+		$this->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) ( $expire ?: $expiration ) );
 	}
 
 	/**
