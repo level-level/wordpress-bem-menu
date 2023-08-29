@@ -1,4 +1,4 @@
-{% set paywall_content = paywall.get_paywall_options() %}
+{% set paywall_content = block.get_paywall_object().get_paywall_options() %}
 {% set title = paywall_content.title %}
 {% set content = paywall_content.content %}
 {% set login_button = paywall_content.login_button %}
