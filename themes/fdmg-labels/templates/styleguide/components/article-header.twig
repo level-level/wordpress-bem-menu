@@ -2,11 +2,11 @@
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-12">
 
 	<div class="order-2">
-		<h1 class="font-bold font-heading text-secondary-600 dark:text-primary-300 text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem]">
+		<h1 class="font-bold font-heading text-secondary-600 dark:text-primary-300 text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem]" aria-describedby="a11y-paywall-description">
 			{{ title|raw }}
 
 			{% if has_paywall_block %}
-				<span class="screen-reader-text js-paywall-a11y-description" aria-describedby="a11y-paywall-description">&mdash; {{ _x('article includes a paywall', 'Screen Reader Text', 'fdmg-labels') }}</span>
+				<span class="screen-reader-text js-paywall-a11y-description">&mdash; {{ _x('article includes a paywall', 'Screen Reader Text', 'fdmg-labels') }}</span>
 			{% endif %}
 		</h1>
 
