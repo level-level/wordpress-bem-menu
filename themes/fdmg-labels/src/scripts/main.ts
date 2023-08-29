@@ -30,9 +30,13 @@ ModuleInitializer({
 });
 
 /**
- * Reinitialize modules after the paywall is removed
+ * Event when the paywall is removed
  */
 document.addEventListener('onLLPaywallRemoved', () => {
+	// Remove the paywall a11y description
+	document.querySelectorAll('.js-paywall-a11y-description').forEach((element) => element.remove());
+
+	// Reinitialize modules after the paywall is removed
 	ModuleInitializer({
 		oembed: OEmbed,
 		table: Table,

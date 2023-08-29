@@ -1,6 +1,7 @@
 <?php
 namespace FDMGLabels\Paywall;
 
+use Clarkson\Theme\SVGIcons;
 use LevelLevel\Paywall\ObjectPaywall;
 
 class Init {
@@ -39,7 +40,8 @@ class Init {
 				'partials/components/paywall.twig',
 				array_merge(
 					$template_args, array(
-						'paywall' => $paywall_object,
+						'paywall'   => $paywall_object,
+						'svg_icons' => new SVGIcons(),
 					),
 				),
 				true
