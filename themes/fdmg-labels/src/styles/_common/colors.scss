@@ -1,0 +1,36 @@
+:root {
+	// Brand
+	--primary: #cd3613;
+	--primary-300: #df593b;
+
+	// Secondary
+	--secondary-100: #f3f9fd;
+	--secondary-200: #e7f3fb;
+	--secondary-250: #b5ddec;
+	--secondary-300: #a2c3d6;
+	--secondary-400: #73a6bf;
+	--secondary-500: #4a738c;
+	--secondary-600: #335061;
+	--secondary-700: #2F7189;
+
+	// Base
+	--base-50: #fff;
+	--base-100: #fbfeff;
+	--base-200: #e4e4e4;
+	--base-300: #313131;
+	--base-400: #222;
+	--base-500: #1a1a1a;
+	--base-600: #191919;
+	--base-700: #0b0b0b;
+	--base-800: #000;
+}
+
+.theme-energeia {
+	--primary: #01b06d;
+	--primary-300: #01b06d;
+}
+
+.theme-pensioen-pro {
+	--primary: #2c3b60;
+	--primary-300: #D5F3FF;
+}

@@ -7,9 +7,6 @@ module.exports = {
 	clearMocks: true,
 	testEnvironment: 'jsdom',
 	globals: {
-		icons: {
-			arrowDown: true,
-		},
 		i18n: {
 			navigation: {
 				subMenu: true,
