@@ -5,7 +5,7 @@
 {% set subscription_button = paywall_content.subscription_button %}
 
 {% if title and content and login_button and subscription_button %}
-	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }}">
+	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }} relative before:absolute before:-top-[175px] before:left-0 before:right-0 before:content-[''] before:h-[175px] before:bg-gradient-to-t before:from-secondary-100 before:to-transparent before:dark:from-base-700">
 		<div class="relative p-4 sm:p-8 bg-secondary-700 dark:bg-base-400 text-base-50 min-h-[120px] sm:min-h-[150px] sm:text-md font-body-bold">
 			<div data-ll-paywall-name="initial-content">
 				<div class="flex flex-col gap-2">
