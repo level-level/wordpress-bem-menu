@@ -18,6 +18,11 @@ class ACFBlock {
 	 */
 	public function change_settings( array $block ): array {
 		$block['render_callback'] = array( new ACFBlocks(), 'block_render_callback' );
+		$block['align']           = 'center';
+		$block['supports']        = array(
+			'align'    => array( 'center' ),
+			'multiple' => false,
+		);
 		return $block;
 	}
 }
