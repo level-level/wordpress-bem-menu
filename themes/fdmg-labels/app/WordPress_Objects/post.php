@@ -5,6 +5,7 @@ namespace Clarkson_Core\WordPress_Object;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
+use LevelLevel\Paywall\ContentExtractor;
 
 class post extends base_object {
 	public static $type = PostTypesPost::POST_TYPE_NAME;
@@ -18,7 +19,7 @@ class post extends base_object {
 	}
 
 	public function has_paywall_block(): bool {
-		return has_block( 'acf/block-ll-paywall-paywall', $this->get_id() );
+		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
 	}
 
 	public function has_comments_enabled(): bool {
