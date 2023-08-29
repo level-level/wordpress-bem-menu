@@ -7,10 +7,9 @@ use LevelLevel\Paywall\ObjectPaywall;
 class acf_block_ll_paywall_paywall extends base_block {
 
 	/**
-	 * @return ObjectPaywall|null
+	 * Get paywall object based on the ACF field values of the block.
 	 */
-	public function get_paywall_object() {
-		$post = get_post( (int) $this->post_id );
-		return $post ? ObjectPaywall::get_from_post( $post ) : null;
+	public function get_paywall_object(): ObjectPaywall {
+		return ObjectPaywall::get_from_acf_field_values( is_array( $this->content_attributes ) ? $this->content_attributes : array() );
 	}
 }
