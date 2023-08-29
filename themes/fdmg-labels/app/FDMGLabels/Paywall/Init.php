@@ -2,7 +2,6 @@
 namespace FDMGLabels\Paywall;
 
 use Clarkson\Theme\SVGIcons;
-use LevelLevel\Paywall\ACFBlock;
 use LevelLevel\Paywall\ObjectPaywall;
 
 class Init {
