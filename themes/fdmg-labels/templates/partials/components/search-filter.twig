@@ -100,7 +100,7 @@
 					</div>
 				</div>
 
-				{% set categories = filter.get_filterable_categories() %}
+				{% set categories = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_CATEGORIES', search_options)) %}
 				{% if categories %}
 					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
 						{% include 'partials/components/filters/checkboxes.twig' with {
@@ -115,7 +115,7 @@
 					</div>
 				{% endif %}
 
-				{% set sections = filter.get_filterable_sections() %}
+				{% set sections = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_SECTIONS', search_options)) %}
 				{% if sections %}
 					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
 						{% include 'partials/components/filters/checkboxes.twig' with {
@@ -130,7 +130,7 @@
 					</div>
 				{% endif %}
 
-				{% set genres = filter.get_filterable_genres() %}
+				{% set genres = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_GENRES', search_options)) %}
 				{% if genres %}
 					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
 						{% include 'partials/components/filters/checkboxes.twig' with {

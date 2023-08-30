@@ -23,6 +23,20 @@ class SearchOptions {
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
+		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
+	}
+
+	/**
+	 *
+	 * @param array<string,mixed> $context
+	 * @return array<string,mixed>
+	 */
+	public function add_context_args( array $context ): array {
+		if ( is_search() ) {
+			$context['search_options'] = $this;
+		}
+
+		return $context;
 	}
 
 	public function register(): void {

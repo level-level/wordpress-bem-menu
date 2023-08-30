@@ -2,9 +2,6 @@
 namespace FDMGLabels\Search;
 
 use Clarkson\Theme\ACFPages\SearchOptions;
-use Clarkson\Theme\Taxonomies\Category;
-use Clarkson\Theme\Taxonomies\Genre;
-use Clarkson\Theme\Taxonomies\Section;
 use WP_Query;
 
 class Filter {
@@ -47,9 +44,6 @@ class Filter {
 		$vars[] = 'post_date_min';
 		$vars[] = 'post_date_max';
 		$vars[] = 'period';
-		$vars[] = Genre::TAXONOMY_NAME;
-		$vars[] = Section::TAXONOMY_NAME;
-		$vars[] = Category::TAXONOMY_NAME;
 		return $vars;
 	}
 
@@ -105,69 +99,23 @@ class Filter {
 	/**
 	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Term>
 	 */
-	public function get_filterable_genres(): array {
+	public function get_filterable_terms( string $taxonomy ): array {
 		$options = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' );
 
 		if ( ! $options ) {
 			return array();
 		}
 
-		if ( ! array_key_exists( SearchOptions::META_SEARCH_RESULTS_GENRES, $options ) ) {
+		if ( ! array_key_exists( $taxonomy, $options ) ) {
 			return array();
 		}
 
-		$selected = $options[ SearchOptions::META_SEARCH_RESULTS_GENRES ];
+		$terms = $options[ $taxonomy ];
 
-		if ( ! $selected ) {
+		if ( ! $terms ) {
 			return array();
 		}
 
-		return $selected;
-	}
-
-	/**
-	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Term>
-	 */
-	public function get_filterable_sections(): array {
-		$options = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' );
-
-		if ( ! $options ) {
-			return array();
-		}
-
-		if ( ! array_key_exists( SearchOptions::META_SEARCH_RESULTS_SECTIONS, $options ) ) {
-			return array();
-		}
-
-		$selected = $options[ SearchOptions::META_SEARCH_RESULTS_SECTIONS ];
-
-		if ( ! $selected ) {
-			return array();
-		}
-
-		return $selected;
-	}
-
-	/**
-	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Term>
-	 */
-	public function get_filterable_categories(): array {
-		$options = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' );
-
-		if ( ! $options ) {
-			return array();
-		}
-
-		if ( ! array_key_exists( SearchOptions::META_SEARCH_RESULTS_CATEGORIES, $options ) ) {
-			return array();
-		}
-
-		$selected = $options[ SearchOptions::META_SEARCH_RESULTS_CATEGORIES ];
-
-		if ( ! $selected ) {
-			return array();
-		}
-
-		return $selected;
+		return $terms;
 	}
 }
