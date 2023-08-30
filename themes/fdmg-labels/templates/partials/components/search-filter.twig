@@ -3,7 +3,7 @@
 {% set period = filter.get_filter_value('period') %}
 {% set active_genres = filter.get_filter_value('fdmg_genre') %}
 {% set active_sections = filter.get_filter_value('fdmg_section') %}
-{% set active_categories = filter.get_filter_value('category') %}
+{% set active_categories = filter.get_filter_value('category_name')|split(',') %}
 
 <div class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
 
@@ -113,6 +113,7 @@
 							values: active_categories,
 						} %}
 					</div>
+					<input type="hidden" name="category_name" value="{{ active_categories|join(',')|escape('html_attr') }}" />
 				{% endif %}
 
 				{% set sections = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_SECTIONS', search_options)) %}
