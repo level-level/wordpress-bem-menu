@@ -1,0 +1,16 @@
+<fieldset class="flex flex-col gap-4">
+	<legend class="{{ hidden_legend ? 'screen-reader-text' }}">
+		{{ title }}
+	</legend>
+
+	<div class="flex flex-col gap-4">
+		<div class="flex flex-col">
+			<label for="{{ start_name }}">{{ _x('Date from', 'Search', 'fdmg-labels') }}</label>
+			<input type="date" id="{{ start_name }}" name="{{ start_name }}" value="{{ start_value|escape('html_attr') }}">
+		</div>
+		<div class="flex flex-col">
+			<label for="{{ end_name }}">{{ _x('Date to', 'Search', 'fdmg-labels') }}</label>
+			<input type="date" id="{{ end_name }}" name="{{ end_name }}" value="{{ end_value|escape('html_attr') }}">
+		</div>
+	</div>
+</fieldset>

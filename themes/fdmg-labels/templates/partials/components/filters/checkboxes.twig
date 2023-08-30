@@ -1,0 +1,19 @@
+<fieldset>
+	<legend class="block mb-2">{{ title }}</legend>
+	<ul class="flex flex-col gap-2">
+		{% for checkbox in checkboxes %}
+			<li>
+				<input
+					type="checkbox"
+					id="{{ field_name|escape('html_attr') }}-{{ loop.index }}"
+					name="{{ field_name|escape('html_attr') }}[]"
+					value="{{ checkbox.value|escape('html_attr') }}"
+					{{ checked(checkbox.value in values, true, false)|raw }}
+				>
+				<label for="{{ field_name|escape('html_attr') }}-{{ loop.index }}">
+					{{ checkbox.label|raw }}
+				</label>
+			</li>
+		{% endfor %}
+	</ul>
+</fieldset>

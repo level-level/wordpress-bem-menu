@@ -1,7 +1,15 @@
+{% set start_date_value = filter.get_filter_value('post_date_min') %}
+{% set end_date_value = filter.get_filter_value('post_date_max') %}
+{% set period = filter.get_filter_value('period') %}
+{% set active_genres = filter.get_filter_value('fdmg_genre') %}
+{% set active_sections = filter.get_filter_value('fdmg_section') %}
+{% set active_categories = filter.get_filter_value('category') %}
+
 <div class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
 
 	<div data-component="search-filter" class="relative bg-base-50 dark:bg-base-600 md:mt-[146px] md:border-b-2 md:border-primary md:dark:border-0 h-full md:h-auto">
 		<form class="flex flex-col h-full md:h-auto" method="get" action="{{ get_home_url() }}" data-module="filter-form">
+
 			<input type="hidden" name="s" value="{{ the_search_query() }}">
 
 			<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
@@ -55,57 +63,92 @@
 				</div>
 
 				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-					<legend for="period" class="block mb-2">{{ _x('Period', 'Search', 'fdmg-labels') }}</legend>
-					<ul class="flex flex-col gap-2">
-						<li>
-							<input type="radio" id="week" name="period" value="week">
-							<label for="week">{{ _x('Week', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="radio" id="month" name="period" value="month">
-							<label for="month">{{ _x('Month', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="radio" id="year" name="period" value="year">
-							<label for="year">{{ _x('Year', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="radio" id="3-years" name="period" value="3-years">
-							<label for="3-years">{{ _x('3 years', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="radio" id="2000-now" name="period" value="2000-now">
-							<label for="2000-now">{{ _x('2000 - now', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="radio" id="custom-period" name="period" value="custom-period">
-							<label for="custom-period">{{ _x('Custom period', 'Search', 'fdmg-labels') }}</label>
-						</li>
-					</ul>
+					{% include 'partials/components/filters/period-filters.twig' with {
+						active_period: period,
+						periods: [{
+							period: 'week',
+							label: _x('Week', 'Search', 'fdmg-labels'),
+						}, {
+							period: 'month',
+							label: _x('Month', 'Search', 'fdmg-labels'),
+						}, {
+							period: 'year',
+							label: _x('Year', 'Search', 'fdmg-labels'),
+						}, {
+							period: '3-years',
+							label: _x('3 years', 'Search', 'fdmg-labels'),
+						}, {
+							period: '2000-now',
+							label: _x('2000 - now', 'Search', 'fdmg-labels'),
+						}, {
+							period: 'custom-period',
+							label: _x('Custom period', 'Search', 'fdmg-labels'),
+						}],
+					} %}
 				</div>
 
-				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-					<legend class="block mb-2">{{ _x('Checkboxes', 'Search', 'fdmg-labels') }}</legend>
-					<ul class="flex flex-col gap-2">
-						<li>
-							<input type="checkbox" id="check1" name="check1" value="check1">
-							<label for="check1">{{ _x('Checkbox #1', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="checkbox" id="check2" name="check2" value="check2">
-							<label for="check2">{{ _x('Checkbox #2', 'Search', 'fdmg-labels') }}</label>
-						</li>
-						<li>
-							<input type="checkbox" id="check3" name="check3" value="check3">
-							<label for="check3">{{ _x('Checkbox #3', 'Search', 'fdmg-labels') }}</label>
-						</li>
-					</ul>
+				<div class="{{ period is not same as('custom-period') ? 'hidden' }} js-date-range">
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						{% include 'partials/components/filters/date-range.twig' with {
+							title: _x('Filter on date', 'Search', 'fdmg-labels'),
+							start_name: 'post_date_min',
+							start_value: start_date_value ? start_date_value|date('Y-m-d') : '',
+							end_name: 'post_date_max',
+							end_value: end_date_value ? end_date_value|date('Y-m-d') : '',
+							hidden_legend: true,
+						} %}
+					</div>
 				</div>
+
+				{% set categories = filter.get_filterable_categories() %}
+				{% if categories %}
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						{% include 'partials/components/filters/checkboxes.twig' with {
+							title: _x('Category', 'Search', 'fdmg-labels'),
+							field_name: 'category',
+							checkboxes: categories|map(item => {
+								label: item.get_name(),
+								value: item.get_slug(),
+							}),
+							values: active_categories,
+						} %}
+					</div>
+				{% endif %}
+
+				{% set sections = filter.get_filterable_sections() %}
+				{% if sections %}
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						{% include 'partials/components/filters/checkboxes.twig' with {
+							title: _x('Section', 'Search', 'fdmg-labels'),
+							field_name: 'fdmg_section',
+							checkboxes: sections|map(item => {
+								label: item.get_name(),
+								value: item.get_slug(),
+							}),
+							values: active_sections,
+						} %}
+					</div>
+				{% endif %}
+
+				{% set genres = filter.get_filterable_genres() %}
+				{% if genres %}
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						{% include 'partials/components/filters/checkboxes.twig' with {
+							title: _x('Genre', 'Search', 'fdmg-labels'),
+							field_name: 'fdmg_genre',
+							checkboxes: genres|map(item => {
+								label: item.get_name(),
+								value: item.get_slug(),
+							}),
+							values: active_genres,
+						} %}
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
 				{% include 'styleguide/components/buttons/button-element.twig' with {
-					text: __('Apply filter', 'Search', 'fdmg-labels'),
+					text: _x('Apply filter', 'Search', 'fdmg-labels'),
 					class: 'btn-primary btn-full',
 					type: 'submit',
 				} %}
