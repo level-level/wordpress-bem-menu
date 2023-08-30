@@ -1,5 +1,5 @@
-import { I18n, IModule } from '../../globals';
 import { DateRangeValidator } from '@level-level/recyclops';
+import { I18n, IModule } from '../../globals';
 
 declare const i18n: I18n;
 
@@ -41,6 +41,7 @@ class DateRange implements IModule {
 				inputErrorIcon: 'text-[#c41e3a] text-base',
 				inputErrorMessageLabel: 'text-sm',
 			},
+			submitFormWhenValid: false,
 		});
 	}
 }

@@ -3,6 +3,7 @@ import * as dayjs from 'dayjs';
 
 class FilterForm implements IModule {
 	element: HTMLElement;
+	form: HTMLFormElement | null;
 	checkboxes: NodeListOf<HTMLInputElement> | undefined;
 	periodRadioButtons: NodeListOf<HTMLInputElement> | undefined;
 	buttons: NodeListOf<HTMLButtonElement> | null;
@@ -15,6 +16,7 @@ class FilterForm implements IModule {
 
 	constructor(element: HTMLElement) {
 		this.element = element;
+		this.form = this.element.querySelector('form');
 		this.buttons = this.element.querySelectorAll('.js-reset-filter');
 		this.checkboxes = this.element.querySelectorAll('input[type="checkbox"]');
 		this.periodRadioButtons = this.element.querySelectorAll('input[name="period"]');
@@ -47,6 +49,18 @@ class FilterForm implements IModule {
 
 		this.categoryCheckboxes?.forEach((checkbox) => {
 			checkbox.addEventListener('change', this.handleCategoryCheckboxChange.bind(this));
+		});
+
+		this.form?.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			// When form is submitted, disable the category checkboxes and submit the form.
+			document.addEventListener('DateRangeValidator:valid', () => {
+				this.categoryCheckboxes?.forEach((checkbox) => {
+					checkbox.disabled = true;
+				});
+				this.form?.submit();
+			});
 		});
 	}
 

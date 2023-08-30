@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@level-level/recyclops": "^2.4.0",
+    "@level-level/recyclops": "^2.4.1",
     "dayjs": "^1.11.9"
   },
   "devDependencies": {
