@@ -14,6 +14,7 @@ import StickyAdvertisement from './modules/sticky-advertisement';
 import NavigationAdvertisement from './modules/navigation-advertisement';
 import FilterModal from './modules/filter-modal';
 import FilterForm from './modules/filter-form';
+import DateRangeValidator from './modules/date-range-validator';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -31,6 +32,7 @@ ModuleInitializer({
 	'sticky-advertisement': StickyAdvertisement,
 	'filter-modal': FilterModal,
 	'filter-form': FilterForm,
+	'date-range-validator': DateRangeValidator,
 });
 
 /**

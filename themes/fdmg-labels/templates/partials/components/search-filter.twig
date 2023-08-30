@@ -8,9 +8,7 @@
 <div class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
 
 	<div data-component="search-filter" class="relative bg-base-50 dark:bg-base-600 md:mt-[146px] md:border-b-2 md:border-primary md:dark:border-0 h-full md:h-auto">
-		<form class="flex flex-col h-full md:h-auto" method="get" action="{{ get_home_url() }}" data-module="filter-form">
-
-			<input type="hidden" name="s" value="{{ the_search_query() }}">
+		<div class="flex flex-col h-full md:h-auto" data-module="filter-form">
 
 			<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
 				<div class="md:hidden">
@@ -52,7 +50,8 @@
 				</div>
 			</div>
 
-			<div class="overflow-y-auto md:overflow-y-hidden js-modal-body">
+			<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden js-modal-body" novalidate>
+				<input type="hidden" name="s" value="{{ the_search_query() }}">
 
 				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
 					<label for="sort" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
@@ -88,7 +87,7 @@
 				</div>
 
 				<div class="{{ period is not same as('custom-period') ? 'hidden' }} js-date-range">
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4" data-module="date-range-validator">
 						{% include 'partials/components/filters/date-range.twig' with {
 							title: _x('Filter on date', 'Search', 'fdmg-labels'),
 							start_name: 'post_date_min',
@@ -144,16 +143,16 @@
 						} %}
 					</div>
 				{% endif %}
-			</div>
 
-			<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
-				{% include 'styleguide/components/buttons/button-element.twig' with {
-					text: _x('Apply filter', 'Search', 'fdmg-labels'),
-					class: 'btn-primary btn-full',
-					type: 'submit',
-				} %}
-			</div>
-		</form>
+				<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
+					{% include 'styleguide/components/buttons/button-element.twig' with {
+						text: _x('Apply filter', 'Search', 'fdmg-labels'),
+						class: 'btn-primary btn-full',
+						type: 'submit',
+					} %}
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 <div data-component="backdrop" aria-hidden="true" class="js-modal-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[59] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>
