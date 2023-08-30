@@ -197,8 +197,14 @@ input[type='number'],
 input[type='email'],
 input[type='tel'],
 input[type='url'],
-input[type='search'] {
+input[type='search'],
+input[type='date'] {
 	@include form-control;
+}
+
+input[type='date'] {
+	border: 2px solid var(--primary);
+	border-radius: 3px;
 }
 
 input[type='search'] {
