@@ -4,7 +4,7 @@
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		background-color: var(--secondary-200) !important;
+		background-color: var(--secondary-100) !important;
 		width: calc(100% - #{$spacing-6});
 		transform: translateX(-50%) translateY(-50%);
 		padding: $spacing-6 !important;
