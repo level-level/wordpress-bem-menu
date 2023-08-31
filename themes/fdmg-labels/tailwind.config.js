@@ -52,7 +52,6 @@ module.exports = {
 				'menu-height': 'var(--menu-height)',
 				'sidebar-width': 'var(--sidebar-width)',
 				'article-width': 'var(--article-width)',
-				'article-offset': 'var(--article-offset)',
 				'content-width': 'var(--content-width)',
 			},
 			boxShadow: {
