@@ -44,7 +44,7 @@ class RelatedArticles {
 				'description' => _x( 'Displays a list of related articles based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'format-aside',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'related', 'articles', 'news', 'posts' ),
+				'keywords'    => array( 'related', 'articles', 'news', 'posts', 'nieuws', 'gerelateerd nieuws', 'artikelen' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => false,

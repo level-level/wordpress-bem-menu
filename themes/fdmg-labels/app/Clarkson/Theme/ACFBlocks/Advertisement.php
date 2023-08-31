@@ -26,7 +26,7 @@ class Advertisement {
 				'description' => _x( 'Displays an advertisement.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'schedule',
 				'align'       => 'full', // full, wide, left, center, right
-				'keywords'    => array( 'advertisement', 'ad' ),
+				'keywords'    => array( 'advertisement', 'ad', 'advertentie' ),
 				'supports'    => array(
 					'align'    => array( 'full' ),
 					'multiple' => true,

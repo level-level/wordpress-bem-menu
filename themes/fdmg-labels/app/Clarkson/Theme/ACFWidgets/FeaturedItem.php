@@ -37,7 +37,7 @@ class FeaturedItem {
 				'title'       => _x( 'Featured item', 'Block', 'fdmg-labels-admin' ),
 				'description' => _x( 'Displays a single featured item.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'megaphone',
-				'keywords'    => array( 'featured article', 'post', 'item' ),
+				'keywords'    => array( 'featured article', 'post', 'item', 'uitgelicht artikel', 'artikel' ),
 				'supports'    => array(
 					'align'    => false,
 					'multiple' => true,

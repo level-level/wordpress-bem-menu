@@ -25,7 +25,7 @@ class LatestArticles {
 				'description' => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'list-view',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'latest', 'posts', 'articles' ),
+				'keywords'    => array( 'latest', 'posts', 'articles', 'laatste artikelen', 'artikelen' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
