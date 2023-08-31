@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFWidgets\ArticlesWithMostComments;
 use Clarkson\Theme\ACFWidgets\FeaturedItem;
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
 use Clarkson\Theme\ACFWidgets\LatestArticles;
@@ -18,6 +19,7 @@ class ACFWidgets {
 		LatestAndMostReadPosts::class,
 		Newsletter::class,
 		LatestArticles::class,
+		ArticlesWithMostComments::class,
 	);
 
 	public function register_hooks(): void {
