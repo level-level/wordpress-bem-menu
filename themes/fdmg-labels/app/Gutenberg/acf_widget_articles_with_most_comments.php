@@ -9,6 +9,7 @@ class acf_widget_articles_with_most_comments extends base_block {
 
 	/**
 	* Get posts
+	* @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Object>
 	*/
 	public function get_articles_sorted_by_comment_count(): array {
 		$amount = $this->content_attributes[ LatestArticles::WIDGET_META_AMOUNT ] ?? 5;
