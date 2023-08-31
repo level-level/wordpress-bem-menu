@@ -10,7 +10,7 @@ class Socials {
 			->choices(
 				array(
 					'facebook'  => 'Facebook',
-					'twitter'   => 'Twitter',
+					'x'   => 'X',
 					'instagram' => 'Instagram',
 					'linkedin'  => 'Linkedin',
 					'youtube'   => 'YouTube',
