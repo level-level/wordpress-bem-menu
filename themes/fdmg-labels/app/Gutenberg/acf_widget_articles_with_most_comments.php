@@ -17,7 +17,7 @@ class acf_widget_articles_with_most_comments extends base_block {
 		$args = array(
 			'posts_per_page' => $amount,
 			'orderby'        => 'comment_count',
-			'order'            => 'DESC',
+			'order'          => 'DESC',
 		);
 
 		return post::get_many( $args );

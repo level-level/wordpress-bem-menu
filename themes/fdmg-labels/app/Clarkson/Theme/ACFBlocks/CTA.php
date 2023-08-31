@@ -36,7 +36,7 @@ class CTA {
 				'description' => _x( 'Displays a call to action', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'megaphone',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'call to action', 'cta' ),
+				'keywords'    => array( 'call to action', 'cta', 'oproep tot actie' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

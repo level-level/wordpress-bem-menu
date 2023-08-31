@@ -28,7 +28,7 @@ class HighlightedContent {
 				'description' => _x( 'Displays content in a box to make it stand out more.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'text-page',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'highlight', 'summary', 'in short', 'content' ),
+				'keywords'    => array( 'highlight', 'summary', 'in short', 'content', 'in het kort', 'samenvatting', 'uitgelicht' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

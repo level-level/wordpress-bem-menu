@@ -34,7 +34,7 @@ class Vacancies {
 				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'money',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'vacancies', 'jobs' ),
+				'keywords'    => array( 'vacancies', 'jobs', 'vacatures', 'banen' ),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
