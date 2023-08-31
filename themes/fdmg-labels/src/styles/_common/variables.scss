@@ -42,7 +42,6 @@ $spacing-16: theme('spacing.16');
 	@include breakpoint(lg) {
 		--container: 1170px;
 		--article-width: 690px;
-		--article-offset: 45px;
 	}
 
 	@include breakpoint(xl) {

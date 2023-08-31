@@ -18,9 +18,9 @@ export default {
 				icon: 'facebook',
 			},
 			{
-				title: 'Twitter',
+				title: 'X',
 				url: '#',
-				icon: 'twitter',
+				icon: 'x',
 			},
 			{
 				title: 'LinkedIn',

@@ -21,16 +21,16 @@
 }
 
 .btn-menu-close {
-	@apply btn-icon:text-[24px] btn-text:pl-2 text-lg flex items-center justify-center p-0 dark:text-base-100;
+	@apply btn-icon:text-xl btn-text:pl-2 text-lg flex items-center justify-center p-0 dark:text-base-100;
 	@apply btn-text:text-md aria-expanded:text-base-50 aria-expanded:z-0 leading-none focus:outline-base-50;
 	@apply text-base-50;
 }
 
 .btn-header {
 	@apply font-body text-base-500 rounded-none dark:text-base-100;
-	@apply btn-icon:text-[20px] btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
-	@apply hocus:bg-secondary-200 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
-	@apply aria-expanded:bg-secondary-200 compact-header:aria-expanded:bg-secondary-400 compact-header:aria-expanded:dark:bg-base-300 aria-expanded:dark:bg-base-600;
+	@apply btn-icon:text-lg btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
+	@apply hocus:bg-secondary-100 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
+	@apply aria-expanded:bg-secondary-100 compact-header:aria-expanded:bg-secondary-400 compact-header:aria-expanded:dark:bg-base-300 aria-expanded:dark:bg-base-600;
 	@apply compact-header:btn-icon:text-base-50 compact-header:btn-icon:hocus:text-base-800 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300 compact-header:hocus:text-base-800 compact-header:dark:hocus:text-base-50;
 	@apply compact-header:dark:btn-icon:hocus:text-base-50;
 	@apply compact-header:p-[10px] rounded-[3px];
@@ -44,7 +44,7 @@
 }
 
 .btn-share-small {
-	@apply w-[45px] h-[44px] bg-secondary-200 text-primary p-0 border-0 dark:bg-base-600 dark:text-primary-300 hocus:bg-secondary-400 hocus:text-base-50 rounded-none text-lg;
+	@apply w-[45px] h-[44px] bg-secondary-100 text-primary p-0 border-0 dark:bg-base-600 dark:text-primary-300 hocus:bg-secondary-400 hocus:text-base-50 rounded-none text-lg;
 }
 
 .btn-play {
