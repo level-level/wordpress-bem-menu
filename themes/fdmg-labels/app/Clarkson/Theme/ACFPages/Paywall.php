@@ -52,7 +52,7 @@ class Paywall {
 					Group::make( _x( 'Paywall', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL )
 					->fields(
 						array(
-							Tab::make( _x( 'User is not logged in', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_NOT_LOGGED_IN )
+							Tab::make( _x( 'When logging in is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_NOT_LOGGED_IN )
 								->placement( 'left' ),
 							Text::make( _x( 'Title of the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TITLE )
 								->instructions( _x( 'The title of the paywall block', 'Fields', 'fdmg-labels-admin' ) )
