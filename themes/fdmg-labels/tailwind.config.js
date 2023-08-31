@@ -120,45 +120,45 @@ module.exports = {
 		},
 		fontSize: {
 			sm: [
-				'0.875rem',
+				'0.875rem', // 14px
 				{
-					lineHeight: '1.125rem',
+					lineHeight: '1.125rem', // 18px
 				},
 			],
 			base: [
-				'1rem',
+				'1rem', // 16px
 				{
-					lineHeight: '1.375rem',
+					lineHeight: '1.375rem', // 22px
 				},
 			],
 			md: [
-				'1.125rem',
+				'1.125rem', // 18px
 				{
-					lineHeight: '1.5rem',
+					lineHeight: '1.5rem', // 24px
 				},
 			],
 			lg: [
-				'1.375rem',
+				'1.25rem', // 20px
 				{
-					lineHeight: '1.875rem',
+					lineHeight: '1.75rem', // 28px
 				},
 			],
 			xl: [
-				'1.875rem',
+				'1.5rem', // 24px
 				{
-					lineHeight: '2.625rem',
+					lineHeight: '2.125rem', // 34px
 				},
 			],
 			'2xl': [
-				'2.625rem',
+				'1.75rem', // 28px
 				{
-					lineHeight: '3.5rem',
+					lineHeight: '2.5rem', // 40px
 				},
 			],
 			'3xl': [
-				'3.625rem',
+				'2.625rem', // 42px
 				{
-					lineHeight: '4.5rem',
+					lineHeight: '3.25rem', // 52px
 				},
 			],
 		},

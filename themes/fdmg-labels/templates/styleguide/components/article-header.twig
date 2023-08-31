@@ -2,7 +2,7 @@
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-12">
 
 	<div class="order-2">
-		<h1 class="font-bold font-heading text-secondary-600 dark:text-primary-300 text-[26px] leading-9 sm:text-[40px] sm:leading-[3.5rem] lg:text-[48px] lg:leading-[3.875rem]" aria-describedby="a11y-paywall-description">
+		<h1 class="text-lg font-bold font-heading text-secondary-600 dark:text-primary-300 sm:text-3xl" aria-describedby="a11y-paywall-description">
 			{{ title|raw }}
 
 			{% if has_paywall_block %}
@@ -72,7 +72,7 @@
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
-										class: 'btn-secondary !p-0 !text-[17px] theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
+										class: 'btn-secondary !p-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
 									} %}
 								</li>
 							{% endfor %}
@@ -83,7 +83,7 @@
 				{% if date and datetime and date_full %}
 					<div>
 						<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-						<time datetime="{{ datetime|raw }}" aria-hidden="true" class="font-body-bold text-[17px]">{{ date|raw }}</time>
+						<time datetime="{{ datetime|raw }}" aria-hidden="true" class="text-base font-body-bold">{{ date|raw }}</time>
 					</div>
 				{% endif %}
 
