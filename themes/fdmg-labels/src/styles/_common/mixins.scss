@@ -119,8 +119,8 @@
 }
 
 @mixin intro-font {
-	--wp--preset--font-size--intro: #{calculaterem(20px)};
-	line-height: line-height(20px, 28px);
+	--wp--preset--font-size--intro: #{calculaterem(18px)};
+	line-height: line-height(18px, 28px);
 
 	@include font-heading-normal;
 
