@@ -5,6 +5,7 @@ use Clarkson\Theme\ACFWidgets\ArticlesWithMostComments;
 use Clarkson\Theme\ACFWidgets\FeaturedItem;
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
 use Clarkson\Theme\ACFWidgets\LatestArticles;
+use Clarkson\Theme\ACFWidgets\LatestComments;
 use Clarkson\Theme\ACFWidgets\Newsletter;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
@@ -20,6 +21,7 @@ class ACFWidgets {
 		Newsletter::class,
 		LatestArticles::class,
 		ArticlesWithMostComments::class,
+		LatestComments::class,
 	);
 
 	public function register_hooks(): void {
