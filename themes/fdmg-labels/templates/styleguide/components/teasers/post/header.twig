@@ -16,7 +16,7 @@
 		</{{ useH3 ? 'h3' : 'h2' }}>
 	</div>
 
-	{% if categories or genres or sections or date and datetime and date_full %}
+	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
 		<div data-component="terms" class="text-base">
 			<div class="flex items-center justify-between flex-nowrap">
 
@@ -49,11 +49,11 @@
 					</div>
 				{% endif %}
 
-				{% if date and datetime and date_full %}
+				{% if date.date and date.datetime and date.date_full %}
 					<div class="shrink-0">
 						<div class="text-sm text-secondary-600 dark:text-base-100 sm:text-base">
-							<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+							<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true">{{ date.date|raw }}</time>
 						</div>
 					</div>
 				{% endif %}
