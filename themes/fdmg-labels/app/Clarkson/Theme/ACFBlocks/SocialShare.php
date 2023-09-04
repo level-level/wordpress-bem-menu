@@ -19,7 +19,7 @@ class SocialShare {
 				'description' => _x( 'Displays a list of social share buttons.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'share',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail' ),
+				'keywords'    => array( 'social share', 'facebook', 'twitter', 'linkedin', 'email', 'mail', 'delen', 'x' ),
 				'post_types'  => array( Post::POST_TYPE_NAME ),
 				'supports'    => array(
 					'align'    => array( 'center' ),

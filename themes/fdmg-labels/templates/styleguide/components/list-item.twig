@@ -1,8 +1,21 @@
 <div data-component="list-item" class="relative flex flex-col">
 
-	<a href="{{ url }}" class="text-[15px] leading-5 order-2 block no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
+	<a href="{{ url }}" class="order-2 block text-base no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 		{{ title|raw }}
 	</a>
+
+	{% if comment_count %}
+		<div class="order-2 mt-2 text-sm text-secondary-600 dark:text-base-100">
+			<div class="flex items-center gap-2 text-sm">
+				<span class="icon-inline" aria-hidden="true">{{ svg_icons.get('comment')|raw }}</span>
+				{% if comment_count is same as(1) %}
+					<span>{{ _x('%s comment', 'Comments', 'fdmg-labels')|format(comment_count) }}</span>
+				{% else %}
+					<span>{{ _x('%s comments', 'Comments', 'fdmg-labels')|format(comment_count) }}</span>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
 
 	{% if datetime and date or terms %}
 		<div class="text-sm text-secondary-600 mb-[5px] dark:text-base-100">

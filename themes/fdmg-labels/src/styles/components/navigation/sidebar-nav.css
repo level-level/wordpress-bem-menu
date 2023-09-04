@@ -49,7 +49,7 @@
 }
 
 .sidebar-nav__link-icon {
-	@apply mr-3 text-[20px];
+	@apply mr-3 text-lg;
 }
 
 .sidebar-nav-sub__link-icon {

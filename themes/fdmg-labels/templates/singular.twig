@@ -30,9 +30,7 @@
 				name: section.get_name(),
 				url: section.get_permalink(),
 			}),
-			date: object.get_date_i18n(get_option('date_format')),
-			date_full: object.get_date_i18n('F j Y'),
-			datetime: object.get_date_i18n('Y-m-d'),
+			date: object.get_publish_date(),
 			authors: authors ? authors|map(author => {
 				name: author.get_title(),
 				location: author.get_location(),

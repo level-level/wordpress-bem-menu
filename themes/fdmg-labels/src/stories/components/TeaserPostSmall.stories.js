@@ -22,7 +22,7 @@ export default {
 			control: 'array',
 		},
 		date: {
-			control: 'text',
+			control: 'array',
 		},
 		comments: {
 			control: 'number',
@@ -36,8 +36,11 @@ export default {
 		excerpt:
 			'<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
 		terms: Terms,
-		date: 'Apr 21, 2021',
-		datetime: '2021-04-21',
+		date: {
+			date: '21 Apr, 2021',
+			datetime: '2021-04-21',
+			date_full: '21 april 2021',
+		},
 		authors: Authors,
 		comments: 2,
 	},
