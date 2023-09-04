@@ -13,24 +13,32 @@ export default {
 	args: {
 		socials: [
 			{
-				title: 'Facebook',
+				type: {
+					label: 'Facebook',
+					value: 'facebook',
+				},
 				url: '#',
-				icon: 'facebook',
 			},
 			{
-				title: 'X',
+				type: {
+					label: 'X',
+					value: 'x',
+				},
 				url: '#',
-				icon: 'x',
 			},
 			{
-				title: 'LinkedIn',
+				type: {
+					label: 'LinkedIn',
+					value: 'linkedin',
+				},
 				url: '#',
-				icon: 'linkedin',
 			},
 			{
-				title: 'YouTube',
+				type: {
+					label: 'YouTube',
+					value: 'youtube',
+				},
 				url: '#',
-				icon: 'youtube',
 			},
 		],
 	},

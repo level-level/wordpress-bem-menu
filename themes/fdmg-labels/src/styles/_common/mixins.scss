@@ -45,7 +45,7 @@
 // Adds properties for blockquote styling
 @mixin blockquote {
 	@apply relative border-0 mx-0 mb-0 p-0 flex flex-col gap-3;
-	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-primary-300 theme-energeia:after:dark:bg-base-300 theme-pensioen-pro:after:dark:bg-base-300;
+	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-base-300 theme-energeia:after:dark:bg-base-300 theme-pensioen-pro:after:dark:bg-base-300;
 
 	p {
 		@apply font-body italic text-primary dark:text-primary-300 sm:text-lg;
