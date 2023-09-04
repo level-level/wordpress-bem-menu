@@ -21,8 +21,6 @@
 	{% if objects %}
 		<div class="section">
 			<ul class="flex flex-col gap-3 sm:gap-6">
-				{% set date_format = get_option('date_format') %}
-
 				{% for object in objects %}
 
 					{% set image_id = object.get_thumbnail_id() %}
@@ -34,9 +32,7 @@
 							title: object.get_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
-							date: object.get_date_i18n(date_format),
-							date_full: object.get_date_i18n('F j Y'),
-							datetime: object.get_date_i18n('Y-m-d'),
+							date: object.get_publish_date(),
 							categories: categories ? categories|map(category => {
 								name: category.get_name(),
 							}),

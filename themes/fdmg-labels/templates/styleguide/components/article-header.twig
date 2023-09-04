@@ -57,7 +57,7 @@
 		</div>
 	{% endif %}
 
-	{% if authors or date and datetime and date_full %}
+	{% if authors or date.date and date.datetime and date.date_full %}
 		<div class="order-3 mt-3">
 			<div class="flex items-center gap-6">
 
@@ -80,10 +80,10 @@
 					</div>
 				{% endif %}
 
-				{% if date and datetime and date_full %}
+				{% if date.date and date.datetime and date.date_full %}
 					<div>
-						<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-						<time datetime="{{ datetime|raw }}" aria-hidden="true" class="text-base font-body-bold">{{ date|raw }}</time>
+						<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-body-bold">{{ date.date|raw }}</time>
 					</div>
 				{% endif %}
 
