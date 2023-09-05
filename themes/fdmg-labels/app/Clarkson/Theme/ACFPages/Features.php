@@ -70,7 +70,7 @@ class Features {
 									->instructions( _x( 'Disables the footer of the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable "Free article" paywall label', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PAYWALL_LABEL )
-									->instructions( _x( 'If the paywall plugin is active, show the "Free article" label in the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
+									->instructions( _x( 'If the paywall plugin is active, show the "Free article" label in the article teasers if the article does not include the paywall block.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
 								Tab::make( _x( 'Share options', 'Fields', 'fdmg-labels-admin' ) )
 									->placement( 'left' ),

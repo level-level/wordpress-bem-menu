@@ -19,8 +19,8 @@
 		} only %}
 
 		{% if show_paywall_label %}
-			<div data-component="paywall-label" class="absolute px-2 py-1 text-sm rounded-sm top-2 right-2 bg-primary font-body-bold text-base-50 theme-energeia:text-base-800 z-[2]">
-				{{ _x('Free article', 'Paywall', 'fdmg-labels') }}
+			<div class="absolute top-2 right-2 z-[2]">
+				{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
 			</div>
 		{% endif %}
 

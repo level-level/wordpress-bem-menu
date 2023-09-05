@@ -14,6 +14,9 @@ export default {
 		categories: {
 			control: 'array',
 		},
+		show_paywall_label: {
+			control: 'boolean',
+		},
 	},
 	args: {
 		image: '<img src="https://place-hold.it/300x195" loading="lazy" width="300" height="195" alt="">',
@@ -21,6 +24,7 @@ export default {
 		title: 'CDC Climate Strategy director: Focus on nature to build climate resilience',
 		url: '#',
 		categories: Terms,
+		show_paywall_label: false,
 	},
 };
 
