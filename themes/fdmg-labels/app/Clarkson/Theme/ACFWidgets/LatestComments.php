@@ -27,7 +27,9 @@ class LatestComments {
 				'description' => _x( 'Displays a block with the latest comments. This block will automatically show the comments.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'admin-comments',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'comments', 'reacties', 'artikelen', 'posts', 'articles' ),
+				'keywords'    => array(
+					_x( 'latest comments', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
