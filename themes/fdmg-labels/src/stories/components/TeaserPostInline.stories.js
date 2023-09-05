@@ -11,7 +11,7 @@ export default {
 		title: {
 			control: 'text',
 		},
-		terms: {
+		categories: {
 			control: 'array',
 		},
 	},
@@ -20,7 +20,7 @@ export default {
 		image_square: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		title: 'CDC Climate Strategy director: Focus on nature to build climate resilience',
 		url: '#',
-		terms: Terms,
+		categories: Terms,
 	},
 };
 
