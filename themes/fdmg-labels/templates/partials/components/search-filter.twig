@@ -1,6 +1,8 @@
 {% set start_date_value = filter.get_filter_value('post_date_min') %}
 {% set end_date_value = filter.get_filter_value('post_date_max') %}
 {% set period = filter.get_filter_value('period') %}
+{% set author_ids = filter.get_filter_value('author_id') %}
+{% set authors_filters = filter.get_filterable_authors() %}
 {% set active_genres = filter.get_filter_value('fdmg_genre') %}
 {% set active_sections = filter.get_filter_value('fdmg_section') %}
 {% set active_categories = filter.get_filter_value('category_name')|split(',') %}
@@ -110,6 +112,8 @@
 								value: item.get_slug(),
 							}),
 							values: active_categories,
+							max_amount: search.search_results_category_amount,
+							button_label: _x('categories', 'Search', 'fdmg-labels'),
 						} %}
 					</div>
 					<input type="hidden" name="category_name" value="{{ active_categories|join(',')|escape('html_attr') }}" />
@@ -126,6 +130,8 @@
 								value: item.get_slug(),
 							}),
 							values: active_sections,
+							max_amount: search.search_results_section_amount,
+							button_label: _x('sections', 'Search', 'fdmg-labels'),
 						} %}
 					</div>
 				{% endif %}
@@ -141,6 +147,24 @@
 								value: item.get_slug(),
 							}),
 							values: active_genres,
+							max_amount: search.search_results_genre_amount,
+							button_label: _x('genres', 'Search', 'fdmg-labels'),
+						} %}
+					</div>
+				{% endif %}
+
+				{% if authors_filters %}
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						{% include 'partials/components/filters/checkboxes.twig' with {
+							title: _x('Authors', 'Search', 'fdmg-labels'),
+							field_name: 'author_id',
+							checkboxes: authors_filters|map(item => {
+								label: item.get_title(),
+								value: item.get_id(),
+							}),
+							values: author_ids,
+							max_amount: search.search_results_author_amount,
+							button_label: _x('authors', 'Search', 'fdmg-labels'),
 						} %}
 					</div>
 				{% endif %}

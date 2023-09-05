@@ -2,6 +2,7 @@
 namespace FDMGLabels\Search;
 
 use Clarkson\Theme\ACFPages\SearchOptions;
+use Clarkson\Theme\PostTypes\Post;
 use WP_Query;
 
 class Filter {
@@ -10,6 +11,7 @@ class Filter {
 		add_filter( 'query_vars', array( $this, 'add_query_vars' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_min' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_max' ) );
+		add_action( 'parse_query', array( $this, 'parse_query_post_author_id' ) );
 	}
 
 	/**
@@ -44,6 +46,7 @@ class Filter {
 		$vars[] = 'post_date_min';
 		$vars[] = 'post_date_max';
 		$vars[] = 'period';
+		$vars[] = 'author_id';
 		return $vars;
 	}
 
@@ -97,6 +100,42 @@ class Filter {
 	}
 
 	/**
+	 * When the query parameter author_id is provided,
+	 * show posts that are published by specific authors.
+	 */
+	public function parse_query_post_author_id( WP_Query $query ): void {
+		if ( ! $query->is_search ) {
+			return;
+		}
+
+		$authors = $query->get( 'author_id' );
+
+		if ( ! $authors ) {
+			return;
+		}
+
+		if ( ! is_array( $authors ) ) {
+			return;
+		}
+
+		$author_query = $query->get(
+			'meta_query', array(
+				'relation' => 'OR',
+			)
+		);
+
+		foreach ( $authors as $author ) {
+			$author_query[] = array(
+				'key'     => Post::META_AUTHORS,
+				'value'   => sprintf( '"%s"', $author ),
+				'compare' => 'LIKE',
+			);
+		}
+
+		$query->set( 'meta_query', $author_query );
+	}
+
+	/**
 	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Term>
 	 */
 	public function get_filterable_terms( string $taxonomy ): array {
@@ -117,5 +156,18 @@ class Filter {
 		}
 
 		return $terms;
+	}
+
+	/**
+	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Object>
+	 */
+	public function get_filterable_authors(): array {
+		$options          = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' );
+		$selected_authors = $options[ SearchOptions::META_SEARCH_RESULTS_AUTHORS ];
+
+		if ( ! $selected_authors ) {
+			return array();
+		}
+		return $selected_authors;
 	}
 }

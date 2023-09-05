@@ -1,11 +1,14 @@
 <?php
 namespace Clarkson\Theme\ACFPages;
 
+use Clarkson\Theme\PostTypes\Team;
 use Clarkson\Theme\Taxonomies\Category;
 use Clarkson\Theme\Taxonomies\Genre;
 use Clarkson\Theme\Taxonomies\Section;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Message;
+use Extended\ACF\Fields\Number;
+use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Location;
 use FDMGLabels\FeatureManager;
@@ -14,11 +17,16 @@ class SearchOptions {
 
 	protected const FIELD_GROUP = 'search-result-options';
 
-	public const MENU_SLUG                      = 'acf-search-result-options-options';
-	public const META_SEARCH_RESULTS            = 'search_results';
-	public const META_SEARCH_RESULTS_GENRES     = 'search_results_genres';
-	public const META_SEARCH_RESULTS_SECTIONS   = 'search_results_sections';
-	public const META_SEARCH_RESULTS_CATEGORIES = 'search_results_categories';
+	public const MENU_SLUG                           = 'acf-search-result-options-options';
+	public const META_SEARCH_RESULTS                 = 'search_results';
+	public const META_SEARCH_RESULTS_GENRES          = 'search_results_genres';
+	public const META_SEARCH_RESULTS_SECTIONS        = 'search_results_sections';
+	public const META_SEARCH_RESULTS_CATEGORIES      = 'search_results_categories';
+	public const META_SEARCH_RESULTS_AUTHORS         = 'search_results_authors';
+	public const META_SEARCH_RESULTS_AUTHOR_AMOUNT   = 'search_results_author_amount';
+	public const META_SEARCH_RESULTS_CATEGORY_AMOUNT = 'search_results_category_amount';
+	public const META_SEARCH_RESULTS_GENRE_AMOUNT    = 'search_results_genre_amount';
+	public const META_SEARCH_RESULTS_SECTION_AMOUNT  = 'search_results_section_amount';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -34,6 +42,7 @@ class SearchOptions {
 	public function add_context_args( array $context ): array {
 		if ( is_search() ) {
 			$context['search_options'] = $this;
+			$context['search']         = get_field( self::META_SEARCH_RESULTS, 'options' ) ?: array();
 		}
 
 		return $context;
@@ -64,6 +73,10 @@ class SearchOptions {
 			->addTerm( false )
 			->saveTerms( false )
 			->loadTerms( false );
+
+			$taxonomy_fields[] = Number::make( _x( 'How many genres must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_GENRE_AMOUNT )
+			->defaultValue( 5 )
+			->min( 3 );
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
@@ -74,6 +87,10 @@ class SearchOptions {
 			->addTerm( false )
 			->saveTerms( false )
 			->loadTerms( false );
+
+			$taxonomy_fields[] = Number::make( _x( 'How many sections must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_SECTION_AMOUNT )
+			->defaultValue( 5 )
+			->min( 3 );
 		}
 
 		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
@@ -84,12 +101,30 @@ class SearchOptions {
 			->addTerm( false )
 			->saveTerms( false )
 			->loadTerms( false );
+
+			$taxonomy_fields[] = Number::make( _x( 'How many categories must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_CATEGORY_AMOUNT )
+			->defaultValue( 5 )
+			->min( 3 );
 		}
 
 		// Default fields
 		$fields = array(
 			Message::make( _x( 'Filters on the search results page', 'Fields', 'fdmg-labels-admin' ) )
 				->message( _x( 'Define what filters to be used on the search results page.', 'Fields', 'fdmg-labels-admin' ) ),
+			Relationship::make( _x( 'Select the authors to show as a filter option on the search results page.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_AUTHORS )
+				->postTypes(
+					array(
+						Team::POST_TYPE_NAME,
+					)
+				)
+				->filters(
+					array(
+						'search',
+					)
+				),
+			Number::make( _x( 'How many authors must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_AUTHOR_AMOUNT )
+				->defaultValue( 5 )
+				->min( 3 ),
 		);
 
 		register_extended_field_group(
