@@ -18,6 +18,7 @@ class FeatureManager {
 	// Layout options
 	public const FEATURE_ENABLE_COMPACT_HEADER         = 'enable_compact_header';
 	public const FEATURE_DISABLE_ARTICLE_TEASER_FOOTER = 'disable_artice_teaser_footer';
+	public const FEATURE_ENABLE_PAYWALL_LABEL          = 'enable_paywall_label';
 
 	// Share options
 	public const FEATURE_SHARE_VIA_FACEBOOK       = 'enable_share_via_facebook';

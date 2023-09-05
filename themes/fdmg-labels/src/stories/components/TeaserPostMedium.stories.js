@@ -27,6 +27,9 @@ export default {
 		comments: {
 			control: 'number',
 		},
+		show_paywall_label: {
+			control: 'boolean',
+		},
 	},
 	args: {
 		image: '<img src="https://place-hold.it/1024x578" loading="lazy" width="1024" height="680" alt="">',
@@ -42,6 +45,7 @@ export default {
 		},
 		authors: Authors,
 		comments: 2,
+		show_paywall_label: false,
 	},
 };
 

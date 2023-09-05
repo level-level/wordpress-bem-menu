@@ -14,6 +14,12 @@
 						sections: sections,
 						wide: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
 				{% if image_square %}
@@ -41,6 +47,12 @@
 						sections: sections,
 						wide: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
 				{% if image %}
