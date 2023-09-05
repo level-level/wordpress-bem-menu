@@ -44,7 +44,11 @@ class ArticlesInColumns {
 				'description' => _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'columns',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'articles', 'column', 'two', '1', '2', 'three', '3', 'post', 'nieuws', 'artikel', 'news' ),
+				'keywords'    => array(
+					_x( 'posts', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'articles', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'column', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -58,7 +62,7 @@ class ArticlesInColumns {
 						),
 					),
 				),
-			)
+			),
 		);
 	}
 

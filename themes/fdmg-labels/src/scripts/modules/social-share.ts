@@ -3,7 +3,7 @@ import { I18n, IModule } from '../../globals';
 declare const i18n: I18n;
 
 interface IPlatforms {
-	twitter: string;
+	x: string;
 	facebook: string;
 	linkedin: string;
 	whatsapp: string;
@@ -20,7 +20,7 @@ class Socials implements IModule {
 		this.element = element;
 		this.shareLinks = Array.from(this.element.querySelectorAll('.js--share'));
 		this.platforms = {
-			twitter: 'http://twitter.com/share?url=',
+			x: 'http://x.com/share?url=',
 			facebook: 'https://www.facebook.com/sharer/sharer.php?u=',
 			linkedin: 'https://www.linkedin.com/shareArticle?mini=true&url=',
 			whatsapp: 'https://api.whatsapp.com/send?text=',
@@ -49,7 +49,7 @@ class Socials implements IModule {
 		const body = `${window.location.href}&text=${text}`;
 
 		const location: IPlatforms = {
-			twitter: `${this.platforms.twitter}${body}`,
+			x: `${this.platforms.x}${body}`,
 			facebook: `${this.platforms.facebook}${body}`,
 			linkedin: `${this.platforms.linkedin}${body}`,
 			whatsapp: `${this.platforms.whatsapp}${text}: ${window.location.href}`,

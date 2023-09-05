@@ -78,8 +78,8 @@ class Features {
 									->instructions( _x( 'Enables sharing an article via Facebook.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
-								TrueFalse::make( _x( 'Enable sharing via Twitter', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_TWITTER )
-									->instructions( _x( 'Enables sharing an article via Twitter.', 'Fields', 'fdmg-labels-admin' ) )
+								TrueFalse::make( _x( 'Enable sharing via X (Twitter)', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_TWITTER )
+									->instructions( _x( 'Enables sharing an article via X (Twitter).', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( true ),
 								TrueFalse::make( _x( 'Enable sharing via LinkedIn', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_LINKEDIN )
