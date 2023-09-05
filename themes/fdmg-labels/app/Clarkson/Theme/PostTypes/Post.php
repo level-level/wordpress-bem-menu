@@ -7,6 +7,7 @@ use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\PostTypes\Team;
 use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Textarea;
 use Extended\ACF\Location;
 use WP_Post_Type;
 
@@ -17,6 +18,7 @@ class Post {
 
 	public const META_AUTHORS           = 'authors';
 	public const META_ALTERNATIVE_TITLE = 'alternative_title';
+	public const META_WORK_INSTRUCTIONS = 'work_instructions';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
@@ -37,6 +39,7 @@ class Post {
 						->filters( array( 'search' ) )
 						->returnFormat( 'object' )
 						->elements( array( 'featured_image' ) ),
+					Textarea::make( _x( 'Work instructions', 'Fields', 'fdmg-labels-admin' ), self::META_WORK_INSTRUCTIONS ),
 				),
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),
