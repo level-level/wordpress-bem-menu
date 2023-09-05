@@ -34,7 +34,10 @@ class Vacancies {
 				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'money',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'vacancies', 'jobs', 'vacatures', 'banen' ),
+				'keywords'    => array(
+					_x( 'vacancies', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'jobs', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

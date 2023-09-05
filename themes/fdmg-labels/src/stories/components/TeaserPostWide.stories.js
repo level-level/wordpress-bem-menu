@@ -15,7 +15,7 @@ export default {
 		excerpt: {
 			control: 'text',
 		},
-		terms: {
+		categories: {
 			control: 'array',
 		},
 		authors: {
@@ -35,7 +35,7 @@ export default {
 		url: '#',
 		excerpt:
 			'<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
-		terms: Terms,
+		categories: Terms,
 		date: {
 			date: '21 Apr, 2021',
 			datetime: '2021-04-21',

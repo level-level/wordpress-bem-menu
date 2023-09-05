@@ -7,7 +7,9 @@
 			objects: objects ? objects|map(vacancy => {
 				title: vacancy.get_title(),
 				url: vacancy.get_permalink(),
-				date: vacancy.get_publish_date(),
+				date: vacancy.get_date_i18n(get_option('date_format')),
+				date_full: vacancy.get_date_i18n('F j Y'),
+				datetime: vacancy.get_date_i18n('Y-m-d'),
 			}),
 			style: 'light',
 		} %}

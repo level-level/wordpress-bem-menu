@@ -27,7 +27,10 @@ class ArticlesWithMostComments {
 				'description' => _x( 'Displays an article block sorted by articles with the most comments. This block will automatically show the articles.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'admin-comments',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'comments', 'reacties', 'artikelen', 'posts', 'articles' ),
+				'keywords'    => array(
+					_x( 'comments', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'articles', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
