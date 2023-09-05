@@ -31,7 +31,9 @@ class Partners {
 				'description' => _x( 'Displays a list of partners.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'image-filter',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'partners' ),
+				'keywords'    => array(
+					_x( 'partners', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

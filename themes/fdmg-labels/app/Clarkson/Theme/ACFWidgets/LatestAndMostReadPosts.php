@@ -18,7 +18,11 @@ class LatestAndMostReadPosts {
 				'description' => _x( 'Displays a list of latest and most read posts in a tabbed component.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'star-filled',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'posts', 'latest', 'most read', 'popular', 'artikelen', 'populair', 'meest gelezen' ),
+				'keywords'    => array(
+					_x( 'latest articles', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'most read', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'populair', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
