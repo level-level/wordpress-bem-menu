@@ -39,7 +39,8 @@ class Post {
 						->filters( array( 'search' ) )
 						->returnFormat( 'object' )
 						->elements( array( 'featured_image' ) ),
-					Textarea::make( _x( 'Work instructions', 'Fields', 'fdmg-labels-admin' ), self::META_WORK_INSTRUCTIONS ),
+					Textarea::make( _x( 'Work instructions', 'Fields', 'fdmg-labels-admin' ), self::META_WORK_INSTRUCTIONS )
+						->instructions( _x( 'Use this field to add instructions or notes inside the backend of an article. This field is not shown publicly on the front-end.', 'Fields', 'fdmg-labels-admin' ) ),
 				),
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),
