@@ -1,9 +1,7 @@
 <div class="container">
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-3 sm:gap-4">
-			{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
-				{% include 'partials/components/header/compact-header-menu.twig' %}
-			{% endif %}
+			{% include 'partials/components/header/compact-header-menu.twig' %}
 			<div>
 				{% include 'partials/components/header/logo.twig' with {
 					use_compact_header: true,

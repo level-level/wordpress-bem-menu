@@ -8,12 +8,11 @@ use FDMGLabels\FeatureManager;
 
 class Navigation {
 
-	public const PRIMARY_NAV   = 'primary_navigation';
-	public const ABOUT_NAV     = 'about_navigation';
-	public const GENERAL_NAV   = 'general_navigation';
-	public const SERVICES_NAV  = 'services_navigation';
-	public const FDMG_NAV      = 'fdmg_navigation';
-	public const SECONDARY_NAV = 'secondary_nav';
+	public const PRIMARY_NAV  = 'primary_navigation';
+	public const ABOUT_NAV    = 'about_navigation';
+	public const GENERAL_NAV  = 'general_navigation';
+	public const SERVICES_NAV = 'services_navigation';
+	public const FDMG_NAV     = 'fdmg_navigation';
 
 	public const FIELD_GROUP          = 'navigation';
 	public const NAVIGATION_META_ICON = 'navigation_meta_icon';
@@ -50,14 +49,6 @@ class Navigation {
 				self::FDMG_NAV     => _x( 'FDMG navigation', 'Navigation', 'fdmg-labels-admin' ),
 			)
 		);
-
-		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_COMPACT_HEADER ) ) {
-			register_nav_menus(
-				array(
-					self::SECONDARY_NAV => _x( 'Secondary navigation', 'Navigation', 'fdmg-labels-admin' ),
-				)
-			);
-		}
 	}
 
 	public function get_menu( string $theme_location, string $menu_class, int $depth = 0, bool $show_icons = false ): string {
