@@ -29,7 +29,7 @@ class Post {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Post', 'Fields', 'fdmg-labels-admin' ),
+				'title'    => _x( 'Article', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
 						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
