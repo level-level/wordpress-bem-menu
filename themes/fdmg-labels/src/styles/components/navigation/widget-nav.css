@@ -1,0 +1,26 @@
+.widget-nav {
+	@apply font-body flex flex-col;
+}
+
+.widget-nav__item {
+	@apply block;
+}
+
+.widget-nav__item--active .widget-nav__link {
+	@apply text-base-50 dark:text-base-50 dark:bg-base-300;
+}
+
+.widget-nav__link {
+	@apply text-base inline-flex text-base-100 no-underline font-body-bold;
+	@apply sm:dark:text-base-50;
+	@apply hocus:underline;
+	@apply focus:outline-base-50 sm:text-md py-1;
+}
+
+.sidebar-nav-sub__link {
+	@apply focus:outline-base-50;
+}
+
+.widget-nav__item--active .widget-nav__link {
+	@apply underline;
+}

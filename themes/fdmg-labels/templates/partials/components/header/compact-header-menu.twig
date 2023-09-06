@@ -42,18 +42,16 @@
 						mainClass: 'sidebar-nav',
 					} %}
 
-					<div class="border-b border-secondary-600 dark:border-base-400">
-						<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav" data-config="{{ config|json_encode() }}">
-							{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'sidebar-nav', 0, true)|raw }}
-						</nav>
-					</div>
-
-					{% if has_nav_menu(constant('SECONDARY_NAV', navigation)) %}
+					{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
 						<div class="border-b border-secondary-600 dark:border-base-400">
-							<nav>
-								{{ navigation.get_menu(constant('SECONDARY_NAV', navigation), 'sidebar-nav-small', 1)|raw }}
+							<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav" data-config="{{ config|json_encode() }}">
+								{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'sidebar-nav', 0, true)|raw }}
 							</nav>
 						</div>
+					{% endif %}
+
+					{% if is_active_sidebar('widget-area-sidebar') %}
+						{{ sidebar.get_widgetarea('widget-area-sidebar')|raw }}
 					{% endif %}
 				</div>
 			</div>
