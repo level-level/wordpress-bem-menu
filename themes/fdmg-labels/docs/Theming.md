@@ -6,7 +6,7 @@ The styling for the individual FDMG labels are implemented with a single class o
 | ------------------------- | ------------------------------------------------------- |
 | -                         | The default styling which is used for `Impact-investor` |
 | `theme-energeia`          | The styling for `Energeia`                              |
-| `theme-pensioen-pro`                | The styling for `Pensioen pro`                          |
+| `theme-pensioen-pro`      | The styling for `Pensioen pro`                          |
 
 ## Color variables
 
@@ -40,7 +40,8 @@ These can be combined with the dark variant as well. See example below.
 		dark:bg-primary-300
 		theme-energeia:bg-[red]
 		theme-energeia:dark:bg-[blue]
-">
+"
+>
 	<!-- bg-primary represents the default theme which is Impact Investor -->
 	<!-- dark: represents the darkmode styling -->
 	<!-- theme-energeia: and theme-pensioen-pro: represents specific themes -->

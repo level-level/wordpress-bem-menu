@@ -22,7 +22,7 @@
 .primary-nav__item--parent:focus-within .primary-nav__link,
 .primary-nav__item--parent:focus-within .primary-nav__arrow,
 .primary-nav__item--parent:hover .primary-nav__link,
-.primary-nav__item--parent:hover .primary-nav__arrow  {
+.primary-nav__item--parent:hover .primary-nav__arrow {
 	@apply text-base-50 sm:text-base-50 compact-header:text-base-800 compact-header:dark:text-base-50;
 }
 
