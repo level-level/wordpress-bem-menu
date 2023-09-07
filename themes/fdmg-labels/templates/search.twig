@@ -77,6 +77,7 @@
 								url: author.get_permalink(),
 							}),
 							useH3: true,
+							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 						} %}
 					</li>
 				{% endfor %}
