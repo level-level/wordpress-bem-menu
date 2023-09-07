@@ -4418,15 +4418,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.4",
+            "version": "2.6.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.4"
+                "reference": "tags/2.6.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
