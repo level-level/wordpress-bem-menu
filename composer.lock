@@ -1193,11 +1193,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.12",
+            "version": "2.7.13",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.12",
-                "shasum": "46d0b375d0cc08608d111e8ffead1fd668386461",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.13",
+                "shasum": "6098d552b24eb70b9bf65939820e42e6b202e66d",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4343,15 +4343,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.18",
+            "version": "1.18.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.18"
+                "reference": "tags/1.18.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.18.zip",
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.18.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4368,15 +4368,15 @@
         },
         {
             "name": "wpackagist-plugin/elasticpress",
-            "version": "4.7.0",
+            "version": "4.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elasticpress/",
-                "reference": "tags/4.7.0"
+                "reference": "tags/4.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elasticpress.4.7.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/elasticpress.4.7.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4393,15 +4393,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.0.38",
+            "version": "1.0.39",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.0.38"
+                "reference": "tags/1.0.39"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.38.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.0.39.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4418,15 +4418,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.4",
+            "version": "2.6.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.4"
+                "reference": "tags/2.6.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4468,15 +4468,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.5.9.3",
+            "version": "2.5.9.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.5.9.3"
+                "reference": "tags/2.5.9.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.9.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.5.9.4.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
