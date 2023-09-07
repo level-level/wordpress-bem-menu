@@ -4368,15 +4368,15 @@
         },
         {
             "name": "wpackagist-plugin/elasticpress",
-            "version": "4.7.0",
+            "version": "4.7.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elasticpress/",
-                "reference": "tags/4.7.0"
+                "reference": "tags/4.7.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elasticpress.4.7.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/elasticpress.4.7.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
