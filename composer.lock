@@ -1193,11 +1193,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.12",
+            "version": "2.7.13",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.12",
-                "shasum": "46d0b375d0cc08608d111e8ffead1fd668386461",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.13",
+                "shasum": "6098d552b24eb70b9bf65939820e42e6b202e66d",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
