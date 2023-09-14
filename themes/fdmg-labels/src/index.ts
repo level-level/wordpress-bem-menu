@@ -1,11 +1,9 @@
 import './styles/main.scss';
 import './scripts/main';
 
-// Import images used for .twig templates
-import './images/logo-impact-investor.svg';
-import './images/logo-impact-investor-white.svg';
-import './images/logo-impact-investor-darkmode.svg';
-
-import './images/logo-energeia.svg';
-import './images/logo-energeia-white.svg';
-import './images/logo-pensioen-pro.svg';
+import './styles/components/navigation/primary-nav.css';
+import './styles/components/navigation/sidebar-nav.css';
+import './styles/components/navigation/widget-nav.css';
+import './styles/components/navigation/footer-nav.css';
+import './styles/layout/section.css';
+import './styles/layout/container.css';

@@ -1,22 +1,29 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFWidgets\ArticlesWithMostComments;
+use Clarkson\Theme\ACFWidgets\FeaturedItem;
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
 use Clarkson\Theme\ACFWidgets\LatestArticles;
+use Clarkson\Theme\ACFWidgets\LatestComments;
+use Clarkson\Theme\ACFWidgets\Menu;
 use Clarkson\Theme\ACFWidgets\Newsletter;
 use Clarkson\Theme\ACFWidgets\Vacancies;
 use Clarkson_Core\Gutenberg\Block_Manager;
-use Gutenberg\Blocks\base_block;
 use WP_Block_Type;
 use WP_Block_Type_Registry;
 
 class ACFWidgets {
 
 	protected const ACF_WIDGETS = array(
+		FeaturedItem::class,
 		Vacancies::class,
 		LatestAndMostReadPosts::class,
 		Newsletter::class,
 		LatestArticles::class,
+		ArticlesWithMostComments::class,
+		LatestComments::class,
+		Menu::class,
 	);
 
 	public function register_hooks(): void {

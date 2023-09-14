@@ -1,19 +1,36 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
-{% set terms = object.get_terms('category') %}
+
+{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
+	{% set categories = object.get_terms('category') %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) %}
+	{% set genres = object.get_terms('fdmg_genre') %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_SECTION_TAXONOMY', feature_manager)) %}
+	{% set sections = object.get_terms('fdmg_section') %}
+{% endif %}
 
 {% block content %}
 	<article class="section">
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
 			title: object.get_title(),
-			terms: terms ? terms|map(term => {
-				name: term.get_name(),
-				url: term.get_permalink(),
+			categories: categories ? categories|map(category => {
+				name: category.get_name(),
+				url: category.get_permalink(),
 			}),
-			date: object.get_date_i18n(get_option('date_format')),
-			date_full: object.get_date_i18n('F j Y'),
-			datetime: object.get_date_i18n('Y-m-d'),
+			genres: genres ? genres|map(genre => {
+				name: genre.get_name(),
+				url: genre.get_permalink(),
+			}),
+			sections: sections ? sections|map(section => {
+				name: section.get_name(),
+				url: section.get_permalink(),
+			}),
+			date: object.get_publish_date(),
 			authors: authors ? authors|map(author => {
 				name: author.get_title(),
 				location: author.get_location(),
@@ -38,23 +55,5 @@
 {% block offset %}
 	{% include 'styleguide/components/social-share.twig' with {
 		sticky: true,
-		socials: [
-			{
-				title: 'Twitter',
-				type: 'twitter',
-			},
-			{
-				title: 'Facebook',
-				type: 'facebook',
-			},
-			{
-				title: 'LinkedIn',
-				type: 'linkedin',
-			},
-			{
-				title: 'E-mail',
-				type: 'email',
-			},
-		]
 	} %}
 {% endblock %}

@@ -20,7 +20,7 @@ class MetaBoxes {
 
 		add_meta_box(
 			'fdmg-labels-selligent-log',
-			_x( 'Selligent information', 'Selligent', 'fdmg-labels' ),
+			_x( 'Selligent information', 'Selligent', 'fdmg-labels-admin' ),
 			array( $this, 'render_newsletter_meta_box' ),
 			null,
 			'side',
@@ -40,7 +40,7 @@ class MetaBoxes {
 
 	public function add_gravityforms_entry_meta_box( array $boxes, array $entry, array $form ): array {
 		$boxes['fdmg_labels_selligent_log'] = array(
-			'title'    => _x( 'Selligent information', 'Selligent', 'fdmg-labels' ),
+			'title'    => _x( 'Selligent information', 'Selligent', 'fdmg-labels-admin' ),
 			'callback' => array( $this, 'render_gravityforms_entry_meta_box' ),
 			'context'  => 'side',
 		);

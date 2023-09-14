@@ -1,9 +1,9 @@
-<div class="teaser-partner">
-	<div class="teaser-partner__inner">
+<div data-component="teaser-partner" class="relative flex flex-col">
+	<div class="p-3 bg-secondary-100 dark:bg-base-600 sm:p-6">
 		<div class="flex flex-wrap gap-3 sm:flex-nowrap">
 
 			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
-				<div class="teaser-partner__thumbnail">
+				<div class="max-w-[120px] mb-3 bg-transparent p-3 dark:bg-base-100 sm:mb-0">
 					{% if image %}
 						{{ image|raw }}
 					{% endif %}
@@ -12,19 +12,21 @@
 
 			<div class="basis-full sm:basis-auto">
 				<div class="flex flex-col gap-3">
-					<h3 class="teaser-partner__title">
+					<h3 class="font-body-bold text-md text-base-500 dark:text-base-100">
 						{{ title|raw }}
 					</h3>
 
 					{% if excerpt %}
-						{{ excerpt|raw }}
+						<div class="text-base">
+							{{ excerpt|raw }}
+						</div>
 					{% endif %}
 
 					<div>
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: _x('View partner', 'Block', 'fdmg-labels'),
 							url: url,
-							class: 'btn--tertiary',
+							class: 'btn-tertiary',
 							aria_label: _x('View partner, %s', 'Screen reader text', 'fdmg-labels')|format(title),
 							icon: 'arrow-right',
 							icon_left: true,

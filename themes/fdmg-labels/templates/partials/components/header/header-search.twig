@@ -1,22 +1,27 @@
+{% set config = {
+	trigger: '.js-header-search',
+	target: '.js-header-dropdown',
+	focusInput: true,
+} %}
+
 <div
-	class="header-search"
+	data-component="header-search"
+	class="flex"
 	data-module="header-search"
-	data-config='{
-		"trigger": ".js-header-search",
-		"target": ".header-search__dropdown",
-		"focusInput": true
-}'>
+	data-config="{{ config|json_encode() }}"
+>
+
 	{% include 'styleguide/components/buttons/button-element.twig' with {
-		text: _x('Search', 'Search', 'fdmg-labels'),
+		text: show_button_label ? _x('Search', 'Search', 'fdmg-labels') : '',
 		aria_expanded_support: true,
-		class: 'btn--header js-header-search js-header-search-open',
+		class: 'btn-header js-header-search js-header-search-open',
 		aria_label: _x('Open search', 'Search', 'fdmg-labels'),
 		aria_expanded_text: _x('Close search', 'Search', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open search', 'Search', 'fdmg-labels'),
 		icon: 'search',
 		icon_left: true,
 	} %}
-	<div class="header-search__dropdown" aria-hidden="true">
+	<div class="flex items-center absolute top-0 left-0 right-0 p-0 h-[calc(theme(space.header-height)-theme(space.menu-height))] bg-secondary-700 z-10 visible opacity-100 transition-all dark:bg-base-800 compact-header:h-full aria-hidden:invisible aria-hidden:opacity-0 js-header-dropdown" aria-hidden="true">
 		<div class="container">
 			<div class="flex items-center gap-3 flex-nowrap">
 				<div class="grow">
@@ -25,7 +30,7 @@
 				<div>
 					{% include 'styleguide/components/buttons/button-element.twig' with {
 						text: '',
-						class: 'btn--secondary btn--search js-header-search',
+						class: 'btn-secondary !text-base-50 focus:outline-base-50 btn-icon:text-lg !p-[10px] js-header-search hocus:dark:!text-primary-300',
 						aria_label: _x('Close search', 'Search', 'fdmg-labels'),
 						icon: 'close',
 					} %}
@@ -33,5 +38,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="header-search__backdrop"></div>
+	<div data-component="backdrop" aria-hidden="true" class="fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[2] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0 js-header-search-backdrop"></div>
 </div>

@@ -1,8 +1,8 @@
 {% set random_id = uniqid('searchbar-') %}
-<form class="search-component search-component--inline" method="get" action="{{ get_home_url() }}" role="search">
+<form data-component="search-header" class="relative" method="get" action="{{ get_home_url() }}" role="search">
 	<div class="flex items-center flex-nowrap">
 		<div class="grow">
-			<label for="{{ random_id }}" class="screen-reader-text">{{ _x('Search', 'Screen reader text', 'fdmg-labels') }}</label>
+			<label for="{{ random_id }}" class="sr-only">{{ _x('Search', 'Screen reader text', 'fdmg-labels') }}</label>
 			<input
 				type="search"
 				name="s"
@@ -12,12 +12,13 @@
 				autocomplete="off"
 				autocapitalize="off"
 				spellcheck="false"
+				class="bg-secondary-700 text-secondary-50 border border-transparent pr-[44px] dark:bg-base-500 dark:text-base-50 dark:border-base-200 focus:outline-base-50 placeholder:text-base-50 sm:bg-base-50 sm:text-base-800"
 			>
 		</div>
-		<div class="search-component__button">
+		<div class="absolute top-0 right-0 h-full dark:btn-icon:text-base-50 sm:btn-icon:text-base-700">
 			{% include 'styleguide/components/buttons/button-element.twig' with {
 				text: '',
-				class: 'btn--search',
+				class: 'focus:outline-base-50 !p-[10px] btn-icon:text-lg btn-icon:hocus:dark:text-primary-300',
 				aria_label: _x('Search', 'Search', 'fdmg-labels'),
 				icon: 'search',
 				icon_left: true,

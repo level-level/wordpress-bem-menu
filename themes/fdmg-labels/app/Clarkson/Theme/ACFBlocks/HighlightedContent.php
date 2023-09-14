@@ -24,11 +24,15 @@ class HighlightedContent {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Highlighted content', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays content in a box to make it stand out more.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Highlighted content', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays content in a box to make it stand out more.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'text-page',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'highlight', 'summary', 'in short', 'content' ),
+				'keywords'    => array(
+					_x( 'highlight', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'summary', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'in short', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -49,10 +53,10 @@ class HighlightedContent {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Highlighted content', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Highlighted content', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Use this title to overwrite the default title: \'In short\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
-					WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels' ), self::BLOCK_META_CONTENT )
+					Text::make( _x( 'Use this title to overwrite the default title: \'In short\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+					WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
 						->required()
 						->tabs( 'visual' )
 						->toolbar( 'basic' )

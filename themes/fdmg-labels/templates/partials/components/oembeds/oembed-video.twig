@@ -1,18 +1,16 @@
-<div class="oembed-video">
+<div data-component="oembed-video" data-oembed="video" class="cursor-pointer aspect-video">
 	{% if thumbnail %}
-		<img class="oembed-video__thumbnail" src="{{ thumbnail }}" alt="" loading="lazy">
+		<img data-oembed="thumbnail" class="absolute object-cover w-full h-full" src="{{ thumbnail }}" alt="" loading="lazy">
 	{% endif %}
-	<div class="oembed-video__content">
+	<div class="w-full h-full iframe:absolute iframe:inset-0 iframe:w-full iframe:h-full">
 		{{ html|raw }}
 
-		{% if thumbnail %}
-			<div class="oembed-video__button">
-				{% include 'styleguide/components/buttons/button-element.twig' with {
-					class: 'btn--play btn--js-video-play',
-					aria_label: _x('Play video', 'OEmbed', 'fdmg-labels'),
-					icon: 'play',
-				} %}
-			</div>
-		{% endif %}
+		<div class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				class: 'btn-play btn--js-video-play',
+				aria_label: _x('Play video', 'OEmbed', 'fdmg-labels'),
+				icon: 'play',
+			} %}
+		</div>
 	</div>
 </div>

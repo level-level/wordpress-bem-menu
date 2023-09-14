@@ -1,29 +1,59 @@
-<div class="teaser-post-header">
-	<div class="teaser-post-header__item teaser-post-header__item--order-2">
-		<{{ useH3 ? 'h3' : 'h2' }} class="teaser-post__title">
-			<a href="{{ url }}" class="teaser-post__link">
+{% set title_style = 'text-xl' %}
+{% if large %}
+	{% set title_style = 'text-md sm:text-2xl' %}
+{% elseif small %}
+	{% set title_style = 'text-base sm:text-lg' %}
+{% elseif wide %}
+	{% set title_style = 'text-md sm:text-lg' %}
+{% endif %}
+
+<div class="flex flex-col">
+	<div class="order-2 mt-2 sm:mt-3">
+		<{{ useH3 ? 'h3' : 'h2' }} class="{{ title_style }}">
+			<a href="{{ url }}" class="no-underline transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800">
 				{{ title|raw }}
 			</a>
 		</{{ useH3 ? 'h3' : 'h2' }}>
 	</div>
 
-	{% if terms or date and datetime and date_full %}
-		<div class="teaser-post-header__item">
+	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
+		<div data-component="terms" class="text-base">
 			<div class="flex items-center justify-between flex-nowrap">
 
-				{% if terms %}
-					<div>
-						{% include 'styleguide/components/post-terms.twig' with {
-							terms: terms,
-						} %}
+				{% if categories or genres or sections %}
+					<div class="flex gap-1">
+						{% if categories %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: categories,
+								label: _x('category', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
+
+						{% if genres %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: genres,
+								label: _x('genre', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
+
+						{% if genres and sections %}
+							<div class="leading-none text-md" aria-hidden="true">•</div>
+						{% endif %}
+
+						{% if sections %}
+							{% include 'styleguide/components/post-terms.twig' with {
+								terms: sections,
+								label: _x('section', 'Screen reader text', 'fdmg-labels'),
+							} %}
+						{% endif %}
 					</div>
 				{% endif %}
 
-				{% if date and datetime and date_full %}
+				{% if date.date and date.datetime and date.date_full %}
 					<div class="shrink-0">
-						<div class="teaser-post__date">
-							<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						<div class="text-sm text-secondary-700 dark:text-base-100 sm:text-base">
+							<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true">{{ date.date|raw }}</time>
 						</div>
 					</div>
 				{% endif %}

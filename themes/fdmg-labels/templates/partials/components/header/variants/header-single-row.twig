@@ -1,0 +1,45 @@
+<div class="container">
+	<div class="flex items-center justify-between">
+		<div class="flex items-center gap-3 sm:gap-4">
+			{% include 'partials/components/header/compact-header-menu.twig' %}
+			<div>
+				{% include 'partials/components/header/logo.twig' with {
+					use_compact_header: true,
+				} %}
+			</div>
+
+			{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
+				<div class="hidden lg:block">
+					{% include 'partials/components/header/header-menu.twig' %}
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="flex items-center gap-2 flex-nowrap">
+			<ul class="flex items-center gap-2">
+				<li>
+					{% include 'partials/components/header/header-profile.twig' %}
+				</li>
+
+				<li>
+					{% include 'partials/components/header/header-search.twig' with {
+						show_button_label: false,
+					} %}
+				</li>
+
+				{% set subscribe = options.subscribe_button %}
+				{% if subscribe.url %}
+					<li class="hidden sm:block">
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
+							url: subscribe.url,
+							class: 'btn-primary theme-energeia:hocus:text-base-50 theme-pensioen-pro:hocus:text-base-50 focus:outline-base-50 theme-pensioen-pro:bg-secondary-400 theme-pensioen-pro:border-secondary-400 theme-pensioen-pro:text-base-600 theme-pensioen-pro:hocus:bg-transparent theme-pensioen-pro:dark:bg-primary-300 theme-pensioen-pro:dark:border-primary-300',
+							is_external: subscribe.target ? true,
+						} %}
+					</li>
+				{% endif %}
+
+			</ul>
+		</div>
+	</div>
+</div>

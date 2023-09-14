@@ -15,6 +15,7 @@
 <!--- your change affects other areas of the code, etc. -->
 - [ ] This change is covered by an automated (integration) test.
 - [ ] I have added/updated a JavaScript test.
+- [ ] This change has been tested for the following a11y basics: [A11y test criteria](https://intranet.level-level.net/wiki/a11y-testen-van-je-code/)
 
 Steps to show the feature, or reproduce the bug:
 1. ...

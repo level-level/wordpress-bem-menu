@@ -22,7 +22,12 @@ class Gutenberg {
 			'editor-font-sizes',
 			array(
 				array(
-					'name' => _x( 'Intro', 'Block', 'fdmg-labels' ),
+					'name' => esc_attr_x( 'Normal', 'Block', 'fdmg-labels-admin' ),
+					'size' => 20,
+					'slug' => 'regular',
+				),
+				array(
+					'name' => _x( 'Intro', 'Block', 'fdmg-labels-admin' ),
 					'size' => 28,
 					'slug' => 'intro',
 				),

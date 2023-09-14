@@ -36,4 +36,17 @@ class base_object extends Clarkson_Object {
 
 		return null;
 	}
+
+	/**
+	 * @return array<string,string>
+	 */
+	public function get_publish_date( string $date_format = '' ): array {
+		$date_format = $date_format ?: get_option( 'date_format' );
+
+		return array(
+			'date'      => $this->get_date_i18n( $date_format ),
+			'datetime'  => $this->get_date_i18n( 'Y-m-d' ),
+			'date_full' => $this->get_date_i18n( 'F j Y' ),
+		);
+	}
 }

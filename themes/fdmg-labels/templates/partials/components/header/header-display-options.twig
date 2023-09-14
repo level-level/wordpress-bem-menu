@@ -1,31 +1,17 @@
 {% set radio_id = uniqid('radio') %}
 
-<div class="dark-mode" data-module="display-options">
-	<div class="dark-mode__title">
-		{{ _x('Display preferences', 'DarkMode', 'fdmg-labels') }}
-	</div>
-	<div class="dark-mode__dropdown">
-		<div class="dark-mode__inner">
-			<ul class="flex flex-col gap-1" data-module="theme-selection">
-				<li>
-					<input
-						type="radio"
-						name="theme-choice-{{ radio_id }}"
-						value="system"
-						id="theme-system-{{ radio_id }}"
-						checked
-					/>
-					<label for="theme-system-{{ radio_id }}">{{ _x('System (device settings)', 'DarkMode', 'fdmg-labels') }}</label>
-				</li>
-				<li>
-					<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light-{{ radio_id }}" />
-					<label for="theme-light-{{ radio_id }}">{{ _x('Light theme', 'DarkMode', 'fdmg-labels') }}</label>
-				</li>
-				<li>
-					<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="dark-mode-{{ radio_id }}" />
-					<label for="dark-mode-{{ radio_id }}">{{ _x('Dark theme', 'DarkMode', 'fdmg-labels') }}</label>
-				</li>
-			</ul>
-		</div>
+<div data-module="display-options">
+	<p>{{ _x('Display preferences', 'DarkMode', 'fdmg-labels') }}</p>
+	<div class="mt-3">
+		<ul class="flex flex-col gap-2" data-module="theme-selection">
+			<li>
+				<input type="radio" name="theme-choice-{{ radio_id }}" value="light" id="theme-light-{{ radio_id }}" />
+				<label for="theme-light-{{ radio_id }}">{{ _x('Light theme', 'DarkMode', 'fdmg-labels') }}</label>
+			</li>
+			<li>
+				<input type="radio" name="theme-choice-{{ radio_id }}" value="dark" id="dark-mode-{{ radio_id }}" />
+				<label for="dark-mode-{{ radio_id }}">{{ _x('Dark theme', 'DarkMode', 'fdmg-labels') }}</label>
+			</li>
+		</ul>
 	</div>
 </div>

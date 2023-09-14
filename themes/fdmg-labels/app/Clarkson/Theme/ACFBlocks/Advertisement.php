@@ -22,11 +22,13 @@ class Advertisement {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Advertisement', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays an advertisement.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Advertisement', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays an advertisement.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'schedule',
 				'align'       => 'full', // full, wide, left, center, right
-				'keywords'    => array( 'advertisement', 'ad' ),
+				'keywords'    => array(
+					_x( 'advertisement', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'full' ),
 					'multiple' => true,
@@ -48,10 +50,10 @@ class Advertisement {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Advertisement', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Advertisement', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Select::make( _x( 'Advertisement slot', 'Fields', 'fdmg-labels' ), self::BLOCK_META_ADVERTISEMENT_SLOT )
-						->instructions( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels' ) )
+					Select::make( _x( 'Advertisement slot', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_ADVERTISEMENT_SLOT )
+						->instructions( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels-admin' ) )
 						->choices(
 							array_combine(
 								$ad_slots,

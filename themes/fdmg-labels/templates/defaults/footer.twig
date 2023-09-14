@@ -1,92 +1,77 @@
 	<footer>
-		<div class="footer">
+		<div class="relative font-normal py-9 bg-secondary-300 dark:bg-base-400 theme-energeia:bg-secondary-200 theme-pensioen-pro:bg-secondary-200 lg:py-12">
 			<div class="container">
-				<div class="footer__brand">
+				<div class="mb-6 max-w-[224px] sm:mb-12 lg:max-w-none">
 					<a
-						class="brand-footer"
-						href="{{ esc_url(home_url('/')) }}"
-						aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
+							data-component="Logo"
+							href="{{ esc_url(home_url('/')) }}"
+							aria-label="{{ _x('%s logo, go to the homepage', 'Screen reader text', 'fdmg-labels')|format(get_bloginfo('name'))|raw }}"
 						>
-						<img
-							src="{{ assets.get_assets_directory_url() }}/images/logo-impact-investor-white.svg"
-							width="284"
-							height="50"
-							alt=""
-						/>
-					</a>
+							<span
+								class="block bg-no-repeat bg-contain bg-logo-impact-investor-white theme-energeia:bg-logo-energeia theme-energeia:dark:bg-logo-energeia-darkmode theme-pensioen-pro:bg-logo-pensioen-pro theme-pensioen-pro:dark:bg-logo-pensioen-pro-darkmode theme-pensioen-pro:h-[34px] theme-energeia:h-[40px] theme-energeia:w-[141px] theme-pensioen-pro:w-[167px] w-[224px] h-[40px]"
+							>
+							</span>
+						</a>
+
 				</div>
 			</div>
 			<nav aria-labelledby="footer-heading">
-				<h2 class="screen-reader-text" id="footer-heading">{{ _x('Important links', 'Screen reader text', 'fdmg-labels') }}</h2>
+				<h2 class="sr-only" id="footer-heading">{{ _x('Important links', 'Screen reader text', 'fdmg-labels') }}</h2>
 				<div class="container">
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
-						{% if has_nav_menu('about_navigation') %}
+						{% if has_nav_menu(constant('ABOUT_NAV', navigation)) %}
 							<div>
-								<h3 class="footer__heading">{{ wp_get_nav_menu_name('about_navigation')|raw }}</h3>
-								{{ bem_menu('about_navigation', 'footer-nav') }}
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('ABOUT_NAV', navigation)) }}</h3>
+								{{ navigation.get_menu(constant('ABOUT_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
-						{% if has_nav_menu('general_navigation') %}
+						{% if has_nav_menu(constant('GENERAL_NAV', navigation)) %}
 							<div>
-								<h3 class="footer__heading">{{ wp_get_nav_menu_name('general_navigation')|raw }}</h3>
-								{{ bem_menu('general_navigation', 'footer-nav') }}
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('GENERAL_NAV', navigation)) }}</h3>
+								{{ navigation.get_menu(constant('GENERAL_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
-						{% if has_nav_menu('services_navigation') %}
+						{% if has_nav_menu(constant('SERVICES_NAV', navigation)) %}
 							<div>
-								<h3 class="footer__heading">{{ wp_get_nav_menu_name('services_navigation')|raw }}</h3>
-								{{ bem_menu('services_navigation', 'footer-nav') }}
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('SERVICES_NAV', navigation)) }}</h3>
+								{{ navigation.get_menu(constant('SERVICES_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
-						{% if has_nav_menu('fdmg_navigation') %}
+						{% if has_nav_menu(constant('FDMG_NAV', navigation)) %}
 							<div>
-								<h3 class="footer__heading">{{ wp_get_nav_menu_name('fdmg_navigation')|raw }}</h3>
-								{{ bem_menu('fdmg_navigation', 'footer-nav') }}
+								<h3 class="mb-3 text-lg font-body-bold text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('FDMG_NAV', navigation)) }}</h3>
+								{{ navigation.get_menu(constant('FDMG_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
 					</div>
 
 					{% if options.enable_sourcepoint_cmp %}
-						<button
-							class="btn btn--link"
-							onclick="window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes')"
-							aria-label="{{ _x('Privacy Settings, open cookie preference dialog', 'Screen reader text', 'fdmg-labels') }}"
-						>
-							{{ _x('Privacy Settings', 'Block', 'fdmg-labels') }}
-						</button>
+						<div class="mt-4">
+							<button
+								class="btn btn-link !text-secondary-700 dark:!text-base-50 hocus:underline"
+								onclick="window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes')"
+								aria-label="{{ _x('Privacy Settings, open cookie preference dialog', 'Screen reader text', 'fdmg-labels') }}"
+							>
+								{{ _x('Privacy Settings', 'Block', 'fdmg-labels') }}
+							</button>
+						</div>
 					{% endif %}
 				</div>
 			</nav>
 		</div>
-		<div class="footer-socials">
-			<div class="container">
-				<h3 class="footer-socials__heading">{{ _x('Follow us on social media', 'Social', 'fdmg-labels') }}</h3>
-				{% include 'styleguide/components/social-media-links.twig' with {
-					socials: [
-						{
-							title: 'Facebook',
-							url: socials.facebook_site,
-							icon: 'facebook',
-						},
-						{
-							title: 'Twitter',
-							url: socials.twitter ? 'https://twitter.com/' ~ socials.twitter_site,
-							icon: 'twitter',
-						},
-						{
-							title: 'LinkedIn',
-							url: socials.linkedin_url,
-							icon: 'linkedin',
-						},
-						{
-							title: 'YouTube',
-							url: socials.youtube_url,
-							icon: 'youtube',
-						}
-					]
-				} %}
+
+		{% set socials = options.socials %}
+		{% if socials %}
+			<div class="py-6 border-t border-secondary-400 bg-secondary-300 dark:border-base-800 dark:bg-base-400 theme-energeia:bg-secondary-200 theme-pensioen-pro:bg-secondary-200 lg:py-9">
+				<div class="container">
+					<h3 class="mb-3 font-body-bold text-md text-secondary-700 dark:text-primary-300 lg:text-lg">{{ _x('Follow us on social media', 'Social', 'fdmg-labels') }}</h3>
+
+					{% include 'styleguide/components/social-media-links.twig' with {
+						socials: socials,
+					} %}
+				</div>
 			</div>
-		</div>
+		{% endif %}
 
 	</footer>
 {{ wp_footer() }}

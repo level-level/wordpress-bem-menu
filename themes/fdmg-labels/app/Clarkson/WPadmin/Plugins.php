@@ -59,7 +59,7 @@ class Plugins {
 			array(
 				'id'    => 'gform_submit_button_' . $form['id'],
 				'text'  => $form['button']['text'],
-				'class' => 'btn--primary',
+				'class' => 'btn-primary',
 			),
 			true
 		);

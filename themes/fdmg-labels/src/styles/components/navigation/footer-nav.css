@@ -1,0 +1,9 @@
+.footer-nav {
+	@apply flex flex-col gap-[10px];
+}
+
+.footer-nav__link {
+	@apply font-body text-base text-secondary-700 block no-underline;
+	@apply dark:text-base-100;
+	@apply hocus:underline;
+}

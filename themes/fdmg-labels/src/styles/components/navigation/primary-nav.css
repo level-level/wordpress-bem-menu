@@ -1,0 +1,75 @@
+.primary-nav {
+	@apply font-body flex flex-col sm:flex-row;
+}
+
+.primary-nav__item {
+	@apply block;
+}
+
+.primary-nav__item--parent {
+	@apply relative hocus:bg-secondary-500;
+}
+
+.primary-nav__item--parent .primary-nav__link {
+	@apply pr-[calc(theme(space.6)+10px)];
+}
+
+.primary-nav__item--parent:focus-within,
+.primary-nav__item--parent:hover {
+	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 text-base-50 compact-header:bg-secondary-400 compact-header:rounded-[3px];
+}
+
+.primary-nav__item--parent:focus-within .primary-nav__link,
+.primary-nav__item--parent:focus-within .primary-nav__arrow,
+.primary-nav__item--parent:hover .primary-nav__link,
+.primary-nav__item--parent:hover .primary-nav__arrow {
+	@apply text-base-50 sm:text-base-50 compact-header:text-base-800 compact-header:dark:text-base-50;
+}
+
+.primary-nav__item--active .primary-nav__link {
+	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50 compact-header:dark:bg-base-300;
+}
+
+.primary-nav__item--active .primary-nav__arrow {
+	@apply text-base-50;
+	@apply compact-header:text-base-800 compact-header:dark:text-base-50;
+}
+
+.primary-nav__link {
+	@apply font-body-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
+	@apply hocus:bg-secondary-500 hocus:text-base-50 hocus:dark:bg-base-300 hocus:dark:text-base-100;
+	@apply sm:text-md sm:py-0 sm:px-[18px] sm:border-b-0 sm:h-[theme(space.menu-height)] sm:text-secondary-700 sm:transition-colors;
+	@apply sm:dark:text-base-50;
+	@apply compact-header:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:hocus:text-base-800 compact-header:dark:hocus:bg-base-300 compact-header:dark:hocus:text-base-50 compact-header:rounded-[3px];
+	@apply compact-header:focus:outline-base-50;
+}
+
+.primary-nav__arrow {
+	@apply absolute top-0 right-0 text-sm bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
+	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
+	@apply sm:p-0 sm:right-4 sm:text-secondary-700 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
+	@apply compact-header:text-base-50;
+	@apply compact-header:focus:outline-base-50;
+}
+
+.primary-nav-sub {
+	@apply relative bg-secondary-700 p-[18px] block dark:bg-base-400;
+	@apply sm:absolute sm:top-[theme(space.menu-height)] sm:left-0 sm:min-w-[300px] sm:border-b-2 sm:border-primary sm:z-[2] sm:bg-base-50 sm:py-[calc(theme(space.6)-5px)] sm:px-6 sm:shadow-[0,2px,4px,rgb(115,166,191,0.15)] sm:block sm:visible sm:opacity-100 sm:dark:bg-base-400;
+	@apply aria-hidden:hidden sm:aria-hidden:invisible sm:aria-hidden:opacity-0;
+}
+
+.primary-nav-sub .primary-nav-sub {
+	@apply sm:left-full sm:top-0;
+}
+
+.primary-nav-sub .primary-nav__arrow {
+	@apply sm:-rotate-90 sm:text-secondary-700 sm:right-[10px] sm:dark:text-base-100;
+}
+
+.primary-nav-sub .primary-nav-sub__link {
+	@apply font-body no-underline text-base-50;
+	@apply hocus:underline hocus:bg-transparent;
+	@apply sm:text-md sm:text-secondary-700 sm:dark:text-base-50 sm:h-auto sm:p-0;
+	@apply sm:hocus:text-secondary-700 sm:hocus:dark:text-base-50;
+	@apply compact-header:text-base;
+}

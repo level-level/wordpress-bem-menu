@@ -1,6 +1,6 @@
 {% if terms %}
-	<span class="screen-reader-text">
-		{{ _x('Posted in category:', 'Screen reader text', 'fdmg-labels') }}
+	<span class="sr-only">
+		{{ _x('Posted in %s:', 'Screen reader text', 'fdmg-labels')|format(label) }}
 	</span>
 	{% include 'styleguide/components/badges/list-badges.twig' with {
 		badges: terms,

@@ -2,25 +2,45 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="align{{ align }}" data-name="{{ block.name }}">
-		<div class="related-news">
-			<h2 class="related-news__title">{{ title|raw }}</h2>
-			<ul class="list-related-news">
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="relative border-b-2 border-secondary-400 bg-secondary-100 dark:bg-base-600 dark:border-transparent">
+
+			<h2 class="font-body-bold text-lg text-primary p-3 border-b border-secondary-400 dark:border-base-800 sm:text-xl sm:py-3 sm:px-6 theme-energeia:text-base-800 dark:text-primary-300">{{ title|raw }}</h2>
+
+			<ul class="py-3">
 				{% for object in objects %}
-					<li class="list-related-news__item">
+					<li class="sm:mx-6">
 
 						{% set image_id = object.get_thumbnail_id() %}
-						{% set terms = object.get_terms('category') %}
+						{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
+							{% set categories = object.get_terms('category') %}
+						{% endif %}
+
+						{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) %}
+							{% set genres = object.get_terms('fdmg_genre') %}
+						{% endif %}
+
+						{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_SECTION_TAXONOMY', feature_manager)) %}
+							{% set sections = object.get_terms('fdmg_section') %}
+						{% endif %}
 
 						{% include 'styleguide/components/teasers/teaser-post-inline.twig' with {
 							image: image_id ? wp_get_attachment_image(image_id, 'medium'),
 							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
-							title: object.get_title(),
+							title: object.get_alternative_title()|default(object.get_title()),
 							url: object.get_permalink(),
-							terms: terms ? terms|map(term => {
-								name: term.get_name(),
+							categories: categories ? categories|map(category => {
+								name: category.get_name(),
+							}),
+							genres: genres ? genres|map(genre => {
+								name: genre.get_name(),
+							}),
+							sections: sections ? sections|map(section => {
+								name: section.get_name(),
 							}),
 							useH3: true,
+							is_last_item: loop.last,
+							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 						} %}
 					</li>
 				{% endfor %}
@@ -28,7 +48,7 @@
 		</div>
 	</div>
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Articles']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Articles', 'Block', 'fdmg-labels-admin')]
 	} %}
 {% endif %}

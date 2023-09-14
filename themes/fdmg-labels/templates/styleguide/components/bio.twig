@@ -1,27 +1,27 @@
-<div class="bio">
-	<div class="bio__inner">
+<div data-component="bio" class="relative text-base font-normal bg-secondary-100 dark:bg-base-600 sm:text-md">
+	<div class="p-3 sm:p-4">
 		<div class="flex flex-col gap-3">
 
 			{% if image %}
-				<div class="bio__thumbnail">
+				<div class="image:rounded-full image:max-w-[80px]">
 					{{ image|raw }}
 				</div>
 			{% endif %}
 
 			{% if logo %}
-				<div class="bio__logo">
+				<div class="pt-3 pb-6 bg-transparent dark:bg-base-50 image:max-w-[200px] image:mx-auto">
 					{{ logo|raw }}
 				</div>
 			{% endif %}
 
 			{% if title %}
-				<h3 class="bio__title">
+				<h3 class="text-base font-body-bold text-primary dark:text-primary-300 sm:text-md">
 					{{ title|raw }}
 				</h3>
 			{% endif %}
 
 			{% if subtitle %}
-				<h3 class="bio__subtitle">
+				<h3 class="text-base font-body-bold text-primary dark:text-primary-300 sm:text-md">
 					{{ subtitle|raw }}
 				</h3>
 			{% endif %}
@@ -33,8 +33,8 @@
 	</div>
 
 	{% if email or linkedin %}
-		<div class="bio__footer">
-			<div class="bio__inner">
+		<div class="border-t border-[rgb(0,0,0,0.1)] dark:border-base-800">
+			<div class="p-3 sm:p-4">
 				<ul class="flex flex-col gap-3">
 
 					{% if email %}
@@ -42,7 +42,7 @@
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('E-mail', 'Block', 'fdmg-labels'),
 								url: 'mailto:' ~ email,
-								class: 'btn--primary btn--full',
+								class: 'btn-primary btn-full',
 								is_external: false,
 								aria_label: _x('E-mail, send %s an e-mail', 'Screen reader text', 'fdmg-labels')|format(title),
 								icon: 'email',
@@ -56,7 +56,7 @@
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('LinkedIn', 'Block', 'fdmg-labels'),
 								url: linkedin,
-								class: 'btn--primary btn--full',
+								class: 'btn-primary btn-full',
 								is_external: false,
 								aria_label: _x('LinkedIn, visit %s\'s LinkedIn profile', 'Screen reader text', 'fdmg-labels')|format(title),
 								icon: 'linkedin',

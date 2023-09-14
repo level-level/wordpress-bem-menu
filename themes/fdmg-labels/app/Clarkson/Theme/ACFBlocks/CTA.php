@@ -32,11 +32,14 @@ class CTA {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Call to Action', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a call to action', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Call to Action', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a call to action', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'megaphone',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'call to action', 'cta' ),
+				'keywords'    => array(
+					_x( 'call to action', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'cta', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -56,27 +59,27 @@ class CTA {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Call to action', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Call to action', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::BLOCK_META_USAGE )
-						->message( _x( 'Add a call to action. Image, title, text and link are required fields.', 'Fields', 'fdmg-labels' ) )
+					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
+						->message( _x( 'Add a call to action. Image, title, text and link are required fields.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
-					Group::make( _x( 'CTA', 'Fields', 'fdmg-labels' ), self::BLOCK_META_GROUP )
+					Group::make( _x( 'CTA', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_GROUP )
 					->fields(
 						array(
-							Text::make( _x( 'Title', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE )
+							Text::make( _x( 'Title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE )
 								->required(),
-							Image::make( _x( 'Image', 'Fields', 'fdmg-labels' ), self::BLOCK_META_IMAGE )
+							Image::make( _x( 'Image', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IMAGE )
 								->required()
 								->returnFormat( 'id' )
 								->previewSize( 'medium' )
 								->library( 'all' ),
-							WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels' ), self::BLOCK_META_CONTENT )
+							WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
 								->required()
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
 								->mediaUpload( false ),
-							Link::make( _x( 'Button', 'Fields', 'fdmg-labels' ), self::BLOCK_META_BUTTON )
+							Link::make( _x( 'Button', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_BUTTON )
 								->required()
 								->returnFormat( 'array' ),
 						),

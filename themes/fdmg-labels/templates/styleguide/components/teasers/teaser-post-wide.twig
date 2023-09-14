@@ -1,22 +1,31 @@
-<div class="teaser-post teaser-post--wide">
+<div data-component="teaser-post-wide" class="relative flex flex-col h-full transition-shadow border-b sm:border-b-2 font-body bg-base-50 border-secondary-400 theme-energeia:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="teaser-post__inner">
+		<div class="p-3 sm:p-4">
 			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
+						wide: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
-				{% if image_square %}
+				{% if image %}
 					<div class="shrink-0">
-						<div class="teaser-post__square-thumbnail">
-							{{ image_square|raw }}
+						<div class="max-w-[65px]">
+							{{ image|raw }}
 						</div>
 					</div>
 				{% endif %}
@@ -26,21 +35,28 @@
 
 	{# Tablet >= #}
 	<div class="hidden sm:block">
-		<div class="teaser-post__inner">
+		<div class="p-3 sm:p-4">
 			<div class="flex gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
 						date: date,
-						datetime: datetime,
-						date_full: date_full,
+						wide: true,
 					} only %}
 
+					{% if show_paywall_label %}
+						<div class="absolute top-6 right-6 z-[2]">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
+
 					{% if excerpt %}
-						<div class="teaser-post__excerpt">
+						<div class="mt-3 text-base sm:text-md">
 							{{ excerpt|raw }}
 						</div>
 					{% endif %}
@@ -48,7 +64,7 @@
 
 				{% if image %}
 					<div class="shrink">
-						<div class="teaser-post__thumbnail">
+						<div class="relative overflow-hidden aspect-[1/1] sm:w-[170px] image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none lg:image:w-full lg:image:h-auto lg:image:top-1/2 lg:image:left-1/2 lg:image:-translate-x-1/2 lg:image:-translate-y-1/2">
 							{{ image|raw }}
 						</div>
 					</div>

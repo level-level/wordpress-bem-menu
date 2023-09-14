@@ -1,10 +1,10 @@
 [class*='pum-theme-'] {
 	.pum-container {
-		@include body-styles;
+		@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg;
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		background-color: var(--secondary-200) !important;
+		background-color: var(--secondary-100) !important;
 		width: calc(100% - #{$spacing-6});
 		transform: translateX(-50%) translateY(-50%);
 		padding: $spacing-6 !important;
@@ -28,8 +28,8 @@
 		border: 2px solid transparent !important;
 		font-family: 'ProximaNovaBold', sans-serif !important;
 		padding: 5px 10px !important;
-		background-color: var(--primary-400) !important;
-		border-color: var(--primary-400) !important;
+		background-color: var(--primary) !important;
+		border-color: var(--primary) !important;
 		color: var(--base-50) !important;
 		border-radius: 3px !important;
 		font-size: 16px !important;

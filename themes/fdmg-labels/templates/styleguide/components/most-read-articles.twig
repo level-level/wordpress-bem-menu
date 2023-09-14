@@ -1,7 +1,7 @@
 {% if objects %}
-	<ol class="list-styled-ordered">
+	<ol data-component="most-read-articles" class="[counter-reset:counter] text-base sm:text-md">
 		{% for object in objects %}
-			<li class="list-styled-ordered__item">
+			<li class="border-t border-[rgb(0,0,0,0.1)] dark:border-base-400 flex items-center [counter-increment:counter] py-3 pr-3 before:font-body-bold before:text-2xl before:[content:counter(counter)] dark:before:[content:counter(counter)] before:text-primary before:dark:text-primary-300 before:text-center before:w-[50px] before:shrink-0 before:dark:border-primary-300">
 				{% include 'styleguide/components/list-item.twig' with {
 					title: object.title,
 					url: object.url,

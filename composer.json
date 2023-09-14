@@ -47,7 +47,12 @@
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "vinkla/extended-acf": "^13.3",
-        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.9"
+        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.9",
+        "woocommerce/action-scheduler": "^3.6",
+        "ll-premium/gravityformspolls": "^4.0",
+        "level-level/ll-paywall": "^0.1.0",
+        "wpackagist-plugin/elasticpress": "^4.7",
+        "level-level/wp-file-mods": "^1.0"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -99,7 +104,8 @@
         "make-pot": [
             "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
             "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
-            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs"
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
         ]
     },
     "extra": {
@@ -137,7 +143,8 @@
         "allow-plugins": {
             "composer/installers": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true
         }
     }
 }

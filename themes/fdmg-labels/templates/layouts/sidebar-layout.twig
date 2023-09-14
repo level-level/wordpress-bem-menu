@@ -10,30 +10,30 @@
 
 	<div class="section section--no-top">
 		<div class="container">
-			<div class="md:flex md:flex-nowrap md:gap-6">
+			<div class="md:flex md:flex-nowrap md:gap-6 md:justify-between">
 
 				{% if block('offset') is defined and not is_front_page() %}
-					<div class="hidden layout-offset lg:block">
+					<div class="hidden lg:shrink-0 lg:mb-[96px] lg:block">
 						{% block offset %}{% endblock %}
 					</div>
 				{% endif %}
 
 				{% if block('responsibility') is defined %}
-						{% block responsibility %}{% endblock %}
+					{% block responsibility %}{% endblock %}
 				{% endif %}
 
-				<div class="layout-large {{ not is_front_page() ? 'layout-large--indent' }}">
+				<div class="md:grow {{ not is_front_page() ? 'lg:max-w-[theme(space.article-width)]' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}
 						{% block content %}{% endblock %}
 					</div>
 				</div>
-				<div class="layout-small">
-					<aside class="sidebar" data-module="sticky-advertisement">
-						<h2 class="screen-reader-text">
+				<div class="md:w-[theme(space.sidebar-width)] md:shrink-0">
+					<aside data-component="sidebar" class="h-full" data-module="sticky-advertisement">
+						<h2 class="sr-only">
 							{{ _x('Additional', 'Screen reader text', 'fdmg-labels') }}
 						</h2>
-						<div class="section-wrapper">
+						<div class="h-full section-wrapper">
 							{% block sidebar %}{% endblock %}
 						</div>
 					</aside>

@@ -1,12 +1,12 @@
 import { ResponsiveHelper } from '@level-level/recyclops';
-import { Icons, I18n, IModule } from '../../globals';
-
-declare const icons: Icons;
-declare const i18n: I18n;
+import { IModule } from '../../globals';
 
 class PrimaryNav implements IModule {
 	element: HTMLElement;
 	mainClass: string;
+	config: {
+		mainClass?: string;
+	};
 	classNames: {
 		parent: string;
 		link: string;
@@ -14,12 +14,13 @@ class PrimaryNav implements IModule {
 		sub: string;
 	};
 	parentItem: HTMLElement[];
-	header: HTMLElement;
+	header: HTMLElement | null;
 	responsiveHelper: ResponsiveHelper;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.mainClass = 'primary-nav';
+		this.config = this.element.dataset.config ? JSON.parse(this.element.dataset.config) : {};
+		this.mainClass = this.config.mainClass ? this.config.mainClass : 'primary-nav';
 		this.classNames = {
 			parent: `${this.mainClass}__item--parent`,
 			link: `${this.mainClass}__link`,
@@ -28,32 +29,14 @@ class PrimaryNav implements IModule {
 		};
 
 		this.parentItem = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
-		this.header = <HTMLElement>element.closest('header');
+		this.header = element.closest('header');
 		this.responsiveHelper = new ResponsiveHelper();
 
 		this.initialize();
 	}
 
 	initialize() {
-		this.createSubmenuButton();
 		this.addEventListeners();
-	}
-
-	createSubmenuButton() {
-		const button = `<button class="${this.classNames.arrow}" aria-expanded="false">
-				<span class="icon-inline" aria-hidden="true">${icons.arrowDown}</span>
-				<span class="screen-reader-text">${i18n.navigation.subMenu}</span>
-			</button>`;
-
-		// Add button before sub menu
-		this.parentItem.forEach((el) => {
-			el.querySelector(`.${this.classNames.sub}`)?.insertAdjacentHTML('beforebegin', button);
-		});
-
-		// Add aria attribute to all sub-menu's
-		this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
-			el.setAttribute('aria-hidden', 'true');
-		});
 	}
 
 	addEventListeners() {
@@ -67,12 +50,15 @@ class PrimaryNav implements IModule {
 		});
 
 		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
-		this.header.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
+
+		if (!this.config.mainClass) {
+			this.header?.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
+		}
 	}
 
 	determineViewport() {
 		// Dropdowns for desktops are using the mouseenter/mouseleave functionality
-		if (this.responsiveHelper.isDesktop()) {
+		if (this.responsiveHelper.isDesktop() && !this.config.mainClass) {
 			this.parentItem.forEach((el) => {
 				el.addEventListener('mouseenter', this.showDropdown.bind(this));
 				el.addEventListener('mouseleave', this.hideDropdown.bind(this));
@@ -98,7 +84,7 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	showDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		Array.from(currentTarget.children).forEach((el) => {
 			if (el.classList.contains(this.classNames.sub)) {
@@ -117,7 +103,7 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	hideDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		Array.from(currentTarget.children).forEach((el) => {
 			if (el.classList.contains(this.classNames.sub)) {
@@ -149,17 +135,19 @@ class PrimaryNav implements IModule {
 	 * @param  event
 	 */
 	showMobileDropdown(event: Event) {
-		const currentTarget: HTMLElement = <HTMLElement>event.currentTarget;
+		const currentTarget = event.currentTarget as HTMLElement;
 
 		// Show dropdown
 		if (currentTarget.getAttribute('aria-expanded') === 'false') {
 			currentTarget.setAttribute('aria-expanded', 'true');
 			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'false');
+			currentTarget.closest(`.${this.classNames.parent}`)?.classList.add(`${this.classNames.parent}-is-open`);
 
 			// Hide dropdown
 		} else {
 			currentTarget.setAttribute('aria-expanded', 'false');
 			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'true');
+			currentTarget.closest(`.${this.classNames.parent}`)?.classList.remove(`${this.classNames.parent}-is-open`);
 		}
 	}
 
@@ -183,7 +171,7 @@ class PrimaryNav implements IModule {
 	handleTab(event: KeyboardEvent) {
 		if (event.key === 'Tab') {
 			// Current element that is focused
-			const focusedElement: HTMLElement = <HTMLElement>this.element.querySelector(':focus');
+			const focusedElement = this.element.querySelector(':focus') as HTMLElement;
 
 			// When tabbing through top level links, close all dropdowns
 			if (focusedElement.getAttribute('class') === this.classNames.link) {

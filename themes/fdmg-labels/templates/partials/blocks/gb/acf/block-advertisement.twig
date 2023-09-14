@@ -2,17 +2,17 @@
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
-	<div class="align{{ align }}">
+	<div class="{{ align }}">
 		{% include 'partials/components/advertisement.twig' with {
 			slot: slot
 		} only %}
 	</div>
 {% elseif not enable_advertisements %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		text: _x('Advertisements are currently <strong>disabled</strong>. Enable them in the theme options.', 'Block', 'fdmg-labels'),
+	{% include 'partials/components/block-placeholder.twig' with {
+		block_text: _x('Advertisements are currently <strong>disabled</strong>. Enable them in the theme options.', 'Block', 'fdmg-labels'),
 	} %}
 {% else %}
-	{% include 'partials/components/gb-placeholder.twig' with {
-		required_fields: ['Slot']
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Slot', 'Block', 'fdmg-labels-admin')]
 	} %}
 {% endif %}

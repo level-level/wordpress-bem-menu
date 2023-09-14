@@ -42,11 +42,21 @@ $spacing-16: theme('spacing.16');
 	@include breakpoint(lg) {
 		--container: 1170px;
 		--article-width: 690px;
-		--article-offset: 45px;
 	}
 
 	@include breakpoint(xl) {
 		--container: 1224px;
+	}
+
+	// The feature option to use a compact header
+	.has-compact-header {
+		--header-height: 50px;
+		--header-top-height: auto;
+
+		@include breakpoint(sm) {
+			--header-height: 70px;
+			--menu-height: 44px;
+		}
 	}
 }
 

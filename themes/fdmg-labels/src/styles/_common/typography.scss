@@ -1,23 +1,13 @@
 body {
-	@include body-styles;
-	background-color: var(--secondary-100);
-
-	@include dark-mode {
-		background-color: var(--base-700);
-	}
+	@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50 dark:bg-base-700;
 }
 
-h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
 	@include heading;
-}
-
-h1 {
-	@include heading-h1;
 }
 
 h2 {
@@ -30,17 +20,6 @@ h3 {
 
 h4 {
 	@include heading-h4;
-}
-
-.rich-title {
-	color: var(--primary-400);
-	border-bottom: 4px solid var(--secondary-400);
-	padding-bottom: $spacing-3;
-
-	@include dark-mode {
-		color: var(--primary-300);
-		border-color: var(--primary-300);
-	}
 }
 
 p {
@@ -88,27 +67,11 @@ address {
 
 // Focus style
 * {
-	&:focus {
-		@include focus-style;
-	}
+	&:focus-visible {
+		@include focus-style(var(--base-800));
 
-	&:not(input),
-	&:not(textarea),
-	&:not(select) {
-		&:focus {
-			outline: none;
-		}
-	}
-}
-
-body.user-is-tabbing {
-	* {
-		&:focus {
-			@include focus-style;
-
-			@include dark-mode {
-				@include focus-style(var(--base-50));
-			}
+		@include dark-mode {
+			@include focus-style(var(--base-50));
 		}
 	}
 }

@@ -1,24 +1,6 @@
-<div class="align{{ align }}" data-name="{{ block.name }}">
+<div class="{{ align }}" data-name="{{ block.name }}">
 	{% include 'styleguide/components/social-share.twig' with {
 		heading: _x('Share on social media', 'Block', 'fdmg-labels'),
 		sticky: false,
-		socials: [
-			{
-				title: 'Twitter',
-				type: 'twitter',
-			},
-			{
-				title: 'Facebook',
-				type: 'facebook',
-			},
-			{
-				title: 'LinkedIn',
-				type: 'linkedin',
-			},
-			{
-				title: 'E-mail',
-				type: 'email',
-			},
-		]
 	} %}
 </div>

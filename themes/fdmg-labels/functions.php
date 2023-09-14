@@ -22,7 +22,7 @@
 ( new \Clarkson\Theme\Blocks() )->register_hooks();
 ( new \Clarkson\Theme\Cleanup() )->register_hooks();
 ( new \Clarkson\Theme\Localization() )->register_hooks();
-( new \Clarkson\Theme\Navigation() )->register_hooks();
+( new \Clarkson\Theme\Navigation\Navigation() )->register_hooks();
 ( new \Clarkson\Theme\OEmbed() )->register_hooks();
 ( new \Clarkson\Theme\PostTypes() )->register_hooks();
 ( new \Clarkson\Theme\Rewrites() )->register_hooks();
@@ -32,6 +32,7 @@
 ( new \Clarkson\Theme\ImageSizes() )->register_hooks();
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
+( new \Clarkson\Theme\LoginLogo() )->register_hooks();
 
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
@@ -40,12 +41,12 @@
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
-( new \FDMGLabels\Articles\BlockTemplate() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
-( new \FDMGLabels\Sync\Init() )->register_hooks();
+( new \FDMGLabels\Newsletter\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
 ( new \FDMGLabels\OpenIDConnect() )->register_hooks();
+( new \FDMGLabels\Paywall\Init() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();

@@ -12,10 +12,14 @@ export default {
 		url: {
 			control: 'text',
 		},
+		rich: {
+			control: 'boolean',
+		},
 	},
 	args: {
 		title: 'Interview',
 		url: '#remove-me-to-see-default-badge',
+		rich: false,
 	},
 };
 

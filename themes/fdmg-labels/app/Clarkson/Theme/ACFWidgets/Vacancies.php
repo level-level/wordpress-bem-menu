@@ -15,10 +15,10 @@ class Vacancies {
 
 	protected const FIELD_GROUP = 'widget_vacancies';
 
-	public const WIDGET_META_USAGE            = 'usage';
-	public const WIDGET_META_SELECTED_POSTS   = 'selected_posts';
-	public const WIDGET_META_IS_FILL_DISABLED = 'is_fill_disabled';
-	public const WIDGET_META_AMOUNT           = 'amount';
+	public const WIDGET_META_USAGE           = 'usage';
+	public const WIDGET_META_SELECTED_POSTS  = 'selected_posts';
+	public const WIDGET_META_IS_FILL_ENABLED = 'is_fill_enabled';
+	public const WIDGET_META_AMOUNT          = 'amount';
 
 
 	public function register_hooks(): void {
@@ -30,11 +30,14 @@ class Vacancies {
 		acf_register_block_type(
 			array(
 				'name'        => 'widget-' . self::WIDGET_NAME,
-				'title'       => _x( 'Vacancies/Jobs', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Vacancies/Jobs', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of vacancies based on multiple options.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'money',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'vacancies', 'jobs' ),
+				'keywords'    => array(
+					_x( 'vacancies', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'jobs', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -42,9 +45,9 @@ class Vacancies {
 				'example'     => array(
 					'attributes' => array(
 						'data' => array(
-							'll-preview-mode'  => base_block::PREVIEW_MODE_DATA,
-							'is_fill_disabled' => false,
-							'amount'           => 2,
+							'll-preview-mode'        => base_block::PREVIEW_MODE_DATA,
+							self::WIDGET_META_IS_FILL_ENABLED => true,
+							self::WIDGET_META_AMOUNT => 2,
 						),
 					),
 				),
@@ -56,12 +59,12 @@ class Vacancies {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Widget] Vacancies/Jobs', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Vacancies/Jobs', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels' ), self::WIDGET_META_USAGE )
-						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels' ) )
+					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_USAGE )
+						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
-					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels' ), self::WIDGET_META_SELECTED_POSTS )
+					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_SELECTED_POSTS )
 						->postTypes( array( Vacancy::POST_TYPE_NAME ) )
 						->filters(
 							array(
@@ -69,18 +72,19 @@ class Vacancies {
 							)
 						)
 						->returnFormat( 'object' ),
-					TrueFalse::make( _x( 'Disallow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels' ), self::WIDGET_META_IS_FILL_DISABLED )
-						->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels' ), _x( 'No', 'Fields', 'fdmg-labels' ) ),
-					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels' ), self::WIDGET_META_AMOUNT )
+					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_IS_FILL_ENABLED )
+						->defaultValue( true )
+						->stylisedUi(),
+					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::WIDGET_META_IS_FILL_DISABLED, '!=', '1' ),
+								ConditionalLogic::where( self::WIDGET_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
 						->defaultValue( 3 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'vacancies', 'Fields', 'fdmg-labels' ) )
+						->append( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
 				),
 				'location' => array(

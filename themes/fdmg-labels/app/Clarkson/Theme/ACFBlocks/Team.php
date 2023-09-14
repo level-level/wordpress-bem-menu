@@ -24,11 +24,15 @@ class Team {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Team', 'Block', 'fdmg-labels' ),
-				'description' => _x( 'Displays a list of team members.', 'Block', 'fdmg-labels' ),
+				'title'       => _x( 'Team', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of team members.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'groups',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'team', 'editors', 'members' ),
+				'keywords'    => array(
+					_x( 'team', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'editors', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'members', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -48,10 +52,10 @@ class Team {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Block] Team', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Team', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Use this title to overwrite the default title: \'Meet our editorial team\'', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TITLE ),
-					Relationship::make( _x( 'Select the team members', 'Fields', 'fdmg-labels' ), self::BLOCK_META_TEAM )
+					Text::make( _x( 'Use this title to overwrite the default title: \'Meet our editorial team\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+					Relationship::make( _x( 'Select the team members', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TEAM )
 						->postTypes( array( PostTypesTeam::POST_TYPE_NAME ) )
 						->filters(
 							array(

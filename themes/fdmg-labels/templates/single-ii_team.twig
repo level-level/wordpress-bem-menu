@@ -7,7 +7,7 @@
 {% block header %}
 	<div class="section">
 		<div class="container">
-			<div class="layout-header-wrapper">
+			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				{% include 'styleguide/components/author-header.twig' with {
 					label: _x('Author', 'Label', 'fdmg-labels'),
 					title: title,
@@ -29,30 +29,42 @@
 
 	{% if author_posts %}
 		<div class="section">
-			<h2 class="screen-reader-text">
+			<h2 class="sr-only">
 				{{ _x('Articles written by %s', 'Screen reader text', 'fdmg-labels')|format(title) }}
 			</h2>
 			<ul class="flex flex-col gap-3 sm:gap-6">
-				{% set date_format = get_option('date_format') %}
-
 				{% for object in author_posts %}
 
 					{% set image_id = object.get_thumbnail_id() %}
-					{% set terms = object.get_terms('category') %}
 					{% set authors = object.get_authors() %}
+
+					{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
+						{% set categories = object.get_terms('category') %}
+					{% endif %}
+
+					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) %}
+						{% set genres = object.get_terms('fdmg_genre') %}
+					{% endif %}
+
+					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_SECTION_TAXONOMY', feature_manager)) %}
+						{% set sections = object.get_terms('fdmg_section') %}
+					{% endif %}
 
 					<li>
 						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
-							image: image_id ? wp_get_attachment_image(image_id, 'large'),
-							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
 							title: object.get_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
-							date: object.get_date_i18n(date_format),
-							date_full: object.get_date_i18n('F j Y'),
-							datetime: object.get_date_i18n('Y-m-d'),
-							terms: terms ? terms|map(term => {
-								name: term.get_name(),
+							date: object.get_publish_date(),
+							categories: categories ? categories|map(category => {
+								name: category.get_name(),
+							}),
+							genres: genres ? genres|map(genre => {
+								name: genre.get_name(),
+							}),
+							sections: sections ? sections|map(section => {
+								name: section.get_name(),
 							}),
 							authors: authors ? authors|map(author => {
 								name: author.get_title(),
@@ -61,6 +73,7 @@
 							}),
 							comments: object.get_comments_count(),
 							useH3: true,
+							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 						} %}
 					</li>
 				{% endfor %}

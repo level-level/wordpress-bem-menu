@@ -1,36 +1,69 @@
-<div class="article-header">
+{% set has_paywall_block = object.has_paywall_block() %}
+<div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-8">
+
+	<div class="order-2">
+		<h1 class="text-lg font-bold font-heading text-secondary-700 dark:text-primary-300 sm:text-3xl" aria-describedby="a11y-paywall-description">
+			{{ title|raw }}
+
+			{% if has_paywall_block %}
+				<span class="screen-reader-text js-paywall-a11y-description">&mdash; {{ _x('article includes a paywall', 'Screen Reader Text', 'fdmg-labels') }}</span>
+			{% endif %}
+		</h1>
+
+		{% if has_paywall_block %}
+			<p class="screen-reader-text js-paywall-a11y-description" id="a11y-paywall-description">{{ _x('This article has a paid access block, which means that some of the content cannot be read until you are logged in and have a valid subscription.', 'Screen Reader Text', 'fdmg-labels') }}</p>
+		{% endif %}
+	</div>
 
 	{% if label %}
-		<div class="article-header__label">
+		<div class="order-3 mb-3 sm:mb-9">
 			<ul class="flex gap-1">
 				<li>
-					<div class="badge badge--rich">
-						{{ label|raw }}
-					</div>
+					{% include 'styleguide/components/badges/badge.twig' with {
+						title: label,
+						rich: true,
+					} %}
 				</li>
 			</ul>
 		</div>
 	{% endif %}
 
-	{% if terms %}
-		<div class="article-header__terms">
-			{% include 'styleguide/components/post-terms.twig' with {
-				terms: terms,
-			} %}
+	{% if categories or genres or sections %}
+		<div class="order-1 mb-3 sm:mb-9">
+
+			<div class="flex gap-2">
+				{% if categories %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: categories,
+						label: _x('category', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+
+				{% if genres %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: genres,
+						label: _x('genre', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+
+				{% if sections %}
+					{% include 'styleguide/components/post-terms.twig' with {
+						terms: sections,
+						label: _x('section', 'Screen reader text', 'fdmg-labels'),
+					} %}
+				{% endif %}
+			</div>
+
 		</div>
 	{% endif %}
 
-	<div class="article-header__title">
-		<h1>{{ title|raw }}</h1>
-	</div>
-
-	{% if authors or date and datetime and date_full %}
-		<div class="article-header__meta">
+	{% if authors or date.date and date.datetime and date.date_full %}
+		<div class="order-3 mt-3">
 			<div class="flex items-center gap-6">
 
 				{% if authors %}
 					<div>
-						<span class="screen-reader-text">
+						<span class="sr-only">
 							{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 						</span>
 						<ul class="flex gap-3">
@@ -39,7 +72,7 @@
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
-										class: 'btn--secondary btn--no-padding',
+										class: 'btn-secondary !p-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
 									} %}
 								</li>
 							{% endfor %}
@@ -47,10 +80,10 @@
 					</div>
 				{% endif %}
 
-				{% if date and datetime and date_full %}
+				{% if date.date and date.datetime and date.date_full %}
 					<div>
-						<span class="screen-reader-text">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date_full)|raw }}</span>
-						<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
+						<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-body-bold">{{ date.date|raw }}</time>
 					</div>
 				{% endif %}
 

@@ -1,19 +1,20 @@
 {% if title or image or content or button %}
-	<div class="cta">
-		<div class="cta__image-container">
+	<div class="p-5 bg-secondary-300 dark:bg-base-600 sm:grid sm:grid-cols-[250px,auto] sm:gap-6" data-component="CTA">
+		<div class="h-[200px] w-full overflow-hidden relative sm:h-full image:absolute image:top-0 image:left-0 image:w-full">
 			{{ image|raw }}
 		</div>
-		<div class="cta__content-container">
-			<h3 class="cta__title">{{ title }}</h3>
-			<div class="cta__text">{{ content|raw }}</div>
+		<div class="flex flex-col gap-3 pt-3 text-base-600 sm:pt-0 sm:items-start dark:text-base-50">
+			<h3 class="font-heading text-base-600 dark:text-base-50">{{ title }}</h3>
+			<div class="text-md">{{ content|raw }}</div>
 
 			{% include 'styleguide/components/buttons/button-link.twig' with {
 				text: button.title,
 				url: button.url,
-				class: 'btn--primary',
+				class: 'btn-primary',
 				is_external: button.target ? true
 			} %}
 
 		</div>
 	</div>
 {% endif %}
+

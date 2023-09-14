@@ -1,11 +1,22 @@
-<div class="oembed-component" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-disable-notice="{{ disable_notice }}">
-	<div class="oembed-component__content">
-		<div class="oembed-placeholder">
-			<div class="oembed-placeholder__content">
-				<p>{{ notice_text }}</p>
+{% set cookie_id = uniqid('embed-cookie-') %}
+
+<div data-component="oembed" class="max-w-5xl" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-cookiebot="{{ cookiebot }}" data-disable-notice="{{ disable_notice }}">
+	<div data-oembed="content">
+		<div data-oembed="placeholder" class="flex flex-col items-center justify-center h-full text-center bg-secondary-100 dark:bg-base-600">
+			<div class="p-8">
+				<p class="mb-7" id="{{ cookie_id }}">{{ notice_text }}</p>
 				{% include "styleguide/components/buttons/button-element.twig" with {
+					aria_describedby: cookie_id,
 					text: button_text,
-					class: 'btn--primary js-consent-button',
+					class: 'btn-primary js-consent-button',
+				} %}
+				{% include "styleguide/components/buttons/button-link.twig" with {
+					text: open_original_text,
+					url: url,
+					is_external: true,
+					class: 'btn-primary',
+					icon: 'arrow-right',
+					svg_icons: svg_icons,
 				} %}
 			</div>
 		</div>

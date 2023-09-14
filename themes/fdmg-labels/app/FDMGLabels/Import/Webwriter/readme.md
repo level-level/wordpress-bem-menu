@@ -127,102 +127,121 @@
 ```
 
 ### article => post
+
 - id
-- escenic_id  -> Oude CMS
-- state
-- X target_state  -> Is altijd publish als het ingevuld is en alleen van toepassing bij embargo
+- escenic_id -> Oude CMS
+- state -> Status
+- X target_state -> Is altijd publish als het ingevuld is en alleen van toepassing bij embargo
 - last_modified_date
 - X embargoed_until_date -> Hoeft niet mee omdate we FUTURE post status gebuiken
 - X broadcast_date -> Overal null dus hoeft niet mee
-- X teaser_title     -> Komt uit teaser tabel
-- prefix
+- X teaser_title -> Komt uit teaser tabel
+- prefix -> Genre taxonomie
 - title
 - publication_date
 - publication_url
-- source_origin   -> belangrijk?
-- source_channel  -> belangrijk?
-- X third_party   -> overal leeg
-- X topic         -> overal leeg
+- source_origin -> belangrijk?
+- source_channel -> belangrijk?
+- X third_party -> overal leeg
+- X topic -> overal leeg
 - disallow_comments
 - show_related_articles --> belangrijk?
-- short_article         --> belangrijk? Alleen oude artikelen en 'Kort' is ook een prefix
-- X special_card        --> Altijd leeg
+- short_article --> belangrijk? Alleen oude artikelen en 'Kort' is ook een prefix
+- X special_card --> Altijd leeg
 - do_not_index
-- X original_article_id  --> Van oude import
-- X uri                  --> Van oude import, afgehandeld met redirects
-- X source_id            --> Niet nuttig
-- X article_type         --> Gaat niet mee, filter op ARTICLE
-- X new_window           --> Overbodig
-- X redirect_url         --> nvt op ARTICLE article_type
-- X full_width           --> nvt
+- X original_article_id --> Van oude import
+- X uri --> Van oude import, afgehandeld met redirects
+- X source_id --> Niet nuttig
+- X article_type --> Gaat niet mee, filter op ARTICLE
+- X new_window --> Overbodig
+- X redirect_url --> nvt op ARTICLE article_type
+- X full_width --> nvt
 - X top_html_content_item_id --> nvt
-- X free                 --> nvt want paywall gaat eruit
-- taxonomy               --> Jrg. X, editie Y eruit filteren
-- X article_length       --> Leeg
-- X version              --> nvt
-- X last_update_date     --> Leeg
-- X canonical_url        --> Leeg
-- X do_auto_tag          --> Leeg
-- X category             --> Leeg
-- template               --> NEWS, 22 met BACKGROUND. Nodig? Eventueel handmatig.
+- free --> of er een paywall getoond moet worden
+- X taxonomy --> Leeg
+- X article_length --> Leeg
+- X version --> nvt
+- X last_update_date --> Leeg
+- X canonical_url --> Leeg
+- X do_auto_tag --> Leeg
+- X category --> Leeg
+- X template --> NEWS, 101 met BACKGROUND. Nodig? Eventueel handmatig.
 
 ### author => team
+
 - id
 - first_name
 - last_name
 - full_name
-- X type     --> Altijd 1
-- X esb_id   --> Oude content
+- X type --> Altijd 1
+- X esb_id --> Oude content
 
 ### binary_file => media
+
 - id
 - X escenic_id
 - state (PUBLISH of DRAFT)
 - X alignment (RIGHT, LEFT of BLOCK) --> Nvt in nieuwe setup
-- X version   --> kan weg
+- X version --> kan weg
 - filename
-- x binary_type  --> Altijd PDF
+- x binary_type --> Altijd PDF
 
 ### picture => media
+
 - id
 - caption
 - X escenic_id
-- state             --> status DELETED wordt overgeslagen
+- state --> status DELETED wordt overgeslagen
 - photographer
 - title
-- X version         --> nvt
-- X alignment       --> nvt in nieuwe setup
-- X original_width  --> nvt
+- X version --> nvt
+- X alignment --> nvt in nieuwe setup
+- X original_width --> nvt
 - X original_height --> nvt
 - path
 - using_imgix
-- X source_url   --> leeg
-- X source_id    --> leeg
+- X source_url --> leeg
+- X source_id --> leeg
 
 ### tag => category
+
 - id
 - tag_category_id --> taxonomy id
-- value      --> term naam
+- value --> term naam
 - intro_text --> mappen naar description
 - enabled
 - X kvk_number --> leeg
-- directory   --> slug
+- directory --> slug
 - X image_path --> leeg
 
 ### old_url => redirect
+
 Redirects tabel
+
 - url
 - target_url
 - X old_url_pattern --> nvt
 
 ### short_url => redirect
+
 Andere redirects tabel?
+
 - url
 - target_url
 - redirect
 
+### section => section
+
+- name
+- title
+- parent_name
+- directory
+- full_path
+
 ### teaser
+
 Excerpts maar moeilijker
+
 - article_id
 - X type --> nvt
 - X picture_id --> nvt
@@ -245,6 +264,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 These are some useful queries, which are not directly required for the import.
 
 ### Select items with duplicate titles:
+
 ```sql
 SELECT title
 FROM article
@@ -261,12 +281,12 @@ SELECT id,state,last_modified_date,title,publication_date,publication_url,taxono
 );
 ```
 
-
 ## FDMG tags
 
 Due to multiple migrations and the way content in webrwiter is structured, some custom HTML tags are present in the content. These custom HTML tags need to be replaced with actual HTML. Below is a list of custom HTML elements.
 
 ### FDMG PDF
+
 ```html
 <fdmg-pdf>
 	<fdmg-id>npfile-6d0e1a914de7e44ae07ba1651d8cf6a3</fdmg-id>
@@ -276,6 +296,7 @@ Due to multiple migrations and the way content in webrwiter is structured, some 
 ```
 
 ### FDMG Image
+
 ```html
 <fdmg-image>
 	<fdmg-id>20001203</fdmg-id>

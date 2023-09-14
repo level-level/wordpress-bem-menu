@@ -7,9 +7,9 @@
 {% set args = {
 		'type': 'list',
 		'mid_size': 1,
-		'before_page_number': '<span class="screen-reader-text">' ~ _x('Page', 'Screen reader text', 'fdmg-labels') ~ '</span>',
-		'prev_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_left ~ '</span><span class="screen-reader-text">' ~ _x('Previous page', 'Screen reader text', 'fdmg-labels') ~ '</span>',
-		'next_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_right ~ '</span><span class="screen-reader-text">' ~ _x('Next page', 'Screen reader text', 'fdmg-labels') ~ '</span>'
+		'before_page_number': '<span class="sr-only">' ~ _x('Page', 'Screen reader text', 'fdmg-labels') ~ '</span>',
+		'prev_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_left ~ '</span><span class="sr-only">' ~ _x('Previous page', 'Screen reader text', 'fdmg-labels') ~ '</span>',
+		'next_text': '<span class="icon-inline" aria-hidden="true">' ~ arrow_right ~ '</span><span class="sr-only">' ~ _x('Next page', 'Screen reader text', 'fdmg-labels') ~ '</span>'
 	}
 %}
 
@@ -21,7 +21,7 @@
 {% if pagination %}
 	<div class="section">
 		<nav class="pagination" aria-label="{{ _x('Pagination', 'Screen reader text', 'fdmg-labels') }}">
-			<h2 class="screen-reader-text">{{ _x('Pagination', 'Screen reader text', 'fdmg-labels') }}</h2>
+			<h2 class="sr-only">{{ _x('Pagination', 'Screen reader text', 'fdmg-labels') }}</h2>
 			{{ pagination|raw }}
 		</nav>
 	</div>

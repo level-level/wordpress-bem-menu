@@ -1,22 +1,22 @@
 {% if title or image or content or button %}
-	<div class="newsletter">
-		<div class="newsletter__inner">
+	<div data-component="newsletter" class="relative bg-secondary-100 dark:bg-base-600">
+		<div class="p-3 sm:p-4">
 			<div class="flex flex-col gap-6">
 
 				{% if title %}
-					<h3 class="newsletter__title">
+					<h3 class="text-base font-body-bold sm:text-md">
 						{{ title }}
 					</h3>
 				{% endif %}
 
 				{% if image %}
-					<div class="newsletter__thumbnail">
+					<div class="border-b border-secondary-400 -mx-3 dark:border-base-800 dark:bg-base-600 sm:-mx-3 image:mx-auto image:max-w-[92px]">
 						{{ image|raw }}
 					</div>
 				{% endif %}
 
 				{% if content %}
-					<div class="newsletter__content">
+					<div class="font-normal text-base sm:text-base">
 						{{ content|raw }}
 					</div>
 				{% endif %}
@@ -26,7 +26,7 @@
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: button.title,
 							url: button.url,
-							class: 'btn--primary btn--full',
+							class: 'btn-primary btn-full',
 							is_external: button.target ? true,
 							aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
 						} %}

@@ -1,27 +1,25 @@
 .entry-content {
 	> * {
-		margin: 0 auto;
+		@apply mx-auto;
 	}
 
 	> *:not(.alignwide, .alignfull) {
-		@include breakpoint(sm) {
-			max-width: var(--content-width);
-		}
+		@apply sm:max-w-[theme(space.content-width)];
 	}
 
 	& > * + * {
-		margin-top: $spacing-6;
+		@apply mt-6;
 	}
 
 	> h2 + *:not([class*=' has-']),
 	> h3 + *:not([class*=' has-']),
 	> h4 + *:not([class*=' has-']),
 	> h5 + *:not([class*=' has-']) {
-		margin-top: 10px;
+		@apply mt-[10px];
 	}
 
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
-		margin-top: $spacing-6;
+		@apply mt-6;
 	}
 
 	p {
@@ -31,25 +29,14 @@
 	}
 
 	a:not([class]) {
-		color: var(--primary-400);
-		hyphens: auto;
-
-		@include dark-mode {
-			color: var(--primary-300);
-		}
-
-		@include breakpoint(sm) {
-			hyphens: none;
-		}
-
-		@include hover-focus-style {
-			text-decoration: none;
-		}
+		@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
+		@apply dark:text-primary-300;
+		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50;
 	}
 
 	ul,
 	ol {
-		margin-bottom: 0;
+		@apply mb-0;
 	}
 
 	ul:not([class]) {

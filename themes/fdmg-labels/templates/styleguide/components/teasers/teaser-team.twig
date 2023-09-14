@@ -1,9 +1,9 @@
-<div class="teaser-team">
-	<div class="teaser-team__inner">
+<div data-component="teaser-team" class="relative flex flex-col sm:text-base">
+	<div class="p-3 bg-secondary-100 dark:bg-base-600 sm:p-6">
 		<div class="flex flex-col gap-6 sm:flex-row sm:flex-nowrap">
 
 			<div class="shrink-0">
-				<div class="teaser-team__thumbnail">
+				<div class="sm:min-w-[115px] image:rounded-full image:max-w-[75px] sm:image:max-w-[115px]">
 					{% if image %}
 						{{ image|raw }}
 					{% endif %}
@@ -11,7 +11,7 @@
 			</div>
 
 			<div class="flex flex-col gap-3">
-				<h3 class="teaser-team__title">
+				<h3 class="font-body-bold text-md text-primary dark:text-primary-300">
 					{{ title|raw }}
 				</h3>
 
@@ -23,7 +23,7 @@
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: _x('View profile', 'Block', 'fdmg-labels'),
 						url: url,
-						class: 'btn--tertiary',
+						class: 'btn-tertiary',
 						aria_label: _x('View profile, %s', 'Screen reader text', 'fdmg-labels')|format(title),
 						icon: 'arrow-right',
 						icon_left: true,

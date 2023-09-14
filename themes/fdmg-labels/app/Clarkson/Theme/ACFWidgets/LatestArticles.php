@@ -20,18 +20,19 @@ class LatestArticles {
 	public function register(): void {
 		acf_register_block_type(
 			array(
-				'name'            => 'widget-' . self::WIDGET_NAME,
-				'title'           => _x( 'Latest articles', 'Block', 'fdmg-labels' ),
-				'description'     => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels' ),
-				'icon'            => 'list-view',
-				'align'           => 'center', // full, wide, left, center, right
-				'keywords'        => array( 'latest', 'posts', 'articles' ),
-				'supports'        => array(
+				'name'        => 'widget-' . self::WIDGET_NAME,
+				'title'       => _x( 'Latest articles', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels-admin' ),
+				'icon'        => 'list-view',
+				'align'       => 'center', // full, wide, left, center, right
+				'keywords'    => array(
+					_x( 'latest articles', 'Keyword', 'fdmg-labels-admin' ),
+				),
+				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
 				),
-				'render_callback' => array( $this, 'block_render_callback' ),
-				'example'         => array(
+				'example'     => array(
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
@@ -47,13 +48,13 @@ class LatestArticles {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( '[Widget] Latest articles', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'Latest articles', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Number::make( _x( 'Overwrite the default amount (5) of articles to be shown.', 'Fields', 'fdmg-labels' ), self::WIDGET_META_AMOUNT )
+					Number::make( _x( 'Overwrite the default amount (5) of articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
 						->defaultValue( 5 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'articles', 'Fields', 'fdmg-labels' ) ),
+						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

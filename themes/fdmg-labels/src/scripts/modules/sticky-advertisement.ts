@@ -11,20 +11,24 @@ class StickyAdvertisment implements IModule {
 	}
 
 	initialize() {
-		this.addStickyClass();
+		this.maybeAddStickyClass();
 	}
 
-	addStickyClass() {
+	maybeAddStickyClass() {
 		if (!this.sections) {
 			return;
 		}
 
-		this.sections.map((item: HTMLElement) => {
-			const ad = item.querySelector('.advertisement');
-			if (ad !== null) {
-				item.classList.add('section--has-advertisement');
-			}
-		});
+		const lastSection = this.sections[this.sections.length - 1] as HTMLElement | null;
+		const ad = lastSection?.querySelector('.advertisement');
+
+		if (ad !== null) {
+			lastSection?.classList.add(
+				'md:sticky',
+				'md:mb-6',
+				'top-[calc(theme(space.admin-bar)+theme(space.header-height)+theme(space.6))]',
+			);
+		}
 	}
 }
 

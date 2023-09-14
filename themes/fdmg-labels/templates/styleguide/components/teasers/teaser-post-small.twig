@@ -1,21 +1,30 @@
-<div class="teaser-post teaser-post--small">
+<div data-component="teaser-post-small" class="relative flex flex-col h-full transition-shadow border-b font-body bg-base-50 border-secondary-400 theme-energeia:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser sm:border-b-2 group/teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
-		<div class="teaser-post__inner">
-			<div class="flex gap-6 items-center">
+		<div class="p-3 sm:p-4">
+			<div class="flex items-center gap-6">
 				<div class="grow">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
+						small: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
 				{% if image_square %}
 					<div class="shrink-0">
-						<div class="teaser-post__square-thumbnail">
+						<div class="max-w-[65px]">
 							{{ image_square|raw }}
 						</div>
 					</div>
@@ -30,50 +39,64 @@
 
 			{% if image %}
 				<div class="shrink-0">
-					<div class="teaser-post__thumbnail">
+					<div class="relative overflow-hidden aspect-[13/9] sm:w-[230px] sm:h-full lg:aspect-video lg:w-auto lg:h-auto image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none">
 						{{ image|raw }}
 					</div>
 				</div>
 			{% endif %}
 
 			<div class="grow">
-				<div class="teaser-post__inner">
+				<div class="p-3 sm:p-4">
 					{% include 'styleguide/components/teasers/post/header.twig' with {
 						useH3: useH3,
 						url: url,
 						title: title,
-						terms: terms,
+						categories: categories,
+						genres: genres,
+						sections: sections,
 						date: date,
-						datetime: datetime,
-						date_full: date_full,
+						small: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-4 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 			</div>
 		</div>
 	</div>
 
 	{# Desktop only #}
-	<div class="hidden lg:block teaser-post__desktop">
-		<div class="teaser-post__desktop-inner">
+	<div class="hidden lg:block lg:h-full">
+		<div class="lg:flex lg:flex-col lg:h-full">
 			{% if image %}
-				<div class="teaser-post__thumbnail">
+				<div class="relative overflow-hidden aspect-video image:absolute image:top-1/2 image:left-1/2 image:-translate-x-1/2 image:-translate-y-1/2">
 					{{ image|raw }}
 				</div>
 			{% endif %}
 
-			<div class="teaser-post__inner">
+			<div class="lg:p-4">
 				{% include 'styleguide/components/teasers/post/header.twig' with {
 					useH3: useH3,
 					url: url,
 					title: title,
-					terms: terms,
+					categories: categories,
+					genres: genres,
+					sections: sections,
 					date: date,
-					datetime: datetime,
-					date_full: date_full,
+					small: true,
 				} only %}
 
+				{% if show_paywall_label %}
+					<div class="absolute top-2 right-2 z-[2]">
+						{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+					</div>
+				{% endif %}
+
 				{% if excerpt %}
-					<div class="teaser-post__excerpt">
+					<div class="mt-3 text-base sm:text-md">
 						{{ excerpt|raw }}
 					</div>
 				{% endif %}

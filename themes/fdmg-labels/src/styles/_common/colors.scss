@@ -1,15 +1,17 @@
 :root {
-	// Brand colors
-	--primary-400: #cd3613;
+	// Brand
+	--primary: #cd3613;
 	--primary-300: #df593b;
 
 	// Secondary
-	--secondary-100: #f3f9fd;
-	--secondary-200: #e7f3fb;
+	--secondary-50: #f3f9fd;
+	--secondary-100: #e7f3fb;
+	--secondary-200: #b5ddec;
 	--secondary-300: #a2c3d6;
 	--secondary-400: #73a6bf;
 	--secondary-500: #4a738c;
-	--secondary-600: #335061;
+	--secondary-600: #2f7189;
+	--secondary-700: #335061;
 
 	// Base
 	--base-50: #fff;
@@ -24,11 +26,11 @@
 }
 
 .theme-energeia {
-	--primary-400: #01b06d;
-	--primary-300: #97d7b5;
+	--primary: #01b06d;
+	--primary-300: #01b06d;
 }
 
 .theme-pensioen-pro {
-	--primary-400: #2c3b60;
-	--primary-300: #5e7697;
+	--primary: #2c3b60;
+	--primary-300: #d5f3ff;
 }

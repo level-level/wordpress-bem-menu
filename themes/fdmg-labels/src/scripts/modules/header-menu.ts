@@ -7,12 +7,14 @@ class HeaderMenu implements IModule {
 	backdrop: HTMLElement | null;
 	html: HTMLElement | null;
 	dropdown: HTMLElement | null;
+	closeButton: HTMLButtonElement | null;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.backdrop = this.element.querySelector('.header-menu__backdrop');
+		this.backdrop = this.element.querySelector('.js-header-menu-backdrop');
 		this.html = document.querySelector('html');
-		this.dropdown = this.element.querySelector('.header-menu__dropdown');
+		this.dropdown = this.element.querySelector('.js-header-menu-dropdown');
+		this.closeButton = this.element.querySelector('.js-close-menu');
 
 		this.initialize();
 	}
@@ -29,8 +31,19 @@ class HeaderMenu implements IModule {
 			toggle.closeAllToggles();
 		});
 
+		this.closeButton?.addEventListener('click', () => {
+			toggle.close();
+		});
+
 		this.element.addEventListener('openMrToggle', () => {
 			this.showBackdrop();
+
+			// Close button is only available in the compact version of the header
+			if (this.closeButton) {
+				this.element.querySelector('.btn-menu')?.setAttribute('tabindex', '-1');
+
+				setTimeout(() => this.closeButton?.focus(), 300);
+			}
 
 			// Set the html element to height 100vh to fix a bug on iOS Safari 15
 			// https://stackoverflow.com/questions/69355787/mobile-safari-15-bottom-navigation-area-issue
@@ -44,17 +57,23 @@ class HeaderMenu implements IModule {
 				this.hideBackdrop();
 			}
 
+			// Close button is only available in the compact version of the header
+			if (this.closeButton) {
+				this.element.querySelector('.btn-menu')?.removeAttribute('tabindex');
+				this.element.querySelector<HTMLButtonElement>('.btn-menu')?.focus();
+			}
+
 			// Remove style property that fixes iOS Safari 15 issue
 			this.html?.removeAttribute('style');
 		});
 	}
 
 	showBackdrop() {
-		this.backdrop?.classList.add('header-menu__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'false');
 	}
 
 	hideBackdrop() {
-		this.backdrop?.classList.remove('header-menu__backdrop--active');
+		this.backdrop?.setAttribute('aria-hidden', 'true');
 	}
 }
 
