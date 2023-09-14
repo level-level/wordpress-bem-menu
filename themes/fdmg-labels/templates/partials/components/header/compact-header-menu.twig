@@ -24,7 +24,7 @@
 	} %}
 	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] sm:w-[376px] bg-secondary-500 text-base-800 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-300 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
 
-		<div class="flex items-center px-3 border-b h-header-height border-secondary-600 dark:border-base-400">
+		<div class="flex items-center px-3 border-b h-header-height border-secondary-700 dark:border-base-400">
 			{% include 'styleguide/components/buttons/button-element.twig' with {
 				text: _x('Close', 'Menu', 'fdmg-labels'),
 				aria_expanded_support: false,
@@ -43,7 +43,7 @@
 					} %}
 
 					{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
-						<div class="border-b border-secondary-600 dark:border-base-400">
+						<div class="border-b border-secondary-700 dark:border-base-400">
 							<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav" data-config="{{ config|json_encode() }}">
 								{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'sidebar-nav', 0, true)|raw }}
 							</nav>
