@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c1961a64485641eb3b631d5237a0bdf1",
+    "content-hash": "e3d6c8dc9922998e3d03338a2774793a",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4315,6 +4315,31 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/acf-content-analysis-for-yoast-seo/"
+        },
+        {
+            "name": "wpackagist-plugin/daggerhart-openid-connect-generic",
+            "version": "3.9.1",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/daggerhart-openid-connect-generic/",
+                "reference": "tags/3.9.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/daggerhart-openid-connect-generic.3.9.1.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/daggerhart-openid-connect-generic/"
         },
         {
             "name": "wpackagist-plugin/disable-emojis",
@@ -10874,5 +10899,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.1.0"
 }
