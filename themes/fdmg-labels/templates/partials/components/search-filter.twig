@@ -1,5 +1,6 @@
 {% set start_date_value = filter.get_filter_value('post_date_min') %}
 {% set end_date_value = filter.get_filter_value('post_date_max') %}
+{% set orderby = filter.get_filter_value('orderby') %}
 {% set period = filter.get_filter_value('period') %}
 {% set author_ids = filter.get_filter_value('author_id') %}
 {% set authors_filters = filter.get_filterable_authors() %}
@@ -56,10 +57,10 @@
 				<input type="hidden" name="s" value="{{ the_search_query() }}">
 
 				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-					<label for="sort" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
-					<select name="sort">
-						<option value="date">{{ _x('Date', 'Search', 'fdmg-labels') }}</option>
-						<option value="relevance">{{ _x('Relevance', 'Search', 'fdmg-labels') }}</option>
+					<label for="orderby" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
+					<select name="orderby">
+						<option value="relevance" {{ selected(orderby, 'relevance', false) }}>{{ _x('Relevance', 'Search', 'fdmg-labels') }}</option>
+						<option value="date" {{ selected(orderby, 'date', false) }}>{{ _x('Date', 'Search', 'fdmg-labels') }}</option>
 					</select>
 				</div>
 
