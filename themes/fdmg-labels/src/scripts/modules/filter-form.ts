@@ -5,6 +5,7 @@ class FilterForm implements IModule {
 	element: HTMLElement;
 	form: HTMLFormElement | null;
 	checkboxes: NodeListOf<HTMLInputElement> | undefined;
+	orderBySelect: HTMLSelectElement | null;
 	periodRadioButtons: NodeListOf<HTMLInputElement> | undefined;
 	buttons: NodeListOf<HTMLButtonElement> | null;
 	minimumDateInput: HTMLInputElement | null;
@@ -19,6 +20,7 @@ class FilterForm implements IModule {
 		this.form = this.element.querySelector('form');
 		this.buttons = this.element.querySelectorAll('.js-reset-filter');
 		this.checkboxes = this.element.querySelectorAll('input[type="checkbox"]');
+		this.orderBySelect = this.element.querySelector('select[name="orderby"]');
 		this.periodRadioButtons = this.element.querySelectorAll('input[name="period"]');
 		this.minimumDateInput = element.querySelector('input[name="post_date_min"]');
 		this.maximumDateInput = element.querySelector('input[name="post_date_max"]');
@@ -142,6 +144,11 @@ class FilterForm implements IModule {
 
 	resetFilter(event: Event) {
 		event.preventDefault();
+
+		// Reset ordering to relevance
+		if ( this.orderBySelect ) {
+			this.orderBySelect.value = 'relevance';
+		}
 
 		this.checkboxes?.forEach((checkbox) => {
 			checkbox.checked = false;
