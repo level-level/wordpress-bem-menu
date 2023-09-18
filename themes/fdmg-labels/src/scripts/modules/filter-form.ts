@@ -147,6 +147,11 @@ class FilterForm implements IModule {
 			checkbox.checked = false;
 		});
 
+		// Reset the period radiu buttons to the first one
+		this.periodRadioButtons?.forEach((radioButton, index) => {
+			radioButton.checked = index === 0 ? true : false;
+		});
+
 		// Reset the category checkboxes
 		this.checkedCategories = [];
 		if (this.hiddenCategoryInput) {
