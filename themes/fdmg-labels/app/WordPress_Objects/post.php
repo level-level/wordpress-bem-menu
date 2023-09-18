@@ -47,12 +47,13 @@ class post extends base_object {
 			'reverse_top_level' => get_option( 'default_comments_page' ) === 'oldest' ? false : true,
 		);
 
-		return wp_list_comments(
+		$html = wp_list_comments(
 			array(
 				'walker' => new CommentWalker(),
 				'style'  => 'ol',
 			), get_comments( $args )
-		) ?: '';
+		);
+		return is_string( $html ) ? $html : '';
 	}
 
 	/**

@@ -62,7 +62,7 @@ class Comments {
 		}
 
 		// Don't block comments if they are not for a post ID
-		if ( empty( $comment_data['comment_post_ID'] ) || ! $comment_data['comment_post_ID'] ) {
+		if ( empty( $comment_data['comment_post_ID'] ) ) {
 			return $approved;
 		}
 
