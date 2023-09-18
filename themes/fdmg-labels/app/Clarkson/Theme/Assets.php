@@ -1,6 +1,8 @@
 <?php
 namespace Clarkson\Theme;
 
+use FDMGLabels\API\Init as APIInit;
+
 class Assets {
 
 	/**
@@ -44,6 +46,7 @@ class Assets {
 		}
 
 		( new ScriptTranslations() )->register_hooks();
+		( new APIInit() )->add_script_variables();
 	}
 
 	public function enqueue_editor(): void {

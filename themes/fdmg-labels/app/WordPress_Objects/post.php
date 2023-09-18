@@ -55,25 +55,4 @@ class post extends base_object {
 		);
 		return is_string( $html ) ? $html : '';
 	}
-
-	/**
-	 * @return mixed
-	 */
-	public function get_comment_form() {
-		$twig = Templates::get_instance();
-
-		$args = array(
-			'class_form'           => 'form-group',
-			'format'               => 'html5',
-			'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
-			'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
-			'comment_notes_before' => '<p>' . _x( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'Comments', 'fdmg-labels' ) . '</p>',
-			'comment_field'        => $twig->render_twig(
-				'styleguide/components/comments/form-fields/textarea.twig',
-				array(), true
-			),
-		);
-
-		return comment_form( $args );
-	}
 }

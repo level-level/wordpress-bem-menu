@@ -2,6 +2,7 @@
 namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson_Core\Objects;
+use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use WP_Term;
 use WPSEO_Primary_Term;
@@ -48,5 +49,27 @@ class base_object extends Clarkson_Object {
 			'datetime'  => $this->get_date_i18n( 'Y-m-d' ),
 			'date_full' => $this->get_date_i18n( 'F j Y' ),
 		);
+	}
+
+	public function get_comment_form(): string {
+		$twig = Templates::get_instance();
+
+		$args = array(
+			'class_form'           => 'form-group',
+			'format'               => 'html5',
+			'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
+			'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
+			'comment_notes_before' => '<p>' . _x( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'Comments', 'fdmg-labels' ) . '</p>',
+			'comment_field'        => $twig->render_twig(
+				'styleguide/components/comments/form-fields/textarea.twig',
+				array(), true
+			),
+		);
+
+		ob_start();
+		comment_form( $args, $this->_post );
+		$html = ob_get_contents() ?: '';
+		ob_end_clean();
+		return $html;
 	}
 }
