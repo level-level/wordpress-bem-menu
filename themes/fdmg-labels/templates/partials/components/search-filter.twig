@@ -67,6 +67,9 @@
 					{% include 'partials/components/filters/period-filters.twig' with {
 						active_period: period,
 						periods: [{
+							period: '',
+							label: _x('Everything', 'Search', 'fdmg-labels'),
+						}, {
 							period: 'week',
 							label: _x('Week', 'Search', 'fdmg-labels'),
 						}, {
