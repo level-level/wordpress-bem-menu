@@ -10,7 +10,7 @@ class Comments {
 
 	public function register_hooks(): void {
 		add_filter( 'comment_form_default_fields', array( $this, 'edit_comment_form' ) );
-		add_filter( 'pre_comment_approved', array( $this, 'block_comments_if_no_permission' ) );
+		add_filter( 'pre_comment_approved', array( $this, 'block_comments_if_no_permission' ), 10, 2 );
 	}
 
 	/**
@@ -58,6 +58,11 @@ class Comments {
 	public function block_comments_if_no_permission( int|string|WP_Error $approved, array $comment_data ): int|string|WP_Error {
 		// Don't block comments if they are not of type comment
 		if ( ! empty( $comment_data['comment_type'] ) && $comment_data['comment_type'] !== 'comment' ) {
+			return $approved;
+		}
+
+		// Don't block comments if they are not for a post ID
+		if ( empty( $comment_data['comment_post_ID'] ) || ! $comment_data['comment_post_ID'] ) {
 			return $approved;
 		}
 
