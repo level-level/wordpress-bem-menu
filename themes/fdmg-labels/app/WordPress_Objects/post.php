@@ -37,14 +37,14 @@ class post extends base_object {
 
 	public function display_comments(): string {
 		$cpage = get_query_var( 'cpage' ) ? get_query_var( 'cpage' ) : 1;
-		$args = array(
-			'post_id' => $this->get_id(),
-			'orderby' => 'comment_date_gmt',
-			'order'   => 'ASC',
-			'status'  => 'approve',
-			'number'  => (int) get_option( 'comments_per_page' ),
-			'paged'   => $cpage,
-       		'reverse_top_level' => get_option( 'default_comments_page' ) === 'oldest' ? false : true,
+		$args  = array(
+			'post_id'           => $this->get_id(),
+			'orderby'           => 'comment_date_gmt',
+			'order'             => 'ASC',
+			'status'            => 'approve',
+			'number'            => (int) get_option( 'comments_per_page' ),
+			'paged'             => $cpage,
+			'reverse_top_level' => get_option( 'default_comments_page' ) === 'oldest' ? false : true,
 		);
 
 		return wp_list_comments(

@@ -14,7 +14,7 @@ class CommentsTest extends WPTestCase {
 
 		$this->post = $this->factory()->post->create_and_get(
 			array(
-				'post_type' => 'post',
+				'post_type'   => 'post',
 				'post_status' => 'publish',
 			)
 		);
@@ -34,14 +34,16 @@ class CommentsTest extends WPTestCase {
 			)
 		);
 
-		$comment_id = wp_new_comment( array(
-			'comment_author'  => $user->display_name,
-			'comment_author_url' => '',
-			'comment_author_email' => '',
-			'comment_content' => 'some comment content',
-			'comment_post_ID' => $this->post->ID,
-			'user_id' => $user->ID,
-		), true );
+		$comment_id = wp_new_comment(
+			array(
+				'comment_author'       => $user->display_name,
+				'comment_author_url'   => '',
+				'comment_author_email' => '',
+				'comment_content'      => 'some comment content',
+				'comment_post_ID'      => $this->post->ID,
+				'user_id'              => $user->ID,
+			), true
+		);
 		$this->assertWPError( $comment_id );
 		$this->assertEquals( $comment_id->get_error_code(), 'comment_no_permission' );
 	}
@@ -54,14 +56,16 @@ class CommentsTest extends WPTestCase {
 		);
 
 		$user->add_cap( 'fdmg_write_comments' );
-		$comment_id = wp_new_comment( array(
-			'comment_author'  => $user->display_name,
-			'comment_author_url' => '',
-			'comment_author_email' => '',
-			'comment_content' => 'some comment content',
-			'comment_post_ID' => $this->post->ID,
-			'user_id' => $user->ID,
-		), true );
+		$comment_id = wp_new_comment(
+			array(
+				'comment_author'       => $user->display_name,
+				'comment_author_url'   => '',
+				'comment_author_email' => '',
+				'comment_content'      => 'some comment content',
+				'comment_post_ID'      => $this->post->ID,
+				'user_id'              => $user->ID,
+			), true
+		);
 		$this->assertIsInt( $comment_id );
 	}
 }
