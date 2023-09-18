@@ -24,8 +24,7 @@ class Paywall {
 	public const META_PAYWALL_TAB_REQUIRED_ROLES    = 'required_roles';
 
 	public function register_hooks(): void {
-		if ( ! function_exists( 'is_plugin_active' ) )
-			require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
 			add_action( 'acf/init', array( $this, 'register' ) );
 			add_action( 'acf/init', array( $this, 'register_fields' ) );
