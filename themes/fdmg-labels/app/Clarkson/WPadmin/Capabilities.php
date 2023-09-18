@@ -15,8 +15,47 @@ class Capabilities {
 	// Custom roles
 	public const ROLE_CLIENT_ADMINISTRATOR = 'client_administrator';
 
+	// Custom capabilities
+	public const CAP_WRITE_COMMENTS = 'fdmg_write_comments';
+
 	public function register_hooks(): void {
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_administrator_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_editor_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_author_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_contributor_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
+	}
+
+	public function update_administrator_role(): void {
+		$role = get_role( self::ROLE_ADMINISTRATOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
+	}
+
+	public function update_editor_role(): void {
+		$role = get_role( self::ROLE_EDITOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
+	}
+
+	public function update_author_role(): void {
+		$role = get_role( self::ROLE_AUTHOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
+	}
+
+	public function update_contributor_role(): void {
+		$role = get_role( self::ROLE_CONTRIBUTOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
 	}
 
 	/**
@@ -48,5 +87,6 @@ class Capabilities {
 
 		$role->add_cap( 'gform_full_access' );
 		$role->add_cap( 'gravityforms_selligent' );
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
 	}
 }
