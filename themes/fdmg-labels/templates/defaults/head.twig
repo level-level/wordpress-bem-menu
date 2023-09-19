@@ -24,7 +24,7 @@
 				}
 
 				var preference = localStorage.getItem( 'theme-style' );
-				document.documentElement.setAttribute( 'data-theme', preference );
+				document.documentElement.setAttribute( 'data-mode', preference );
 			} catch (e) {}
 
 			document.addEventListener( 'DOMContentLoaded', function () {

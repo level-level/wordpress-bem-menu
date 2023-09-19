@@ -43,7 +43,7 @@ class ThemeSelection implements IModule {
 			radio.checked = false;
 		});
 
-		this.html?.setAttribute('data-theme', theme);
+		this.html?.setAttribute('data-mode', theme);
 
 		// Check radiobutton with active theme
 		document.querySelectorAll<HTMLInputElement>(`[value="${theme}"]`).forEach((radio) => {

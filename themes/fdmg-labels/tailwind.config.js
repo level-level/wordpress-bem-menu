@@ -42,7 +42,7 @@ for (const theme of customThemes) {
 
 module.exports = {
 	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}', './.storybook/preview-head.html'],
-	darkMode: ['class', '[data-theme="dark"]'],
+	darkMode: ['class', '[data-mode="dark"]'],
 	theme: {
 		extend: {
 			spacing: {

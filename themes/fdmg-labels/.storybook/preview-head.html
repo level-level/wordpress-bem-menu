@@ -18,13 +18,13 @@
 		};
 
 		document.querySelector('.js-light')?.addEventListener('click', function () {
-			html?.setAttribute('data-theme', 'light');
+			html?.setAttribute('data-mode', 'light');
 			resetActiveSchemeState();
 			this.setAttribute('aria-selected', true);
 		});
 
 		document.querySelector('.js-dark')?.addEventListener('click', function () {
-			html?.setAttribute('data-theme', 'dark');
+			html?.setAttribute('data-mode', 'dark');
 			resetActiveSchemeState();
 			this.setAttribute('aria-selected', true);
 		});

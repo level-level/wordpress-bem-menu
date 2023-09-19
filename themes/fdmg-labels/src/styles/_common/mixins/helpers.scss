@@ -41,7 +41,7 @@
 }
 
 @mixin dark-mode {
-	[data-theme='dark'] & {
+	[data-mode='dark'] & {
 		@content;
 	}
 }
