@@ -2,6 +2,8 @@
 namespace Clarkson\Theme\ACFWidgets;
 
 use Extended\ACF\Fields\Number;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
 
@@ -10,8 +12,11 @@ class LatestAndMostReadPosts {
 
 	protected const FIELD_GROUP = 'widget_latest_and_most_read_posts';
 
-	public const BLOCK_META_LATEST_AMOUNT    = 'latest_posts_amount';
-	public const BLOCK_META_MOST_READ_AMOUNT = 'most_read_posts_amount';
+	public const BLOCK_META_LATEST_TITLE               = 'latest_posts_title';
+	public const BLOCK_META_LATEST_AMOUNT              = 'latest_posts_amount';
+	public const BLOCK_META_MOST_READ_TITLE            = 'most_read_posts_title';
+	public const BLOCK_META_MOST_READ_AMOUNT           = 'most_read_posts_amount';
+	public const BLOCK_META_SHOW_LATEST_ARTICLES_FIRST = 'show_latest_articles_first';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -52,16 +57,21 @@ class LatestAndMostReadPosts {
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'Latest and most read posts', 'Block', 'fdmg-labels-admin' ),
 				'fields'   => array(
+					Text::make( _x( 'Use this field to overwrite the default "Latest articles" title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_LATEST_TITLE ),
 					Number::make( _x( 'Overwrite the default amount (5) of the latest articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_LATEST_AMOUNT )
 						->defaultValue( 5 )
 						->min( 1 )
 						->step( 1 )
 						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+					Text::make( _x( 'Use this field to overwrite the default "Most read" title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_MOST_READ_TITLE ),
 					Number::make( _x( 'Overwrite the default amount (5) of the most read articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_MOST_READ_AMOUNT )
 						->defaultValue( 5 )
 						->min( 1 )
 						->step( 1 )
 						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+					TrueFalse::make( _x( 'Display the "Latest articles" tab first', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SHOW_LATEST_ARTICLES_FIRST )
+						->stylisedUi()
+						->defaultValue( false ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

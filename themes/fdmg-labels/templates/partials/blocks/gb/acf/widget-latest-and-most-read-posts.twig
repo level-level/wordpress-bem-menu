@@ -7,6 +7,9 @@
 		{% include 'styleguide/components/tabbed-posts.twig' with {
 			latest: latest_articles,
 			most_read: most_read_articles,
+			latest_posts_title: data.latest_posts_title,
+			most_read_posts_title: data.most_read_posts_title,
+			show_latest_articles_first: data.show_latest_articles_first,
 		} %}
 	</div>
 {% endif %}
