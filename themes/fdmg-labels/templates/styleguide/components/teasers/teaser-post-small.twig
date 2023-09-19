@@ -74,6 +74,12 @@
 			{% if image %}
 				<div class="relative overflow-hidden aspect-video image:absolute image:top-1/2 image:left-1/2 image:-translate-x-1/2 image:-translate-y-1/2">
 					{{ image|raw }}
+
+					{% if show_paywall_label %}
+						<div class="absolute bottom-2 right-2 z-[2]">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 			{% endif %}
 
@@ -88,12 +94,6 @@
 					date: date,
 					small: true,
 				} only %}
-
-				{% if show_paywall_label %}
-					<div class="absolute top-2 right-2 z-[2]">
-						{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
-					</div>
-				{% endif %}
 
 				{% if excerpt %}
 					<div class="mt-3 text-base sm:text-md">
