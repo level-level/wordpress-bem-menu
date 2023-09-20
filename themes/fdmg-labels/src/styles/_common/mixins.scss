@@ -45,7 +45,7 @@
 // Adds properties for blockquote styling
 @mixin blockquote {
 	@apply relative border-0 mx-0 mb-0 p-0 flex flex-col gap-3;
-	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-primary-300;
+	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-base-300 theme-energeia:after:dark:bg-base-300 theme-pensioen-pro:after:dark:bg-base-300;
 
 	p {
 		@apply font-body italic text-primary dark:text-primary-300 sm:text-lg;
@@ -63,11 +63,13 @@
 	padding: 0;
 	list-style-type: none;
 	counter-reset: counter;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
 	> li {
 		position: relative;
 		counter-increment: counter;
-		margin-top: 5px;
 		padding-left: 24px;
 
 		&:before {
@@ -93,11 +95,13 @@
 @mixin unordered-list-style {
 	padding: 0;
 	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
 	> li {
 		position: relative;
 		padding-left: 20px;
-		margin-top: 5px;
 
 		&:before {
 			@include font-size(24px);
@@ -115,8 +119,8 @@
 }
 
 @mixin intro-font {
-	--wp--preset--font-size--intro: #{calculaterem(20px)};
-	line-height: line-height(20px, 28px);
+	--wp--preset--font-size--intro: #{calculaterem(18px)};
+	line-height: line-height(18px, 28px);
 
 	@include font-heading-normal;
 

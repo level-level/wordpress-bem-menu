@@ -31,19 +31,6 @@ class SVGIcons {
 	}
 
 	/**
-	 * Make svg icons available in JS
-	 */
-	public function localize_script_icons(): void {
-		wp_localize_script(
-			'clarkson_main',
-			'icons',
-			array(
-				'arrowDown' => $this->get( 'carret-down' ),
-			)
-		);
-	}
-
-	/**
 	 * Get svg icon HTML by svg name
 	 */
 	public function get( string $name ): string {
@@ -74,5 +61,49 @@ class SVGIcons {
 		}
 
 		return $svgs;
+	}
+
+	/**
+	 * Creates an icon array with html including <svg> icon and icon name.
+	 * By default shows all icons, it's optional to include only selected icons
+	 * or exclude the selected icons.
+	 *
+	 * @param array<string> $selected_icons
+	 * @param boolean $exclude_icons
+	 * @return array<string>
+	 */
+	public function get_icon_list( array $selected_icons = array(), bool $exclude_icons = false ): array {
+		if ( empty( $this->svgs ) ) {
+			$this->svgs = $this->get_svgs();
+		}
+
+		$svgs = $this->svgs;
+
+		if ( ! empty( $selected_icons ) ) {
+			if ( ! $exclude_icons ) {
+				$svgs = array();
+			}
+
+			foreach ( $selected_icons as $icon_name ) {
+				if ( $exclude_icons ) {
+					unset( $svgs[ $icon_name ] );
+				} else {
+					$svgs[ $icon_name ] = $this->get( $icon_name );
+				}
+			}
+		}
+
+		$choices = array();
+		foreach ( $svgs as $icon_name => $svg ) {
+			$formatted_name = ucwords( str_replace( '-', ' ', $icon_name ) );
+
+			$choices[ $icon_name ] = "
+				<span style='display:flex; gap:10px; align-items:center'>
+					<span aria-hidden='true' style='display:flex;'>{$svg}</span>{$formatted_name}
+				</span>
+			";
+		}
+
+		return $choices;
 	}
 }

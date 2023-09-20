@@ -1,25 +1,26 @@
 {% set trigger = uniqid('js-header-profile-') %}
 {% set target = uniqid('js-header-profile-dropdown-') %}
+{% set config = {
+	trigger: '.' ~ trigger,
+	target: '.' ~ target,
+} %}
 
 <div
 	data-component="header-profile"
 	class="relative flex"
 	data-module="header-profile"
-	data-config='{
-		"trigger": ".{{ trigger }}",
-		"target": ".{{ target }}"
-}'>
+	data-config="{{ config|json_encode() }}">
 	{% include 'styleguide/components/buttons/button-element.twig' with {
 		text: '',
 		aria_expanded_support: true,
-		class: button_class ~ ' ' ~ trigger,
+		class: 'btn-header' ~ ' ' ~ trigger,
 		aria_label: _x('Open profile', 'Profile', 'fdmg-labels'),
 		aria_expanded_text: _x('Close profile', 'Profile', 'fdmg-labels'),
 		aria_collapsed_text: _x('Open profile', 'Profile', 'fdmg-labels'),
 		icon: 'user',
 		icon_left: true,
 	} %}
-	<div class="block absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] right-0 p-0 bg-secondary-200 compact-header:bg-secondary-700 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
+	<div class="block fixed left-0 right-0 compact-header:top-[theme(space.header-height)] sm:left-auto sm:absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] p-0 bg-base-50 text-base-800 dark:text-base-50 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 sm:compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
 		<div class="p-5 text-base">
 			{% include 'partials/components/header/header-display-options.twig' %}
 		</div>

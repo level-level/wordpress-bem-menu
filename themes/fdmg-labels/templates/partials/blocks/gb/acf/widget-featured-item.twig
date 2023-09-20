@@ -3,8 +3,6 @@
 {% if objects %}
 	<div class="{{ align }}" data-name="{{ block.name }}">
 		<ul class="grid grid-cols-1 gap-6">
-			{% set date_format = get_option('date_format') %}
-
 			{% for object in objects %}
 				{% set image_id = object.get_thumbnail_id() %}
 				{% set authors = object.get_authors() %}
@@ -26,9 +24,7 @@
 						image: image_id ? wp_get_attachment_image(image_id, 'large'),
 						title: object.get_alternative_title()|default(object.get_title()),
 						url: object.get_permalink(),
-						date: object.get_date_i18n(date_format),
-						date_full: object.get_date_i18n('F j Y'),
-						datetime: object.get_date_i18n('Y-m-d'),
+						date: object.get_publish_date(),
 						categories: categories ? categories|map(category => {
 							name: category.get_name(),
 						}),
@@ -45,6 +41,7 @@
 						}),
 						comments: object.get_comments_count(),
 						small: true,
+						show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 					} %}
 				</li>
 			{% endfor %}

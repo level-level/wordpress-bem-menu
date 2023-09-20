@@ -127,46 +127,48 @@
 ```
 
 ### article => post
+
 - id
-- escenic_id  -> Oude CMS
+- escenic_id -> Oude CMS
 - state -> Status
-- X target_state  -> Is altijd publish als het ingevuld is en alleen van toepassing bij embargo
+- X target_state -> Is altijd publish als het ingevuld is en alleen van toepassing bij embargo
 - last_modified_date
 - X embargoed_until_date -> Hoeft niet mee omdate we FUTURE post status gebuiken
 - X broadcast_date -> Overal null dus hoeft niet mee
-- X teaser_title     -> Komt uit teaser tabel
+- X teaser_title -> Komt uit teaser tabel
 - prefix -> Genre taxonomie
 - title
 - publication_date
 - publication_url
-- source_origin   -> belangrijk?
-- source_channel  -> belangrijk?
-- X third_party   -> overal leeg
-- X topic         -> overal leeg
+- source_origin -> belangrijk?
+- source_channel -> belangrijk?
+- X third_party -> overal leeg
+- X topic -> overal leeg
 - disallow_comments
 - show_related_articles --> belangrijk?
-- short_article         --> belangrijk? Alleen oude artikelen en 'Kort' is ook een prefix
-- X special_card        --> Altijd leeg
+- short_article --> belangrijk? Alleen oude artikelen en 'Kort' is ook een prefix
+- X special_card --> Altijd leeg
 - do_not_index
-- X original_article_id  --> Van oude import
-- X uri                  --> Van oude import, afgehandeld met redirects
-- X source_id            --> Niet nuttig
-- X article_type         --> Gaat niet mee, filter op ARTICLE
-- X new_window           --> Overbodig
-- X redirect_url         --> nvt op ARTICLE article_type
-- X full_width           --> nvt
+- X original_article_id --> Van oude import
+- X uri --> Van oude import, afgehandeld met redirects
+- X source_id --> Niet nuttig
+- X article_type --> Gaat niet mee, filter op ARTICLE
+- X new_window --> Overbodig
+- X redirect_url --> nvt op ARTICLE article_type
+- X full_width --> nvt
 - X top_html_content_item_id --> nvt
-- free                   --> of er een paywall getoond moet worden
-- X taxonomy               --> Leeg
-- X article_length       --> Leeg
-- X version              --> nvt
-- X last_update_date     --> Leeg
-- X canonical_url        --> Leeg
-- X do_auto_tag          --> Leeg
-- X category             --> Leeg
-- X template             --> NEWS, 101 met BACKGROUND. Nodig? Eventueel handmatig.
+- free --> of er een paywall getoond moet worden
+- X taxonomy --> Leeg
+- X article_length --> Leeg
+- X version --> nvt
+- X last_update_date --> Leeg
+- X canonical_url --> Leeg
+- X do_auto_tag --> Leeg
+- X category --> Leeg
+- X template --> NEWS, 101 met BACKGROUND. Nodig? Eventueel handmatig.
 
 ### author => team
+
 - id
 - first_name
 - last_name
@@ -175,6 +177,7 @@
 - X esb_id --> irrelevant
 
 ### binary_file => media
+
 - id
 - X escenic_id --> irrelevant
 - state (PUBLISH or DRAFT)
@@ -184,6 +187,7 @@
 - x binary_type --> is always pdf
 
 ### picture => media
+
 - id
 - caption
 - X escenic_id --> irrelevant
@@ -200,6 +204,7 @@
 - X source_id --> empty
 
 ### tag => category
+
 - id
 - tag_category_id --> taxonomy id (is always 1)
 - value      --> term_name
@@ -210,18 +215,23 @@
 - X image_path --> empty
 
 ### old_url => redirect
+
 Redirects tabel
+
 - url
 - target_url
 - X old_url_pattern --> nvt
 
 ### short_url => redirect
+
 Andere redirects tabel?
+
 - url
 - target_url
 - redirect
 
 ### section => section
+
 - name
 - title
 - parent_name
@@ -229,7 +239,9 @@ Andere redirects tabel?
 - full_path
 
 ### teaser
+
 Excerpts maar moeilijker
+
 - article_id
 - X type --> nvt
 - X picture_id --> nvt
@@ -256,6 +268,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 These are some useful queries, which are not directly required for the import.
 
 ### Select items with duplicate titles:
+
 ```sql
 SELECT title
 FROM article
@@ -272,12 +285,12 @@ SELECT id,state,last_modified_date,title,publication_date,publication_url,taxono
 );
 ```
 
-
 ## FDMG tags
 
 Due to multiple migrations and the way content in webrwiter is structured, some custom HTML tags are present in the content. These custom HTML tags need to be replaced with actual HTML. Below is a list of custom HTML elements.
 
 ### FDMG PDF
+
 ```html
 <fdmg-pdf>
 	<fdmg-id>npfile-6d0e1a914de7e44ae07ba1651d8cf6a3</fdmg-id>
@@ -287,6 +300,7 @@ Due to multiple migrations and the way content in webrwiter is structured, some 
 ```
 
 ### FDMG Image
+
 ```html
 <fdmg-image>
 	<fdmg-id>20001203</fdmg-id>

@@ -24,8 +24,10 @@ modules:
             title: "Test"
             theme: fdmg-labels
             plugins: [
-              'gravityforms/gravityforms.php'
+              'gravityforms/gravityforms.php',
+              'll-paywall/ll-paywall.php'
             ]
             activatePlugins: [
-              'gravityforms/gravityforms.php'
+              'gravityforms/gravityforms.php',
+              'll-paywall/ll-paywall.php'
             ]

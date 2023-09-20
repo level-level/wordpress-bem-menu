@@ -1,0 +1,21 @@
+{% set menu = null %}
+{% if data.menu %}
+	{% set menu = block.get_menu(data.menu, 'widget-nav', 1) %}
+{% endif %}
+
+{% set title = data.title %}
+
+{% if title and menu %}
+	<div data-name="{{ block.name }}">
+		<p class="mb-2 text-base uppercase font-body-bold {{ is_admin() ? 'text-base-800' : 'text-base-50' }}">{{ title|raw }}</p>
+		{{ menu|raw }}
+	</div>
+{% else %}
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [
+			_x('Title', 'Block', 'fdmg-labels-admin'),
+			_x('Menu', 'Block', 'fdmg-labels-admin'),
+		]
+	} %}
+{% endif %}
+

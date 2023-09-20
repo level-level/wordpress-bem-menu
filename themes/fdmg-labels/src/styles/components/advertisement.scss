@@ -1,10 +1,10 @@
 .advertisement {
 	position: relative;
-	background-color: var(--secondary-200);
+	background-color: var(--secondary-100);
 	padding: $spacing-3 0;
 
 	@include dark-mode {
-		background-color: var(--base-600);
+		background-color: var(--base-400);
 	}
 
 	&__element {
@@ -17,7 +17,7 @@
 					&:before {
 						@include font-normal;
 						@include font-size(14px, 16px);
-						color: var(--secondary-600);
+						color: var(--secondary-700);
 
 						@include dark-mode {
 							color: var(--primary-300);

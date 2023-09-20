@@ -10,7 +10,7 @@
 
 	<div class="section section--no-top">
 		<div class="container">
-			<div class="md:flex md:flex-nowrap md:gap-6">
+			<div class="md:flex md:flex-nowrap md:gap-6 md:justify-between">
 
 				{% if block('offset') is defined and not is_front_page() %}
 					<div class="hidden lg:shrink-0 lg:mb-[96px] lg:block">
@@ -22,7 +22,7 @@
 					{% block responsibility %}{% endblock %}
 				{% endif %}
 
-				<div class="md:grow {{ not is_front_page() ? 'lg:max-w-[theme(space.article-width)] lg:mx-[theme(space.article-offset)]' }}">
+				<div class="md:grow {{ not is_front_page() ? 'lg:max-w-[theme(space.article-width)]' }}">
 					<div class="section-wrapper">
 						{% block header %}{% endblock %}
 						{% block content %}{% endblock %}
