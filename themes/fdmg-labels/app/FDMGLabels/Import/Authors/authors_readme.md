@@ -1,6 +1,6 @@
 # Authors
 
-Select all from "sections" table.
+There are two tables containing author info; author and author_details.
 ## Authors export
 ```
 SELECT id, first_name, last_name, full_name
