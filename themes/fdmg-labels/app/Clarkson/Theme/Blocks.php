@@ -7,7 +7,6 @@ class Blocks {
 	public function register_hooks(): void {
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
-		add_filter( 'render_block', array( $this, 'block_wrapper' ), 10, 2 );
 	}
 
 	/**
@@ -48,7 +47,6 @@ class Blocks {
 			'core/list',
 			'core/list-item',
 			'core/quote',
-			'core/table',
 
 			// Plugins
 			'gravityforms/form',
@@ -87,16 +85,5 @@ class Blocks {
 		}
 
 		return array_merge( $allowed_blocks, $custom_blocks );
-	}
-
-	/**
-	 * Wrap specific Gutenberg blocks in their own divs
-	 */
-	public function block_wrapper( string $block_content, array $block ): string {
-		if ( 'core/table' === $block['blockName'] ) {
-			return '<div data-module="table">' . $block_content . '</div>';
-		}
-
-		return $block_content;
 	}
 }
