@@ -110,9 +110,10 @@ class ACF {
 
 	/**
 	 * Order relationship items by date
+	 * @param array<string,mixed> $args
 	 * @return array<string,mixed>
 	 */
-	public function order_items_by_date( array $args ) {
+	public function order_items_by_date( $args ) {
 		$args['orderby'] = 'date';
 		$args['order']   = 'DESC';
 		return $args;
