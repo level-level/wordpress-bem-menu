@@ -64,6 +64,54 @@ These options need to be entered in the OpenID Connect Generic Client plugin as 
 > For local development, you might need to disable SSL verification by checking the "Disable SSL Verify" checkbox. Do not disable SSL verification on production environments.
 
 > Some of this configuration could seem to be ignored in code, as some values are overwritten [in PHP code](./../../app/Listn/OpenIDConnect.php).
+>
+
+## Whitelisting
+
+For usage of this connection, your local development URL needs to be whitelisted.
+The following urls have been whitelisted:
+
+DEV:
+- http://impact-investor.test
+- https://impact-investor.test
+- http://impact-investor.local
+- https://impact-investor.local
+- http://impact-investor.valet
+- https://impact-investor.valet
+- http://energeia.test
+- https://energeia.test
+- http://pensioen-pro.test
+- https://pensioen-pro.test
+- http://pensioenpro.test
+- https://pensioenpro.test
+- http://energeia.local
+- https://energeia.local
+- http://pensioen-pro.local
+- https://pensioen-pro.local
+- http://pensioenpro.local
+- https://pensioenpro.local
+- http://energeia.valet
+- https://energeia.valet
+- http://pensioen-pro.valet
+- https://pensioen-pro.valet
+- http://pensioenpro.valet
+- https://pensioenpro.valet
+- http://localhost
+- https://localhost
+
+- https://energeia-test.level-level.nl
+- https://pensioen-pro-test.level-level.nl
+- https://impact-investor-test.level-level.nl/energeia
+- https://impact-investor-test.level-level.nl/pensioen-pro
+
+ACC:
+
+- https://pensioen-pro-acc.level-level.nl
+- https://energeia-acc.level-level.nl
+
+PROD:
+- https://pensioenpro.nl
+- https://energeia.nl
 
 ## Known errors
 
