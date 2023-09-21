@@ -48,7 +48,6 @@ class Blocks {
 			'core/list',
 			'core/list-item',
 			'core/quote',
-			'core/table',
 
 			// Plugins
 			'gravityforms/form',

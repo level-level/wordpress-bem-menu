@@ -49,8 +49,20 @@ wp.hooks.addFilter('blocks.registerBlockType', 'fdmg-labels/blocks', function (s
 				anchor: false,
 				className: false,
 				customClassName: false,
+				color: false,
+				filter: false,
 			}),
 		});
 	}
+
+	if (name === 'core/image') {
+		return lodash.assign({}, settings, {
+			supports: lodash.assign({}, settings.supports, {
+				color: false,
+				filter: false,
+			}),
+		});
+	}
+
 	return settings;
 });
