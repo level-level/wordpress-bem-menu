@@ -90,13 +90,17 @@
 
 // WP Alignments
 @mixin alignleft {
-	float: left;
-	margin-right: 2em;
+	@include breakpoint(sm) {
+		float: left;
+		margin-right: 24px !important;
+	}
 }
 
 @mixin alignright {
-	float: right;
-	margin-right: 2em;
+	@include breakpoint(sm) {
+		float: right;
+		margin-left: 24px !important;
+	}
 }
 
 @mixin alignfull {

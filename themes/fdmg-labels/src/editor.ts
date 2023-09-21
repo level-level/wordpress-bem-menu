@@ -64,5 +64,13 @@ wp.hooks.addFilter('blocks.registerBlockType', 'fdmg-labels/blocks', function (s
 		});
 	}
 
+	if (name === 'core/embed') {
+		return lodash.assign({}, settings, {
+			supports: lodash.assign({}, settings.supports, {
+				align: false,
+			}),
+		});
+	}
+
 	return settings;
 });
