@@ -65,7 +65,6 @@ class Post {
 					'fontSize'    => 'intro',
 				),
 			),
-			array( 'core/heading' ),
 			array(
 				'core/paragraph',
 				array(

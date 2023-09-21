@@ -137,3 +137,17 @@ strong {
 .interface-complementary-area {
 	width: 400px;
 }
+
+.wp-block-image {
+	&.alignleft {
+		@include breakpoint(sm) {
+			margin-left: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+	}
+
+	&.alignright {
+		@include breakpoint(sm) {
+			margin-right: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+	}
+}
