@@ -41,13 +41,8 @@
 
 				{% if datetime and date %}
 					<div class="shrink-0">
-						{% if date_full %}
-							<span class="sr-only">{{ _x('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
-							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
-						{% else %}
-							<span class="sr-only">{{ _x('Published on:', 'Screen reader text', 'fdmg-labels') }}</span>
-							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-						{% endif %}
+						<span class="sr-only">{{ _x('Published:', 'Screen reader text', 'fdmg-labels') }}</span>
+						<date datetime="{{ datetime|raw }}">{{ date|raw }}</date>
 					</div>
 				{% endif %}
 			</div>

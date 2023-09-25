@@ -8,8 +8,8 @@
 			objects: objects ? objects|map(post => {
 				title: post.get_alternative_title()|default(post.get_title()),
 				url: post.get_permalink(),
-				date: post.get_date_i18n(time_format),
-				datetime: post.get_date_i18n(time_format),
+				date: post.get_human_readable_date(),
+				datetime: post.get_date_i18n('Y-m-d'),
 			}),
 			button_text: data.latest_button_title|default(_x('More articles', 'Block', 'fdmg-labels')),
 			button_link: get_post_type_archive_link('post'),

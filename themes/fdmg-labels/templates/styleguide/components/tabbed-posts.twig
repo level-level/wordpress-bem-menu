@@ -44,7 +44,7 @@
 		{% endif %}
 
 		{% if latest %}
-			{% set time_format = get_option('time_format') %}
+			{% set date_format = get_option('date_format') %}
 			<div id="latest" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section" {{ show_latest_articles_first or not most_read ? 'aria-hidden="false"' : 'aria-hidden="true"' }}>
 				{% include 'styleguide/components/list-component.twig' with {
 					objects: latest ? latest|map(post => {
@@ -54,9 +54,8 @@
 							name: term.get_name(),
 						}),
 						term_label: feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? _x('genre', 'Screen reader text', 'fdmg-labels') : _x('category', 'Screen reader text', 'fdmg-labels'),
-						date: post.get_date_i18n(time_format),
-						datetime: post.get_date_i18n(time_format),
-						date_full: post.get_date_i18n(time_format),
+						date: post.get_human_readable_date(),
+						datetime: post.get_date_i18n('Y-m-d'),
 					}),
 					button_text: latest_button_title|default(_x('More articles', 'Block', 'fdmg-labels')),
 					button_link: get_post_type_archive_link('post'),

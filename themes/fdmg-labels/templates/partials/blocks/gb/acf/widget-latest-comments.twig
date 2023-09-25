@@ -12,8 +12,8 @@
 				comment_content: comment.get_content(),
 				comment_author: comment.get_author(),
 				url: comment.get_post().get_permalink() ~ '#comments',
-				date: comment.get_date_i18n(time_format),
-				datetime: comment.get_date_i18n(time_format),
+				date: comment.get_human_readable_date(),
+				datetime: comment.get_date_i18n('Y-m-d'),
 			}),
 			style: 'dark',
 		} %}
