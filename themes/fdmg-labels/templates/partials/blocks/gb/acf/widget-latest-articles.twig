@@ -11,7 +11,7 @@
 				date: post.get_date_i18n(time_format),
 				datetime: post.get_date_i18n(time_format),
 			}),
-			button_text: _x('More articles', 'Block', 'fdmg-labels'),
+			button_text: data.latest_button_title|default(_x('More articles', 'Block', 'fdmg-labels')),
 			button_link: get_post_type_archive_link('post'),
 			style: 'dark',
 		} %}
