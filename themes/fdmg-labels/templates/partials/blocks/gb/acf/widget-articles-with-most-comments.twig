@@ -3,7 +3,6 @@
 
 {% if objects %}
 	<div class="{{ align }}" data-name="{{ block.name }}">
-		{% set time_format = get_option('time_format') %}
 		{% include 'styleguide/components/list-component.twig' with {
 			heading: title|default(_x('Articles with the most comments', 'Block', 'fdmg-labels')),
 			objects: objects ? objects|map(post => {

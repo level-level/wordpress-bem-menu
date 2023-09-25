@@ -44,7 +44,6 @@
 		{% endif %}
 
 		{% if latest %}
-			{% set date_format = get_option('date_format') %}
 			<div id="latest" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section" {{ show_latest_articles_first or not most_read ? 'aria-hidden="false"' : 'aria-hidden="true"' }}>
 				{% include 'styleguide/components/list-component.twig' with {
 					objects: latest ? latest|map(post => {
