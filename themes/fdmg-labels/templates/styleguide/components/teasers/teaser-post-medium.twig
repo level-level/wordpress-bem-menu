@@ -1,7 +1,7 @@
 <div data-component="teaser-post-medium" class="relative flex flex-col h-full transition-shadow border-b-2 font-body bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{% if image %}
-		<div class="relative overflow-hidden aspect-video image:absolute image:top-1/2 image:left-1/2 image:-translate-x-1/2 image:-translate-y-1/2 image:w-full">
+		<div class="relative overflow-hidden aspect-video image:w-full image:h-full image:object-cover">
 			{{ image|raw }}
 
 			{% if show_paywall_label %}
