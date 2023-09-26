@@ -13,7 +13,7 @@ class base_comment extends Clarkson_Comment {
 		$current_time = time();
 		$time_diff    = $current_time - $date;
 
-		if ( $time_diff >= 86400 ) { // 86400 seconds = 24 hours
+		if ( $time_diff >= DAY_IN_SECONDS ) {
 			return date_i18n( get_option( 'date_format' ), $date );
 		} else {
 			return sprintf( __( '%s <span class="sr-only">ago</span>', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
