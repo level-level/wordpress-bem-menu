@@ -34,7 +34,7 @@ class HighlightedContent {
 					_x( 'in short', 'Keyword', 'fdmg-labels-admin' ),
 				),
 				'supports'    => array(
-					'align'    => array( 'center' ),
+					'align'    => array( 'center', 'left', 'right' ),
 					'multiple' => true,
 				),
 				'example'     => array(
