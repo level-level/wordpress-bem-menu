@@ -5,6 +5,8 @@ use Clarkson_Core\Templates;
 
 abstract class BaseStaticPageController {
 
+	public function __construct() {}
+
 	abstract public function get_permalink( string $sub_page = '' ): string;
 
 	abstract public function handle_request( string $query_var ): void;
