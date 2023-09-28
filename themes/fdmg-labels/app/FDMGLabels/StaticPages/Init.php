@@ -9,7 +9,7 @@ class Init {
 
 	public function __construct() {
 		$this->main_static_page_controllers = array(
-			'profile'   => new ProfileController(),
+			'profile' => new ProfileController(),
 		);
 	}
 

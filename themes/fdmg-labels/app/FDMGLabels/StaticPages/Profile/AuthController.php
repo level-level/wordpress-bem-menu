@@ -5,8 +5,8 @@ use FDMGLabels\StaticPages\BaseChildStaticPageController;
 
 class AuthController extends BaseChildStaticPageController {
 
-	public const SUB_PAGE_LOGIN       = 'login';
-	public const SUB_PAGE_LOGOUT       = 'logout';
+	public const SUB_PAGE_LOGIN  = 'login';
+	public const SUB_PAGE_LOGOUT = 'logout';
 
 	/**
 	 * Catch all requests for the magic login and run the corresponding actions.
@@ -50,7 +50,6 @@ class AuthController extends BaseChildStaticPageController {
 		}
 
 		// Redirect to the login url.
-		$url = oidcg_get_authentication_url();
 		$this->redirect_and_exit( oidcg_get_authentication_url(), 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
 	}
 
