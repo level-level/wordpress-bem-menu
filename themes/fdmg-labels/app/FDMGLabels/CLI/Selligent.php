@@ -106,6 +106,7 @@ class Selligent {
 	 * : Preview the body data without sending the request.
 	 *
 	 * [--test-mode]
+	 * : Sends the newsletter as test
 	 * ---
 	 * default: 1
 	 * options:
