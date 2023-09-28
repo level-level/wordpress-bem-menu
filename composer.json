@@ -51,7 +51,8 @@
         "ll-premium/gravityformspolls": "^4.0",
         "level-level/ll-paywall": "^0.1.0",
         "wpackagist-plugin/elasticpress": "^4.7",
-        "level-level/wp-file-mods": "^1.0"
+        "level-level/wp-file-mods": "^1.0",
+        "wpackagist-plugin/download-monitor": "^4.8"
     },
     "scripts": {
         "post-autoload-dump": [
