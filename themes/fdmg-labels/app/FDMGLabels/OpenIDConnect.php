@@ -21,7 +21,6 @@ class OpenIDConnect {
 	);
 
 	public function register_hooks(): void {
-		// https://github.com/oidc-wp/openid-connect-generic/blob/dev/HOWTO.md#openid-connect-generic-user-create
 		add_filter( 'openid-connect-generic-alter-user-data', array( $this, 'change_new_user_data' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'set_user_roles' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'update_user_data' ), 10, 2 );
