@@ -3,7 +3,7 @@
 		href="{{ url }}"
 		aria-label="{{ __('Download %s, (%s, %s)', 'fdmg-labels')|format(title, filetype, filesize)|raw }}"
 		class="relative inline-flex gap-2 no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800"
-		aria-label="{{ _x('%s (%s, %s)', 'Screen reader text', 'fdmg-labels')|format(title, filetype, filesize) }}">
+	>
 			{{ title }} {{ _x('[%s, %s]'|format(filetype, filesize), 'Download', 'fdmg-labels') }}
 	</a>
 </div>
