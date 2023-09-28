@@ -27,7 +27,7 @@ class Downloads {
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
 				'title'       => _x( 'Downloads', 'Block', 'fdmg-labels-admin' ),
-				'description' => _x( 'Toon downloads van Downloadmonitor.', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays downloads from Download monitor.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'download',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array(
