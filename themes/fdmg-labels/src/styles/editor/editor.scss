@@ -138,16 +138,27 @@ strong {
 	width: 400px;
 }
 
-.wp-block-image {
+.wp-block {
 	&.alignleft {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
 		@include breakpoint(sm) {
 			margin-left: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+
+		.alignleft {
+			@apply w-full;
+			width: 100%;
 		}
 	}
 
 	&.alignright {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
 		@include breakpoint(sm) {
 			margin-right: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+
+		.alignright {
+			@apply w-full;
 		}
 	}
 }
