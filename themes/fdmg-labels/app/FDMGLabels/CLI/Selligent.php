@@ -140,6 +140,9 @@ class Selligent {
 	 *
 	 * ## Options
 	 *
+	 * <id>
+	 * : Newsletter ID to send
+	 *
 	 * [--preview]
 	 * : Preview the body data without sending the request.
 	 *
