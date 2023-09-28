@@ -2,6 +2,8 @@
 
 namespace FDMGLabels\Widgets;
 
+use FDMGLabels\FeatureManager;
+
 class WidgetAreas {
 
 	public function register_hooks(): void {
@@ -10,6 +12,29 @@ class WidgetAreas {
 	}
 
 	public function register_widget_areas(): void {
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_COMPACT_HEADER ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-navigation-ad',
+					'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div>',
+					'after_widget'  => '</div>',
+				)
+			);
+
+			register_sidebar(
+				array(
+					'name'          => _x( 'Menu', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-sidebar',
+					'description'   => _x( 'Widgets added in this area are shown inside the sidebar menu area behind the Menu button.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="p-5 border-b border-secondary-700 dark:border-base-400">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
+
 		register_sidebar(
 			array(
 				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
@@ -17,8 +42,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -29,8 +52,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the homepage.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -41,8 +62,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on article pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -53,8 +72,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the content pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -65,8 +82,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the author pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -77,8 +92,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -89,8 +102,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the vacancy pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -101,8 +112,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 
@@ -113,8 +122,6 @@ class WidgetAreas {
 				'description'   => _x( 'Add widgets to appear on the search results page.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section">',
 				'after_widget'  => '</div>',
-				'before_title'  => '<h2 class="widget-title">',
-				'after_title'   => '</h2>',
 			)
 		);
 	}

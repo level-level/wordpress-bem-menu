@@ -7,6 +7,11 @@
 		@apply sm:max-w-[theme(space.content-width)];
 	}
 
+	> .alignleft,
+	> .alignright {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
+	}
+
 	& > * + * {
 		@apply mt-6;
 	}

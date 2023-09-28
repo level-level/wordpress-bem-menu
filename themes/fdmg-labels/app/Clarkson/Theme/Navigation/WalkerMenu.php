@@ -14,10 +14,12 @@ class WalkerMenu extends Walker_Nav_Menu {
 	 * @var array<string,string>
 	 */
 	public array $item_css_class_suffixes;
+	public bool $show_icons;
 
-	public function __construct( string $css_class_prefix ) {
+	public function __construct( string $css_class_prefix, bool $show_icons ) {
 		$this->has_children     = false;
 		$this->css_class_prefix = $css_class_prefix;
+		$this->show_icons       = $show_icons;
 
 		$this->item_css_class_suffixes = array(
 			'item'                    => '__item',
@@ -77,6 +79,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 		$args_array = is_object( $args ) ? get_object_vars( $args ) : $args;
 		$prefix     = $this->css_class_prefix;
 		$suffix     = $this->item_css_class_suffixes;
+		$icon       = get_field( Navigation::NAVIGATION_META_ICON, $menu_item );
 
 		$has_children = isset( $args_array['walker'] ) && $args_array['walker']->has_children;
 		$has_submenu  = false;
@@ -97,7 +100,14 @@ class WalkerMenu extends Walker_Nav_Menu {
 		$link_classes = implode( ' ', $link_classes );
 
 		$attributes  = $this->get_link_attributes( $menu_item );
-		$item_output = "<a {$attributes} class='{$link_classes}'>{$menu_item->title}</a>";
+		$item_output = "<a {$attributes} class='{$link_classes}'>";
+
+		if ( $icon && $this->show_icons ) {
+			$link_classes = trim( $link_classes );
+			$icon_class   = "{$link_classes}-icon icon-inline icon-$icon";
+			$item_output .= "<span class='$icon_class' aria-hidden='true'>" . SVGIcons::get_instance()->get( $icon ) . '</span>';
+		}
+		$item_output .= "{$menu_item->title}</a>";
 
 		if ( $has_submenu ) {
 			$template     = Templates::get_instance();
@@ -105,9 +115,9 @@ class WalkerMenu extends Walker_Nav_Menu {
 				'styleguide/components/buttons/button-element.twig',
 				array(
 					'class'                 => $this->css_class_prefix . '__arrow',
-					'aria_label'            => __( 'Sub menu', 'fdmg-labels' ),
+					'aria_label'            => sprintf( _x( 'Submenu %s', 'Navigation', 'fdmg-labels' ), $menu_item->title ),
 					'aria_expanded_support' => true,
-					'icon'                  => 'carret-down',
+					'icon'                  => 'chevron-down',
 					'svg_icons'             => SVGIcons::get_instance(),
 				),
 				true

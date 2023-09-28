@@ -21,12 +21,18 @@ export default {
 		label: {
 			control: 'text',
 		},
+		date: {
+			control: 'array',
+		},
 	},
 	args: {
 		title: 'Borski: Female venture capitalists are key to female innovation',
 		terms: Terms,
-		date: 'Apr 21, 2021',
-		datetime: '2021-04-21',
+		date: {
+			date: '21 Apr, 2021',
+			datetime: '2021-04-21',
+			date_full: '21 april 2021',
+		},
 		authors: Authors,
 		label: '',
 	},

@@ -1,0 +1,61 @@
+{% set paywall_content = block.get_paywall_object().get_paywall_options() %}
+{% set requires_roles_for_access = block.get_paywall_object().get_require_roles_for_access() %}
+
+{% set title = paywall_content.title %}
+{% set content = paywall_content.content %}
+{% set button = paywall_content.login_button %}
+{% set button_text = _x('Login', 'Paywall', 'fdmg-labels') %}
+
+{% if requires_roles_for_access %}
+	{% set title = paywall_content.title_required_role %}
+	{% set content = paywall_content.content_required_role %}
+	{% set button = paywall_content.subscription_button %}
+	{% set button_text = _x('Choose your subscription', 'Paywall', 'fdmg-labels') %}
+{% endif %}
+
+{% if title and content and button %}
+	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }} relative {{ not is_admin() ? "before:absolute before:-top-[70px] before:left-0 before:right-0 before:h-[70px] before:bg-gradient-to-t before:from-secondary-50 before:to-transparent before:dark:from-base-700" }}">
+		<div class="relative p-4 sm:p-8 bg-secondary-600 dark:bg-base-400 text-base-50 min-h-[120px] sm:min-h-[150px] sm:text-md font-body-bold">
+			<div data-ll-paywall-name="initial-content">
+				<div class="flex flex-col gap-2">
+					<h2 class="text-lg font-heading text-base-50 xl:text-xl">{{ title }}</h2>
+
+					<div class="ulli:!pl-8 ulli:relative ulli:before:absolute ulli:before:left-0 ulli:before:!content-[''] ulli:before:bg-[url('../images/icons/check.svg')] ulli:before:w-[19px] ulli:before:h-[16px] ulli:before:!top-[5px] ul:!gap-3 ol:!gap-3">
+						{{ content|raw }}
+					</div>
+
+					{% if button %}
+						<div class="mt-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: button_text,
+								url: button.url,
+								class: 'btn-primary',
+								icon: 'external-link',
+							} %}
+						</div>
+					{% endif %}
+				</div>
+			</div>
+
+			{% if not is_admin() %}
+				<div data-ll-paywall-name="loader">
+					<div class="absolute inset-0 flex items-center justify-center bg-secondary-700 dark:bg-base-400 text-base-50 z-[1]">
+
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-[70px]">
+							<path fill="#fff" d="M73,50c0-12.7-10.3-23-23-23S27,37.3,27,50 M30.9,50c0-10.5,8.5-19.1,19.1-19.1S69.1,39.5,69.1,50">
+								<animateTransform
+									attributeName="transform"
+									type="rotate"
+									dur="1s"
+									from="0 50 50"
+									to="360 50 50"
+									repeatCount="indefinite" />
+							</path>
+						</svg>
+					</div>
+				</div>
+			{% endif %}
+
+		</div>
+	</div>
+{% endif %}

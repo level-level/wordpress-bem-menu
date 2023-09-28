@@ -17,8 +17,8 @@ export default {
 				type: 'facebook',
 			},
 			{
-				title: 'Twitter',
-				type: 'twitter',
+				title: 'X',
+				type: 'x',
 			},
 			{
 				title: 'LinkedIn',

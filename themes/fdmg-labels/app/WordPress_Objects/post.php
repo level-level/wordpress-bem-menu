@@ -5,6 +5,7 @@ namespace Clarkson_Core\WordPress_Object;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
+use LevelLevel\Paywall\ContentExtractor;
 
 class post extends base_object {
 	public static $type = PostTypesPost::POST_TYPE_NAME;
@@ -15,6 +16,14 @@ class post extends base_object {
 
 	public function get_authors(): array {
 		return get_field( PostTypesPost::META_AUTHORS, $this->get_id() ) ?: array();
+	}
+
+	public function has_paywall_block(): bool {
+		if ( ! class_exists( '\\LevelLevel\\Paywall\\ContentExtractor' ) ) {
+			return false;
+		}
+
+		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
 	}
 
 	public function has_comments_enabled(): bool {

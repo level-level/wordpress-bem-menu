@@ -2,6 +2,7 @@
 namespace Clarkson\Theme\ACFWidgets;
 
 use Extended\ACF\Fields\Number;
+use Extended\ACF\Fields\Text;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
 
@@ -10,7 +11,8 @@ class LatestArticles {
 
 	protected const FIELD_GROUP = 'widget_latest_articles';
 
-	public const WIDGET_META_AMOUNT = 'amount';
+	public const WIDGET_META_AMOUNT              = 'amount';
+	public const WIDGET_META_LATEST_BUTTON_TITLE = 'latest_button_title';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -25,7 +27,9 @@ class LatestArticles {
 				'description' => _x( 'Displays a latest articles block. This block will automatically show the latest articles.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'list-view',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'latest', 'posts', 'articles' ),
+				'keywords'    => array(
+					_x( 'latest articles', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,
@@ -53,6 +57,7 @@ class LatestArticles {
 						->min( 1 )
 						->step( 1 )
 						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+					Text::make( _x( 'Use this field to overwrite the default button title "More articles"', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_LATEST_BUTTON_TITLE ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

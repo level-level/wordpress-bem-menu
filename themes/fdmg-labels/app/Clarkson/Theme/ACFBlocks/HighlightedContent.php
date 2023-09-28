@@ -28,9 +28,13 @@ class HighlightedContent {
 				'description' => _x( 'Displays content in a box to make it stand out more.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'text-page',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'highlight', 'summary', 'in short', 'content' ),
+				'keywords'    => array(
+					_x( 'highlight', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'summary', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'in short', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
-					'align'    => array( 'center' ),
+					'align'    => array( 'center', 'left', 'right' ),
 					'multiple' => true,
 				),
 				'example'     => array(

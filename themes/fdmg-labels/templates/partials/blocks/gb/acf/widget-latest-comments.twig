@@ -1,0 +1,19 @@
+{% set comments = block.get_latest_comments() %}
+{% set title = data.title %}
+
+{% if comments %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		{% include 'styleguide/components/list-component.twig' with {
+			heading: title|default(_x('Latest comments', 'Block', 'fdmg-labels')),
+			objects: comments ? comments|map(comment => {
+				title: comment.get_post().get_alternative_title()|default(comment.get_post().get_title()),
+				comment_content: comment.get_content(),
+				comment_author: comment.get_author(),
+				url: comment.get_post().get_permalink() ~ '#comments',
+				date: comment.get_human_readable_date(),
+				datetime: comment.get_date_i18n('Y-m-d'),
+			}),
+			style: 'dark',
+		} %}
+	</div>
+{% endif %}

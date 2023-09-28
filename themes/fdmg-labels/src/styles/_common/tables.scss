@@ -138,7 +138,7 @@ table:not(#{$excluded_tables}) {
 		}
 
 		&:nth-child(odd) {
-			background-color: var(--secondary-200);
+			background-color: var(--secondary-100);
 
 			@include dark-mode {
 				background-color: var(--base-300);

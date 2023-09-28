@@ -3,7 +3,7 @@
 		{% for social in socials %}
 			{% if social.url %}
 				<li>
-					<a href="{{ social.url }}" class="text-[20px] flex justify-center items-center no-underline text-secondary-600 transition-colors dark:text-base-100 hocus:dark:text-primary-300 w-[36px] h-[36px] bg-base-50 rounded-full hocus:text-base-50 hocus:bg-secondary-600 dark:bg-base-300" aria-label="{{ social.type.label }}">
+					<a href="{{ social.url }}" class="text-lg flex justify-center items-center no-underline text-secondary-700 transition-colors dark:text-base-100 hocus:dark:text-primary-300 w-[36px] h-[36px] bg-base-50 rounded-full hocus:text-base-50 hocus:bg-secondary-700 dark:bg-base-300" aria-label="{{ social.type.label }}">
 						<span class="icon-inline" aria-hidden="true">{{ svg_icons.get(social.type.value)|raw }}</span>
 					</a>
 				</li>

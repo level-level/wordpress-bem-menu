@@ -28,7 +28,11 @@ class Team {
 				'description' => _x( 'Displays a list of team members.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'groups',
 				'align'       => 'center', // full, wide, left, center, right
-				'keywords'    => array( 'team', 'editors', 'members' ),
+				'keywords'    => array(
+					_x( 'team', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'editors', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'members', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

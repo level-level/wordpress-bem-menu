@@ -40,7 +40,10 @@ class FeaturedArticle {
 				'description' => _x( 'Displays a single featured article.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'welcome-view-site',
 				'align'       => 'wide', // full, wide, left, center, right
-				'keywords'    => array( 'featured article', 'post' ),
+				'keywords'    => array(
+					_x( 'featured article', 'Keyword', 'fdmg-labels-admin' ),
+					_x( 'article', 'Keyword', 'fdmg-labels-admin' ),
+				),
 				'supports'    => array(
 					'align'    => array( 'center' ),
 					'multiple' => true,

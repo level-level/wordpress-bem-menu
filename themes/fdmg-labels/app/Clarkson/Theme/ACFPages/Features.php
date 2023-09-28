@@ -69,14 +69,17 @@ class Features {
 								TrueFalse::make( _x( 'Disable article teaser footer', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_ARTICLE_TEASER_FOOTER )
 									->instructions( _x( 'Disables the footer of the article teasers.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
+								TrueFalse::make( _x( 'Enable "Free article" paywall label', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PAYWALL_LABEL )
+									->instructions( _x( 'If the paywall plugin is active, show the "Free article" label in the article teasers if the article does not include the paywall block.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi(),
 								Tab::make( _x( 'Share options', 'Fields', 'fdmg-labels-admin' ) )
 									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable sharing via Facebook', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_FACEBOOK )
 									->instructions( _x( 'Enables sharing an article via Facebook.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
-								TrueFalse::make( _x( 'Enable sharing via Twitter', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_TWITTER )
-									->instructions( _x( 'Enables sharing an article via Twitter.', 'Fields', 'fdmg-labels-admin' ) )
+								TrueFalse::make( _x( 'Enable sharing via X (Twitter)', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_TWITTER )
+									->instructions( _x( 'Enables sharing an article via X (Twitter).', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( true ),
 								TrueFalse::make( _x( 'Enable sharing via LinkedIn', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_SHARE_VIA_LINKEDIN )
@@ -99,6 +102,10 @@ class Features {
 									->placement( 'left' ),
 								TrueFalse::make( _x( 'Disable autofilling the related articles block', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK )
 									->instructions( _x( 'Make sure the related article block does not automatically load any related articles when creating a new article thus making it invisible.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+								TrueFalse::make( _x( 'Disable using a default title in the highlighted content block', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK )
+									->instructions( _x( 'Filling the title field is then no longer required in the highlighted content block.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
 							)
