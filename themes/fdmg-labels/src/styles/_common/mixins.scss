@@ -1,7 +1,8 @@
 @import './mixins/helpers';
 
 @mixin heading {
-	@include font-heading;
+	font-family: 'Libre Caslon Text', sans-serif;
+	font-weight: 700;
 	display: block;
 	margin: 0;
 	padding: 0;
@@ -32,7 +33,7 @@
 
 @mixin heading-h4 {
 	@include heading;
-	@include font-bold;
+	font-weight: 700;
 	@include font-size(16px, 22px);
 
 	@include breakpoint(sm) {
@@ -54,7 +55,7 @@
 
 	cite,
 	.wp-block-quote__citation {
-		@apply font-body-bold text-sm text-primary dark:text-primary-300 not-italic;
+		@apply font-bold text-sm text-primary dark:text-primary-300 not-italic;
 		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-pensioen-pro:dark:text-base-50;
 	}
 }
@@ -73,7 +74,8 @@
 		padding-left: 24px;
 
 		&:before {
-			@include font-heading;
+			font-family: 'Libre Caslon Text', sans-serif;
+			font-weight: 700;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -119,18 +121,28 @@
 }
 
 @mixin intro-font {
-	--wp--preset--font-size--intro: #{calculaterem(18px)};
-	line-height: line-height(18px, 28px);
-
-	@include font-heading-normal;
+	--wp--preset--font-size--intro: #{calculaterem(22px)};
+	line-height: line-height(22px, 28px);
+	font-family: 'Crimson Text', sans-serif;
 
 	@include breakpoint(sm) {
-		--wp--preset--font-size--intro: #{calculaterem(22px)};
-		line-height: line-height(22px, 30px);
+		--wp--preset--font-size--intro: #{calculaterem(24px)};
+		line-height: line-height(24px, 30px);
 	}
 
 	@include breakpoint(lg) {
-		--wp--preset--font-size--intro: #{calculaterem(24px)};
+		--wp--preset--font-size--intro: #{calculaterem(30px)};
+		line-height: line-height(30px, 36px);
+	}
+}
+
+@mixin regular-font {
+	--wp--preset--font-size--regular: #{calculaterem(18px)};
+	line-height: line-height(18px, 24px);
+	font-family: 'Crimson Text', sans-serif;
+
+	@include breakpoint(sm) {
+		--wp--preset--font-size--regular: #{calculaterem(24px)};
 		line-height: line-height(24px, 34px);
 	}
 }

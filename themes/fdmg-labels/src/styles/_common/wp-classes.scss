@@ -24,51 +24,16 @@
 .wp-block-image,
 .wp-block-embed {
 	figcaption {
-		@include font-normal;
-		@include font-size(14px, 18px);
-		color: var(--base-700);
-		margin: 0;
-		padding: 10px;
-		background-color: var(--secondary-100);
-
-		@include dark-mode {
-			color: var(--base-100);
-			background-color: var(--base-400);
-		}
+		@apply font-body text-sm text-base-700 m-0 p-[10px] bg-secondary-100 dark:text-base-100 dark:bg-base-400;
 	}
 }
 
 .wp-block-image {
 	.alignright {
-		float: none;
-		margin: 0;
-
-		@include breakpoint(sm) {
-			float: right;
-			margin-left: 15px;
-		}
+		@apply float-none m-0 sm:float-right sm:ml-4;
 	}
 
 	.alignleft {
-		float: none;
-		margin: 0;
-
-		@include breakpoint(sm) {
-			float: left;
-			margin-right: 15px;
-		}
+		@apply float-none m-0 sm:float-left sm:ml-4;
 	}
-}
-
-.wp-block-columns {
-	margin-top: -#{$spacing-6};
-	margin-bottom: 0;
-
-	+ .wp-block-columns {
-		padding-top: $spacing-6;
-	}
-}
-
-.wp-block-column {
-	margin-top: $spacing-6;
 }

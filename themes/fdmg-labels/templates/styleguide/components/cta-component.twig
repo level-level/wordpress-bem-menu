@@ -5,7 +5,7 @@
 		</div>
 		<div class="flex flex-col gap-3 pt-3 text-base-600 sm:pt-0 sm:items-start dark:text-base-50">
 			<h3 class="font-heading text-base-600 dark:text-base-50">{{ title }}</h3>
-			<div class="text-md">{{ content|raw }}</div>
+			<div class="text-base sm:text-md">{{ content|raw }}</div>
 
 			{% include 'styleguide/components/buttons/button-link.twig' with {
 				text: button.title,

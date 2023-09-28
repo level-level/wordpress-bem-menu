@@ -1,3 +1,7 @@
+import "@fontsource/libre-caslon-text/700.css";
+import '@fontsource-variable/figtree';
+import '@fontsource/crimson-text';
+import '@fontsource/crimson-text/700.css';
 import './styles/main.scss';
 import './scripts/main';
 

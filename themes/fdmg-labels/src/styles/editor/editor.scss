@@ -25,7 +25,7 @@
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+		@apply text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50 font-article;
 
 		h2[data-type='core/heading'] {
 			@include heading-h2;
@@ -70,6 +70,10 @@
 		p {
 			&.has-intro-font-size {
 				@include intro-font;
+			}
+
+			&.has-regular-font-size {
+				@include regular-font;
 			}
 		}
 
@@ -130,7 +134,7 @@
 }
 
 strong {
-	@include font-bold;
+	font-weight: 700;
 }
 
 /* Editor sidebar styling */

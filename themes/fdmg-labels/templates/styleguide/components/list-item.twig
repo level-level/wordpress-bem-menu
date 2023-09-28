@@ -4,7 +4,7 @@
 		<div class="order-2 mb-2 text-base">
 			<a href="{{ url }}" class="order-2 block text-base no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 				<span class="block mb-2">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
-				<span>"<em>{{ comment_content }}</em>"</span>
+				<span class="italic font-article text-md">"{{ comment_content }}"</span>
 			</a>
 		</div>
 	{% else %}

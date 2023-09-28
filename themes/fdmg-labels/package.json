@@ -19,6 +19,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fontsource-variable/figtree": "^5.0.13",
+    "@fontsource/crimson-text": "^5.0.8",
+    "@fontsource/libre-caslon-text": "^5.0.12",
     "@level-level/recyclops": "^2.4.1"
   },
   "devDependencies": {

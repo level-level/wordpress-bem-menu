@@ -36,7 +36,7 @@ a {
 }
 
 strong {
-	@include font-bold;
+	font-weight: 700;
 }
 
 figure {
@@ -54,7 +54,7 @@ dd {
 }
 
 dt {
-	@include font-bold;
+	font-weight: 700;
 }
 
 dd {
