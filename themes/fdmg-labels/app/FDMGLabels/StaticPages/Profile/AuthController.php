@@ -28,6 +28,10 @@ class AuthController extends BaseChildStaticPageController {
 	 * Redirect user to the keyclock login page.
 	 */
 	protected function handle_login_link(): void {
+		// Disable caching
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
 		// Determine redirect url.
 		$redirect_to = home_url();
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
@@ -54,6 +58,10 @@ class AuthController extends BaseChildStaticPageController {
 	 * Redirect to the WordPress logout page.
 	 */
 	protected function handle_logout_link(): void {
+		// Disable caching
+		header( 'Pragma: no-cache' );
+		header( 'Expires: 0' );
+
 		// Determine redirect url.
 		$redirect_to = home_url();
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
