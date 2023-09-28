@@ -47,6 +47,7 @@
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
 ( new \FDMGLabels\OpenIDConnect() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
+( new \FDMGLabels\StaticPages\Init() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
