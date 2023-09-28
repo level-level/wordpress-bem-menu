@@ -91,7 +91,7 @@ class DataGeneratorTest extends WPTestCase {
 
 		$expected = array(
 			'publication'      => 'PUBLICATION_NAME',
-			'articleId'        => $this->post->get_id() . '_' . $newsletter->get_id(),
+			'articleId'        => $this->post->get_id(),
 			'title'            => 'Test tip selligent',
 			'teaser'           => "<p>Some excerpt here<br />\nWith newline</p>\n",
 			'news_section'     => '',

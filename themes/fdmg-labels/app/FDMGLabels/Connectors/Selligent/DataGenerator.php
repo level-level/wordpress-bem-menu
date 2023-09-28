@@ -2,14 +2,12 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
-use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\Taxonomies\Section;
 use Clarkson\Utilities\Image;
 use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
-use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 
 class DataGenerator {
@@ -20,7 +18,7 @@ class DataGenerator {
 		$feature_manager = new FeatureManager();
 		$data            = array(
 			'publication'      => $newsletter->get_publication(),
-			'articleId'        => $post->get_id() . '_' . $newsletter->get_id(),
+			'articleId'        => $post->get_id(),
 			'title'            => substr( $post->get_title(), 0, 255 ),
 			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
