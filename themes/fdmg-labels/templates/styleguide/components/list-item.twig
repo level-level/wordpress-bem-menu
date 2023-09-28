@@ -3,7 +3,7 @@
 	{% if comment_content %}
 		<div class="order-2 mb-2 text-base">
 			<a href="{{ url }}" class="order-2 block text-base no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
-				<span class="block mb-2 font-body-bold">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
+				<span class="block mb-2">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
 				<span>"<em>{{ comment_content }}</em>"</span>
 			</a>
 		</div>
@@ -41,13 +41,8 @@
 
 				{% if datetime and date %}
 					<div class="shrink-0">
-						{% if date_full %}
-							<span class="sr-only">{{ _x('Published on: %s', 'fdmg-labels')|format(date_full)|raw }}</span>
-							<time datetime="{{ datetime|raw }}" aria-hidden="true">{{ date|raw }}</time>
-						{% else %}
-							<span class="sr-only">{{ _x('Published on:', 'Screen reader text', 'fdmg-labels') }}</span>
-							<time datetime="{{ datetime|raw }}">{{ date|raw }}</time>
-						{% endif %}
+						<span class="sr-only">{{ _x('Published:', 'Screen reader text', 'fdmg-labels') }}</span>
+						<date datetime="{{ datetime|raw }}">{{ date|raw }}</date>
 					</div>
 				{% endif %}
 			</div>

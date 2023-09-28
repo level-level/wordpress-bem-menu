@@ -1,4 +1,10 @@
 {% set title = data.title|default(_x('In short', 'Block', 'fdmg-labels')) %}
+
+{# Removes the default title #}
+{% if feature_manager.is_enabled(constant('FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK', feature_manager)) %}
+	{% set title = data.title %}
+{% endif %}
+
 {% set content = data.content %}
 
 {% if content %}
@@ -14,7 +20,7 @@
 					</div>
 				{% endif %}
 
-				<div class="font-body text-base owl:mt-4 ulli:font-body-bold ulli:text-base sm:ulli:text-md">
+				<div class="text-base font-body owl:mt-4 ulli:font-body-bold ulli:text-base sm:ulli:text-md">
 					{{ content|raw }}
 				</div>
 			</div>

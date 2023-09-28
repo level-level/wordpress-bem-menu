@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3d6c8dc9922998e3d03338a2774793a",
+    "content-hash": "c001b5aa9f60d00160539600bd332572",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4365,6 +4365,31 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/disable-emojis/"
+        },
+        {
+            "name": "wpackagist-plugin/download-monitor",
+            "version": "4.8.10",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/download-monitor/",
+                "reference": "tags/4.8.10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.8.10.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/download-monitor/"
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
@@ -10899,5 +10924,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
