@@ -62,7 +62,7 @@ class OpenIDConnectTest extends WPTestCase {
 		$this->assertEquals( 'someadmin@example.test', $user->user_email );
 		$this->assertEquals( 'L.', $user->first_name );
 		$this->assertEquals( 'de Level', $user->last_name );
-		$this->assertEquals( 'L. de Level Listn', $user->display_name );
+		$this->assertEquals( 'L. de Level', $user->display_name );
 		$this->assertEquals( array( 'administrator', 'fdmg_account_holder' ), $user->roles );
 		$this->assertEquals( '4601292', get_user_meta( $user->ID, 'fdmg_user_id', true ) );
 		$this->assertEquals( '3703147', get_user_meta( $user->ID, 'fdmg_organisation_id', true ) );

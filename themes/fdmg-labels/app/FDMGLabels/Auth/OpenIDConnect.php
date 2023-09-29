@@ -81,7 +81,7 @@ class OpenIDConnect {
 			 * This way the default role of a new user is inside the MANAGABLE_ROLES constant.
 			 * The final role will be set when the user logs in using the openid-connect-generic-update-user-using-current-claim filter.
 			 */
-			$user_data['role'] = Capabilities::ROLE_ACCOUNT_HOLDER;
+			$user_data['role'] = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
 		}
 
 		$email = $openid_user_claim['email'];
@@ -119,10 +119,11 @@ class OpenIDConnect {
 			$user_data['display_name'] = $display_name;
 		}
 
-		$user_data['meta_input'] = $user_data['meta_input'] ?? array();
-		// $user_data['meta_input'][FDMGIdentification::META_FDMG_USER_ID] = $fdmg_user_id;
-		// $user_data['meta_input'][FDMGIdentification::META_FDMG_ORGANISATION_ID] = (int) ( $openid_user_claim['organizationId'] ?? 0 );;
-
+		// Update FDMG User ID and Organisation ID
+		$user_data['meta_input'] = array(
+			FDMGIdentification::META_FDMG_USER_ID         => $fdmg_user_id,
+			FDMGIdentification::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
+		);
 		return $user_data;
 	}
 
