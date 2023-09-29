@@ -5,7 +5,7 @@ namespace FDMGLabels\Auth;
 if ( ! function_exists( '\\FDMGLabels\\Auth\\setcookie' ) ) {
 	/**
 	 * Overwrite php setcookie function in the \FDMGLabels\Auth namespace.
-	 * Because of subs beeing stupid, the value of $data['expires'] can be empty.
+	 * Because of stubs being stupid, the value of $data['expires'] can be empty.
 	 * Instead, just clear the cookie if the value is empty.
 	 */
 	function setcookie( string $name, string $value, array $data ): void {
