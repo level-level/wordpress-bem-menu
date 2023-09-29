@@ -45,7 +45,7 @@
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Newsletter\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
-( new \FDMGLabels\OpenIDConnect() )->register_hooks();
+( new \FDMGLabels\Auth\Init() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
 ( new \FDMGLabels\StaticPages\Init() )->register_hooks();
 

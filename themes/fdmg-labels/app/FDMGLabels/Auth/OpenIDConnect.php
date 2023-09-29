@@ -1,5 +1,5 @@
 <?php
-namespace FDMGLabels;
+namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
