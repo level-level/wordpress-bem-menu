@@ -91,26 +91,35 @@ class OpenIDConnect {
 			$user_data['user_email'] = $email;
 		}
 
-		$username = sanitize_user( $email, false );
+		// @TODO: Replace preferred_username with FDMG User ID Field
+		// If the user is new, or user_login of user_claim is different and username does not exist yet, update username of user.
+		$fdmg_user_id = $openid_user_claim['preferred_username'] ?? '';
+		$username = join( '-', array( $fdmg_user_id, $email ) ); // Make username based on FDMG User ID and email
+		$username = sanitize_user( $username, true ); // Sanitize username
+		$username = substr( $username, 0, 60 ); // Make sure username does not exceed 60 characters
 		if ( ! $user && ! username_exists( $username ) ) {
 			$user_data['user_login'] = $username;
 		}
 
+		// If the user is new, or given_name of user_claim is different, update first name of user.
 		$first_name = $openid_user_claim['given_name'] ?? '';
 		if ( ! $user || $first_name !== $user->first_name ) {
 			$user_data['first_name'] = $first_name;
 		}
 
+		// If the user is new, or family_name of user_claim is different, update last name of user.
 		$last_name = $openid_user_claim['family_name'] ?? '';
 		if ( ! $user || $last_name !== $user->last_name ) {
 			$user_data['last_name'] = $last_name;
 		}
 
+		// If the user is new, or nickname of user_claim is different, update nickname of user.
 		$nickname = $openid_user_claim['nickname'] ?? $email;
 		if ( ! $user || $user->nickname !== $nickname ) {
 			$user_data['nickname'] = $nickname;
 		}
 
+		// If the user is new, or display_name of user_claim is different, update display name of user.
 		$display_name = ( $first_name && $last_name ) ? sprintf( '%s %s', $first_name, $last_name ) : $nickname;
 		if ( ! $user || $user->display_name !== $display_name ) {
 			$user_data['display_name'] = $display_name;
