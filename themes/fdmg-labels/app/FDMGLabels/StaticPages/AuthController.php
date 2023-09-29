@@ -3,7 +3,7 @@ namespace FDMGLabels\StaticPages;
 
 class AuthController extends BaseMainStaticPageController {
 
-	public const PAGE_LOGIN = 'login';
+	public const PAGE_LOGIN  = 'login';
 	public const PAGE_LOGOUT = 'logout';
 
 	public function get_slug(): string {
@@ -36,9 +36,11 @@ class AuthController extends BaseMainStaticPageController {
 
 		// Determine redirect url.
 		$redirect_to = home_url();
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
 			$redirect_to = $_REQUEST['redirect_to'];
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		// If already logged in, directly go to the redirect url.
 		if ( is_user_logged_in() ) {
@@ -65,9 +67,11 @@ class AuthController extends BaseMainStaticPageController {
 
 		// Determine redirect url.
 		$redirect_to = home_url();
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
 			$redirect_to = $_REQUEST['redirect_to'];
 		}
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		// If already logged out, directly go to the redirect url.
 		if ( ! is_user_logged_in() ) {
