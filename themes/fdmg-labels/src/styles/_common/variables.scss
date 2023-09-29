@@ -25,6 +25,7 @@ $spacing-16: theme('spacing.16');
 	--menu-height: 50px;
 	--sidebar-width: 100%;
 	--header-top-height: 68px;
+	--article-width: 100%;
 
 	@include breakpoint(sm) {
 		--container: 720px;
@@ -42,7 +43,6 @@ $spacing-16: theme('spacing.16');
 	@include breakpoint(lg) {
 		--container: 1170px;
 		--article-width: 690px;
-		--article-offset: 45px;
 	}
 
 	@include breakpoint(xl) {

@@ -1,0 +1,96 @@
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+		var html = document.querySelector('html');
+
+		var schemeButtons = document.querySelectorAll('.js-scheme');
+		var themeButtons = document.querySelectorAll('.js-theme');
+
+		var resetActiveThemesState = function () {
+			themeButtons.forEach(function (button) {
+				button.setAttribute('aria-selected', false);
+			});
+		};
+
+		var resetActiveSchemeState = function () {
+			schemeButtons.forEach(function (button) {
+				button.setAttribute('aria-selected', false);
+			});
+		};
+
+		document.querySelector('.js-light')?.addEventListener('click', function () {
+			html?.setAttribute('data-mode', 'light');
+			resetActiveSchemeState();
+			this.setAttribute('aria-selected', true);
+		});
+
+		document.querySelector('.js-dark')?.addEventListener('click', function () {
+			html?.setAttribute('data-mode', 'dark');
+			resetActiveSchemeState();
+			this.setAttribute('aria-selected', true);
+		});
+
+		document.querySelector('.js-impact-investor')?.addEventListener('click', function () {
+			html?.removeAttribute('class');
+			html?.setAttribute('class', '');
+			resetActiveThemesState();
+			this.setAttribute('aria-selected', true);
+		});
+
+		document.querySelector('.js-energeia')?.addEventListener('click', function () {
+			html?.removeAttribute('class');
+			html?.setAttribute('class', 'theme-energeia');
+			resetActiveThemesState();
+			this.setAttribute('aria-selected', true);
+		});
+
+		document.querySelector('.js-pensioen-pro')?.addEventListener('click', function () {
+			html?.removeAttribute('class');
+			html?.setAttribute('class', 'theme-pensioen-pro');
+			resetActiveThemesState();
+			this.setAttribute('aria-selected', true);
+		});
+	});
+</script>
+
+<div class="relative flex gap-8 p-4 mb-6 bg-base-50 dark:bg-base-300 shadow-header">
+	<div>
+		<div><strong class="block text-base">Scheme:</strong></div>
+		<div>
+			<button
+				class="!px-2 !py-1 border-2 rounded-md btn text-base-800 dark:text-base-50 !border-base-800 dark:!border-base-50 aria-selected:bg-base-800 aria-selected:text-base-50 aria-selected:dark:bg-base-50 aria-selected:dark:text-base-800 js-light js-scheme"
+				aria-selected="true"
+			>
+				Light
+			</button>
+
+			<button
+				class="!px-2 !py-1 border-2 rounded-md btn text-base-800 dark:text-base-50 !border-base-800 dark:!border-base-50 aria-selected:bg-base-800 aria-selected:text-base-50 aria-selected:dark:bg-base-50 aria-selected:dark:text-base-800 js-dark js-scheme"
+			>
+				Dark
+			</button>
+		</div>
+	</div>
+	<div>
+		<div><strong class="block text-base">Theme:</strong></div>
+		<div>
+			<button
+				class="!px-2 !py-1 border-2 rounded-md btn text-base-800 dark:text-base-50 !border-base-800 dark:!border-base-50 aria-selected:bg-base-800 aria-selected:text-base-50 aria-selected:dark:bg-base-50 aria-selected:dark:text-base-800 js-impact-investor js-theme"
+				aria-selected="true"
+			>
+				Impact investor
+			</button>
+
+			<button
+				class="!px-2 !py-1 border-2 rounded-md btn text-base-800 dark:text-base-50 !border-base-800 dark:!border-base-50 aria-selected:bg-base-800 aria-selected:text-base-50 aria-selected:dark:bg-base-50 aria-selected:dark:text-base-800 js-energeia js-theme"
+			>
+				Energeia
+			</button>
+
+			<button
+				class="!px-2 !py-1 border-2 rounded-md btn text-base-800 dark:text-base-50 !border-base-800 dark:!border-base-50 aria-selected:bg-base-800 aria-selected:text-base-50 aria-selected:dark:bg-base-50 aria-selected:dark:text-base-800 js-pensioen-pro js-theme"
+			>
+				Pensioen Pro
+			</button>
+		</div>
+	</div>
+</div>

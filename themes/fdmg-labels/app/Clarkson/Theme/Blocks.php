@@ -5,22 +5,8 @@ use WP_Block_Type_Registry;
 
 class Blocks {
 	public function register_hooks(): void {
-		$this->register_gutenberg_blocks();
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
-		add_filter( 'render_block', array( $this, 'block_wrapper' ), 10, 2 );
-		add_filter( 'acf/pre_save_block', array( $this, 'add_block_id' ), 9 );
-	}
-
-	/**
-	 * @param array<int> $attributes
-	 * @return array<int|string>
-	 */
-	public function add_block_id( array $attributes ): array {
-		if ( empty( $attributes['id'] ) ) {
-			$attributes['id'] = 'acf-block-' . uniqid();
-		}
-		return $attributes;
 	}
 
 	/**
@@ -61,7 +47,6 @@ class Blocks {
 			'core/list',
 			'core/list-item',
 			'core/quote',
-			'core/table',
 
 			// Plugins
 			'gravityforms/form',
@@ -100,27 +85,5 @@ class Blocks {
 		}
 
 		return array_merge( $allowed_blocks, $custom_blocks );
-	}
-
-	/**
-	* Register custom Gutenberg blocks
-	*/
-	public function register_gutenberg_blocks(): void {
-		if ( ! empty( $this->custom_blocks ) ) {
-			foreach ( $this->custom_blocks as $block ) {
-				register_block_type( $block );
-			}
-		}
-	}
-
-	/**
-	 * Wrap specific Gutenberg blocks in their own divs
-	 */
-	public function block_wrapper( string $block_content, array $block ): string {
-		if ( 'core/table' === $block['blockName'] ) {
-			return '<div data-module="table">' . $block_content . '</div>';
-		}
-
-		return $block_content;
 	}
 }

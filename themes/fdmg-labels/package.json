@@ -19,26 +19,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "@level-level/recyclops": "^2.2.2"
+    "@level-level/recyclops": "^2.4.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.7",
-    "@babel/preset-typescript": "^7.22.5",
-    "@jest/globals": "^29.6.3",
-    "@level-level/eslint-config-level-level": "^1.1.14",
+    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-typescript": "^7.22.15",
+    "@jest/globals": "^29.6.4",
+    "@level-level/eslint-config-level-level": "^1.2.0",
     "@level-level/storybook-config": "^1.0.6",
-    "@level-level/stylelint-config-level-level": "^1.0.22",
-    "@level-level/webpack-config": "^1.4.0",
+    "@level-level/stylelint-config-level-level": "^1.1.0",
+    "@level-level/webpack-config": "^1.5.0",
     "@types/body-scroll-lock": "^3.1.0",
-    "@types/jest": "^29.5.2",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "babel-jest": "^29.6.3",
-    "eslint-config-prettier": "^8.10.0",
-    "eslint-plugin-jest": "^27.2.2",
-    "jest": "^29.6.3",
-    "jest-environment-jsdom": "^29.6.3",
-    "prettier": "^3.0.0",
-    "storybook-dark-mode": "^1.1.2",
+    "@types/jest": "^29.5.4",
+    "@typescript-eslint/eslint-plugin": "^6.6.0",
+    "babel-jest": "^29.6.4",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.2.3",
+    "jest": "^29.6.4",
+    "jest-environment-jsdom": "^29.6.4",
+    "prettier": "^3.0.3",
     "stylelint-config-prettier": "^9.0.5"
   }
 }

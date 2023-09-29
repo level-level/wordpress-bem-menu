@@ -1,8 +1,8 @@
 {% set cookie_id = uniqid('embed-cookie-') %}
 
-<div data-component="oembed" class="max-w-5xl" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-cookiebot="{{ cookiebot }}" data-disable-notice="{{ disable_notice }}">
+<div data-component="oembed" class="max-w-5xl" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-disable-notice="{{ disable_notice }}">
 	<div data-oembed="content">
-		<div data-oembed="placeholder" class="flex flex-col items-center justify-center h-full text-center bg-secondary-200 dark:bg-base-600">
+		<div data-oembed="placeholder" class="flex flex-col items-center justify-center h-full text-center bg-secondary-100 dark:bg-base-600">
 			<div class="p-8">
 				<p class="mb-7" id="{{ cookie_id }}">{{ notice_text }}</p>
 				{% include "styleguide/components/buttons/button-element.twig" with {

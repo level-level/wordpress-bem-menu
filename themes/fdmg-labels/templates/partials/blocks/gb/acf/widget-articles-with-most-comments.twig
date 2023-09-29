@@ -1,0 +1,20 @@
+{% set objects = block.get_articles_sorted_by_comment_count() %}
+{% set title = data.title %}
+
+{% if objects %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		{% include 'styleguide/components/list-component.twig' with {
+			heading: title|default(_x('Articles with the most comments', 'Block', 'fdmg-labels')),
+			objects: objects ? objects|map(post => {
+				title: post.get_alternative_title()|default(post.get_title()),
+				url: post.get_permalink(),
+				date: post.get_human_readable_date(),
+				datetime: post.get_date_i18n('Y-m-d'),
+				comment_count: post.get_comments_count(),
+			}),
+			button_text: _x('More articles', 'Block', 'fdmg-labels'),
+			button_link: get_post_type_archive_link('post'),
+			style: 'dark',
+		} %}
+	</div>
+{% endif %}

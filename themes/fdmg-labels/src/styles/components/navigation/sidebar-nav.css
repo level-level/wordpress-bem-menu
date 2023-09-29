@@ -11,7 +11,7 @@
 }
 
 .sidebar-nav__item--parent-is-open {
-	@apply bg-secondary-600 dark:bg-base-400;
+	@apply bg-secondary-700 dark:bg-base-400;
 }
 
 .sidebar-nav__item--parent-is-open .sidebar-nav__link {
@@ -41,7 +41,7 @@
 .sidebar-nav__link {
 	@apply font-body-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
 	@apply hocus:bg-secondary-500 hocus:text-base-50 hocus:dark:bg-base-300 hocus:dark:text-base-100;
-	@apply sm:text-md sm:border-b-0 sm:text-secondary-600 sm:transition-colors;
+	@apply sm:text-md sm:border-b-0 sm:text-secondary-700 sm:transition-colors;
 	@apply sm:dark:text-base-50;
 	@apply text-base-50 hocus:bg-secondary-400 hocus:text-base-800 dark:hocus:bg-base-400 dark:hocus:text-base-50;
 	@apply focus:outline-base-50;
@@ -49,7 +49,7 @@
 }
 
 .sidebar-nav__link-icon {
-	@apply mr-3 text-[20px];
+	@apply mr-3 text-lg;
 }
 
 .sidebar-nav-sub__link-icon {
@@ -59,13 +59,13 @@
 .sidebar-nav__arrow {
 	@apply absolute top-0 right-0 bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
-	@apply sm:p-0 sm:right-4 sm:text-secondary-600 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
+	@apply sm:p-0 sm:right-4 sm:text-secondary-700 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
 	@apply text-base-50;
 	@apply focus:outline-base-50;
 }
 
 .sidebar-nav-sub {
-	@apply relative bg-secondary-600 pb-3 px-[18px] block dark:bg-base-400;
+	@apply relative bg-secondary-700 pb-3 px-[18px] block dark:bg-base-400;
 	@apply aria-hidden:hidden sm:aria-hidden:invisible sm:aria-hidden:opacity-0;
 }
 
@@ -74,7 +74,7 @@
 }
 
 .sidebar-nav-sub .sidebar-nav__arrow {
-	@apply sm:-rotate-90 sm:text-secondary-600 sm:right-[10px] sm:dark:text-base-100;
+	@apply sm:-rotate-90 sm:text-secondary-700 sm:right-[10px] sm:dark:text-base-100;
 }
 
 .sidebar-nav-sub .sidebar-nav-sub__link {

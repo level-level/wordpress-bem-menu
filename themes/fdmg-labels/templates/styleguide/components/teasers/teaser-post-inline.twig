@@ -14,6 +14,12 @@
 						sections: sections,
 						wide: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
 				{% if image_square %}
@@ -41,11 +47,17 @@
 						sections: sections,
 						wide: true,
 					} only %}
+
+					{% if show_paywall_label %}
+						<div class="inline-flex mt-2 mb-1">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 
 				{% if image %}
 					<div class="shrink-0">
-						<div class="sm:relative sm:overflow-hidden sm:aspect-[14/9] sm:w-[155px] sm:image:absolute sm:image:w-auto sm:image:h-full sm:image:top-auto sm:image:left-1/2 sm:image:-translate-x-1/2 sm:image:max-w-none">
+						<div class="sm:relative sm:overflow-hidden sm:aspect-[14/9] sm:w-[155px] image:w-full image:h-full image:object-cover">
 							{{ image|raw }}
 						</div>
 					</div>
