@@ -1,23 +1,25 @@
 <?php
-namespace FDMGLabels\StaticPages\Profile;
+namespace FDMGLabels\StaticPages;
 
-use FDMGLabels\StaticPages\BaseChildStaticPageController;
+class AuthController extends BaseMainStaticPageController {
 
-class AuthController extends BaseChildStaticPageController {
+	public const PAGE_LOGIN = 'login';
+	public const PAGE_LOGOUT = 'logout';
 
-	public const SUB_PAGE_LOGIN  = 'login';
-	public const SUB_PAGE_LOGOUT = 'logout';
+	public function get_slug(): string {
+		return 'auth';
+	}
 
 	/**
-	 * Catch all requests for the magic login and run the corresponding actions.
+	 * Route to the correct handle function based on the query var.
 	 */
 	public function handle_request( string $query_var ): void {
 		switch ( $query_var ) {
-			case self::SUB_PAGE_LOGIN:
+			case self::PAGE_LOGIN:
 				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
 				$this->handle_login_link();
 				break;
-			case self::SUB_PAGE_LOGOUT:
+			case self::PAGE_LOGOUT:
 				$this->set_page_title( __( 'Logout', 'fdmg-labels' ) );
 				$this->handle_logout_link();
 				break;

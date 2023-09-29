@@ -1,7 +1,6 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
-use FDMGLabels\StaticPages\Profile\ProfileController;
 use WP_Query;
 
 class Init {
@@ -9,7 +8,7 @@ class Init {
 
 	public function __construct() {
 		$this->main_static_page_controllers = array(
-			'profile' => new ProfileController(),
+			'auth' => new AuthController(),
 		);
 	}
 
