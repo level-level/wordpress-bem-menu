@@ -113,6 +113,10 @@ PROD:
 - https://pensioenpro.nl
 - https://energeia.nl
 
+## Login / logout urls
+Because the KeyCloak login system needs to generate a new url for each login every time, it's important that this url isn't cached.
+Therefore, when website visitors want to login/logout using keycloak, they need to be redirected to https://{site_url}/auth/login or https://{site_url}/auth/logout, which shouldn't be cached.
+
 ## Known errors
 
 When logging out of the website, it could be that the webserver returns a 502 Bad Request.
