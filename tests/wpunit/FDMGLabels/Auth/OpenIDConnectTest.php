@@ -18,7 +18,6 @@ class OpenIDConnectTest extends WPTestCase {
 			'realmRoles'       => '[offline_access, default-roles-fd, uma_authorization]',
 			'email_verified'   => true,
 			'roles'            => array(
-				// 'VIEWER', // Present if valid subscription
 				'manage-account',
 				'manage-account-links',
 				'view-profile',
@@ -35,7 +34,7 @@ class OpenIDConnectTest extends WPTestCase {
 		$user = OpenID_Connect_Generic::instance()->client_wrapper->create_new_user( $this->openid_user_claim['sapId'], $this->openid_user_claim );
 
 		$this->assertInstanceOf( WP_User::class, $user );
-		$this->assertEquals( 'levellevel@asdasd.nl', $user->user_login );
+		$this->assertEquals( '4601292-levellevel', $user->user_login );
 		$this->assertEquals( 'levellevel@asdasd.nl', $user->user_email );
 		$this->assertEquals( 'L.', $user->first_name );
 		$this->assertEquals( 'de Level', $user->last_name );
@@ -88,21 +87,21 @@ class OpenIDConnectTest extends WPTestCase {
 
 	public function test_set_subscriber_user_roles(): void {
 		// Add viewer role to claim
-		$claim = $this->openid_user_claim;
+		$claim            = $this->openid_user_claim;
 		$claim['roles'][] = 'VIEWER';
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'fdmg_account_holder' ) );
-		( new OpenIDConnect() )->set_user_roles( $user, $this->openid_user_claim );
+		( new OpenIDConnect() )->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'fdmg_subscriber' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'subscriber' ) );
-		( new OpenIDConnect() )->set_user_roles( $user, $this->openid_user_claim );
+		( new OpenIDConnect() )->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'subscriber', 'fdmg_subscriber' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'administrator' ) );
-		( new OpenIDConnect() )->set_user_roles( $user, $this->openid_user_claim );
+		( new OpenIDConnect() )->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'administrator', 'fdmg_subscriber' ), $user->roles );
 	}

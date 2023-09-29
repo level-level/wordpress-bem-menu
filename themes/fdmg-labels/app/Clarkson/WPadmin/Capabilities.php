@@ -55,7 +55,7 @@ class Capabilities {
 		$role->add_cap( 'gravityforms_selligent' );
 	}
 
-	public function update_account_holder_role(): void {
+	public function update_fdmg_account_holder_role(): void {
 		remove_role( self::ROLE_FDMG_ACCOUNT_HOLDER );
 		$role = add_role( self::ROLE_FDMG_ACCOUNT_HOLDER, __( 'FDMG account holder', 'impact-investor' ), array() );
 		if ( ! $role instanceof WP_Role ) {

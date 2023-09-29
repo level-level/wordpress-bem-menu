@@ -92,7 +92,7 @@ class OpenIDConnect {
 		// @TODO: Replace preferred_username with FDMG User ID Field
 		// If the user is new, or user_login of user_claim is different and username does not exist yet, update username of user.
 		$fdmg_user_id = (int) ( $openid_user_claim['customerNumber'] ?? 0 );
-		$username     = join( '-', array( (string) $fdmg_user_id, $email ) ); // Make username based on FDMG User ID and email
+		$username     = join( '-', array( (string) $fdmg_user_id, explode( '@', $email )[0] ) ); // Make username based on FDMG User ID and email before @.
 		$username     = sanitize_user( $username, true ); // Sanitize username
 		$username     = substr( $username, 0, 60 ); // Make sure username does not exceed 60 characters
 		if ( ! $user && ! username_exists( $username ) ) {
