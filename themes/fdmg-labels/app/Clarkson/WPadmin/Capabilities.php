@@ -65,8 +65,8 @@ class Capabilities {
 	}
 
 	public function update_fdmg_subscriber_role(): void {
-		remove_role( self::ROLE_FDMG_ACCOUNT_HOLDER );
-		$role = add_role( self::ROLE_FDMG_ACCOUNT_HOLDER, __( 'FDMG subscriber', 'impact-investor' ), array() );
+		remove_role( self::ROLE_FDMG_SUBSCRIBER );
+		$role = add_role( self::ROLE_FDMG_SUBSCRIBER, __( 'FDMG subscriber', 'impact-investor' ), array() );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}

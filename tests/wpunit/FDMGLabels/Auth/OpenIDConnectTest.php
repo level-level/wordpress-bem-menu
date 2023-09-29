@@ -31,8 +31,11 @@ class OpenIDConnectTest extends WPTestCase {
 	}
 
 	public function test_create_user(): void {
-		$user = OpenID_Connect_Generic::instance()->client_wrapper->create_new_user( $this->openid_user_claim['sapId'], $this->openid_user_claim );
+		// Because we cannot modify the settings before the unit test, we temporary add the preferred_username to the claim
+		$claim                       = $this->openid_user_claim;
+		$claim['preferred_username'] = 'TEMP_PREFERRED_USERNAME';
 
+		$user = OpenID_Connect_Generic::instance()->client_wrapper->create_new_user( $claim['sapId'], $claim );
 		$this->assertInstanceOf( WP_User::class, $user );
 		$this->assertEquals( '4601292-levellevel', $user->user_login );
 		$this->assertEquals( 'levellevel@asdasd.nl', $user->user_email );

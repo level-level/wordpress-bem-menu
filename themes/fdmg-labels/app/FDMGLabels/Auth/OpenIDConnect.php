@@ -3,6 +3,7 @@ namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use Clarkson_Core\WordPress_Object\user;
 use WP_Error;
 use WP_User;
 
@@ -119,6 +120,12 @@ class OpenIDConnect {
 			$user_data['display_name'] = $display_name;
 		}
 
+		// If the user is new, or determined nickname from user_claim is different, update display name of user.
+		$nickname = $display_name;
+		if ( ! $user || $user->nickname !== $nickname ) {
+			$user_data['nickname'] = $nickname;
+		}
+
 		// Update FDMG User ID and Organisation ID
 		$user_data['meta_input'] = array(
 			FDMGIdentification::META_FDMG_USER_ID         => $fdmg_user_id,
@@ -143,10 +150,13 @@ class OpenIDConnect {
 
 		$clarkson_user = Objects::get_instance()->get_user( $user );
 		$grant_roles   = $this->determine_roles_to_grant_from_claim( $openid_user_claim );
+
+		// Grant roles that need to be granted
 		foreach ( $grant_roles as $role ) {
 			$clarkson_user->get_user()->add_role( $role );
 		}
 
+		// Remove roles the user should not have
 		$user_roles = $clarkson_user->get_roles();
 		foreach ( $user_roles as $user_role ) {
 			if ( in_array( $user_role, self::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {

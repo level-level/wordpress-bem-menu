@@ -25,9 +25,11 @@ modules:
             theme: fdmg-labels
             plugins: [
               'gravityforms/gravityforms.php',
-              'll-paywall/ll-paywall.php'
+              'll-paywall/ll-paywall.php',
+              'daggerhart-openid-connect-generic/openid-connect-generic.php'
             ]
             activatePlugins: [
               'gravityforms/gravityforms.php',
-              'll-paywall/ll-paywall.php'
+              'll-paywall/ll-paywall.php',
+              'daggerhart-openid-connect-generic/openid-connect-generic.php'
             ]
