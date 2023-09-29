@@ -3,6 +3,7 @@ namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use WP_Error;
 use WP_User;
 
 class OpenIDConnect {
@@ -33,8 +34,8 @@ class OpenIDConnect {
 	 * @param array<string,mixed> $openid_user_claim
 	 * @return array<string,mixed>
 	 */
-	public function change_new_user_data( array $user_data, array $user_claim ): array {
-		$user_data = array_merge( $user_data, $this->get_user_data_from_claim( $user_claim, null ) );
+	public function change_new_user_data( array $user_data, array $openid_user_claim ): array {
+		$user_data = array_merge( $user_data, $this->get_user_data_from_claim( $openid_user_claim, null ) );
 		return $user_data;
 	}
 

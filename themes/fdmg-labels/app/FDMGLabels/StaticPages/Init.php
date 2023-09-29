@@ -4,6 +4,9 @@ namespace FDMGLabels\StaticPages;
 use WP_Query;
 
 class Init {
+	/**
+	 * @var array<string,BaseMainStaticPageController>
+	 */
 	protected array $main_static_page_controllers;
 
 	public function __construct() {
@@ -21,6 +24,10 @@ class Init {
 		}
 	}
 
+	/**
+	 * @param array<string,mixed> $context
+	 * @return array<string,mixed>
+	 */
 	public function add_context_args( array $context ): array {
 		$context['static_pages'] = $this->main_static_page_controllers;
 		return $context;

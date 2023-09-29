@@ -26,6 +26,10 @@ abstract class BaseStaticPageController {
 	/**
 	 * Echo a twig template.
 	 * Then exits running code, except for when we are in a testing environment.
+	 *
+	 * @param string $template_file
+	 * @param array<string, mixed> $objects
+	 * @return void
 	 */
 	protected function echo_twig_and_exit( string $template_file, array $objects = array() ): void {
 		Templates::get_instance()->echo_twig( $template_file, $objects, true );
