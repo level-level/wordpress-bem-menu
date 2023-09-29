@@ -14,11 +14,8 @@ class OpenIDConnect {
 	 * @var array<string>
 	 */
 	public const MANAGEABLE_ROLES = array(
-		Capabilities::ROLE_ACCOUNT_HOLDER,
-		Capabilities::ROLE_COMPANY_LICENSED_SUBSCRIBER,
-		Capabilities::ROLE_TRIAL_SUBSCRIBER,
-		Capabilities::ROLE_YEARLY_SUBSCRIBER,
-		// @todo Merge as 1 role, paid subscriber
+		Capabilities::ROLE_FDMG_ACCOUNT_HOLDER,
+		Capabilities::ROLE_FDMG_SUBSCRIBER,
 	);
 
 	public function register_hooks(): void {
@@ -165,11 +162,11 @@ class OpenIDConnect {
 	 * @return non-empty-array<string>
 	 */
 	protected function determine_roles_to_grant_from_claim( array $openid_user_claim ): array {
-		// @todo 1. Get role from user_claim
-		// @todo 2. Determine WP role to grant user
+		$fdmg_roles = $openid_user_claim['roles'] ?? array();
+		if ( in_array( 'VIEWER', $fdmg_roles, true ) ) {
+			return array( Capabilities::ROLE_FDMG_SUBSCRIBER );
+		}
 
-		return array(
-			Capabilities::ROLE_ACCOUNT_HOLDER,
-		);
+		return array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
 	}
 }
