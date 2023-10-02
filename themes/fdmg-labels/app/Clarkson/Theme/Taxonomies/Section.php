@@ -11,19 +11,19 @@ class Section {
 	protected const POST_TYPES = array( Post::POST_TYPE_NAME );
 
 	public function register_hooks(): void {
-		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
-			add_action( 'init', array( $this, 'register' ) );
-			add_action( 'acf/init', array( $this, 'register_fields' ) );
-		}
+		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'acf/init', array( $this, 'register_fields' ) );
 	}
 
 	public function register(): void {
+		$enabled = ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY );
+
 		$args = array(
 			'hierarchical'          => true,
-			'public'                => true,
-			'show_in_nav_menus'     => true,
-			'show_ui'               => true,
-			'show_admin_column'     => true,
+			'public'                => $enabled,
+			'show_in_nav_menus'     => $enabled,
+			'show_ui'               => $enabled,
+			'show_admin_column'     => $enabled,
 			'query_var'             => true,
 			'rewrite'               => array( 'slug' => __( 'section', 'fdmg-labels-slugs' ) ),
 			'capabilities'          => array(
@@ -51,7 +51,7 @@ class Section {
 				'no_terms'                   => _x( 'No sections', 'Taxonomy', 'fdmg-labels-admin' ),
 				'back_to_items'              => _x( '&larr; Back', 'Taxonomy', 'fdmg-labels-admin' ),
 			),
-			'show_in_rest'          => true,
+			'show_in_rest'          => $enabled,
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		);
 		register_taxonomy( self::TAXONOMY_NAME, self::POST_TYPES, $args );

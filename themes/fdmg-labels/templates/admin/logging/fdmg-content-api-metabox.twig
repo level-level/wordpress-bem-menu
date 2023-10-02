@@ -1,4 +1,11 @@
 <div class="fdmg-content-api-metabox">
+
+	<div>
+		<a class="button" href="{{ send_to_fdmg_content_api_url|escape('html_attr') }}">
+			{{ __('Send to FDMG Content API', 'fdmg-labels-admin') }}
+		</a>
+	</div>
+
 	{% include 'admin/logging/logbook.twig' with {
 		log_lines: log_lines
 	} %}
