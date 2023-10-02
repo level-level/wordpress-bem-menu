@@ -69,7 +69,8 @@
             "@test:phpcs",
             "@test:phpstan",
             "@test:twigcs",
-            "@test:docs"
+            "@test:docs",
+            "@test:openapi-spec"
         ],
         "fix": [
             "phpcbf"
@@ -105,6 +106,9 @@
         ],
         "test:docs": [
             "php-doc-check ./themes/fdmg-labels/app -x vendor"
+        ],
+        "test:openapi-spec": [
+            "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
             "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
@@ -148,7 +152,8 @@
         "codeception/util-universalframework": "^1.0",
         "level-level/phpstan-config": "^1.0",
         "phpstan/extension-installer": "^1.1",
-        "szepeviktor/phpstan-wordpress": "^1.1"
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "cebe/php-openapi": "^1.7"
     },
     "config": {
         "allow-plugins": {
