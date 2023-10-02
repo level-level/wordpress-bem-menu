@@ -5,7 +5,7 @@ use WP_Query;
 
 class Init {
 	/**
-	 * @var array<string,BaseMainStaticPageController>
+	 * @var array<string,AbstractMainController>
 	 */
 	protected array $main_static_page_controllers;
 

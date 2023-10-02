@@ -3,11 +3,16 @@ namespace FDMGLabels\StaticPages;
 
 use WP_Query;
 
-abstract class BaseChildStaticPageController extends BaseStaticPageController {
+/**
+ * If you want to create a sub path of a static page, you should extend this class.
+ * For example, if you want to create an url like https://example.test/profile/edit.
+ * You should then create a new controller file extending this class.
+ */
+abstract class AbstractChildController extends AbstractController {
 
-	protected BaseMainStaticPageController $parent_controller;
+	protected AbstractMainController $parent_controller;
 
-	public function __construct( BaseMainStaticPageController $parent_controller ) {
+	public function __construct( AbstractMainController $parent_controller ) {
 		parent::__construct();
 		$this->parent_controller = $parent_controller;
 	}

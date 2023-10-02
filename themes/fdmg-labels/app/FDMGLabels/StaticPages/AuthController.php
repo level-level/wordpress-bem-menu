@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
-class AuthController extends BaseMainStaticPageController {
+class AuthController extends AbstractMainController {
 
 	public const PAGE_LOGIN  = 'login';
 	public const PAGE_LOGOUT = 'logout';

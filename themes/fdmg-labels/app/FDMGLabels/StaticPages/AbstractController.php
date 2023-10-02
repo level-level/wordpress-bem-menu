@@ -3,7 +3,13 @@ namespace FDMGLabels\StaticPages;
 
 use Clarkson_Core\Templates;
 
-abstract class BaseStaticPageController {
+/**
+ * Abstract class all static pages extend from.
+ * Static pages are pages that are not part of the WordPress page hierarchy.
+ * They are not stored in the database, but are handled by a controller.
+ * The controller is responsible for handling the request and rendering the page.
+ */
+abstract class AbstractController {
 
 	public function __construct() {}
 

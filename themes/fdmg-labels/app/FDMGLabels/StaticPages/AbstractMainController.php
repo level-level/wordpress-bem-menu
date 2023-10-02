@@ -3,7 +3,14 @@ namespace FDMGLabels\StaticPages;
 
 use WP_Query;
 
-abstract class BaseMainStaticPageController extends BaseStaticPageController {
+/**
+ * If you want to create a new static page with a new url structure, you should extend this class.
+ * For example, if you want to create an url like https://example.test/profile.
+ * You may also define routes inside the profile directory, like https://example.test/profile/edit.
+ * This can be done here, but that's not ideal, as it causes extremely large controller files.
+ * Instead, it's better to create a new controller file extending the AbstractChildController class.
+ */
+abstract class AbstractMainController extends AbstractController {
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'add_rewrite_endpoint' ) );
 		add_action( 'template_redirect', array( $this, 'handle_endpoint_request' ) );
@@ -14,7 +21,7 @@ abstract class BaseMainStaticPageController extends BaseStaticPageController {
 	/**
 	 * Get child controllers
 	 *
-	 * @return array<string,BaseChildStaticPageController>
+	 * @return array<string,AbstractChildController>
 	 */
 	public function get_children(): array {
 		return array();
