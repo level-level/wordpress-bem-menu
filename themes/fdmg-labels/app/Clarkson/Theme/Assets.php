@@ -1,6 +1,8 @@
 <?php
 namespace Clarkson\Theme;
 
+use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+
 class Assets {
 
 	/**
@@ -54,6 +56,8 @@ class Assets {
 		} else {
 			$this->enqueue_editor_production( $deps );
 		}
+
+		( new AdminAjaxInit() )->localize_editor();
 	}
 
 	public function enqueue_development( string $handle, array $deps, string $path, bool $in_footer ): void {

@@ -38,8 +38,15 @@ class MetaBoxes {
 		$templates = Templates::get_instance();
 		$templates->echo_twig(
 			'admin/logging/fdmg-content-api-metabox.twig', array(
-				'object'    => Objects::get_instance()->get_object( $post ),
-				'log_lines' => array_reverse( ( new FDMGContentAPILogger() )->get_post_logs( $post->ID ) ),
+				'send_to_fdmg_content_api_url' => add_query_arg(
+					array(
+						'action'   => SendArticleToFDMGContentAPIController::ACTION_NAME,
+						'post_id'  => $post->ID,
+						'_wpnonce' => wp_create_nonce( AdminAjaxInit::NONCE ),
+					), admin_url( 'admin-ajax.php' )
+				),
+				'object'                       => Objects::get_instance()->get_object( $post ),
+				'log_lines'                    => array_reverse( ( new FDMGContentAPILogger() )->get_post_logs( $post->ID ) ),
 			),
 			true
 		);

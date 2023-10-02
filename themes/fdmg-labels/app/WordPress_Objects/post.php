@@ -26,6 +26,32 @@ class post extends base_object {
 		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
 	}
 
+	public function get_unpaywalled_content(): string {
+		global $post;
+		if ( ! class_exists( '\\LevelLevel\\Paywall\\ContentExtractor' ) ) {
+			return $this->get_content();
+		}
+
+		$content_extractor       = new ContentExtractor();
+		$postclone               = clone $this->_post;
+		$postclone->post_content = $content_extractor->remove_paywall_block( $postclone->post_content );
+
+		setup_postdata( $postclone );
+
+		// Post stays empty when wp_query 404 is set, resulting in a warning from the_content.
+		if ( null === $post ) {
+			$post = $postclone; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		}
+
+		ob_start();
+		the_content();
+
+		$content = ob_get_clean() ?: '';
+		wp_reset_postdata();
+
+		return $content;
+	}
+
 	public function has_comments_enabled(): bool {
 		return comments_open( $this->get_id() );
 	}
