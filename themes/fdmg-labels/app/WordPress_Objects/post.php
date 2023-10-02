@@ -19,7 +19,7 @@ class post extends base_object {
 	}
 
 	public function has_paywall_block(): bool {
-		if ( ! class_exists( '\\LevelLevel\\Paywall\\ContentExtractor' ) ) {
+		if ( ! class_exists( ContentExtractor::class ) ) {
 			return false;
 		}
 
@@ -28,7 +28,7 @@ class post extends base_object {
 
 	public function get_unpaywalled_content(): string {
 		global $post;
-		if ( ! class_exists( '\\LevelLevel\\Paywall\\ContentExtractor' ) ) {
+		if ( ! class_exists( ContentExtractor::class ) ) {
 			return $this->get_content();
 		}
 
