@@ -57,7 +57,8 @@
         "wpackagist-plugin/elasticpress": "^4.7",
         "level-level/wp-file-mods": "^1.0",
         "wpackagist-plugin/download-monitor": "^4.8",
-        "fdmg-labels/fdmg-content-api-client": "^1.0"
+        "fdmg-labels/fdmg-content-api-client": "^1.0",
+        "mhcg/monolog-wp-cli": "^1.0"
     },
     "scripts": {
         "post-autoload-dump": [
