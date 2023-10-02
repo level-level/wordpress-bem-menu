@@ -38,8 +38,8 @@ class MetaBoxes {
 		$templates = Templates::get_instance();
 		$templates->echo_twig(
 			'admin/logging/fdmg-content-api-metabox.twig', array(
-				'object'                       => Objects::get_instance()->get_object( $post ),
-				'log_lines'                    => array_reverse( ( new FDMGContentAPILogger() )->get_post_logs( $post->ID ) ),
+				'object'    => Objects::get_instance()->get_object( $post ),
+				'log_lines' => array_reverse( ( new FDMGContentAPILogger() )->get_post_logs( $post->ID ) ),
 			),
 			true
 		);
