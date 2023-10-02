@@ -12,6 +12,10 @@
         "0": {
             "type": "git",
             "url": "https://github.com/level-level/Wordpress-Bem-Menu"
+        },
+        "1": {
+            "type": "path",
+            "url": "themes/fdmg-labels/_generated/FDMGContentAPI"
         }
     },
     "autoload": {
@@ -53,7 +57,9 @@
         "level-level/ll-paywall": "^0.1.0",
         "wpackagist-plugin/elasticpress": "^4.7",
         "level-level/wp-file-mods": "^1.0",
-        "wpackagist-plugin/download-monitor": "^4.8"
+        "wpackagist-plugin/download-monitor": "^4.8",
+        "fdmg-labels/fdmg-content-api-client": "^1.0",
+        "mhcg/monolog-wp-cli": "^1.0"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -65,7 +71,8 @@
             "@test:phpcs",
             "@test:phpstan",
             "@test:twigcs",
-            "@test:docs"
+            "@test:docs",
+            "@test:openapi-spec"
         ],
         "fix": [
             "phpcbf"
@@ -102,11 +109,20 @@
         "test:docs": [
             "php-doc-check ./themes/fdmg-labels/app -x vendor"
         ],
+        "test:openapi-spec": [
+            "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
+        ],
         "make-pot": [
             "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
             "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
             "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
             "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
+        ],
+        "generate:fdmg-content-api": [
+            "Composer\\Config::disableProcessTimeout",
+            "sudo rm -rf themes/fdmg-labels/_generated/FDMGContentAPI",
+            "mkdir -p themes/fdmg-labels/_generated/FDMGContentAPI",
+            "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml | docker run -i evns/yq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli generate -i /local/themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml -g php --additional-properties=invokerPackage=FDMGContentAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-content-api-client -o /local/themes/fdmg-labels/_generated/FDMGContentAPI"
         ]
     },
     "extra": {
@@ -138,7 +154,8 @@
         "codeception/util-universalframework": "^1.0",
         "level-level/phpstan-config": "^1.0",
         "phpstan/extension-installer": "^1.1",
-        "szepeviktor/phpstan-wordpress": "^1.1"
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "cebe/php-openapi": "^1.7"
     },
     "config": {
         "allow-plugins": {

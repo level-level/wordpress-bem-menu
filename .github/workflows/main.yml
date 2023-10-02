@@ -95,6 +95,10 @@ jobs:
         run: |
           cd wp-content/
           composer run test:docs
+      - name: test:openapi-spec
+        run: |
+          cd wp-content/
+          composer run test:openapi-spec
   npm-project:
     name: NPM test
     runs-on: ubuntu-latest
