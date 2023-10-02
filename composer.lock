@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59f6fa9ccdb015687d5835389dfe7960",
+    "content-hash": "8d5a7156d4cf9cbd15d282c4e195706b",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1458,6 +1458,66 @@
             },
             "description": "The best WordPress search you can find",
             "homepage": "https://searchwp.com/"
+        },
+        {
+            "name": "mhcg/monolog-wp-cli",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mhcg/monolog-wp-cli.git",
+                "reference": "f3e9d4557b49ba2f3f69c3b84f741baf28138c1c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mhcg/monolog-wp-cli/zipball/f3e9d4557b49ba2f3f69c3b84f741baf28138c1c",
+                "reference": "f3e9d4557b49ba2f3f69c3b84f741baf28138c1c",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "monolog/monolog": "~1",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.3",
+                "squizlabs/php_codesniffer": "^3.5",
+                "wp-cli/wp-cli": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MHCG\\Monolog\\": "src/Monolog"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Heydon",
+                    "email": "contact@mhcg.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extension for Monolog to support outputting to WP-CLI (The WordPress command line interface) when running wp command lines.",
+            "keywords": [
+                "log",
+                "logging",
+                "psr-3",
+                "wp-cli"
+            ],
+            "support": {
+                "issues": "https://github.com/mhcg/monolog-wp-cli/issues",
+                "source": "https://github.com/mhcg/monolog-wp-cli",
+                "wiki": "https://github.com/mhcg/monolog-wp-cli/wiki"
+            },
+            "time": "2020-01-03T20:07:33+00:00"
         },
         {
             "name": "monolog/monolog",
