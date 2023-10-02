@@ -8,6 +8,16 @@ The OpenAPI spec is found in the [`spec.yaml`](spec.yaml) file in this folder.
 
 You can use the [Swagger editor](https://editor.swagger.io/) to manage the specification file and test the service.
 
+## Information about the API
+
+The API endpoints are made available by FDMG.
+The person who made the endpoints available is Gerrit Visser (gerrit.visser@fdmediagroep.nl).
+Also the hook names are determined by FDMG.
+Changes in endpoints and/or hook names will be provided by FDMG, and should be reflected by us in the [`spec.yaml`](spec.yaml) file.
+
+The [`spec.yaml`](spec.yaml) file is made by Level Level.
+The content of the requests sent is determined by Level Level in collaboration with FDMG, who provided an example.
+
 ## Updating/generating the client
 Change the `spec.yaml` file in this directory to reflect the changes in the API. Don't forget to update the version number.
 Then use `composer generate:fdmg-content-api` to update the client. Finally use `composer update fdmg-labels/fdmg-content-api-client` to update the composer package used.
