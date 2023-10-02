@@ -31,8 +31,7 @@ class AuthController extends BaseMainStaticPageController {
 	 */
 	protected function handle_login_link(): void {
 		// Disable caching
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );
+		nocache_headers();
 
 		// Determine redirect url.
 		$redirect_to = home_url();
@@ -62,8 +61,7 @@ class AuthController extends BaseMainStaticPageController {
 	 */
 	protected function handle_logout_link(): void {
 		// Disable caching
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );
+		nocache_headers();
 
 		// Determine redirect url.
 		$redirect_to = home_url();
