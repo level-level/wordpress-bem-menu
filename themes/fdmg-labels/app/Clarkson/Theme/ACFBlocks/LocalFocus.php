@@ -23,7 +23,7 @@ class LocalFocus {
 				'name'        => 'block-' . self::BLOCK_NAME,
 				'title'       => _x( 'LocalFocus embed', 'Block', 'fdmg-labels-admin' ),
 				'description' => _x( 'Displays a embed from LocalFocus.', 'Block', 'fdmg-labels-admin' ),
-				'icon'        => 'schedule',
+				'icon'        => 'embed-post',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array(
 					_x( 'localfocus', 'Keyword', 'fdmg-labels-admin' ),
