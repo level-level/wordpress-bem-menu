@@ -114,9 +114,8 @@ module.exports = {
 			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
-			body: ['"Figtree Variable"', 'sans-serif'],
-			heading: ['"Libre Caslon Text"', 'sans-serif'],
-			article: ['"Crimson Text"', 'sans-serif'],
+			figtree: ['"Figtree Variable"', 'sans-serif'],
+			libre: ['"Libre Caslon Text"', 'sans-serif'],
 		},
 		fontSize: {
 			sm: [

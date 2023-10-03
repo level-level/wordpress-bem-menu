@@ -10,7 +10,7 @@
 
 	.comment-reply-title {
 		@include font-size(16px, 24px);
-		@apply text-primary theme-energeia:text-base-800 font-body font-bold;
+		@apply text-primary theme-energeia:text-base-800 font-figtree font-bold;
 		padding: 11px $spacing-3;
 		border-bottom: 1px solid var(--secondary-400);
 
@@ -26,7 +26,7 @@
 	}
 
 	.form-group {
-		font-family: 'Figtree Variable', sans-serif;
+		@apply font-figtree;
 		@include font-size(16px);
 		padding: 11px $spacing-3;
 		padding-bottom: $spacing-3;

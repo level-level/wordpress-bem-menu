@@ -55,13 +55,11 @@
 	ol:not([class]) {
 		@include ordered-list-style;
 	}
-}
 
-.article-content {
-	p:not([class]),
-	ol:not([class]),
-	ul:not([class]),
+	> p:not([class]),
+	> ol:not([class]),
+	> ul:not([class]),
 	a:not([class]) {
-		@apply font-article text-md sm:text-xl;
+		@apply font-libre sm:text-md sm:leading-8;
 	}
 }

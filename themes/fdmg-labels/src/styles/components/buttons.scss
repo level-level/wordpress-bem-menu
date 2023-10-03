@@ -1,5 +1,5 @@
 .btn {
-	@apply font-body font-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:py-3 sm:px-[17px];
+	@apply font-figtree font-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:py-3 sm:px-[17px];
 }
 
 .btn-primary {
@@ -32,7 +32,7 @@
 }
 
 .btn-header {
-	@apply font-body font-normal text-base-500 rounded-none dark:text-base-100;
+	@apply font-figtree font-normal text-base-500 rounded-none dark:text-base-100;
 	@apply btn-icon:text-lg btn-icon:text-primary theme-energeia:btn-icon:text-base-800 dark:btn-icon:text-primary-300;
 	@apply hocus:bg-secondary-100 hocus:text-base-800 hocus:dark:bg-base-600 hocus:dark:text-primary-300;
 	@apply aria-expanded:bg-secondary-100 compact-header:aria-expanded:bg-secondary-400 compact-header:aria-expanded:dark:bg-base-300 aria-expanded:dark:bg-base-600;
@@ -59,7 +59,7 @@
 }
 
 .btn-link {
-	@apply font-body font-normal text-sm p-0 no-underline text-secondary-500 dark:text-primary-300;
+	@apply font-figtree font-normal text-sm p-0 no-underline text-secondary-500 dark:text-primary-300;
 	@apply hocus:btn-text:underline;
 	@apply btn-icon:text-md btn-text:top-[2px];
 }

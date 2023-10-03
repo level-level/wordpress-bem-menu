@@ -15,7 +15,7 @@
 			& > div {
 				& > div {
 					&:before {
-						font-family: 'Figtree Variable', sans-serif;
+						@apply font-figtree;
 						@include font-size(14px, 16px);
 						color: var(--secondary-700);
 

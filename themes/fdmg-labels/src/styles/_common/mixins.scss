@@ -1,7 +1,7 @@
 @import './mixins/helpers';
 
 @mixin heading {
-	font-family: 'Libre Caslon Text', sans-serif;
+	@apply font-libre;
 	font-weight: 700;
 	display: block;
 	margin: 0;
@@ -49,7 +49,7 @@
 	@apply after:absolute after:bottom-0 after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-base-300 theme-energeia:after:dark:bg-base-300 theme-pensioen-pro:after:dark:bg-base-300;
 
 	p {
-		@apply font-body italic text-primary dark:text-primary-300 sm:text-lg;
+		@apply font-figtree italic text-primary dark:text-primary-300 sm:text-lg;
 		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-pensioen-pro:dark:text-base-50;
 	}
 
@@ -74,7 +74,7 @@
 		padding-left: 24px;
 
 		&:before {
-			font-family: 'Libre Caslon Text', sans-serif;
+			@apply font-libre;
 			font-weight: 700;
 			position: absolute;
 			top: 0;
@@ -121,28 +121,23 @@
 }
 
 @mixin intro-font {
-	--wp--preset--font-size--intro: #{calculaterem(22px)};
-	line-height: line-height(22px, 28px);
-	font-family: 'Crimson Text', sans-serif;
+	--wp--preset--font-size--intro: #{calculaterem(18px)};
+	@apply font-libre;
+	line-height: line-height(18px, 26px);
 
 	@include breakpoint(sm) {
-		--wp--preset--font-size--intro: #{calculaterem(24px)};
-		line-height: line-height(24px, 30px);
-	}
-
-	@include breakpoint(lg) {
-		--wp--preset--font-size--intro: #{calculaterem(30px)};
-		line-height: line-height(30px, 36px);
+		--wp--preset--font-size--intro: #{calculaterem(20px)};
+		line-height: line-height(20px, 30px);
 	}
 }
 
 @mixin regular-font {
-	--wp--preset--font-size--regular: #{calculaterem(18px)};
-	line-height: line-height(18px, 24px);
-	font-family: 'Crimson Text', sans-serif;
+	--wp--preset--font-size--regular: #{calculaterem(16px)};
+	@apply font-libre;
+	line-height: line-height(16px, 22px);
 
 	@include breakpoint(sm) {
-		--wp--preset--font-size--regular: #{calculaterem(24px)};
-		line-height: line-height(24px, 34px);
+		--wp--preset--font-size--regular: #{calculaterem(18px)};
+		line-height: line-height(18px, 32px);
 	}
 }

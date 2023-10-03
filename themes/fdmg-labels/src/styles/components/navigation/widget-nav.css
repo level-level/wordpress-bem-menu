@@ -1,5 +1,5 @@
 .widget-nav {
-	@apply font-body flex flex-col;
+	@apply font-figtree flex flex-col;
 }
 
 .widget-nav__item {

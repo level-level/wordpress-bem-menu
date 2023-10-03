@@ -1,5 +1,5 @@
 .primary-nav {
-	@apply font-body flex flex-col sm:flex-row;
+	@apply font-figtree flex flex-col sm:flex-row;
 }
 
 .primary-nav__item {
@@ -67,7 +67,7 @@
 }
 
 .primary-nav-sub .primary-nav-sub__link {
-	@apply font-body no-underline text-base-50;
+	@apply font-figtree no-underline text-base-50;
 	@apply hocus:underline hocus:bg-transparent;
 	@apply sm:text-md sm:text-secondary-700 sm:dark:text-base-50 sm:h-auto sm:p-0;
 	@apply sm:hocus:text-secondary-700 sm:hocus:dark:text-base-50;
