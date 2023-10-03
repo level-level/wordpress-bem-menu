@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFPages\FDMGContentAPI;
 use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\ACFPages\Paywall;
 use Clarkson\Theme\ACFPages\PodcastOptions;
@@ -14,6 +15,7 @@ class ACFPages {
 		Paywall::class,
 		PodcastOptions::class,
 		SearchOptions::class,
+		FDMGContentAPI::class,
 	);
 
 	public function register_hooks(): void {

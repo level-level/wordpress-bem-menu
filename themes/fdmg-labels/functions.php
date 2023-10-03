@@ -46,7 +46,10 @@
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Newsletter\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
+( new \FDMGLabels\Auth\Init() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
+( new \FDMGLabels\Connectors\FDMGContentAPI\Init() )->register_hooks();
+( new \FDMGLabels\AdminAjax\Init() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
