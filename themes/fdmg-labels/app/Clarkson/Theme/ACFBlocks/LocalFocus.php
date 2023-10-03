@@ -48,7 +48,7 @@ class LocalFocus {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Advertisement', 'Fields', 'fdmg-labels-admin' ),
+				'title'    => _x( 'LocalFocus embed', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Text::make( _x( 'Embed ID', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_EMBED_ID )
 						->instructions( _x( 'The ID of the embed, for example: 650c463f26fb0', 'Fields', 'fdmg-labels-admin' ) )
