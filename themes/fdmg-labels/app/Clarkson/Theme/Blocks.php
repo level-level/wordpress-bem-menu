@@ -54,7 +54,6 @@ class Blocks {
 
 			// Formatting
 			'core/freeform',
-			'core/code',
 
 			// Widgets
 			'core/shortcode',

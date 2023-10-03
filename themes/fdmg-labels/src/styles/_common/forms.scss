@@ -2,7 +2,7 @@
 // @include form-control;
 // Applies default form styling
 @mixin form-control {
-	font-family: 'Figtree Variable', sans-serif;
+	@apply font-figtree;
 	position: relative;
 	box-sizing: border-box;
 	display: block;
@@ -81,7 +81,7 @@
 }
 
 @mixin radiobutton-label {
-	font-family: 'Figtree Variable', sans-serif;
+	@apply font-figtree;
 	font-weight: 400;
 	position: relative;
 	padding-left: calc(20px + #{$spacing-3});
