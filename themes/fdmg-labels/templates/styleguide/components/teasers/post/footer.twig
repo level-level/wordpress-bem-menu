@@ -1,6 +1,6 @@
 {% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_ARTICLE_TEASER_FOOTER', feature_manager)) %}
 	{% if authors or comments > 0 %}
-		<div class="text-sm relative z-10 leading-none border-t border-[rgb(0,0,0,0.1)] p-3 mt-auto min-h-[47px] dark:border-base-800 sm:px-6">
+		<div class="text-sm relative z-10 leading-none border-t border-[rgb(0,0,0,0.1)] p-3 mt-auto min-h-[47px] dark:border-base-800">
 			<div class="flex items-center justify-between flex-nowrap">
 
 				{% if authors %}
