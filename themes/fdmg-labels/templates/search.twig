@@ -20,6 +20,18 @@
 {% block content %}
 	<div class="section">
 		{% include 'partials/components/search.twig' %}
+		<div class="mt-3 md:hidden">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				text: __('Filter', 'Search', 'fdmg-labels'),
+				class: 'btn-quaternary btn-full',
+				icon: 'filter',
+				icon_expanded: 'close',
+				icon_left: true,
+				aria_expanded_support: true,
+				aria_label: _x('Open filter', 'Search', 'fdmg-labels'),
+				data_module: 'filter-modal',
+			} %}
+		</div>
 	</div>
 
 	{% if objects %}
@@ -81,6 +93,9 @@
 {% endblock %}
 
 {% block sidebar %}
+
+	{% include 'partials/components/search-filter.twig' %}
+
 	{% if is_active_sidebar('widget-area-search-results') %}
 		{{ sidebar.get_widgetarea('widget-area-search-results')|raw }}
 	{% endif %}

@@ -26,4 +26,7 @@
 			} %}
 		</div>
 	</div>
+	<input type="hidden" name="period" value="3-years">
+	<input type="hidden" name="post_date_min" value="{{ now|date_modify('-3 year')|date('Y-m-d') }}">
+	<input type="hidden" name="orderby" value="relevance">
 </form>

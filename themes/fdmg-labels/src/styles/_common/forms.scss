@@ -53,7 +53,6 @@
 @mixin label {
 	@include font-bold;
 	@include font-size(16px);
-	line-height: 1;
 	display: block;
 	margin-bottom: 5px;
 	cursor: pointer;
@@ -66,6 +65,14 @@
 	opacity: 0;
 
 	&:checked + label {
+		&:before {
+			background-color: var(--secondary-600);
+
+			@include dark-mode {
+				background-color: var(--primary-300);
+			}
+		}
+
 		&:after {
 			display: block;
 		}
@@ -83,19 +90,23 @@
 @mixin radiobutton-label {
 	@include font-normal;
 	position: relative;
-	padding-left: calc(20px + #{$spacing-3});
+	padding-left: calc(20px + #{$spacing-2});
 	margin: 0;
 
 	&:before {
 		position: absolute;
 		left: 0;
-		top: 0;
-		width: 16px;
-		height: 16px;
-		border: 2px solid var(--secondary-400);
+		top: 2px;
+		width: 20px;
+		height: 20px;
+		border: 2px solid var(--secondary-600);
 		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
+
+		@include breakpoint(sm) {
+			top: 4px;
+		}
 
 		@include dark-mode {
 			border-color: var(--primary-300);
@@ -106,16 +117,20 @@
 	&:after {
 		display: none;
 		position: absolute;
-		left: 2px;
-		top: 2px;
-		width: 12px;
-		height: 12px;
-		background-color: var(--primary);
+		left: 6px;
+		top: 8px;
+		width: 8px;
+		height: 8px;
+		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
 
+		@include breakpoint(sm) {
+			top: 10px;
+		}
+
 		@include dark-mode {
-			background-color: var(--primary-300);
+			background-color: var(--base-600);
 		}
 	}
 }
@@ -131,19 +146,37 @@
 	&:after {
 		border-radius: 0;
 	}
+
+	&:after {
+		mask-image: url('../images/icons/check.svg');
+		mask-size: cover;
+		background-color: var(--base-50);
+		width: 12px;
+		height: 12px;
+		top: 6px;
+		left: 4px;
+
+		@include breakpoint(sm) {
+			top: 8px;
+		}
+	}
 }
 
 @mixin select {
 	@include form-control;
-	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='000000'><polygon points='0,0 100,0 50,50'/></svg>");
-	background-size: 12px;
-	background-position: calc(100% - #{$spacing-3}) calc(50% + 3px);
+	border: 2px solid var(--primary);
+	border-radius: 3px;
+	background: url('../images/icons/chevron-down.svg');
+	background-size: 14px;
+	background-position: calc(100% - #{$spacing-3}) calc(50%);
 	background-repeat: no-repeat;
 	background-color: var(--base-50);
 	padding-right: calc(#{$spacing-6} + #{$spacing-3});
 
 	@include dark-mode {
 		background-color: var(--base-700);
+		border-color: var(--primary-300);
+		background-image: url('../images/icons/chevron-down-white.svg');
 	}
 
 	// Removes the IE dropdown arrow
@@ -164,8 +197,14 @@ input[type='number'],
 input[type='email'],
 input[type='tel'],
 input[type='url'],
-input[type='search'] {
+input[type='search'],
+input[type='date'] {
 	@include form-control;
+}
+
+input[type='date'] {
+	border: 2px solid var(--primary);
+	border-radius: 3px;
 }
 
 input[type='search'] {

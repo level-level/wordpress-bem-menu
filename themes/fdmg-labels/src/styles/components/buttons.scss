@@ -58,8 +58,12 @@
 	@apply theme-energeia:dark:text-base-600 theme-pensioen-pro:dark:hocus:text-base-800;
 }
 
+.btn-quaternary {
+	@apply bg-base-50 border-0 border-primary border-b-2 text-base-800 justify-center dark:bg-base-600 dark:border-primary-300 dark:text-base-50;
+}
+
 .btn-link {
-	@apply font-body text-sm p-0 no-underline text-secondary-500 dark:text-primary-300;
+	@apply font-body text-sm p-0 no-underline text-base-800 dark:text-base-50;
 	@apply hocus:btn-text:underline;
 	@apply btn-icon:text-md btn-text:top-[2px];
 }
