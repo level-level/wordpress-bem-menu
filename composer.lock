@@ -4543,15 +4543,15 @@
         },
         {
             "name": "wpackagist-plugin/disable-emojis",
-            "version": "1.7.5",
+            "version": "1.7.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/disable-emojis/",
-                "reference": "tags/1.7.5"
+                "reference": "tags/1.7.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
