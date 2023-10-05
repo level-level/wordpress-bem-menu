@@ -25,7 +25,8 @@
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@apply text-base text-base-500 dark:text-base-100 sm:text-md sm:leading-8 bg-secondary-50 font-libre font-normal;
+		@apply font-libre font-normal text-base sm:text-lg;
+		@apply text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50 dark:bg-base-700;
 
 		h2[data-type='core/heading'] {
 			@include heading-h2;
