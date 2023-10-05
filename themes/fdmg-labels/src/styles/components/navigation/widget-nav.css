@@ -1,5 +1,5 @@
 .widget-nav {
-	@apply font-body flex flex-col;
+	@apply font-figtree flex flex-col;
 }
 
 .widget-nav__item {
@@ -11,7 +11,7 @@
 }
 
 .widget-nav__link {
-	@apply text-base inline-flex text-base-100 no-underline font-body-bold;
+	@apply text-base inline-flex text-base-100 no-underline font-bold;
 	@apply sm:dark:text-base-50;
 	@apply hocus:underline;
 	@apply focus:outline-base-50 sm:text-md py-1;

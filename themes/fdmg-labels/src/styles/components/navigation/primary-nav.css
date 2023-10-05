@@ -1,5 +1,5 @@
 .primary-nav {
-	@apply font-body flex flex-col sm:flex-row;
+	@apply font-figtree flex flex-col sm:flex-row;
 }
 
 .primary-nav__item {
@@ -36,7 +36,7 @@
 }
 
 .primary-nav__link {
-	@apply font-body-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
+	@apply font-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
 	@apply hocus:bg-secondary-500 hocus:text-base-50 hocus:dark:bg-base-300 hocus:dark:text-base-100;
 	@apply sm:text-md sm:py-0 sm:px-[18px] sm:border-b-0 sm:h-[theme(space.menu-height)] sm:text-secondary-700 sm:transition-colors;
 	@apply sm:dark:text-base-50;
@@ -67,7 +67,7 @@
 }
 
 .primary-nav-sub .primary-nav-sub__link {
-	@apply font-body no-underline text-base-50;
+	@apply font-figtree no-underline text-base-50;
 	@apply hocus:underline hocus:bg-transparent;
 	@apply sm:text-md sm:text-secondary-700 sm:dark:text-base-50 sm:h-auto sm:p-0;
 	@apply sm:hocus:text-secondary-700 sm:hocus:dark:text-base-50;

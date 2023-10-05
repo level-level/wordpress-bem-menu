@@ -1,0 +1,36 @@
+{% set list_is_toggleable = max_amount and checkboxes|length > max_amount %}
+
+{% set data_config = {
+	default: _x('Show more %s', 'Search', 'fdmg-labels')|format(button_label),
+	expanded: _x('Show less %s', 'Search', 'fdmg-labels')|format(button_label),
+}|json_encode() %}
+
+<fieldset {% if list_is_toggleable %}data-module="toggle-list-items" data-config="{{ data_config }}"{% endif %}>
+	<legend class="block mb-2">{{ title }}</legend>
+	<ul class="flex flex-col gap-2">
+		{% for checkbox in checkboxes %}
+			<li {{ max_amount and loop.index > max_amount ? 'class="hidden js-hidden-item"' }}>
+				<input
+					type="checkbox"
+					id="{{ field_name|escape('html_attr') }}-{{ loop.index }}"
+					name="{{ field_name|escape('html_attr') }}[]"
+					value="{{ checkbox.value|escape('html_attr') }}"
+					{{ checked(checkbox.value in values, true, false)|raw }}
+				>
+				<label for="{{ field_name|escape('html_attr') }}-{{ loop.index }}">
+					{{ checkbox.label|raw }}
+				</label>
+			</li>
+		{% endfor %}
+
+		{% if list_is_toggleable %}
+			<li>
+				{% include 'styleguide/components/buttons/button-element.twig' with {
+					text: _x('Show more %s', 'Search', 'fdmg-labels')|format(button_label),
+					class: 'btn-link js-toggle-list',
+					aria_expanded_support: true,
+				} %}
+			</li>
+		{% endif %}
+	</ul>
+</fieldset>

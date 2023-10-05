@@ -11,6 +11,11 @@ class WidgetAreas {
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
 	}
 
+	/**
+	 * Register widget areas
+	 *
+	 * @return void
+	 */
 	public function register_widget_areas(): void {
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_COMPACT_HEADER ) ) {
@@ -85,15 +90,17 @@ class WidgetAreas {
 			)
 		);
 
-		register_sidebar(
-			array(
-				'name'          => _x( 'Partner', 'Widgets', 'fdmg-labels-admin' ),
-				'id'            => 'widget-area-partner',
-				'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
-				'after_widget'  => '</div>',
-			)
-		);
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Partner', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-partner',
+					'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
 
 		register_sidebar(
 			array(
@@ -105,15 +112,41 @@ class WidgetAreas {
 			)
 		);
 
-		register_sidebar(
-			array(
-				'name'          => _x( 'Category', 'Widgets', 'fdmg-labels-admin' ),
-				'id'            => 'widget-area-category',
-				'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
-				'after_widget'  => '</div>',
-			)
-		);
+		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Category', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-category',
+					'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Section', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-section',
+					'description'   => _x( 'Add widgets to appear on the section pages.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Genre', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-genre',
+					'description'   => _x( 'Add widgets to appear on the genre pages.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
 
 		register_sidebar(
 			array(

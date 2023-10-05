@@ -51,7 +51,7 @@
 	}
 
 	th {
-		@include font-bold;
+		font-weight: 700;
 	}
 
 	@include breakpoint(992px, max-width) {
@@ -75,7 +75,7 @@
 		tbody td,
 		tfoot td {
 			&:before {
-				@include font-bold;
+				font-weight: 700;
 				display: block;
 				content: attr(data-th);
 			}
@@ -84,7 +84,7 @@
 }
 
 th {
-	@include font-bold;
+	font-weight: 700;
 	text-align: left;
 }
 

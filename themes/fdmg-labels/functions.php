@@ -33,6 +33,7 @@
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
 ( new \Clarkson\Theme\LoginLogo() )->register_hooks();
+( new \Clarkson\WPadmin\Darkmode() )->register_hooks();
 
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
@@ -40,6 +41,7 @@
 // FDMG Labels
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
+( new \FDMGLabels\Search\Filter() )->register_hooks();
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
