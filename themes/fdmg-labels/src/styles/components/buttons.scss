@@ -63,7 +63,7 @@
 }
 
 .btn-link {
-	@apply font-figtree font-normal text-sm p-0 no-underline text-secondary-500 dark:text-primary-300;
+	@apply font-figtree font-normal text-sm p-0 no-underline text-base-800 dark:text-base-50;
 	@apply hocus:btn-text:underline;
 	@apply btn-icon:text-md btn-text:top-[2px];
 }
