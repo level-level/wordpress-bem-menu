@@ -4,6 +4,7 @@ namespace Clarkson\Theme\ACFBlocks;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Location;
+use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
 
 class HighlightedContent {
@@ -50,12 +51,17 @@ class HighlightedContent {
 	}
 
 	public function register_fields(): void {
+		$text_label = _x( 'Use this title to overwrite the default title: \'In short\'.', 'Fields', 'fdmg-labels-admin' );
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK ) ) {
+			$text_label = _x( 'Optional title above the highlighted content.', 'Fields', 'fdmg-labels-admin' );
+		}
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'Highlighted content', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Use this title to overwrite the default title: \'In short\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+					Text::make( $text_label, self::BLOCK_META_TITLE ),
 					WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
 						->required()
 						->tabs( 'visual' )

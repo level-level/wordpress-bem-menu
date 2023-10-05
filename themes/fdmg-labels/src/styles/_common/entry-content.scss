@@ -31,6 +31,10 @@
 		&.has-intro-font-size {
 			@include intro-font;
 		}
+
+		&.has-regular-font-size {
+			@include regular-font;
+		}
 	}
 
 	a:not([class]) {
@@ -50,5 +54,12 @@
 
 	ol:not([class]) {
 		@include ordered-list-style;
+	}
+
+	> p:not([class]),
+	> ol:not([class]),
+	> ul:not([class]),
+	a:not([class]) {
+		@apply font-libre font-normal leading-6 sm:text-md sm:leading-8;
 	}
 }

@@ -47,13 +47,13 @@ class Blocks {
 			'core/list',
 			'core/list-item',
 			'core/quote',
+			'core/code',
 
 			// Plugins
 			'gravityforms/form',
 
 			// Formatting
 			'core/freeform',
-			'core/code',
 
 			// Widgets
 			'core/shortcode',

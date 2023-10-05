@@ -15,12 +15,12 @@
 
 {% if title and content and button %}
 	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }} relative {{ not is_admin() ? "before:absolute before:-top-[70px] before:left-0 before:right-0 before:h-[70px] before:bg-gradient-to-t before:from-secondary-50 before:to-transparent before:dark:from-base-700" }}">
-		<div class="relative p-4 sm:p-8 bg-secondary-600 dark:bg-base-400 text-base-50 min-h-[120px] sm:min-h-[150px] sm:text-md font-body-bold">
+		<div class="relative p-4 sm:p-8 bg-secondary-600 dark:bg-base-400 text-base-50 min-h-[120px] sm:min-h-[150px] sm:text-md font-bold">
 			<div data-ll-paywall-name="initial-content">
 				<div class="flex flex-col gap-2">
-					<h2 class="text-lg font-heading text-base-50 xl:text-xl">{{ title }}</h2>
+					<h2 class="text-lg font-libre text-base-50 xl:text-xl">{{ title }}</h2>
 
-					<div class="ulli:!pl-10 ul:flex ul:flex-col u ulli:relative ulli:before:absolute ulli:before:z-[1] ulli:before:!left-[5px] ulli:before:!content-[''] ulli:before:bg-[url('../images/icons/check.svg')] ulli:before:bg-cover ulli:before:w-[17px] ulli:before:h-[14px] ulli:before:!top-[5px] ulli:after:absolute ulli:after:top-[-2px] ulli:after:left-0 ulli:after:bg-base-50 ulli:after:!content-[''] ulli:after:rounded-full ulli:after:w-[28px] ulli:after:h-[28px] ul:!gap-5 ol:!gap-5 mt-4">
+					<div class="ulli:!pl-8 ulli:relative ulli:before:absolute ulli:before:left-0 ulli:before:!content-[''] ulli:before:bg-[url('../images/icons/check.svg')] ulli:before:w-[19px] ulli:before:h-[16px] ulli:before:!top-[5px] ul:!gap-3 ol:!gap-3 ulli:font-figtree font-figtree">
 						{{ content|raw }}
 					</div>
 

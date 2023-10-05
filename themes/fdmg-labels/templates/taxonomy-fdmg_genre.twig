@@ -1,0 +1,7 @@
+{% extends 'archive.twig' %}
+
+{% block sidebar %}
+	{% if is_active_sidebar('widget-area-genre') %}
+		{{ sidebar.get_widgetarea('widget-area-genre')|raw }}
+	{% endif %}
+{% endblock %}

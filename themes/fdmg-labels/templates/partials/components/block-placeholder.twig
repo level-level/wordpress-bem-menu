@@ -4,7 +4,7 @@
 
 		{% if required_fields %}
 			<div class="mt-4">
-				<p class="font-body-bold">{{ _x('Required fields:', 'Block', 'fdmg-labels') }}</p>
+				<p class="font-bold">{{ _x('Required fields:', 'Block', 'fdmg-labels') }}</p>
 				<ul class="pl-5 list-disc">
 					{% for fields in required_fields %}
 						<li>{{ fields }}</li>
@@ -15,7 +15,7 @@
 
 		{% if errors %}
 			<div class="mt-4">
-				<p class="m-0 font-body-bold">{{ _x('Found errors:', 'Block', 'fdmg-labels') }}</p>
+				<p class="m-0 font-bold">{{ _x('Found errors:', 'Block', 'fdmg-labels') }}</p>
 				<ul class="pl-5 list-disc">
 					{% for error in errors.get_error_messages() %}
 						<li>{{ error }}</li>
