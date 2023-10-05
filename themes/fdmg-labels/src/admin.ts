@@ -21,6 +21,9 @@ const initDarkModeButton = () => {
 	});
 };
 
+/**
+ * Add theme class to body in the block editor so that the dark mode uses the correct colors.
+ */
 const initTheme = () => {
 	if (!wp.blockEditor) {
 		return;
