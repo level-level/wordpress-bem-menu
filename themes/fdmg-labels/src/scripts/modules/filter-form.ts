@@ -120,24 +120,34 @@ class FilterForm implements IModule {
 			this.dateRangeContainer?.classList.add('hidden');
 		}
 
-		// Update minimum date inputs
-		if (target.value === 'week') {
+		this.setMinimumDateInputValue(target.value);
+	}
+
+	/**
+	 * Set the minimum date input value based on the selected period
+	 */
+	setMinimumDateInputValue(value: string) {
+		if (!this.minimumDateInput) {
+			return;
+		}
+
+		if (value === 'week') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'week').format('YYYY-MM-DD');
 		}
 
-		if (target.value === 'month') {
+		if (value === 'month') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'month').format('YYYY-MM-DD');
 		}
 
-		if (target.value === 'year') {
+		if (value === 'year') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'year').format('YYYY-MM-DD');
 		}
 
-		if (target.value === '3-years') {
+		if (value === '3-years') {
 			this.minimumDateInput.value = dayjs().subtract(3, 'year').format('YYYY-MM-DD');
 		}
 
-		if (target.value === '2000-now') {
+		if (value === '2000-now') {
 			this.minimumDateInput.value = dayjs('2000-01-01').format('YYYY-MM-DD');
 		}
 	}
@@ -146,7 +156,7 @@ class FilterForm implements IModule {
 		event.preventDefault();
 
 		// Reset ordering to relevance
-		if ( this.orderBySelect ) {
+		if (this.orderBySelect) {
 			this.orderBySelect.value = 'relevance';
 		}
 
@@ -154,9 +164,12 @@ class FilterForm implements IModule {
 			checkbox.checked = false;
 		});
 
-		// Reset the period radiu buttons to the first one
-		this.periodRadioButtons?.forEach((radioButton, index) => {
-			radioButton.checked = index === 0 ? true : false;
+		// Reset the period radio buttons to the default 3-years filter
+		this.periodRadioButtons?.forEach((radioButton) => {
+			if (radioButton.value === '3-years') {
+				radioButton.checked = true;
+				this.setMinimumDateInputValue('3-years');
+			}
 		});
 
 		// Reset the category checkboxes
