@@ -2,7 +2,7 @@
 // @include form-control;
 // Applies default form styling
 @mixin form-control {
-	@include font-normal;
+	@apply font-figtree;
 	position: relative;
 	box-sizing: border-box;
 	display: block;
@@ -51,7 +51,7 @@
 }
 
 @mixin label {
-	@include font-bold;
+	font-weight: 700;
 	@include font-size(16px);
 	display: block;
 	margin-bottom: 5px;
@@ -88,24 +88,25 @@
 }
 
 @mixin radiobutton-label {
-	@include font-normal;
+	@apply font-figtree;
+	font-weight: 400;
 	position: relative;
-	padding-left: calc(20px + #{$spacing-2});
+	padding-left: calc(18px + #{$spacing-2});
 	margin: 0;
 
 	&:before {
 		position: absolute;
 		left: 0;
 		top: 2px;
-		width: 20px;
-		height: 20px;
+		width: 18px;
+		height: 18px;
 		border: 2px solid var(--secondary-600);
 		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
 
 		@include breakpoint(sm) {
-			top: 4px;
+			top: 5px;
 		}
 
 		@include dark-mode {
@@ -117,8 +118,8 @@
 	&:after {
 		display: none;
 		position: absolute;
-		left: 6px;
-		top: 8px;
+		left: 5px;
+		top: 7px;
 		width: 8px;
 		height: 8px;
 		background-color: var(--base-50);
@@ -153,8 +154,8 @@
 		background-color: var(--base-50);
 		width: 12px;
 		height: 12px;
-		top: 6px;
-		left: 4px;
+		top: 5px;
+		left: 3px;
 
 		@include breakpoint(sm) {
 			top: 8px;

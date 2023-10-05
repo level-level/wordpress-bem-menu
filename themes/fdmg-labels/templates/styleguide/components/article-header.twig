@@ -2,7 +2,7 @@
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-8">
 
 	<div class="order-2">
-		<h1 class="text-lg font-bold font-heading text-secondary-700 dark:text-primary-300 sm:text-3xl" aria-describedby="a11y-paywall-description">
+		<h1 class="text-lg font-bold font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl" aria-describedby="a11y-paywall-description">
 			{{ title|raw }}
 
 			{% if has_paywall_block %}
@@ -83,7 +83,7 @@
 				{% if date.date and date.datetime and date.date_full %}
 					<div>
 						<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-body-bold">{{ date.date_full|raw }}</time>
+						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
 					</div>
 				{% endif %}
 

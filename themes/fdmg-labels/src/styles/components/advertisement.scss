@@ -15,7 +15,7 @@
 			& > div {
 				& > div {
 					&:before {
-						@include font-normal;
+						@apply font-figtree;
 						@include font-size(14px, 16px);
 						color: var(--secondary-700);
 

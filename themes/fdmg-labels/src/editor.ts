@@ -1,3 +1,6 @@
+import "@fontsource/libre-caslon-text/400.css";
+import "@fontsource/libre-caslon-text/700.css";
+import '@fontsource-variable/figtree';
 import './styles/editor.scss';
 
 import './styles/layout/section.css';
