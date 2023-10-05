@@ -4,6 +4,9 @@ namespace Clarkson\WPadmin;
 use WP_Role;
 
 class Capabilities {
+	// Custom roles
+	public const ROLE_FDMG_ACCOUNT_HOLDER = 'fdmg_account_holder';
+	public const ROLE_FDMG_SUBSCRIBER     = 'fdmg_subscriber';
 
 	// WordPress default roles
 	public const ROLE_ADMINISTRATOR = 'administrator';
@@ -17,6 +20,8 @@ class Capabilities {
 
 	public function register_hooks(): void {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_account_holder_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_subscriber_role' ) );
 	}
 
 	/**
@@ -48,5 +53,23 @@ class Capabilities {
 
 		$role->add_cap( 'gform_full_access' );
 		$role->add_cap( 'gravityforms_selligent' );
+	}
+
+	public function update_fdmg_account_holder_role(): void {
+		remove_role( self::ROLE_FDMG_ACCOUNT_HOLDER );
+		$role = add_role( self::ROLE_FDMG_ACCOUNT_HOLDER, __( 'FDMG account holder', 'impact-investor' ), array() );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->remove_cap( 'read' );
+	}
+
+	public function update_fdmg_subscriber_role(): void {
+		remove_role( self::ROLE_FDMG_SUBSCRIBER );
+		$role = add_role( self::ROLE_FDMG_SUBSCRIBER, __( 'FDMG subscriber', 'impact-investor' ), array() );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->remove_cap( 'read' );
 	}
 }

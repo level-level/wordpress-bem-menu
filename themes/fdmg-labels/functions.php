@@ -49,6 +49,7 @@
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
 ( new \FDMGLabels\Auth\Init() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
+( new \FDMGLabels\StaticPages\Init() )->register_hooks();
 ( new \FDMGLabels\Connectors\FDMGContentAPI\Init() )->register_hooks();
 ( new \FDMGLabels\AdminAjax\Init() )->register_hooks();
 

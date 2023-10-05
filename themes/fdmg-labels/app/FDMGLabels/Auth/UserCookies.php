@@ -29,8 +29,6 @@ class UserCookies {
 		$cookie_data = array(
 			'id'           => $user_id,
 			'display_name' => $user->get_display_name(),
-			'first_name'   => $user->get_user()->first_name ?: '',
-			'username'     => $user->get_login(),
 		);
 		$this->set_cookie( self::COOKIE_USER, wp_json_encode( $cookie_data ) ?: '', (int) $expire );
 	}
