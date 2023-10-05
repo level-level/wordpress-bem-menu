@@ -21,25 +21,25 @@
 					<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
 						{% if has_nav_menu(constant('ABOUT_NAV', navigation)) %}
 							<div>
-								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('ABOUT_NAV', navigation)) }}</h3>
+								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('ABOUT_NAV', navigation))|raw }}</h3>
 								{{ navigation.get_menu(constant('ABOUT_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu(constant('GENERAL_NAV', navigation)) %}
 							<div>
-								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('GENERAL_NAV', navigation)) }}</h3>
+								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('GENERAL_NAV', navigation))|raw }}</h3>
 								{{ navigation.get_menu(constant('GENERAL_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu(constant('SERVICES_NAV', navigation)) %}
 							<div>
-								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('SERVICES_NAV', navigation)) }}</h3>
+								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('SERVICES_NAV', navigation))|raw }}</h3>
 								{{ navigation.get_menu(constant('SERVICES_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
 						{% if has_nav_menu(constant('FDMG_NAV', navigation)) %}
 							<div>
-								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('FDMG_NAV', navigation)) }}</h3>
+								<h3 class="mb-3 text-lg font-figtree text-secondary-700 dark:text-primary-300">{{ wp_get_nav_menu_name(constant('FDMG_NAV', navigation))|raw }}</h3>
 								{{ navigation.get_menu(constant('FDMG_NAV', navigation), 'footer-nav', 1)|raw }}
 							</div>
 						{% endif %}
