@@ -51,17 +51,17 @@ class SendNewsletter {
 		}
 
 		// Schedule single event
-		$test_mode = (bool) get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, $newsletter_id );
+		$test_mode = (string) get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, $newsletter_id );
 		as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $test_mode ), ActionSchedulerSetup::GROUP );
 
 		// Reset the field values
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '0', $newsletter_id );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, '1', $newsletter_id );
+		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, Newsletter::META_SEND_TEST_OPTION_PREVIEW, $newsletter_id );
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, '0', $newsletter_id );
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, '', $newsletter_id );
 
 		$i18n_util = new I18n();
-		if ( ! $test_mode ) {
+		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
 				sprintf(
@@ -74,7 +74,8 @@ class SendNewsletter {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
 				sprintf(
-					'Sending the newsletter in testmode has been queued to be sent on %s.',
+					'Sending the newsletter in testmode %s has been queued to be sent on %s.',
+					$test_mode,
 					$i18n_util->format_date( '', $schedule_date )
 				),
 				LogLine::LEVEL_INFO
@@ -84,22 +85,31 @@ class SendNewsletter {
 
 	/**
 	 * Register articles in selligent, and then send the newsletter.
+	 *
+	 * @param int $newsletter_id
+	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
 	 */
-	public function sync( int $newsletter_id, bool $test_mode ): void {
+	public function sync( int $newsletter_id, string $test_mode ): void {
 		$newsletter = ii_newsletter::get( $newsletter_id );
 		if ( ! $newsletter instanceof ii_newsletter ) {
 			return;
 		}
 
-		if ( ! $test_mode ) {
+		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
 			$this->selligent_logger->add_post_log( $newsletter_id, 'Sending the newsletter has started.', LogLine::LEVEL_INFO );
 		} else {
-			$this->selligent_logger->add_post_log( $newsletter_id, 'Sending the newsletter in testmode has started.', LogLine::LEVEL_INFO );
+			$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'Sending the newsletter in testmode %s has started.', $test_mode ), LogLine::LEVEL_INFO );
 		}
 
+		// Get unique list of article ids
+		$article_ids = array();
+		foreach ( $newsletter->get_article_groups() as $article_group ) {
+			$article_ids = array_merge( $article_ids, $article_group->get_article_ids() );
+		}
+		$article_ids = array_unique( $article_ids );
+
 		// Register the articles
-		$client      = new Client();
-		$article_ids = $newsletter->get_article_ids();
+		$client = new Client();
 		foreach ( $article_ids as $article_id ) {
 			$article = post::get( $article_id );
 			if ( ! $article instanceof post ) {
@@ -107,7 +117,7 @@ class SendNewsletter {
 				return;
 			}
 
-			$response = $client->register_post( $article );
+			$response = $client->register_post( $article, $newsletter );
 			if ( $response instanceof WP_Error ) {
 				$this->selligent_logger->add_post_log(
 					$newsletter_id, sprintf(
@@ -136,7 +146,7 @@ class SendNewsletter {
 		}
 
 		// Send the newsletter
-		$response = $client->send_newsletter();
+		$response = $client->send_newsletter( $newsletter );
 		if ( $response instanceof WP_Error ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id, sprintf(
@@ -148,10 +158,10 @@ class SendNewsletter {
 			return;
 		}
 
-		if ( ! $test_mode ) {
+		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
 			$this->selligent_logger->add_post_log( $newsletter_id, 'The newsletter has been sent.', LogLine::LEVEL_SUCCESS );
 		} else {
-			$this->selligent_logger->add_post_log( $newsletter_id, 'The newsletter has been sent in testmode.', LogLine::LEVEL_SUCCESS );
+			$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'The newsletter has been sent in testmode %s.', $test_mode ), LogLine::LEVEL_SUCCESS );
 		}
 	}
 }
