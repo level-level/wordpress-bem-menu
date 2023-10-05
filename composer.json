@@ -38,7 +38,6 @@
         "ext-mbstring": "^7.1",
         "level-level/clarkson-404": "^1.0",
         "level-level/logging": "^3.0",
-        "wpackagist-plugin/wordpress-seo": "^20.1",
         "wpackagist-plugin/redirection": "^5.3",
         "level-level/clarkson-wp-cli-twig-translations": "^1.0",
         "level-level/clarkson-core": "^1.0",
@@ -58,7 +57,8 @@
         "level-level/wp-file-mods": "^1.0",
         "wpackagist-plugin/download-monitor": "^4.8",
         "fdmg-labels/fdmg-content-api-client": "^1.0",
-        "mhcg/monolog-wp-cli": "^1.0"
+        "mhcg/monolog-wp-cli": "^1.0",
+        "yoast/wordpress-seo": "^21.3"
     },
     "scripts": {
         "post-autoload-dump": [
