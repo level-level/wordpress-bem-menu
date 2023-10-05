@@ -1,99 +1,34 @@
-// Pagination styling for the default WordPress styling and the FacetWP Pager
 .pagination {
-	--item-width: 34px;
-
 	ul {
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		@apply flex items-center justify-center;
 
 		li {
-			@include font-size(16px, 16px);
-			display: block;
-			margin-right: $spacing-3;
-
-			&:last-child {
-				margin-right: 0;
-			}
-
-			@include breakpoint(sm) {
-				@include font-size(18px, 18px);
-			}
+			@apply text-base leading-none block mr-3 last:mr-0 sm:text-md;
 		}
 
 		a {
-			display: block;
-			padding: $spacing-3;
-			border-bottom: 3px solid transparent;
-			cursor: pointer;
-			text-decoration: none;
-
-			@include hover-focus-style {
-				text-decoration: underline;
-				color: var(--primary);
-
-				@include dark-mode {
-					color: var(--primary-300);
-				}
-			}
+			@apply block p-3 border-b-[3px] border-transparent cursor-pointer no-underline hocus:underline hocus:text-primary dark:hocus:text-primary-300;
 		}
 
 		span {
 			&.current {
-				display: block;
-				padding: $spacing-3;
-				border-bottom: 3px solid var(--primary);
-
-				@include dark-mode {
-					border-color: var(--primary-300);
-				}
+				@apply block p-3 border-b-[3px] border-primary dark:border-primary-300;
 			}
 
 			&.dots {
-				display: block;
-				padding: $spacing-3;
-				border: 0;
+				@apply block p-3 border-none;
 			}
 		}
 
 		.next,
 		.prev {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			background-color: var(--primary);
-			color: var(--base-50);
-			width: var(--item-width);
-			height: var(--item-width);
-			padding: 0;
-			border-radius: 50%;
-			border: 0;
-			transition:
-				color $time,
-				background-color $time;
-
-			@include dark-mode {
-				background-color: var(--primary-300);
-			}
-
-			@include hover-focus-style {
-				color: var(--base-50);
-				text-decoration: none;
-				background-color: var(--secondary-400);
-
-				@include dark-mode {
-					color: var(--base-50);
-					background-color: var(--secondary-300);
-				}
-			}
-
-			@include breakpoint(sm) {
-				@include font-size(18px, 18px);
-			}
+			@apply flex items-center justify-center bg-primary text-base-50 w-[34px] h-[34px] p-0 rounded-full border-none transition-colors duration-300;
+			@apply dark:bg-primary-300;
+			@apply hocus:text-base-50 hocus:no-underline hocus:bg-secondary-400 hocus:dark:text-base-50 hocus:dark:bg-secondary-300 sm:text-md sm:leading-none;
 		}
 	}
 
 	&__icon {
-		display: flex;
+		@apply flex;
 	}
 }

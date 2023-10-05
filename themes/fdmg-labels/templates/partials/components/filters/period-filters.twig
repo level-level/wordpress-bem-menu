@@ -1,0 +1,11 @@
+<fieldset>
+	<legend for="period" class="block mb-2">{{ _x('Period', 'Search', 'fdmg-labels') }}</legend>
+	<ul class="flex flex-col gap-2">
+		{% for item in periods %}
+			<li>
+				<input type="radio" id="period-filter-{{ loop.index }}" name="period" value="{{ item.period }}" {{ active_period is same as(item.period) ? 'checked="checked"' }}>
+				<label for="period-filter-{{ loop.index }}">{{ item.label }}</label>
+			</li>
+		{% endfor %}
+	</ul>
+</fieldset>

@@ -1,0 +1,143 @@
+<?php
+
+namespace FDMGLabels\Connectors\FDMGContentAPI;
+
+use Clarkson_Core\WordPress_Object\attachment;
+use Clarkson_Core\WordPress_Object\fdmg_genre;
+use Clarkson_Core\WordPress_Object\fdmg_section;
+use Clarkson_Core\WordPress_Object\post;
+use Clarkson_Core\WordPress_Object\user;
+use Codeception\TestCase\WPTestCase;
+use DateTime;
+
+class ObjectConverterTest extends WPTestCase {
+
+	public function setUp(): void {
+		parent::setUp();
+
+		$this->object_converter = new ObjectConverter();
+	}
+
+	public function test_section(): void {
+		$section = new fdmg_section(
+			$this->factory()->term->create_and_get(
+				array(
+					'name'        => 'Test section',
+					'taxonomy'    => 'fdmg_section',
+					'description' => 'Section description',
+					'slug'        => 'test-section',
+				)
+			)
+		);
+
+		$section_model = $this->object_converter->section( $section );
+		$this->assertSame( $section->get_id(), $section_model->getId() );
+		$this->assertSame( 'Test section', $section_model->getName() );
+		$this->assertSame( 'test-section', $section_model->getSlug() );
+		$this->assertSame( 'Section description', $section_model->getDescription() );
+	}
+
+	public function test_genre(): void {
+		$genre = new fdmg_genre(
+			$this->factory()->term->create_and_get(
+				array(
+					'name'        => 'Test genre',
+					'taxonomy'    => 'fdmg_genre',
+					'description' => 'Genre description',
+					'slug'        => 'test-genre',
+				)
+			)
+		);
+
+		$genre_model = $this->object_converter->genre( $genre );
+		$this->assertSame( $genre->get_id(), $genre_model->getId() );
+		$this->assertSame( 'Test genre', $genre_model->getName() );
+		$this->assertSame( 'test-genre', $genre_model->getSlug() );
+		$this->assertSame( 'Genre description', $genre_model->getDescription() );
+	}
+
+	public function test_user(): void {
+		$user = new user(
+			$this->factory()->user->create_and_get(
+				array(
+					'user_login' => 'test-user',
+					'user_email' => 'test-user@example.test',
+					'first_name' => 'Test',
+					'last_name'  => 'User',
+				)
+			)
+		);
+
+		$user_model = $this->object_converter->user( $user );
+		$this->assertSame( $user->get_id(), $user_model->getId() );
+		$this->assertSame( 'test-user', $user_model->getUsername() );
+		$this->assertSame( 'test-user@example.test', $user_model->getEmail() );
+		$this->assertSame( 'Test', $user_model->getFirstName() );
+		$this->assertSame( 'User', $user_model->getLastName() );
+		$this->assertSame( 'Test User', $user_model->getDisplayName() );
+		$this->assertSame( 'test-user', $user_model->getNickname() );
+	}
+
+	public function test_image(): void {
+		$image = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image-large.png' ) );
+
+		$image_model = $this->object_converter->image( $image );
+		$this->assertSame( $image->get_id(), $image_model->getId() );
+		$this->assertEquals( new DateTime( $image->get_object()->post_date, wp_timezone() ), $image_model->getdate() );
+		$this->assertEquals( new DateTime( $image->get_object()->post_modified, wp_timezone() ), $image_model->getModified() );
+		$this->assertSame( $image->get_post_name(), $image_model->getSlug() );
+		$this->assertSame( $image->get_status(), $image_model->getStatus() );
+		$this->assertSame( $image->get_post_type(), $image_model->getType() );
+		$this->assertSame( $image->get_title(), $image_model->getTitle() );
+		$this->assertSame( $image->get_content(), $image_model->getDescription() );
+		$this->assertSame( $image->get_excerpt(), $image_model->getCaption() );
+		$this->assertSame( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '', $image_model->getAltText() );
+		$this->assertSame( 'image', $image_model->getMediaType() );
+		$this->assertSame( $image->get_object()->post_mime_type, $image_model->getMimeType() );
+
+		$media_details_model = $image_model->getMediaDetails();
+		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['width'], $media_details_model->getWidth() );
+		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['height'], $media_details_model->getHeight() );
+		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['file'], $media_details_model->getFile() );
+		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['filesize'], $media_details_model->getFilesize() );
+	}
+
+	public function test_article(): void {
+		$post = new post(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'     => 'Test article',
+					'post_content'   => '<!-- wp:paragraph -->
+						<p>Text before paywall</p>
+						<!-- /wp:paragraph -->
+						<!-- wp:acf/block-ll-paywall-paywall {"name":"acf/block-ll-paywall-paywall","data":{"require_roles_for_access":"0","_require_roles_for_access":"field_5632706c"},"align":"wide","mode":"preview","id":"acf-block-64d6267625850"} /-->
+						<!-- wp:paragraph -->
+						<p>Text after paywall</p>
+						<!-- /wp:paragraph -->',
+					'post_excerpt'   => 'Test article excerpt',
+					'post_status'    => 'publish',
+					'post_type'      => 'post',
+					'post_date'      => '2020-01-01 12:00:00',
+					'post_name'      => 'test-article',
+					'comment_status' => 'open',
+				)
+			)
+		);
+
+		$article_model = $this->object_converter->article( $post );
+		$this->assertSame( $post->get_id(), $article_model->getId() );
+		$this->assertEquals( new DateTime( $post->get_object()->post_date, wp_timezone() ), $article_model->getdate() );
+		$this->assertEquals( new DateTime( $post->get_object()->post_modified, wp_timezone() ), $article_model->getModified() );
+		$this->assertSame( $post->get_post_name(), $article_model->getSlug() );
+		$this->assertSame( $post->get_status(), $article_model->getStatus() );
+		$this->assertSame( $post->get_post_type(), $article_model->getType() );
+		$this->assertSame( $post->get_permalink(), $article_model->getLink() );
+		$this->assertSame( $post->get_title(), $article_model->getTitle() );
+		$this->assertSame( $post->get_unpaywalled_content(), $article_model->getContent() );
+		$this->assertStringContainsString( 'Text before paywall', $article_model->getContent() );
+		$this->assertStringContainsString( 'Text after paywall', $article_model->getContent() );
+		$this->assertSame( $post->get_excerpt(), $article_model->getExcerpt() );
+		$this->assertSame( 'open', $article_model->getCommentStatus() );
+		$this->assertSame( true, $article_model->getPaywall() );
+	}
+}

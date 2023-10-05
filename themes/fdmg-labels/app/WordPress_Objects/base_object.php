@@ -60,7 +60,7 @@ class base_object extends Clarkson_Object {
 		return array(
 			'date'      => $this->get_date_i18n( $date_format ),
 			'datetime'  => $this->get_date_i18n( 'Y-m-d' ),
-			'date_full' => $this->get_date_i18n( 'F j Y' ),
+			'date_full' => $this->get_date_i18n( 'j F Y' ),
 			'readable'  => $this->get_human_readable_date(),
 		);
 	}

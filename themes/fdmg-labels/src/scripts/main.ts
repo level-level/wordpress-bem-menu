@@ -12,6 +12,10 @@ import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
 import NavigationAdvertisement from './modules/navigation-advertisement';
+import FilterModal from './modules/filter-modal';
+import FilterForm from './modules/filter-form';
+import DateRangeValidator from './modules/date-range-validator';
+import ToggleListItems from './modules/toggle-list-items';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -27,6 +31,10 @@ ModuleInitializer({
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
+	'filter-modal': FilterModal,
+	'filter-form': FilterForm,
+	'date-range-validator': DateRangeValidator,
+	'toggle-list-items': ToggleListItems,
 });
 
 /**

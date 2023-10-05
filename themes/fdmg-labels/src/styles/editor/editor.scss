@@ -19,13 +19,14 @@
 
 // Post/Page title
 .editor-post-title {
-	@apply font-bold font-heading text-secondary-700 dark:text-primary-300 text-xl sm:text-3xl;
+	@apply font-bold font-libre text-secondary-700 dark:text-primary-300 text-xl sm:text-3xl;
 }
 
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+		@apply font-libre font-normal text-base sm:text-lg;
+		@apply text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50 dark:bg-base-700;
 
 		h2[data-type='core/heading'] {
 			@include heading-h2;
@@ -71,6 +72,10 @@
 			&.has-intro-font-size {
 				@include intro-font;
 			}
+
+			&.has-regular-font-size {
+				@include regular-font;
+			}
 		}
 
 		a:not([class]) {
@@ -111,7 +116,7 @@
 .blocks-widgets-container {
 	.block-editor-block-list {
 		&__layout {
-			@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+			@apply font-figtree text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
 		}
 	}
 
@@ -130,7 +135,7 @@
 }
 
 strong {
-	@include font-bold;
+	font-weight: 700;
 }
 
 /* Editor sidebar styling */

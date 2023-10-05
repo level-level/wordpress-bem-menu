@@ -8,6 +8,7 @@ use Clarkson\Theme\ACFBlocks\Downloads;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
 use Clarkson\Theme\ACFBlocks\HighlightedContent;
 use Clarkson\Theme\ACFBlocks\InlineLink;
+use Clarkson\Theme\ACFBlocks\LocalFocus;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
@@ -30,6 +31,7 @@ class ACFBlocks {
 		SocialShare::class,
 		InlineLink::class,
 		Downloads::class,
+		LocalFocus::class,
 	);
 
 	public function register_hooks(): void {
