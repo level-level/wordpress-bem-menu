@@ -134,7 +134,7 @@
 @mixin regular-font {
 	--wp--preset--font-size--regular: #{calculaterem(16px)};
 	@apply font-libre font-normal;
-	line-height: line-height(16px, 22px);
+	line-height: line-height(16px, 24px);
 
 	@include breakpoint(sm) {
 		--wp--preset--font-size--regular: #{calculaterem(18px)};
