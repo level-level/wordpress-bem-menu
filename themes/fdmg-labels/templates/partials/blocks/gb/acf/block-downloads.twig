@@ -1,0 +1,36 @@
+{% set title = data.downloads.title %}
+{% set downloads = data.downloads.downloads %}
+
+{% if downloads %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="flex flex-col gap-3 p-3 sm:p-4 bg-secondary-100 dark:bg-base-600">
+
+			{% if title %}
+				<p class="font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800 text-md">{{ title }}</p>
+			{% endif %}
+
+			<ul class="flex flex-col gap-2">
+				{% for download in downloads %}
+					{% set file = download.get_file() %}
+					{% if file %}
+						<li class="inline-flex items-center gap-2">
+							<span class="text-lg icon-inline" aria-hidden="true">{{ svg_icons.get('download')|raw }}</span>
+							{% include 'styleguide/components/teasers/teaser-download.twig' with {
+								title: file.get_title(),
+								url: file.get_the_download_link(),
+								filetype: file.get_the_filetype(),
+								filesize: file.get_the_filesize(),
+							} %}
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% else %}
+	{% include 'blocks/block-placeholder.twig' with {
+		required_fields: [
+			_x('Download(s)', 'Block', 'fdmg-labels-admin'),
+		]
+	} %}
+{% endif %}

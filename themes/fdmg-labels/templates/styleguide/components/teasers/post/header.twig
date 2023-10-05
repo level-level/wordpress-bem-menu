@@ -1,6 +1,6 @@
 {% set title_style = 'text-xl' %}
 {% if large %}
-	{% set title_style = 'text-md sm:text-2xl' %}
+	{% set title_style = 'text-xl sm:text-2xl' %}
 {% elseif small %}
 	{% set title_style = 'text-base sm:text-lg' %}
 {% elseif wide %}
@@ -17,7 +17,7 @@
 	</div>
 
 	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
-		<div data-component="terms" class="text-base">
+		<div data-component="terms" class="text-sm">
 			<div class="flex items-center justify-between flex-nowrap">
 
 				{% if categories or genres or sections %}
@@ -49,11 +49,11 @@
 					</div>
 				{% endif %}
 
-				{% if date.date and date.datetime and date.date_full %}
+				{% if date.datetime and date.date_full and date.readable %}
 					<div class="shrink-0">
-						<div class="text-sm text-secondary-700 dark:text-base-100 sm:text-base">
-							<span class="sr-only">{{ _x('Published on: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-							<time datetime="{{ date.datetime|raw }}" aria-hidden="true">{{ date.date|raw }}</time>
+						<div class="text-sm text-secondary-700 dark:text-base-100">
+							<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true">{{ date.readable|raw }}</time>
 						</div>
 					</div>
 				{% endif %}

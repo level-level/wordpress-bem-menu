@@ -114,9 +114,8 @@ module.exports = {
 			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
-			body: ['"ProximaNovaRegular"', 'sans-serif'],
-			'body-bold': ['"ProximaNovaBold"', 'sans-serif'],
-			heading: ['"Libre Caslon Text"', 'sans-serif'],
+			figtree: ['"Figtree Variable"', 'sans-serif'],
+			libre: ['"Libre Caslon Text"', 'sans-serif'],
 		},
 		fontSize: {
 			sm: [

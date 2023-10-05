@@ -112,7 +112,7 @@ class ThemeOptions {
 								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENABLE )
 										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
 										->defaultValue( 1 )
-										->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
+										->instructions( _x( 'Enables or disables the Sourcepoint CMP cookiewall.', 'Fields', 'fdmg-labels-admin' ) ),
 								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_TAB )
 										->placement( 'left' ),
 								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_ENABLE )

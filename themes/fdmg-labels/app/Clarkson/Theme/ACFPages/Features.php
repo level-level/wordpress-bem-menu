@@ -104,6 +104,10 @@ class Features {
 									->instructions( _x( 'Make sure the related article block does not automatically load any related articles when creating a new article thus making it invisible.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
+								TrueFalse::make( _x( 'Disable using a default title in the highlighted content block', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK )
+									->instructions( _x( 'Filling the title field is then no longer required in the highlighted content block.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
 							)
 						),
 				),

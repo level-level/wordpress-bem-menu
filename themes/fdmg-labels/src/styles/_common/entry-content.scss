@@ -7,6 +7,11 @@
 		@apply sm:max-w-[theme(space.content-width)];
 	}
 
+	> .alignleft,
+	> .alignright {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
+	}
+
 	& > * + * {
 		@apply mt-6;
 	}
@@ -25,6 +30,10 @@
 	p {
 		&.has-intro-font-size {
 			@include intro-font;
+		}
+
+		&.has-regular-font-size {
+			@include regular-font;
 		}
 	}
 
@@ -45,5 +54,12 @@
 
 	ol:not([class]) {
 		@include ordered-list-style;
+	}
+
+	> p:not([class]),
+	> ol:not([class]),
+	> ul:not([class]),
+	a:not([class]) {
+		@apply font-libre font-normal leading-6 sm:text-md sm:leading-8;
 	}
 }

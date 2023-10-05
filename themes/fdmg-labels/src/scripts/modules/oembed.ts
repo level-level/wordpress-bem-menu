@@ -21,7 +21,6 @@ class OEmbed implements IModule {
 	button: HTMLElement | null;
 	dataAttribute: string;
 	playBtnClass: string;
-	isCookiebot: string | undefined;
 	source: string | undefined;
 	type: EmbedType;
 	disableNotice: string | undefined;
@@ -31,7 +30,6 @@ class OEmbed implements IModule {
 		this.dataAttribute = 'data-oembed';
 		this.playBtnClass = `btn--js-video-play`;
 		this.button = this.element.querySelector(`.js-consent-button`);
-		this.isCookiebot = this.element.dataset.cookiebot;
 		this.source = this.element.dataset.source;
 		this.type = this.element.dataset.type as EmbedType;
 		this.disableNotice = this.element.dataset.disableNotice;
@@ -86,6 +84,7 @@ class OEmbed implements IModule {
 							}
 						});
 
+
 						// Check if we have consent for the vendor of the current embed
 						let vendorConsent = false;
 						data.consentedVendors.forEach((element) => {
@@ -95,7 +94,7 @@ class OEmbed implements IModule {
 						});
 
 						// Show the embed if we have both purpose and vendor consent
-						if (purposeConsent && vendorConsent) {
+						if (purposeConsent && vendorConsent || this.source === 'consent_embed_omny' && purposeConsent) {
 							this.showEmbed();
 						}
 

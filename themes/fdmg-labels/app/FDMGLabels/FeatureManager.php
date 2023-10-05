@@ -29,7 +29,8 @@ class FeatureManager {
 	public const FEATURE_SHARE_VIA_COPY_CLIPBOARD = 'enable_share_via_copy_clipboard';
 
 	// Block options
-	public const FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK = 'enable_not_autofilling_related_articles_block';
+	public const FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK      = 'enable_not_autofilling_related_articles_block';
+	public const FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK = 'disable_default_title_highlighted_content_block';
 
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );

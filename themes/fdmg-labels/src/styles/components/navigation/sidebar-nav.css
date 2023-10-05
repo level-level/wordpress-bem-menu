@@ -1,5 +1,5 @@
 .sidebar-nav {
-	@apply font-body flex flex-col py-3;
+	@apply font-figtree flex flex-col py-3;
 }
 
 .sidebar-nav__item {
@@ -39,7 +39,7 @@
 }
 
 .sidebar-nav__link {
-	@apply font-body-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
+	@apply font-bold text-base flex items-center py-[10px] px-3 text-base-100 no-underline;
 	@apply hocus:bg-secondary-500 hocus:text-base-50 hocus:dark:bg-base-300 hocus:dark:text-base-100;
 	@apply sm:text-md sm:border-b-0 sm:text-secondary-700 sm:transition-colors;
 	@apply sm:dark:text-base-50;
@@ -78,7 +78,7 @@
 }
 
 .sidebar-nav-sub .sidebar-nav-sub__link {
-	@apply font-body no-underline text-base-50;
+	@apply font-figtree no-underline text-base-50;
 	@apply hocus:underline hocus:bg-transparent;
 	@apply sm:text-md sm:h-auto sm:p-0;
 	@apply sm:hocus:dark:text-base-50;

@@ -3,6 +3,7 @@ includes:
   - vendor/level-level/phpstan-config/config/wp-content.neon
 
 parameters:
+  checkGenericClassInNonGenericObjectType: false
   paths:
     - themes/fdmg-labels/app
   ignoreErrors:
