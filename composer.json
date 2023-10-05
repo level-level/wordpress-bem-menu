@@ -52,6 +52,8 @@
         "vinkla/extended-acf": "^13.3",
         "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.9",
         "woocommerce/action-scheduler": "^3.6",
+        "ll-premium/wp-all-import-pro": "^4.7",
+        "ll-premium/wpai-acf-add-on": "^3.3",
         "ll-premium/gravityformspolls": "^4.0",
         "level-level/ll-paywall": "^0.1.0",
         "wpackagist-plugin/elasticpress": "^4.7",

@@ -173,46 +173,46 @@
 - first_name
 - last_name
 - full_name
-- X type --> Altijd 1
-- X esb_id --> Oude content
+- X type --> always 1
+- X esb_id --> irrelevant
 
 ### binary_file => media
 
 - id
-- X escenic_id
-- state (PUBLISH of DRAFT)
-- X alignment (RIGHT, LEFT of BLOCK) --> Nvt in nieuwe setup
-- X version --> kan weg
+- X escenic_id --> irrelevant
+- state (PUBLISH or DRAFT)
+- X alignment (RIGHT, LEFT of BLOCK) --> irrelevant
+- X version --> irrelevant
 - filename
-- x binary_type --> Altijd PDF
+- x binary_type --> is always pdf
 
 ### picture => media
 
 - id
 - caption
-- X escenic_id
-- state --> status DELETED wordt overgeslagen
+- X escenic_id --> irrelevant
+- state --> status DELETED is skipped
 - photographer
 - title
-- X version --> nvt
-- X alignment --> nvt in nieuwe setup
-- X original_width --> nvt
-- X original_height --> nvt
+- X version --> irrelevant
+- X alignment --> irrelevant
+- X original_width --> irrelevant
+- X original_height --> irrelevant
 - path
-- using_imgix
-- X source_url --> leeg
-- X source_id --> leeg
+- using_imgix -> always 0 in energeia
+- X source_url --> empty
+- X source_id --> empty
 
 ### tag => category
 
 - id
-- tag_category_id --> taxonomy id
-- value --> term naam
-- intro_text --> mappen naar description
+- tag_category_id --> taxonomy id (is always 1)
+- value      --> term_name
+- intro_text --> description
 - enabled
-- X kvk_number --> leeg
-- directory --> slug
-- X image_path --> leeg
+- X kvk_number --> empty
+- directory   --> slug
+- X image_path --> empty
 
 ### old_url => redirect
 
@@ -252,12 +252,16 @@ Excerpts maar moeilijker
 
 Because some content has dependencies to be rendered / imported correctly, it's required to import content in a specific order. The order is as follows:
 
-1. Categories
-2. Media
-3. Team
-4. Posts
-5. Media (only if required to fix relationships between media and posts)
-6. Redirects
+1. Genres (taxonomy) 
+2. Tag -> Categories (taxonomy)
+3. Sections (taxonomy)
+4. Picture/Binary files as Media
+5. Author as Team 
+6. Articles
+7. Podcast series (taxonomy)
+8. Podcasts
+9. Redirects
+10. Short URL as redirect
 
 ## Queries
 
