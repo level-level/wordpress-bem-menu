@@ -1,6 +1,7 @@
 module.exports = {
 	entries: {
 		main: './src/index.ts',
+		admin: './src/admin.ts',
 		editor: './src/editor.ts',
 	},
 	dist: './dist',

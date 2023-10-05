@@ -33,6 +33,7 @@
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
 ( new \Clarkson\Theme\LoginLogo() )->register_hooks();
+( new \Clarkson\WPadmin\Darkmode() )->register_hooks();
 
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
