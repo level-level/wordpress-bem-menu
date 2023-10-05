@@ -21,6 +21,23 @@ const initDarkModeButton = () => {
 	});
 };
 
+const initTheme = () => {
+	if (!wp.blockEditor) {
+		return;
+	}
+
+	const currentURL = window.location.href;
+
+	if (currentURL.includes('energeia')) {
+		document.documentElement.classList.add('theme-energeia');
+	}
+
+	if (currentURL.includes('pensioen')) {
+		document.documentElement.classList.add('theme-pensioen-pro');
+	}
+};
+
 wp.domReady(() => {
 	initDarkModeButton();
+	initTheme();
 });
