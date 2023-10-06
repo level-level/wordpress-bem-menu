@@ -1,7 +1,9 @@
 # Genres
 
 Genres are found in the articles table of the database in the column "prefix". We need to make a csv file of all known Genres for our export.
-## Genres export
+## Export
+
+Run the following SQL query, and convert the result to CSV.
 
 ```sql
 SELECT prefix as Genre
@@ -10,3 +12,9 @@ WHERE prefix IS NOT NULL
     AND prefix != ''
 GROUP BY prefix;
 ```
+
+## Import
+
+1. Upload the generated CSV file, to create an import for the Genre taxonomy.
+2. Please use the [template file](./../WPAllImport/templates/import-genres.txt) to automatically apply all the required import configuration.
+3. Run the import.
