@@ -18,4 +18,5 @@ GROUP BY prefix;
 
 1. Upload the generated CSV file, to create an import for the Genre taxonomy.
 2. Please use the [template file](./../WPAllImport/templates/import-genres.txt) to automatically apply all the required import configuration.
-3. Run the import.
+3. Make sure that in settings, "Increase speed by disabling do_action calls in wp_insert_post during import." is enabled.
+4. Run the import.
