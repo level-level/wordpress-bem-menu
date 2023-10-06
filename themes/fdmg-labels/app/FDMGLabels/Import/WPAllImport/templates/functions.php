@@ -6,8 +6,8 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
-use FDMGLabels\Import\Helpers\Utilities;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
+use FDMGLabels\Import\Helpers\Utilities;
 use FDMGLabels\Import\Init;
 
 /**
