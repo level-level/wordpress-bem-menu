@@ -1,6 +1,7 @@
 # Genres
 
 Genres are found in the articles table of the database in the column "prefix". We need to make a csv file of all known Genres for our export.
+
 ## Export
 
 Run the following SQL query, and convert the result to CSV.
