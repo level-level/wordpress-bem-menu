@@ -14,6 +14,9 @@ class post extends base_object {
 		return get_field( PostTypesPost::META_ALTERNATIVE_TITLE, $this->get_id() ) ?: '';
 	}
 
+	/**
+	 * @return ii_team[]
+	 */
 	public function get_authors(): array {
 		return get_field( PostTypesPost::META_AUTHORS, $this->get_id() ) ?: array();
 	}
