@@ -166,4 +166,8 @@ strong {
 			@apply w-full;
 		}
 	}
+
+	&.wp-block-image {
+		@apply w-auto;
+	}
 }
