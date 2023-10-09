@@ -16,6 +16,7 @@ import FilterModal from './modules/filter-modal';
 import FilterForm from './modules/filter-form';
 import DateRangeValidator from './modules/date-range-validator';
 import ToggleListItems from './modules/toggle-list-items';
+import LoginButton from './modules/login-button';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -35,6 +36,7 @@ ModuleInitializer({
 	'filter-form': FilterForm,
 	'date-range-validator': DateRangeValidator,
 	'toggle-list-items': ToggleListItems,
+	'login-button': LoginButton,
 });
 
 /**

@@ -40,7 +40,7 @@ const initTheme = () => {
 	}
 };
 
-wp.domReady(() => {
+wp?.domReady(() => {
 	initDarkModeButton();
 	initTheme();
 });
