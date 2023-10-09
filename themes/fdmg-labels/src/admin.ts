@@ -40,7 +40,9 @@ const initTheme = () => {
 	}
 };
 
-wp?.domReady(() => {
-	initDarkModeButton();
-	initTheme();
-});
+if (wp && wp.domReady) {
+	wp.domReady(() => {
+		initDarkModeButton();
+		initTheme();
+	});
+}
