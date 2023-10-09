@@ -152,7 +152,6 @@ strong {
 
 		.alignleft {
 			@apply w-full;
-			width: 100%;
 		}
 	}
 
@@ -165,5 +164,9 @@ strong {
 		.alignright {
 			@apply w-full;
 		}
+	}
+
+	&.wp-block-image {
+		@apply w-auto;
 	}
 }
