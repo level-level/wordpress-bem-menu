@@ -5,7 +5,7 @@ use Clarkson\Theme\ACFPages\ThemeOptions;
 
 class Robots {
 	public function register_hooks(): void {
-		add_filter( 'robots_txt', array( $this, 'custom_robots_txt' ), 10, 1 );
+		add_filter( 'robots_txt', array( $this, 'custom_robots_txt' ), 10, 1 ); // phpcs:ignore WordPressVIPMinimum.Hooks.RestrictedHooks.robots_txt
 	}
 
 	public function custom_robots_txt( string $output ): string {
