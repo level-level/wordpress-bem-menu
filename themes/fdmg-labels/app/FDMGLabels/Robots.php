@@ -9,17 +9,17 @@ class Robots {
 	}
 
 	public function custom_robots_txt( string $output ): string {
-		$theme    = get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
-		$siteName = 'Impact Investor';
+		$theme     = get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
+		$site_name = 'Impact Investor';
 
 		if ( $theme === 'energeia' ) {
-			$siteName = 'Energeia';
+			$site_name = 'Energeia';
 		} elseif ( $theme === 'pensioen-pro' ) {
-			$siteName = 'Pensioen Pro';
+			$site_name = 'Pensioen Pro';
 		}
 
-		$custom_rules  = '# all use of ' . $siteName . " content is subject to the Terms & Conditions and Copyright Policy set out on fdmg.nl/copyright\n";
-		$custom_rules .= '# scraping, harvesting or any (other) type of data- or text-mining of ' . $siteName . " content is not allowed\n";
+		$custom_rules  = '# all use of ' . $site_name . " content is subject to the Terms & Conditions and Copyright Policy set out on fdmg.nl/copyright\n";
+		$custom_rules .= '# scraping, harvesting or any (other) type of data- or text-mining of ' . $site_name . " content is not allowed\n";
 
 		// Append the custom rules to the existing robots.txt content
 		$output .= $custom_rules;
