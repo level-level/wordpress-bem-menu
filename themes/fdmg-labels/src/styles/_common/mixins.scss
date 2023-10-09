@@ -123,7 +123,7 @@
 @mixin intro-font {
 	--wp--preset--font-size--intro: #{calculaterem(18px)};
 	@apply font-libre font-normal;
-	line-height: line-height(18px, 26px);
+	line-height: line-height(18px, 28px);
 
 	@include breakpoint(sm) {
 		--wp--preset--font-size--intro: #{calculaterem(24px)};
@@ -134,7 +134,7 @@
 @mixin regular-font {
 	--wp--preset--font-size--regular: #{calculaterem(16px)};
 	@apply font-libre font-normal;
-	line-height: line-height(16px, 24px);
+	line-height: line-height(16px, 28px);
 
 	@include breakpoint(sm) {
 		--wp--preset--font-size--regular: #{calculaterem(18px)};
