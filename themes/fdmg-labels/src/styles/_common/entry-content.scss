@@ -7,8 +7,8 @@
 		@apply sm:max-w-[theme(space.content-width)];
 	}
 
-	> .alignleft,
-	> .alignright {
+	> .alignleft:not(.wp-block-image),
+	> .alignright:not(.wp-block-image) {
 		@apply sm:w-[calc(theme(space.article-width)/2)];
 	}
 
