@@ -29,11 +29,11 @@
 }
 
 .wp-block-image {
-	.alignright {
-		@apply float-none m-0 sm:float-right sm:ml-4;
+	&.alignright {
+		@apply float-right ml-4 mb-2;
 	}
 
-	.alignleft {
-		@apply float-none m-0 sm:float-left sm:ml-4;
+	&.alignleft {
+		@apply float-left mr-4 mb-2;
 	}
 }
