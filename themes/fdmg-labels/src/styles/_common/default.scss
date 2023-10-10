@@ -1,5 +1,5 @@
 * {
-	box-sizing: border-box;
+	@apply box-border;
 }
 
 @media (prefers-reduced-motion) {
@@ -9,5 +9,5 @@
 }
 
 html {
-	scroll-behavior: smooth;
+	@apply scroll-smooth;
 }
