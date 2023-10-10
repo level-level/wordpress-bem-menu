@@ -10,6 +10,10 @@ class AuthController extends AbstractMainController {
 		return 'auth';
 	}
 
+	public function get_url( string $path ): string {
+		return home_url() . $this->get_slug() . $path;
+	}
+
 	/**
 	 * Route to the correct handle function based on the query var.
 	 */

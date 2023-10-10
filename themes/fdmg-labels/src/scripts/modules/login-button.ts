@@ -1,15 +1,17 @@
-import { IModule } from '../../globals';
-import Auth from '../helpers/auth';
+import { I18n, IModule } from '../../globals';
+import User from '../model/user';
+
+declare const i18n: I18n;
 
 class LoginButton implements IModule {
 	element: HTMLElement;
-	auth: Auth;
+	user: User | null;
 	loginButton: HTMLLinkElement | null;
 	logoutButton: HTMLLinkElement | null;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.auth = new Auth();
+		this.user = User.getCurrentUser();
 		this.loginButton = this.element.querySelector('.js-login');
 		this.logoutButton = this.element.querySelector('.js-logout');
 
@@ -17,8 +19,9 @@ class LoginButton implements IModule {
 	}
 
 	initialize() {
-		if (this.auth.userIsAuthenticated()) {
+		if (this.user) {
 			this.showLogOutButton();
+			this.showAndCreateMessage();
 		} else {
 			this.showLoginButton();
 		}
@@ -30,6 +33,13 @@ class LoginButton implements IModule {
 
 	showLogOutButton() {
 		this.loginButton?.remove();
+	}
+
+	showAndCreateMessage() {
+		const element = document.createElement('p');
+		element.className = 'text-base';
+		element.textContent = `${i18n.loggedIn} ${this.user?.getDisplayName()}`;
+		this.element.insertBefore(element, this.element.firstChild);
 	}
 }
 

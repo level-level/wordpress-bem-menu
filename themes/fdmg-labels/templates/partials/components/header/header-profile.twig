@@ -24,15 +24,15 @@
 		<div class="p-5">
 
 			{% if is_plugin_active('daggerhart-openid-connect-generic/openid-connect-generic.php') %}
-				<div data-module="login-button" class="pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
+				<div data-module="login-button" class="flex flex-col gap-4 pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: _x('Login', 'Profile', 'fdmg-labels'),
-						url: home_url() ~ '/auth/login/',
+						url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
 						class: 'btn-primary btn-full js-login',
 					} %}
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: _x('Logout', 'Profile', 'fdmg-labels'),
-						url: home_url() ~ '/auth/logout/',
+						url: static_pages.auth.get_permalink(constant('PAGE_LOGOUT', static_pages.auth)),
 						class: 'btn-primary btn-full js-logout',
 					} %}
 				</div>
