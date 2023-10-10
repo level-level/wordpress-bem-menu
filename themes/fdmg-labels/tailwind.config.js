@@ -172,6 +172,8 @@ module.exports = {
 			addVariant('ul', '& > ul');
 			addVariant('ol', '& > ol');
 			addVariant('ulli', '& > ul li');
+			addVariant('olli', '& > ol li');
+			addVariant('li', '& > li');
 
 			addVariant('btn-text', ({ modifySelectors, separator }) => {
 				modifySelectors(({ className }) => {
