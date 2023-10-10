@@ -25,9 +25,9 @@ class Darkmode {
 		$wp_admin_bar->add_node(
 			array(
 				'id'    => 'll-darkmode',
-				'title' => _x( 'Enable darkmode', 'Darkmode', 'kit-admin' ),
+				'title' => _x( 'Enable darkmode', 'Darkmode', 'fdmg-labels-admin' ),
 				'meta'  => array(
-					'title' => _x( 'Disable darkmode', 'Darkmode', 'kit-admin' ),
+					'title' => _x( 'Disable darkmode', 'Darkmode', 'fdmg-labels-admin' ),
 				),
 			)
 		);
