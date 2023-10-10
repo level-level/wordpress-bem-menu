@@ -23,7 +23,7 @@ class ArticlesByAuthor {
 			array(
 				'name'        => 'widget-' . self::WIDGET_NAME,
 				'title'       => _x( 'Articles by author', 'Block', 'fdmg-labels-admin' ),
-				'description' => _x( 'Displays a list of articles by the author of the current post that is visited.', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Displays a list of articles by the author of the current post that is viewed.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'groups',
 				'align'       => 'center', // full, wide, left, center, right
 				'keywords'    => array(
