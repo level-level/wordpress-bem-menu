@@ -13,7 +13,7 @@ class ScriptTranslations {
 				),
 				'invalidDateInput' => _x( 'Invalid date entered', 'Search', 'fdmg-labels' ),
 				'formError'        => _x( 'There is a problem with your request. Check the notifications below.', 'Search', 'fdmg-labels' ),
-				'loggedIn'         => _x( 'U bent ingelogd als', 'Login', 'fdmg-labels' ),
+				'loggedIn'         => _x( 'You are logged in as', 'Login', 'fdmg-labels' ),
 			)
 		);
 	}
