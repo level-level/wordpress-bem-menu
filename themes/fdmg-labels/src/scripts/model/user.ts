@@ -2,9 +2,7 @@ import Cookies from 'js-cookie';
 
 export type UserData = {
 	id: number;
-	username: string;
 	display_name: string;
-	first_name: string;
 };
 
 class User {
