@@ -34,16 +34,8 @@ class User {
 		return this.data.id;
 	}
 
-	getUsername() {
-		return this.data.username;
-	}
-
 	getDisplayName() {
 		return this.data.display_name;
-	}
-
-	getFirstName() {
-		return this.data.first_name;
 	}
 }
 
