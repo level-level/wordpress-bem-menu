@@ -53,17 +53,7 @@
 
 @mixin ordered-list-style {
 	@apply list-decimal pl-5 flex flex-col gap-2;
-	// @apply p-0 list-none flex flex-col gap-2;
-	// @apply li:relative li:pl-6;
-	// @apply li:before:font-libre li:before:font-bold li:before:absolute li:before:top-0 li:before:left-0 li:before:text-primary li:before:z-[1] li:before:dark:text-primary-300 li:before:sm:text-xl [counter-reset: counter];
 
-	// > li {
-	// 	counter-increment: counter;
-
-	// 	&:before {
-	// 		content: counter(counter) !important;
-	// 	}
-	// }
 	ul,
 	ol {
 		margin-top: 10px;
