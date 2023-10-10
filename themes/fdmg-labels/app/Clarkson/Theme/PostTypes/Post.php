@@ -96,7 +96,7 @@ class Post {
 	 * Change the post object labels so we can translate them to a more custom label for the Dutch fdmg label sites.
 	 */
 	public function change_post_object_strings(): void {
-		$get_post_type                 = get_post_type_object( self::POST_TYPE_NAME );
+		$get_post_type = get_post_type_object( self::POST_TYPE_NAME );
 
 		if ( ! $get_post_type instanceof WP_Post_Type ) {
 			return;
