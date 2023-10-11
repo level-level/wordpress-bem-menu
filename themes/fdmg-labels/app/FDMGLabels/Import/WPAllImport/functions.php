@@ -6,6 +6,7 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
+use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
 use FDMGLabels\Import\Helpers\Utilities;
 use FDMGLabels\Import\Init;
@@ -48,4 +49,8 @@ function fdmg_wpai_get_term_id_by_old_id( string $prefix, string $old_id ): int 
 
 function fdmg_wpai_get_comment_id_by_old_id( string $prefix, string $old_id ): int {
 	return ( new ImportedContentFinder() )->get_comment_id_from_old_id( $prefix . $old_id );
+}
+
+function fdmg_format_value( string $value, string $default = '' ): string {
+	return ( new ContentParser() )->format_value( $value, $default );
 }
