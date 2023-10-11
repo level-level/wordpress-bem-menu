@@ -1464,8 +1464,8 @@
             "version": "4.7.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/wp-all-import-pro/ll-premium-wp-all-import-pro-4.7.8.zip",
-                "shasum": "0094c4e79c551fd7b09f7858399d1de80fc65583",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.7.8",
+                "shasum": "6abc0e2f62d96299590c10c7f24afe9862b7818f",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1490,8 +1490,8 @@
             "version": "3.3.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/wpai-acf-add-on/ll-premium-wpai-acf-add-on-3.3.8.zip",
-                "shasum": "5a0ea50ecdf4c1e134ada1806f64f0d469ea4a4a",
+                "url": "https://satispress.level-level.com/satispress/wpai-acf-add-on/3.3.8",
+                "shasum": "2c787b8eb3de7601ebb99e9760d92a303e8317d0",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
