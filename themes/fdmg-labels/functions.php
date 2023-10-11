@@ -52,6 +52,7 @@
 ( new \FDMGLabels\StaticPages\Init() )->register_hooks();
 ( new \FDMGLabels\Connectors\FDMGContentAPI\Init() )->register_hooks();
 ( new \FDMGLabels\AdminAjax\Init() )->register_hooks();
+( new \FDMGLabels\Robots() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();

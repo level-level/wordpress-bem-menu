@@ -3,7 +3,6 @@ namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
-use Clarkson_Core\WordPress_Object\user;
 use WP_Error;
 use WP_User;
 
