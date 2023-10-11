@@ -71,6 +71,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'string',
         'excerpt' => 'string',
         'author' => 'User',
+        'team_members' => '\FDMGContentAPIClient\Model\TeamMember[]',
         'featured_image' => 'Image',
         'comment_status' => 'string',
         'genres' => '\FDMGContentAPIClient\Model\Genre[]',
@@ -97,6 +98,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'html',
         'excerpt' => null,
         'author' => null,
+        'team_members' => null,
         'featured_image' => null,
         'comment_status' => null,
         'genres' => null,
@@ -142,6 +144,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'content',
         'excerpt' => 'excerpt',
         'author' => 'author',
+        'team_members' => 'team_members',
         'featured_image' => 'featured_image',
         'comment_status' => 'comment_status',
         'genres' => 'genres',
@@ -166,6 +169,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'setContent',
         'excerpt' => 'setExcerpt',
         'author' => 'setAuthor',
+        'team_members' => 'setTeamMembers',
         'featured_image' => 'setFeaturedImage',
         'comment_status' => 'setCommentStatus',
         'genres' => 'setGenres',
@@ -190,6 +194,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         'content' => 'getContent',
         'excerpt' => 'getExcerpt',
         'author' => 'getAuthor',
+        'team_members' => 'getTeamMembers',
         'featured_image' => 'getFeaturedImage',
         'comment_status' => 'getCommentStatus',
         'genres' => 'getGenres',
@@ -308,6 +313,7 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['content'] = $data['content'] ?? null;
         $this->container['excerpt'] = $data['excerpt'] ?? null;
         $this->container['author'] = $data['author'] ?? null;
+        $this->container['team_members'] = $data['team_members'] ?? null;
         $this->container['featured_image'] = $data['featured_image'] ?? null;
         $this->container['comment_status'] = $data['comment_status'] ?? null;
         $this->container['genres'] = $data['genres'] ?? null;
@@ -666,6 +672,30 @@ class Article implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAuthor($author)
     {
         $this->container['author'] = $author;
+
+        return $this;
+    }
+
+    /**
+     * Gets team_members
+     *
+     * @return \FDMGContentAPIClient\Model\TeamMember[]|null
+     */
+    public function getTeamMembers()
+    {
+        return $this->container['team_members'];
+    }
+
+    /**
+     * Sets team_members
+     *
+     * @param \FDMGContentAPIClient\Model\TeamMember[]|null $team_members team_members
+     *
+     * @return self
+     */
+    public function setTeamMembers($team_members)
+    {
+        $this->container['team_members'] = $team_members;
 
         return $this;
     }

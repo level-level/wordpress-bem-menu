@@ -180,6 +180,15 @@ class ArticleTest extends TestCase
     }
 
     /**
+     * Test attribute "team_members"
+     */
+    public function testPropertyTeamMembers()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "featured_image"
      */
     public function testPropertyFeaturedImage()
