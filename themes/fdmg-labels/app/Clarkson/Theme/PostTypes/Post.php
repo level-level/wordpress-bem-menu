@@ -1,7 +1,6 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
-use Clarkson\Theme\ACFBlocks\HighlightedContent;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
 use Clarkson\Theme\ACFPages\Paywall;
@@ -24,6 +23,7 @@ class Post {
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_action( 'init', array( $this, 'block_template' ) );
+		add_action( 'init', array( $this, 'change_post_object_strings' ) );
 	}
 
 	public function register_fields(): void {
@@ -90,5 +90,22 @@ class Post {
 		);
 
 		$post_type_object->template = array_merge( $conditional_blocks, $default_post_template );
+	}
+
+	/**
+	 * Change the post object labels so we can translate them to a more custom label for the Dutch fdmg label sites.
+	 */
+	public function change_post_object_strings(): void {
+		$get_post_type = get_post_type_object( self::POST_TYPE_NAME );
+
+		if ( ! $get_post_type instanceof WP_Post_Type ) {
+			return;
+		}
+
+		$labels                        = $get_post_type->labels;
+		$labels->featured_image        = _x( 'Featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->set_featured_image    = _x( 'Set featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->remove_featured_image = _x( 'Remove featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->use_featured_image    = _x( 'Use featured image', 'Custom Post', 'fdmg-labels-admin' );
 	}
 }
