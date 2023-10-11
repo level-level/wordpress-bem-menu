@@ -1404,8 +1404,8 @@
             "version": "1.4.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/popup-maker-advanced-targeting-conditions/ll-premium-popup-maker-advanced-targeting-conditions-1.4.6.zip",
-                "shasum": "41bba4c3ca8d8b57451caa3da3d5413976493390",
+                "url": "https://repo.packagist.com/level-level/dists/ll-premium/popup-maker-advanced-targeting-conditions/1.4.6.0/d15a00274c8b7aa0b2c0463faf7325166484b1a2.zip",
+                "reference": "d15a00274c8b7aa0b2c0463faf7325166484b1a2",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1421,8 +1421,8 @@
             "version": "1.4.0",
             "dist": {
                 "type": "zip",
-                "url": "https://satis.level-level.com/packages/ll-premium/popup-maker-exit-intent-popups/ll-premium-popup-maker-exit-intent-popups-1.4.0.zip",
-                "shasum": "39b4033e71fceebbf017bd6dfbf676d3e76f16ff",
+                "url": "https://repo.packagist.com/level-level/dists/ll-premium/popup-maker-exit-intent-popups/1.4.0.0/dd1871b7c0f906b07b1d74140f08215ae2d3cdad.zip",
+                "reference": "dd1871b7c0f906b07b1d74140f08215ae2d3cdad",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
