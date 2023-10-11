@@ -2,6 +2,9 @@
 
 Tags have their own separate table, "tag". We need the tag id, tag category id, value, intro_text, enabled and directory.
 
+## Import notes
+fdmg_import_old_id is prefixed with 'tag_'
+
 ## Tags export
 
 ```sql
