@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **content** | **string** |  |
 **excerpt** | **string** |  |
 **author** | [**User**](User.md) |  | [optional]
+**team_members** | [**\FDMGContentAPIClient\Model\TeamMember[]**](TeamMember.md) |  | [optional]
 **featured_image** | [**Image**](Image.md) |  | [optional]
 **comment_status** | **string** |  |
 **genres** | [**\FDMGContentAPIClient\Model\Genre[]**](Genre.md) |  |

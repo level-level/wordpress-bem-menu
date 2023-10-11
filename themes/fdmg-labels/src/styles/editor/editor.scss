@@ -25,8 +25,8 @@
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@apply font-libre font-normal text-base sm:text-lg;
-		@apply text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50 dark:bg-base-700;
+		@apply font-libre font-normal text-base sm:text-md text-base-500 bg-secondary-50 leading-6 sm:leading-8;
+		@apply dark:text-base-100 dark:bg-base-700;
 
 		h2[data-type='core/heading'] {
 			@include heading-h2;
@@ -59,13 +59,19 @@
 		ol[data-type='core/list'] {
 			@include ordered-list-style;
 			margin: 0 auto;
-			margin-bottom: 28px;
+
+			li {
+				margin-top: 0;
+			}
 		}
 
 		ul[data-type='core/list'] {
 			@include unordered-list-style;
 			margin: 0 auto;
-			margin-bottom: 28px;
+
+			li {
+				margin-top: 0;
+			}
 		}
 
 		p {
@@ -88,7 +94,9 @@
 .editor-styles-wrapper ol,
 .editor-styles-wrapper ul {
 	box-sizing: border-box;
+}
 
+.editor-styles-wrapper ul {
 	&:not([data-type]) {
 		list-style-type: none;
 		margin: 0;
@@ -152,7 +160,6 @@ strong {
 
 		.alignleft {
 			@apply w-full;
-			width: 100%;
 		}
 	}
 
@@ -165,5 +172,9 @@ strong {
 		.alignright {
 			@apply w-full;
 		}
+	}
+
+	&.wp-block-image {
+		@apply w-auto;
 	}
 }

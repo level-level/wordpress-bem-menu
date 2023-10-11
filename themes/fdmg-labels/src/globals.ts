@@ -5,6 +5,7 @@ export type I18n = {
 	socialShare: string;
 	invalidDateInput: string;
 	formError: string;
+	loggedIn: string;
 };
 
 /**

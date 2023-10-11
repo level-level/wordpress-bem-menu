@@ -15,6 +15,7 @@ docs/Model/SuccessResponse.md
 docs/Model/SuccessResponsePublishResponse.md
 docs/Model/SuccessResponsePublishResponsePublishResult.md
 docs/Model/SuccessResponsePublishResponseResponseMetadata.md
+docs/Model/TeamMember.md
 docs/Model/User.md
 git_push.sh
 lib/Api/ArticleHookApi.php
@@ -32,6 +33,7 @@ lib/Model/SuccessResponse.php
 lib/Model/SuccessResponsePublishResponse.php
 lib/Model/SuccessResponsePublishResponsePublishResult.php
 lib/Model/SuccessResponsePublishResponseResponseMetadata.php
+lib/Model/TeamMember.php
 lib/Model/User.php
 lib/ObjectSerializer.php
 phpunit.xml.dist
@@ -46,4 +48,5 @@ test/Model/SuccessResponsePublishResponsePublishResultTest.php
 test/Model/SuccessResponsePublishResponseResponseMetadataTest.php
 test/Model/SuccessResponsePublishResponseTest.php
 test/Model/SuccessResponseTest.php
+test/Model/TeamMemberTest.php
 test/Model/UserTest.php

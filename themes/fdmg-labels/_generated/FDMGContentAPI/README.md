@@ -92,6 +92,7 @@ Class | Method | HTTP request | Description
 - [SuccessResponsePublishResponse](docs/Model/SuccessResponsePublishResponse.md)
 - [SuccessResponsePublishResponsePublishResult](docs/Model/SuccessResponsePublishResponsePublishResult.md)
 - [SuccessResponsePublishResponseResponseMetadata](docs/Model/SuccessResponsePublishResponseResponseMetadata.md)
+- [TeamMember](docs/Model/TeamMember.md)
 - [User](docs/Model/User.md)
 
 ## Authorization
