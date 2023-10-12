@@ -20,4 +20,25 @@ class Utilities {
 		return sprintf( '%s@fdmg-labels-import.test', sanitize_title_with_dashes( $email ) );
 	}
 
+	/**
+	 * Transform the FDMG state to a WordPress post status.
+	 */
+	public function get_post_status( string $state ): string {
+		$status = '';
+		switch ( $state ) {
+			case 'DRAFT':
+				$status = 'draft';
+				break;
+			case 'PUBLISHED':
+			case 'EMBARGOED':
+				$status = 'publish';
+				break;
+			case 'DELETED':
+				$status = 'thrash';
+				break;
+		}
+
+		return $status;
+	}
+
 }
