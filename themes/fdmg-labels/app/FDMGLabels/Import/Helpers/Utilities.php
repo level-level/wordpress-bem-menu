@@ -21,20 +21,21 @@ class Utilities {
 	}
 
 	public function get_post_status( string $state ): string {
-		switch ($state) {
+		$status = '';
+		switch ( $state ) {
 			case 'DRAFT':
-				return 'draft';
+				$status = 'draft';
 				break;
 			case 'PUBLISHED':
 			case 'EMBARGOED':
-				return 'publish';
+				$status = 'publish';
 				break;
 			case 'DELETED':
-				return 'thrash';
+				$status = 'thrash';
 				break;
 		}
 
-		return '';
+		return $status;
 	}
 
 }

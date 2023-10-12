@@ -3,6 +3,8 @@ namespace FDMGLabels\Import\WPAllImport;
 
 use FDMGLabels\Import\Helpers\Attachment;
 use PMXI_Import_Record;
+use WP_Post;
+use WP_Post_Type;
 
 class Init {
 
