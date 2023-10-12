@@ -20,4 +20,21 @@ class Utilities {
 		return sprintf( '%s@wetlands-import.test', sanitize_title_with_dashes( $email ) );
 	}
 
+	public function get_post_status( string $state ): string {
+		switch ($state) {
+			case 'DRAFT':
+				return 'draft';
+				break;
+			case 'PUBLISHED':
+			case 'EMBARGOED':
+				return 'publish';
+				break;
+			case 'DELETED':
+				return 'thrash';
+				break;
+		}
+
+		return '';
+	}
+
 }

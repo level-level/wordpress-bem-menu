@@ -6,6 +6,7 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
+use FDMGLabels\Import\Helpers\Attachment;
 use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
 use FDMGLabels\Import\Helpers\Utilities;
@@ -35,6 +36,10 @@ function fdmg_wpai_get_development_safe_email( string $email ): string {
 	return ( new Utilities() )->get_development_safe_email( $email );
 }
 
+function fdmg_wpai_get_post_status( string $state ): string {
+	return ( new Utilities() )->get_post_status( $state );
+}
+
 function fdmg_wpai_get_post_id_by_old_id( string $prefix, string $old_id ): int {
 	return ( new ImportedContentFinder() )->get_post_id_from_old_id( $prefix . $old_id );
 }
@@ -53,4 +58,16 @@ function fdmg_wpai_get_comment_id_by_old_id( string $prefix, string $old_id ): i
 
 function fdmg_format_value( string $value, string $default = '' ): string {
 	return ( new ContentParser() )->format_value( $value, $default );
+}
+
+function fdmg_wpai_attachment_get_title_from_file_name( string $file_path ): string {
+	return ( new Attachment() )->get_title_from_file_name( $file_path );
+}
+
+function fdmg_wpai_attachment_get_wp_attached_file( string $identifier, string $file_path ): string {
+	return ( new Attachment() )->get_wp_attached_file( (int) $identifier, $file_path );
+}
+
+function fdmg_wpai_attachment_get_attachment_metadata( string $identifier, string $file_path ): string {
+	return ( new Attachment() )->get_attachment_metadata( (int) $identifier, $file_path );
 }
