@@ -60,8 +60,8 @@ function fdmg_format_value( string $value, string $default = '' ): string {
 	return ( new ContentParser() )->format_value( $value, $default );
 }
 
-function fdmg_wpai_attachment_get_title_from_file_name( string $file_path ): string {
-	return ( new Attachment() )->get_title_from_file_name( $file_path );
+function fdmg_wpai_attachment_get_title( string $title, string $file_path ): string {
+	return ( new Attachment() )->get_title( $title, $file_path );
 }
 
 function fdmg_wpai_attachment_get_wp_attached_file( string $identifier, string $file_path ): string {
