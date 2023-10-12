@@ -84,7 +84,6 @@ class Init {
 			$article_data['post_excerpt'] = join( ' | ', $excerpt_parts );
 		}
 
-
 		return $article_data;
 	}
 }
