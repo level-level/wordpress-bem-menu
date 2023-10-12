@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.0.16",
-    "@fontsource/libre-caslon-text": "^5.0.12",
+    "@fontsource/libre-caslon-text": "^5.0.15",
     "@level-level/recyclops": "^2.5.0",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5"
