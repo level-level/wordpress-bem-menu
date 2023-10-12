@@ -17,7 +17,7 @@ class Utilities {
 			return $email;
 		}
 
-		return sprintf( '%s@wetlands-import.test', sanitize_title_with_dashes( $email ) );
+		return sprintf( '%s@fdmg-labels-import.test', sanitize_title_with_dashes( $email ) );
 	}
 
 }
