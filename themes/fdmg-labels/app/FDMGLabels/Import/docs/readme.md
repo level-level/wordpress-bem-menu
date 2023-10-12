@@ -15,6 +15,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 9. Podcasts
 10. Redirects
 11. Short URL as redirect
+12. Run import of Pictures and Binary files again.
 
 ## Table structure
 
