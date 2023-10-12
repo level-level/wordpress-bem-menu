@@ -29,7 +29,7 @@ class Attachment {
 	public function get_attachment_metadata( int $identifier, string $filename ): string {
 		$mime         = $this->get_mime_type( $identifier, $filename );
 		$wp_file_path = $this->get_file_dir( $identifier, $filename );
-		if ( strpos( $mime, 'image/' ) !== 0 ) {
+		if ( str_starts_with( $mime, 'image/' ) ) {
 			$imagesize = wp_getimagesize( $wp_file_path ) ?: array();
 			return maybe_serialize(
 				array(
