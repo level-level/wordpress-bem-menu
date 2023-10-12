@@ -19,7 +19,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.0.13",
+    "@fontsource-variable/figtree": "^5.0.16",
     "@fontsource/libre-caslon-text": "^5.0.12",
     "@level-level/recyclops": "^2.5.0",
     "dayjs": "^1.11.10",
