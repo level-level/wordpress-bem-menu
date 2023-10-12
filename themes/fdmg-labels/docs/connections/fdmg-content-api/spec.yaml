@@ -4,7 +4,7 @@ info:
   contact:
     name: FDMG Content API
     email: jeroen.snoeij@fdmediagroep.nl
-  version: 1.0.0
+  version: 1.1.0
 servers:
   - url: https://{domain}/Distributor/level2
     description: Server url
@@ -137,6 +137,10 @@ components:
           nullable: true
           allOf:
           - $ref: '#/components/schemas/User'
+        team_members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
         featured_image:
           nullable: true
           allOf:
@@ -290,6 +294,37 @@ components:
         name:
           type: string
         description:
+          type: string
+    TeamMember:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - content
+        - excerpt
+        - email
+        - linkedin
+        - location
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+          format: html
+        excerpt:
+          type: string
+        email:
+          type: string
+          format: email
+        linkedin:
+          type: string
+          format: url
+        location:
           type: string
     SuccessResponse:
       type: object

@@ -7,8 +7,8 @@
 		@apply sm:max-w-[theme(space.content-width)];
 	}
 
-	> .alignleft,
-	> .alignright {
+	> .alignleft:not(.wp-block-image),
+	> .alignright:not(.wp-block-image) {
 		@apply sm:w-[calc(theme(space.article-width)/2)];
 	}
 
@@ -60,6 +60,6 @@
 	> ol:not([class]),
 	> ul:not([class]),
 	a:not([class]) {
-		@apply font-libre font-normal leading-6 sm:text-md sm:leading-8;
+		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 }

@@ -5,6 +5,7 @@ namespace FDMGLabels\Connectors\FDMGContentAPI;
 use Clarkson_Core\WordPress_Object\attachment;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
+use Clarkson_Core\WordPress_Object\ii_team;
 use Clarkson_Core\WordPress_Object\post;
 use Clarkson_Core\WordPress_Object\user;
 use Codeception\TestCase\WPTestCase;
@@ -139,5 +140,37 @@ class ObjectConverterTest extends WPTestCase {
 		$this->assertSame( $post->get_excerpt(), $article_model->getExcerpt() );
 		$this->assertSame( 'open', $article_model->getCommentStatus() );
 		$this->assertSame( true, $article_model->getPaywall() );
+	}
+
+	public function test_team(): void {
+		$team = new ii_team(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'   => 'John Doe',
+					'post_content' => '<!-- wp:paragraph -->
+						<p>John Doe is the main writer for FDMG</p>
+						<!-- /wp:paragraph -->',
+					'post_excerpt' => 'John Doe writes',
+					'post_status'  => 'publish',
+					'post_type'    => 'ii_team',
+					'post_name'    => 'john-doe',
+					'meta_input'   => array(
+						'email_address' => 'johndoe@example.test',
+						'linkedin'      => 'https://linkedin.com/in/johndoe',
+						'location'      => 'Rotterdam',
+					),
+				)
+			)
+		);
+
+		$team_member_model = $this->object_converter->team( $team );
+		$this->assertSame( $team->get_id(), $team_member_model->getId() );
+		$this->assertSame( 'john-doe', $team_member_model->getSlug() );
+		$this->assertSame( 'John Doe', $team_member_model->getName() );
+		$this->assertStringContainsString( '<p>John Doe is the main writer for FDMG</p>', $team_member_model->getContent() );
+		$this->assertStringContainsString( 'John Doe writes', $team_member_model->getExcerpt() );
+		$this->assertSame( 'johndoe@example.test', $team_member_model->getEmail() );
+		$this->assertSame( 'https://linkedin.com/in/johndoe', $team_member_model->getLinkedin() );
+		$this->assertSame( 'Rotterdam', $team_member_model->getLocation() );
 	}
 }
