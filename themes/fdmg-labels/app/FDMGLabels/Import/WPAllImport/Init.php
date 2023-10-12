@@ -40,6 +40,9 @@ class Init {
 	}
 
 	/**
+	 * Because attachments are not default supported in WP All Import,
+	 * we need to overwrite/set some post data.
+	 *
 	 * @param array<string,mixed> $article_data
 	 * @param PMXI_Import_Record $import
 	 * @param WP_Post|false $post_to_update
