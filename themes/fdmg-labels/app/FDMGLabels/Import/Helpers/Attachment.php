@@ -13,6 +13,9 @@ class Attachment {
 		$filename = str_replace( 'https://energeia-external-prod.imgix.net/', '', $filename );
 		$filename = str_replace( 'https://energeia-external-acc.imgix.net/', '', $filename );
 		$filename = str_replace( 'https://energeia-external-development.imgix.net', '', $filename );
+		$filename = str_replace( 'https://pensioenpro-external-prod.imgix.net/', '', $filename );
+		$filename = str_replace( 'https://pensioenpro-external-acc.imgix.net/', '', $filename );
+		$filename = str_replace( 'https://pensioenpro-external-development.imgix.net', '', $filename );
 		return self::IMPORTED_ATTACHMENTS_DIR . '/' . substr( (string) $identifier, -3 ) . '/' . ltrim( $filename, '/\\' );
 	}
 
