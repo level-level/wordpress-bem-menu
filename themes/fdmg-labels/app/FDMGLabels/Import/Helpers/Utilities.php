@@ -20,6 +20,9 @@ class Utilities {
 		return sprintf( '%s@wetlands-import.test', sanitize_title_with_dashes( $email ) );
 	}
 
+	/**
+	 * Transform the FDMG state to a WordPress post status.
+	 */
 	public function get_post_status( string $state ): string {
 		$status = '';
 		switch ( $state ) {

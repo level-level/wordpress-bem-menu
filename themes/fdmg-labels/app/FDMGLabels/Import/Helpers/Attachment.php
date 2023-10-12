@@ -19,6 +19,13 @@ class Attachment {
 		return self::IMPORTED_ATTACHMENTS_DIR . '/' . substr( (string) $identifier, -3 ) . '/' . ltrim( $filename, '/\\' );
 	}
 
+	/**
+	 * Generates WP attachment metadata from an FD Media Group picture.
+	 *
+	 * @param integer $identifier
+	 * @param string $filename
+	 * @return string
+	 */
 	public function get_attachment_metadata( int $identifier, string $filename ): string {
 		$mime         = $this->get_mime_type( $identifier, $filename );
 		$wp_file_path = $this->get_file_dir( $identifier, $filename );
