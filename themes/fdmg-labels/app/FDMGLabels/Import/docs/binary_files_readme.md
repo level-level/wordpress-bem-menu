@@ -12,7 +12,7 @@ Select all binary files
 SELECT bf.*, ab.article_id
 FROM binary_file as bf
 LEFT JOIN article_binary as ab ON bf.id = ab.binary_id
-WHERE bf.state != 'DELETED';
+WHERE bf.state = 'PUBLISHED';
 ```
 
 ## Import

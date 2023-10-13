@@ -19,43 +19,43 @@ class ImageExporter:
         self.source_url = source_url
         self.target_folder = target_folder
 
-    def download_image(self, id, image_path):
+    def download_file(self, id, file_path):
         foldername = str(id)[-3:]
-        image_file = os.path.join(self.target_folder, foldername, os.sep.join(image_path.split('/')))
+        file_file = os.path.join(self.target_folder, foldername, os.sep.join(file_path.split('/')))
 
-        if os.path.isfile(image_file):
-            print(f"Ignoring {image_file}")
+        if os.path.isfile(file_file):
+            print(f"Ignoring {file_file}")
         else:
-            url = f'{self.source_url}/{image_path}'
-            image_folder = os.sep.join(image_file.split(os.sep)[0:-1])
+            url = f'{self.source_url}/{file_path}'
+            file_folder = os.sep.join(file_file.split(os.sep)[0:-1])
 
-            if not os.path.exists(image_folder):
-                print(f'Creating folder {image_folder}')
-                os.makedirs(image_folder)
+            if not os.path.exists(file_folder):
+                print(f'Creating folder {file_folder}')
+                os.makedirs(file_folder)
 
-            print(f"Downloading image from {url}")
+            print(f"Downloading file from {url}")
             response = self.pool_manager.request('GET', url)
 
-            print(f'Saving image to {image_file}')
-            with open(image_file, 'wb') as f:
+            print(f'Saving file to {file_file}')
+            with open(file_file, 'wb') as f:
                 f.write(response.data)
 
-    def assemble_teaser_images(self):
+    def assemble_files(self):
         cursor = self.db_connector.get_cursor()
 
         cursor.execute(
-            "SELECT id, path FROM picture;")
+            "SELECT id, path FROM picture WHERE state = 'PUBLISHED';")
         for row in cursor:
-            self.download_image(row[0], row[1])
+            self.download_file(row[0], row[1])
         cursor.close()
 
 
 def energeia_dev_exporter():
     db_connector = DbConnector('localhost', 3306, 'root', 'root', "energeia-pre-wp")
-    image_exporter = ImageExporter(db_connector, "https://energeia-external-prod.imgix.net", "/srv/http/shared/www/wp-content/uploads/sites/2/imported")
+    file_exporter = ImageExporter(db_connector, "https://energeia-external-prod.imgix.net", "/srv/http/shared/www/wp-content/uploads/sites/2/imported")
 
-    return image_exporter
+    return file_exporter
 
 
 if __name__ == '__main__':
-    energeia_dev_exporter().assemble_teaser_images()
+    energeia_dev_exporter().assemble_files()
