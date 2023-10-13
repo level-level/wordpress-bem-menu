@@ -4,9 +4,9 @@ namespace FDMGLabels\Newsletter;
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post;
 use Clarkson_Core\WordPress_Object\category;
-use WP_Post;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
+use WP_Post;
 
 class ArticleGroup {
 
@@ -147,7 +147,7 @@ class ArticleGroup {
 		$tax_query = array(
 			'relation' => 'OR',
 		);
-		foreach ($allowed_terms as $allowed_term) {
+		foreach ( $allowed_terms as $allowed_term ) {
 			$tax_query[] = array(
 				'taxonomy' => $allowed_term->get_taxonomy(),
 				'field'    => 'term_taxonomy_id',
@@ -170,7 +170,7 @@ class ArticleGroup {
 					'after'  => $this->get_article_age() . ' days ago',
 				),
 			),
-			'tax_query' => $tax_query,
+			'tax_query'      => $tax_query,
 
 		);
 
