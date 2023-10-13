@@ -13,6 +13,7 @@ class Init {
 		add_filter( 'import_functions_file_path', array( $this, 'change_functions_file_path' ) );
 		add_filter( 'pmxi_custom_types', array( $this, 'add_extra_post_types' ), 10, 2 );
 		add_filter( 'pmxi_article_data', array( $this, 'set_post_data_for_attachment' ), 10, 4 );
+		add_action( 'pmxi_saved_post', array( $this, 'set_post_mime_type_for_attachment' ), 10, 2 );
 	}
 
 	public function change_functions_file_path( string $file_path ): string {
@@ -68,7 +69,7 @@ class Init {
 		 * uploaded to first it's parent post.
 		 * This force sets the post parent to be that post.
 		 */
-		$article_data['post_parent'] = ( new Attachment() )->get_parent( (int) $current_xml_node['article_id'], (int) $current_xml_node['author_id'] );
+		$article_data['post_parent'] = ( new Attachment() )->get_parent( (int) ( $current_xml_node['article_id'] ?? 0 ), (int) ( $current_xml_node['author_id'] ?? 0 ) );
 
 		if ( str_starts_with( $mime_type, 'image/' ) ) {
 			/**
