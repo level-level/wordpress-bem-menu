@@ -4,6 +4,7 @@ namespace FDMGLabels\Import\Helpers;
 class Attachment {
 
 	protected const IMPORTED_ATTACHMENTS_DIR = 'imported';
+	public const META_OLD_PATH               = 'fdmg_import_old_path';
 
 	public function get_title( string $title, string $filename ): string {
 		$title = ( new ContentParser() )->format_value( $title );
