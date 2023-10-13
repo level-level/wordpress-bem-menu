@@ -52,7 +52,7 @@ class ImageExporter:
 
 def energeia_dev_exporter():
     db_connector = DbConnector('localhost', 3306, 'root', 'root', "energeia-pre-wp")
-    image_exporter = ImageExporter(db_connector, "https://energeia-external-prod.imgix.net", "/srv/http/shared/www/wp-content/uploads/sites/2/imported")
+    image_exporter = ImageExporter(db_connector, "https://energeia-binary-external-prod.imgix.net", "/srv/http/shared/www/wp-content/uploads/sites/2/imported")
 
     return image_exporter
 
