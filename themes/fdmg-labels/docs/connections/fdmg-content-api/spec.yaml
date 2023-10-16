@@ -13,7 +13,7 @@ servers:
         enum:
           - dev-api.ota.fdmg.org
           - acc-api.ota.fdmg.org
-          - prod-api.ota.fdmg.org
+          - api.prod.fdmg.org
         default: dev-api.ota.fdmg.org
 paths:
   /hooks/{hookName}:
