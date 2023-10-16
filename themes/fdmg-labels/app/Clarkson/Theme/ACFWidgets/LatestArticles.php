@@ -38,7 +38,7 @@ class LatestArticles {
 					'attributes' => array(
 						'data' => array(
 							'll-preview-mode' => base_block::PREVIEW_MODE_DATA,
-							'amount'          => 4,
+							'amount'          => 5,
 						),
 					),
 				),

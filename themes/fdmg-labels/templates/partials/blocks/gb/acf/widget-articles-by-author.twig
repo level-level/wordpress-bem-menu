@@ -1,0 +1,22 @@
+{% set objects = block.get_articles_by_author() %}
+
+{% if objects %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		{% include 'styleguide/components/list-component.twig' with {
+			heading: _x('More articles by the author', 'Block', 'fdmg-labels'),
+			objects: objects ? objects|map(post => {
+				title: post.get_alternative_title()|default(post.get_title()),
+				url: post.get_permalink(),
+				date: post.get_human_readable_date(),
+				datetime: post.get_date_i18n('Y-m-d'),
+			}),
+			style: 'dark',
+		} %}
+	</div>
+{% endif %}
+
+{% if is_admin() %}
+	{% include 'partials/components/block-placeholder.twig' with {
+		block_text: _x('This widget automatically loads other articles based on the article author.', 'Block', 'fdmg-labels-admin')
+	} %}
+{% endif %}

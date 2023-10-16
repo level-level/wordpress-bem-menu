@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFWidgets\ArticlesByAuthor;
 use Clarkson\Theme\ACFWidgets\ArticlesWithMostComments;
 use Clarkson\Theme\ACFWidgets\FeaturedItem;
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
@@ -24,6 +25,7 @@ class ACFWidgets {
 		ArticlesWithMostComments::class,
 		LatestComments::class,
 		Menu::class,
+		ArticlesByAuthor::class,
 	);
 
 	public function register_hooks(): void {

@@ -5,7 +5,13 @@ class Attachment {
 
 	protected const IMPORTED_ATTACHMENTS_DIR = 'imported';
 
-	public function get_title_from_file_name( string $filename ): string {
+	public function get_title( string $title, string $filename ): string {
+		$title = ( new ContentParser() )->format_value( $title );
+		if ( ! empty( $title ) ) {
+			return $title;
+		}
+
+		// Fall back to file name
 		return basename( $filename );
 	}
 
