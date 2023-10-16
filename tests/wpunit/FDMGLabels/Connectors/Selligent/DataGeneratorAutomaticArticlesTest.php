@@ -76,9 +76,6 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 					'sort'            => $sort,
 					'article_count'   => $count,
 					'max_age'         => $age,
-					'filter_category' => array_map( 'strval', $filter_category_ids ),
-					'filter_section'  => array_map( 'strval', $filter_section_ids ),
-					'filter_genre'    => array_map( 'strval', $filter_genre_ids ),
 				),
 			), $newsletter->get_id()
 		);
