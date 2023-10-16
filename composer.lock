@@ -231,11 +231,11 @@
         },
         {
             "name": "fdmg-labels/fdmg-content-api-client",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "dist": {
                 "type": "path",
                 "url": "themes/fdmg-labels/_generated/FDMGContentAPI",
-                "reference": "2e0cb50cb8c87cc2c7a35994db81af56841caf5a"
+                "reference": "9e6df03d7a6f69dc8a47fcf293d069f3eb723189"
             },
             "require": {
                 "ext-curl": "*",

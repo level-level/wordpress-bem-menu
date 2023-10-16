@@ -4,7 +4,7 @@ info:
   contact:
     name: FDMG Content API
     email: jeroen.snoeij@fdmediagroep.nl
-  version: 1.1.0
+  version: 1.1.1
 servers:
   - url: https://{domain}/Distributor/level2
     description: Server url
@@ -13,7 +13,7 @@ servers:
         enum:
           - dev-api.ota.fdmg.org
           - acc-api.ota.fdmg.org
-          - api.prod.fdmg.org
+          - prod-api.ota.fdmg.org
         default: dev-api.ota.fdmg.org
 paths:
   /hooks/{hookName}:
