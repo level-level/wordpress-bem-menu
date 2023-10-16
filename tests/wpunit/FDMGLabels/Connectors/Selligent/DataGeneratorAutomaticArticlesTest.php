@@ -100,10 +100,6 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 	 * 1: Sort
 	 * 2: Count
 	 * 3: Age in days
-	 * 4: Filter categories
-	 * 5: Filter sections
-	 * 6: Filter genres
-	 * 7: Expected article IDs
 	 */
 	public function autoPostSelectionProvider(): array {
 		// Create terms
