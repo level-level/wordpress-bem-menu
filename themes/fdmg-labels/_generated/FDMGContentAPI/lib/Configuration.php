@@ -449,7 +449,7 @@ class Configuration
                         "enum_values" => [
                             "dev-api.ota.fdmg.org",
                             "acc-api.ota.fdmg.org",
-                            "prod-api.ota.fdmg.org"
+                            "api.prod.fdmg.org"
                         ]
                     ]
                 ]
