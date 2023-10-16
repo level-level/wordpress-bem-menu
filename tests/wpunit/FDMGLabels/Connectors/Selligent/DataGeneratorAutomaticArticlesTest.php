@@ -45,13 +45,9 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		Settings::get_instance()->clear_cache();
 	}
 
-	public function tearDown(): void {
-		parent::tearDown();
-	}
-
 	/**
-     * @dataProvider autoPostSelectionProvider
-     */
+	 * @dataProvider autoPostSelectionProvider
+	 */
 	public function test_get_newsletter_data_articles_automatic(
 		string $sort,
 		int $count,
@@ -76,13 +72,13 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		update_field(
 			'article_groups_weekly', array(
 				'article_group_0' => array(
-					'selection_type' => 'automatic',
-					'sort'           => $sort,
-					'article_count'  => $count,
-					'max_age'        => $age,
+					'selection_type'  => 'automatic',
+					'sort'            => $sort,
+					'article_count'   => $count,
+					'max_age'         => $age,
 					'filter_category' => array_map( 'strval', $filter_category_ids ),
-					'filter_section' => array_map( 'strval', $filter_section_ids ),
-					'filter_genre'   => array_map( 'strval', $filter_genre_ids ),
+					'filter_section'  => array_map( 'strval', $filter_section_ids ),
+					'filter_genre'    => array_map( 'strval', $filter_genre_ids ),
 				),
 			), $newsletter->get_id()
 		);
@@ -103,31 +99,37 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 	 */
 	public function autoPostSelectionProvider(): array {
 		// Create terms
-		$category = new category( $this->factory()->term->create_and_get(
-			array(
-				'taxonomy' => 'category',
-				'name'     => 'Category',
+		$category = new category(
+			$this->factory()->term->create_and_get(
+				array(
+					'taxonomy' => 'category',
+					'name'     => 'Category',
+				)
 			)
-		) );
-		$section  = new fdmg_section( $this->factory()->term->create_and_get(
-			array(
-				'taxonomy' => 'fdmg_section',
-				'name'     => 'Section',
+		);
+		$section  = new fdmg_section(
+			$this->factory()->term->create_and_get(
+				array(
+					'taxonomy' => 'fdmg_section',
+					'name'     => 'Section',
+				)
 			)
-		) );
-		$genre    = new fdmg_genre( $this->factory()->term->create_and_get(
-			array(
-				'taxonomy' => 'fdmg_genre',
-				'name'     => 'Genre',
+		);
+		$genre    = new fdmg_genre(
+			$this->factory()->term->create_and_get(
+				array(
+					'taxonomy' => 'fdmg_genre',
+					'name'     => 'Genre',
+				)
 			)
-		) );
+		);
 
 		// Create posts
 		$post_1 = new post(
 			$this->factory()->post->create_and_get(
 				array(
-					'post_status'  => 'publish',
-					'post_date'    => date( 'Y-m-d H:i:s', strtotime( '-1 day' ) ),
+					'post_status' => 'publish',
+					'post_date'   => gmdate( 'Y-m-d H:i:s', strtotime( '-1 day' ) ),
 				)
 			)
 		);
@@ -138,8 +140,8 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		$post_2 = new post(
 			$this->factory()->post->create_and_get(
 				array(
-					'post_status'  => 'publish',
-					'post_date'    => date( 'Y-m-d H:i:s', strtotime( '-10 days' ) ),
+					'post_status' => 'publish',
+					'post_date'   => gmdate( 'Y-m-d H:i:s', strtotime( '-10 days' ) ),
 				)
 			)
 		);
