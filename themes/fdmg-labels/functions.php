@@ -56,3 +56,6 @@
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
+
+// FDMG Labels Import
+( new \FDMGLabels\Import\Init() )->register_hooks();

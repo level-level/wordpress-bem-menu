@@ -1,5 +1,22 @@
 # Import readme
 
+## Import order
+
+Because some content has dependencies to be rendered / imported correctly, it's required to import content in a specific order. The order is as follows:
+
+1. [Genres (taxonomy)](./genres_readme.md)
+2. [Tag -> Categories (taxonomy)](./tags_readme.md)
+3. [Sections (taxonomy)](./sections_readme.md)
+4. [Picture files as Media](./pictures_readme.md)
+5. Binary files as Media
+6. [Author as Team](./authors_readme.md)
+7. Articles
+8. Podcast series (taxonomy)
+9. Podcasts
+10. Redirects
+11. Short URL as redirect
+12. Run import of Pictures and Binary files again.
+
 ## Table structure
 
 ```mermaid
@@ -247,21 +264,6 @@ Excerpts maar moeilijker
 - X picture_id --> nvt
 - X title --> nvt
 - description
-
-## Import order
-
-Because some content has dependencies to be rendered / imported correctly, it's required to import content in a specific order. The order is as follows:
-
-1. Genres (taxonomy) 
-2. Tag -> Categories (taxonomy)
-3. Sections (taxonomy)
-4. Picture/Binary files as Media
-5. Author as Team 
-6. Articles
-7. Podcast series (taxonomy)
-8. Podcasts
-9. Redirects
-10. Short URL as redirect
 
 ## Queries
 

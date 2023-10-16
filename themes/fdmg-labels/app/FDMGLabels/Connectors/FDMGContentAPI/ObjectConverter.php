@@ -7,6 +7,7 @@ use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\attachment;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
+use Clarkson_Core\WordPress_Object\ii_team;
 use Clarkson_Core\WordPress_Object\post;
 use Clarkson_Core\WordPress_Object\user;
 use DateTime;
@@ -15,6 +16,7 @@ use FDMGContentAPIClient\Model\Genre as ModelGenre;
 use FDMGContentAPIClient\Model\Image;
 use FDMGContentAPIClient\Model\ImageMediaDetails;
 use FDMGContentAPIClient\Model\Section as ModelSection;
+use FDMGContentAPIClient\Model\TeamMember;
 use FDMGContentAPIClient\Model\User as ModelUser;
 use WP_Error;
 
@@ -66,6 +68,13 @@ class ObjectConverter {
 		$article->setGenres( $genre_models );
 		$article->setSections( $section_models );
 		$article->setPaywall( $post->has_paywall_block() );
+		$article->setTeamMembers(
+			array_map(
+				function( ii_team $team_member ): TeamMember {
+					return $this->team( $team_member );
+				}, $post->get_authors()
+			)
+		);
 		return $article;
 	}
 
@@ -139,5 +148,18 @@ class ObjectConverter {
 		$section_model->setName( $section->get_name() );
 		$section_model->setDescription( $section->get_description() );
 		return $section_model;
+	}
+
+	public function team( ii_team $team_member ): TeamMember {
+		$team_member_model = new TeamMember();
+		$team_member_model->setId( $team_member->get_id() );
+		$team_member_model->setSlug( $team_member->get_post_name() );
+		$team_member_model->setName( $team_member->get_title() );
+		$team_member_model->setContent( $team_member->get_content() );
+		$team_member_model->setExcerpt( $team_member->get_excerpt() );
+		$team_member_model->setEmail( $team_member->get_email_address() );
+		$team_member_model->setLinkedin( $team_member->get_linkedin() );
+		$team_member_model->setLocation( $team_member->get_location() );
+		return $team_member_model;
 	}
 }
