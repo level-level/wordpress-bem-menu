@@ -56,9 +56,6 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		string $sort,
 		int $count,
 		int $age,
-		array $filter_category_ids,
-		array $filter_section_ids,
-		array $filter_genre_ids,
 		array $automatic_article_ids
 	): void {
 		// Create a newsletter
@@ -153,12 +150,9 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 
 		// Generate data to use in test
 		$data = array(
-			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array(), array(), array(), array( $post_1->get_id(), $post_2->get_id() ) ),
-			array( 'recent', 1, PHP_INT_MAX, array(), array(), array(), array( $post_1->get_id() ) ),
-			array( 'recent', PHP_INT_MAX, 2, array(), array(), array(), array( $post_1->get_id() ) ),
-			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array( $category->get_id() ), array(), array(), array( $post_1->get_id() ) ),
-			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array(), array( $section->get_id() ), array(), array( $post_1->get_id() ) ),
-			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array(), array(), array( $genre->get_id() ), array( $post_1->get_id() ) ),
+			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array( $post_1->get_id(), $post_2->get_id() ) ),
+			array( 'recent', 1, PHP_INT_MAX, array( $post_1->get_id() ) ),
+			array( 'recent', PHP_INT_MAX, 2, array( $post_1->get_id() ) ),
 		);
 		return $data;
 	}
