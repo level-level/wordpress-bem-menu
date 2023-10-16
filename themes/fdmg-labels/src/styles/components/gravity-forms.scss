@@ -1,5 +1,3 @@
-/* stylelint-disable selector-not-notation */
-
 /* Style inputs here */
 .gravity-forms input[type='text'],
 .gravity-forms input[type='email'],
@@ -41,7 +39,7 @@
 
 .gravity-forms .gform_validation_errors li {
 	@apply ml-6 list-disc before:hidden;
-	@apply pl-0 #{!important};
+	@apply pl-0;
 }
 
 .gravity-forms .gform_validation_errors a {
