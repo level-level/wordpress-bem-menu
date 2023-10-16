@@ -72,10 +72,10 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		update_field(
 			'article_groups_weekly', array(
 				'article_group_0' => array(
-					'selection_type'  => 'automatic',
-					'sort'            => $sort,
-					'article_count'   => $count,
-					'max_age'         => $age,
+					'selection_type' => 'automatic',
+					'sort'           => $sort,
+					'article_count'  => $count,
+					'max_age'        => $age,
 				),
 			), $newsletter->get_id()
 		);
