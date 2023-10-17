@@ -9,7 +9,7 @@ class Configuration {
 	/**
 	 * Domains are provided by FDMG
 	 */
-	public const DOMAIN_PROD = 'prod-api.ota.fdmg.org';
+	public const DOMAIN_PROD = 'api.prod.fdmg.org';
 	public const DOMAIN_ACC  = 'acc-api.ota.fdmg.org';
 	public const DOMAIN_DEV  = 'dev-api.ota.fdmg.org';
 
