@@ -231,11 +231,11 @@
         },
         {
             "name": "fdmg-labels/fdmg-content-api-client",
-            "version": "1.0.0",
+            "version": "1.1.1",
             "dist": {
                 "type": "path",
                 "url": "themes/fdmg-labels/_generated/FDMGContentAPI",
-                "reference": "2be17482d6fbc04d159c3e792f8e11f99f23eb98"
+                "reference": "9e6df03d7a6f69dc8a47fcf293d069f3eb723189"
             },
             "require": {
                 "ext-curl": "*",
@@ -6958,9 +6958,6 @@
                 "illuminate/support": ">=4.0.0",
                 "php": ">=5.3.0"
             },
-            "replace": {
-                "mikemclin/laravel-wp-password": "self.version"
-            },
             "require-dev": {
                 "mockery/mockery": "~0.9",
                 "phpunit/phpunit": "~4.0",
@@ -11274,5 +11271,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.6.0"
 }
