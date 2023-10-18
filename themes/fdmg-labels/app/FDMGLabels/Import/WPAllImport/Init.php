@@ -142,17 +142,17 @@ class Init {
 		update_post_meta( $assigned_download_id, Attachment::META_OLD_PATH, $old_path );
 	}
 
-	public function set_author_featured_image ( int $id, SimpleXMLElement $xml ) {
-		if ( get_post_type( $id ) !== Team::POST_TYPE_NAME  ) {
+	public function set_author_featured_image( int $id, SimpleXMLElement $xml ): void {
+		if ( get_post_type( $id ) !== Team::POST_TYPE_NAME ) {
 			return;
 		}
 
-		$picture_id = get_post_meta( $id, 'fdmg_author_picture_id', true);
+		$picture_id = get_post_meta( $id, 'fdmg_author_picture_id', true );
 		if ( empty( $picture_id ) ) {
 			return;
 		}
 
-		$finder = new ImportedContentFinder();
+		$finder        = new ImportedContentFinder();
 		$attachment_id = $finder->get_post_id_from_old_id( 'picture_' . $picture_id, 'attachment' );
 		if ( empty( $attachment_id ) ) {
 			return;
