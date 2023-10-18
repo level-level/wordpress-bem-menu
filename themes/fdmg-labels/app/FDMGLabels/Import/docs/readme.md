@@ -8,7 +8,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 2. [Tag -> Categories (taxonomy)](./tags_readme.md)
 3. [Sections (taxonomy)](./sections_readme.md)
 4. [Picture files as Media](./pictures_readme.md)
-5. Binary files as Media
+5. [Binary files as Media](./binary_files_readme.md)
 6. [Author as Team](./authors_readme.md)
 7. Articles
 8. Podcast series (taxonomy)
@@ -16,6 +16,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 10. Redirects
 11. Short URL as redirect
 12. Run import of Pictures and Binary files again.
+13. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
 
 ## Table structure
 

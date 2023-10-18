@@ -14,7 +14,7 @@ SELECT p.id, p.caption, p.state, p.photographer, p.title, p.path, p.using_imgix
 LEFT JOIN article_picture as ap ON p.id = ap.picture_id
 LEFT JOIN author_details as ad ON p.id = ad.picture_id
 LEFT JOIN author as a ON ad.full_name = a.full_name
-WHERE p.state != 'DELETED';
+WHERE p.state = 'PUBLISHED';
 ```
 
 ## Import
