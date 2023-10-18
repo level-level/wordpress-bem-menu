@@ -1,13 +1,18 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
+use Clarkson\Theme\Taxonomies\Category;
+use Clarkson\Theme\Taxonomies\Genre;
+use Clarkson\Theme\Taxonomies\Section;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\DateTimePicker;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Message;
+use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\PostObject;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Select;
+use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Fields\WysiwygEditor;
@@ -16,6 +21,8 @@ use Extended\ACF\Location;
 use FDMGLabels\Connectors\Selligent\Settings\NewsletterPublicationSettings;
 use FDMGLabels\Connectors\Selligent\Settings\NewsletterTypeSettings;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
+use FDMGLabels\FeatureManager;
+use FDMGLabels\Newsletter\ArticleGroup;
 
 class Newsletter {
 	public const POST_TYPE_NAME      = 'ii_newsletter';
@@ -34,6 +41,13 @@ class Newsletter {
 	public const META_INTRODUCTION                  = 'introduction';
 	public const META_ARTICLE_GROUPS_PREFIX         = 'article_groups_';
 	public const META_ARTICLE_GROUP_PREFIX          = 'article_group_';
+	public const META_ARTICLE_GROUP_SELECTION_TYPE  = 'selection_type';
+	public const META_ARTICLE_GROUP_ARTICLE_COUNT   = 'article_count';
+	public const META_ARTICLE_GROUP_ARTICLE_AGE     = 'max_age';
+	public const META_ARTICLE_GROUP_SORT            = 'sort';
+	public const META_ARTICLE_GROUP_FILTER_CATEGORY = 'filter_category';
+	public const META_ARTICLE_GROUP_FILTER_GENRE    = 'filter_genre';
+	public const META_ARTICLE_GROUP_FILTER_SECTION  = 'filter_section';
 	public const META_ARTICLE_GROUP_ARTICLES        = 'articles';
 	public const META_ARTICLE_GROUP_ARTICLE_ARTICLE = 'article';
 	public const META_SEND                          = 'send';
@@ -131,28 +145,7 @@ class Newsletter {
 			->mediaUpload( false );
 
 		foreach ( $types as $type ) {
-			$article_group_fields = array();
-			foreach ( $type->get_article_groups() as $index => $article_group ) {
-				$article_group_fields[] = Group::make( sprintf( _x( 'Article group %1$d: %2$s', 'Fields', 'fdmg-labels-admin' ), $index + 1, $article_group->get_name() ), self::META_ARTICLE_GROUP_PREFIX . $index )
-					->fields(
-						array(
-							Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLES )
-								->instructions( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
-								->min( 0 )
-								->max( 6 )
-								->collapsed( 'article' )
-								->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
-								->fields(
-									array(
-										PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_ARTICLE )
-											->postTypes( array( Post::POST_TYPE_NAME ) )
-											->returnFormat( 'id' )
-											->required(),
-									)
-								),
-						)
-					);
-			}
+			$article_group_fields = $this->get_type_article_group_fields( $type );
 
 			$fields[] = Group::make( sprintf( _x( '%s article groups', 'Fields', 'fdmg-labels-admin' ), $type->get_type() ), self::META_ARTICLE_GROUPS_PREFIX . Key::sanitize( $type->get_type() ) )
 				->fields( $article_group_fields )
@@ -215,6 +208,136 @@ class Newsletter {
 				'position' => 'normal',
 			)
 		);
+	}
+
+	/**
+	 * Get article group fields for a newsletter type
+	 *
+	 * @param NewsletterTypeSettings $type
+	 * @return Group[]
+	 */
+	protected function get_type_article_group_fields( NewsletterTypeSettings $type ): array {
+		$article_group_fields = array();
+		foreach ( $type->get_article_groups() as $index => $article_group ) {
+			$article_group_key          = self::META_ARTICLE_GROUP_PREFIX . $index;
+			$article_group_field_fields = array(
+				Select::make( _x( 'Selection type', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_SELECTION_TYPE )
+					->choices(
+						array(
+							ArticleGroup::SELECTION_TYPE_MANUAL => _x( 'Manual', 'Fields', 'fdmg-labels-admin' ),
+							ArticleGroup::SELECTION_TYPE_AUTOMATIC => _x( 'Automatic', 'Fields', 'fdmg-labels-admin' ),
+						)
+					)
+					->defaultValue( ArticleGroup::SELECTION_TYPE_MANUAL )
+					->required(),
+				Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLES )
+					->instructions( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
+					->min( 0 )
+					->max( 6 )
+					->collapsed( 'article' )
+					->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
+					->fields(
+						array(
+							PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_ARTICLE )
+								->postTypes( array( Post::POST_TYPE_NAME ) )
+								->returnFormat( 'id' )
+								->required(),
+						)
+					)
+					->conditionalLogic(
+						array(
+							ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_MANUAL ),
+						)
+					),
+				Select::make( _x( 'Sort by', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_SORT )
+					->choices(
+						array(
+							ArticleGroup::SORT_RECENT      => _x( 'Most recent', 'Fields', 'fdmg-labels-admin' ),
+							ArticleGroup::SORT_MOST_VIEWED => _x( 'Most viewed', 'Fields', 'fdmg-labels-admin' ),
+						)
+					)
+					->defaultValue( ArticleGroup::SORT_RECENT )
+					->required()->conditionalLogic(
+						array(
+							ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
+						)
+					),
+				Number::make( _x( 'Maximum number of articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_COUNT )
+					->min( 1 )
+					->max( 6 )
+					->required()
+					->conditionalLogic(
+						array(
+							ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
+						)
+					),
+				Number::make( _x( 'Maximum age of articles (in days)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_AGE )
+					->min( 1 )
+					->append( _x( 'days', 'Fields', 'fdmg-labels-admin' ) )
+					->required()
+					->conditionalLogic(
+						array(
+							ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
+						)
+					),
+
+			);
+
+				$article_group_field_taxonomy_fields = array();
+			if ( ( new FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
+				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_GENRE )
+				->conditionalLogic(
+					array(
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+					)
+				)
+				->taxonomy( Genre::TAXONOMY_NAME )
+				->appearance( 'multi_select' )
+				->allowNull()
+				->addTerm( false )
+				->saveTerms( false )
+				->loadTerms( false )
+				->returnFormat( 'object' );
+			}
+
+			if ( ( new FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
+				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_SECTION )
+				->conditionalLogic(
+					array(
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+					)
+				)
+				->taxonomy( Section::TAXONOMY_NAME )
+				->appearance( 'multi_select' )
+				->allowNull()
+				->addTerm( false )
+				->saveTerms( false )
+				->loadTerms( false )
+				->returnFormat( 'object' );
+			}
+
+			if ( ! ( new FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
+				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_CATEGORY )
+				->conditionalLogic(
+					array(
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+					)
+				)
+				->taxonomy( Category::TAXONOMY_NAME )
+				->appearance( 'multi_select' )
+				->allowNull()
+				->addTerm( false )
+				->saveTerms( false )
+				->loadTerms( false )
+				->returnFormat( 'object' );
+			}
+
+			$article_group_fields[] = Group::make( sprintf( _x( 'Article group %1$d: %2$s', 'Fields', 'fdmg-labels-admin' ), $index + 1, $article_group->get_name() ), $article_group_key )
+				->fields(
+					array_merge( $article_group_field_fields, $article_group_field_taxonomy_fields )
+				);
+		}
+		return $article_group_fields;
 	}
 
 	/**
