@@ -114,7 +114,7 @@ class Init {
 		// Create the file object.
 		$file = array(
 			'attachment_id' => $id,
-			'user_id'       => get_current_user_id(),
+			'user_id'       => 0,
 			'title'         => get_the_title( $id ),
 		);
 
