@@ -19,7 +19,6 @@ class Init {
 		add_filter( 'pmxi_custom_types', array( $this, 'add_extra_post_types' ), 10, 2 );
 		add_filter( 'pmxi_article_data', array( $this, 'set_post_data_for_attachment' ), 10, 4 );
 		add_action( 'pmxi_saved_post', array( $this, 'convert_pdf_to_download' ), 10, 2 );
-		add_action( 'pmxi_saved_post', array( $this, 'set_author_featured_image' ), 10, 2 );
 	}
 
 	public function change_functions_file_path( string $file_path ): string {
@@ -43,6 +42,7 @@ class Init {
 				$post_types[ $object->name ] = $object;
 			}
 		}
+
 		return $post_types;
 	}
 
@@ -140,24 +140,5 @@ class Init {
 		$old_path = get_post_meta( $id, Attachment::META_OLD_PATH, true );
 		update_post_meta( $assigned_download_id, ImportInit::META_OLD_ID, $old_id );
 		update_post_meta( $assigned_download_id, Attachment::META_OLD_PATH, $old_path );
-	}
-
-	public function set_author_featured_image( int $id, SimpleXMLElement $xml ): void {
-		if ( get_post_type( $id ) !== Team::POST_TYPE_NAME ) {
-			return;
-		}
-
-		$picture_id = get_post_meta( $id, 'fdmg_author_picture_id', true );
-		if ( empty( $picture_id ) ) {
-			return;
-		}
-
-		$finder        = new ImportedContentFinder();
-		$attachment_id = $finder->get_post_id_from_old_id( 'picture_' . $picture_id, 'attachment' );
-		if ( empty( $attachment_id ) ) {
-			return;
-		}
-
-		update_post_meta( $id, '_thumbnail_id', $attachment_id );
 	}
 }
