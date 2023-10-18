@@ -1,11 +1,8 @@
 <?php
 namespace FDMGLabels\Import\WPAllImport;
 
-use Clarkson\Theme\PostTypes\Team;
 use DLM_Media_Library;
 use FDMGLabels\Import\Helpers\Attachment;
-use FDMGLabels\Import\Helpers\ContentParser;
-use FDMGLabels\Import\Helpers\ImportedContentFinder;
 use FDMGLabels\Import\Init as ImportInit;
 use PMXI_Import_Record;
 use SimpleXMLElement;
@@ -42,7 +39,6 @@ class Init {
 				$post_types[ $object->name ] = $object;
 			}
 		}
-
 		return $post_types;
 	}
 
