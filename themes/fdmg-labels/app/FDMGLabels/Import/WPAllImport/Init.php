@@ -3,7 +3,6 @@ namespace FDMGLabels\Import\WPAllImport;
 
 use DLM_Media_Library;
 use FDMGLabels\Import\Helpers\Attachment;
-use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Init as ImportInit;
 use PMXI_Import_Record;
 use SimpleXMLElement;
