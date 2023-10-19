@@ -62,8 +62,8 @@ function fdmg_format_value( string $value, string $default = '' ): string {
 	return ( new ContentParser() )->format_value( $value, $default );
 }
 
-function fdmg_wpai_attachment_get_title( string $title, string $file_path ): string {
-	return ( new Attachments() )->get_title( $title, $file_path );
+function fdmg_wpai_picture_get_title( string $title, string $file_path ): string {
+	return ( new Pictures() )->get_title( $title, $file_path );
 }
 
 function fdmg_wpai_picture_get_wp_attached_file( string $identifier, string $file_path ): string {
@@ -72,6 +72,10 @@ function fdmg_wpai_picture_get_wp_attached_file( string $identifier, string $fil
 
 function fdmg_wpai_picture_get_attachment_metadata( string $identifier, string $file_path ): string {
 	return ( new Pictures() )->get_attachment_metadata( (int) $identifier, $file_path );
+}
+
+function fdmg_wpai_binary_file_get_title( string $title, string $file_path ): string {
+	return ( new BinaryFiles() )->get_title( $title, $file_path );
 }
 
 function fdmg_wpai_binary_file_get_wp_attached_file( string $identifier, string $file_path ): string {

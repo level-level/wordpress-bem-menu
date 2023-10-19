@@ -2,7 +2,8 @@
 namespace FDMGLabels\Import\WPAllImport;
 
 use DLM_Media_Library;
-use FDMGLabels\Import\Helpers\Attachment;
+use FDMGLabels\Import\Helpers\BinaryFiles;
+use FDMGLabels\Import\Helpers\Pictures;
 use FDMGLabels\Import\Init as ImportInit;
 use PMXI_Import_Record;
 use SimpleXMLElement;
@@ -57,7 +58,13 @@ class Init {
 			return $article_data;
 		}
 
-		$mime_type = ( new Attachment() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		// Determine the mime type
+		$binary_type = $current_xml_node['binary_type'] ?? '';
+		if ( $binary_type === 'PDF' ) {
+			$mime_type = ( new BinaryFiles() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		} else {
+			$mime_type = ( new Pictures() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		}
 
 		/**
 		 * Mime type of attachment is saved on the post, but WP All Import
@@ -125,8 +132,8 @@ class Init {
 
 		// Duplicate meta from attachment to download.
 		$old_id   = get_post_meta( $id, ImportInit::META_OLD_ID, true );
-		$old_path = get_post_meta( $id, Attachment::META_OLD_PATH, true );
+		$old_path = get_post_meta( $id, BinaryFiles::META_OLD_PATH, true );
 		update_post_meta( $assigned_download_id, ImportInit::META_OLD_ID, $old_id );
-		update_post_meta( $assigned_download_id, Attachment::META_OLD_PATH, $old_path );
+		update_post_meta( $assigned_download_id, BinaryFiles::META_OLD_PATH, $old_path );
 	}
 }
