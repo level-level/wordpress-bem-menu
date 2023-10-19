@@ -58,26 +58,29 @@ class Init {
 			return $article_data;
 		}
 
-		// Determine the mime type
+		// Determine the helper
 		$binary_type = $current_xml_node['binary_type'] ?? '';
 		if ( $binary_type === 'PDF' ) {
-			$mime_type = ( new BinaryFiles() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+			$helper = new BinaryFiles();
 		} else {
-			$mime_type = ( new Pictures() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+			$helper = new Pictures();
 		}
 
 		/**
 		 * Mime type of attachment is saved on the post, but WP All Import
 		 * doesn't by default allow this.
 		 */
-		$article_data['post_mime_type'] = $mime_type;
+		$mime_type = $helper->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		if ( $mime_type ) {
+			$article_data['post_mime_type'] = $mime_type;
+		}
 
-		if ( str_starts_with( $mime_type, 'image/' ) ) {
-			/**
-			 * In the FDMG Labels theme, the image caption (excerpt) is used to show a description below a photo.
-			 * We cannot set the excerpt via WP All Import, because attachments don't
-			 * officially support excerpts. So instead, we set it ourselves.
-			 */
+		/**
+		 * In the FDMG Labels theme, the image caption (excerpt) is used to show a description below a photo.
+		 * We cannot set the excerpt via WP All Import, because attachments don't
+		 * officially support excerpts. So instead, we set it ourselves.
+		 */
+		if ( $binary_type !== 'PDF' ) {
 			$excerpt_parts = array();
 			if ( ! empty( $current_xml_node['caption'] ) && is_string( $current_xml_node['caption'] ) ) {
 				$excerpt_parts[] = $current_xml_node['caption'];
