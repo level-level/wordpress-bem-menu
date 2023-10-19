@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels\Import\Helpers;
 
-class Pictures extends Attachments {
+class Pictures {
 
 	protected const IMPORTED_ATTACHMENTS_DIR = 'imported-pictures';
 

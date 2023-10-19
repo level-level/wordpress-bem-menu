@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels\Import\Helpers;
 
-class BinaryFiles extends Attachments {
+class BinaryFiles {
 
 	protected const IMPORTED_ATTACHMENTS_DIR = 'imported-binary-files';
 
