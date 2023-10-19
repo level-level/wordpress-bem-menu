@@ -9,9 +9,8 @@ fdmg_import_old_id is prefixed with 'binary_file_'
 Select all binary files
 
 ```sql
-SELECT bf.id, bf.state, bf.title, bf.filename as path, bf.binary_type, ab.article_id
+SELECT bf.id, bf.state, bf.title, bf.filename as path, bf.binary_type
 FROM binary_file as bf
-LEFT JOIN article_binary as ab ON bf.id = ab.binary_id
 WHERE bf.state = 'PUBLISHED';
 ```
 

@@ -10,10 +10,7 @@ Select all images
 
 ```sql
 SELECT p.id, p.caption, p.state, p.photographer, p.title, p.path, p.using_imgix
-, ap.article_id, a.id as author_id FROM picture as p
-LEFT JOIN article_picture as ap ON p.id = ap.picture_id
-LEFT JOIN author_details as ad ON p.id = ad.picture_id
-LEFT JOIN author as a ON ad.full_name = a.full_name
+FROM picture as p
 WHERE p.state = 'PUBLISHED';
 ```
 
