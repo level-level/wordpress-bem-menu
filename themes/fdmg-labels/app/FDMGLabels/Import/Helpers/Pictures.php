@@ -1,23 +1,11 @@
 <?php
 namespace FDMGLabels\Import\Helpers;
 
-class Attachment {
+class Pictures extends Attachments {
 
-	protected const IMPORTED_ATTACHMENTS_DIR = 'imported';
-	public const META_OLD_PATH               = 'fdmg_import_old_path';
-
-	public function get_title( string $title, string $filename ): string {
-		$title = ( new ContentParser() )->format_value( $title );
-		if ( ! empty( $title ) ) {
-			return $title;
-		}
-
-		// Fall back to file name
-		return basename( $filename );
-	}
+	protected const IMPORTED_ATTACHMENTS_DIR = 'imported-pictures';
 
 	public function get_wp_attached_file( int $identifier, string $filename ): string {
-		// Remove image bucket urls
 		$filename = str_replace( 'https://energeia-external-prod.imgix.net/', '', $filename );
 		$filename = str_replace( 'https://energeia-external-acc.imgix.net/', '', $filename );
 		$filename = str_replace( 'https://energeia-external-development.imgix.net', '', $filename );
@@ -25,13 +13,6 @@ class Attachment {
 		$filename = str_replace( 'https://pensioenpro-external-acc.imgix.net/', '', $filename );
 		$filename = str_replace( 'https://pensioenpro-external-development.imgix.net', '', $filename );
 
-		// Remove binary file bucket urls
-		$filename = str_replace( 'https://energeia-binary-external-prod.imgix.net/', '', $filename );
-		$filename = str_replace( 'https://energeia-binary-external-acc.imgix.net/', '', $filename );
-		$filename = str_replace( 'https://energeia-binary-external-development.imgix.net', '', $filename );
-		$filename = str_replace( 'https://pensioenpro-binary-external-prod.imgix.net/', '', $filename );
-		$filename = str_replace( 'https://pensioenpro-binary-external-acc.imgix.net/', '', $filename );
-		$filename = str_replace( 'https://pensioenpro-binary-external-development.imgix.net', '', $filename );
 		return self::IMPORTED_ATTACHMENTS_DIR . '/' . substr( (string) $identifier, -3 ) . '/' . ltrim( $filename, '/\\' );
 	}
 
@@ -69,20 +50,5 @@ class Attachment {
 	public function get_mime_type( int $identifier, string $filename ): string {
 		$wp_file_path = $this->get_file_dir( $identifier, $filename );
 		return mime_content_type( $wp_file_path ) ?: '';
-	}
-
-	public function get_parent( int $article_id, int $author_id ): int {
-		$finder     = new ImportedContentFinder();
-		$article_id = $finder->get_post_id_from_old_id( 'article_' . $article_id );
-		if ( $article_id ) {
-			return $article_id;
-		}
-
-		$author_id = $finder->get_post_id_from_old_id( 'author_' . $author_id );
-		if ( $author_id ) {
-			return $author_id;
-		}
-
-		return 0;
 	}
 }
