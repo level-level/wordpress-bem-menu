@@ -16,7 +16,7 @@ WHERE p.state = 'PUBLISHED';
 
 ## Import
 
-1. Run the [python script](./../python-scripts/image_download.py) to download images to the `wp-content/uploads/sites/ID/imported` directory. Make sure to modify database settings and storage location.
+1. Run the [python script](./../python-scripts/image_download.py) to download images to the `wp-content/uploads/sites/ID/imported-pictures` directory. Make sure to modify database settings and storage location.
 2. Upload the generated CSV file, to create an import for attachments.
 3. Please use the [template file](./../WPAllImport/templates/import-pictures.txt) to automatically apply all the required import configuration.
 4. Make sure that in settings, "Increase speed by disabling do_action calls in wp_insert_post during import." is enabled.

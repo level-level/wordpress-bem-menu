@@ -2,7 +2,8 @@
 namespace FDMGLabels\Import\WPAllImport;
 
 use DLM_Media_Library;
-use FDMGLabels\Import\Helpers\Attachment;
+use FDMGLabels\Import\Helpers\BinaryFiles;
+use FDMGLabels\Import\Helpers\Pictures;
 use FDMGLabels\Import\Init as ImportInit;
 use PMXI_Import_Record;
 use SimpleXMLElement;
@@ -57,20 +58,29 @@ class Init {
 			return $article_data;
 		}
 
-		$mime_type = ( new Attachment() )->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		// Determine the helper
+		$binary_type = $current_xml_node['binary_type'] ?? '';
+		if ( $binary_type === 'PDF' ) {
+			$helper = new BinaryFiles();
+		} else {
+			$helper = new Pictures();
+		}
 
 		/**
 		 * Mime type of attachment is saved on the post, but WP All Import
 		 * doesn't by default allow this.
 		 */
-		$article_data['post_mime_type'] = $mime_type;
+		$mime_type = $helper->get_mime_type( $current_xml_node['id'], $current_xml_node['path'] );
+		if ( $mime_type ) {
+			$article_data['post_mime_type'] = $mime_type;
+		}
 
-		if ( str_starts_with( $mime_type, 'image/' ) ) {
-			/**
-			 * In the FDMG Labels theme, the image caption (excerpt) is used to show a description below a photo.
-			 * We cannot set the excerpt via WP All Import, because attachments don't
-			 * officially support excerpts. So instead, we set it ourselves.
-			 */
+		/**
+		 * In the FDMG Labels theme, the image caption (excerpt) is used to show a description below a photo.
+		 * We cannot set the excerpt via WP All Import, because attachments don't
+		 * officially support excerpts. So instead, we set it ourselves.
+		 */
+		if ( $binary_type !== 'PDF' ) {
 			$excerpt_parts = array();
 			if ( ! empty( $current_xml_node['caption'] ) && is_string( $current_xml_node['caption'] ) ) {
 				$excerpt_parts[] = $current_xml_node['caption'];
@@ -125,8 +135,8 @@ class Init {
 
 		// Duplicate meta from attachment to download.
 		$old_id   = get_post_meta( $id, ImportInit::META_OLD_ID, true );
-		$old_path = get_post_meta( $id, Attachment::META_OLD_PATH, true );
+		$old_path = get_post_meta( $id, BinaryFiles::META_OLD_PATH, true );
 		update_post_meta( $assigned_download_id, ImportInit::META_OLD_ID, $old_id );
-		update_post_meta( $assigned_download_id, Attachment::META_OLD_PATH, $old_path );
+		update_post_meta( $assigned_download_id, BinaryFiles::META_OLD_PATH, $old_path );
 	}
 }

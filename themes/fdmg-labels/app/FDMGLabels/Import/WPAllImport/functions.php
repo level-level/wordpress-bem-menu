@@ -6,9 +6,11 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
-use FDMGLabels\Import\Helpers\Attachment;
+use FDMGLabels\Import\Helpers\Attachments;
+use FDMGLabels\Import\Helpers\BinaryFiles;
 use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
+use FDMGLabels\Import\Helpers\Pictures;
 use FDMGLabels\Import\Helpers\Utilities;
 use FDMGLabels\Import\Init;
 
@@ -60,14 +62,22 @@ function fdmg_format_value( string $value, string $default = '' ): string {
 	return ( new ContentParser() )->format_value( $value, $default );
 }
 
-function fdmg_wpai_attachment_get_title( string $title, string $file_path ): string {
-	return ( new Attachment() )->get_title( $title, $file_path );
+function fdmg_wpai_picture_get_title( string $title, string $file_path ): string {
+	return ( new Pictures() )->get_title( $title, $file_path );
 }
 
-function fdmg_wpai_attachment_get_wp_attached_file( string $identifier, string $file_path ): string {
-	return ( new Attachment() )->get_wp_attached_file( (int) $identifier, $file_path );
+function fdmg_wpai_picture_get_wp_attached_file( string $identifier, string $file_path ): string {
+	return ( new Pictures() )->get_wp_attached_file( (int) $identifier, $file_path );
 }
 
-function fdmg_wpai_attachment_get_attachment_metadata( string $identifier, string $file_path ): string {
-	return ( new Attachment() )->get_attachment_metadata( (int) $identifier, $file_path );
+function fdmg_wpai_picture_get_attachment_metadata( string $identifier, string $file_path ): string {
+	return ( new Pictures() )->get_attachment_metadata( (int) $identifier, $file_path );
+}
+
+function fdmg_wpai_binary_file_get_title( string $title, string $file_path ): string {
+	return ( new BinaryFiles() )->get_title( $title, $file_path );
+}
+
+function fdmg_wpai_binary_file_get_wp_attached_file( string $identifier, string $file_path ): string {
+	return ( new BinaryFiles() )->get_wp_attached_file( (int) $identifier, $file_path );
 }
