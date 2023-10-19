@@ -65,14 +65,6 @@ class Init {
 		 */
 		$article_data['post_mime_type'] = $mime_type;
 
-		/**
-		 * Because attachments are not hierarchial, WP All Import doesn't
-		 * allow assigning a parent post. However, WordPress makes any post it's
-		 * uploaded to first it's parent post.
-		 * This force sets the post parent to be that post.
-		 */
-		$article_data['post_parent'] = ( new Attachment() )->get_parent( (int) ( $current_xml_node['article_id'] ?? 0 ), (int) ( $current_xml_node['author_id'] ?? 0 ) );
-
 		if ( str_starts_with( $mime_type, 'image/' ) ) {
 			/**
 			 * In the FDMG Labels theme, the image caption (excerpt) is used to show a description below a photo.
