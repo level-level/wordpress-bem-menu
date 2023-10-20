@@ -180,11 +180,15 @@ class ArticleGroup {
 	}
 
 	/**
-	 * Get the automatically selected most viewed articles
+	 * Get the automatically selected most viewed articles.
+	 * Koko Analyics does not implement a a lot of features for filtering posts of the query.
+	 * So instead, we first use Koko analytics to give the order of most viewed articles.
+	 * Then, we use a WP_Query to get the posts, but filtered, in the same order.
 	 *
 	 * @return int[]
 	 */
 	protected function get_automatic_most_viewed_article_ids(): array {
+		// Get post ids ordered by most viewed
 		$args = array(
 			'number'    => $this->get_article_count(),
 			'post_type' => Post::POST_TYPE_NAME,
@@ -195,12 +199,50 @@ class ArticleGroup {
 			return array();
 		}
 
-		$posts = \KokoAnalytics\get_most_viewed_posts( $args );
-		return array_map(
+		$posts    = \KokoAnalytics\get_most_viewed_posts( $args );
+		$post_ids = array_map(
 			function( WP_Post $post ): int {
 				return $post->ID;
 			}, $posts
 		);
+
+		// If there are no posts, exit early
+		if ( empty( $post_ids ) ) {
+			return array();
+		}
+
+		// Filter the post ids by the allowed terms
+		$allowed_terms = array_merge(
+			$this->get_filter_by_categories(),
+			$this->get_filter_by_genres(),
+			$this->get_filter_by_sections()
+		);
+
+		$tax_query = array(
+			'relation' => 'OR',
+		);
+		foreach ( $allowed_terms as $allowed_term ) {
+			$tax_query[] = array(
+				'taxonomy' => $allowed_term->get_taxonomy(),
+				'field'    => 'term_taxonomy_id',
+				'terms'    => $allowed_term->get_term_taxonomy_id(),
+			);
+		}
+
+		$args = array(
+			'posts_per_page'      => $this->get_article_count(),
+			'post_type'           => Post::POST_TYPE_NAME,
+			'post_status'         => 'publish',
+			'post__in'            => $post_ids,
+			'ignore_sticky_posts' => true,
+			'orderby'             => 'post__in', // This keeps the same order as Koko Analytics
+			'fields'              => 'ids',
+			'tax_query'           => $tax_query,
+		);
+
+		/** @var int[] */
+		$post_ids = get_posts( $args );
+		return $post_ids;
 	}
 
 }

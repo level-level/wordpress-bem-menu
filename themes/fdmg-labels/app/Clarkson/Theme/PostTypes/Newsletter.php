@@ -273,6 +273,7 @@ class Newsletter {
 					),
 				Number::make( _x( 'Maximum age of articles (in days)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_AGE )
 					->min( 1 )
+					->max( 31 )
 					->append( _x( 'days', 'Fields', 'fdmg-labels-admin' ) )
 					->required()
 					->conditionalLogic(
@@ -288,7 +289,7 @@ class Newsletter {
 				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more genres to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_GENRE )
 				->conditionalLogic(
 					array(
-						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
 					)
 				)
 				->taxonomy( Genre::TAXONOMY_NAME )
@@ -304,7 +305,7 @@ class Newsletter {
 				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more sections to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_SECTION )
 				->conditionalLogic(
 					array(
-						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
 					)
 				)
 				->taxonomy( Section::TAXONOMY_NAME )
@@ -320,7 +321,7 @@ class Newsletter {
 				$article_group_field_taxonomy_fields[] = Taxonomy::make( _x( 'Select one or more categories to filter articles (optional)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_FILTER_CATEGORY )
 				->conditionalLogic(
 					array(
-						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SORT ), '==', ArticleGroup::SORT_RECENT ),
+						ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
 					)
 				)
 				->taxonomy( Category::TAXONOMY_NAME )
