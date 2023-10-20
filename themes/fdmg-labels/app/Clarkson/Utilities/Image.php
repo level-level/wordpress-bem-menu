@@ -3,7 +3,7 @@
 namespace Clarkson\Utilities;
 
 use Exception;
-use PostSMTP\Vendor\Monolog\Registry;
+use Monolog\Registry;
 use WP_Error;
 
 class Image {
