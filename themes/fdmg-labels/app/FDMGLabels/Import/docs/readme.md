@@ -14,7 +14,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 8. Podcast series (taxonomy)
 9. Podcasts
 10. Redirects
-11. Short URL as redirect
+11. [Short URL's as redirects](./short_urls_readme.md)
 12. Run import of Pictures and Binary files again.
 13. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
 
