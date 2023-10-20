@@ -273,6 +273,7 @@ class Newsletter {
 					),
 				Number::make( _x( 'Maximum age of articles (in days)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_AGE )
 					->min( 1 )
+					->max( 31 )
 					->append( _x( 'days', 'Fields', 'fdmg-labels-admin' ) )
 					->required()
 					->conditionalLogic(
