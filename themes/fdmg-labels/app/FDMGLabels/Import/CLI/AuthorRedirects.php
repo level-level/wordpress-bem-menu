@@ -56,8 +56,8 @@ class AuthorRedirects {
 			$this->process_author( array_combine( $authors_header, $row ), $redirects_file );
 		}
 
-		fclose( $authors_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
-		fclose( $redirects_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $authors_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		WP_CLI::success( 'All authors have been processed' );
 	}
 
@@ -66,7 +66,7 @@ class AuthorRedirects {
 	 *
 	 * @param array<string,string> $row
 	 * @param resource $redirects_file
-	 * @return array<string,string>
+	 * @return void
 	 */
 	protected function process_author( array $row, $redirects_file ): void {
 		$author_id = $row['author_id'];
@@ -77,7 +77,7 @@ class AuthorRedirects {
 			return;
 		}
 
-		$post = $this->imported_content_finder->get_post_id_from_old_id( 'author_', $author_id, Team::POST_TYPE_NAME );
+		$post = $this->imported_content_finder->get_post_id_from_old_id( 'author_' . $author_id, Team::POST_TYPE_NAME );
 		if ( ! $post ) {
 			WP_CLI::warning( sprintf( 'Could not find WordPress post for author ID "%d"', $author_id ) );
 			return;

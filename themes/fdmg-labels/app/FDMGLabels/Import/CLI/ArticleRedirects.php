@@ -56,8 +56,8 @@ class ArticleRedirects {
 			$this->process_article( array_combine( $articles_header, $row ), $redirects_file );
 		}
 
-		fclose( $articles_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
-		fclose( $redirects_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $articles_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		WP_CLI::success( 'All articles have been processed' );
 	}
 
@@ -66,12 +66,12 @@ class ArticleRedirects {
 	 *
 	 * @param array<string,string> $row
 	 * @param resource $redirects_file
-	 * @return array<string,string>
+	 * @return void
 	 */
 	protected function process_article( array $row, $redirects_file ): void {
 		WP_CLI::log( sprintf( 'Processing article ID "%d"', $row['id'] ) );
 
-		$post = $this->imported_content_finder->get_post_id_from_old_id( 'article_', $row['id'], Post::POST_TYPE_NAME );
+		$post = $this->imported_content_finder->get_post_id_from_old_id( 'article_' . $row['id'], Post::POST_TYPE_NAME );
 		if ( ! $post ) {
 			WP_CLI::warning( sprintf( 'Could not find WordPress post for article ID "%d"', $row['id'] ) );
 			return;
