@@ -37,12 +37,12 @@ class ArticleRedirects {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $articles_csv ) );
 		}
 
-		$articles_file = fopen( $articles_csv, 'r' );
+		$articles_file = fopen( $articles_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $articles_file ) {
 			WP_CLI::error( sprintf( 'Could not open articles CSV "%s"', $articles_csv ) );
 		}
 
-		$redirects_file = fopen( $redirects_csv, 'w' );
+		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $redirects_file ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
 		}
@@ -56,8 +56,8 @@ class ArticleRedirects {
 			$this->process_article( array_combine( $articles_header, $row ), $redirects_file );
 		}
 
-		fclose( $articles_file );
-		fclose( $redirects_file );
+		fclose( $articles_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $redirects_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		WP_CLI::success( 'All articles have been processed' );
 	}
 
@@ -87,7 +87,7 @@ class ArticleRedirects {
 			'source_url' => $row['publication_url'],
 			'target_url' => str_replace( home_url(), '', $post_permalink ),
 		);
-		$written = fputcsv( $redirects_file, $redirect_data );
+		$written       = fputcsv( $redirects_file, $redirect_data );
 		if ( ! $written ) {
 			WP_CLI::warning( sprintf( 'Could not write redirect for article ID "%d"', $row['id'] ) );
 			return;

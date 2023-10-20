@@ -37,12 +37,12 @@ class AuthorRedirects {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $authors_csv ) );
 		}
 
-		$authors_file = fopen( $authors_csv, 'r' );
+		$authors_file = fopen( $authors_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $authors_file ) {
 			WP_CLI::error( sprintf( 'Could not open authors CSV "%s"', $authors_csv ) );
 		}
 
-		$redirects_file = fopen( $redirects_csv, 'w' );
+		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $redirects_file ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
 		}
@@ -56,8 +56,8 @@ class AuthorRedirects {
 			$this->process_author( array_combine( $authors_header, $row ), $redirects_file );
 		}
 
-		fclose( $authors_file );
-		fclose( $redirects_file );
+		fclose( $authors_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $redirects_file ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		WP_CLI::success( 'All authors have been processed' );
 	}
 
@@ -93,7 +93,7 @@ class AuthorRedirects {
 			'source_url' => '/auteur/' . $row['directory'],
 			'target_url' => str_replace( home_url(), '', $post_permalink ),
 		);
-		$written = fputcsv( $redirects_file, $redirect_data );
+		$written       = fputcsv( $redirects_file, $redirect_data );
 		if ( ! $written ) {
 			WP_CLI::warning( sprintf( 'Could not write redirect for author ID "%d"', $author_id ) );
 			return;
