@@ -35,21 +35,25 @@ class AuthorRedirects {
 		$redirects_csv = $args[1] ?? '';
 		if ( empty( $redirects_csv ) || ! str_ends_with( $redirects_csv, '.csv' ) ) {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $authors_csv ) );
+			exit;
 		}
 
 		$authors_file = fopen( $authors_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
-		if ( ! $authors_file ) {
+		if ( ! is_resource( $authors_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open authors CSV "%s"', $authors_csv ) );
+			exit;
 		}
 
 		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
-		if ( ! $redirects_file ) {
+		if ( ! is_resource( $redirects_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
+			exit;
 		}
 
 		$authors_header = fgetcsv( $authors_file );
 		if ( ! $authors_header ) {
 			WP_CLI::error( sprintf( 'Could not read authors CSV header "%s"', $authors_csv ) );
+			exit;
 		}
 
 		while ( $row = fgetcsv( $authors_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition

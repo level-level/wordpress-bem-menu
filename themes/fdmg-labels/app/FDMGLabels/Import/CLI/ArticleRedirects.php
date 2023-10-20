@@ -30,26 +30,31 @@ class ArticleRedirects {
 		$articles_csv = $args[0] ?? '';
 		if ( empty( $articles_csv ) || ! file_exists( $articles_csv ) ) {
 			WP_CLI::error( sprintf( 'Articles CSV "%s" does not exist', $articles_csv ) );
+			exit;
 		}
 
 		$redirects_csv = $args[1] ?? '';
 		if ( empty( $redirects_csv ) || ! str_ends_with( $redirects_csv, '.csv' ) ) {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $articles_csv ) );
+			exit;
 		}
 
 		$articles_file = fopen( $articles_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $articles_file ) {
 			WP_CLI::error( sprintf( 'Could not open articles CSV "%s"', $articles_csv ) );
+			exit;
 		}
 
 		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! $redirects_file ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
+			exit;
 		}
 
 		$articles_header = fgetcsv( $articles_file );
 		if ( ! $articles_header ) {
 			WP_CLI::error( sprintf( 'Could not read articles CSV header "%s"', $articles_csv ) );
+			exit;
 		}
 
 		while ( $row = fgetcsv( $articles_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
