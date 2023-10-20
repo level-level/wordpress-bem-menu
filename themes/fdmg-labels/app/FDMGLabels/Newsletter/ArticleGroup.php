@@ -206,6 +206,11 @@ class ArticleGroup {
 			}, $posts
 		);
 
+		// If there are no posts, exit early
+		if ( empty( $post_ids ) ) {
+			return array();
+		}
+
 		// Filter the post ids by the allowed terms
 		$allowed_terms = array_merge(
 			$this->get_filter_by_categories(),
