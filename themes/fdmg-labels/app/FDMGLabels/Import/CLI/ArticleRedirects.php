@@ -87,7 +87,12 @@ class ArticleRedirects {
 			'source_url' => $row['publication_url'],
 			'target_url' => str_replace( home_url(), '', $post_permalink ),
 		);
-		$written       = fputcsv( $redirects_file, $redirect_data );
+		if ( $redirect_data['source_url'] === $redirect_data['target_url'] ) {
+			WP_CLI::log( sprintf( 'Source and target URL are the same for article ID "%d"', $row['id'] ) );
+			return;
+		}
+
+		$written = fputcsv( $redirects_file, $redirect_data );
 		if ( ! $written ) {
 			WP_CLI::warning( sprintf( 'Could not write redirect for article ID "%d"', $row['id'] ) );
 			return;
