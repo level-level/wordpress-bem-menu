@@ -61,8 +61,7 @@
         "wpackagist-plugin/download-monitor": "^4.8",
         "fdmg-labels/fdmg-content-api-client": "^1.0",
         "mhcg/monolog-wp-cli": "^1.0",
-        "yoast/wordpress-seo": "^21.3",
-        "wpackagist-plugin/user-switching": "^1.7"
+        "yoast/wordpress-seo": "^21.3"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -157,7 +156,8 @@
         "level-level/phpstan-config": "^1.0",
         "phpstan/extension-installer": "^1.1",
         "szepeviktor/phpstan-wordpress": "^1.1",
-        "cebe/php-openapi": "^1.7"
+        "cebe/php-openapi": "^1.7",
+        "wpackagist-plugin/user-switching": "^1.7"
     },
     "config": {
         "allow-plugins": {
