@@ -61,7 +61,8 @@
         "wpackagist-plugin/download-monitor": "^4.8",
         "fdmg-labels/fdmg-content-api-client": "^1.0",
         "mhcg/monolog-wp-cli": "^1.0",
-        "yoast/wordpress-seo": "^21.3"
+        "yoast/wordpress-seo": "^21.3",
+        "wpackagist-plugin/user-switching": "^1.7"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -143,7 +144,6 @@
     },
     "require-dev": {
         "niels-de-blaauw/php-doc-check": "^0.2.1",
-        "wpackagist-plugin/user-switching": "^1.5",
         "level-level/coding-standards": "^3.0",
         "friendsoftwig/twigcs": "v6.1.0",
         "lucatume/wp-browser": "^3.0",

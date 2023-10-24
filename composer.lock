@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "417c612724a408b47abed3f3a2c0e42f",
+    "content-hash": "5bdc1669069f4024613b3c9851377ea7",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4842,6 +4842,31 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/redirection/"
+        },
+        {
+            "name": "wpackagist-plugin/user-switching",
+            "version": "1.7.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/user-switching/",
+                "reference": "tags/1.7.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.0.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/user-switching/"
         },
         {
             "name": "wpackagist-plugin/wordfence",
@@ -11175,31 +11200,6 @@
             "time": "2020-05-13T23:57:56+00:00"
         },
         {
-            "name": "wpackagist-plugin/user-switching",
-            "version": "1.7.0",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.7.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.0.zip",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "homepage": "https://wordpress.org/plugins/user-switching/"
-        },
-        {
             "name": "zordius/lightncandy",
             "version": "v1.2.6",
             "source": {
@@ -11271,5 +11271,5 @@
         "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
