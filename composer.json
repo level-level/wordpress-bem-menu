@@ -144,7 +144,6 @@
     },
     "require-dev": {
         "niels-de-blaauw/php-doc-check": "^0.2.1",
-        "wpackagist-plugin/user-switching": "^1.5",
         "level-level/coding-standards": "^3.0",
         "friendsoftwig/twigcs": "v6.1.0",
         "lucatume/wp-browser": "^3.0",
@@ -158,7 +157,8 @@
         "level-level/phpstan-config": "^1.0",
         "phpstan/extension-installer": "^1.1",
         "szepeviktor/phpstan-wordpress": "^1.1",
-        "cebe/php-openapi": "^1.7"
+        "cebe/php-openapi": "^1.7",
+        "wpackagist-plugin/user-switching": "^1.7"
     },
     "config": {
         "allow-plugins": {
