@@ -1,6 +1,7 @@
 <?php
 namespace FDMGLabels\Import;
 
+use FDMGLabels\Import\CLI\Init as CLIInit;
 use FDMGLabels\Import\WPAllImport\Init as WPAllImportInit;
 
 class Init {
@@ -9,6 +10,7 @@ class Init {
 
 	public function register_hooks(): void {
 		( new WPAllImportInit() )->register_hooks();
+		( new CLIInit() )->register_commands();
 	}
 
 }
