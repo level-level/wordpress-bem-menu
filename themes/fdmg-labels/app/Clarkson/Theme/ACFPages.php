@@ -7,11 +7,14 @@ use Clarkson\Theme\ACFPages\Paywall;
 use Clarkson\Theme\ACFPages\PodcastOptions;
 use Clarkson\Theme\ACFPages\SearchOptions;
 use Clarkson\Theme\ACFPages\Selligent;
+use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson\Theme\ACFPages\ThemeOptions;
+
 class ACFPages {
 
 	protected const ACF_PAGES = array(
 		ThemeOptions::class,
+		SiteSettings::class,
 		Features::class,
 		Paywall::class,
 		PodcastOptions::class,

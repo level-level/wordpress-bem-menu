@@ -32,7 +32,7 @@ class FDMGContentAPI {
 				'menu_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels' ),
 				'page_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels' ),
 				'menu_slug'   => self::MENU_SLUG,
-				'parent_slug' => ThemeOptions::MENU_SLUG,
+				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
 			)
 		);

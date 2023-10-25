@@ -1,7 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
-use Clarkson\Theme\ACFPages\ThemeOptions;
+use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson_Core\Templates;
 
 class LoginLogo {
@@ -13,7 +13,7 @@ class LoginLogo {
 	public function add_custom_logo(): void {
 		$template = Templates::get_instance();
 		$assets   = new Assets();
-		$theme    = get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
+		$theme    = get_option( sprintf( 'site_%s_%s', SiteSettings::OPTION_GROUP, SiteSettings::OPTION_ACTIVE_THEME ) );
 
 		if ( ! $theme ) {
 			return;

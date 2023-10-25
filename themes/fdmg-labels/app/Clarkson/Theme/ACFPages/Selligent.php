@@ -46,7 +46,7 @@ class Selligent {
 				'menu_title'  => _x( 'Selligent', 'Options', 'fdmg-labels' ),
 				'page_title'  => _x( 'Selligent', 'Options', 'fdmg-labels' ),
 				'menu_slug'   => self::MENU_SLUG,
-				'parent_slug' => ThemeOptions::MENU_SLUG,
+				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
 			)
 		);
