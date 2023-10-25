@@ -25,7 +25,8 @@ SELECT 	a.id AS author_id,
 		ad.email_address AS author_email_address,
 		ad.article_count AS author_article_count,
 		ad.columnist AS author_columnist,
-		ad.picture_id as picture_id
+		ad.picture_id as picture_id,
+		ad.directory as directory
 FROM author AS a
 LEFT JOIN author_details AS ad
 		ON a.full_name = ad.full_name;
