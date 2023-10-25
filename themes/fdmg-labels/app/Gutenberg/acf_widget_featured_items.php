@@ -2,7 +2,7 @@
 
 namespace Gutenberg\Blocks;
 
-use Clarkson\Theme\ACFWidgets\FeaturedItem;
+use Clarkson\Theme\ACFWidgets\FeaturedItems;
 use Clarkson\Theme\ContentBlockRegister;
 use Clarkson\Theme\PostTypes\Post;
 use Clarkson_Core\Objects;
@@ -10,7 +10,7 @@ use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use WP_Post;
 use WP_Query;
 
-class acf_widget_featured_item extends base_block {
+class acf_widget_featured_items extends base_block {
 
 	public const POST_TYPES   = array( Post::POST_TYPE_NAME );
 	public const TAX_RELATION = 'OR';
@@ -21,9 +21,9 @@ class acf_widget_featured_item extends base_block {
 	*/
 	public function get_posts(): array {
 		$register        = ContentBlockRegister::get_instance();
-		$selected_posts  = ( $this->content_attributes[ FeaturedItem::BLOCK_META_SELECTED_POSTS ] ?? null ) ?: array();
+		$selected_posts  = ( $this->content_attributes[ FeaturedItems::BLOCK_META_SELECTED_POSTS ] ?? null ) ?: array();
 		$selected_posts  = $this->get_public_posts_only( $selected_posts );
-		$is_fill_enabled = (bool) ( $this->content_attributes[ FeaturedItem::BLOCK_META_IS_FILL_ENABLED ] ?? true );
+		$is_fill_enabled = (bool) ( $this->content_attributes[ FeaturedItems::BLOCK_META_IS_FILL_ENABLED ] ?? true );
 
 		$this->register_ids( $register, $selected_posts );
 
@@ -33,7 +33,7 @@ class acf_widget_featured_item extends base_block {
 
 		$objects = array();
 		$terms   = $this->get_selected_terms();
-		$amount  = 1;
+		$amount  = ( $this->content_attributes[ FeaturedItems::BLOCK_META_AMOUNT ] ?? null ) ?: 3;
 
 		$query_args = $this->get_query_args( $terms, self::POST_TYPES, $selected_posts, $amount, self::TAX_RELATION );
 
@@ -97,11 +97,11 @@ class acf_widget_featured_item extends base_block {
 	 * @return array<Clarkson_Object>
 	 */
 	public function get_selected_terms(): array {
-		$categories = $this->content_attributes[ FeaturedItem::BLOCK_META_TERMS ] ?? null;
+		$categories = $this->content_attributes[ FeaturedItems::BLOCK_META_TERMS ] ?? null;
 		$categories = $categories ?: array();
-		$genres     = $this->content_attributes[ FeaturedItem::BLOCK_META_GENRES ] ?? null;
+		$genres     = $this->content_attributes[ FeaturedItems::BLOCK_META_GENRES ] ?? null;
 		$genres     = $genres ?: array();
-		$sections   = $this->content_attributes[ FeaturedItem::BLOCK_META_SECTIONS ] ?? null;
+		$sections   = $this->content_attributes[ FeaturedItems::BLOCK_META_SECTIONS ] ?? null;
 		$sections   = $sections ?: array();
 
 		return array_merge( $categories, $genres, $sections );

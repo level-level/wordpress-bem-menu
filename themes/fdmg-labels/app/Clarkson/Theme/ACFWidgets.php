@@ -3,7 +3,7 @@ namespace Clarkson\Theme;
 
 use Clarkson\Theme\ACFWidgets\ArticlesByAuthor;
 use Clarkson\Theme\ACFWidgets\ArticlesWithMostComments;
-use Clarkson\Theme\ACFWidgets\FeaturedItem;
+use Clarkson\Theme\ACFWidgets\FeaturedItems;
 use Clarkson\Theme\ACFWidgets\LatestAndMostReadPosts;
 use Clarkson\Theme\ACFWidgets\LatestArticles;
 use Clarkson\Theme\ACFWidgets\LatestComments;
@@ -17,7 +17,7 @@ use WP_Block_Type_Registry;
 class ACFWidgets {
 
 	protected const ACF_WIDGETS = array(
-		FeaturedItem::class,
+		FeaturedItems::class,
 		Vacancies::class,
 		LatestAndMostReadPosts::class,
 		Newsletter::class,
