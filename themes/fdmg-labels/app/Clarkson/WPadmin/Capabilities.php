@@ -69,6 +69,9 @@ class Capabilities {
 		$role->add_cap( 'dlm_manage_logs' );
 		$role->add_cap( 'dlm_view_reports' );
 		$role->add_cap( 'manage_dlm_email_logs' );
+		$role->add_cap( 'edit_theme_options' );
+		$role->remove_cap( 'edit_themes' );
+		$role->remove_cap( 'customize' );
 	}
 
 	public function update_fdmg_account_holder_role(): void {
