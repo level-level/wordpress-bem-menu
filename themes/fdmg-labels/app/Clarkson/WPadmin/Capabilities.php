@@ -22,6 +22,7 @@ class Capabilities {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_account_holder_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_subscriber_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_editor_role' ) );
 	}
 
 	/**
@@ -53,6 +54,21 @@ class Capabilities {
 
 		$role->add_cap( 'gform_full_access' );
 		$role->add_cap( 'gravityforms_selligent' );
+	}
+
+	public function update_editor_role(): void {
+		$role = get_role( self::ROLE_EDITOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( 'manage_downloads' );
+		$role->add_cap( 'user_can_add_new_download' );
+		$role->add_cap( 'user_can_config_downloads' );
+		$role->add_cap( 'user_can_edit_downloads' );
+		$role->add_cap( 'user_can_view_downloads_log' );
+		$role->add_cap( 'dlm_manage_logs' );
+		$role->add_cap( 'dlm_view_reports' );
+		$role->add_cap( 'manage_dlm_email_logs' );
 	}
 
 	public function update_fdmg_account_holder_role(): void {
