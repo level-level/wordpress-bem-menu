@@ -13,7 +13,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 7. Articles
 8. Podcast series (taxonomy)
 9. Podcasts
-10. Redirects
+10. [Old URL's as redirects](./old_urls_readme.md)
 11. Short URL as redirect
 12. Run import of Pictures and Binary files again.
 13. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
