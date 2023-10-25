@@ -46,9 +46,6 @@ class Features {
 								TrueFalse::make( _x( 'Enable Partner post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
 									->instructions( _x( 'Enables the Partner post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable Podcast post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE )
-									->instructions( _x( 'Enables the Podcast post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable Event post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_EVENT_POST_TYPE )
 									->instructions( _x( 'Enables the Event post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),

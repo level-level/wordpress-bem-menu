@@ -7,7 +7,6 @@ class FeatureManager {
 
 	// Post types
 	public const FEATURE_ENABLE_PARTNER_POST_TYPE = 'enable_partner_post_type';
-	public const FEATURE_ENABLE_PODCAST_POST_TYPE = 'enable_podcast_post_type';
 	public const FEATURE_ENABLE_EVENT_POST_TYPE   = 'enable_event_post_type';
 
 	// Taxonomies
