@@ -13,7 +13,7 @@ class LoginLogo {
 	public function add_custom_logo(): void {
 		$template = Templates::get_instance();
 		$assets   = new Assets();
-		$theme    = get_option( sprintf( 'site_%s_%s', SiteSettings::OPTION_GROUP, SiteSettings::OPTION_ACTIVE_THEME ) );
+		$theme    = get_option( sprintf( 'options_%s_%s', SiteSettings::OPTION_GROUP, SiteSettings::OPTION_ACTIVE_THEME ) );
 
 		if ( ! $theme ) {
 			return;

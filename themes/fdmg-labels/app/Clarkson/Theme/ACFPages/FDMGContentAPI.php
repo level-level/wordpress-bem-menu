@@ -34,6 +34,7 @@ class FDMGContentAPI {
 				'menu_slug'   => self::MENU_SLUG,
 				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
+				'capability'  => 'manage_options',
 			)
 		);
 	}
