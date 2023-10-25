@@ -25,8 +25,9 @@ class Features {
 				'menu_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'page_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'menu_slug'   => self::MENU_SLUG,
-				'parent_slug' => ThemeOptions::MENU_SLUG,
+				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
+				'capability'  => 'manage_options',
 			)
 		);
 	}

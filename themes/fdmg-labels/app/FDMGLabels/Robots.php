@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels;
 
-use Clarkson\Theme\ACFPages\ThemeOptions;
+use Clarkson\Theme\ACFPages\SiteSettings;
 
 class Robots {
 	public function register_hooks(): void {
@@ -9,7 +9,7 @@ class Robots {
 	}
 
 	public function custom_robots_txt( string $output ): string {
-		$theme     = get_option( sprintf( 'options_%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_ACTIVE_THEME ) );
+		$theme     = get_option( sprintf( 'options_%s_%s', SiteSettings::OPTION_GROUP, SiteSettings::OPTION_ACTIVE_THEME ) );
 		$site_name = 'Impact Investor';
 
 		if ( $theme === 'energeia' ) {
