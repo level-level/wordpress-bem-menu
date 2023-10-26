@@ -1,13 +1,15 @@
 <?php
 namespace FDMGLabels\Paywall;
 
+use Clarkson\WPadmin\Capabilities;
+
 class Init {
 
 	/**
 	 * @var array<Capabilities::ROLE_*> Roles that can bypass the paywall.
 	 */
 	public const ROLE_OPTIONS = array( // @phpstan-ignore-line TEMP, REMOVE THIS LINE WHEN ROLE IS ADDED
-		'example_role',
+		Capabilities::ROLE_FDMG_SUBSCRIBER,
 	);
 
 	public function register_hooks(): void {
