@@ -30,10 +30,22 @@
 
 .wp-block-image {
 	&.alignright {
-		@apply float-right ml-4 mb-2;
+		@apply w-full object-cover sm:w-auto sm:object-none sm:image:w-auto sm:float-right sm:ml-4 sm:mb-2;
+
+		img {
+			@media only screen and (max-width: 767px) {
+				width: 100% !important;
+			}
+		}
 	}
 
 	&.alignleft {
-		@apply float-left mr-4 mb-2;
+		@apply w-full object-cover sm:w-auto sm:object-none sm:image:w-auto sm:float-left sm:mr-4 sm:mb-2;
+
+		img {
+			@media only screen and (max-width: 767px) {
+				width: 100% !important;
+			}
+		}
 	}
 }

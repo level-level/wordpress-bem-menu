@@ -25,8 +25,9 @@ class Features {
 				'menu_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'page_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'menu_slug'   => self::MENU_SLUG,
-				'parent_slug' => ThemeOptions::MENU_SLUG,
+				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
+				'capability'  => 'manage_options',
 			)
 		);
 	}
@@ -45,9 +46,6 @@ class Features {
 									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable Partner post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
 									->instructions( _x( 'Enables the Partner post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable Podcast post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE )
-									->instructions( _x( 'Enables the Podcast post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable Event post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_EVENT_POST_TYPE )
 									->instructions( _x( 'Enables the Event post type for this site.', 'Fields', 'fdmg-labels-admin' ) )

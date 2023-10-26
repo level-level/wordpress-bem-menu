@@ -64,7 +64,8 @@
         "yoast/wordpress-seo": "^21.3",
         "ext-dom": "*",
         "ext-libxml": "*",
-        "mentosmenno2/image-crop-positioner": "^0.6.0"
+        "mentosmenno2/image-crop-positioner": "^0.6.0",
+        "wpackagist-plugin/user-switching": "^1.7"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -159,8 +160,7 @@
         "level-level/phpstan-config": "^1.0",
         "phpstan/extension-installer": "^1.1",
         "szepeviktor/phpstan-wordpress": "^1.1",
-        "cebe/php-openapi": "^1.7",
-        "wpackagist-plugin/user-switching": "^1.7"
+        "cebe/php-openapi": "^1.7"
     },
     "config": {
         "allow-plugins": {
