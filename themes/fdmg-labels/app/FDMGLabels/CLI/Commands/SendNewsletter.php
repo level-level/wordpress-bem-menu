@@ -15,6 +15,9 @@ class SendNewsletter {
 	/**
 	 * Send a newsletter
 	 *
+	 * @param string[] $args
+	 * @param array<string,string> $assoc_args
+	 *
 	 * ## Options
 	 *
 	 * <id>
