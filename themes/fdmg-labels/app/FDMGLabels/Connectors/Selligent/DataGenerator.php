@@ -66,7 +66,7 @@ class DataGenerator {
 	 * mind that the post ids given should already have been registered.
 	 *
 	 * @param ii_newsletter $newsletter
-	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
+	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 * @return array<string,string>
 	 */
 	public function get_newsletter_data( ii_newsletter $newsletter, string $test_mode ): array {

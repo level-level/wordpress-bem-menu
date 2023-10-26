@@ -59,12 +59,12 @@ class SendNewsletter {
 
 		// Reset the field values
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '0', $newsletter_id );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, Newsletter::META_SEND_TEST_OPTION_PREVIEW, $newsletter_id );
+		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS, $newsletter_id );
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, '0', $newsletter_id );
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, '', $newsletter_id );
 
 		$i18n_util = new I18n();
-		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
+		if ( $test_mode === Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_NO ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
 				sprintf(
@@ -90,7 +90,7 @@ class SendNewsletter {
 	 * Register articles in selligent, and then send the newsletter.
 	 *
 	 * @param int $newsletter_id
-	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
+	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 */
 	public function sync( int $newsletter_id, string $test_mode ): void {
 		$command = new CommandsSendNewsletter( $newsletter_id, $test_mode );

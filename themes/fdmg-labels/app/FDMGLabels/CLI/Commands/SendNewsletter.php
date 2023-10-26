@@ -41,9 +41,9 @@ class SendNewsletter {
 		$newsletter_id = (int) ( $args[0] ?? 0 );
 
 		/**
-		 * @var Newsletter::META_SEND_TEST_OPTION_*
+		 * @var Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_*
 		 */
-		$test_mode = (string) get_flag_value( $assoc_args, 'test-mode', Newsletter::META_SEND_TEST_OPTION_PREVIEW );
+		$test_mode = (string) get_flag_value( $assoc_args, 'test-mode', Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS );
 
 		$command = new CommandsSendNewsletter( $newsletter_id, $test_mode );
 		$command->setLogger( Registry::wordpress() );
