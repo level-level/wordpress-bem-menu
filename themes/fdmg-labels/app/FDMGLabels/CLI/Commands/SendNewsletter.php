@@ -28,9 +28,9 @@ class SendNewsletter {
 	 * ---
 	 * default: 1
 	 * options:
-	 *   - 0
-	 *   - 1
-	 *   - 2
+	 *   - 0 (no test, send for real)
+	 *   - 1 (send as test to editors)
+	 *   - 2 (send as test to developers)
 	 * ---
 	 *
 	 * ## EXAMPLES
