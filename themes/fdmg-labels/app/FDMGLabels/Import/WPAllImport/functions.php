@@ -6,8 +6,6 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
-use Clarkson\Theme\Taxonomies\Section;
-use FDMGLabels\Import\Helpers\Attachments;
 use FDMGLabels\Import\Helpers\BinaryFiles;
 use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
