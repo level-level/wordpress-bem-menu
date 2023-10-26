@@ -6,10 +6,13 @@ use Clarkson\Utilities\I18n;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
+use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
+use FDMGLabels\Commands\SendNewsletter as CommandsSendNewsletter;
 use FDMGLabels\Connectors\Selligent\Client;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
+use Monolog\Registry;
 use WP_Error;
 
 class SendNewsletter {
@@ -90,78 +93,11 @@ class SendNewsletter {
 	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
 	 */
 	public function sync( int $newsletter_id, string $test_mode ): void {
-		$newsletter = ii_newsletter::get( $newsletter_id );
-		if ( ! $newsletter instanceof ii_newsletter ) {
-			return;
-		}
-
-		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
-			$this->selligent_logger->add_post_log( $newsletter_id, 'Sending the newsletter has started.', LogLine::LEVEL_INFO );
-		} else {
-			$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'Sending the newsletter in testmode %s has started.', $test_mode ), LogLine::LEVEL_INFO );
-		}
-
-		// Get unique list of article ids
-		$article_ids = array();
-		foreach ( $newsletter->get_article_groups() as $article_group ) {
-			$article_ids = array_merge( $article_ids, $article_group->get_article_ids() );
-		}
-		$article_ids = array_unique( $article_ids );
-
-		// Register the articles
-		$client = new Client();
-		foreach ( $article_ids as $article_id ) {
-			$article = post::get( $article_id );
-			if ( ! $article instanceof post ) {
-				$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'The article with ID %d does not exist.', $article_id ), LogLine::LEVEL_ERROR );
-				return;
-			}
-
-			$response = $client->register_post( $article, $newsletter );
-			if ( $response instanceof WP_Error ) {
-				$this->selligent_logger->add_post_log(
-					$newsletter_id, sprintf(
-						'The article %1$d - %2$s could not be registered: %3$s - %4$s.',
-						$article->get_id(),
-						$article->get_title(),
-						(string) $response->get_error_code(),
-						$response->get_error_message()
-					), LogLine::LEVEL_ERROR
-				);
-				return;
-			}
-		}
-
-		// Register the newsletter
-		$response = $client->register_newsletter( $newsletter, $test_mode );
-		if ( $response instanceof WP_Error ) {
-			$this->selligent_logger->add_post_log(
-				$newsletter_id, sprintf(
-					'The newsletter could not be registered: %1$s - %2$s.',
-					(string) $response->get_error_code(),
-					$response->get_error_message()
-				), LogLine::LEVEL_ERROR
-			);
-			return;
-		}
-
-		// Send the newsletter
-		$response = $client->send_newsletter( $newsletter );
-		if ( $response instanceof WP_Error ) {
-			$this->selligent_logger->add_post_log(
-				$newsletter_id, sprintf(
-					'The newsletter could not be sent: %1$s - %2$s.',
-					(string) $response->get_error_code(),
-					$response->get_error_message()
-				), LogLine::LEVEL_ERROR
-			);
-			return;
-		}
-
-		if ( $test_mode === Newsletter::META_SEND_TEST_OPTION_NO ) {
-			$this->selligent_logger->add_post_log( $newsletter_id, 'The newsletter has been sent.', LogLine::LEVEL_SUCCESS );
-		} else {
-			$this->selligent_logger->add_post_log( $newsletter_id, sprintf( 'The newsletter has been sent in testmode %s.', $test_mode ), LogLine::LEVEL_SUCCESS );
+		$command = new CommandsSendNewsletter( $newsletter_id, $test_mode );
+		$command->setLogger( Registry::wordpress() );
+		try {
+			$command->execute();
+		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 		}
 	}
 }
