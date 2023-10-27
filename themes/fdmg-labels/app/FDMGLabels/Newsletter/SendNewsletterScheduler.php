@@ -57,8 +57,6 @@ class SendNewsletterScheduler {
 			$this->schedule_once( $newsletter_id );
 		} elseif ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
 			$this->schedule_repetitive( $newsletter_id );
-		} else {
-			return;
 		}
 	}
 
