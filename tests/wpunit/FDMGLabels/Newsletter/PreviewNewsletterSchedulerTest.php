@@ -2,13 +2,11 @@
 
 namespace FDMGLabels\Newsletter;
 
-use Clarkson\Theme\ACF;
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Codeception\TestCase\WPTestCase;
-use DateTime;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 
@@ -20,7 +18,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 		$this->post = new post(
 			$this->factory()->post->create_and_get(
 				array(
-					'post_title'  => 'Test tip selligent',
+					'post_title'  => 'Test article selligent',
 					'post_type'   => PostTypesPost::POST_TYPE_NAME,
 					'post_status' => 'publish',
 				)
