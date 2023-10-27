@@ -34,26 +34,37 @@ class SendNewsletterScheduler {
 			return;
 		}
 
+		// If is already scheduled, unschedule.
+		$was_scheduled = as_has_scheduled_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		if ( $was_scheduled ) {
+			as_unschedule_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+			$this->selligent_logger->add_post_log(
+				$newsletter_id,
+				'Sending the newsletter has been removed from queue.',
+				LogLine::LEVEL_INFO
+			);
+		}
+
+		// Determine if newsletter should send.
 		$should_send = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, $newsletter_id );
 		if ( ! $should_send ) {
 			return;
 		}
 
-		// If is already scheduled, unschedule
-		$was_scheduled = as_has_scheduled_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
-		if ( $was_scheduled ) {
-			as_unschedule_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
-		}
-
-		// Schedule again using new settings
+		// Schedule again using new settings.
 		$interval = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_INTERVAL, $newsletter_id );
 		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_ONCE ) {
 			$this->schedule_once( $newsletter_id );
+		} elseif ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
+			$this->schedule_repetitive( $newsletter_id );
 		} else {
 			return;
 		}
 	}
 
+	/**
+	 * Schedule sending the newsletter only once, now or at a specific date.
+	 */
 	protected function schedule_once( int $newsletter_id ): void {
 		$once_settings = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ONCE, $newsletter_id ) ?: array();
 
@@ -69,11 +80,11 @@ class SendNewsletterScheduler {
 		}
 
 		// Schedule
-		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP, true );
 		if ( ! $scheduled ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
-				'Failed to schedule sending newsletter.',
+				'Failed to schedule sending newsletter once.',
 				LogLine::LEVEL_ERROR
 			);
 			return;
@@ -83,9 +94,45 @@ class SendNewsletterScheduler {
 		$this->selligent_logger->add_post_log(
 			$newsletter_id,
 			sprintf(
-				'Sending the newsletter has been queued to be sent on %s.',
+				'Sending the newsletter has been queued to be sent once on %s.',
 				$i18n_util->format_date( '', $schedule_date )
 			),
+			LogLine::LEVEL_INFO
+		);
+	}
+
+	/**
+	 * Schedule sending the newsletter repetitive, at a specific time.
+	 */
+	protected function schedule_repetitive( int $newsletter_id ): void {
+		$repetitive_settings = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_REPETITIVE, $newsletter_id ) ?: array();
+
+		// Determine the date to schedule first run
+		$time_string = $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_TIME ] ?? null;
+		$time_obj    = is_string( $time_string ) ? date_create_from_format( 'H:i:s', $time_string, wp_timezone() ) : null;
+		if ( ! $time_obj instanceof DateTime ) {
+			return;
+		}
+
+		$date_now      = new DateTime( 'now', wp_timezone() );
+		$date_today    = ( new DateTime( 'now', wp_timezone() ) )->setTime( (int) $time_obj->format( 'H' ), (int) $time_obj->format( 'i' ), (int) $time_obj->format( 's' ), 0 );
+		$date_tomorrow = ( new DateTime( 'tomorrow', wp_timezone() ) )->setTime( (int) $time_obj->format( 'H' ), (int) $time_obj->format( 'i' ), (int) $time_obj->format( 's' ), 0 );
+		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
+
+		// Schedule
+		$scheduled = as_schedule_recurring_action( $schedule_date->getTimestamp(), DAY_IN_SECONDS, self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP, true );
+		if ( ! $scheduled ) {
+			$this->selligent_logger->add_post_log(
+				$newsletter_id,
+				'Failed to schedule sending newsletter repetitive.',
+				LogLine::LEVEL_ERROR
+			);
+			return;
+		}
+
+		$this->selligent_logger->add_post_log(
+			$newsletter_id,
+			'Sending the newsletter has been queued to be sent repetitive.',
 			LogLine::LEVEL_INFO
 		);
 	}

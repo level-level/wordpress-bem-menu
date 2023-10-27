@@ -62,24 +62,19 @@ class Newsletter {
 	public const META_PREVIEW_RECIPIENTS_OPTION_EDITORS    = '1';
 	public const META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS = '2';
 
-	public const META_SEND                        = 'send';
-	public const META_SEND_ACTION                 = 'action';
-	public const META_SEND_INTERVAL               = 'interval';
-	public const META_SEND_INTERVAL_OPTION_ONCE   = 'once';
-	public const META_SEND_INTERVAL_OPTION_DAILY  = 'daily';
-	public const META_SEND_INTERVAL_OPTION_WEEKLY = 'weekly';
+	public const META_SEND                            = 'send';
+	public const META_SEND_ACTION                     = 'action';
+	public const META_SEND_INTERVAL                   = 'interval';
+	public const META_SEND_INTERVAL_OPTION_ONCE       = 'once';
+	public const META_SEND_INTERVAL_OPTION_REPETITIVE = 'repetitive';
 
 	public const META_SEND_ONCE        = 'once';
 	public const META_SEND_ONCE_FUTURE = 'future';
 	public const META_SEND_ONCE_DATE   = 'date';
 
-	public const META_SEND_DAILY          = 'daily';
-	public const META_SEND_DAILY_WEEKDAYS = 'weekdays';
-	public const META_SEND_DAILY_TIME     = 'time';
-
-	public const META_SEND_WEEKLY         = 'weekly';
-	public const META_SEND_WEEKLY_WEEKDAY = 'weekday';
-	public const META_SEND_WEEKLY_TIME    = 'time';
+	public const META_SEND_REPETITIVE          = 'repetitive';
+	public const META_SEND_REPETITIVE_WEEKDAYS = 'weekdays';
+	public const META_SEND_REPETITIVE_TIME     = 'time';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
@@ -221,8 +216,7 @@ class Newsletter {
 						->choices(
 							array(
 								self::META_SEND_INTERVAL_OPTION_ONCE => _x( 'Once', 'Fields', 'fdmg-labels-admin' ),
-								self::META_SEND_INTERVAL_OPTION_DAILY => _x( 'Daily', 'Fields', 'fdmg-labels-admin' ),
-								self::META_SEND_INTERVAL_OPTION_WEEKLY => _x( 'Weekly', 'Fields', 'fdmg-labels-admin' ),
+								self::META_SEND_INTERVAL_OPTION_REPETITIVE => _x( 'Repetitive', 'Fields', 'fdmg-labels-admin' ),
 							)
 						)
 						->defaultValue( self::META_SEND_INTERVAL_OPTION_ONCE )
@@ -256,15 +250,15 @@ class Newsletter {
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_ONCE ),
 							)
 						),
-					Group::make( _x( 'Send daily', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY )
+					Group::make( _x( 'Send repetative', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE )
 						->fields(
 							array(
-								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_WEEKDAYS )
+								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_WEEKDAYS )
 									->choices( $weekday_options )
-									->defaultValue( array_keys( $weekday_options ) )
+									->defaultValue( array() )
 									->required()
 									->layout( 'horizontal' ),
-								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_TIME )
+								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_TIME )
 									->required()
 									->returnFormat( 'H:i:s' )
 									->displayFormat( get_option( 'time_format' ) ),
@@ -272,26 +266,7 @@ class Newsletter {
 						)
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_DAILY ),
-							)
-						),
-					Group::make( _x( 'Send weekly', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY )
-						->fields(
-							array(
-								RadioButton::make( _x( 'Weekday', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_WEEKDAY )
-									->choices( $weekday_options )
-									->defaultValue( '1' )
-									->required()
-									->layout( 'horizontal' ),
-								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_TIME )
-									->required()
-									->returnFormat( 'H:i:s' )
-									->displayFormat( 'H:i:s' ),
-							)
-						)
-						->conditionalLogic(
-							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_WEEKLY ),
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_REPETITIVE ),
 							)
 						),
 				)

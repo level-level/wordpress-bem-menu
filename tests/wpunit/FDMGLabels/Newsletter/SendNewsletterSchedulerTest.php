@@ -33,6 +33,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 	}
 
 	public function test_schedule_once(): void {
+		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
@@ -56,10 +57,54 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		);
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
+		// Test scheduled time
 		$scheduled_ts = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 		$this->assertEquals( $date->getTimestamp(), $scheduled_ts, 'Sync should be scheduled at specific timestamp' );
 
+		// Test if is logged
 		$this->assert_is_logged( $newsletter );
+
+		// Cleanup
+		as_unschedule_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
+	}
+
+	public function test_schedule_repetitive(): void {
+		// Create newsletter
+		$newsletter = new ii_newsletter(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'  => 'Test newsletter selligent',
+					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_status' => 'publish',
+				)
+			)
+		);
+
+		update_field(
+			'send', array(
+				'action'     => '1',
+				'interval'   => 'repetitive',
+				'repetitive' => array(
+					'weekdays' => 1,
+					'time'     => '15:00:00',
+				),
+			), $newsletter->get_id()
+		);
+		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
+
+		// Test scheduled time
+		$date_now      = new DateTime( 'now', wp_timezone() );
+		$date_today    = ( new DateTime( 'now', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
+		$date_tomorrow = ( new DateTime( 'tomorrow', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
+		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
+		$scheduled_ts  = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
+		$this->assertGreaterThanOrEqual( $schedule_date->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
+		$this->assertLessThanOrEqual( $schedule_date->getTimestamp() + 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
+
+		// Test if is logged
+		$this->assert_is_logged( $newsletter );
+
+		// Cleanup
 		as_unschedule_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 	}
 
