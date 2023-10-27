@@ -85,7 +85,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 				'action'     => '1',
 				'interval'   => 'repetitive',
 				'repetitive' => array(
-					'weekdays' => 1,
+					'weekdays' => array( '0', '1', '2', '3', '4', '5', '6' ),
 					'time'     => '15:00:00',
 				),
 			), $newsletter->get_id()
@@ -124,6 +124,81 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 		wp_delete_post( $newsletter, true );
 	}
+
+	public function test_maybe_sync_once(): void {
+		// Create newsletter
+		$newsletter = new ii_newsletter(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'  => 'Test newsletter selligent',
+					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_status' => 'publish',
+				)
+			)
+		);
+
+		update_field(
+			'send', array(
+				'action'   => '1',
+				'interval' => 'once',
+				'once'     => array(
+					'future' => 1,
+					'date'   => ( new DateTime( 'now', wp_timezone() ) )->format( 'Y-m-d H:i:s' ),
+				),
+			), $newsletter->get_id()
+		);
+
+		// Call maybe_sync and see if sync is called.
+		$scheduler = $this->getMockBuilder( SendNewsletterScheduler::class )
+			->onlyMethods( array( 'maybe_sync', 'sync' ) )
+			->getMock();
+		$scheduler->expects( $this->once() )
+			->method( 'maybe_sync' )
+			->with(
+				$this->equalTo( $newsletter->get_id() )
+			);
+		$scheduler->expects( $this->once() )
+			->method( 'sync' )
+			->with(
+				$this->equalTo( $newsletter->get_id() )
+			);
+
+		$scheduler->maybe_sync( $newsletter->get_id() );
+	}
+
+	// public function test_maybe_sync_repetitive(): void {
+	// 	// Create newsletter
+	// 	$newsletter = new ii_newsletter(
+	// 		$this->factory()->post->create_and_get(
+	// 			array(
+	// 				'post_title'  => 'Test newsletter selligent',
+	// 				'post_type'   => Newsletter::POST_TYPE_NAME,
+	// 				'post_status' => 'publish',
+	// 			)
+	// 		)
+	// 	);
+
+	// 	update_field(
+	// 		'send', array(
+	// 			'action'     => '1',
+	// 			'interval'   => 'repetitive',
+	// 			'repetitive' => array(
+	// 				'weekdays' => array( '1' ),
+	// 				'time'     => '15:00:00',
+	// 			),
+	// 		), $newsletter->get_id()
+	// 	);
+
+	// 	// Call maybe_sync and see if sync is called.
+	// 	$scheduler = $this->createMock( SendNewsletterScheduler::class );
+	// 	$scheduler->expects( $this->once() )
+	// 		->method( 'sync' )
+	// 		->with(
+	// 			$this->equalTo( $newsletter->get_id() )
+	// 		);
+
+	// 	$scheduler->maybe_sync( $newsletter->get_id() );
+	// }
 
 	protected function assert_is_logged( ii_newsletter $newsletter, string $testmode = '0' ) {
 		$logger    = new SelligentLogger();

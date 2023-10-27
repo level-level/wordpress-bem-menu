@@ -3,6 +3,7 @@ namespace FDMGLabels\Newsletter;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
+use Clarkson_Core\WordPress_Object\ii_newsletter;
 use DateTime;
 use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
@@ -23,7 +24,7 @@ class SendNewsletterScheduler {
 
 	public function register_hooks(): void {
 		add_action( 'save_post', array( $this, 'schedule_sync' ) );
-		add_action( self::TRIGGER, array( $this, 'sync' ), 10, 1 );
+		add_action( self::TRIGGER, array( $this, 'maybe_sync' ), 10, 1 );
 	}
 
 	/**
@@ -140,11 +141,39 @@ class SendNewsletterScheduler {
 	}
 
 	/**
+	 * Maybe sync the newsletter, based on:
+	 * - If it's daily, just sync.
+	 * - If it's weekly, sync if today is allowed as a day to send.
+	 */
+	public function maybe_sync( int $newsletter_id ): void {
+		// If newsletter doesn't exist, remove cronjob.
+		$newsletter = ii_newsletter::get( $newsletter_id );
+		if ( ! $newsletter ) {
+			as_unschedule_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+			return;
+		}
+
+		// If newsletter is repetitive, but today is not an allowed sending day, dont send.
+		$send_settings = get_field( Newsletter::META_SEND, $newsletter_id ) ?: array();
+		$interval      = $send_settings[ Newsletter::META_SEND_INTERVAL ] ?? null;
+		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
+			$repetitive_settings = $send_settings[ Newsletter::META_SEND_REPETITIVE ] ?: array();
+			$allowed_weekday_numbers = array_map( 'intval', $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_WEEKDAYS ] ?? array() );
+			$today_weekday_number = (int) ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
+			if ( ! in_array( $today_weekday_number, $allowed_weekday_numbers, true ) ) {
+				return;
+			}
+		}
+
+		$this->sync( $newsletter_id );
+	}
+
+	/**
 	 * Register articles in selligent, and then send the newsletter.
 	 *
 	 * @param int $newsletter_id
 	 */
-	public function sync( int $newsletter_id ): void {
+	protected function sync( int $newsletter_id ): void {
 		$command = new CommandsSendNewsletter( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
 		$command->setLogger( Registry::wordpress() );
 		try {
