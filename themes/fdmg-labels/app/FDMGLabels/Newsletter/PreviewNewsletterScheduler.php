@@ -4,21 +4,20 @@ namespace FDMGLabels\Newsletter;
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
 use DateTime;
-use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
-use FDMGLabels\Commands\SendNewsletter as CommandsSendNewsletter;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
-use Monolog\Registry;
 
 class PreviewNewsletterScheduler {
 
 	public const TRIGGER = 'fdmg_labels_preview_newsletter';
 
 	protected SelligentLogger $selligent_logger;
+	protected NewsletterSenderService $sender_service;
 
-	public function __construct() {
+	public function __construct( NewsletterSenderService $sender_service ) {
 		$this->selligent_logger = new SelligentLogger();
+		$this->sender_service   = $sender_service;
 	}
 
 	public function register_hooks(): void {
@@ -74,11 +73,6 @@ class PreviewNewsletterScheduler {
 	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $recipients_group
 	 */
 	public function sync( int $newsletter_id, string $recipients_group ): void {
-		$command = new CommandsSendNewsletter( $newsletter_id, $recipients_group );
-		$command->setLogger( Registry::wordpress() );
-		try {
-			$command->execute();
-		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-		}
+		$this->sender_service->send( $newsletter_id, $recipients_group );
 	}
 }

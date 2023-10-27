@@ -5,21 +5,20 @@ use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use DateTime;
-use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
-use FDMGLabels\Commands\SendNewsletter as CommandsSendNewsletter;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
-use Monolog\Registry;
 
 class SendNewsletterScheduler {
 
 	public const TRIGGER = 'fdmg_labels_send_newsletter';
 
 	protected SelligentLogger $selligent_logger;
+	protected NewsletterSenderService $sender_service;
 
-	public function __construct() {
+	public function __construct( NewsletterSenderService $sender_service ) {
 		$this->selligent_logger = new SelligentLogger();
+		$this->sender_service   = $sender_service;
 	}
 
 	public function register_hooks(): void {
@@ -153,32 +152,33 @@ class SendNewsletterScheduler {
 			return;
 		}
 
-		// If newsletter is repetitive, but today is not an allowed sending day, dont send.
-		$send_settings = get_field( Newsletter::META_SEND, $newsletter_id ) ?: array();
-		$interval      = $send_settings[ Newsletter::META_SEND_INTERVAL ] ?? null;
-		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
-			$repetitive_settings = $send_settings[ Newsletter::META_SEND_REPETITIVE ] ?: array();
-			$allowed_weekday_numbers = array_map( 'intval', $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_WEEKDAYS ] ?? array() );
-			$today_weekday_number = (int) ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
-			if ( ! in_array( $today_weekday_number, $allowed_weekday_numbers, true ) ) {
-				return;
-			}
+		if ( ! $this->should_sync( $newsletter_id ) ) {
+			return;
 		}
 
 		$this->sync( $newsletter_id );
 	}
 
 	/**
-	 * Register articles in selligent, and then send the newsletter.
-	 *
-	 * @param int $newsletter_id
+	 * Check if newsletter is allowed to be sent.
+	 * If newsletter is repetitive, but today is not an allowed sending day, dont allow.
+	 * Otherwise allow.
 	 */
-	protected function sync( int $newsletter_id ): void {
-		$command = new CommandsSendNewsletter( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
-		$command->setLogger( Registry::wordpress() );
-		try {
-			$command->execute();
-		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+	protected function should_sync( int $newsletter_id ): bool {
+		$send_settings = get_field( Newsletter::META_SEND, $newsletter_id ) ?: array();
+		$interval      = $send_settings[ Newsletter::META_SEND_INTERVAL ] ?? null;
+		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
+			$repetitive_settings     = $send_settings[ Newsletter::META_SEND_REPETITIVE ] ?: array();
+			$allowed_weekday_numbers = array_map( 'intval', $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_WEEKDAYS ] ?? array() );
+			$today_weekday_number    = (int) ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
+			if ( ! in_array( $today_weekday_number, $allowed_weekday_numbers, true ) ) {
+				return false;
+			}
 		}
+		return true;
+	}
+
+	protected function sync( int $newsletter_id ): void {
+		$this->sender_service->send( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
 	}
 }

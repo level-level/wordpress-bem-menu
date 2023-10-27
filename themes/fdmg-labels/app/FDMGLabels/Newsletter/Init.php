@@ -4,7 +4,8 @@ namespace FDMGLabels\Newsletter;
 class Init {
 
 	public function register_hooks(): void {
-		( new PreviewNewsletterScheduler() )->register_hooks();
-		( new SendNewsletterScheduler() )->register_hooks();
+		$newsletter_service = new NewsletterSenderService();
+		( new PreviewNewsletterScheduler( $newsletter_service ) )->register_hooks();
+		( new SendNewsletterScheduler( $newsletter_service ) )->register_hooks();
 	}
 }
