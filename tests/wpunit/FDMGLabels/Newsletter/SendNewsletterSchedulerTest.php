@@ -158,6 +158,8 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 		$scheduler = new SendNewsletterScheduler( $service );
 		$scheduler->maybe_sync( $newsletter->get_id() );
+
+		$this->assertEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
 	public function test_maybe_sync_repetitive_incorrect_weekday(): void {
@@ -197,6 +199,8 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 		$scheduler = new SendNewsletterScheduler( $service );
 		$scheduler->maybe_sync( $newsletter->get_id() );
+
+		$this->assertNotEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
 	public function test_maybe_sync_repetitive_correct_weekday(): void {
@@ -236,6 +240,8 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 		$scheduler = new SendNewsletterScheduler( $service );
 		$scheduler->maybe_sync( $newsletter->get_id() );
+
+		$this->assertNotEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
 	protected function assert_is_logged( ii_newsletter $newsletter, string $testmode = '0' ) {

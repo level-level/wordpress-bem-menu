@@ -179,6 +179,15 @@ class SendNewsletterScheduler {
 	}
 
 	protected function sync( int $newsletter_id ): void {
+		// Remove the send settings if it's a newsletter that's sent once.
+		$send_settings = get_field( Newsletter::META_SEND, $newsletter_id ) ?: array();
+		$interval      = $send_settings[ Newsletter::META_SEND_INTERVAL ] ?? null;
+		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_ONCE ) {
+			// Reset the field values for send settings
+			delete_field( Newsletter::META_SEND, $newsletter_id );
+		}
+
+		// Actually send the newsletter
 		$this->sender_service->send( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
 	}
 }
