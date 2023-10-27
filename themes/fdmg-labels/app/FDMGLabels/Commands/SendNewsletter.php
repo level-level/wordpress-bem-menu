@@ -7,6 +7,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Exception;
 use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -63,13 +64,10 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
 			$started_message = sprintf( 'Sending the newsletter in testmode %s has started.', $this->test_mode );
 		}
-		$this->logger?->debug(
+		$this->selligent_logger->add_post_log(
+			$this->newsletter_id,
 			$started_message,
-			array(
-				'fdmg_logger'         => $this->selligent_logger,
-				'fdmg_logger_post_id' => $this->newsletter_id,
-				'newsletter_id'       => $this->newsletter_id,
-			)
+			LogLine::LEVEL_INFO,
 		);
 
 		// Get unique list of article ids
@@ -168,13 +166,10 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
 			$success_message = sprintf( 'The newsletter has been sent in testmode %s.', $this->test_mode );
 		}
-		$this->logger?->debug(
+		$this->selligent_logger->add_post_log(
+			$this->newsletter_id,
 			$success_message,
-			array(
-				'fdmg_logger'         => $this->selligent_logger,
-				'fdmg_logger_post_id' => $this->newsletter_id,
-				'newsletter_id'       => $this->newsletter_id,
-			)
+			LogLine::LEVEL_SUCCESS,
 		);
 		return $response;
 	}
