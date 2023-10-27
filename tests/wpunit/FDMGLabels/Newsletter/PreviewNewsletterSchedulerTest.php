@@ -114,11 +114,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 					return false;
 				}
 
-				if ( $testmode === '0' ) {
-					return ! str_contains( $log_line->get_message(), 'recipient group' );
-				} else {
-					return str_contains( $log_line->get_message(), 'recipient group ' . $testmode );
-				}
+				return str_contains( $log_line->get_message(), 'recipient group ' . $testmode );
 			}
 		);
 

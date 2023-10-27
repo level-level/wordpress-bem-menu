@@ -41,7 +41,7 @@ class Client {
 	 * Registers a new newsletter.
 	 *
 	 * @param ii_newsletter $newsletter
-	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
+	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 * @return array|WP_Error
 	 */
 	public function register_newsletter( ii_newsletter $newsletter, string $test_mode ) {

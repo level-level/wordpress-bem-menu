@@ -20,14 +20,14 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 
 	protected int $newsletter_id;
 
-	/** @var Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* */
+	/** @var Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* */
 	protected string $test_mode;
 
 	protected SelligentLogger $selligent_logger;
 
 	/**
 	 * @param integer $newsletter_id
-	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
+	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 */
 	public function __construct(
 		int $newsletter_id,

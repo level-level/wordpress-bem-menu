@@ -71,7 +71,7 @@ class PreviewNewsletterScheduler {
 	 * Register articles in selligent, and then send the newsletter.
 	 *
 	 * @param int $newsletter_id
-	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
+	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $recipients_group
 	 */
 	public function sync( int $newsletter_id, string $recipients_group ): void {
 		$command = new CommandsSendNewsletter( $newsletter_id, $recipients_group );

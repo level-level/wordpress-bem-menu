@@ -69,9 +69,9 @@ class Newsletter {
 	public const META_SEND_INTERVAL_OPTION_DAILY  = 'daily';
 	public const META_SEND_INTERVAL_OPTION_WEEKLY = 'weekly';
 
-	public const META_SEND_ONCE          = 'once';
-	public const META_SEND_ONCE_SCHEDULE = 'schedule';
-	public const META_SEND_ONCE_DATE     = 'date';
+	public const META_SEND_ONCE        = 'once';
+	public const META_SEND_ONCE_FUTURE = 'future';
+	public const META_SEND_ONCE_DATE   = 'date';
 
 	public const META_SEND_DAILY          = 'daily';
 	public const META_SEND_DAILY_WEEKDAYS = 'weekdays';
@@ -236,7 +236,7 @@ class Newsletter {
 					Group::make( _x( 'Send once', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE )
 						->fields(
 							array(
-								TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_SCHEDULE )
+								TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_FUTURE )
 									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
@@ -246,7 +246,7 @@ class Newsletter {
 									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
 									->conditionalLogic(
 										array(
-											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ONCE . '_' . self::META_SEND_ONCE_SCHEDULE, '==', '1' ),
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ONCE . '_' . self::META_SEND_ONCE_FUTURE, '==', '1' ),
 										)
 									),
 							)

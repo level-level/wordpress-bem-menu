@@ -23,7 +23,7 @@ class SendNewsletterScheduler {
 
 	public function register_hooks(): void {
 		add_action( 'save_post', array( $this, 'schedule_sync' ) );
-		add_action( self::TRIGGER, array( $this, 'sync' ), 10, 2 );
+		add_action( self::TRIGGER, array( $this, 'sync' ), 10, 1 );
 	}
 
 	/**
@@ -39,57 +39,68 @@ class SendNewsletterScheduler {
 			return;
 		}
 
+		// If is already scheduled, unschedule
+		$was_scheduled = as_has_scheduled_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		if ( $was_scheduled ) {
+			as_unschedule_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		}
+
+		// Schedule again using new settings
+		$interval = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_INTERVAL, $newsletter_id );
+		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_ONCE ) {
+			$this->schedule_once( $newsletter_id );
+		} else {
+			return;
+		}
+	}
+
+	protected function schedule_once( int $newsletter_id ): void {
+		$once_settings = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ONCE, $newsletter_id ) ?: array();
+
+		// Determine the date to schedule
 		$schedule_date      = new DateTime( 'now', wp_timezone() );
-		$customize_schedule = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, $newsletter_id );
-		if ( $customize_schedule ) {
-			$date_string = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, $newsletter_id );
+		$schedule_in_future = (bool) ( $once_settings[ Newsletter::META_SEND_ONCE_FUTURE ] ?? false );
+		if ( $schedule_in_future ) {
+			$date_string = $once_settings[ Newsletter::META_SEND_ONCE_DATE ] ?? null;
 			$date_obj    = is_string( $date_string ) ? date_create_from_format( 'Y-m-d H:i:s', $date_string, wp_timezone() ) : null;
 			if ( $date_obj ) {
 				$schedule_date = $date_obj;
 			}
 		}
 
-		// Schedule single event
-		$test_mode = (string) get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, $newsletter_id );
-		as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $test_mode ), ActionSchedulerSetup::GROUP );
-
-		// Reset the field values
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ACTION, '0', $newsletter_id );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_TEST, Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS, $newsletter_id );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_SCHEDULE, '0', $newsletter_id );
-		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, '', $newsletter_id );
+		// Schedule
+		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		if ( ! $scheduled ) {
+			$this->selligent_logger->add_post_log(
+				$newsletter_id,
+				'Failed to schedule sending newsletter.',
+				LogLine::LEVEL_ERROR
+			);
+			return;
+		}
 
 		$i18n_util = new I18n();
-		if ( $test_mode === Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
-			$this->selligent_logger->add_post_log(
-				$newsletter_id,
-				sprintf(
-					'Sending the newsletter has been queued to be sent on %s.',
-					$i18n_util->format_date( '', $schedule_date )
-				),
-				LogLine::LEVEL_INFO
-			);
-		} else {
-			$this->selligent_logger->add_post_log(
-				$newsletter_id,
-				sprintf(
-					'Sending the newsletter in testmode %s has been queued to be sent on %s.',
-					$test_mode,
-					$i18n_util->format_date( '', $schedule_date )
-				),
-				LogLine::LEVEL_INFO
-			);
-		}
+		$this->selligent_logger->add_post_log(
+			$newsletter_id,
+			sprintf(
+				'Sending the newsletter has been queued to be sent on %s.',
+				$i18n_util->format_date( '', $schedule_date )
+			),
+			LogLine::LEVEL_INFO
+		);
+	}
+
+	protected function reset_send_settings( int $newsletter_id ): void {
+		delete_field( Newsletter::META_SEND, $newsletter_id );
 	}
 
 	/**
 	 * Register articles in selligent, and then send the newsletter.
 	 *
 	 * @param int $newsletter_id
-	 * @param Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 */
-	public function sync( int $newsletter_id, string $test_mode ): void {
-		$command = new CommandsSendNewsletter( $newsletter_id, $test_mode );
+	public function sync( int $newsletter_id ): void {
+		$command = new CommandsSendNewsletter( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
 		$command->setLogger( Registry::wordpress() );
 		try {
 			$command->execute();
