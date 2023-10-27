@@ -3,19 +3,15 @@ namespace FDMGLabels\Newsletter;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
-use Clarkson_Core\WordPress_Object\ii_newsletter;
-use Clarkson_Core\WordPress_Object\post;
 use DateTime;
 use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
 use FDMGLabels\Commands\SendNewsletter as CommandsSendNewsletter;
-use FDMGLabels\Connectors\Selligent\Client;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use Monolog\Registry;
-use WP_Error;
 
-class SendNewsletter {
+class SendNewsletterScheduler {
 
 	public const TRIGGER = 'fdmg_labels_send_newsletter';
 
@@ -64,7 +60,7 @@ class SendNewsletter {
 		update_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_DATE, '', $newsletter_id );
 
 		$i18n_util = new I18n();
-		if ( $test_mode === Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_NO ) {
+		if ( $test_mode === Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
 				sprintf(

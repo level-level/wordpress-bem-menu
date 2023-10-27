@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use Clarkson_Core\Objects;
+use Extended\ACF\Key;
 use WP_Post;
 use WP_Term;
 
@@ -117,5 +118,13 @@ class ACF {
 		$args['orderby'] = 'date';
 		$args['order']   = 'DESC';
 		return $args;
+	}
+
+	public static function get_generated_acf_key( string $name, string $prefix, ?string $parent_key = null ): string {
+		$key = Key::sanitize( $name );
+		if ( $parent_key ) {
+			$key = sprintf( '%s_%s', $parent_key, $key );
+		}
+		return sprintf( '%s_%s', $prefix, Key::hash( $key ) );
 	}
 }

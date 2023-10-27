@@ -60,7 +60,7 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$started_message = 'Sending the newsletter has started.';
-		if ( $this->test_mode !== Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$started_message = sprintf( 'Sending the newsletter in testmode %s has started.', $this->test_mode );
 		}
 		$this->logger?->debug(
@@ -165,7 +165,7 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$success_message = 'The newsletter has been sent.';
-		if ( $this->test_mode !== Newsletter::META_SEND_PREVIEW_RECIPIENTS_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$success_message = sprintf( 'The newsletter has been sent in testmode %s.', $this->test_mode );
 		}
 		$this->logger?->debug(

@@ -57,9 +57,10 @@ class Newsletter {
 
 	public const META_PREVIEW                                   = 'preview';
 	public const META_PREVIEW_ACTION                            = 'action';
-	public const META_SEND_PREVIEW_RECIPIENTS                   = 'recipients';
-	public const META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS    = '1';
-	public const META_SEND_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS = '2';
+	public const META_PREVIEW_RECIPIENTS                   = 'recipients';
+	public const META_PREVIEW_RECIPIENTS_OPTION_ALL    = '0';
+	public const META_PREVIEW_RECIPIENTS_OPTION_EDITORS    = '1';
+	public const META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS = '2';
 
 	public const META_SEND                        = 'send';
 	public const META_SEND_ACTION                 = 'action';
@@ -182,14 +183,14 @@ class Newsletter {
 				array(
 					TrueFalse::make( _x( 'Send preview', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_ACTION )
 						->stylisedUi(),
-					Select::make( _x( 'Preview recipients', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_PREVIEW_RECIPIENTS )
+					Select::make( _x( 'Preview recipients', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_RECIPIENTS )
 						->choices(
 							array(
-								self::META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS => _x( 'Editorial team', 'Fields', 'fdmg-labels-admin' ),
-								self::META_SEND_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS => _x( 'Developer team', 'Fields', 'fdmg-labels-admin' ),
+								self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS => _x( 'Editorial team', 'Fields', 'fdmg-labels-admin' ),
+								self::META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS => _x( 'Developer team', 'Fields', 'fdmg-labels-admin' ),
 							)
 						)
-						->defaultValue( self::META_SEND_PREVIEW_RECIPIENTS_OPTION_EDITORS )
+						->defaultValue( self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS )
 						->required()
 						->conditionalLogic(
 							array(
