@@ -55,10 +55,10 @@ class Newsletter {
 	public const META_ARTICLE_GROUP_ARTICLES        = 'articles';
 	public const META_ARTICLE_GROUP_ARTICLE_ARTICLE = 'article';
 
-	public const META_PREVIEW                                   = 'preview';
-	public const META_PREVIEW_ACTION                            = 'action';
+	public const META_PREVIEW                              = 'preview';
+	public const META_PREVIEW_ACTION                       = 'action';
 	public const META_PREVIEW_RECIPIENTS                   = 'recipients';
-	public const META_PREVIEW_RECIPIENTS_OPTION_ALL    = '0';
+	public const META_PREVIEW_RECIPIENTS_OPTION_ALL        = '0';
 	public const META_PREVIEW_RECIPIENTS_OPTION_EDITORS    = '1';
 	public const META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS = '2';
 

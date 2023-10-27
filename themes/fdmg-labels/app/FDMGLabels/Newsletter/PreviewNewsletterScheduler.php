@@ -40,9 +40,9 @@ class PreviewNewsletterScheduler {
 		}
 
 		// Schedule single event
-		$schedule_date = new DateTime( 'now', wp_timezone() );
+		$schedule_date   = new DateTime( 'now', wp_timezone() );
 		$recipient_group = (string) get_field( Newsletter::META_PREVIEW . '_' . Newsletter::META_PREVIEW_RECIPIENTS, $newsletter_id );
-		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $recipient_group ), ActionSchedulerSetup::GROUP );
+		$scheduled       = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id, $recipient_group ), ActionSchedulerSetup::GROUP );
 		if ( ! $scheduled ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
@@ -53,8 +53,7 @@ class PreviewNewsletterScheduler {
 		}
 
 		// Reset the field values
-		update_field( Newsletter::META_PREVIEW . '_' . Newsletter::META_PREVIEW_ACTION, '0', $newsletter_id );
-		update_field( Newsletter::META_PREVIEW . '_' . Newsletter::META_PREVIEW_RECIPIENTS, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_EDITORS, $newsletter_id );
+		delete_field( Newsletter::META_PREVIEW, $newsletter_id );
 
 		$i18n_util = new I18n();
 		$this->selligent_logger->add_post_log(
