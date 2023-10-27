@@ -69,14 +69,17 @@ class Newsletter {
 	public const META_SEND_INTERVAL_OPTION_DAILY  = 'daily';
 	public const META_SEND_INTERVAL_OPTION_WEEKLY = 'weekly';
 
-	public const META_SEND_ONCE_SCHEDULE = 'once_schedule';
-	public const META_SEND_ONCE_DATE     = 'once_date';
+	public const META_SEND_ONCE          = 'once';
+	public const META_SEND_ONCE_SCHEDULE = 'schedule';
+	public const META_SEND_ONCE_DATE     = 'date';
 
-	public const META_SEND_DAILY_WEEKDAYS = 'daily_weekdays';
-	public const META_SEND_DAILY_TIME     = 'daily_time';
+	public const META_SEND_DAILY          = 'daily';
+	public const META_SEND_DAILY_WEEKDAYS = 'weekdays';
+	public const META_SEND_DAILY_TIME     = 'time';
 
-	public const META_SEND_WEEKLY_WEEKDAY = 'weekly_weekday';
-	public const META_SEND_WEEKLY_TIME    = 'weekly_time';
+	public const META_SEND_WEEKLY         = 'weekly';
+	public const META_SEND_WEEKLY_WEEKDAY = 'weekday';
+	public const META_SEND_WEEKLY_TIME    = 'time';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
@@ -230,57 +233,62 @@ class Newsletter {
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 							)
 						),
-					TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_SCHEDULE )
-						->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
-						->stylisedUi()
-						->defaultValue( false )
+					Group::make( _x( 'Send once', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE )
+						->fields(
+							array(
+								TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_SCHEDULE )
+									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_DATE )
+									->required()
+									->returnFormat( 'Y-m-d H:i:s' )
+									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
+									->conditionalLogic(
+										array(
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ONCE . '_' . self::META_SEND_ONCE_SCHEDULE, '==', '1' ),
+										)
+									),
+							)
+						)
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_ONCE ),
 							)
 						),
-					DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_DATE )
-						->required()
-						->returnFormat( 'Y-m-d H:i:s' )
-						->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
-						->conditionalLogic(
+					Group::make( _x( 'Send daily', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY )
+						->fields(
 							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ONCE_SCHEDULE, '==', '1' ),
+								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_WEEKDAYS )
+									->choices( $weekday_options )
+									->defaultValue( array_keys( $weekday_options ) )
+									->required()
+									->layout( 'horizontal' ),
+								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_TIME )
+									->required()
+									->returnFormat( 'H:i:s' )
+									->displayFormat( get_option( 'time_format' ) ),
 							)
-						),
-					Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_WEEKDAYS )
-						->choices( $weekday_options )
-						->defaultValue( array_keys( $weekday_options ) )
-						->required()
-						->layout( 'horizontal' )
-						->conditionalLogic(
-							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_DAILY ),
-							)
-						),
-					TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DAILY_TIME )
-						->required()
-						->returnFormat( 'H:i:s' )
-						->displayFormat( get_option( 'time_format' ) )
+						)
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_DAILY ),
 							)
 						),
-					RadioButton::make( _x( 'Weekday', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_WEEKDAY )
-						->choices( $weekday_options )
-						->defaultValue( '1' )
-						->required()
-						->layout( 'horizontal' )
-						->conditionalLogic(
+					Group::make( _x( 'Send weekly', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY )
+						->fields(
 							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_WEEKLY ),
+								RadioButton::make( _x( 'Weekday', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_WEEKDAY )
+									->choices( $weekday_options )
+									->defaultValue( '1' )
+									->required()
+									->layout( 'horizontal' ),
+								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_TIME )
+									->required()
+									->returnFormat( 'H:i:s' )
+									->displayFormat( 'H:i:s' ),
 							)
-						),
-					TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_WEEKLY_TIME )
-						->required()
-						->returnFormat( 'H:i:s' )
-						->displayFormat( 'H:i:s' )
+						)
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_WEEKLY ),
