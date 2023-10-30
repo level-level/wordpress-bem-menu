@@ -250,7 +250,7 @@ class Newsletter {
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_ONCE ),
 							)
 						),
-					Group::make( _x( 'Send repetative', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE )
+					Group::make( _x( 'Send repetitive', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE )
 						->fields(
 							array(
 								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_WEEKDAYS )
