@@ -32,7 +32,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		wp_delete_post( $this->post->get_id(), true );
 	}
 
-	public function test_schedule_once(): void {
+	public function test_newsletter_when_sending_once_then_schedule_single(): void {
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
@@ -68,7 +68,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		as_unschedule_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 	}
 
-	public function test_schedule_repetitive(): void {
+	public function test_newsletter_when_sending_repetitive_then_schedule_recurring(): void {
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
@@ -108,7 +108,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		as_unschedule_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 	}
 
-	public function test_dont_schedule(): void {
+	public function test_newsletter_when_sending_disabled_then_dont_schedule(): void {
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
@@ -125,7 +125,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		wp_delete_post( $newsletter, true );
 	}
 
-	public function test_maybe_sync_once(): void {
+	public function test_newsletter_when_sending_once_then_sync(): void {
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
@@ -162,7 +162,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$this->assertEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
-	public function test_maybe_sync_repetitive_incorrect_weekday(): void {
+	public function test_newsletter_when_sending_repetitive_on_wrong_day_then_dont_sync(): void {
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
@@ -203,7 +203,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$this->assertNotEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
-	public function test_maybe_sync_repetitive_correct_weekday(): void {
+	public function test_newsletter_when_sending_repetitive_on_correct_day_then_sync(): void {
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(

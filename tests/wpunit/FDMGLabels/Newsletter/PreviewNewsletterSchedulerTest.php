@@ -31,7 +31,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 		wp_delete_post( $this->post->get_id(), true );
 	}
 
-	public function test_schedule(): void {
+	public function test_newsletter_when_preview_enabled_then_schedule(): void {
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
@@ -81,7 +81,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 		wp_delete_post( $newsletter, true );
 	}
 
-	public function test_dont_schedule(): void {
+	public function test_newsletter_when_preview_disabled_then_dont_schedule(): void {
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
