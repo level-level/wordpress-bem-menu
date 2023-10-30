@@ -20,14 +20,14 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 
 	protected int $newsletter_id;
 
-	/** @var Newsletter::META_SEND_TEST_OPTION_* */
+	/** @var Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* */
 	protected string $test_mode;
 
 	protected SelligentLogger $selligent_logger;
 
 	/**
 	 * @param integer $newsletter_id
-	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
+	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 */
 	public function __construct(
 		int $newsletter_id,
@@ -61,7 +61,7 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$started_message = 'Sending the newsletter has started.';
-		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$started_message = sprintf( 'Sending the newsletter in testmode %s has started.', $this->test_mode );
 		}
 		$this->selligent_logger->add_post_log(
@@ -163,7 +163,7 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$success_message = 'The newsletter has been sent.';
-		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$success_message = sprintf( 'The newsletter has been sent in testmode %s.', $this->test_mode );
 		}
 		$this->selligent_logger->add_post_log(

@@ -5,15 +5,18 @@ use Clarkson\Theme\Taxonomies\Category;
 use Clarkson\Theme\Taxonomies\Genre;
 use Clarkson\Theme\Taxonomies\Section;
 use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\Checkbox;
 use Extended\ACF\Fields\DateTimePicker;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\PostObject;
+use Extended\ACF\Fields\RadioButton;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\TimePicker;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Key;
@@ -23,6 +26,7 @@ use FDMGLabels\Connectors\Selligent\Settings\NewsletterTypeSettings;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 use FDMGLabels\Newsletter\ArticleGroup;
+use WP_Locale;
 
 class Newsletter {
 	public const POST_TYPE_NAME      = 'ii_newsletter';
@@ -50,20 +54,33 @@ class Newsletter {
 	public const META_ARTICLE_GROUP_FILTER_SECTION  = 'filter_section';
 	public const META_ARTICLE_GROUP_ARTICLES        = 'articles';
 	public const META_ARTICLE_GROUP_ARTICLE_ARTICLE = 'article';
-	public const META_SEND                          = 'send';
-	public const META_SEND_ACTION                   = 'action';
-	public const META_SEND_TEST                     = 'test';
-	public const META_SEND_TEST_OPTION_NO           = '0';
-	public const META_SEND_TEST_OPTION_PREVIEW      = '1';
-	public const META_SEND_TEST_OPTION_DEBUG        = '2';
-	public const META_SEND_SCHEDULE                 = 'schedule';
-	public const META_SEND_DATE                     = 'date';
+
+	public const META_PREVIEW                              = 'preview';
+	public const META_PREVIEW_ACTION                       = 'action';
+	public const META_PREVIEW_RECIPIENTS                   = 'recipients';
+	public const META_PREVIEW_RECIPIENTS_OPTION_ALL        = '0';
+	public const META_PREVIEW_RECIPIENTS_OPTION_EDITORS    = '1';
+	public const META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS = '2';
+
+	public const META_SEND                            = 'send';
+	public const META_SEND_ACTION                     = 'action';
+	public const META_SEND_INTERVAL                   = 'interval';
+	public const META_SEND_INTERVAL_OPTION_ONCE       = 'once';
+	public const META_SEND_INTERVAL_OPTION_REPETITIVE = 'repetitive';
+
+	public const META_SEND_ONCE        = 'once';
+	public const META_SEND_ONCE_FUTURE = 'future';
+	public const META_SEND_ONCE_DATE   = 'date';
+
+	public const META_SEND_REPETITIVE          = 'repetitive';
+	public const META_SEND_REPETITIVE_WEEKDAYS = 'weekdays';
+	public const META_SEND_REPETITIVE_TIME     = 'time';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_filter( 'acf/validate_value/name=' . self::META_INTRODUCTION, array( $this, 'wysiwyg_max_length' ), 10, 3 );
-		add_filter( 'acf/validate_value/name=' . self::META_SEND_DATE, array( $this, 'limit_schedule_dates' ), 10, 3 );
+		add_filter( 'acf/validate_value/name=' . self::META_SEND_ONCE_DATE, array( $this, 'limit_schedule_dates' ), 10, 3 );
 	}
 
 	public function register(): void {
@@ -104,6 +121,9 @@ class Newsletter {
 	}
 
 	public function register_fields(): void {
+		/** @var WP_Locale */
+		global $wp_locale;
+
 		$fields = array(
 			Message::make( __( 'Creating a newsletter', 'fdmg-labels-admin' ), self::META_MESSAGE )
 				->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
@@ -156,42 +176,97 @@ class Newsletter {
 				);
 		}
 
-		$fields[] = Group::make( _x( 'Sending newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND )
+		$fields[] = Group::make( _x( 'Preview newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW )
+			->fields(
+				array(
+					TrueFalse::make( _x( 'Send preview', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_ACTION )
+						->stylisedUi(),
+					Select::make( _x( 'Preview recipients', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_RECIPIENTS )
+						->choices(
+							array(
+								self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS => _x( 'Editorial team', 'Fields', 'fdmg-labels-admin' ),
+								self::META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS => _x( 'Developer team', 'Fields', 'fdmg-labels-admin' ),
+							)
+						)
+						->defaultValue( self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS )
+						->required()
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::META_PREVIEW . '_' . self::META_PREVIEW_ACTION, '==', '1' ),
+							)
+						),
+				)
+			);
+
+		$weekday_options = array(
+			'1' => $wp_locale->get_weekday( 1 ),
+			'2' => $wp_locale->get_weekday( 2 ),
+			'3' => $wp_locale->get_weekday( 3 ),
+			'4' => $wp_locale->get_weekday( 4 ),
+			'5' => $wp_locale->get_weekday( 5 ),
+			'6' => $wp_locale->get_weekday( 6 ),
+			'0' => $wp_locale->get_weekday( 0 ),
+		);
+		$fields[]        = Group::make( _x( 'Send newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND )
 			->fields(
 				array(
 					TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
 						->stylisedUi(),
-					Select::make( _x( 'Send as a test newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_TEST )
+					RadioButton::make( _x( 'Interval', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_INTERVAL )
 						->choices(
 							array(
-								self::META_SEND_TEST_OPTION_NO => _x( 'No, send it to subscribers', 'Fields', 'fdmg-labels-admin' ),
-								self::META_SEND_TEST_OPTION_PREVIEW => _x( 'Yes, send preview to editorial team', 'Fields', 'fdmg-labels-admin' ),
-								self::META_SEND_TEST_OPTION_DEBUG => _x( 'Yes, send to developers for debugging', 'Fields', 'fdmg-labels-admin' ),
+								self::META_SEND_INTERVAL_OPTION_ONCE => _x( 'Once', 'Fields', 'fdmg-labels-admin' ),
+								self::META_SEND_INTERVAL_OPTION_REPETITIVE => _x( 'Repetitive', 'Fields', 'fdmg-labels-admin' ),
 							)
 						)
-						->defaultValue( self::META_SEND_TEST_OPTION_PREVIEW )
+						->defaultValue( self::META_SEND_INTERVAL_OPTION_ONCE )
 						->required()
+						->layout( 'horizontal' )
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
 							)
 						),
-					TrueFalse::make( _x( 'Schedule sending the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_SCHEDULE )
-						->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
-						->stylisedUi()
-						->defaultValue( false )
+					Group::make( _x( 'Send once', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE )
+						->fields(
+							array(
+								TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_FUTURE )
+									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_DATE )
+									->required()
+									->returnFormat( 'Y-m-d H:i:s' )
+									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
+									->conditionalLogic(
+										array(
+											ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ONCE . '_' . self::META_SEND_ONCE_FUTURE, '==', '1' ),
+										)
+									),
+							)
+						)
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_ACTION, '==', '1' ),
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_ONCE ),
 							)
 						),
-					DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_DATE )
-						->required()
-						->returnFormat( 'Y-m-d H:i:s' )
-						->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
+					Group::make( _x( 'Send repetitive', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE )
+						->fields(
+							array(
+								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_WEEKDAYS )
+									->choices( $weekday_options )
+									->defaultValue( array() )
+									->required()
+									->layout( 'horizontal' ),
+								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_TIME )
+									->required()
+									->returnFormat( 'H:i:s' )
+									->displayFormat( get_option( 'time_format' ) ),
+							)
+						)
 						->conditionalLogic(
 							array(
-								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_SCHEDULE, '==', '1' ),
+								ConditionalLogic::where( self::META_SEND . '_' . self::META_SEND_INTERVAL, '==', self::META_SEND_INTERVAL_OPTION_REPETITIVE ),
 							)
 						),
 				)
