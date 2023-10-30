@@ -7,7 +7,7 @@ use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Codeception\TestCase\WPTestCase;
-use DateTime;
+use DateTimeImmutable;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 
@@ -44,7 +44,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 			)
 		);
 
-		$date = new DateTime( '+1 day', wp_timezone() );
+		$date = new DateTimeImmutable( '+1 day', wp_timezone() );
 		update_field(
 			'send', array(
 				'action'   => '1',
@@ -93,9 +93,9 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
 		// Test scheduled time
-		$date_now      = new DateTime( 'now', wp_timezone() );
-		$date_today    = ( new DateTime( 'now', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
-		$date_tomorrow = ( new DateTime( 'tomorrow', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
+		$date_now      = new DateTimeImmutable( 'now', wp_timezone() );
+		$date_today    = ( new DateTimeImmutable( 'now', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
+		$date_tomorrow = ( new DateTimeImmutable( 'tomorrow', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
 		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
 		$scheduled_ts  = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 		$this->assertGreaterThanOrEqual( $schedule_date->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
@@ -143,7 +143,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 				'interval' => 'once',
 				'once'     => array(
 					'future' => 1,
-					'date'   => ( new DateTime( 'now', wp_timezone() ) )->format( 'Y-m-d H:i:s' ),
+					'date'   => ( new DateTimeImmutable( 'now', wp_timezone() ) )->format( 'Y-m-d H:i:s' ),
 				),
 			), $newsletter->get_id()
 		);
@@ -174,7 +174,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 			)
 		);
 
-		$current_weekday   = ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
+		$current_weekday   = ( new DateTimeImmutable( 'now', wp_timezone() ) )->format( 'w' );
 		$scheduled_weekday = $current_weekday === '1' ? '2' : '1';
 
 		update_field(
@@ -215,7 +215,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 			)
 		);
 
-		$current_weekday   = ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
+		$current_weekday   = ( new DateTimeImmutable( 'now', wp_timezone() ) )->format( 'w' );
 		$scheduled_weekday = $current_weekday;
 
 		update_field(
