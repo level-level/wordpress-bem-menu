@@ -2,7 +2,6 @@
 namespace Clarkson\Theme;
 
 use Clarkson_Core\Objects;
-use Extended\ACF\Key;
 use WP_Post;
 use WP_Term;
 
