@@ -163,6 +163,7 @@ class ArticlesInColumns {
 				)
 				->defaultValue( 2 )
 				->min( 1 )
+				->max( 30 )
 				->step( 1 )
 				->append( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
 				->required(),
