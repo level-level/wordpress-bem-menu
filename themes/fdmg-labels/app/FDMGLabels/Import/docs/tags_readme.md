@@ -5,23 +5,15 @@ Tags have their own separate table, "tag". We need the tag id, tag category id, 
 ## Import notes
 fdmg_import_old_id is prefixed with 'tag_'
 
-## Tags export
+## Export
 
 ```sql
 SELECT id, tag_category_id as taxonomy_id, value as term_name, intro_text as description, enabled, directory as slug
 FROM tag;
 ```
 
-Within the tags table we can also find the podcast series, which we need to separate into a new taxonomy. We filter these out, by searching the value, intro_text and the slug  for "podcast".
-
-```sql
-SELECT id, tag_category_id as taxonomy_id, value as term_name, intro_text as description, enabled, directory as slug
-FROM tag
-WHERE id NOT IN (
-    SELECT id
-    FROM tag
-    WHERE value LIKE '%podcast%'
-    OR intro_text LIKE '%podcast%'
-    OR directory LIKE '%podcast%'
-);
-```
+## Import
+1. Upload the generated CSV file, to create an import for the Category taxonomy.
+2. Please use the [template file](./../WPAllImport/templates/import-tags.txt) to automatically apply all the required import configuration.
+3. Make sure that in settings, "Increase speed by disabling do_action calls in wp_insert_post during import." is enabled.
+4. Run the import.
