@@ -31,6 +31,9 @@ class FeatureManager {
 	public const FEATURE_DISABLE_AUTOFILLING_RELATED_ARTICLES_BLOCK      = 'enable_not_autofilling_related_articles_block';
 	public const FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK = 'disable_default_title_highlighted_content_block';
 
+	// Article options
+	public const FEATURE_ENABLE_MESSAGE_OLD_ARTICLES = 'enable_message_old_articles';
+
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
 	}

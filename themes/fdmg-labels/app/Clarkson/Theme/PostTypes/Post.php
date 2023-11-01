@@ -62,16 +62,9 @@ class Post {
 			return;
 		}
 
-		$paywall_options    = get_field( Paywall::META_PAYWALL, 'options' ) ?: array();
-		$conditional_blocks = array();
+		$paywall_options = get_field( Paywall::META_PAYWALL, 'options' ) ?: array();
 
-		if ( ! empty( $paywall_options ) && $paywall_options[ Paywall::META_PAYWALL_DEFAULT_ACTIVE ] ) {
-			$conditional_blocks = array(
-				array( 'acf/block-ll-paywall-paywall' ),
-			);
-		}
-
-		$default_post_template = array(
+		$soft_template = array(
 			array(
 				'core/paragraph',
 				array(
@@ -89,7 +82,16 @@ class Post {
 			array( 'acf/block-' . RelatedArticles::BLOCK_NAME ),
 		);
 
-		$post_type_object->template = array_merge( $conditional_blocks, $default_post_template );
+		// Adds paywall block after the first block.
+		if ( ! empty( $paywall_options ) && $paywall_options[ Paywall::META_PAYWALL_DEFAULT_ACTIVE ] ) {
+			array_splice(
+				$soft_template, 1, 0, array(
+					array( 'acf/block-ll-paywall-paywall' ),
+				)
+			);
+		}
+
+		$post_type_object->template = $soft_template;
 	}
 
 	/**
