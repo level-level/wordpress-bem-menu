@@ -3,9 +3,10 @@ namespace FDMGLabels\Newsletter;
 
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson_Core\Templates;
+use Clarkson_Core\WordPress_Object\ii_newsletter;
 use WP_Post;
 
-class MergeTags {
+class MergeTagsMetabox {
 
 	public function register_hooks(): void {
 		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
@@ -33,9 +34,5 @@ class MergeTags {
 			array(),
 			true
 		);
-	}
-
-	public function replace_merge_tags( string $text ): string {
-		return $text;
 	}
 }

@@ -8,6 +8,6 @@ class Init {
 		( new PreviewNewsletterScheduler( $newsletter_service ) )->register_hooks();
 		( new SendNewsletterScheduler( $newsletter_service ) )->register_hooks();
 
-		( new MergeTags() )->register_hooks();
+		( new MergeTagsMetabox() )->register_hooks();
 	}
 }

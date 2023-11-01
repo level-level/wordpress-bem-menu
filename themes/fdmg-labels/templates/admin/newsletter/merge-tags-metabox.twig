@@ -8,6 +8,21 @@
 	<h2>{{ _x('Available merge tags', 'Newsletter', 'fdmg-labels-admin') }}</h2>
 
 	<ul>
-		<li></li>
+		<li>
+			<code>{first-article-title}</code>:
+			{{ _x('The title of the first article in the newsletter.', 'Newsletter', 'fdmg-labels-admin') }}
+		</li>
+		<li>
+			<code>{date}</code>:
+			{{ esc_html_x('The date of the newsletter, formatted as configured in %s.', 'Newsletter', 'fdmg-labels-admin')|format(
+				'<a href="' ~ admin_url('options-general.php') ~ '">' ~ esc_html__('General Settings', 'default') ~ '</a>'
+			)|raw }}
+		</li>
+		<li>
+			<code>{date-format-FORMAT}</code>:
+			{{ esc_html_x('The date of the newsletter, in a customized format. Please replace FORMAT with any valid %s. For example: \'Y-m-d H:i:s\'', 'Newsletter', 'fdmg-labels-admin')|format(
+				'<a href="https://www.php.net/manual/en/datetime.format.php">' ~ esc_html_x('PHP date format', 'Newsletter', 'fdmg-labels-admin') ~ '</a>'
+			)|raw }}
+		</li>
 	</ul>
 </div>
