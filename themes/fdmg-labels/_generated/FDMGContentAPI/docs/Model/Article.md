@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **type** | **string** |  |
 **link** | **string** |  | [optional]
 **title** | **string** |  |
+**teaser_title** | **string** |  |
 **content** | **string** |  |
 **excerpt** | **string** |  |
 **author** | [**User**](User.md) |  | [optional]
