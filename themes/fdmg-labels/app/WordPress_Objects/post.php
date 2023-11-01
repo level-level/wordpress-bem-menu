@@ -108,7 +108,7 @@ class post extends base_object {
 	/**
 	 * Show message on articles if it's older then the defined date.
 	 */
-	public function is_old_article_message(): string {
+	public function get_old_article_message(): string {
 		$is_enabled = (bool) get_option( sprintf( 'options_%s_%s', Features::META_FEATURES, FeatureManager::FEATURE_ENABLE_MESSAGE_OLD_ARTICLES ), false );
 
 		if ( ! $is_enabled ) {
