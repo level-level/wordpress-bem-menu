@@ -90,4 +90,10 @@
 			</div>
 		</div>
 	{% endif %}
+
+	{% if notice %}
+		<div class="order-last mt-2 text-base font-bold">
+			{{ notice|raw }}
+		</div>
+	{% endif %}
 </div>
