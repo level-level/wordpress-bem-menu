@@ -3,17 +3,21 @@ namespace FDMGLabels\Newsletter;
 
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 
 class MergeTagsReplacer {
 
 	public function replace( ii_newsletter $newsletter, string $text ): string {
 		$text = $this->replace_first_article_title( $newsletter, $text );
-		$text = $this->replace_date( $newsletter, $text );
-		$text = $this->replace_date_format( $newsletter, $text );
+		$text = $this->replace_date_now( $text );
+		$text = $this->replace_date_now_format( $text );
 		return $text;
 	}
 
+	/**
+	 * Get the first article, and replace the merge tag with the title of the article.
+	 */
 	protected function replace_first_article_title( ii_newsletter $newsletter, string $text ): string {
 		$first_article_title = '';
 		$article_groups      = $newsletter->get_article_groups();
@@ -38,29 +42,27 @@ class MergeTagsReplacer {
 		return $text;
 	}
 
-	protected function replace_date( ii_newsletter $newsletter, string $text ): string {
-		$formatted_date = $this->format_date( get_option( 'date_format' ), $newsletter->get_object()->post_date_gmt );
-		$text           = str_replace( '{date}', $formatted_date, $text );
+	protected function replace_date_now( string $text ): string {
+		$formatted_date = $this->format_date( get_option( 'date_format' ), new DateTimeImmutable( 'now', wp_timezone() ) );
+		$text           = str_replace( '{date-now}', $formatted_date, $text );
 		return $text;
 	}
 
-	protected function replace_date_format( ii_newsletter $newsletter, string $text ): string {
+	protected function replace_date_now_format( string $text ): string {
 		$matches        = array();
-		$number_matches = preg_match_all( '/{date-format-([^{}]+)}/', $text, $matches, PREG_SET_ORDER );
+		$number_matches = preg_match_all( '/{date-now-format-([^{}]+)}/', $text, $matches, PREG_SET_ORDER );
 		if ( ! $number_matches ) {
 			return $text;
 		}
 
 		foreach ( $matches as $match ) {
-			$date = $this->format_date( $match[1], $newsletter->get_object()->post_date_gmt );
+			$date = $this->format_date( $match[1], new DateTimeImmutable( 'now', wp_timezone() ) );
 			$text = str_replace( $match[0], $date, $text );
 		}
 		return $text;
 	}
 
-	protected function format_date( string $format, string $gmt_date ): string {
-		$current_timezone    = wp_timezone();
-		$timezone_gmt_offset = $current_timezone->getOffset( new DateTime( 'now' ) );
-		return date_i18n( $format, strtotime( $gmt_date ) + $timezone_gmt_offset );
+	protected function format_date( string $format, DateTimeInterface $post_date ): string {
+		return date_i18n( $format, $post_date->getTimestamp() );
 	}
 }
