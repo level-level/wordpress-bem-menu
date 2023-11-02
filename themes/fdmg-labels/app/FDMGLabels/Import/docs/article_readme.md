@@ -32,7 +32,7 @@ AND article.article_type = 'ARTICLE'
 ORDER BY article.id
 ```
 
-## import
+## Import
 1. Export the articles in batches.
 2. Create a new import using the import template
 3. run the import
