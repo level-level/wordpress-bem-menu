@@ -147,42 +147,8 @@ class ContentParser {
 		}
 
 		foreach ( $alignment_tags as $alignment_tag ) {
-			$div = $html_dom->createElement( 'div' );
-
-			if ( ! $div instanceof DOMElement ) {
-				continue;
-			}
-
 			if ( $alignment_tag->parentNode ) {
 				$alignment_tag->parentNode->removeChild( $alignment_tag );
-			}
-		}
-		return $html_dom;
-	}
-
-	/**
-	 * @param DOMDocument $html_dom
-	 * @return DOMDocument
-	 * @throws DOMException
-	 */
-	public function remove_fdmg_article_content( DOMDocument $html_dom ): DOMDocument {
-		$xpath                = new DOMXPath( $html_dom );
-		$article_content_tags = $xpath->query( '//fdmg-article-content' );
-
-		if ( ! $article_content_tags instanceof DOMNodeList ) {
-			return $html_dom;
-		}
-
-		foreach ( $article_content_tags as $article_content_tag ) {
-			$div = $html_dom->createElement( 'div' );
-
-			if ( ! $div instanceof DOMElement ) {
-				continue;
-			}
-
-			if ( $article_content_tag->parentNode ) {
-				$article_content_tag->parentNode->insertBefore( $div, $article_content_tag );
-				$article_content_tag->parentNode->removeChild( $article_content_tag );
 			}
 		}
 		return $html_dom;
