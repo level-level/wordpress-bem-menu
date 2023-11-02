@@ -61,25 +61,6 @@ class ImportedContentFinder {
 		return (int) array_shift( $terms );
 	}
 
-	public function get_term_name_from_old_id( string $old_id, ?string $taxonomy = null ): int {
-		/** @var int[] */
-		$terms = get_terms(
-			array(
-				'taxonomy'   => $taxonomy ? $taxonomy : array(),
-				'hide_empty' => false,
-				'fields'     => 'names',
-				'number'     => 1,
-				'meta_query' => array(
-					array(
-						'key'   => Init::META_OLD_ID,
-						'value' => $old_id,
-					),
-				),
-			)
-		);
-		return (int) array_shift( $terms );
-	}
-
 	public function get_comment_id_from_old_id( string $old_id, string $type = '' ): int {
 		/** @var int[] */
 		$terms = get_comments(
