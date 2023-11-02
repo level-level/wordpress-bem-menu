@@ -34,7 +34,6 @@ class ContentParser {
 		}
 
 		$html_dom = $this->remove_fdmg_alignment_tag( $html_dom );
-		$html_dom = $this->remove_fdmg_article_content( $html_dom );
 		$html_dom = $this->parse_fdmg_image_tag( $html_dom );
 		$html_dom = $this->parse_fdmg_pdf_tag( $html_dom );
 		$html_dom = $this->replace_fdmg_related_link( $html_dom );
