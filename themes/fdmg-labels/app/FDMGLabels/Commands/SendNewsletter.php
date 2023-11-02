@@ -7,6 +7,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Exception;
 use FDMGLabels\Connectors\Selligent\Client;
+use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
@@ -19,14 +20,14 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 
 	protected int $newsletter_id;
 
-	/** @var Newsletter::META_SEND_TEST_OPTION_* */
+	/** @var Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* */
 	protected string $test_mode;
 
 	protected SelligentLogger $selligent_logger;
 
 	/**
 	 * @param integer $newsletter_id
-	 * @param Newsletter::META_SEND_TEST_OPTION_* $test_mode
+	 * @param Newsletter::META_PREVIEW_RECIPIENTS_OPTION_* $test_mode
 	 */
 	public function __construct(
 		int $newsletter_id,
@@ -60,16 +61,13 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$started_message = 'Sending the newsletter has started.';
-		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$started_message = sprintf( 'Sending the newsletter in testmode %s has started.', $this->test_mode );
 		}
-		$this->logger?->debug(
+		$this->selligent_logger->add_post_log(
+			$this->newsletter_id,
 			$started_message,
-			array(
-				'fdmg_logger'         => $this->selligent_logger,
-				'fdmg_logger_post_id' => $this->newsletter_id,
-				'newsletter_id'       => $this->newsletter_id,
-			)
+			LogLine::LEVEL_INFO,
 		);
 
 		// Get unique list of article ids
@@ -165,16 +163,13 @@ class SendNewsletter implements CommandInterface, LoggerAwareInterface {
 		}
 
 		$success_message = 'The newsletter has been sent.';
-		if ( $this->test_mode !== Newsletter::META_SEND_TEST_OPTION_NO ) {
+		if ( $this->test_mode !== Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL ) {
 			$success_message = sprintf( 'The newsletter has been sent in testmode %s.', $this->test_mode );
 		}
-		$this->logger?->debug(
+		$this->selligent_logger->add_post_log(
+			$this->newsletter_id,
 			$success_message,
-			array(
-				'fdmg_logger'         => $this->selligent_logger,
-				'fdmg_logger_post_id' => $this->newsletter_id,
-				'newsletter_id'       => $this->newsletter_id,
-			)
+			LogLine::LEVEL_SUCCESS,
 		);
 		return $response;
 	}

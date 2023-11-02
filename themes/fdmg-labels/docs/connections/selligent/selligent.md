@@ -6,9 +6,13 @@ Selligent is a tool used by FD to send newsletters. This is used in the website 
 
 The general flow for creating and sending a newsletter consists of three steps:
 
-1. Registering posts to Selligent
-2. Registering a newsletter to Selligent, with the already registerd posts
+1. Registering posts to Selligent.
+2. Registering a newsletter to Selligent, with the already registerd posts.
 3. Sending the newsletter.
+
+The flow of registering an optin, is simply:
+
+1. Send optin to Selligent.
 
 ## Environments
 
@@ -21,6 +25,12 @@ API base path: /restapi/api/sync/
 
 The settings can be configured in Theme options -> Selligent
 
+## Configuration
+
+Selligent settings need to be configured for each subsite.
+To configure a subsite, use the [Excel sheet](./NEWSLETTER_REST_API_LL.xlsx) to configure all settings.
+And use our password manager to retrieve the passwords.
+
 ## Authentication
 
 ### IP Whitelisting
@@ -29,7 +39,7 @@ Requests can only be sent from authorized ip addresses.
 For local testing, the Pritnl VPN connection has been whitelisted.
 For test, acceptance and production environments, the server IP's should be whitelisted as well.
 
-### Authorization request
+### Authorization header
 
 Authentication is done via an authorization header that is send with the request:
 
@@ -56,7 +66,7 @@ Data:
 
 ```php
 $data = [
-	'publication' => 'IMPACT_INVESTOR',
+	'publication' => '[[PUBLICATION]]',
 	'articleId' => '[[ARTICLEID]]',
 	'title' => '[[ARTICLETITLE]]',
 	'teaser' => '[[ARTICLETEASER]]',
@@ -98,8 +108,8 @@ Data:
 
 ```php
 $data = [
-	'publication' => 'IMPACT_INVESTOR',
-	'type' => 'WEEKLY',
+	'publication' => '[[PUBLICATION]]',
+	'type' => '[[TYPE]]',
 	'subject' => '[[SUBJECT]]'
 	'preheader' => '[[PREHEADER]]',
 	'introduction' => '[[INTRO]]',
@@ -140,10 +150,10 @@ Data:
 
 ```php
 $data = [
-  'Gate' => 'NEWSLETTER_IMPACTINVESTOR',
+  'Gate' => '[[GATE]]',
   'Gateinput' => [
-    'PUBLICATION' => 'IMPACT_INVESTOR',
-    'TYPE' => 'WEEKLY'
+    'PUBLICATION' => '[[PUBLICATION]]',
+    'TYPE' => '[[TYPE]]'
   ]
 ];
 ```
@@ -168,7 +178,7 @@ Data:
 
 ```php
 $data = [
-  'Gate' => 'OPTIN_IMPACTINVESTOR',
+  'Gate' => '[[GATE]]',
   'Gateinput' => [
     'MAIL' => 'mail@example.com'
   ]
