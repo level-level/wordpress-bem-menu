@@ -119,7 +119,10 @@ class ImportedContentFinder {
 		return (int) array_shift( $posts );
 	}
 
-	public function get_author_ids_by_old_ids( string $ids ): string {
+	public function get_author_ids_by_old_ids( ?string $ids ): string {
+		if ( empty( $ids ) ) {
+			return '';
+		}
 		$ids    = explode( ',', $ids );
 		$return = array();
 		foreach ( $ids as $id ) {
@@ -129,7 +132,7 @@ class ImportedContentFinder {
 	}
 
 
-	public function get_categories_from_old_ids( string $ids ): string {
+	public function get_categories_from_old_ids( ?string $ids ): string {
 		if ( empty( $ids ) ) {
 			return '';
 		}
@@ -161,10 +164,10 @@ class ImportedContentFinder {
 	}
 
 	/**
-	 * @param string $id
+	 * @param string|null $id
 	 * @return string
 	 */
-	public function get_section_from_old_id( string $id ): string {
+	public function get_section_from_old_id( ?string $id ): string {
 		if ( empty( $id ) ) {
 			return '';
 		}
