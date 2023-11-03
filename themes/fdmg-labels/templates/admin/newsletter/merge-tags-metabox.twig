@@ -1,0 +1,28 @@
+<div class="newsletter-merge-tags-metabox">
+	<p>
+		{{ _x('You may use merge tags in your newsletter.', 'Newsletter', 'fdmg-labels-admin') }}
+		{{ _x('Merge tags can be used to insert variable content.', 'Newsletter', 'fdmg-labels-admin') }}
+		{{ _x('To use a merge tag, simply copy the merge tag, and place it in your text.', 'Newsletter', 'fdmg-labels-admin') }}
+	</p>
+
+	<h2>{{ _x('Available merge tags', 'Newsletter', 'fdmg-labels-admin') }}</h2>
+
+	<ul>
+		<li>
+			<code>{first-article-title}</code>:
+			{{ _x('The title of the first article in the newsletter.', 'Newsletter', 'fdmg-labels-admin') }}
+		</li>
+		<li>
+			<code>{date-now}</code>:
+			{{ esc_html_x('The current date, formatted as configured in %s.', 'Newsletter', 'fdmg-labels-admin')|format(
+				'<a href="' ~ admin_url('options-general.php') ~ '">' ~ esc_html__('General Settings', 'default') ~ '</a>'
+			)|raw }}
+		</li>
+		<li>
+			<code>{date-now-format-FORMAT}</code>:
+			{{ esc_html_x('The current date, in a customized format. Make sure to replace FORMAT with any valid %s. For example: \'Y-m-d H:i:s\'', 'Newsletter', 'fdmg-labels-admin')|format(
+				'<a href="https://www.php.net/manual/en/datetime.format.php">' ~ esc_html_x('PHP date format', 'Newsletter', 'fdmg-labels-admin') ~ '</a>'
+			)|raw }}
+		</li>
+	</ul>
+</div>
