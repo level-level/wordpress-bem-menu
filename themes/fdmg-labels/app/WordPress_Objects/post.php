@@ -2,9 +2,11 @@
 
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
+use FDMGLabels\FeatureManager;
 use LevelLevel\Paywall\ContentExtractor;
 
 class post extends base_object {
@@ -101,5 +103,30 @@ class post extends base_object {
 		);
 
 		return comment_form( $args );
+	}
+
+	/**
+	 * Show message on articles if it's older then the defined date.
+	 */
+	public function get_old_article_message(): string {
+		$is_enabled = (bool) get_option( sprintf( 'options_%s_%s', Features::META_FEATURES, FeatureManager::FEATURE_ENABLE_MESSAGE_OLD_ARTICLES ), false );
+
+		if ( ! $is_enabled ) {
+			return '';
+		}
+
+		$date    = get_option( sprintf( 'options_%s_%s_%s', Features::META_FEATURES, Features::META_MESSAGE_OLD_ARTICLES, Features::META_DATE ), false );
+		$message = get_option( sprintf( 'options_%s_%s_%s', Features::META_FEATURES, Features::META_MESSAGE_OLD_ARTICLES, Features::META_MESSAGE ), false );
+
+		$publish_date = $this->get_publish_date( 'YYYYMMDD' );
+
+		$article_date     = strtotime( $publish_date['datetime'] );
+		$defined_old_date = strtotime( $date );
+
+		if ( $article_date > $defined_old_date ) {
+			return '';
+		}
+
+		return $message;
 	}
 }

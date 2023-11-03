@@ -7,6 +7,7 @@ use Extended\ACF\Key;
 use FDMGLabels\Connectors\Selligent\Settings\NewsletterTypeSettings;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\Newsletter\ArticleGroup;
+use FDMGLabels\Newsletter\MergeTagsReplacer;
 
 class ii_newsletter extends base_object {
 	public static $type = Newsletter::POST_TYPE_NAME;
@@ -20,15 +21,18 @@ class ii_newsletter extends base_object {
 	}
 
 	public function get_subject(): string {
-		return $this->get_meta( Newsletter::META_SUBJECT, true );
+		$subject = (string) $this->get_meta( Newsletter::META_SUBJECT, true );
+		return ( new MergeTagsReplacer() )->replace( $this, $subject );
 	}
 
 	public function get_pre_header(): string {
-		return $this->get_meta( Newsletter::META_PRE_HEADER, true );
+		$pre_header = (string) $this->get_meta( Newsletter::META_PRE_HEADER, true );
+		return ( new MergeTagsReplacer() )->replace( $this, $pre_header );
 	}
 
 	public function get_introduction(): string {
-		return (string) get_field( Newsletter::META_INTRODUCTION, $this->get_id() );
+		$introduction = (string) get_field( Newsletter::META_INTRODUCTION, $this->get_id() );
+		return ( new MergeTagsReplacer() )->replace( $this, $introduction );
 	}
 
 	/**
