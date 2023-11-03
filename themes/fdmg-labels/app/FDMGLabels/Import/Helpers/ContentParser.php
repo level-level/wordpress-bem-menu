@@ -21,11 +21,24 @@ class ContentParser {
 		return $value;
 	}
 
+	/**
+	 * Given content, is the content free for all and intro paragraph.
+	 * Then prepend the paywall block if the content is not free (payed content)
+	 * Then prepend the content with the intro paragraph
+	 * Then insert the content in DOMDocument to make replacement of custom tags easier.
+	 * Then Replace all custom <FDMG> tags.
+	 * Then Save DOMDocument to html and return html.
+	 * @param string $content
+	 * @param bool $is_free
+	 * @param string $intro
+	 * @return string
+	 * @throws DOMException
+	 */
 	public function parse_article( string $content, bool $is_free, string $intro ): string {
-		$content = $this->prepend_intro( $content, $intro );
 		if ( ! $is_free ) {
 			$content = $this->add_paywall_block( $content );
 		}
+		$content  = $this->prepend_intro( $content, $intro );
 		$content  = $this->wrap_content( $content );
 		$html_dom = $this->get_dom_document( $content );
 
@@ -38,8 +51,8 @@ class ContentParser {
 		$html_dom = $this->parse_fdmg_pdf_tag( $html_dom );
 		$html_dom = $this->replace_fdmg_related_link( $html_dom );
 		$html_dom = $this->replace_fdmg_text_frame( $html_dom );
-		$html_dom = $this->wrap_fdmg_html_embed( $html_dom );
 		$html_dom = $this->replace_fdmg_quote( $html_dom );
+		$html_dom = $this->wrap_fdmg_html_embed( $html_dom );
 
 		$content = $html_dom->saveHTML();
 
@@ -50,6 +63,13 @@ class ContentParser {
 		return $this->dewrap_content( $content );
 	}
 
+	/**
+	 * Given content and intro paragraph
+	 * Prepend intro paragraph as <!-- wp:paragraph --> to the content.
+	 * @param string $content
+	 * @param string $intro
+	 * @return string
+	 */
 	public function prepend_intro( string $content, string $intro ): string {
 		if ( empty( $intro ) ) {
 			return $content;
@@ -61,15 +81,26 @@ class ContentParser {
 		return $block_html . $content;
 	}
 
+	/**
+	 * Given content
+	 * Then prepend the <!-- wp:acf/block-ll-paywall-paywall /--> element to the content.
+	 * @param string $content
+	 * @return string
+	 */
 	public function add_paywall_block( string $content ): string {
 		$paywall_block_html = '<!-- wp:acf/block-ll-paywall-paywall {"name":"acf/block-ll-paywall-paywall","data":{"require_roles_for_access":"1","_require_roles_for_access":"field_5632706c","allowed_user_roles":["fdmg_subscriber"],"_allowed_user_roles":"field_a47006e0"},"align":"center","mode":"preview"} /-->';
 		return $paywall_block_html . $content;
 	}
 
 	/**
+	 * Given HTML content
+	 * When there is a tag called <fdmg-html-embed> with <fdmg-html-content> in it.
+	 * Then use DomDocument to extract the content from it, save it in a reference array and replace it with a reference <div id="uniqueID"></div> element
+	 * When the fdmg-html-embed elements are replaced. Generate new HTML from DOMDocument and string replace the reference div with the original html.
+	 * We do not use DOMDocument to insert the new <-- wp:html /--> block into the content because this html can be invalid and dom document then does not allow insertion.
+	 *
+	 * In the exceptional case
 	 * @param DOMDocument $html_dom
-	 * @return DOMDocument
-	 * @throws DOMException
 	 */
 	public function wrap_fdmg_html_embed( DOMDocument $html_dom ): DOMDocument {
 		$xpath          = new DOMXPath( $html_dom );
@@ -80,33 +111,43 @@ class ContentParser {
 		}
 
 		$html_contents = array( '' );
-		foreach ( $fdmg_html_tags as $html_tag ) {
+		foreach ( $fdmg_html_tags as $html_tag ) { // loop over fdmg-html-embed elements
 
 			if ( ! $html_tag instanceof DOMElement ) {
 				continue;
 			}
 
+			// an <fdmg-html-embed element contains a fdmg-html-content element.
 			$content_element = $html_tag->getElementsByTagName( 'fdmg-html-content' );
 			$content         = '';
 
 			if ( $content_element->length > 0 ) {
-				$html_content = $html_dom->saveHTML( $content_element->item( 0 ) );
+				$html_content = $html_dom->saveHTML( $content_element->item( 0 ) ); // get the html output as a string from <fdmg-html-content>
 				if ( is_string( $html_content ) ) {
+					// strip element tags
 					$content = str_replace( array( '<fdmg-html-content>', '</fdmg-html-content>' ), array( '', '' ), $html_content );
+
+					// convert to regular html
 					$content = html_entity_decode( $content );
 					$content = stripslashes( $content );
 				}
 			}
 
+			// setup Gutenberg block
 			$html_block = '<!-- wp:html -->%s<!-- /wp:html -->';
+			// insert content of <fdmg-html-content> element into Gutenberg block
 			$html_block = sprintf( $html_block, $content );
 
+			// set up a reference array to be able to remove the wrapper later on.
 			$id                   = uniqid();
 			$html_contents[ $id ] = $html_block;
 
+			// set up a div to wrap the gutenberg block in.
+			// dom html needs to have 1 parent element.
 			$dom_html_block = $html_dom->createElement( 'div' );
 			$dom_html_block->setAttribute( 'id', $id );
 
+			// insert the new div before the original fdmg-html-embed and remove the-html-embed
 			if ( $html_tag->parentNode ) {
 				$html_tag->parentNode->insertBefore( $dom_html_block, $html_tag );
 				$html_tag->parentNode->removeChild( $html_tag );
@@ -119,7 +160,7 @@ class ContentParser {
 			return $html_dom;
 		}
 
-		// we are replacing things by hand because html would not allow the crappy html sometimes as new element.
+		// we are replacing things by hand because DOMHtml would not allow the crappy html sometimes as new element.
 		foreach ( $html_contents as $key => $content ) {
 			$html = str_replace( '<div id="' . $key . '"></div>', $content, $html );
 		}
@@ -133,6 +174,9 @@ class ContentParser {
 	}
 
 	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-alignment>
+	 * Then remove tag from content.
 	 * @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 * @throws DOMException
@@ -154,6 +198,10 @@ class ContentParser {
 	}
 
 	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-quote>
+	 * Then extract the 'message' and 'author' from it.
+	 * Then replace tag with GB <!-- wp:quote /--> block and insert the message and author in it.
 	 * @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 */
@@ -191,6 +239,10 @@ class ContentParser {
 	}
 
 	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-text-frame>
+	 * The extract the heading and content from it.
+	 * Then replace the tag with GB <!-- wp:acf/block-highlighted-content /--> and insert the heading and content in it.
 	 * @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 */
@@ -240,6 +292,10 @@ class ContentParser {
 	}
 
 	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-related-link>
+	 * Then extract the prefix, leadtext and relatedurl from it.
+	 * Then replace the tag with GB <!-- wp:acf/block-inline-link /--> and insert the prefix, leadtext and relatedurl in it.
 	 * @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 */
@@ -283,6 +339,11 @@ class ContentParser {
 	}
 
 	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-pdf>
+	 * Then extract the fdmg-id from it.
+	 * Then find the already imported file in DownloadMonitor posts and get the post_id.
+	 * Then replace the tag with GB <!-- wp:acf/block-downloads /--> and insert the post_ids in it
 	 * @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 */
@@ -330,7 +391,12 @@ class ContentParser {
 	}
 
 	/**
-	 * @param DOMDocument $html_dom
+	 * Given html content
+	 *  When there is a tag called <fdmg-image> of <fdmg-text-frame-image>
+	 *  Then extract the fdmg-id, fdmg-alt-text, fdmg-caption and fdmg-credit from it.
+	 *  Then find the already imported attachment by the fdmg-id.
+	 *  Then replace the tag with GB <!-- wp:image /--> and insert the attachment_id, alt-text, caption and credit in it.
+	 *  @param DOMDocument $html_dom
 	 * @return DOMDocument
 	 * @throws DOMException
 	 */
@@ -391,11 +457,13 @@ class ContentParser {
 
 			if ( $caption ) {
 				$caption_span = $html_dom->createElement( 'span', $caption );
+				$caption_span->setAttribute( 'class', 'caption' );
 				$fig_caption->appendChild( $caption_span );
 			}
 
 			if ( $credit ) {
 				$credit_span = $html_dom->createElement( 'span', $credit );
+				$credit_span->setAttribute( 'class', 'photo-credit' );
 				$fig_caption->appendChild( $credit_span );
 			}
 
@@ -435,6 +503,7 @@ class ContentParser {
 		$html_dom->loadHTML( $converted_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD ); //LIBXML_HTML_NODEFDTD
 		return $html_dom;
 	}
+
 	public function dewrap_content( string $content ): string {
 		if ( str_starts_with( $content, $this->get_content_prefix() ) ) {
 			$content = substr( $content, strlen( $this->get_content_prefix() ) );
