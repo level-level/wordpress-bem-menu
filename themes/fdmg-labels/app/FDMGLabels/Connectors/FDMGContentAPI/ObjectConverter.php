@@ -60,6 +60,7 @@ class ObjectConverter {
 		$article->setType( $post->get_post_type() );
 		$article->setLink( $post->get_permalink() ?: null );
 		$article->setTitle( $post->get_title() );
+		$article->setTeaserTitle( $post->get_alternative_title() );
 		$article->setContent( $post->get_unpaywalled_content() );
 		$article->setExcerpt( $post->get_excerpt() );
 		$article->setAuthor( $author_model );
