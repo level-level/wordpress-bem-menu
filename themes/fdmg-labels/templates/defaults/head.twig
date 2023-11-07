@@ -47,7 +47,9 @@
 		</script>
 
 		{% if options.enable_sourcepoint_cmp %}
-			{% include 'partials/gdpr/sourcepoint.twig' %}
+			{% include 'partials/gdpr/sourcepoint.twig' with {
+				options: options.sourcepoint_options,
+			} %}
 		{% endif %}
 
 		{% if options.enable_advertisements %}
