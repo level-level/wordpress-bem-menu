@@ -17,8 +17,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 11. [Short URL's as redirects](./short_urls_readme.md)
 12. [Article redirects as redirects](./article_redirects.md)
 13. [Author redirects as redirects](./author_redirects.md)
-14. Run import of [Pictures](./pictures_readme.md) and [Binary files](./binary_files_readme.md) again.
-15. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
+14. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
 
 ## Table structure
 
