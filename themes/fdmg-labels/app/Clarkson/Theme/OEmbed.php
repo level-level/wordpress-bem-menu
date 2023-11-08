@@ -63,6 +63,7 @@ class OEmbed {
 		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
 			$args['notice_text'] = _x( 'This content is available after accepting the social media cookies.', 'OEmbed', 'fdmg-labels' );
 			$args['button_text'] = _x( 'Change cookie-settings', 'OEmbed', 'fdmg-labels' );
+			$args['cmp_id']      = $options['sourcepoint_options']['sourcepoint_id'];
 		}
 
 		return Templates::get_instance()->render_twig( 'partials/components/oembeds/oembed.twig', $args, true );

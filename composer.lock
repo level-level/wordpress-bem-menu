@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ab7f9cc57dd2a1091f805470b6a1776",
+    "content-hash": "399ea8e062b529f80ee7690e9a6c3feb",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -231,11 +231,11 @@
         },
         {
             "name": "fdmg-labels/fdmg-content-api-client",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "dist": {
                 "type": "path",
                 "url": "themes/fdmg-labels/_generated/FDMGContentAPI",
-                "reference": "9e6df03d7a6f69dc8a47fcf293d069f3eb723189"
+                "reference": "24a03b6fb60ee396ea165819dd2d042e0cc81a82"
             },
             "require": {
                 "ext-curl": "*",
@@ -11325,5 +11325,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }

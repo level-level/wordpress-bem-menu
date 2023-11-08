@@ -24,6 +24,7 @@ class OEmbed implements IModule {
 	source: string | undefined;
 	type: EmbedType;
 	disableNotice: string | undefined;
+	cmpId: number | undefined;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
@@ -33,6 +34,7 @@ class OEmbed implements IModule {
 		this.source = this.element.dataset.source;
 		this.type = this.element.dataset.type as EmbedType;
 		this.disableNotice = this.element.dataset.disableNotice;
+		this.cmpId = this.element.dataset.cmpId ? parseInt(this.element.dataset.cmpId) : undefined;
 		this.initialize();
 	}
 
@@ -54,7 +56,9 @@ class OEmbed implements IModule {
 	 */
 	initSourcepoint() {
 		this.button?.addEventListener('click', () => {
-			window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes');
+			if (this.cmpId) {
+				window._sp_.gdpr.loadPrivacyManagerModal(this.cmpId, 'purposes');
+			}
 		});
 
 		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
@@ -84,7 +88,6 @@ class OEmbed implements IModule {
 							}
 						});
 
-
 						// Check if we have consent for the vendor of the current embed
 						let vendorConsent = false;
 						data.consentedVendors.forEach((element) => {
@@ -94,7 +97,7 @@ class OEmbed implements IModule {
 						});
 
 						// Show the embed if we have both purpose and vendor consent
-						if (purposeConsent && vendorConsent || this.source === 'consent_embed_omny' && purposeConsent) {
+						if ((purposeConsent && vendorConsent) || (this.source === 'consent_embed_omny' && purposeConsent)) {
 							this.showEmbed();
 						}
 

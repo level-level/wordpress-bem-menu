@@ -15,8 +15,9 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 9. Podcasts
 10. [Old URL's as redirects](./old_urls_readme.md)
 11. [Short URL's as redirects](./short_urls_readme.md)
-12. Run import of Pictures and Binary files again.
-13. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
+12. [Article redirects as redirects](./article_redirects.md)
+13. [Author redirects as redirects](./author_redirects.md)
+14. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
 
 ## Table structure
 

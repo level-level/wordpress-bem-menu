@@ -121,6 +121,9 @@ class ObjectConverterTest extends WPTestCase {
 					'post_date'      => '2020-01-01 12:00:00',
 					'post_name'      => 'test-article',
 					'comment_status' => 'open',
+					'meta_input'     => array(
+						'alternative_title' => 'Test article alternative title',
+					),
 				)
 			)
 		);
@@ -134,6 +137,7 @@ class ObjectConverterTest extends WPTestCase {
 		$this->assertSame( $post->get_post_type(), $article_model->getType() );
 		$this->assertSame( $post->get_permalink(), $article_model->getLink() );
 		$this->assertSame( $post->get_title(), $article_model->getTitle() );
+		$this->assertSame( 'Test article alternative title', $article_model->getTeaserTitle() );
 		$this->assertSame( $post->get_unpaywalled_content(), $article_model->getContent() );
 		$this->assertStringContainsString( 'Text before paywall', $article_model->getContent() );
 		$this->assertStringContainsString( 'Text after paywall', $article_model->getContent() );
