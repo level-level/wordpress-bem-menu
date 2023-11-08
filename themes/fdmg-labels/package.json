@@ -34,7 +34,7 @@
     "@level-level/stylelint-config-level-level": "^1.1.0",
     "@level-level/webpack-config": "^1.6.0",
     "@types/body-scroll-lock": "^3.1.2",
-    "@types/jest": "^29.5.4",
+    "@types/jest": "^29.5.8",
     "@types/js-cookie": "^3.0.4",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "babel-jest": "^29.6.4",
