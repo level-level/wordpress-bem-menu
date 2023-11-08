@@ -324,7 +324,7 @@ class ContentParser {
 
 			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"center","mode":"preview"} /-->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $prefix ), wp_json_encode( $leadtext ), wp_json_encode( $relatedurl ) );
+			$filled_json = sprintf( $json, wp_json_encode( $prefix, JSON_UNESCAPED_UNICODE ), wp_json_encode( $leadtext, JSON_UNESCAPED_UNICODE ), wp_json_encode( $relatedurl ) );
 
 			$related_link_block = $html_dom->createDocumentFragment();
 			$related_link_block->appendXML( $filled_json );
