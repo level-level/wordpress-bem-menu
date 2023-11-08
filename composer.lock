@@ -1248,16 +1248,16 @@
         },
         {
             "name": "level-level/wordpress-bem-menu",
-            "version": "v1.0.9",
+            "version": "v1.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/wordpress-bem-menu.git",
-                "reference": "3ccd5829bc18f5f003d3ac811a290751918b107f"
+                "reference": "bca30ca4586f4e14c8a6f2ae7612d25ab560bbec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/wordpress-bem-menu/zipball/3ccd5829bc18f5f003d3ac811a290751918b107f",
-                "reference": "3ccd5829bc18f5f003d3ac811a290751918b107f",
+                "url": "https://api.github.com/repos/level-level/wordpress-bem-menu/zipball/bca30ca4586f4e14c8a6f2ae7612d25ab560bbec",
+                "reference": "bca30ca4586f4e14c8a6f2ae7612d25ab560bbec",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1275,9 +1275,9 @@
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "description": "Better menu implementation for Wordpress using BEM syntax",
             "support": {
-                "source": "https://github.com/level-level/wordpress-bem-menu/tree/v1.0.9"
+                "source": "https://github.com/level-level/wordpress-bem-menu/tree/v1.0.10"
             },
-            "time": "2022-06-27T13:10:13+00:00"
+            "time": "2023-10-12T14:27:29+00:00"
         },
         {
             "name": "level-level/wp-file-mods",
