@@ -1375,11 +1375,11 @@
         },
         {
             "name": "ll-premium/gravityformspolls",
-            "version": "4.0",
+            "version": "4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.0",
-                "shasum": "8d40e5611127be4bedacfd3f67838bc19ee6bc1f",
+                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.1",
+                "shasum": "81e2ae166dd87a9a6a0b267697965ec7973914d5",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
