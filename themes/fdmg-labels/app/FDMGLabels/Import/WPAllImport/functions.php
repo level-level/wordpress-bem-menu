@@ -6,7 +6,6 @@
  * All function names defined in this file should be prefixed with `fdmg_wpai_`.
  */
 
-use FDMGLabels\Import\Helpers\Attachments;
 use FDMGLabels\Import\Helpers\BinaryFiles;
 use FDMGLabels\Import\Helpers\ContentParser;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
@@ -42,7 +41,10 @@ function fdmg_wpai_get_post_status( string $state ): string {
 	return ( new Utilities() )->get_post_status( $state );
 }
 
-function fdmg_wpai_get_post_id_by_old_id( string $prefix, string $old_id ): int {
+function fdmg_wpai_get_post_id_by_old_id( string $prefix, ?string $old_id ): int {
+	if ( empty( $old_id ) ) {
+		return 0;
+	}
 	return ( new ImportedContentFinder() )->get_post_id_from_old_id( $prefix . $old_id );
 }
 
@@ -80,4 +82,37 @@ function fdmg_wpai_binary_file_get_title( string $title, string $file_path ): st
 
 function fdmg_wpai_binary_file_get_wp_attached_file( string $identifier, string $file_path ): string {
 	return ( new BinaryFiles() )->get_wp_attached_file( (int) $identifier, $file_path );
+}
+
+function fdmg_wpai_parse_article( ?string $content, ?string $is_free, ?string $intro ): string {
+	if ( empty( $content ) ) {
+		$content = '';
+	}
+
+	if ( empty( $intro ) ) {
+		$intro = '';
+	}
+
+	return ( new ContentParser() )->parse_article( $content, (bool) $is_free, $intro );
+}
+
+function fdmg_wpai_get_author_ids_by_old_ids( ?string $old_ids ): string {
+	if ( empty( $old_ids ) ) {
+		return '';
+	}
+	return ( new ImportedContentFinder() )->get_author_ids_by_old_ids( $old_ids );
+}
+
+function fdmg_wpai_get_categories_by_old_ids( ?string $old_ids ): string {
+	if ( empty( $old_ids ) ) {
+		return '';
+	}
+	return ( new ImportedContentFinder() )->get_categories_from_old_ids( $old_ids );
+}
+
+function fdmg_wpai_get_section_by_old_id( ?string $old_id ): string {
+	if ( empty( $old_id ) ) {
+		return '';
+	}
+	return ( new ImportedContentFinder() )->get_section_from_old_id( $old_id );
 }
