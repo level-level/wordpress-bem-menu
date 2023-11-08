@@ -226,7 +226,7 @@ class ContentParser {
 
 			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph --><cite>%s</cite></blockquote><!-- /wp:quote -->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $message ), wp_json_encode( $author ) );
+			$filled_json = sprintf( $json, wp_json_encode( $message, JSON_UNESCAPED_UNICODE ), wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) );
 			$quote_block = $html_dom->createDocumentFragment();
 			$quote_block->appendXML( $filled_json );
 
@@ -274,7 +274,7 @@ class ContentParser {
 
 			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"center","mode":"preview"} /-->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $heading ), wp_json_encode( $content ) );
+			$filled_json = sprintf( $json, wp_json_encode( $heading, JSON_UNESCAPED_UNICODE ), wp_json_encode( $content, JSON_UNESCAPED_UNICODE ) );
 			$filled_json = wp_json_encode( $filled_json ); // double encoding is needed te prevent unescaping from breaking code. (\n becomes n)
 			if ( $filled_json === false ) {
 				$filled_json = ''; // reset to empty string. Make sure the original non html tag is still removed.
@@ -324,7 +324,7 @@ class ContentParser {
 
 			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"center","mode":"preview"} /-->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $prefix ), wp_json_encode( $leadtext ), wp_json_encode( $relatedurl ) );
+			$filled_json = sprintf( $json, wp_json_encode( $prefix, JSON_UNESCAPED_UNICODE ), wp_json_encode( $leadtext, JSON_UNESCAPED_UNICODE ), wp_json_encode( $relatedurl ) );
 
 			$related_link_block = $html_dom->createDocumentFragment();
 			$related_link_block->appendXML( $filled_json );
