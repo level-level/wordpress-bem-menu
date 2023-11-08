@@ -26,7 +26,7 @@
     "js-cookie": "^3.0.5"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.22.15",
+    "@babel/preset-env": "^7.23.2",
     "@babel/preset-typescript": "^7.22.15",
     "@jest/globals": "^29.6.4",
     "@level-level/eslint-config-level-level": "^1.2.0",
