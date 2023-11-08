@@ -28,7 +28,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-typescript": "^7.23.2",
-    "@jest/globals": "^29.6.4",
+    "@jest/globals": "^29.7.0",
     "@level-level/eslint-config-level-level": "^1.2.0",
     "@level-level/storybook-config": "^1.0.6",
     "@level-level/stylelint-config-level-level": "^1.1.0",
