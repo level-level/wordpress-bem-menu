@@ -49,7 +49,7 @@
 						<div class="mt-4">
 							<button
 								class="btn btn-link !text-secondary-700 dark:!text-base-50 hocus:underline"
-								onclick="window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes')"
+								onclick="window._sp_.gdpr.loadPrivacyManagerModal({{ options.sourcepoint_options.sourcepoint_id|default(656244) }}, 'purposes')"
 								aria-label="{{ _x('Privacy Settings, open cookie preference dialog', 'Screen reader text', 'fdmg-labels') }}"
 							>
 								{{ _x('Privacy Settings', 'Block', 'fdmg-labels') }}
