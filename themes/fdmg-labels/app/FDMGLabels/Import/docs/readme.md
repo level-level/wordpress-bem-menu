@@ -10,7 +10,7 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 4. [Picture files as Media](./pictures_readme.md)
 5. [Binary files as Media](./binary_files_readme.md)
 6. [Author as Team](./authors_readme.md)
-7. Articles
+7. [Articles as Posts](./articles_readme.md)
 8. Podcast series (taxonomy)
 9. Podcasts
 10. [Old URL's as redirects](./old_urls_readme.md)
