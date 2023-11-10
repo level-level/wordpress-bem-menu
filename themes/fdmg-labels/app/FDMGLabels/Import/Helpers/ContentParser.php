@@ -248,7 +248,7 @@ class ContentParser {
 	 * @return DOMDocument
 	 */
 	public function replace_base64_images( DOMDocument $html_dom ): DOMDocument {
-		$xpath      = new DOMXPath( $html_dom );
+		$xpath    = new DOMXPath( $html_dom );
 		$img_tags = $xpath->query( '//img' );
 
 		if ( ! $img_tags instanceof DOMNodeList ) {
