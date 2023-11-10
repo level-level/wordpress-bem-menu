@@ -52,6 +52,7 @@ class ContentParser {
 		$html_dom = $this->replace_fdmg_related_link( $html_dom );
 		$html_dom = $this->replace_fdmg_text_frame( $html_dom );
 		$html_dom = $this->replace_fdmg_quote( $html_dom );
+		$html_dom = $this->replace_base64_images( $html_dom );
 		$html_dom = $this->wrap_fdmg_html_embed( $html_dom );
 
 		$content = $html_dom->saveHTML();
@@ -233,6 +234,39 @@ class ContentParser {
 			if ( $quote_tag->parentNode ) {
 				$quote_tag->parentNode->insertBefore( $quote_block, $quote_tag );
 				$quote_tag->parentNode->removeChild( $quote_tag );
+			}
+		}
+		return $html_dom;
+	}
+
+	/**
+	 * Given html content
+	 * When there is a tag called <img>
+	 * Determine if it has a base64 src attribute
+	 * Then if it does, remove the img tag from the content.
+	 * @param DOMDocument $html_dom
+	 * @return DOMDocument
+	 */
+	public function replace_base64_images( DOMDocument $html_dom ): DOMDocument {
+		$xpath      = new DOMXPath( $html_dom );
+		$img_tags = $xpath->query( '//img' );
+
+		if ( ! $img_tags instanceof DOMNodeList ) {
+			return $html_dom;
+		}
+
+		foreach ( $img_tags as $img_tag ) {
+			if ( ! $img_tag instanceof DOMElement ) {
+				continue;
+			}
+
+			$src_attribute = $img_tag->getAttribute( 'src' );
+			if ( ! str_contains( $src_attribute, 'base64' ) ) {
+				continue;
+			}
+
+			if ( $img_tag->parentNode ) {
+				$img_tag->parentNode->removeChild( $img_tag );
 			}
 		}
 		return $html_dom;
