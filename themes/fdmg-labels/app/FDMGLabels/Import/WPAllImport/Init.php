@@ -1,6 +1,8 @@
 <?php
 namespace FDMGLabels\Import\WPAllImport;
 
+use Clarkson\Theme\PostTypes\Post;
+use DateTimeZone;
 use DLM_Media_Library;
 use FDMGLabels\Import\Helpers\BinaryFiles;
 use FDMGLabels\Import\Helpers\Pictures;
@@ -9,6 +11,7 @@ use PMXI_Import_Record;
 use SimpleXMLElement;
 use WP_Post;
 use WP_Post_Type;
+use wpdb;
 
 class Init {
 
@@ -17,6 +20,7 @@ class Init {
 		add_filter( 'pmxi_custom_types', array( $this, 'add_extra_post_types' ), 10, 2 );
 		add_filter( 'pmxi_article_data', array( $this, 'set_post_data_for_attachment' ), 10, 4 );
 		add_action( 'pmxi_saved_post', array( $this, 'convert_pdf_to_download' ), 10, 2 );
+		add_action( 'pmxi_saved_post', array( $this, 'set_post_modified_date' ), 10, 2 );
 	}
 
 	public function change_functions_file_path( string $file_path ): string {
@@ -138,5 +142,42 @@ class Init {
 		$old_path = get_post_meta( $id, BinaryFiles::META_OLD_PATH, true );
 		update_post_meta( $assigned_download_id, ImportInit::META_OLD_ID, $old_id );
 		update_post_meta( $assigned_download_id, BinaryFiles::META_OLD_PATH, $old_path );
+	}
+
+	/**
+	 * WP All Import has no way to update the post_modified date of a post.
+	 * This because it uses wp_insert_post() to update the post, which doesn't allow
+	 * you to set the post_modified date.
+	 * This function runs directly after importing a post, and updates the post_modified date using wpdb.
+	 */
+	public function set_post_modified_date( int $id, SimpleXMLElement $xml ): void {
+		/** @var wpdb */
+		global $wpdb;
+
+		// If it's not a post of post type post, skip.
+		if ( Post::POST_TYPE_NAME !== get_post_type( $id ) ) {
+			return;
+		}
+
+		// If modified date cannot be parsed it's invalid, skip.
+		$modified_date        = (string) $xml->last_modified_date;
+		$parsed_modified_date = date_create_immutable( $modified_date, wp_timezone() );
+		if ( empty( $modified_date ) || ! $parsed_modified_date ) {
+			return;
+		}
+
+		$parsed_modified_date_gmt = $parsed_modified_date->setTimezone( new DateTimeZone( 'GMT' ) );
+
+		// Update the post_modified date.
+		$wpdb->update(
+			$wpdb->posts,
+			array(
+				'post_modified'     => $parsed_modified_date->format( 'Y-m-d H:i:s' ),
+				'post_modified_gmt' => $parsed_modified_date_gmt->format( 'Y-m-d H:i:s' ),
+			),
+			array(
+				'ID' => $id,
+			)
+		);
 	}
 }
