@@ -131,7 +131,7 @@ module.exports = {
 				},
 			],
 			md: [
-				'1.125rem', // 18px
+				'1.1875rem', // 19px
 				{
 					lineHeight: '1.5rem', // 24px
 				},

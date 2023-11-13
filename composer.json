@@ -62,6 +62,8 @@
         "fdmg-labels/fdmg-content-api-client": "^1.2",
         "mhcg/monolog-wp-cli": "^1.0",
         "yoast/wordpress-seo": "^21.3",
+        "ext-dom": "*",
+        "ext-libxml": "*",
         "mentosmenno2/image-crop-positioner": "^0.6.0",
         "wpackagist-plugin/user-switching": "^1.7"
     },
