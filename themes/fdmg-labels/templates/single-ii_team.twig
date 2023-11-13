@@ -2,7 +2,7 @@
 {% set object = objects|first %}
 {% set title = object.get_title() %}
 {% set content = object.get_content() %}
-{% set author_posts = object.get_posts_by_author() %}
+{% set author_posts = object.get_posts() %}
 
 {% block header %}
 	<div class="section">
@@ -79,6 +79,10 @@
 				{% endfor %}
 			</ul>
 		</div>
+
+		{% include 'partials/components/pagination.twig' with {
+			custom_args: object.get_pagination_args(),
+		} %}
 	{% endif %}
 {% endblock %}
 
