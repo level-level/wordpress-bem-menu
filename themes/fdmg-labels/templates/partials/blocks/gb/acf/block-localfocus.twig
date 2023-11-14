@@ -3,7 +3,7 @@
 
 {% if embed_id %}
 	<div class="{{ align }}" data-name="{{ block.name }}">
-		<iframe title="{{ title }}" frameborder="0" style="width:100%;height:550px;overflow:hidden" src="https://localfocuswidgets.net/{{ embed_id }}"></iframe>
+		<iframe title="{{ title }}" frameborder="0" style="width:100%;height:550px;overflow:hidden;background-color:#fff;" src="https://localfocuswidgets.net/{{ embed_id }}"></iframe>
 	</div>
 {% else %}
 	{% include 'partials/components/block-placeholder.twig' with {
