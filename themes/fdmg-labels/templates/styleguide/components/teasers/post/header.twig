@@ -52,8 +52,7 @@
 				{% if date.datetime and date.date_full and date.readable %}
 					<div class="shrink-0">
 						<div class="text-sm text-secondary-700 dark:text-base-100">
-							<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-							<time datetime="{{ date.datetime|raw }}" aria-hidden="true">{{ date.readable|raw }}</time>
+							<time datetime="{{ date.datetime|raw }}">{{ date.readable|raw }}</time>
 						</div>
 					</div>
 				{% endif %}
