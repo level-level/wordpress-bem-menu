@@ -2,7 +2,7 @@
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-8">
 
 	<div class="order-2">
-		<h1 class="text-lg font-bold font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl" aria-describedby="a11y-paywall-description">
+		<h1 class="text-lg font-bold break-words font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl" {{ has_paywall_block ? 'aria-describedby="a11y-paywall-description"' }}>
 			{{ title|raw }}
 
 			{% if has_paywall_block %}

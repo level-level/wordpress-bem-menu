@@ -10,6 +10,7 @@ class LocalFocus {
 
 	protected const FIELD_GROUP = 'block_localfocus';
 
+	public const BLOCK_META_TITLE    = 'title';
 	public const BLOCK_META_EMBED_ID = 'embed_id';
 
 	public function register_hooks(): void {
@@ -50,6 +51,10 @@ class LocalFocus {
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'LocalFocus embed', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
+					Text::make( _x( 'Title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE )
+						->instructions( _x( 'For accessibility, it is important that the embed has a clear title. Only visible for screen readers.', 'Fields', 'fdmg-labels-admin' ) )
+						->required(),
+
 					Text::make( _x( 'Embed ID', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_EMBED_ID )
 						->instructions( _x( 'The ID of the embed, for example: 650c463f26fb0', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
