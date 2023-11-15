@@ -2,11 +2,13 @@
 
 namespace FDMGLabels\Import\CLI;
 
-use Clarkson\Theme\PostTypes\Post;
+use Clarkson_Core\WordPress_Object\post as WordPress_ObjectPost;
 use FDMGLabels\Import\Helpers\ImportedContentFinder;
 use WP_CLI;
 
 class ArticleRedirects {
+
+	protected const BATCH_SIZE = 10000;
 
 	protected ImportedContentFinder $imported_content_finder;
 
@@ -27,21 +29,9 @@ class ArticleRedirects {
 	 * wp fdmg-labels import article-redirects run /path/to/articles.csv /path/to/redirects.csv
 	 */
 	public function run( array $args, array $assoc_args ): void {
-		$articles_csv = $args[0] ?? '';
-		if ( empty( $articles_csv ) || ! file_exists( $articles_csv ) ) {
-			WP_CLI::error( sprintf( 'Articles CSV "%s" does not exist', $articles_csv ) );
-			exit;
-		}
-
-		$redirects_csv = $args[1] ?? '';
+		$redirects_csv = $args[0] ?? '';
 		if ( empty( $redirects_csv ) || ! str_ends_with( $redirects_csv, '.csv' ) ) {
-			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $articles_csv ) );
-			exit;
-		}
-
-		$articles_file = fopen( $articles_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
-		if ( ! $articles_file ) {
-			WP_CLI::error( sprintf( 'Could not open articles CSV "%s"', $articles_csv ) );
+			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $redirects_csv ) );
 			exit;
 		}
 
@@ -51,58 +41,81 @@ class ArticleRedirects {
 			exit;
 		}
 
-		$articles_header = fgetcsv( $articles_file );
-		if ( ! $articles_header ) {
-			WP_CLI::error( sprintf( 'Could not read articles CSV header "%s"', $articles_csv ) );
-			exit;
+		// Process articles in batches
+		$batch_number = 1;
+		while ( $posts_batch = $this->get_posts_batch( $batch_number ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+			WP_CLI::log( sprintf( 'Processing batch number %d', $batch_number ) );
+			foreach ( $posts_batch as $post ) {
+				$this->process_post( $post, $redirects_file );
+			}
+			$batch_number++;
 		}
 
-		while ( $row = fgetcsv( $articles_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
-			$this->process_article( array_combine( $articles_header, $row ), $redirects_file );
-		}
-
-		fclose( $articles_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		WP_CLI::success( 'All articles have been processed' );
 	}
 
 	/**
+	 * Gets a single batch of posts
+	 *
+	 * @param integer $batch_number
+	 * @return WordPress_ObjectPost[]
+	 */
+	protected function get_posts_batch( int $batch_number ): array {
+		WP_CLI::log( sprintf( 'Getting batch number %d from database', $batch_number ) );
+		return WordPress_ObjectPost::get_many(
+			array(
+				'orderby'        => 'ID',
+				'order'          => 'ASC',
+				'post_status'    => 'any',
+				'posts_per_page' => self::BATCH_SIZE, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_posts_per_page
+				'paged'          => $batch_number,
+				'meta_query'     => array(
+					array(
+						'key'     => 'fdmg_article_publication_url',
+						'compare' => 'EXISTS',
+					),
+				),
+			)
+		);
+	}
+
+	/**
 	 * Write single article redirect to redirects CSV file.
 	 *
-	 * @param array<string,string> $row
 	 * @param resource $redirects_file
 	 * @return void
 	 */
-	protected function process_article( array $row, $redirects_file ): void {
-		WP_CLI::log( sprintf( 'Processing article ID "%d"', $row['id'] ) );
+	protected function process_post( WordPress_ObjectPost $post, $redirects_file ): void {
+		WP_CLI::log( sprintf( 'Processing article ID "%d"', $post->get_id() ) );
 
-		$post = $this->imported_content_finder->get_post_id_from_old_id( 'article_' . $row['id'], Post::POST_TYPE_NAME );
-		if ( ! $post ) {
-			WP_CLI::warning( sprintf( 'Could not find WordPress post for article ID "%d"', $row['id'] ) );
+		$old_url = $post->get_meta( 'fdmg_article_publication_url', true );
+		if ( ! $old_url ) {
+			WP_CLI::log( sprintf( 'Old publication url is empty for article ID "%d"', $post->get_id() ) );
 			return;
 		}
 
-		$post_permalink = get_permalink( $post );
+		$post_permalink = $post->get_permalink();
 		if ( ! $post_permalink ) {
-			WP_CLI::warning( sprintf( 'Could not find permalink for article ID "%d"', $row['id'] ) );
+			WP_CLI::warning( sprintf( 'Could not find permalink for article ID "%d"', $post->get_id() ) );
 			return;
 		}
 
 		$redirect_data = array(
-			'source_url' => $row['publication_url'],
+			'source_url' => $old_url,
 			'target_url' => str_replace( home_url(), '', $post_permalink ),
 		);
-		if ( $redirect_data['source_url'] === $redirect_data['target_url'] ) {
-			WP_CLI::log( sprintf( 'Source and target URL are the same for article ID "%d"', $row['id'] ) );
+		if ( $redirect_data['source_url'] === untrailingslashit( $redirect_data['target_url'] ) ) {
+			WP_CLI::log( sprintf( 'Source and target URL are the same for article ID "%d"', $post->get_id() ) );
 			return;
 		}
 
 		$written = fputcsv( $redirects_file, $redirect_data );
 		if ( ! $written ) {
-			WP_CLI::warning( sprintf( 'Could not write redirect for article ID "%d"', $row['id'] ) );
+			WP_CLI::warning( sprintf( 'Could not write redirect for article ID "%d"', $post->get_id() ) );
 			return;
 		}
 
-		WP_CLI::log( sprintf( 'Processed article ID "%d"', $row['id'] ) );
+		WP_CLI::log( sprintf( 'Processed article ID "%d"', $post->get_id() ) );
 	}
 }
