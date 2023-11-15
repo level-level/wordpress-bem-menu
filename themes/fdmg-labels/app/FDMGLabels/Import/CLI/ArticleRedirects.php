@@ -63,6 +63,8 @@ class ArticleRedirects {
 	 */
 	protected function get_posts_batch( int $batch_number ): array {
 		WP_CLI::log( sprintf( 'Getting batch number %d from database', $batch_number ) );
+
+		/** @var WordPress_ObjectPost[] */
 		return WordPress_ObjectPost::get_many(
 			array(
 				'orderby'        => 'ID',
