@@ -4,47 +4,37 @@ namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson\Theme\PostTypes\Team;
+use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\post;
+use WP_Post;
+use WP_Query;
 
 class ii_team extends base_object {
 	public static $type = Team::POST_TYPE_NAME;
 
 	/**
-	 * @var null|array<post>
+	 * Cached version of the current paginated posts query.
+	 * @var null|WP_Query
 	 */
-	public ?array $author_posts = null;
-
-	/**
-	 * @var WP_Query
-	 */
-	public ?\WP_Query $author_query = null;
-
-	private function get_post_ids_by_author( int $amount = -1 ): array {
-		$args = array(
-			'post_type'      => PostTypesPost::POST_TYPE_NAME,
-			'posts_per_page' => $amount,
-			'fields'         => 'ids',
-			'meta_query'     => array(
-				array(
-					'key'     => 'authors',
-					'value'   => $this->get_id(),
-					'compare' => 'LIKE',
-				),
-			),
-		);
-
-		return get_posts( $args );
-	}
+	public ?WP_Query $current_paginated_posts_query = null;
 
 	/**
 	 * Get posts for the current author
-	 * @return null|array<post>
+	 * @param array<string,mixed> $query_args
+	 * @return array<post>
 	 */
-	public function get_posts(): ?array {
-		if ( $this->author_posts === null ) {
-			$this->set_posts_and_query();
+	public function get_posts( array $query_args = array() ): array {
+		$query_args['no_found_rows'] = false;
+		$query                       = $this->get_posts_query( $query_args );
+		if ( ! $query->have_posts() ) {
+			return array();
 		}
-		return $this->author_posts;
+
+		/** @var array<WP_Post> */
+		$posts = $query->posts;
+
+		/** @var array<post> */
+		return Objects::get_instance()->get_objects( $posts );
 	}
 
 	public function get_email_address(): string {
@@ -60,56 +50,77 @@ class ii_team extends base_object {
 	}
 
 	/**
-	 * Set the author_posts and author_query for this author object
-	*/
-	private function set_posts_and_query(): void {
-		$post_ids       = $this->get_post_ids_by_author();
-		$posts_per_page = (int) get_option( 'posts_per_page' ) ?: 10;
+	 * Get the current paginated posts as an array of post objects.
+	 *
+	 * @return array<post>
+	 */
+	public function get_current_paginated_posts(): array {
+		$query = $this->get_current_paginated_posts_query();
+		if ( ! $query->have_posts() ) {
+			return array();
+		}
 
-		$wp_query = new \WP_Query(
-			array(
-				'post_type'           => PostTypesPost::POST_TYPE_NAME,
-				'post_status'         => 'publish',
-				'orderby'             => 'date',
-				'order'               => 'DESC',
-				'no_found_rows'       => false,
-				'posts_per_page'      => $posts_per_page,
-				'paged'               => get_query_var( 'paged' ) ?: 1,
-				'post__in'            => empty( $post_ids ) ? array( -1 ) : $post_ids, // Provide array( -1 ) as fallback so WP doesn't start retrieving posts
-				'ignore_sticky_posts' => 1,
+		/** @var array<WP_Post> */
+		$posts = $query->posts;
+
+		/** @var array<post> */
+		return Objects::get_instance()->get_objects( $posts );
+	}
+
+	/**
+	 * Get the WP_Query used to get current paginated posts.
+	 */
+	private function get_current_paginated_posts_query(): WP_Query {
+		if ( $this->current_paginated_posts_query ) {
+			return $this->current_paginated_posts_query;
+		}
+		$args = array(
+			'orderby'             => 'date',
+			'order'               => 'DESC',
+			'ignore_sticky_posts' => true,
+			'posts_per_page'      => (int) get_option( 'posts_per_page' ) ?: 10,
+			'paged'               => get_query_var( 'paged' ) ?: 1,
+		);
+
+		$this->current_paginated_posts_query = $this->get_posts_query( $args );
+		return $this->current_paginated_posts_query;
+	}
+
+	/**
+	 * Get the WP_Query to get posts.
+	 * Please note this also retrieves posts
+	 *
+	 * @param array<string,mixed> $query_args
+	 */
+	private function get_posts_query( array $query_args = array() ): WP_Query {
+		$args = wp_parse_args(
+			$query_args, array(
+				'post_type'   => PostTypesPost::POST_TYPE_NAME,
+				'post_status' => 'publish',
+				'meta_query'  => array(
+					array(
+						'key'     => 'authors',
+						'value'   => maybe_serialize( (string) $this->get_id() ), // ACF saves post ID's as a serialized array of strings
+						'compare' => 'LIKE',
+					),
+				),
 			)
 		);
 
-		$this->author_query = $wp_query;
-
-		$posts = array();
-		foreach ( $wp_query->posts as $wp_post ) {
-			if ( $wp_post instanceof \WP_Post ) {
-				$post    = new post( $wp_post );
-				$posts[] = $post;
-			}
-		}
-		$this->author_posts = $posts;
+		$args['fields'] = 'all';
+		$wp_query       = new WP_Query( $args );
+		return $wp_query;
 	}
 
 	/**
 	 * @return array<string,mixed>
 	 */
-	public function get_pagination_args(): array {
-		if ( $this->author_posts === null || $this->author_query === null ) {
-			$this->set_posts_and_query();
-		}
-
-		$permalink = $this->get_permalink();
-
-		if ( ! $permalink ) {
-			$permalink = '';
-		}
-
+	public function get_current_pagination_args(): array {
+		$query = $this->get_current_paginated_posts_query();
 		return array(
-			'base'    => $permalink . '%_%',
-			'total'   => $this->author_query->max_num_pages ?? 0,
-			'current' => $this->author_query->query_vars['paged'] ?? 1,
+			'format'  => '?paged=%#%',
+			'current' => $query->get( 'paged' ) ?: 1,
+			'total'   => $query->max_num_pages,
 		);
 	}
 }
