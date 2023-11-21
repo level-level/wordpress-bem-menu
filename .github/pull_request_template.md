@@ -26,6 +26,7 @@ Steps to show the feature, or reproduce the bug:
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 - [ ] I have set a label for this PR reflecting the change type (bug, feature, breaking change, etc.).
 - [ ] I have added/updated Storybook component(s).
+- [ ] I have tested new components in darkmode.
 - [ ] I have updated [the documentation](https://docs.google.com/document/d/1RVvER6Yf0R9ceyxUzLcjCLOnObAiJgQrtJ-WPP7HrXQ/edit?usp=sharing) accordingly.
 
 ## Screenshots (if appropriate)
