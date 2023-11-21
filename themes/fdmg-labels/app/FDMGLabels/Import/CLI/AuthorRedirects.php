@@ -97,7 +97,7 @@ class AuthorRedirects {
 			'source_url' => '/auteur/' . $row['directory'],
 			'target_url' => str_replace( home_url(), '', $post_permalink ),
 		);
-		if ( $redirect_data['source_url'] === $redirect_data['target_url'] ) {
+		if ( $redirect_data['source_url'] === untrailingslashit( $redirect_data['target_url'] ) ) {
 			WP_CLI::log( sprintf( 'Source and target URL are the same for author ID "%d"', $author_id ) );
 			return;
 		}

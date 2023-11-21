@@ -131,7 +131,7 @@ module.exports = {
 				},
 			],
 			md: [
-				'1.125rem', // 18px
+				'1.1875rem', // 19px
 				{
 					lineHeight: '1.5rem', // 24px
 				},
@@ -215,6 +215,20 @@ module.exports = {
 						});
 					});
 				}
+			});
+
+			const zoomVariants = {
+				'text-zoom-md': 'text-zoom-125',
+				'text-zoom-lg': 'text-zoom-150',
+				'text-zoom-xl': 'text-zoom-175',
+			};
+
+			Object.keys(zoomVariants).forEach((key) => {
+				addVariant(key, ({ modifySelectors, separator }) => {
+					modifySelectors(({ className }) => {
+						return `.${zoomVariants[key]} .${e(`${key}${separator}${className}`)}`;
+					});
+				})
 			});
 		}),
 	],
