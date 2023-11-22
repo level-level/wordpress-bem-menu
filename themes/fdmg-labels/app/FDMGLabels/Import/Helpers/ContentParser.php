@@ -375,7 +375,7 @@ class ContentParser {
 			$relatedurl_element = $related_link_tag->getElementsByTagName( 'fdmg-relatedurl' );
 			$relatedurl         = $relatedurl_element->item( 0 )->nodeValue ?? '';
 
-			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"center","mode":"preview"} /-->';
+			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"right","mode":"preview"} /-->';
 
 			$filled_json = sprintf( $json, wp_json_encode( $prefix, JSON_UNESCAPED_UNICODE ), wp_json_encode( $leadtext, JSON_UNESCAPED_UNICODE ), wp_json_encode( $relatedurl ) );
 
