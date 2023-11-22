@@ -19,7 +19,6 @@ class Paywall {
 	public const META_PAYWALL_TITLE_REQUIRED_ROLE   = 'title_required_role';
 	public const META_PAYWALL_CONTENT               = 'content';
 	public const META_PAYWALL_CONTENT_REQUIRED_ROLE = 'content_required_role';
-	public const META_PAYWALL_LOGIN_BUTTON          = 'login_button';
 	public const META_PAYWALL_SUBSCRIPTION_BUTTON   = 'subscription_button';
 	public const META_PAYWALL_TAB_NOT_LOGGED_IN     = 'not_logged_in';
 	public const META_PAYWALL_TAB_REQUIRED_ROLES    = 'required_roles';
@@ -71,9 +70,6 @@ class Paywall {
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
 								->mediaUpload( false )
-								->required(),
-							Link::make( _x( 'Login button', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_LOGIN_BUTTON )
-								->instructions( _x( 'The link to the login page.', 'Fields', 'fdmg-labels-admin' ) )
 								->required(),
 							Tab::make( _x( 'When a user role is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_REQUIRED_ROLES )
 								->placement( 'left' ),
