@@ -116,3 +116,8 @@ function fdmg_wpai_get_section_by_old_id( ?string $old_id ): string {
 	}
 	return ( new ImportedContentFinder() )->get_section_from_old_id( $old_id );
 }
+
+function fdmg_wpai_get_slug_from_url( string $url ): string {
+	$parts = explode( '/', $url );
+	return (string) array_pop( $parts );
+}
