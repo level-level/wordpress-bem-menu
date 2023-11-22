@@ -24,7 +24,7 @@
 					</div>
 
 					{# Login button #}
-					{% if is_login_button and is_plugin_active('daggerhart-openid-connect-generic/openid-connect-generic.php') %}
+					{% if is_login_button %}
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('Login', 'Paywall', 'fdmg-labels'),
