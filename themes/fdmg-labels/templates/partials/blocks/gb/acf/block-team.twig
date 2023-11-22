@@ -10,7 +10,7 @@
 					{% set image_id = object.get_thumbnail_id() %}
 					<li>
 						{% include 'styleguide/components/teasers/teaser-team.twig' with {
-							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 							title: object.get_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),

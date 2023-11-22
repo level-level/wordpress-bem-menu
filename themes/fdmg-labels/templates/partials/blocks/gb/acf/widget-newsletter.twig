@@ -3,7 +3,7 @@
 	<div class="{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/newsletter.twig' with {
 			title: newsletter.title,
-			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium'),
+			image: newsletter.image ? wp_get_attachment_image(newsletter.image, 'medium', false, {alt: ''}),
 			content: newsletter.content,
 			button: {
 				title: newsletter.button.title,

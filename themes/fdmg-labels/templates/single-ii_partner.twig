@@ -23,7 +23,7 @@
 		{% include 'styleguide/components/bio.twig' with {
 			subtitle: object.get_subtitle(),
 			excerpt: object.get_excerpt(),
-			logo: image_id ? wp_get_attachment_image(image_id, 'medium'),
+			logo: image_id ? wp_get_attachment_image(image_id, 'medium', false, {alt: ''}),
 		} only %}
 	</div>
 

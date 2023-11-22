@@ -39,8 +39,8 @@
 
 				<li>
 					{% include teaser with {
-						image: image_id ? wp_get_attachment_image(image_id, image_size),
-						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+						image: image_id ? wp_get_attachment_image(image_id, image_size, false, {alt: ''}),
+						image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 						title: object.get_alternative_title()|default(object.get_title()),
 						url: object.get_permalink(),
 						excerpt: object.get_excerpt(),
