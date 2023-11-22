@@ -4,14 +4,12 @@
 {% set title = paywall_content.title %}
 {% set content = paywall_content.content %}
 {% set is_login_button = true %}
-{% set button_text = _x('Login', 'Paywall', 'fdmg-labels') %}
 
 {% if requires_roles_for_access %}
 	{% set is_login_button = false %}
 	{% set title = paywall_content.title_required_role %}
 	{% set content = paywall_content.content_required_role %}
 	{% set button = paywall_content.subscription_button %}
-	{% set button_text = _x('Choose your subscription', 'Paywall', 'fdmg-labels') %}
 {% endif %}
 
 {% if title and content and button or title and content and is_login_button %}
@@ -29,7 +27,7 @@
 					{% if is_login_button and is_plugin_active('daggerhart-openid-connect-generic/openid-connect-generic.php') %}
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: button_text,
+								text: _x('Login', 'Paywall', 'fdmg-labels'),
 								url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
 								class: 'btn-primary',
 								icon: 'external-link',
@@ -41,7 +39,7 @@
 					{% if button and not is_login_button %}
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: button_text,
+								text: _x('Choose your subscription', 'Paywall', 'fdmg-labels'),
 								url: button.url,
 								class: 'btn-primary',
 								icon: 'external-link',
