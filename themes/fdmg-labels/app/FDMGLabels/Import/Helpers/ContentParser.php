@@ -315,6 +315,8 @@ class ContentParser {
 			$content = $html_dom->saveHTML( $content_element ) ?: '';
 			$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
+			$content = str_replace( array( "\r\n", "\n" ), array( "\n\n", "\n\n" ), $content );
+			$content = wpautop( $content );
 			$content = $figure_html . $content;
 
 			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"center","mode":"preview"} /-->';
