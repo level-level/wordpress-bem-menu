@@ -322,7 +322,7 @@ class ContentParser {
 			$align = 'center';
 			$align_element = $text_frame_tag->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
 			if ( $align_element && in_array( $align_element->nodeValue, array( 'left', 'right', 'center' ) ) ) {
-				$align = $align_element->nodeValue ?? 'center';
+				$align = $align_element->nodeValue;
 			}
 
 			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"%s","mode":"preview"} /-->';
