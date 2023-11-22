@@ -7,6 +7,7 @@ namespace FDMGLabels\Import\Helpers;
 use DOMDocument;
 use DOMElement;
 use DOMException;
+use DOMNode;
 use DOMNodeList;
 use DOMXPath;
 
@@ -46,11 +47,11 @@ class ContentParser {
 			return $content;
 		}
 
+		$html_dom = $this->replace_fdmg_text_frame( $html_dom );
 		$html_dom = $this->remove_fdmg_alignment_tag( $html_dom );
 		$html_dom = $this->parse_fdmg_image_tag( $html_dom );
 		$html_dom = $this->parse_fdmg_pdf_tag( $html_dom );
 		$html_dom = $this->replace_fdmg_related_link( $html_dom );
-		$html_dom = $this->replace_fdmg_text_frame( $html_dom );
 		$html_dom = $this->replace_fdmg_quote( $html_dom );
 		$html_dom = $this->replace_base64_images( $html_dom );
 		$html_dom = $this->wrap_fdmg_html_embed( $html_dom );
@@ -296,15 +297,26 @@ class ContentParser {
 			$heading_element = $text_frame_tag->getElementsByTagName( 'fdmg-heading' );
 			$heading         = $heading_element->item( 0 )->nodeValue ?? '';
 
+			// Parse the content of the text frame just like a normal post
 			$content_element = $text_frame_tag->getElementsByTagName( 'fdmg-content' );
-			// we need the contents of the content element so we will save the HTML, but skip the tags
-			$content = $html_dom->saveHTML( $content_element->item( 0 ) );
-
-			if ( ! $content ) {
-				$content = '';
+			$content_element = $content_element->item( 0 );
+			if ( ! $content_element ) {
+				continue;
 			}
 
+			// Prepend image
+			$figure_html = '';
+			$xpath    = new DOMXPath( $html_dom );
+			$images = $xpath->query( '//fdmg-image | //fdmg-text-frame-image', $text_frame_tag ) ?: new DOMNodeList();
+			$image_element = $images->item( 0 );
+			if ( $image_element ) {
+				$figure_html = $this->fdmg_image_to_figure_html( $html_dom, $image_element );
+			}
+
+			$content = $html_dom->saveHTML($content_element);
+			$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
+			$content = $figure_html . $content;
 
 			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"center","mode":"preview"} /-->';
 
@@ -447,20 +459,6 @@ class ContentParser {
 				continue;
 			}
 
-			$picture_id_element = $image_element->getElementsByTagName( 'fdmg-id' );
-			$picture_id         = $picture_id_element->item( 0 )->nodeValue ?? '';
-
-			$attachment_id = ( new ImportedContentFinder() )->get_post_id_from_old_id( 'picture_' . $picture_id, 'attachment' );
-
-			$alt_text_element = $image_element->getElementsByTagName( 'fdmg-alt-text' );
-			$alt_text         = $alt_text_element->item( 0 )->nodeValue ?? '';
-
-			$caption_element = $image_element->getElementsByTagName( 'fdmg-caption' );
-			$caption         = $caption_element->item( 0 )->nodeValue ?? '';
-
-			$credit_element = $image_element->getElementsByTagName( 'fdmg-credit' );
-			$credit         = $credit_element->item( 0 )->nodeValue ?? '';
-
 			/**
 			 * desired output example
 			 * <!-- wp:image {"id":$attachment_id,"sizeSlug":"large","linkDestination":"none"} -->
@@ -472,31 +470,10 @@ class ContentParser {
 			 *   </figcaption>
 			 * </figure>
 			 * <!-- /wp:image -->
-			 */
+			 */;
 
-			// create <figure>
-			$figure = $html_dom->createElement( 'figure' );
-			$figure->setAttribute( 'class', 'wp-block-image size-large is-style-default' );
-
-			$attachment_url = wp_get_attachment_url( $attachment_id ) ?: '';
-			// create <img>
-			$img = $html_dom->createElement( 'img' );
-			$img->setAttribute( 'src', $attachment_url );
-			$img->setAttribute( 'alt', $alt_text );
-			$img->setAttribute( 'class', 'wp-image-' . $attachment_id );
-			$figure->appendChild( $img );
-
-			// Create figcaption
-			$fig_caption = $html_dom->createElement( 'figcaption' );
-			$fig_caption->setAttribute( 'class', 'wp-element-caption' );
-			$fig_caption_text_parts = array( $caption, $credit );
-			$fig_caption_text_parts = array_filter( $fig_caption_text_parts );
-			$fig_caption_text       = implode( ' ', $fig_caption_text_parts );
-			$fig_caption->appendChild( $html_dom->createTextNode( $fig_caption_text ) );
-			$figure->appendChild( $fig_caption );
-
-			$figure_html = $html_dom->saveHTML( $figure );
-
+			$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
+			$figure_html = $this->fdmg_image_to_figure_html( $html_dom, $image_element );
 			if ( empty( $figure_html ) ) {
 				continue;
 			}
@@ -514,6 +491,51 @@ class ContentParser {
 			}
 		}
 		return $html_dom;
+	}
+
+	protected function get_picture_id_from_image_element( DOMDocument $html_dom, DOMElement $image_element ): int {
+		$picture_id_element = $image_element->getElementsByTagName( 'fdmg-id' );
+		$picture_id         = $picture_id_element->item( 0 )->nodeValue ?? '';
+		$picture_id         = str_replace( 'image-', '', $picture_id );
+		return ( new ImportedContentFinder() )->get_post_id_from_old_id( 'picture_' . $picture_id, 'attachment' );
+	}
+
+	protected function fdmg_image_to_figure_html( DOMDocument $html_dom, DOMElement $image_element ): string {
+		$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
+
+		$alt_text_element = $image_element->getElementsByTagName( 'fdmg-alt-text' );
+		$alt_text         = $alt_text_element->item( 0 )->nodeValue ?? '';
+
+		$caption_element = $image_element->getElementsByTagName( 'fdmg-caption' );
+		$caption         = $caption_element->item( 0 )->nodeValue ?? '';
+
+		$credit_element = $image_element->getElementsByTagName( 'fdmg-credit' );
+		$credit         = $credit_element->item( 0 )->nodeValue ?? '';
+
+		// create <figure>
+		$figure = $html_dom->createElement( 'figure' );
+		$figure->setAttribute( 'class', 'wp-block-image size-large is-style-default' );
+
+		$attachment_url = wp_get_attachment_url( $attachment_id ) ?: '';
+		// create <img>
+		$img = $html_dom->createElement( 'img' );
+		$img->setAttribute( 'src', $attachment_url );
+		$img->setAttribute( 'alt', $alt_text );
+		$img->setAttribute( 'class', 'wp-image-' . $attachment_id );
+		$figure->appendChild( $img );
+
+		// Create figcaption
+		$fig_caption = $html_dom->createElement( 'figcaption' );
+		$fig_caption->setAttribute( 'class', 'wp-element-caption' );
+		$fig_caption_text_parts = array( $caption, $credit );
+		$fig_caption_text_parts = array_filter( $fig_caption_text_parts );
+		$fig_caption_text       = implode( ' ', $fig_caption_text_parts );
+		if ( ! empty( $fig_caption_text ) ) {
+			$fig_caption->appendChild( $html_dom->createTextNode( $fig_caption_text ) );
+			$figure->appendChild( $fig_caption );
+		}
+
+		return $html_dom->saveHTML( $figure ) ?: '';
 	}
 
 	public function wrap_content( string $content ): string {
