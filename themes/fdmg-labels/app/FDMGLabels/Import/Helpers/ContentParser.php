@@ -306,7 +306,6 @@ class ContentParser {
 
 			// Prepend image
 			$figure_html   = '';
-			$xpath         = new DOMXPath( $html_dom );
 			$images        = $xpath->query( '//fdmg-image | //fdmg-text-frame-image', $text_frame_tag ) ?: new DOMNodeList();
 			$image_element = $images->item( 0 );
 			if ( $image_element instanceof DOMElement ) {
