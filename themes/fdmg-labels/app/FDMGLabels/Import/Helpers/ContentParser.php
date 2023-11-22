@@ -410,7 +410,15 @@ class ContentParser {
 			$binary_id_element = $pdf_tag->getElementsByTagName( 'fdmg-id' );
 			$binary_id         = $binary_id_element->item( 0 )->nodeValue ?? '';
 
-			$dlm_ids[] = (string) ( new ImportedContentFinder() )->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'dlm_download' );
+			$binary_filename_element = $pdf_tag->getElementsByTagName( 'fdmg-filename' );
+			$binary_filename         = $binary_filename_element->item( 0 )->nodeValue ?? '';
+
+			$imported_content_finder = new ImportedContentFinder();
+			$found_id = $imported_content_finder->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'attachment' );
+			$found_id = $found_id ?: $imported_content_finder->get_download_id_from_old_path( $binary_filename );
+			if ( $found_id ) {
+				$dlm_ids[] = (string) $found_id;
+			}
 
 			if ( $pdf_tag->parentNode ) {
 				$pdf_tag->parentNode->removeChild( $pdf_tag );
