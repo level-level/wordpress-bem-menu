@@ -309,11 +309,11 @@ class ContentParser {
 			$xpath         = new DOMXPath( $html_dom );
 			$images        = $xpath->query( '//fdmg-image | //fdmg-text-frame-image', $text_frame_tag ) ?: new DOMNodeList();
 			$image_element = $images->item( 0 );
-			if ( $image_element ) {
+			if ( $image_element instanceof DOMElement ) {
 				$figure_html = $this->fdmg_image_to_figure_html( $html_dom, $image_element );
 			}
 
-			$content = $html_dom->saveHTML( $content_element );
+			$content = $html_dom->saveHTML( $content_element ) ?: '';
 			$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
 			$content = $figure_html . $content;
@@ -500,6 +500,9 @@ class ContentParser {
 		return ( new ImportedContentFinder() )->get_post_id_from_old_id( 'picture_' . $picture_id, 'attachment' );
 	}
 
+	/**
+	 * Convert an <fdmg-image> or <fdmg-text-frame-image> element to html for a <figure> element.
+	 */
 	protected function fdmg_image_to_figure_html( DOMDocument $html_dom, DOMElement $image_element ): string {
 		$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
 
