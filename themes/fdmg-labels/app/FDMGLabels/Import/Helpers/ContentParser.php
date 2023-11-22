@@ -414,8 +414,8 @@ class ContentParser {
 			$binary_filename         = $binary_filename_element->item( 0 )->nodeValue ?? '';
 
 			$imported_content_finder = new ImportedContentFinder();
-			$found_id = $imported_content_finder->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'attachment' );
-			$found_id = $found_id ?: $imported_content_finder->get_download_id_from_old_path( $binary_filename );
+			$found_id                = $imported_content_finder->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'attachment' );
+			$found_id                = $found_id ?: $imported_content_finder->get_download_id_from_old_path( $binary_filename );
 			if ( $found_id ) {
 				$dlm_ids[] = (string) $found_id;
 			}
