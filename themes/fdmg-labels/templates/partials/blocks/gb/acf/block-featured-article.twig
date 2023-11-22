@@ -21,7 +21,7 @@
 
 				<li>
 					{% include 'styleguide/components/teasers/teaser-post-large.twig' with {
-						image: image_id ? wp_get_attachment_image(image_id, 'large'),
+						image: image_id ? wp_get_attachment_image(image_id, 'large', false, {alt: ''}),
 						title: object.get_alternative_title()|default(object.get_title()),
 						url: object.get_permalink(),
 						excerpt: object.get_excerpt(),

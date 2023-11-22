@@ -52,7 +52,7 @@
 
 					<li>
 						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
-							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 							title: object.get_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
@@ -92,7 +92,7 @@
 		{% include 'styleguide/components/bio.twig' with {
 			title: title,
 			excerpt: object.get_excerpt(),
-			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 			email: object.get_email_address(),
 			linkedin: object.get_linkedin(),
 		} only %}
