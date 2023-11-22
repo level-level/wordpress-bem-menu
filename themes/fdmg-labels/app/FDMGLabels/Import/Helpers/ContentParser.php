@@ -486,22 +486,15 @@ class ContentParser {
 			$img->setAttribute( 'class', 'wp-image-' . $attachment_id );
 			$figure->appendChild( $img );
 
+			// Create figcaption
 			$fig_caption = $html_dom->createElement( 'figcaption' );
 			$fig_caption->setAttribute( 'class', 'wp-element-caption' );
-
-			if ( $caption ) {
-				$caption_span = $html_dom->createElement( 'span', $caption );
-				$caption_span->setAttribute( 'class', 'caption' );
-				$fig_caption->appendChild( $caption_span );
-			}
-
-			if ( $credit ) {
-				$credit_span = $html_dom->createElement( 'span', $credit );
-				$credit_span->setAttribute( 'class', 'photo-credit' );
-				$fig_caption->appendChild( $credit_span );
-			}
-
+			$fig_caption_text_parts = array( $caption, $credit );
+			$fig_caption_text_parts = array_filter( $fig_caption_text_parts );
+			$fig_caption_text       = implode( ' ', $fig_caption_text_parts );
+			$fig_caption->appendChild( $html_dom->createTextNode( $fig_caption_text ) );
 			$figure->appendChild( $fig_caption );
+
 			$figure_html = $html_dom->saveHTML( $figure );
 
 			if ( empty( $figure_html ) ) {
