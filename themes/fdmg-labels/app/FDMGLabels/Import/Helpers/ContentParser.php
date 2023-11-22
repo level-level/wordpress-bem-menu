@@ -225,10 +225,11 @@ class ContentParser {
 
 			$author_element = $quote_tag->getElementsByTagName( 'fdmg-author' );
 			$author         = $author_element->item( 0 )->nodeValue ?? '';
+			$author_html    = $author ? sprintf( '<cite>%s</cite>', wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) ) : '';
 
-			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph --><cite>%s</cite></blockquote><!-- /wp:quote -->';
+			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph -->%s</blockquote><!-- /wp:quote -->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $message, JSON_UNESCAPED_UNICODE ), wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) );
+			$filled_json = sprintf( $json, wp_json_encode( $message, JSON_UNESCAPED_UNICODE ), $author_html );
 			$quote_block = $html_dom->createDocumentFragment();
 			$quote_block->appendXML( $filled_json );
 
