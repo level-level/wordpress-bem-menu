@@ -321,7 +321,7 @@ class ContentParser {
 			// Determine alignment
 			$align = 'center';
 			$align_element = $text_frame_tag->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
-			if ( $align_element ) {
+			if ( $align_element && in_array( $align_element->nodeValue, array( 'left', 'right', 'center' ) ) ) {
 				$align = $align_element->nodeValue ?? 'center';
 			}
 
