@@ -318,9 +318,9 @@ class ContentParser {
 			$content = $figure_html . $content;
 
 			// Determine alignment
-			$align = 'center';
+			$align         = 'center';
 			$align_element = $text_frame_tag->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
-			if ( $align_element && in_array( $align_element->nodeValue, array( 'left', 'right', 'center' ) ) ) {
+			if ( $align_element && in_array( $align_element->nodeValue, array( 'left', 'right', 'center' ), true ) ) {
 				$align = $align_element->nodeValue;
 			}
 
