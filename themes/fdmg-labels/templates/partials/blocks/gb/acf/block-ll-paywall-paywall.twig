@@ -3,17 +3,16 @@
 
 {% set title = paywall_content.title %}
 {% set content = paywall_content.content %}
-{% set button = paywall_content.login_button %}
-{% set button_text = _x('Login', 'Paywall', 'fdmg-labels') %}
+{% set is_login_button = true %}
 
 {% if requires_roles_for_access %}
+	{% set is_login_button = false %}
 	{% set title = paywall_content.title_required_role %}
 	{% set content = paywall_content.content_required_role %}
 	{% set button = paywall_content.subscription_button %}
-	{% set button_text = _x('Choose your subscription', 'Paywall', 'fdmg-labels') %}
 {% endif %}
 
-{% if title and content and button %}
+{% if title and content and button or title and content and is_login_button %}
 	<div data-ll-paywall-module="paywall" data-ll-paywall-post-id="{{ post_id|escape('html_attr') }}" data-name="{{ block.name|escape('html_attr') }}" class="{{ align }} relative {{ not is_admin() ? "before:absolute before:-top-[70px] before:left-0 before:right-0 before:h-[70px] before:bg-gradient-to-t before:from-secondary-50 before:to-transparent before:dark:from-base-700" }}">
 		<div class="relative p-4 sm:p-8 bg-secondary-600 dark:bg-base-400 text-base-50 min-h-[120px] sm:min-h-[150px] sm:text-md font-bold">
 			<div data-ll-paywall-name="initial-content">
@@ -24,10 +23,23 @@
 						{{ content|raw }}
 					</div>
 
-					{% if button %}
+					{# Login button #}
+					{% if is_login_button %}
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: button_text,
+								text: _x('Login', 'Paywall', 'fdmg-labels'),
+								url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
+								class: 'btn-primary',
+								icon: 'external-link',
+							} %}
+						</div>
+					{% endif %}
+
+					{# Subscribe button #}
+					{% if button and not is_login_button %}
+						<div class="mt-3">
+							{% include 'styleguide/components/buttons/button-link.twig' with {
+								text: _x('Choose your subscription', 'Paywall', 'fdmg-labels'),
 								url: button.url,
 								class: 'btn-primary',
 								icon: 'external-link',
