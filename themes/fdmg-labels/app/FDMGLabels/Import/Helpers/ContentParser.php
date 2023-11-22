@@ -318,9 +318,16 @@ class ContentParser {
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
 			$content = $figure_html . $content;
 
-			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"center","mode":"preview"} /-->';
+			// Determine alignment
+			$align = 'center';
+			$align_element = $text_frame_tag->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
+			if ( $align_element ) {
+				$align = $align_element->nodeValue ?? 'center';
+			}
 
-			$filled_json = sprintf( $json, wp_json_encode( $heading, JSON_UNESCAPED_UNICODE ), wp_json_encode( $content, JSON_UNESCAPED_UNICODE ) );
+			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"%s","mode":"preview"} /-->';
+
+			$filled_json = sprintf( $json, wp_json_encode( $heading, JSON_UNESCAPED_UNICODE ), wp_json_encode( $content, JSON_UNESCAPED_UNICODE ), $align );
 			$filled_json = wp_json_encode( $filled_json ); // double encoding is needed te prevent unescaping from breaking code. (\n becomes n)
 			if ( $filled_json === false ) {
 				$filled_json = ''; // reset to empty string. Make sure the original non html tag is still removed.
