@@ -196,6 +196,10 @@ class ContentParser {
 			return '';
 		}
 
+		if ( str_contains( $embed_url, 'localfocuswidgets.net' ) ) {
+			return $this->get_localfocus_embed_gutenberg_block( $embed_url );
+		}
+
 		$oembed      = _wp_oembed_get_object();
 		$oembed_data = $oembed->get_data( $embed_url );
 		if ( ! $oembed_data ) {
@@ -235,6 +239,15 @@ class ContentParser {
 			$embed_url,
 		);
 		return $filled_json;
+	}
+
+	protected function get_localfocus_embed_gutenberg_block( string $url ): string {
+		$id_parts = explode( '/', $url );
+		$id = array_pop( $id_parts );
+		return sprintf(
+			'<!-- wp:acf/block-localfocus {"name":"acf/block-localfocus","data":{"title":"LocalFocus embed","_title":"field_75397267","embed_id":"%s","_embed_id":"field_d90b3c10"},"align":"center","mode":"preview"} /-->',
+			$id,
+		);
 	}
 
 	protected function get_url_from_embed_content( DOMDocument $embed_dom ): string {
