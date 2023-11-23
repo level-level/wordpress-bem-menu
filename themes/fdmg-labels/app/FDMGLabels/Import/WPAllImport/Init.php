@@ -18,6 +18,10 @@ class Init {
 	public function register_hooks(): void {
 		add_filter( 'import_functions_file_path', array( $this, 'change_functions_file_path' ) );
 		add_filter( 'pmxi_custom_types', array( $this, 'add_extra_post_types' ), 10, 2 );
+
+		add_action( 'pmxi_before_post_import', array( $this, 'before_post_import' ) );
+		add_action( 'pmxi_after_post_import', array( $this, 'after_post_import' ) );
+
 		add_filter( 'pmxi_article_data', array( $this, 'set_post_data_for_attachment' ), 10, 4 );
 		add_action( 'pmxi_saved_post', array( $this, 'convert_pdf_to_download' ), 10, 2 );
 		add_action( 'pmxi_saved_post', array( $this, 'set_post_modified_date' ), 10, 2 );
@@ -45,6 +49,16 @@ class Init {
 			}
 		}
 		return $post_types;
+	}
+
+	public function before_post_import(): void {
+		// Remove kses filters, allowing unfiltered HTML in post content.
+		kses_remove_filters();
+	}
+
+	public function after_post_import(): void {
+		// Reset kses filters, possibly filtering HTML in post content.
+		kses_init();
 	}
 
 	/**
