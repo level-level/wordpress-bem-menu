@@ -316,6 +316,8 @@ class ContentParser {
 			$content = $html_dom->saveHTML( $content_element ) ?: '';
 			$content = mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
+			$content = str_replace( array( "\r\n", "\n" ), array( "\n\n", "\n\n" ), $content );
+			$content = wpautop( $content );
 			$content = $figure_html . $content;
 
 			// Determine alignment
