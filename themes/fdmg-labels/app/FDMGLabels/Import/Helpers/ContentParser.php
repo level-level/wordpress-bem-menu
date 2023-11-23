@@ -135,6 +135,15 @@ class ContentParser {
 				}
 			}
 
+			$oembed_block = $this->get_oembed_block( $html_dom, $content );
+			if ( $oembed_block ) {
+				if ( $html_tag->parentNode ) {
+					$html_tag->parentNode->insertBefore( $oembed_block, $html_tag );
+					$html_tag->parentNode->removeChild( $html_tag );
+				}
+				continue;
+			}
+
 			// setup Gutenberg block
 			$html_block = '<!-- wp:html -->%s<!-- /wp:html -->';
 			// insert content of <fdmg-html-content> element into Gutenberg block
@@ -173,6 +182,44 @@ class ContentParser {
 		}
 
 		return $html_dom;
+	}
+
+	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): ?DOMElement {
+		$embed_content_html = $this->wrap_content( $embed_content_html );
+		$embed_dom = $this->get_dom_document( $embed_content_html );
+		$xpath          = new DOMXPath( $embed_dom );
+
+		// TODO: Handle types of iframes
+		$iframes = $xpath->query( '//iframe' ) ?: new DOMNodeList();
+		$iframe = $iframes->item( 0 );
+		if ( ! $iframe instanceof DOMElement ) {
+			return null;
+		}
+
+		// Todo: Change urls if needed so embedding is allowed
+		$iframe_src = $iframe->getAttribute( 'src' );
+		$oembed = _wp_oembed_get_object();
+		$oembed_data = $oembed->get_data( $iframe_src );
+		if ( ! $oembed_data ) {
+			return null;
+		}
+
+		$provider = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
+
+		$json = '<!-- wp:embed {"url":"%s","type":"wp-embed","providerNameSlug":"%s"} --><figure class="wp-block-embed is-type-wp-embed is-provider-%s wp-block-embed-%s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
+
+		$filled_json = sprintf(
+			$json,
+			wp_json_encode( $iframe_src, JSON_UNESCAPED_UNICODE ),
+			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
+			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
+			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
+			wp_json_encode( $iframe_src, JSON_UNESCAPED_UNICODE ),
+		);
+		$embed_block = $html_dom->createDocumentFragment();
+		$embed_block->appendXML( $filled_json );
+
+		return $embed_block;
 	}
 
 	/**
