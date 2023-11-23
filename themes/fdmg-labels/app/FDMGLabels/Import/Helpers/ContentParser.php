@@ -186,33 +186,33 @@ class ContentParser {
 
 	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): string {
 		$embed_content_html = $this->wrap_content( $embed_content_html );
-		$embed_dom = $this->get_dom_document( $embed_content_html );
+		$embed_dom          = $this->get_dom_document( $embed_content_html );
 
 		$embed_url = $this->get_url_from_embed_content( $embed_dom );
 		if ( ! $embed_url ) {
 			return '';
 		}
 
-		$oembed = _wp_oembed_get_object();
+		$oembed      = _wp_oembed_get_object();
 		$oembed_data = $oembed->get_data( $embed_url );
 		if ( ! $oembed_data ) {
 			return '';
 		}
 
-		$provider = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
+		$provider   = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
 		$responsive = '';
-		$classes = '';
-		$classname = '';
-		$type = 'wp-embed';
+		$classes    = '';
+		$classname  = '';
+		$type       = 'wp-embed';
 		if ( $oembed_data->type === 'rich' && $provider === 'twitter' ) {
-			$type = 'rich';
+			$type       = 'rich';
 			$responsive = ',"responsive":true';
-		} else if ( $oembed_data->type === 'video' ) {
+		} elseif ( $oembed_data->type === 'video' ) {
 			$responsive = ',"responsive":true';
-			$classes = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
-			$classname = ',"className":"' . $classes . '"';
-			$type = 'video';
-		} else if( $oembed_data->type === 'photo' || $oembed_data->type === 'image' ) {
+			$classes    = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
+			$classname  = ',"className":"' . $classes . '"';
+			$type       = 'video';
+		} elseif ( $oembed_data->type === 'photo' || $oembed_data->type === 'image' ) {
 			$type = 'image';
 		}
 
@@ -234,21 +234,21 @@ class ContentParser {
 		return $filled_json;
 	}
 
-	protected function get_url_from_embed_content(DOMDocument $embed_dom): string {
-		$url = '';
+	protected function get_url_from_embed_content( DOMDocument $embed_dom ): string {
+		$url   = '';
 		$xpath = new DOMXPath( $embed_dom );
 
 		// Search for elements of specific types
-		$iframe = ( $xpath->query( '//iframe' ) ?: new DOMNodeList() )->item(0);
-		$blockquote = ( $xpath->query( '//blockquote' ) ?: new DOMNodeList() )->item(0);
+		$iframe     = ( $xpath->query( '//iframe' ) ?: new DOMNodeList() )->item( 0 );
+		$blockquote = ( $xpath->query( '//blockquote' ) ?: new DOMNodeList() )->item( 0 );
 
 		// Handle specific elements
 		if ( $iframe instanceof DOMElement ) {
 			$url = $iframe->getAttribute( 'src' );
-		}else if ( $blockquote instanceof DOMElement ) {
+		} elseif ( $blockquote instanceof DOMElement ) {
 			$anchors = $blockquote->getElementsByTagName( 'a' );
-			$anchor = $anchors->item($anchors->count() - 1);
-			$url = $anchor instanceof DomElement ? $anchor->getAttribute( 'href' ) : '';
+			$anchor  = $anchors->item( $anchors->count() - 1 );
+			$url     = $anchor instanceof DomElement ? $anchor->getAttribute( 'href' ) : '';
 		}
 
 		// Convert url if needed
@@ -256,11 +256,11 @@ class ContentParser {
 			if ( str_ends_with( $url, '/embed' ) ) {
 				$url = str_replace( '/embed', '', $url );
 			}
-		} else if ( str_contains( $url, 'youtube.com' ) ) {
+		} elseif ( str_contains( $url, 'youtube.com' ) ) {
 			if ( str_contains( $url, '/embed/' ) ) {
 				$url = str_replace( '/embed/', '/watch?v=', $url );
 			}
-		} else if ( str_contains( $url, 'twitter.com' ) || str_contains( $url, 'x.com' ) ) {
+		} elseif ( str_contains( $url, 'twitter.com' ) || str_contains( $url, 'x.com' ) ) {
 			$url = explode( '?', $url )[0];
 		}
 		return $url;
