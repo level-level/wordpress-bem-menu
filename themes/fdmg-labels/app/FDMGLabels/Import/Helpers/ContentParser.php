@@ -48,13 +48,14 @@ class ContentParser {
 		}
 
 		$html_dom = $this->replace_fdmg_text_frame( $html_dom );
-		$html_dom = $this->remove_fdmg_alignment_tag( $html_dom );
 		$html_dom = $this->parse_fdmg_image_tag( $html_dom );
 		$html_dom = $this->parse_fdmg_pdf_tag( $html_dom );
 		$html_dom = $this->replace_fdmg_related_link( $html_dom );
 		$html_dom = $this->replace_fdmg_quote( $html_dom );
 		$html_dom = $this->replace_base64_images( $html_dom );
+		$html_dom = $this->replace_fdmg_stack_frame( $html_dom );
 		$html_dom = $this->wrap_fdmg_html_embed( $html_dom );
+		$html_dom = $this->remove_fdmg_alignment_tag( $html_dom );
 
 		$content = $html_dom->saveHTML();
 
@@ -269,6 +270,33 @@ class ContentParser {
 
 			if ( $img_tag->parentNode ) {
 				$img_tag->parentNode->removeChild( $img_tag );
+			}
+		}
+		return $html_dom;
+	}
+
+	/**
+	 * Given html content
+	 * When there is a tag called <fdmg-stack-frame>
+	 * Remove the fdmg-stack-frame tag from the content.
+	 * @param DOMDocument $html_dom
+	 * @return DOMDocument
+	 */
+	public function replace_fdmg_stack_frame( DOMDocument $html_dom ): DOMDocument {
+		$xpath            = new DOMXPath( $html_dom );
+		$stack_frame_tags = $xpath->query( '//fdmg-stack-frame' );
+
+		if ( ! $stack_frame_tags instanceof DOMNodeList ) {
+			return $html_dom;
+		}
+
+		foreach ( $stack_frame_tags as $stack_frame_tag ) {
+			if ( ! $stack_frame_tag instanceof DOMElement ) {
+				continue;
+			}
+
+			if ( $stack_frame_tag->parentNode ) {
+				$stack_frame_tag->parentNode->removeChild( $stack_frame_tag );
 			}
 		}
 		return $html_dom;
