@@ -187,6 +187,9 @@ class ContentParser {
 	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): string {
 		$embed_content_html = $this->wrap_content( $embed_content_html );
 		$embed_dom          = $this->get_dom_document( $embed_content_html );
+		if ( ! $embed_dom instanceof DOMDocument ) {
+			return '';
+		}
 
 		$embed_url = $this->get_url_from_embed_content( $embed_dom );
 		if ( ! $embed_url ) {
