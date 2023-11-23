@@ -225,10 +225,11 @@ class ContentParser {
 
 			$author_element = $quote_tag->getElementsByTagName( 'fdmg-author' );
 			$author         = $author_element->item( 0 )->nodeValue ?? '';
+			$author_html    = $author ? sprintf( '<cite>%s</cite>', wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) ) : '';
 
-			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph --><cite>%s</cite></blockquote><!-- /wp:quote -->';
+			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph -->%s</blockquote><!-- /wp:quote -->';
 
-			$filled_json = sprintf( $json, wp_json_encode( $message, JSON_UNESCAPED_UNICODE ), wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) );
+			$filled_json = sprintf( $json, wp_json_encode( $message, JSON_UNESCAPED_UNICODE ), $author_html );
 			$quote_block = $html_dom->createDocumentFragment();
 			$quote_block->appendXML( $filled_json );
 
@@ -317,9 +318,16 @@ class ContentParser {
 			$content = str_replace( array( '<fdmg-content>', '</fdmg-content>' ), array( '', '' ), $content );
 			$content = $figure_html . $content;
 
-			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"center","mode":"preview"} /-->';
+			// Determine alignment
+			$align         = 'center';
+			$align_element = $text_frame_tag->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
+			if ( $align_element && in_array( $align_element->nodeValue, array( 'left', 'right', 'center' ), true ) ) {
+				$align = $align_element->nodeValue;
+			}
 
-			$filled_json = sprintf( $json, wp_json_encode( $heading, JSON_UNESCAPED_UNICODE ), wp_json_encode( $content, JSON_UNESCAPED_UNICODE ) );
+			$json = '<!-- wp:acf/block-highlighted-content {"name":"acf/block-highlighted-content","data":{"title":%s,"_title":"field_91e9c2a3","content":%s,"_content":"field_d75e3e94"},"align":"%s","mode":"preview"} /-->';
+
+			$filled_json = sprintf( $json, wp_json_encode( $heading, JSON_UNESCAPED_UNICODE ), wp_json_encode( $content, JSON_UNESCAPED_UNICODE ), $align );
 			$filled_json = wp_json_encode( $filled_json ); // double encoding is needed te prevent unescaping from breaking code. (\n becomes n)
 			if ( $filled_json === false ) {
 				$filled_json = ''; // reset to empty string. Make sure the original non html tag is still removed.
@@ -367,7 +375,7 @@ class ContentParser {
 			$relatedurl_element = $related_link_tag->getElementsByTagName( 'fdmg-relatedurl' );
 			$relatedurl         = $relatedurl_element->item( 0 )->nodeValue ?? '';
 
-			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"center","mode":"preview"} /-->';
+			$json = '<!-- wp:acf/block-inline-link {"name":"acf/block-inline-link","data":{"title":%s,"_title":"field_b158bbce","link":{"title":%s,"url":%s,"target":""},"_link":"field_5198ad58"},"align":"right","mode":"preview"} /-->';
 
 			$filled_json = sprintf( $json, wp_json_encode( $prefix, JSON_UNESCAPED_UNICODE ), wp_json_encode( $leadtext, JSON_UNESCAPED_UNICODE ), wp_json_encode( $relatedurl ) );
 
