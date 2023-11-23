@@ -144,7 +144,7 @@ class ContentParser {
 			$html_block = sprintf( $html_block, $content );
 
 			// If is oembed, replace html block with oembed block
-			$oembed_block = $this->get_embed_gutenberg_block( $html_dom, $content );
+			$oembed_block = $this->get_embed_gutenberg_block( $content );
 			if ( $oembed_block ) {
 				$html_block = $oembed_block;
 			}
@@ -184,7 +184,10 @@ class ContentParser {
 		return $html_dom;
 	}
 
-	protected function get_embed_gutenberg_block( DOMDocument $html_dom, string $embed_content_html ): string {
+	/**
+	 * Generate a gutenberg block from the embed content.
+	 */
+	protected function get_embed_gutenberg_block( string $embed_content_html ): string {
 		$embed_content_html = $this->wrap_content( $embed_content_html );
 		$embed_dom          = $this->get_dom_document( $embed_content_html );
 		if ( ! $embed_dom instanceof DOMDocument ) {
@@ -243,13 +246,16 @@ class ContentParser {
 
 	protected function get_localfocus_embed_gutenberg_block( string $url ): string {
 		$id_parts = explode( '/', $url );
-		$id = array_pop( $id_parts );
+		$id       = array_pop( $id_parts );
 		return sprintf(
 			'<!-- wp:acf/block-localfocus {"name":"acf/block-localfocus","data":{"title":"LocalFocus embed","_title":"field_75397267","embed_id":"%s","_embed_id":"field_d90b3c10"},"align":"center","mode":"preview"} /-->',
 			$id,
 		);
 	}
 
+	/**
+	 * Attempt to extract an embed url from the content of an embed.
+	 */
 	protected function get_url_from_embed_content( DOMDocument $embed_dom ): string {
 		$url   = '';
 		$xpath = new DOMXPath( $embed_dom );
