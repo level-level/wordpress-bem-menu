@@ -144,7 +144,7 @@ class ContentParser {
 			$html_block = sprintf( $html_block, $content );
 
 			// If is oembed, replace html block with oembed block
-			$oembed_block = $this->get_oembed_block( $html_dom, $content );
+			$oembed_block = $this->get_embed_gutenberg_block( $html_dom, $content );
 			if ( $oembed_block ) {
 				$html_block = $oembed_block;
 			}
@@ -184,7 +184,7 @@ class ContentParser {
 		return $html_dom;
 	}
 
-	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): string {
+	protected function get_embed_gutenberg_block( DOMDocument $html_dom, string $embed_content_html ): string {
 		$embed_content_html = $this->wrap_content( $embed_content_html );
 		$embed_dom          = $this->get_dom_document( $embed_content_html );
 		if ( ! $embed_dom instanceof DOMDocument ) {
