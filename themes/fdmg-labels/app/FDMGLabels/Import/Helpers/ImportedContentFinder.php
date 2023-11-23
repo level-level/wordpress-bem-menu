@@ -100,6 +100,25 @@ class ImportedContentFinder {
 		return (int) array_shift( $posts );
 	}
 
+	public function get_download_id_from_old_path( string $old_path ): int {
+		/** @var int[] */
+		$posts = get_posts(
+			array(
+				'fields'         => 'ids',
+				'post_type'      => 'dlm_download',
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'meta_query'     => array(
+					array(
+						'key'   => AbstractAttachments::META_OLD_PATH,
+						'value' => $old_path,
+					),
+				),
+			)
+		);
+		return (int) array_shift( $posts );
+	}
+
 	public function get_author_ids_by_old_ids( ?string $ids ): string {
 		if ( empty( $ids ) ) {
 			return '';
