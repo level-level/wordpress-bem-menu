@@ -5,6 +5,7 @@
 namespace FDMGLabels\Import\Helpers;
 
 use DOMDocument;
+use DOMDocumentFragment;
 use DOMElement;
 use DOMException;
 use DOMNode;
@@ -136,19 +137,17 @@ class ContentParser {
 				}
 			}
 
-			$oembed_block = $this->get_oembed_block( $html_dom, $content );
-			if ( $oembed_block ) {
-				if ( $html_tag->parentNode ) {
-					$html_tag->parentNode->insertBefore( $oembed_block, $html_tag );
-					$html_tag->parentNode->removeChild( $html_tag );
-				}
-				continue;
-			}
-
+			// Setup default html block
 			// setup Gutenberg block
 			$html_block = '<!-- wp:html -->%s<!-- /wp:html -->';
 			// insert content of <fdmg-html-content> element into Gutenberg block
 			$html_block = sprintf( $html_block, $content );
+
+			// If is oembed, replace html block with oembed block
+			$oembed_block = $this->get_oembed_block( $html_dom, $content );
+			if ( $oembed_block ) {
+				$html_block = $oembed_block;
+			}
 
 			// set up a reference array to be able to remove the wrapper later on.
 			$id                   = uniqid();
@@ -185,42 +184,75 @@ class ContentParser {
 		return $html_dom;
 	}
 
-	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): ?DOMElement {
+	protected function get_oembed_block( DOMDocument $html_dom, string $embed_content_html ): string {
 		$embed_content_html = $this->wrap_content( $embed_content_html );
 		$embed_dom = $this->get_dom_document( $embed_content_html );
-		$xpath          = new DOMXPath( $embed_dom );
 
-		// TODO: Handle types of iframes
-		$iframes = $xpath->query( '//iframe' ) ?: new DOMNodeList();
-		$iframe = $iframes->item( 0 );
-		if ( ! $iframe instanceof DOMElement ) {
-			return null;
+		$embed_url = $this->get_url_from_embed_content( $embed_dom );
+		if ( ! $embed_url ) {
+			return '';
 		}
 
-		// Todo: Change urls if needed so embedding is allowed
-		$iframe_src = $iframe->getAttribute( 'src' );
 		$oembed = _wp_oembed_get_object();
-		$oembed_data = $oembed->get_data( $iframe_src );
+		$oembed_data = $oembed->get_data( $embed_url );
 		if ( ! $oembed_data ) {
-			return null;
+			return '';
+		}
+
+		$responsive = '';
+		$classes = '';
+		$classname = '';
+		$type = 'wp-embed';
+		if ( $oembed_data->type === 'video' ) {
+			$responsive = ',"responsive":true';
+			$classes = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
+			$classname = ',"className":"' . $classes . '"';
+			$type = 'video';
+		} else if( $oembed_data->type === 'photo' || $oembed_data->type === 'image' ) {
+			$type = 'image';
 		}
 
 		$provider = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
 
-		$json = '<!-- wp:embed {"url":"%s","type":"wp-embed","providerNameSlug":"%s"} --><figure class="wp-block-embed is-type-wp-embed is-provider-%s wp-block-embed-%s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
+		$json = '<!-- wp:embed {"url":"%s","type":"%s","providerNameSlug":"%s"%s%s} --><figure class="wp-block-embed is-type-%s is-provider-%s wp-block-embed-%s %s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
 
 		$filled_json = sprintf(
 			$json,
-			wp_json_encode( $iframe_src, JSON_UNESCAPED_UNICODE ),
-			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
-			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
-			wp_json_encode( $provider, JSON_UNESCAPED_UNICODE ),
-			wp_json_encode( $iframe_src, JSON_UNESCAPED_UNICODE ),
+			$embed_url,
+			$type,
+			$provider,
+			$responsive,
+			$classname,
+			$type,
+			$provider,
+			$provider,
+			$classes,
+			$embed_url,
 		);
-		$embed_block = $html_dom->createDocumentFragment();
-		$embed_block->appendXML( $filled_json );
+		return $filled_json;
+	}
 
-		return $embed_block;
+	protected function get_url_from_embed_content(DOMDocument $embed_dom): string {
+		$url = '';
+		$xpath = new DOMXPath( $embed_dom );
+
+		// Handle Iframes
+		$iframe = ( $xpath->query( '//iframe' ) ?: new DOMNodeList() )->item(0);
+		if ( $iframe instanceof DOMElement ) {
+			$url = $iframe->getAttribute( 'src' );
+		}
+
+		// Convert url if needed
+		if ( str_contains( $url, 'omny.fm' ) ) {
+			if ( str_ends_with( $url, '/embed' ) ) {
+				$url = str_replace( '/embed', '', $url );
+			}
+		} else if ( str_contains( $url, 'youtube.com' ) ) {
+			if ( str_contains( $url, '/embed/' ) ) {
+				$url = str_replace( '/embed/', '/watch?v=', $url );
+			}
+		}
+		return $url;
 	}
 
 	/**
