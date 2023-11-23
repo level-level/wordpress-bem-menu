@@ -199,11 +199,15 @@ class ContentParser {
 			return '';
 		}
 
+		$provider = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
 		$responsive = '';
 		$classes = '';
 		$classname = '';
 		$type = 'wp-embed';
-		if ( $oembed_data->type === 'video' ) {
+		if ( $oembed_data->type === 'rich' && $provider === 'twitter' ) {
+			$type = 'rich';
+			$responsive = ',"responsive":true';
+		} else if ( $oembed_data->type === 'video' ) {
 			$responsive = ',"responsive":true';
 			$classes = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
 			$classname = ',"className":"' . $classes . '"';
@@ -211,8 +215,6 @@ class ContentParser {
 		} else if( $oembed_data->type === 'photo' || $oembed_data->type === 'image' ) {
 			$type = 'image';
 		}
-
-		$provider = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
 
 		$json = '<!-- wp:embed {"url":"%s","type":"%s","providerNameSlug":"%s"%s%s} --><figure class="wp-block-embed is-type-%s is-provider-%s wp-block-embed-%s %s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
 
@@ -236,10 +238,17 @@ class ContentParser {
 		$url = '';
 		$xpath = new DOMXPath( $embed_dom );
 
-		// Handle Iframes
+		// Search for elements of specific types
 		$iframe = ( $xpath->query( '//iframe' ) ?: new DOMNodeList() )->item(0);
+		$blockquote = ( $xpath->query( '//blockquote' ) ?: new DOMNodeList() )->item(0);
+
+		// Handle specific elements
 		if ( $iframe instanceof DOMElement ) {
 			$url = $iframe->getAttribute( 'src' );
+		}else if ( $blockquote instanceof DOMElement ) {
+			$anchors = $blockquote->getElementsByTagName( 'a' );
+			$anchor = $anchors->item($anchors->count() - 1);
+			$url = $anchor instanceof DomElement ? $anchor->getAttribute( 'href' ) : '';
 		}
 
 		// Convert url if needed
@@ -251,6 +260,8 @@ class ContentParser {
 			if ( str_contains( $url, '/embed/' ) ) {
 				$url = str_replace( '/embed/', '/watch?v=', $url );
 			}
+		} else if ( str_contains( $url, 'twitter.com' ) || str_contains( $url, 'x.com' ) ) {
+			$url = explode( '?', $url )[0];
 		}
 		return $url;
 	}
