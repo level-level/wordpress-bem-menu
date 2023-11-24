@@ -275,13 +275,9 @@ class ContentParser {
 
 		// Convert url if needed
 		if ( str_contains( $url, 'omny.fm' ) ) {
-			if ( str_ends_with( $url, '/embed' ) ) {
-				$url = str_replace( '/embed', '', $url );
-			}
+			$url = str_replace( '/embed', '', $url );
 		} elseif ( str_contains( $url, 'youtube.com' ) ) {
-			if ( str_contains( $url, '/embed/' ) ) {
-				$url = str_replace( '/embed/', '/watch?v=', $url );
-			}
+			$url = str_replace( '/embed/', '/watch?v=', $url );
 		} elseif ( str_contains( $url, 'twitter.com' ) || str_contains( $url, 'x.com' ) ) {
 			$url = explode( '?', $url )[0];
 		}
