@@ -5,6 +5,7 @@
 namespace FDMGLabels\Import\Helpers;
 
 use DOMDocument;
+use DOMDocumentFragment;
 use DOMElement;
 use DOMException;
 use DOMNode;
@@ -136,10 +137,17 @@ class ContentParser {
 				}
 			}
 
+			// Setup default html block
 			// setup Gutenberg block
 			$html_block = '<!-- wp:html -->%s<!-- /wp:html -->';
 			// insert content of <fdmg-html-content> element into Gutenberg block
 			$html_block = sprintf( $html_block, $content );
+
+			// If is oembed, replace html block with oembed block
+			$oembed_block = $this->get_embed_gutenberg_block( $content );
+			if ( $oembed_block ) {
+				$html_block = $oembed_block;
+			}
 
 			// set up a reference array to be able to remove the wrapper later on.
 			$id                   = uniqid();
@@ -174,6 +182,106 @@ class ContentParser {
 		}
 
 		return $html_dom;
+	}
+
+	/**
+	 * Generate a gutenberg block from the embed content.
+	 */
+	protected function get_embed_gutenberg_block( string $embed_content_html ): string {
+		$embed_content_html = $this->wrap_content( $embed_content_html );
+		$embed_dom          = $this->get_dom_document( $embed_content_html );
+		if ( ! $embed_dom instanceof DOMDocument ) {
+			return '';
+		}
+
+		$embed_url = $this->get_url_from_embed_content( $embed_dom );
+		if ( ! $embed_url ) {
+			return '';
+		}
+
+		if ( str_contains( $embed_url, 'localfocuswidgets.net' ) ) {
+			return $this->get_localfocus_embed_gutenberg_block( $embed_url );
+		}
+
+		$oembed      = _wp_oembed_get_object();
+		$oembed_data = $oembed->get_data( $embed_url );
+		if ( ! $oembed_data ) {
+			return '';
+		}
+
+		$provider   = sanitize_title_with_dashes( $oembed_data->provider_name ?? '' );
+		$responsive = '';
+		$classes    = '';
+		$classname  = '';
+		$type       = 'wp-embed';
+		if ( $oembed_data->type === 'rich' && $provider === 'twitter' ) {
+			$type       = 'rich';
+			$responsive = ',"responsive":true';
+		} elseif ( $oembed_data->type === 'video' ) {
+			$responsive = ',"responsive":true';
+			$classes    = 'wp-embed-aspect-16-9 wp-has-aspect-ratio';
+			$classname  = ',"className":"' . $classes . '"';
+			$type       = 'video';
+		} elseif ( $oembed_data->type === 'photo' || $oembed_data->type === 'image' ) {
+			$type = 'image';
+		}
+
+		$json = '<!-- wp:embed {"url":"%s","type":"%s","providerNameSlug":"%s"%s%s} --><figure class="wp-block-embed is-type-%s is-provider-%s wp-block-embed-%s %s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
+
+		$filled_json = sprintf(
+			$json,
+			$embed_url,
+			$type,
+			$provider,
+			$responsive,
+			$classname,
+			$type,
+			$provider,
+			$provider,
+			$classes,
+			$embed_url,
+		);
+		return $filled_json;
+	}
+
+	protected function get_localfocus_embed_gutenberg_block( string $url ): string {
+		$id_parts = explode( '/', $url );
+		$id       = array_pop( $id_parts );
+		return sprintf(
+			'<!-- wp:acf/block-localfocus {"name":"acf/block-localfocus","data":{"title":"LocalFocus embed","_title":"field_75397267","embed_id":"%s","_embed_id":"field_d90b3c10"},"align":"center","mode":"preview"} /-->',
+			$id,
+		);
+	}
+
+	/**
+	 * Attempt to extract an embed url from the content of an embed.
+	 */
+	protected function get_url_from_embed_content( DOMDocument $embed_dom ): string {
+		$url   = '';
+		$xpath = new DOMXPath( $embed_dom );
+
+		// Search for elements of specific types
+		$iframe     = ( $xpath->query( '//iframe' ) ?: new DOMNodeList() )->item( 0 );
+		$blockquote = ( $xpath->query( '//blockquote' ) ?: new DOMNodeList() )->item( 0 );
+
+		// Handle specific elements
+		if ( $iframe instanceof DOMElement ) {
+			$url = $iframe->getAttribute( 'src' );
+		} elseif ( $blockquote instanceof DOMElement ) {
+			$anchors = $blockquote->getElementsByTagName( 'a' );
+			$anchor  = $anchors->item( $anchors->count() - 1 );
+			$url     = $anchor instanceof DomElement ? $anchor->getAttribute( 'href' ) : '';
+		}
+
+		// Convert url if needed
+		if ( str_contains( $url, 'omny.fm' ) ) {
+			$url = str_replace( '/embed', '', $url );
+		} elseif ( str_contains( $url, 'youtube.com' ) ) {
+			$url = str_replace( '/embed/', '/watch?v=', $url );
+		} elseif ( str_contains( $url, 'twitter.com' ) || str_contains( $url, 'x.com' ) ) {
+			$url = explode( '?', $url )[0];
+		}
+		return $url;
 	}
 
 	/**
