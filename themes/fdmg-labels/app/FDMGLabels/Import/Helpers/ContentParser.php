@@ -626,7 +626,7 @@ class ContentParser {
 			 */
 
 			$fdmg_alignment = $image_element->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
-			$align          = $this->get_wp_alignment_from_fdmg_alignment( $fdmg_alignment ? $fdmg_alignment->nodeValue : '' );
+			$align          = $this->get_wp_alignment_from_fdmg_alignment( $fdmg_alignment ? (string) $fdmg_alignment->nodeValue : '' );
 			$align_json     = $align ? ', "align":"' . $align . '"' : '';
 			$size           = $this->get_image_size_from_wp_alignment( $align );
 
