@@ -19,15 +19,20 @@ final class LogLine {
 	/** @var LogLine::LEVEL_* */
 	protected $level = 'info';
 
+	/** @var array<string,mixed> */
+	protected $extra = array();
+
 	/**
 	 * @param integer $timestamp
 	 * @param string $message
 	 * @param LogLine::LEVEL_* $level
+	 * @param array<string,mixed> $extra
 	 */
-	public function __construct( int $timestamp = 0, string $message = '', string $level = 'info' ) {
+	public function __construct( int $timestamp = 0, string $message = '', string $level = 'info', array $extra = array() ) {
 		$this->timestamp = $timestamp;
 		$this->message   = $message;
 		$this->level     = $level;
+		$this->extra     = $extra;
 	}
 
 	public function get_data(): array {
@@ -35,11 +40,12 @@ final class LogLine {
 			'timestamp' => $this->timestamp,
 			'message'   => $this->message,
 			'level'     => $this->level,
+			'extra'     => $this->extra,
 		);
 	}
 
 	public static function from_data( array $data ): self {
-		return new self( $data['timestamp'] ?? 0, $data['message'] ?? '', $data['level'] ?? 'info' );
+		return new self( $data['timestamp'] ?? 0, $data['message'] ?? '', $data['level'] ?? 'info', $data['extra'] ?? array() );
 	}
 
 	public function get_timestamp(): int {
@@ -75,5 +81,20 @@ final class LogLine {
 	 */
 	public function set_level( string $level ): void {
 		$this->level = $level;
+	}
+
+	/**
+	 * @return array<string,mixed>
+	 */
+	public function get_extra(): array {
+		return $this->extra;
+	}
+
+	/**
+	 * @param array<string,mixed> $extra
+	 * @return void
+	 */
+	public function set_extra( array $extra ): void {
+		$this->extra = $extra;
 	}
 }

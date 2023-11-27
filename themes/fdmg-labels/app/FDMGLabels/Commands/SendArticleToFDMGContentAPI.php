@@ -147,7 +147,8 @@ class SendArticleToFDMGContentAPI implements CommandInterface, LoggerAwareInterf
 					'fdmg_logger'                 => $this->fdmg_logger,
 					'fdmg_logger_post_id'         => $this->post_id,
 					'post_id'                     => $this->post_id,
-					'publish_response_message_id' => $publish_response_message_id,
+					'publish_response'            => $publish_response,
+					'posted_article'              => $article,
 				),
 			);
 		}
