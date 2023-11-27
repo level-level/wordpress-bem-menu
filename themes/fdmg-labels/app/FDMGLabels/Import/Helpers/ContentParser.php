@@ -628,14 +628,15 @@ class ContentParser {
 			$fdmg_alignment = $image_element->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
 			$align = $this->get_wp_alignment_from_fdmg_alignment( $fdmg_alignment ? $fdmg_alignment->nodeValue : '' );
 			$align_json = $align ? ', "align":"' . $align . '"' : '';
+			$size       = $this->get_image_size_from_wp_alignment( $align );
 
 			$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
-			$figure_html   = $this->fdmg_image_to_figure_html( $html_dom, $image_element, $align );
+			$figure_html   = $this->fdmg_image_to_figure_html( $html_dom, $image_element, $align, $size );
 			if ( empty( $figure_html ) ) {
 				continue;
 			}
 
-			$json_start          = sprintf( '<!-- wp:image {"id": %s, "sizeSlug":"large", "linkDestination":"none"%s} -->', $attachment_id, $align_json );
+			$json_start          = sprintf( '<!-- wp:image {"id": %s, "sizeSlug":"%s", "linkDestination":"none"%s} -->', $attachment_id, $size, $align_json );
 			$json_end            = '<!-- /wp:image -->';
 			$gb_image_block_html = sprintf( '%s%s%s', $json_start, htmlspecialchars( $figure_html ), $json_end );
 			$gb_image_block      = $html_dom->createDocumentFragment();
@@ -663,6 +664,13 @@ class ContentParser {
 		return '';
 	}
 
+	protected function get_image_size_from_wp_alignment( string $wp_alignment ): string {
+		if ( in_array( $wp_alignment, array( 'left', 'right' ) ) ) {
+			return 'medium';
+		}
+		return 'full';
+	}
+
 	protected function get_picture_id_from_image_element( DOMDocument $html_dom, DOMElement $image_element ): int {
 		$picture_id_element = $image_element->getElementsByTagName( 'fdmg-id' );
 		$picture_id         = $picture_id_element->item( 0 )->nodeValue ?? '';
@@ -673,7 +681,7 @@ class ContentParser {
 	/**
 	 * Convert an <fdmg-image> or <fdmg-text-frame-image> element to html for a <figure> element.
 	 */
-	protected function fdmg_image_to_figure_html( DOMDocument $html_dom, DOMElement $image_element, string $align ): string {
+	protected function fdmg_image_to_figure_html( DOMDocument $html_dom, DOMElement $image_element, string $align = '', string $size = 'full' ): string {
 		$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
 
 		$alt_text_element = $image_element->getElementsByTagName( 'fdmg-alt-text' );
@@ -687,13 +695,15 @@ class ContentParser {
 
 		// create <figure>
 		$figure = $html_dom->createElement( 'figure' );
-		$classes = array( 'wp-block-image', 'size-large', 'is-style-default' );
+		$classes = array( 'wp-block-image', 'size-' . $size, 'is-style-default' );
 		if ( $align ) {
 			$classes[] = 'align' . $align;
 		}
 		$figure->setAttribute( 'class', implode( ' ', $classes ) );
 
-		$attachment_url = wp_get_attachment_url( $attachment_id ) ?: '';
+		$attachment_src = wp_get_attachment_image_src( $attachment_id, $size ) ?: array();
+		$attachment_url = $attachment_src[0] ?? '';
+
 		// create <img>
 		$img = $html_dom->createElement( 'img' );
 		$img->setAttribute( 'src', $attachment_url );
