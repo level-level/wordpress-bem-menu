@@ -40,7 +40,7 @@
 	a:not([class]) {
 		@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
 		@apply dark:text-primary-300;
-		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50;
+		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-energeia:dark:hocus:text-primary-300;
 	}
 
 	ul,
@@ -59,7 +59,7 @@
 	> p:not([class]),
 	> ol:not([class]),
 	> ul:not([class]),
-	a:not([class]) {
+	> a:not([class]) {
 		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 }
