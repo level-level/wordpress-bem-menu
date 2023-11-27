@@ -626,9 +626,9 @@ class ContentParser {
 			 */
 
 			$fdmg_alignment = $image_element->getElementsByTagName( 'fdmg-alignment' )->item( 0 );
-			$align = $this->get_wp_alignment_from_fdmg_alignment( $fdmg_alignment ? $fdmg_alignment->nodeValue : '' );
-			$align_json = $align ? ', "align":"' . $align . '"' : '';
-			$size       = $this->get_image_size_from_wp_alignment( $align );
+			$align          = $this->get_wp_alignment_from_fdmg_alignment( $fdmg_alignment ? $fdmg_alignment->nodeValue : '' );
+			$align_json     = $align ? ', "align":"' . $align . '"' : '';
+			$size           = $this->get_image_size_from_wp_alignment( $align );
 
 			$attachment_id = $this->get_picture_id_from_image_element( $html_dom, $image_element );
 			$figure_html   = $this->fdmg_image_to_figure_html( $html_dom, $image_element, $align, $size );
@@ -694,7 +694,7 @@ class ContentParser {
 		$credit         = $credit_element->item( 0 )->nodeValue ?? '';
 
 		// create <figure>
-		$figure = $html_dom->createElement( 'figure' );
+		$figure  = $html_dom->createElement( 'figure' );
 		$classes = array( 'wp-block-image', 'size-' . $size, 'is-style-default' );
 		if ( $align ) {
 			$classes[] = 'align' . $align;
