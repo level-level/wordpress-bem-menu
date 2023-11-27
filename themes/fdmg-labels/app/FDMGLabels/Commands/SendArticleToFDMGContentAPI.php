@@ -144,10 +144,11 @@ class SendArticleToFDMGContentAPI implements CommandInterface, LoggerAwareInterf
 			$this->logger->info(
 				'Success: SendArticleToFDMGContentAPI: Successfully sent post to FDMG Content API',
 				array(
-					'fdmg_logger'                 => $this->fdmg_logger,
-					'fdmg_logger_post_id'         => $this->post_id,
-					'post_id'                     => $this->post_id,
-					'publish_response_message_id' => $publish_response_message_id,
+					'fdmg_logger'         => $this->fdmg_logger,
+					'fdmg_logger_post_id' => $this->post_id,
+					'post_id'             => $this->post_id,
+					'publish_response'    => $publish_response,
+					'posted_article'      => $article,
 				),
 			);
 		}

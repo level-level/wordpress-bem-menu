@@ -24,15 +24,15 @@ class PSR3BaseLoggerAdapter extends AbstractLogger {
 
 		$fdmg_error_level = $this->map_error_level( $level, $message );
 		if ( isset( $context['fdmg_logger_post_id'] ) && is_int( $context['fdmg_logger_post_id'] ) ) {
-			$fdmg_logger->add_post_log( $context['fdmg_logger_post_id'], $message, $fdmg_error_level );
+			$fdmg_logger->add_post_log( $context['fdmg_logger_post_id'], $message, $fdmg_error_level, $context );
 		}
 
 		if ( isset( $context['fdmg_logger_user_id'] ) && is_int( $context['fdmg_logger_user_id'] ) ) {
-			$fdmg_logger->add_user_log( $context['fdmg_logger_user_id'], $message, $fdmg_error_level );
+			$fdmg_logger->add_user_log( $context['fdmg_logger_user_id'], $message, $fdmg_error_level, $context );
 		}
 
 		if ( isset( $context['fdmg_logger_gf_entry_id'] ) && is_int( $context['fdmg_logger_gf_entry_id'] ) ) {
-			$fdmg_logger->add_gravityforms_entry_log( $context['fdmg_logger_gf_entry_id'], $message, $fdmg_error_level );
+			$fdmg_logger->add_gravityforms_entry_log( $context['fdmg_logger_gf_entry_id'], $message, $fdmg_error_level, $context );
 		}
 	}
 
