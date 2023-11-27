@@ -44,8 +44,19 @@ final class LogLine {
 		);
 	}
 
+	/**
+	 * Convert an array of data from the database to a LogLine object.
+	 *
+	 * @param array<string,mixed> $data
+	 * @return self
+	 */
 	public static function from_data( array $data ): self {
-		return new self( $data['timestamp'] ?? 0, $data['message'] ?? '', $data['level'] ?? 'info', $data['extra'] ?? array() );
+		return new self(
+			$data['timestamp'] ?? 0,
+			$data['message'] ?? '',
+			$data['level'] ?? 'info',
+			$data['extra'] ?? array()
+		);
 	}
 
 	public function get_timestamp(): int {
