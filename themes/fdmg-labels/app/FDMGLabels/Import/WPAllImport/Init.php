@@ -18,6 +18,7 @@ class Init {
 	public function register_hooks(): void {
 		add_filter( 'import_functions_file_path', array( $this, 'change_functions_file_path' ) );
 		add_filter( 'pmxi_custom_types', array( $this, 'add_extra_post_types' ), 10, 2 );
+		add_filter( 'wp_all_import_content_images_get_full_size', '__return_false' );
 
 		add_action( 'pmxi_before_post_import', array( $this, 'before_post_import' ) );
 		add_action( 'pmxi_after_post_import', array( $this, 'after_post_import' ) );
