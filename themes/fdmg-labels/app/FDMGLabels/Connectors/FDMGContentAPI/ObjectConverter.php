@@ -96,16 +96,18 @@ class ObjectConverter {
 		$author       = $image->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
-		// Set the global post to the image post to make sure the_content() works.
+		// Overwrite the global post to the image post to make sure the_content() works.
+		// phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
 		$image_object = $image->get_object();
 		$old_post     = $post;
 		$post         = $image_object;
 		setup_postdata( $post );
 		ob_start();
 		the_content();
-		$content = ob_get_clean();
+		$content = ob_get_clean() ?: '';
 		wp_reset_postdata();
 		$post = $old_post;
+		// phpcs:enable WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		// Create the image model.
 		$image_model = new Image();
