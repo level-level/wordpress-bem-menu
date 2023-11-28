@@ -96,11 +96,10 @@ class ObjectConverter {
 		$author       = $image->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
-
 		// Set the global post to the image post to make sure the_content() works.
 		$image_object = $image->get_object();
-		$old_post = $post;
-		$post = $image_object;
+		$old_post     = $post;
+		$post         = $image_object;
 		setup_postdata( $post );
 		ob_start();
 		the_content();

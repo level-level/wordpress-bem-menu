@@ -82,11 +82,11 @@ class ObjectConverterTest extends WPTestCase {
 	public function test_image(): void {
 		// Use different path to test the getDescription function
 		$image_paths = array(
-            DIR_TESTDATA . '/images/test-image-large.png',
-            DIR_TESTDATA . '/images/canola.jpg'
-        );
+			DIR_TESTDATA . '/images/test-image-large.png',
+			DIR_TESTDATA . '/images/canola.jpg',
+		);
 
-		foreach ($image_paths as $image_path) {
+		foreach ( $image_paths as $image_path ) {
 			$image = attachment::get( $this->factory()->attachment->create_upload_object( $image_path ) );
 
 			$image_model = $this->object_converter->image( $image );
