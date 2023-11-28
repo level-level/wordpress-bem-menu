@@ -83,6 +83,7 @@ class ObjectConverter {
 	 * Convert an attachment to a FDMG Content API image
 	 */
 	public function image( attachment $image ): Image {
+		global $post;
 		$media_details = wp_get_attachment_metadata( $image->get_id() ) ?: array();
 
 		$media_details_model = new ImageMediaDetails();
@@ -95,6 +96,19 @@ class ObjectConverter {
 		$author       = $image->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
+
+		// Set the global post to the image post to make sure the_content() works.
+		$image_object = $image->get_object();
+		$old_post = $post;
+		$post = $image_object;
+		setup_postdata( $post );
+		ob_start();
+		the_content();
+		$content = ob_get_clean();
+		wp_reset_postdata();
+		$post = $old_post;
+
+		// Create the image model.
 		$image_model = new Image();
 		$image_model->setId( $image->get_id() );
 		$image_model->setDate( new DateTime( $image->get_object()->post_date, wp_timezone() ) );
@@ -103,7 +117,7 @@ class ObjectConverter {
 		$image_model->setStatus( $image->get_status() );
 		$image_model->setType( $image->get_post_type() );
 		$image_model->setTitle( $image->get_title() );
-		$image_model->setDescription( $image->get_content() );
+		$image_model->setDescription( $content );
 		$image_model->setAuthor( $author_model );
 		$image_model->setCaption( $image->get_excerpt() );
 		$image_model->setAltText( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '' );
