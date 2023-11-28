@@ -89,6 +89,7 @@ class ObjectConverter {
 		$media_details_model->setWidth( $media_details['width'] ?? 0 );
 		$media_details_model->setHeight( $media_details['height'] ?? 0 );
 		$media_details_model->setFile( $media_details['file'] ?? '' );
+		$media_details_model->setUrl( wp_get_attachment_url( $image->get_id() ) ?: '' );
 		$media_details_model->setFilesize( $media_details['filesize'] ?? 0 );
 
 		$author       = $image->get_author();

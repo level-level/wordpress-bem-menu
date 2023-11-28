@@ -100,6 +100,7 @@ class ObjectConverterTest extends WPTestCase {
 		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['width'], $media_details_model->getWidth() );
 		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['height'], $media_details_model->getHeight() );
 		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['file'], $media_details_model->getFile() );
+		$this->assertSame( wp_get_attachment_url( $image->get_id() ), $media_details_model->getUrl() );
 		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['filesize'], $media_details_model->getFilesize() );
 	}
 
