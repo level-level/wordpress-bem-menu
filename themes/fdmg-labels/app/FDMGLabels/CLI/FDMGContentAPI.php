@@ -34,7 +34,7 @@ class FDMGContentAPI {
 		$command->setLogger( Registry::wordpress() );
 
 		Registry::wordpress()->info(
-			'SendArticleToFDMGContentAPI: Sending post started by cron', array(
+			'SendArticleToFDMGContentAPI: Sending post started by CLI', array(
 				'fdmg_logger'         => new FDMGContentAPILogger(),
 				'fdmg_logger_post_id' => $post_id,
 				'post_id'             => $post_id,
