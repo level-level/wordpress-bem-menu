@@ -80,27 +80,36 @@ class ObjectConverterTest extends WPTestCase {
 	}
 
 	public function test_image(): void {
-		$image = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image-large.png' ) );
+		// Use different path to test the getDescription function
+		$image_paths = array(
+			DIR_TESTDATA . '/images/test-image-large.png',
+			DIR_TESTDATA . '/images/canola.jpg',
+		);
 
-		$image_model = $this->object_converter->image( $image );
-		$this->assertSame( $image->get_id(), $image_model->getId() );
-		$this->assertEquals( new DateTime( $image->get_object()->post_date, wp_timezone() ), $image_model->getdate() );
-		$this->assertEquals( new DateTime( $image->get_object()->post_modified, wp_timezone() ), $image_model->getModified() );
-		$this->assertSame( $image->get_post_name(), $image_model->getSlug() );
-		$this->assertSame( $image->get_status(), $image_model->getStatus() );
-		$this->assertSame( $image->get_post_type(), $image_model->getType() );
-		$this->assertSame( $image->get_title(), $image_model->getTitle() );
-		$this->assertSame( $image->get_content(), $image_model->getDescription() );
-		$this->assertSame( $image->get_excerpt(), $image_model->getCaption() );
-		$this->assertSame( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '', $image_model->getAltText() );
-		$this->assertSame( 'image', $image_model->getMediaType() );
-		$this->assertSame( $image->get_object()->post_mime_type, $image_model->getMimeType() );
+		foreach ( $image_paths as $image_path ) {
+			$image = attachment::get( $this->factory()->attachment->create_upload_object( $image_path ) );
 
-		$media_details_model = $image_model->getMediaDetails();
-		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['width'], $media_details_model->getWidth() );
-		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['height'], $media_details_model->getHeight() );
-		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['file'], $media_details_model->getFile() );
-		$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['filesize'], $media_details_model->getFilesize() );
+			$image_model = $this->object_converter->image( $image );
+			$this->assertSame( $image->get_id(), $image_model->getId() );
+			$this->assertEquals( new DateTime( $image->get_object()->post_date, wp_timezone() ), $image_model->getdate() );
+			$this->assertEquals( new DateTime( $image->get_object()->post_modified, wp_timezone() ), $image_model->getModified() );
+			$this->assertSame( $image->get_post_name(), $image_model->getSlug() );
+			$this->assertSame( $image->get_status(), $image_model->getStatus() );
+			$this->assertSame( $image->get_post_type(), $image_model->getType() );
+			$this->assertSame( $image->get_title(), $image_model->getTitle() );
+			$this->assertStringContainsString( $image->get_meta( '_wp_attachment_metadata', true )['file'], $image_model->getDescription() );
+			$this->assertSame( $image->get_excerpt(), $image_model->getCaption() );
+			$this->assertSame( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '', $image_model->getAltText() );
+			$this->assertSame( 'image', $image_model->getMediaType() );
+			$this->assertSame( $image->get_object()->post_mime_type, $image_model->getMimeType() );
+
+			$media_details_model = $image_model->getMediaDetails();
+			$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['width'], $media_details_model->getWidth() );
+			$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['height'], $media_details_model->getHeight() );
+			$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['file'], $media_details_model->getFile() );
+			$this->assertSame( wp_get_attachment_url( $image->get_id() ), $media_details_model->getUrl() );
+			$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['filesize'], $media_details_model->getFilesize() );
+		}
 	}
 
 	public function test_article(): void {

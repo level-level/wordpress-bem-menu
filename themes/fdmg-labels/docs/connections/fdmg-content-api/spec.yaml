@@ -4,7 +4,7 @@ info:
   contact:
     name: FDMG Content API
     email: jeroen.snoeij@fdmediagroep.nl
-  version: 1.2.0
+  version: 1.3.0
 servers:
   - url: https://{domain}/Distributor/level2
     description: Server url
@@ -256,6 +256,7 @@ components:
             - width
             - height
             - file
+            - url
             - filesize
           properties:
             width:
@@ -264,6 +265,9 @@ components:
               type: integer
             file:
               type: string
+            url:
+              type: string
+              format: url
             filesize:
               type: integer
     Genre:
