@@ -29,6 +29,7 @@ LEFT JOIN article_picture
 WHERE article.state != 'DELETED'
 AND article.state != 'APPROVED'
 AND article.article_type = 'ARTICLE'
+AND article.source_origin != 'level2'
 ORDER BY article.id
 ```
 
