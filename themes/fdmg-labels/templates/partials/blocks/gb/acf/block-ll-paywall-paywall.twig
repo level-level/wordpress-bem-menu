@@ -72,6 +72,6 @@
 	</div>
 {% elseif is_admin() %}
 	{% include 'partials/components/block-placeholder.twig' with {
-		block_text: _x('%s. This block is invalid. Please configure the paywall by navigating to Theme options -> Paywall.', 'Block', 'fdmg-labels')|format(block.title)
+		block_text: _x('%s. This block is not configured. Please configure the paywall by navigating to Theme options -> Paywall.', 'Block', 'fdmg-labels')|format(block.title)
 	} %}
 {% endif %}
