@@ -83,17 +83,33 @@ class ObjectConverter {
 	 * Convert an attachment to a FDMG Content API image
 	 */
 	public function image( attachment $image ): Image {
+		global $post;
 		$media_details = wp_get_attachment_metadata( $image->get_id() ) ?: array();
 
 		$media_details_model = new ImageMediaDetails();
 		$media_details_model->setWidth( $media_details['width'] ?? 0 );
 		$media_details_model->setHeight( $media_details['height'] ?? 0 );
 		$media_details_model->setFile( $media_details['file'] ?? '' );
+		$media_details_model->setUrl( wp_get_attachment_url( $image->get_id() ) ?: '' );
 		$media_details_model->setFilesize( $media_details['filesize'] ?? 0 );
 
 		$author       = $image->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
+		// Overwrite the global post to the image post to make sure the_content() works.
+		// phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
+		$image_object = $image->get_object();
+		$old_post     = $post;
+		$post         = $image_object;
+		setup_postdata( $post );
+		ob_start();
+		the_content();
+		$content = ob_get_clean() ?: '';
+		wp_reset_postdata();
+		$post = $old_post;
+		// phpcs:enable WordPress.WP.GlobalVariablesOverride.Prohibited
+
+		// Create the image model.
 		$image_model = new Image();
 		$image_model->setId( $image->get_id() );
 		$image_model->setDate( new DateTime( $image->get_object()->post_date, wp_timezone() ) );
@@ -102,7 +118,7 @@ class ObjectConverter {
 		$image_model->setStatus( $image->get_status() );
 		$image_model->setType( $image->get_post_type() );
 		$image_model->setTitle( $image->get_title() );
-		$image_model->setDescription( $image->get_content() );
+		$image_model->setDescription( $content );
 		$image_model->setAuthor( $author_model );
 		$image_model->setCaption( $image->get_excerpt() );
 		$image_model->setAltText( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '' );
