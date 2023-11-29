@@ -226,7 +226,7 @@ class ContentParser {
 			$type = 'image';
 		}
 
-		$json = '<!-- wp:embed {"url":"%s","type":"%s","providerNameSlug":"%s"%s%s} --><figure class="wp-block-embed is-type-%s is-provider-%s wp-block-embed-%s %s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
+		$json = '<!-- wp:embed {"url":"%s","type":"%s","providerNameSlug":"%s"%s%s} --><figure class="wp-block-embed is-type-%s is-provider-%s wp-block-embed-%s%s"><div class="wp-block-embed__wrapper">%s</div></figure><!-- /wp:embed -->';
 
 		$filled_json = sprintf(
 			$json,
@@ -238,8 +238,8 @@ class ContentParser {
 			$type,
 			$provider,
 			$provider,
-			$classes,
-			$embed_url,
+			$classes ? ' ' . $classes : '',
+			PHP_EOL . $embed_url . PHP_EOL,
 		);
 		return $filled_json;
 	}
