@@ -14,6 +14,10 @@
 				{{ title|raw }}
 			</a>
 		</{{ useH3 ? 'h3' : 'h2' }}>
+
+		{% if show_paywall_label %}
+			<span class="sr-only">{{ _x('Free article', 'Paywall', 'fdmg-labels') }}</span>
+		{% endif %}
 	</div>
 
 	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
