@@ -16,7 +16,7 @@ class base_comment extends Clarkson_Comment {
 		if ( $time_diff >= DAY_IN_SECONDS ) {
 			return date_i18n( get_option( 'date_format' ), $date );
 		} else {
-			return sprintf( __( '%s <span class="sr-only">ago</span>', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
+			return sprintf( __( '%s ago', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
 		}
 	}
 }
