@@ -1,15 +1,23 @@
-<div data-component="list-item" class="relative flex flex-col">
+<div data-component="list-item" class="relative flex flex-col w-full">
 
 	{% if comment_content %}
 		<div class="order-2 mb-2 text-base">
-			<a href="{{ url }}" class="order-2 block text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
+			<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 				<span class="block mb-2">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
 				<span>"{{ comment_content }}"</span>
+
+				<div class="absolute right-0 -translate-y-1/2 top-1/2">
+					<span class="text-[11px] icon-inline" aria-hidden="true">{{ svg_icons.get('chevron-right')|raw }}</span>
+				</div>
 			</a>
 		</div>
 	{% else %}
-		<a href="{{ url }}" class="order-2 block text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
+		<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 			{{ title|raw }}
+
+			<div class="absolute right-0 -translate-y-1/2 top-1/2">
+				<span class="text-[11px] icon-inline" aria-hidden="true">{{ svg_icons.get('chevron-right')|raw }}</span>
+			</div>
 		</a>
 	{% endif %}
 
