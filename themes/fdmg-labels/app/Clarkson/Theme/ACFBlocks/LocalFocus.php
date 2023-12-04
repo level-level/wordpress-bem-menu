@@ -2,6 +2,7 @@
 namespace Clarkson\Theme\ACFBlocks;
 
 use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\Textarea;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
 
@@ -10,8 +11,9 @@ class LocalFocus {
 
 	protected const FIELD_GROUP = 'block_localfocus';
 
-	public const BLOCK_META_TITLE    = 'title';
-	public const BLOCK_META_EMBED_ID = 'embed_id';
+	public const BLOCK_META_TITLE            = 'title';
+	public const BLOCK_META_EMBED_ID         = 'embed_id';
+	public const BLOCK_META_TEXT_ALTERNATIVE = 'text_alternative';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -56,8 +58,10 @@ class LocalFocus {
 						->required(),
 
 					Text::make( _x( 'Embed ID', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_EMBED_ID )
-						->instructions( _x( 'The ID of the embed, for example: 650c463f26fb0', 'Fields', 'fdmg-labels-admin' ) )
+						->instructions( _x( 'The ID of the embed, for example: 650c463f26fb0.', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
+					Textarea::make( _x( 'Text alternative', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TEXT_ALTERNATIVE )
+						->instructions( _x( 'Add a text alternative for the LocalFocus embed. This is used for screen reader software to tell a user what the content is about.', 'Fields', 'fdmg-labels-admin' ) ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),

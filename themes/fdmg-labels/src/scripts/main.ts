@@ -5,7 +5,6 @@ import HeaderMenu from './modules/header-menu';
 import HeaderSearch from './modules/header-search';
 import HeaderProfile from './modules/header-profile';
 import DisplayOptions from './modules/display-options';
-import Skiplink from './modules/skiplink';
 import OEmbed from './modules/oembed';
 import Table from './modules/table';
 import SocialShare from './modules/social-share';
@@ -28,7 +27,6 @@ ModuleInitializer({
 	'header-menu': HeaderMenu,
 	oembed: OEmbed,
 	tabs: Tabs,
-	skiplink: Skiplink,
 	table: Table,
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
