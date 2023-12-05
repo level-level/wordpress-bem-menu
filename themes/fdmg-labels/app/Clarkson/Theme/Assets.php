@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+use LevelLevel\Logging\Settings\SentryFrontend\Fields\DSN;
 
 class Assets {
 
@@ -75,6 +76,12 @@ class Assets {
 	}
 
 	public function enqueue_production(): void {
+		$sentry_dsn = ( new DSN() )->get_value();
+
+		if ( $sentry_dsn ) {
+			wp_enqueue_script( 'clarkson_sentry', get_template_directory_uri() . '/dist/sentry.js', array(), $this->version, false );
+		}
+
 		wp_enqueue_script( 'clarkson_main', get_template_directory_uri() . '/dist/main.js', array( 'jquery' ), $this->version, true );
 		wp_enqueue_style( 'clarkson_main', get_template_directory_uri() . '/dist/main.css', array(), $this->version, 'all' );
 	}
