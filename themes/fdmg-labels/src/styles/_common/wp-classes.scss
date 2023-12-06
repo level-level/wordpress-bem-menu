@@ -24,51 +24,30 @@
 .wp-block-image,
 .wp-block-embed {
 	figcaption {
-		@include font-normal;
-		@include font-size(14px, 18px);
-		color: var(--base-700);
-		margin: 0;
-		padding: 10px;
-		background-color: var(--secondary-100);
-
-		@include dark-mode {
-			color: var(--base-100);
-			background-color: var(--base-400);
-		}
+		@apply font-figtree text-sm text-base-700 m-0 p-[10px] bg-secondary-100 dark:text-base-100 dark:bg-base-400;
 	}
 }
 
 .wp-block-image {
-	.alignright {
-		float: none;
-		margin: 0;
+	&.alignright {
+		@apply w-full object-cover sm:w-auto sm:object-none sm:image:w-auto sm:float-right sm:ml-4 sm:mb-2;
 
-		@include breakpoint(sm) {
-			float: right;
-			margin-left: 15px;
+		img {
+			@media only screen and (max-width: 767px) {
+				width: 100% !important;
+				height: 100% !important;
+			}
 		}
 	}
 
-	.alignleft {
-		float: none;
-		margin: 0;
+	&.alignleft {
+		@apply w-full object-cover sm:w-auto sm:object-none sm:image:w-auto sm:float-left sm:mr-4 sm:mb-2;
 
-		@include breakpoint(sm) {
-			float: left;
-			margin-right: 15px;
+		img {
+			@media only screen and (max-width: 767px) {
+				width: 100% !important;
+				height: 100% !important;
+			}
 		}
 	}
-}
-
-.wp-block-columns {
-	margin-top: -#{$spacing-6};
-	margin-bottom: 0;
-
-	+ .wp-block-columns {
-		padding-top: $spacing-6;
-	}
-}
-
-.wp-block-column {
-	margin-top: $spacing-6;
 }

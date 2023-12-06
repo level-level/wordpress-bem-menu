@@ -4,8 +4,11 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\ACFBlocks\Advertisement;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\CTA;
+use Clarkson\Theme\ACFBlocks\Downloads;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
 use Clarkson\Theme\ACFBlocks\HighlightedContent;
+use Clarkson\Theme\ACFBlocks\InlineLink;
+use Clarkson\Theme\ACFBlocks\LocalFocus;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
@@ -26,6 +29,9 @@ class ACFBlocks {
 		HighlightedContent::class,
 		Advertisement::class,
 		SocialShare::class,
+		InlineLink::class,
+		Downloads::class,
+		LocalFocus::class,
 	);
 
 	public function register_hooks(): void {

@@ -43,6 +43,7 @@ export default {
 			date: '21 Apr, 2021',
 			datetime: '2021-04-21',
 			date_full: '21 april 2021',
+			readable: '20 hours ago',
 		},
 		authors: Authors,
 		comments: 2,

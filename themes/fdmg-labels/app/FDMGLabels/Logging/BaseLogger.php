@@ -26,11 +26,12 @@ abstract class BaseLogger {
 	 * @param integer $user_id
 	 * @param string $message
 	 * @param LogLine::LEVEL_* $level
+	 * @param array<string,mixed> $extra
 	 * @return void
 	 */
-	public function add_user_log( int $user_id, string $message, string $level = 'info' ): void {
+	public function add_user_log( int $user_id, string $message, string $level = 'info', $extra = array() ): void {
 		$messages   = $this->get_user_logs( $user_id );
-		$messages[] = new LogLine( time(), $message, $level );
+		$messages[] = new LogLine( time(), $message, $level, $extra );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
 			function( LogLine $log_line ): array {
@@ -63,11 +64,12 @@ abstract class BaseLogger {
 	 * @param integer $post_id
 	 * @param string $message
 	 * @param LogLine::LEVEL_* $level
+	 * @param array<string,mixed> $extra
 	 * @return void
 	 */
-	public function add_post_log( int $post_id, string $message, string $level = 'info' ): void {
+	public function add_post_log( int $post_id, string $message, string $level = 'info', $extra = array() ): void {
 		$messages   = $this->get_post_logs( $post_id );
-		$messages[] = new LogLine( time(), $message, $level );
+		$messages[] = new LogLine( time(), $message, $level, $extra );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
 			function( LogLine $log_line ): array {
@@ -100,9 +102,10 @@ abstract class BaseLogger {
 	 * @param integer $entry_id
 	 * @param string $message
 	 * @param LogLine::LEVEL_* $level
+	 * @param array<string,mixed> $extra
 	 * @return void
 	 */
-	public function add_gravityforms_entry_log( int $entry_id, string $message, string $level = 'info' ): void {
+	public function add_gravityforms_entry_log( int $entry_id, string $message, string $level = 'info', $extra = array() ): void {
 		if ( ! function_exists( 'gform_update_meta' ) ) {
 			return;
 		}

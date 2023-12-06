@@ -19,29 +19,33 @@
 
 // Post/Page title
 .editor-post-title {
-	@apply font-bold font-heading text-secondary-700 dark:text-primary-300 text-xl sm:text-3xl;
+	@apply font-bold font-libre text-secondary-700 dark:text-primary-300 text-xl sm:text-3xl;
 }
 
 // Text styling in gutenberg core blocks
 .block-editor {
 	.editor-styles-wrapper {
-		@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+		@apply font-libre font-normal text-base sm:text-md text-base-500 bg-secondary-50 leading-6 sm:leading-8;
+		@apply dark:text-base-100 dark:bg-base-700;
 
 		h2[data-type='core/heading'] {
-			@include heading-h2;
+			@include heading;
+			@include font-size(18px, 24px);
 		}
 
-		h3[data-type='core/heading'] {
-			@include heading-h3;
-		}
-
-		h4[data-type='core/heading'] {
-			@include heading-h4;
+		h3[data-type='core/heading'],
+		h4[data-type='core/heading'],
+		h5[data-type='core/heading'],
+		h6[data-type='core/heading'] {
+			@include heading;
+			@include font-size(16px, 22px);
 		}
 
 		h2[data-type='core/heading'],
 		h3[data-type='core/heading'],
-		h4[data-type='core/heading'] {
+		h4[data-type='core/heading'],
+		h5[data-type='core/heading'],
+		h6[data-type='core/heading'] {
 			margin-top: $spacing-4;
 
 			@include breakpoint(sm) {
@@ -58,23 +62,36 @@
 		ol[data-type='core/list'] {
 			@include ordered-list-style;
 			margin: 0 auto;
-			margin-bottom: 28px;
+
+			li {
+				margin-top: 0;
+			}
 		}
 
 		ul[data-type='core/list'] {
 			@include unordered-list-style;
 			margin: 0 auto;
-			margin-bottom: 28px;
+
+			li {
+				margin-top: 0;
+			}
 		}
 
 		p {
 			&.has-intro-font-size {
 				@include intro-font;
 			}
+
+			&.has-regular-font-size {
+				@include regular-font;
+			}
 		}
 
 		a:not([class]) {
-			color: var(--primary);
+			@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
+			@apply dark:text-primary-300;
+			@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50;
+			@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-energeia:dark:hocus:text-primary-300;
 		}
 	}
 }
@@ -83,7 +100,9 @@
 .editor-styles-wrapper ol,
 .editor-styles-wrapper ul {
 	box-sizing: border-box;
+}
 
+.editor-styles-wrapper ul {
 	&:not([data-type]) {
 		list-style-type: none;
 		margin: 0;
@@ -111,7 +130,7 @@
 .blocks-widgets-container {
 	.block-editor-block-list {
 		&__layout {
-			@apply font-body text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+			@apply font-figtree text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
 		}
 	}
 
@@ -130,10 +149,38 @@
 }
 
 strong {
-	@include font-bold;
+	font-weight: 700;
 }
 
 /* Editor sidebar styling */
 .interface-complementary-area {
 	width: 400px;
+}
+
+.wp-block {
+	&.alignleft {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
+		@include breakpoint(sm) {
+			margin-left: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+
+		.alignleft {
+			@apply w-full;
+		}
+	}
+
+	&.alignright {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
+		@include breakpoint(sm) {
+			margin-right: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+		}
+
+		.alignright {
+			@apply w-full;
+		}
+	}
+
+	&.wp-block-image {
+		@apply w-auto;
+	}
 }

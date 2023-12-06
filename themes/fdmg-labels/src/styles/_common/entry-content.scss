@@ -7,6 +7,11 @@
 		@apply sm:max-w-[theme(space.content-width)];
 	}
 
+	> .alignleft:not(.wp-block-image),
+	> .alignright:not(.wp-block-image) {
+		@apply sm:w-[calc(theme(space.article-width)/2)];
+	}
+
 	& > * + * {
 		@apply mt-6;
 	}
@@ -18,6 +23,17 @@
 		@apply mt-[10px];
 	}
 
+	> h2 {
+		@include font-size(18px, 24px);
+	}
+
+	> h3,
+	> h4,
+	> h5,
+	> h6 {
+		@include font-size(16px, 22px);
+	}
+
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
 		@apply mt-6;
 	}
@@ -26,12 +42,16 @@
 		&.has-intro-font-size {
 			@include intro-font;
 		}
+
+		&.has-regular-font-size {
+			@include regular-font;
+		}
 	}
 
 	a:not([class]) {
 		@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
 		@apply dark:text-primary-300;
-		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50;
+		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-energeia:dark:hocus:text-primary-300;
 	}
 
 	ul,
@@ -45,5 +65,12 @@
 
 	ol:not([class]) {
 		@include ordered-list-style;
+	}
+
+	> p:not([class]),
+	> ol:not([class]),
+	> ul:not([class]),
+	> a:not([class]) {
+		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 }

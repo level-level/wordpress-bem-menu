@@ -3,7 +3,7 @@
 namespace Gutenberg\Blocks;
 
 use Clarkson\Theme\ACFWidgets\LatestComments;
-use Clarkson_Core\WordPress_Object\comment;
+use Clarkson_Core\WordPress_Object\comment_comment;
 
 class acf_widget_latest_comments extends base_block {
 
@@ -19,6 +19,6 @@ class acf_widget_latest_comments extends base_block {
 			'order'  => 'DESC',
 		);
 
-		return comment::get_many( $args );
+		return comment_comment::get_many( $args );
 	}
 }

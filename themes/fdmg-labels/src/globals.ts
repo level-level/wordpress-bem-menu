@@ -3,6 +3,9 @@
  */
 export type I18n = {
 	socialShare: string;
+	invalidDateInput: string;
+	formError: string;
+	loggedIn: string;
 };
 
 /**
@@ -11,4 +14,17 @@ export type I18n = {
 export interface IModule {
 	element: HTMLElement;
 	initialize(): void;
+}
+
+declare global {
+	interface Window {
+		sentry?: {
+			dsn: string;
+			environment: string;
+			release: string;
+			trace_sample_rate: string;
+			error_sample_rate: string;
+			transaction_data: any;
+		},
+	}
 }

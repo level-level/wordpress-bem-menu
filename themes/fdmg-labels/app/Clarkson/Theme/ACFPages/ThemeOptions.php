@@ -2,11 +2,12 @@
 namespace Clarkson\Theme\ACFPages;
 
 use Clarkson\Theme\Fields\Socials;
+use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
+use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Repeater;
-use Extended\ACF\Fields\Select;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\Textarea;
@@ -20,24 +21,26 @@ class ThemeOptions {
 
 	public const MENU_SLUG = 'acf-options';
 
-	public const OPTION_GROUP                 = 'theme_options';
-	public const OPTION_NEWSLETTER_TAB        = 'newsletter_tab';
-	public const OPTION_NEWSLETTER_GROUP      = 'newsletter';
-	public const OPTION_NEWSLETTER_TITLE      = 'title';
-	public const OPTION_NEWSLETTER_CONTENT    = 'content';
-	public const OPTION_NEWSLETTER_BUTTON     = 'button';
-	public const OPTION_NEWSLETTER_IMAGE      = 'image';
-	public const OPTION_COOKIEWALL_TAB        = 'cookiewall_tab';
-	public const OPTION_SOURCEPOINT_ENABLE    = 'enable_sourcepoint_cmp';
-	public const OPTION_ADVERTISEMENTS_TAB    = 'advertisements_tab';
-	public const OPTION_ADVERTISEMENTS_ENABLE = 'enable_advertisements';
-	public const OPTION_THEME_TAB             = 'theme_tab';
-	public const OPTION_ACTIVE_THEME          = 'active_theme';
-	public const OPTION_SUBSCRIBE_TAB         = 'subscribe_tab';
-	public const OPTION_SUBSCRIBE_BUTTON      = 'subscribe_button';
-	public const OPTIONS_SOCIALS              = 'socials';
-	public const OPTIONS_SOCIALS_TYPE         = 'type';
-	public const OPTIONS_SOCIALS_URL          = 'url';
+	public const OPTION_GROUP                     = 'theme_options';
+	public const OPTION_NEWSLETTER_TAB            = 'newsletter_tab';
+	public const OPTION_NEWSLETTER_GROUP          = 'newsletter';
+	public const OPTION_NEWSLETTER_TITLE          = 'title';
+	public const OPTION_NEWSLETTER_CONTENT        = 'content';
+	public const OPTION_NEWSLETTER_BUTTON         = 'button';
+	public const OPTION_NEWSLETTER_IMAGE          = 'image';
+	public const OPTION_COOKIEWALL_TAB            = 'cookiewall_tab';
+	public const OPTION_SOURCEPOINT_ENABLE        = 'enable_sourcepoint_cmp';
+	public const OPTION_SOURCEPOINT_OPTIONS       = 'sourcepoint_options';
+	public const OPTION_SOURCEPOINT_ENDPOINT_URL  = 'sourcepoint_endpoint_url';
+	public const OPTION_SOURCEPOINT_PROPERTY_HREF = 'sourcepoint_property_href';
+	public const OPTION_SOURCEPOINT_ID            = 'sourcepoint_id';
+	public const OPTION_ADVERTISEMENTS_TAB        = 'advertisements_tab';
+	public const OPTION_ADVERTISEMENTS_ENABLE     = 'enable_advertisements';
+	public const OPTION_SUBSCRIBE_TAB             = 'subscribe_tab';
+	public const OPTION_SUBSCRIBE_BUTTON          = 'subscribe_button';
+	public const OPTIONS_SOCIALS                  = 'socials';
+	public const OPTIONS_SOCIALS_TYPE             = 'type';
+	public const OPTIONS_SOCIALS_URL              = 'url';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -77,18 +80,6 @@ class ThemeOptions {
 					Group::make( _x( 'Theme options', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP )
 						->fields(
 							array(
-								Tab::make( _x( 'Theme', 'Fields', 'fdmg-labels-admin' ), self::OPTION_THEME_TAB )
-									->placement( 'left' ),
-								Select::make( _x( 'Select active theme', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ACTIVE_THEME )
-									->choices(
-										array(
-											'impact-investor' => 'Impact Investor',
-											'energeia'     => 'Energeia',
-											'pensioen-pro' => 'Pensioen Pro',
-										),
-									)
-									->required()
-									->defaultValue( 'impact-investor' ),
 								Tab::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TAB )
 										->placement( 'left' ),
 								Group::make( _x( 'Newsletter', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_GROUP )
@@ -112,7 +103,29 @@ class ThemeOptions {
 								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENABLE )
 										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
 										->defaultValue( 1 )
-										->instructions( 'Enables or disables the Sourcepoint CMP cookiewall.' ),
+										->instructions( _x( 'Enables or disables the Sourcepoint CMP cookiewall.', 'Fields', 'fdmg-labels-admin' ) ),
+								Group::make( _x( 'Sourcepoint settings', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_OPTIONS )
+									->conditionalLogic(
+										array(
+											ConditionalLogic::where( self::OPTION_SOURCEPOINT_ENABLE, '==', '1' ),
+										)
+									)
+									->fields(
+										array(
+											Url::make( _x( 'Base endpoint URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENDPOINT_URL )
+												->defaultValue( 'https://consent.impact-investor.com' )
+												->required(),
+
+											Url::make( _x( 'Property Href URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_PROPERTY_HREF )
+												->defaultValue( 'https://impact-investor.com' )
+												->required(),
+
+											Number::make( _x( 'ID', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ID )
+												->defaultValue( 656244 )
+												->required(),
+										)
+									),
+
 								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_TAB )
 										->placement( 'left' ),
 								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_ENABLE )

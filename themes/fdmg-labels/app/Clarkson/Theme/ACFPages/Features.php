@@ -1,9 +1,12 @@
 <?php
 namespace Clarkson\Theme\ACFPages;
 
+use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\DatePicker;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\TrueFalse;
+use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Location;
 use FDMGLabels\FeatureManager;
 
@@ -13,6 +16,10 @@ class Features {
 
 	public const MENU_SLUG     = 'acf-features-options';
 	public const META_FEATURES = 'features';
+
+	public const META_MESSAGE_OLD_ARTICLES = 'message_old_articles';
+	public const META_DATE                 = 'message';
+	public const META_MESSAGE              = 'date';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -25,8 +32,9 @@ class Features {
 				'menu_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'page_title'  => _x( 'Features', 'Options', 'fdmg-labels-admin' ),
 				'menu_slug'   => self::MENU_SLUG,
-				'parent_slug' => ThemeOptions::MENU_SLUG,
+				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
+				'capability'  => 'manage_options',
 			)
 		);
 	}
@@ -45,9 +53,6 @@ class Features {
 									->placement( 'left' ),
 								TrueFalse::make( _x( 'Enable Partner post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE )
 									->instructions( _x( 'Enables the Partner post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi(),
-								TrueFalse::make( _x( 'Enable Podcast post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_PODCAST_POST_TYPE )
-									->instructions( _x( 'Enables the Podcast post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
 								TrueFalse::make( _x( 'Enable Event post type', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_EVENT_POST_TYPE )
 									->instructions( _x( 'Enables the Event post type for this site.', 'Fields', 'fdmg-labels-admin' ) )
@@ -104,6 +109,39 @@ class Features {
 									->instructions( _x( 'Make sure the related article block does not automatically load any related articles when creating a new article thus making it invisible.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi()
 									->defaultValue( false ),
+								TrueFalse::make( _x( 'Disable using a default title in the highlighted content block', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK )
+									->instructions( _x( 'Filling the title field is then no longer required in the highlighted content block.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+
+								Tab::make( _x( 'Article options', 'Fields', 'fdmg-labels-admin' ) )
+									->placement( 'left' ),
+
+								TrueFalse::make( _x( 'Show message in content for old articles', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_MESSAGE_OLD_ARTICLES )
+									->instructions( _x( 'Adds a custom message to articles older then x date.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylisedUi()
+									->defaultValue( false ),
+
+								Group::make( _x( 'Message', 'Fields', 'fdmg-labels-admin' ), self::META_MESSAGE_OLD_ARTICLES )
+									->fields(
+										array(
+											WysiwygEditor::make( _x( 'Message', 'Fields', 'fdmg-labels-admin' ), self::META_MESSAGE )
+												->required()
+												->tabs( 'visual' )
+												->toolbar( 'basic' )
+												->mediaUpload( false ),
+
+											DatePicker::make( _x( 'Date', 'Fields', 'fdmg-labels-admin' ), self::META_DATE )
+												->instructions( _x( 'Articles older then this date will show the message above.', 'Fields', 'fdmg-labels-admin' ) )
+												->displayFormat( 'd/m/Y' )
+												->required(),
+										)
+									)
+									->conditionalLogic(
+										array(
+											ConditionalLogic::where( FeatureManager::FEATURE_ENABLE_MESSAGE_OLD_ARTICLES, '==', '1' ),
+										)
+									),
 							)
 						),
 				),

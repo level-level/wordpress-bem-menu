@@ -33,6 +33,7 @@
 ( new \Clarkson\Theme\SVGIcons() )->register_hooks();
 ( new \Clarkson\Theme\WPSEO() )->register_hooks();
 ( new \Clarkson\Theme\LoginLogo() )->register_hooks();
+( new \Clarkson\WPadmin\Darkmode() )->register_hooks();
 
 // Clarkson Utilities
 ( new \Clarkson\Utilities\Init() )->register_hooks();
@@ -41,12 +42,21 @@
 ( new \FDMGLabels\API\Init() )->register_hooks();
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
+( new \FDMGLabels\Search\Filter() )->register_hooks();
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
 ( new \FDMGLabels\Newsletter\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
+( new \FDMGLabels\Auth\Init() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
+( new \FDMGLabels\StaticPages\Init() )->register_hooks();
+( new \FDMGLabels\Connectors\FDMGContentAPI\Init() )->register_hooks();
+( new \FDMGLabels\AdminAjax\Init() )->register_hooks();
+( new \FDMGLabels\Robots() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
+
+// FDMG Labels Import
+( new \FDMGLabels\Import\Init() )->register_hooks();

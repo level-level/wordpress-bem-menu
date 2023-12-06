@@ -2,6 +2,8 @@
 namespace Clarkson\Theme;
 
 use FDMGLabels\API\Init as APIInit;
+use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+use LevelLevel\Logging\Settings\SentryFrontend\Fields\DSN;
 
 class Assets {
 
@@ -17,6 +19,7 @@ class Assets {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
 	}
 
 	public function set_theme_version(): void {
@@ -38,6 +41,14 @@ class Assets {
 
 	}
 
+	public function enqueue_admin(): void {
+		if ( $this->is_development_mode() ) {
+			$this->enqueue_development( 'clarkson_admin', array(), '/src/admin.js', true );
+		} else {
+			wp_enqueue_script( 'clarkson_admin', get_template_directory_uri() . '/dist/admin.js', array(), $this->version, true );
+		}
+	}
+
 	public function enqueue(): void {
 		if ( $this->is_development_mode() ) {
 			$this->enqueue_development( 'clarkson_main', array( 'jquery' ), '/src/main.js', true );
@@ -57,6 +68,8 @@ class Assets {
 		} else {
 			$this->enqueue_editor_production( $deps );
 		}
+
+		( new AdminAjaxInit() )->localize_editor();
 	}
 
 	public function enqueue_development( string $handle, array $deps, string $path, bool $in_footer ): void {
@@ -65,6 +78,12 @@ class Assets {
 	}
 
 	public function enqueue_production(): void {
+		$sentry_dsn = ( new DSN() )->get_value();
+
+		if ( $sentry_dsn ) {
+			wp_enqueue_script( 'clarkson_sentry', get_template_directory_uri() . '/dist/sentry.js', array(), $this->version, false );
+		}
+
 		wp_enqueue_script( 'clarkson_main', get_template_directory_uri() . '/dist/main.js', array( 'jquery' ), $this->version, true );
 		wp_enqueue_style( 'clarkson_main', get_template_directory_uri() . '/dist/main.css', array(), $this->version, 'all' );
 	}

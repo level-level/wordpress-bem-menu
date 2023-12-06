@@ -13,6 +13,10 @@
 	}
 %}
 
+{% if custom_args %}
+	{% set args = args|merge(custom_args) %}
+{% endif %}
+
 {% if test_args %}
 	{% set args = args|merge(test_args) %}
 {% endif %}

@@ -1,0 +1,23 @@
+{% set title = data.title|default(_x('Read also', 'Block', 'fdmg-labels')) %}
+{% set link = data.link %}
+
+{% if link %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="flex flex-col gap-3 p-3 sm:p-4 bg-secondary-100 dark:bg-base-600">
+			<p class="font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800 text-md">{{ title }}</p>
+			<a href="{{ link.url }}" class="relative inline-flex gap-2 text-base no-underline font-figtree hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800" {{ link.target ? 'target="_blank" rel="noopener"' }}>
+				<span>
+					{{ link.title|raw }}
+				</span>
+				{% if link.target %}
+					<span class="sr-only">({{ _x('opens in a new window', 'Screen reader text', 'fdmg-labels') }})</span>
+				{% endif %}
+				<span class="relative icon-inline top-[5px] text-sm" aria-hidden="true">{{ svg_icons.get('arrow-right')|raw }}</span>
+			</a>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('Link', 'Block', 'fdmg-labels-admin')]
+	} %}
+{% endif %}

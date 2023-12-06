@@ -53,7 +53,8 @@ class MetaBoxes {
 			'admin/logging/selligent-metabox.twig', array(
 				'object'    => $args['entry'],
 				'log_lines' => array_reverse( ( new SelligentLogger() )->get_gravityforms_entry_logs( (int) $args['entry']['id'] ) ),
-			)
+			),
+			true
 		);
 	}
 }

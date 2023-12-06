@@ -5,13 +5,18 @@ import HeaderMenu from './modules/header-menu';
 import HeaderSearch from './modules/header-search';
 import HeaderProfile from './modules/header-profile';
 import DisplayOptions from './modules/display-options';
-import Skiplink from './modules/skiplink';
 import OEmbed from './modules/oembed';
 import Table from './modules/table';
 import SocialShare from './modules/social-share';
 import Tabs from './modules/tabs';
 import StickyAdvertisement from './modules/sticky-advertisement';
 import NavigationAdvertisement from './modules/navigation-advertisement';
+import FilterModal from './modules/filter-modal';
+import FilterForm from './modules/filter-form';
+import DateRangeValidator from './modules/date-range-validator';
+import ToggleListItems from './modules/toggle-list-items';
+import LoginButton from './modules/login-button';
+import TextZoom from './modules/text-zoom';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -22,11 +27,16 @@ ModuleInitializer({
 	'header-menu': HeaderMenu,
 	oembed: OEmbed,
 	tabs: Tabs,
-	skiplink: Skiplink,
 	table: Table,
 	'social-share': SocialShare,
 	'display-options': DisplayOptions,
 	'sticky-advertisement': StickyAdvertisement,
+	'filter-modal': FilterModal,
+	'filter-form': FilterForm,
+	'date-range-validator': DateRangeValidator,
+	'toggle-list-items': ToggleListItems,
+	'login-button': LoginButton,
+	'text-zoom': TextZoom,
 });
 
 /**

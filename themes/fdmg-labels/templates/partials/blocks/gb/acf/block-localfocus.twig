@@ -1,0 +1,35 @@
+{% set embed_id = data.embed_id %}
+{% set title = data.title %}
+{% set text_alternative = data.text_alternative %}
+{% set pointer_events = is_admin() ? 'none' : 'auto' %}
+{% set skiplink_id = uniqid('localfocus-skip-') %}
+
+{% if embed_id %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="relative">
+			<a
+				href="{{ '#' ~ skiplink_id }}"
+				class="text-lg underline sr-only focus:not-sr-only focus:absolute focus:p-4 focus:z-50 bg-base-50 hover:no-underline border-base-800 text-base-800"
+			>
+				{{ _x('Skip embedded LocalFocus content', 'Block', 'fdmg-labels') }}
+			</a>
+
+			<iframe title="{{ title }}" frameborder="0" style="width:100%;height:550px;overflow:hidden;background-color:#fff;pointer-events:{{ pointer_events }};" src="https://localfocuswidgets.net/{{ embed_id }}"></iframe>
+
+			<div id="{{ skiplink_id }}" tabindex="-1" class="sr-only">
+				{% if text_alternative %}
+					{{ text_alternative }}
+				{% else %}
+					{{ _x('Skipped embedded LocalFocus content', 'Screen reader text', 'fdmg-labels') }}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [
+			_x('Embed ID', 'Block', 'fdmg-labels-admin'),
+			_x('Title', 'Block', 'fdmg-labels-admin'),
+		]
+	} %}
+{% endif %}

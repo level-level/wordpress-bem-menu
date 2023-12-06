@@ -95,6 +95,10 @@ jobs:
         run: |
           cd wp-content/
           composer run test:docs
+      - name: test:openapi-spec
+        run: |
+          cd wp-content/
+          composer run test:openapi-spec
   npm-project:
     name: NPM test
     runs-on: ubuntu-latest
@@ -128,3 +132,9 @@ jobs:
         run: |
           cd themes/fdmg-labels
           npm run build
+      - name: NPM Upload source maps to Sentry
+        run: |
+          cd themes/fdmg-labels
+          npm run build:sentry
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

@@ -42,7 +42,7 @@ for (const theme of customThemes) {
 
 module.exports = {
 	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}', './.storybook/preview-head.html'],
-	darkMode: ['class', '[data-theme="dark"]'],
+	darkMode: ['class', '[data-mode="dark"]'],
 	theme: {
 		extend: {
 			spacing: {
@@ -114,9 +114,8 @@ module.exports = {
 			'secondary-700': 'var(--secondary-700)',
 		},
 		fontFamily: {
-			body: ['"ProximaNovaRegular"', 'sans-serif'],
-			'body-bold': ['"ProximaNovaBold"', 'sans-serif'],
-			heading: ['"Libre Caslon Text"', 'sans-serif'],
+			figtree: ['"Figtree Variable"', 'sans-serif'],
+			libre: ['"Libre Caslon Text"', 'sans-serif'],
 		},
 		fontSize: {
 			sm: [
@@ -132,7 +131,7 @@ module.exports = {
 				},
 			],
 			md: [
-				'1.125rem', // 18px
+				'1.1875rem', // 19px
 				{
 					lineHeight: '1.5rem', // 24px
 				},
@@ -173,6 +172,8 @@ module.exports = {
 			addVariant('ul', '& > ul');
 			addVariant('ol', '& > ol');
 			addVariant('ulli', '& > ul li');
+			addVariant('olli', '& > ol li');
+			addVariant('li', '& > li');
 
 			addVariant('btn-text', ({ modifySelectors, separator }) => {
 				modifySelectors(({ className }) => {
@@ -214,6 +215,20 @@ module.exports = {
 						});
 					});
 				}
+			});
+
+			const zoomVariants = {
+				'text-zoom-md': 'text-zoom-125',
+				'text-zoom-lg': 'text-zoom-150',
+				'text-zoom-xl': 'text-zoom-175',
+			};
+
+			Object.keys(zoomVariants).forEach((key) => {
+				addVariant(key, ({ modifySelectors, separator }) => {
+					modifySelectors(({ className }) => {
+						return `.${zoomVariants[key]} .${e(`${key}${separator}${className}`)}`;
+					});
+				})
 			});
 		}),
 	],

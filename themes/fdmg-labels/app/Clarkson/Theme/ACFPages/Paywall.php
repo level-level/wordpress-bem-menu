@@ -5,6 +5,7 @@ use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Fields\WysiwygEditor;
 use Extended\ACF\Location;
 
@@ -18,13 +19,14 @@ class Paywall {
 	public const META_PAYWALL_TITLE_REQUIRED_ROLE   = 'title_required_role';
 	public const META_PAYWALL_CONTENT               = 'content';
 	public const META_PAYWALL_CONTENT_REQUIRED_ROLE = 'content_required_role';
-	public const META_PAYWALL_LOGIN_BUTTON          = 'login_button';
 	public const META_PAYWALL_SUBSCRIPTION_BUTTON   = 'subscription_button';
 	public const META_PAYWALL_TAB_NOT_LOGGED_IN     = 'not_logged_in';
 	public const META_PAYWALL_TAB_REQUIRED_ROLES    = 'required_roles';
+	public const META_PAYWALL_TAB_GENERAL_OPTIONS   = 'general_options';
+	public const META_PAYWALL_DEFAULT_ACTIVE        = 'payall_is_active_by_default';
 
 	public function register_hooks(): void {
-
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
 		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
 			add_action( 'acf/init', array( $this, 'register' ) );
 			add_action( 'acf/init', array( $this, 'register_fields' ) );
@@ -52,6 +54,12 @@ class Paywall {
 					Group::make( _x( 'Paywall', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL )
 					->fields(
 						array(
+							Tab::make( _x( 'General options', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_GENERAL_OPTIONS )
+								->placement( 'left' ),
+							TrueFalse::make( _x( 'By default, all news articles are behind a paywall', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_DEFAULT_ACTIVE )
+								->instructions( _x( 'By enabling this option, all new articles are drafted with the paywall block included.', 'Fields', 'fdmg-labels-admin' ) )
+								->stylisedUi()
+								->defaultValue( true ),
 							Tab::make( _x( 'When logging in is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_NOT_LOGGED_IN )
 								->placement( 'left' ),
 							Text::make( _x( 'Title of the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TITLE )
@@ -62,9 +70,6 @@ class Paywall {
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
 								->mediaUpload( false )
-								->required(),
-							Link::make( _x( 'Login button', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_LOGIN_BUTTON )
-								->instructions( _x( 'The link to the login page.', 'Fields', 'fdmg-labels-admin' ) )
 								->required(),
 							Tab::make( _x( 'When a user role is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_REQUIRED_ROLES )
 								->placement( 'left' ),

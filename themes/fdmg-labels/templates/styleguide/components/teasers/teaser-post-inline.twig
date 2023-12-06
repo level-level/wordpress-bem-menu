@@ -1,4 +1,4 @@
-<div data-component="teaser-post-inline" class="relative flex flex-col h-full transition-shadow border-b font-body bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
+<div data-component="teaser-post-inline" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
@@ -13,6 +13,7 @@
 						genres: genres,
 						sections: sections,
 						wide: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
 					{% if show_paywall_label %}
@@ -46,6 +47,7 @@
 						genres: genres,
 						sections: sections,
 						wide: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
 					{% if show_paywall_label %}
@@ -57,7 +59,7 @@
 
 				{% if image %}
 					<div class="shrink-0">
-						<div class="sm:relative sm:overflow-hidden sm:aspect-[14/9] sm:w-[155px] sm:image:absolute sm:image:w-auto sm:image:h-full sm:image:top-auto sm:image:left-1/2 sm:image:-translate-x-1/2 sm:image:max-w-none">
+						<div class="sm:relative sm:overflow-hidden sm:aspect-[14/9] sm:w-[155px] image:w-full image:h-full image:object-cover">
 							{{ image|raw }}
 						</div>
 					</div>

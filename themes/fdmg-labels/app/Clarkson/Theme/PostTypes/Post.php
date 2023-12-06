@@ -1,9 +1,9 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
-use Clarkson\Theme\ACFBlocks\HighlightedContent;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\SocialShare;
+use Clarkson\Theme\ACFPages\Paywall;
 use Clarkson\Theme\PostTypes\Team;
 use Extended\ACF\Fields\Relationship;
 use Extended\ACF\Fields\Text;
@@ -23,6 +23,7 @@ class Post {
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_action( 'init', array( $this, 'block_template' ) );
+		add_action( 'init', array( $this, 'change_post_object_strings' ) );
 	}
 
 	public function register_fields(): void {
@@ -33,7 +34,7 @@ class Post {
 				'fields'   => array(
 					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
 						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
-					Relationship::make( _x( 'Author', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
+					Relationship::make( _x( 'Article author', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
 						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels-admin' ) )
 						->postTypes( array( Team::POST_TYPE_NAME ) )
 						->filters( array( 'search' ) )
@@ -50,6 +51,10 @@ class Post {
 		);
 	}
 
+	/**
+	 * Add default blocks to the post type.
+	 * Add the paywall block to the template when the default active option is enabled in the Paywall options page.
+	 */
 	public function block_template(): void {
 		$post_type_object = get_post_type_object( self::POST_TYPE_NAME );
 
@@ -57,7 +62,9 @@ class Post {
 			return;
 		}
 
-		$post_type_object->template = array(
+		$paywall_options = get_field( Paywall::META_PAYWALL, 'options' ) ?: array();
+
+		$soft_template = array(
 			array(
 				'core/paragraph',
 				array(
@@ -65,17 +72,42 @@ class Post {
 					'fontSize'    => 'intro',
 				),
 			),
-			array( 'core/heading' ),
 			array(
 				'core/paragraph',
 				array(
 					'placeholder' => _x( 'Start article text..', 'Block', 'fdmg-labels-admin' ),
 				),
 			),
-			array( 'acf/block-' . HighlightedContent::BLOCK_NAME ),
 			array( 'acf/block-' . SocialShare::BLOCK_NAME ),
 			array( 'acf/block-' . RelatedArticles::BLOCK_NAME ),
 		);
+
+		// Adds paywall block after the first block.
+		if ( ! empty( $paywall_options ) && $paywall_options[ Paywall::META_PAYWALL_DEFAULT_ACTIVE ] ) {
+			array_splice(
+				$soft_template, 1, 0, array(
+					array( 'acf/block-ll-paywall-paywall' ),
+				)
+			);
+		}
+
+		$post_type_object->template = $soft_template;
 	}
 
+	/**
+	 * Change the post object labels so we can translate them to a more custom label for the Dutch fdmg label sites.
+	 */
+	public function change_post_object_strings(): void {
+		$get_post_type = get_post_type_object( self::POST_TYPE_NAME );
+
+		if ( ! $get_post_type instanceof WP_Post_Type ) {
+			return;
+		}
+
+		$labels                        = $get_post_type->labels;
+		$labels->featured_image        = _x( 'Featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->set_featured_image    = _x( 'Set featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->remove_featured_image = _x( 'Remove featured image', 'Custom Post', 'fdmg-labels-admin' );
+		$labels->use_featured_image    = _x( 'Use featured image', 'Custom Post', 'fdmg-labels-admin' );
+	}
 }

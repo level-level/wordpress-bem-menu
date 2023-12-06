@@ -4,6 +4,9 @@ namespace Clarkson\WPadmin;
 use WP_Role;
 
 class Capabilities {
+	// Custom roles
+	public const ROLE_FDMG_ACCOUNT_HOLDER = 'fdmg_account_holder';
+	public const ROLE_FDMG_SUBSCRIBER     = 'fdmg_subscriber';
 
 	// WordPress default roles
 	public const ROLE_ADMINISTRATOR = 'administrator';
@@ -24,6 +27,9 @@ class Capabilities {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_author_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_contributor_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_account_holder_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_fdmg_subscriber_role' ) );
+		add_action( 'clarkson_update_capabilities', array( $this, 'update_editor_role' ) );
 	}
 
 	public function update_administrator_role(): void {
@@ -88,5 +94,39 @@ class Capabilities {
 		$role->add_cap( 'gform_full_access' );
 		$role->add_cap( 'gravityforms_selligent' );
 		$role->add_cap( self::CAP_WRITE_COMMENTS );
+	}
+
+	public function update_editor_role(): void {
+		$role = get_role( self::ROLE_EDITOR );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->add_cap( 'manage_downloads' );
+		$role->add_cap( 'user_can_add_new_download' );
+		$role->add_cap( 'user_can_config_downloads' );
+		$role->add_cap( 'user_can_edit_downloads' );
+		$role->add_cap( 'user_can_view_downloads_log' );
+		$role->add_cap( 'dlm_manage_logs' );
+		$role->add_cap( 'dlm_view_reports' );
+		$role->add_cap( 'manage_dlm_email_logs' );
+		$role->add_cap( 'edit_theme_options' );
+	}
+
+	public function update_fdmg_account_holder_role(): void {
+		remove_role( self::ROLE_FDMG_ACCOUNT_HOLDER );
+		$role = add_role( self::ROLE_FDMG_ACCOUNT_HOLDER, __( 'FDMG account holder', 'impact-investor' ), array() );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->remove_cap( 'read' );
+	}
+
+	public function update_fdmg_subscriber_role(): void {
+		remove_role( self::ROLE_FDMG_SUBSCRIBER );
+		$role = add_role( self::ROLE_FDMG_SUBSCRIBER, __( 'FDMG subscriber', 'impact-investor' ), array() );
+		if ( ! $role instanceof WP_Role ) {
+			return;
+		}
+		$role->remove_cap( 'read' );
 	}
 }

@@ -1,19 +1,21 @@
-<div data-component="oembed-audio" data-oembed="audio" class="bg-base-200 iframe:w-full iframe:h-[90px] iframe:md:h-[155px]">
+<div data-component="oembed-audio" data-oembed="audio" class="bg-secondary-100 dark:bg-base-600 dark:text-base-50 iframe:w-full iframe:h-[90px] iframe:md:h-[155px]">
 	<div class="absolute inset-0 flex items-center justify-between w-full p-4 md:p-8" data-oembed="placeholder">
-		<div class="flex items-center">
-			<div class="w-11">
-				<span class="icon text-base-700" aria-hidden="true">{{ svg_icons.get('audio')|raw }}</span>
+		<div class="flex items-center gap-4">
+			<div>
+				<span class="text-2xl icon-inline" aria-hidden="true">{{ svg_icons.get('audio')|raw }}</span>
 			</div>
-			<div data-oembed="audio-title" class="px-4 font-bold text-base-700">
+			<div data-oembed="audio-title">
 				{{ source }}
 				{# Gets populated via JS and replaces current content #}
 			</div>
-	</div>
-	{% include 'styleguide/components/buttons/button-element.twig' with {
-		class: 'btn-play btn--js-audio-play',
-		aria_label: _x('Play audio', 'OEmbed', 'fdmg-labels'),
-		icon: 'play',
-	} %}
+		</div>
+		<div>
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				class: 'btn-play btn--js-audio-play',
+				aria_label: _x('Play audio', 'OEmbed', 'fdmg-labels'),
+				icon: 'play',
+			} %}
+		</div>
 	</div>
 
 	{{ html|raw }}

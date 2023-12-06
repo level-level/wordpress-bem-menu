@@ -4,11 +4,6 @@ namespace Clarkson\Theme;
 use Clarkson_Core\Templates;
 
 class OEmbed {
-	/**
-	 * @var null|bool $cookiebot_enabled.
-	 */
-	private $cookiebot_enabled = null;
-
 	public function register_hooks(): void {
 		add_filter( 'embed_oembed_html', array( $this, 'rewrite_oembed' ), 99, 2 );
 		add_action( 'acf/init', array( $this, 'remove_acf_oembed_format_value_filter' ), 1 );
@@ -27,7 +22,6 @@ class OEmbed {
 		$oembed       = _wp_oembed_get_object();
 		$provider_url = $oembed->get_provider( $url ) ?: $url;
 		$source       = $this->get_source( $provider_url );
-		$cookiebot    = $this->is_cookiebot_enabled();
 		$is_video     = $this->is_video_embed( $source );
 		$is_audio     = $this->is_audio_embed( $source );
 		$thumbnail    = '';
@@ -55,7 +49,6 @@ class OEmbed {
 			'html'               => $html,
 			'url'                => $url,
 			'source'             => $source,
-			'cookiebot'          => $cookiebot,
 			'embed_type'         => $type,
 			'thumbnail'          => $thumbnail,
 			'notice_text'        => sprintf( _x( 'This content is available after accepting the cookies from %s.', 'OEmbed', 'fdmg-labels' ), $service_name ),
@@ -70,6 +63,7 @@ class OEmbed {
 		if ( ! empty( $options ) && $options['enable_sourcepoint_cmp'] ) {
 			$args['notice_text'] = _x( 'This content is available after accepting the social media cookies.', 'OEmbed', 'fdmg-labels' );
 			$args['button_text'] = _x( 'Change cookie-settings', 'OEmbed', 'fdmg-labels' );
+			$args['cmp_id']      = $options['sourcepoint_options']['sourcepoint_id'];
 		}
 
 		return Templates::get_instance()->render_twig( 'partials/components/oembeds/oembed.twig', $args, true );
@@ -218,18 +212,11 @@ class OEmbed {
 	 * Returns a bool whether source is an audio embed
 	 */
 	public function is_audio_embed( string $source ): bool {
-		if ( $source === 'soundcloud' || $source === 'spotify' || $source === 'mixcloud' ) {
+		if ( $source === 'soundcloud' || $source === 'spotify' || $source === 'mixcloud' || $source === 'omny' ) {
 			return true;
 		}
 
 		return false;
-	}
-
-	private function is_cookiebot_enabled(): bool {
-		if ( is_null( $this->cookiebot_enabled ) ) {
-			$this->cookiebot_enabled = is_plugin_active( 'cookiebot/cookiebot.php' );
-		}
-		return $this->cookiebot_enabled;
 	}
 
 	/**

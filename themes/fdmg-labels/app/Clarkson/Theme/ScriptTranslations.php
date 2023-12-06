@@ -7,10 +7,13 @@ class ScriptTranslations {
 			'clarkson_main',
 			'i18n',
 			array(
-				'socialShare' => sprintf(
+				'socialShare'      => sprintf(
 					_x( 'I read this article via %s and I would like to share it with you:', 'Share', 'fdmg-labels-admin' ),
 					get_bloginfo( 'name' )
 				),
+				'invalidDateInput' => _x( 'Invalid date entered', 'Search', 'fdmg-labels' ),
+				'formError'        => _x( 'There is a problem with your request. Check the notifications below.', 'Search', 'fdmg-labels' ),
+				'loggedIn'         => _x( 'You are logged in as', 'Login', 'fdmg-labels' ),
 			)
 		);
 	}

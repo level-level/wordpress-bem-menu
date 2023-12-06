@@ -2,7 +2,7 @@
 {% set object = objects|first %}
 {% set title = object.get_title() %}
 {% set content = object.get_content() %}
-{% set author_posts = object.get_posts_by_author() %}
+{% set author_posts = object.get_current_paginated_posts() %}
 
 {% block header %}
 	<div class="section">
@@ -52,7 +52,7 @@
 
 					<li>
 						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
-							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 							title: object.get_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
@@ -79,6 +79,10 @@
 				{% endfor %}
 			</ul>
 		</div>
+
+		{% include 'partials/components/pagination.twig' with {
+			custom_args: object.get_current_pagination_args(),
+		} %}
 	{% endif %}
 {% endblock %}
 
@@ -88,7 +92,7 @@
 		{% include 'styleguide/components/bio.twig' with {
 			title: title,
 			excerpt: object.get_excerpt(),
-			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail'),
+			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
 			email: object.get_email_address(),
 			linkedin: object.get_linkedin(),
 		} only %}

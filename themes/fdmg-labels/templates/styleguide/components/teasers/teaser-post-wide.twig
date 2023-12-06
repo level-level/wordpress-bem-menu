@@ -1,4 +1,4 @@
-<div data-component="teaser-post-wide" class="relative flex flex-col h-full transition-shadow border-b sm:border-b-2 font-body bg-base-50 border-secondary-400 theme-energeia:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
+<div data-component="teaser-post-wide" class="relative flex flex-col h-full transition-shadow border-b sm:border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
@@ -13,6 +13,7 @@
 						genres: genres,
 						sections: sections,
 						wide: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
 					{% if show_paywall_label %}
@@ -47,16 +48,11 @@
 						sections: sections,
 						date: date,
 						wide: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
-					{% if show_paywall_label %}
-						<div class="absolute top-6 right-6 z-[2]">
-							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
-						</div>
-					{% endif %}
-
 					{% if excerpt %}
-						<div class="mt-3 text-base sm:text-md">
+						<div class="mt-3 text-base sm:text-[17px] sm:leading-6">
 							{{ excerpt|raw }}
 						</div>
 					{% endif %}
@@ -64,8 +60,14 @@
 
 				{% if image %}
 					<div class="shrink">
-						<div class="relative overflow-hidden aspect-[1/1] sm:w-[170px] image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none lg:image:w-full lg:image:h-auto lg:image:top-1/2 lg:image:left-1/2 lg:image:-translate-x-1/2 lg:image:-translate-y-1/2">
+						<div class="relative overflow-hidden aspect-[1/1] sm:w-[170px] image:w-full image:h-full image:object-cover">
 							{{ image|raw }}
+
+							{% if show_paywall_label %}
+								<div class="absolute bottom-2 right-2 z-[2]">
+									{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+								</div>
+							{% endif %}
 						</div>
 					</div>
 				{% endif %}

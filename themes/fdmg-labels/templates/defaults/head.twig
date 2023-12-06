@@ -1,11 +1,19 @@
 <!doctype html>
-<html {{ language_attributes() }} class="theme-{{ options.active_theme }}">
+<html {{ language_attributes() }} class="theme-{{ site.active_theme }}">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<meta name="theme-color" content="#a2c3d6" media="(prefers-color-scheme: light)">
 		<meta name="theme-color" content="#191919" media="(prefers-color-scheme: dark)">
+
+		<!--
+			Met betrekking tot het overnemen en/of gebruik van artikelen, afbeeldingen, of overige content van FD Mediagroep door media met een nieuwsfunctie en met betrekking tot tekst- en datamining van content van FD Mediagroep, als bedoeld in artikel 15 c.q 15o van de Auteurswet, daaronder begrepen, maar niet uitsluitend het gebruik van content van FD Mediagroep voor het trainen van generatieve artificiële intelligentie (AI) of andere AI-toepassingen, behoudt FD Mediagroep zich alle (auteurs)rechten uitdrukkelijk voor en daarvoor is derhalve voorafgaande schriftelijke toestemming nodig van FD Mediagroep. Zie ook https://fd.nl/copyright en https://fdmg.nl/algemene-voorwaarden/.
+			With regard to the use of articles, pictures or other content of FD Mediagroep by media with a news function and with regard to text and data mining of content of FD Mediagroep, as referred to in Article 15 or 15o of the Dutch Copyright Act (‘Auteurswet’), including, but not limited to, the use of content from FD Mediagroep for training generative artificial intelligence (AI) or other AI applications, FD Mediagroep explicitly reserves all rights and therefore this use requires prior written permission from FD Mediagroep.  See https://fdmg.nl/copyright and https://fdmg.nl/en/general-terms-conditions/.
+		-->
+
+		<meta name="dcterms.rights" content="Copyright FD Mediagroep BV">
+		<link rel="license" href="https://fdmg.nl/en/general-terms-conditions/">
 
 		{#
 			Instantly set the theme style class on the <html> element based on the localStorage.
@@ -24,7 +32,7 @@
 				}
 
 				var preference = localStorage.getItem( 'theme-style' );
-				document.documentElement.setAttribute( 'data-theme', preference );
+				document.documentElement.setAttribute( 'data-mode', preference );
 			} catch (e) {}
 
 			document.addEventListener( 'DOMContentLoaded', function () {
@@ -39,7 +47,9 @@
 		</script>
 
 		{% if options.enable_sourcepoint_cmp %}
-			{% include 'partials/gdpr/sourcepoint.twig' %}
+			{% include 'partials/gdpr/sourcepoint.twig' with {
+				options: options.sourcepoint_options,
+			} %}
 		{% endif %}
 
 		{% if options.enable_advertisements %}
@@ -55,5 +65,7 @@
 	{% if function_exists('gtm4wp_the_gtm_tag') %}
 		{{ gtm4wp_the_gtm_tag() }}
 	{% endif %}
+
+	<span data-module="text-zoom" aria-hidden="true" class="opacity-0 absolute -left-full w-[1em] h-[1em]"></span>
 
 	{% include 'defaults/header.twig' %}

@@ -1,4 +1,10 @@
 {% set title = data.title|default(_x('In short', 'Block', 'fdmg-labels')) %}
+
+{# Removes the default title #}
+{% if feature_manager.is_enabled(constant('FEATURE_DISABLE_DEFAULT_TITLE_HIGHLIGHTED_CONTENT_BLOCK', feature_manager)) %}
+	{% set title = data.title %}
+{% endif %}
+
 {% set content = data.content %}
 
 {% if content %}
@@ -8,13 +14,13 @@
 
 				{% if title %}
 					<div class="pb-3 border-b border-b-base-800">
-						<h2>
+						<h2 class="break-words text-[18px] leading-6">
 							{{ title|raw }}
 						</h2>
 					</div>
 				{% endif %}
 
-				<div class="font-body text-base owl:mt-4 ulli:font-body-bold ulli:text-base sm:ulli:text-md">
+				<div class="text-base sm:text-[17px] leading-6 font-figtree owl:mt-4 ulli:font-bold olli:font-bold theme-energeia:olli:font-normal theme-energeia:ulli:font-normal theme-pensioen-pro:olli:font-normal theme-pensioen-pro:ulli:font-normal ulli:before:!top-0 ulli:before:text-xl ulli:before:absolute ulli:before:left-0 ulli:before:text-primary ulli:before:dark:text-primary-300 ulli:before:content-['\2022'] ulli:before:leading-none ulli:relative ulli:pl-5">
 					{{ content|raw }}
 				</div>
 			</div>

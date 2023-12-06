@@ -18,6 +18,9 @@ class Team {
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
+		add_action( 'template_redirect', array( $this, 'redirect_archive_page' ) );
+		add_action( 'template_redirect', array( $this, 'prevent_pagination_redirect' ), 0 );
+
 	}
 
 	public function register(): void {
@@ -71,5 +74,23 @@ class Team {
 				'position' => 'side',
 			)
 		);
+	}
+
+	public function redirect_archive_page(): void {
+		if ( is_post_type_archive( self::POST_TYPE_NAME ) ) {
+			wp_safe_redirect( home_url(), 301, 'LL: Team archive redirect' );
+			exit;
+		}
+	}
+
+	public function prevent_pagination_redirect(): void {
+		if ( ! is_singular( self::POST_TYPE_NAME ) ) {
+			return;
+		}
+
+		$paged = get_query_var( 'paged' );
+		if ( $paged !== 0 ) {
+			remove_action( 'template_redirect', 'redirect_canonical' );
+		}
 	}
 }

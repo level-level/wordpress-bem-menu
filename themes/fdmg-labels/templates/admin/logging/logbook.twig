@@ -24,6 +24,14 @@
 								<p>
 									{{ log_line.get_message()|raw }}
 								</p>
+
+								{% set extra = log_line.get_extra() %}
+								{% if extra %}
+									<details>
+										<summary>{{ _x('Extra information', 'Log', 'fdmg-labels') }}</summary>
+										<pre>{{ log_line.get_extra()|json_encode(constant('JSON_PRETTY_PRINT')) }}</pre>
+									</details>
+								{% endif %}
 							</td>
 						</tr>
 					{% endfor %}

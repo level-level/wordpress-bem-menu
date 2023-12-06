@@ -21,20 +21,20 @@ class OEmbed implements IModule {
 	button: HTMLElement | null;
 	dataAttribute: string;
 	playBtnClass: string;
-	isCookiebot: string | undefined;
 	source: string | undefined;
 	type: EmbedType;
 	disableNotice: string | undefined;
+	cmpId: number | undefined;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.dataAttribute = 'data-oembed';
 		this.playBtnClass = `btn--js-video-play`;
 		this.button = this.element.querySelector(`.js-consent-button`);
-		this.isCookiebot = this.element.dataset.cookiebot;
 		this.source = this.element.dataset.source;
 		this.type = this.element.dataset.type as EmbedType;
 		this.disableNotice = this.element.dataset.disableNotice;
+		this.cmpId = this.element.dataset.cmpId ? parseInt(this.element.dataset.cmpId) : undefined;
 		this.initialize();
 	}
 
@@ -56,7 +56,9 @@ class OEmbed implements IModule {
 	 */
 	initSourcepoint() {
 		this.button?.addEventListener('click', () => {
-			window._sp_.gdpr.loadPrivacyManagerModal(656244, 'purposes');
+			if (this.cmpId) {
+				window._sp_.gdpr.loadPrivacyManagerModal(this.cmpId, 'purposes');
+			}
 		});
 
 		// Get consent data if the tcfapi is loaded or when a user has changed something in their consent settings
@@ -95,7 +97,7 @@ class OEmbed implements IModule {
 						});
 
 						// Show the embed if we have both purpose and vendor consent
-						if (purposeConsent && vendorConsent) {
+						if ((purposeConsent && vendorConsent) || (this.source === 'consent_embed_omny' && purposeConsent)) {
 							this.showEmbed();
 						}
 

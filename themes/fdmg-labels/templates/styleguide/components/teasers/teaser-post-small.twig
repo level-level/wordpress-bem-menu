@@ -1,4 +1,4 @@
-<div data-component="teaser-post-small" class="relative flex flex-col h-full transition-shadow border-b font-body bg-base-50 border-secondary-400 theme-energeia:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser sm:border-b-2 group/teaser">
+<div data-component="teaser-post-small" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser sm:border-b-2 group/teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
@@ -13,6 +13,7 @@
 						genres: genres,
 						sections: sections,
 						small: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
 					{% if show_paywall_label %}
@@ -39,7 +40,7 @@
 
 			{% if image %}
 				<div class="shrink-0">
-					<div class="relative overflow-hidden aspect-[13/9] sm:w-[230px] sm:h-full lg:aspect-video lg:w-auto lg:h-auto image:absolute image:w-auto image:h-full image:top-auto image:left-1/2 image:-translate-x-1/2 image:max-w-none">
+					<div class="relative overflow-hidden aspect-[13/9] sm:w-[230px] sm:h-full lg:aspect-video lg:w-auto lg:h-auto image:w-full image:h-full image:object-cover">
 						{{ image|raw }}
 					</div>
 				</div>
@@ -56,6 +57,7 @@
 						sections: sections,
 						date: date,
 						small: true,
+						show_paywall_label: show_paywall_label,
 					} only %}
 
 					{% if show_paywall_label %}
@@ -72,8 +74,14 @@
 	<div class="hidden lg:block lg:h-full">
 		<div class="lg:flex lg:flex-col lg:h-full">
 			{% if image %}
-				<div class="relative overflow-hidden aspect-video image:absolute image:top-1/2 image:left-1/2 image:-translate-x-1/2 image:-translate-y-1/2">
+				<div class="relative overflow-hidden aspect-video image:w-full image:h-full image:object-cover">
 					{{ image|raw }}
+
+					{% if show_paywall_label %}
+						<div class="absolute bottom-2 right-2 z-[2]">
+							{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
+						</div>
+					{% endif %}
 				</div>
 			{% endif %}
 
@@ -87,16 +95,11 @@
 					sections: sections,
 					date: date,
 					small: true,
+					show_paywall_label: show_paywall_label,
 				} only %}
 
-				{% if show_paywall_label %}
-					<div class="absolute top-2 right-2 z-[2]">
-						{% include 'styleguide/components/teasers/post/paywall-label.twig' %}
-					</div>
-				{% endif %}
-
 				{% if excerpt %}
-					<div class="mt-3 text-base sm:text-md">
+					<div class="mt-3 text-base sm:text-[17px] sm:leading-6">
 						{{ excerpt|raw }}
 					</div>
 				{% endif %}

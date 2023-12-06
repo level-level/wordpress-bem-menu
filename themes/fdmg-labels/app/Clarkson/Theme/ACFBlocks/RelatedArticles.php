@@ -124,7 +124,7 @@ class RelatedArticles {
 			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
 				->message( _x( 'Displays a list of articles in a two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 				->newLines( 'wpautop' ),
-			Text::make( _x( 'Use this title to overwrite the default title: \'Related news\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+			Text::make( _x( 'Use this title to overwrite the default title: \'Latest articles\'', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
 			Relationship::make( _x( 'Select articles to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SELECTED_POSTS )
 				->postTypes( array( Post::POST_TYPE_NAME ) )
 				->filters(
@@ -155,6 +155,7 @@ class RelatedArticles {
 			)
 			->defaultValue( 3 )
 			->min( 1 )
+			->max( 30 )
 			->step( 1 )
 			->append( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
 			->required(),

@@ -3,6 +3,7 @@
 namespace Clarkson\Utilities;
 
 use Exception;
+use Monolog\Registry;
 use WP_Error;
 
 class Image {
@@ -162,6 +163,95 @@ class Image {
 		}
 
 		return $attachment_data;
+	}
+
+	/**
+	 * Get the largest available image size data in the given aspect ratio.
+	 * @param int $attachment_id
+	 * @param int $ratio_width
+	 * @param int $ratio_height
+	 * @param bool $fallback_to_original
+	 * @return array{source: string, width: int, height: int}|null
+	 */
+	public function get_largest_aspect_ratio_image_size( int $attachment_id, int $ratio_width, int $ratio_height, bool $fallback_to_original = false ): ?array {
+		$largest_size_data = null;
+		foreach ( $this->get_aspect_ratio_image_sizes( $attachment_id, $ratio_width, $ratio_height ) as $image_size_data ) {
+			if ( ! $largest_size_data || $image_size_data['width'] > $largest_size_data['width'] ) {
+				$largest_size_data = $image_size_data;
+			}
+		}
+
+		if ( $fallback_to_original && ! $largest_size_data ) {
+			$src = wp_get_attachment_image_src( $attachment_id, 'full' );
+			if ( $src ) {
+				$largest_size_data = array(
+					'source' => $src[0],
+					'width'  => $src[1],
+					'height' => $src[2],
+				);
+			}
+		}
+
+		return $largest_size_data;
+	}
+
+	/**
+	 * Get all available image sizes data in the given aspect ratio.
+	 *
+	 * @param int $attachment_id
+	 * @param int $ratio_width
+	 * @param int $ratio_height
+	 * @return array<string, array{source: string, width: int, height: int}>
+	 */
+	protected function get_aspect_ratio_image_sizes( int $attachment_id, int $ratio_width, int $ratio_height ): array {
+		if ( ! extension_loaded( 'gmp' ) ) {
+			Registry::getInstance( 'WordPress' )->warning(
+				'Could not get available aspect ratio image sizes because the GMP PHP extension is not installed.', array(
+					'attachment_id' => $attachment_id,
+					'ratio_width'   => $ratio_width,
+					'ratio_height'  => $ratio_height,
+				)
+			);
+			return array();
+		}
+
+		$common_deviser = gmp_intval( gmp_gcd( $ratio_width, $ratio_height ) );
+		$ratio_width    = $ratio_width / $common_deviser;
+		$ratio_height   = $ratio_height / $common_deviser;
+
+		return array_filter(
+			$this->get_available_image_sizes( $attachment_id ),
+			function( array $image_size_data ) use ( $ratio_width, $ratio_height ): bool {
+				$common_deviser    = gmp_intval( gmp_gcd( $image_size_data['width'], $image_size_data['height'] ) );
+				$size_ratio_width  = $image_size_data['width'] / $common_deviser;
+				$size_ratio_height = $image_size_data['height'] / $common_deviser;
+				return $size_ratio_width === $ratio_width && $size_ratio_height === $ratio_height;
+			}
+		);
+	}
+
+	/**
+	 * Get all available image sizes.
+	 *
+	 * @param int $attachment_id
+	 * @return array<string, array{source: string, width: int, height: int}>
+	 */
+	protected function get_available_image_sizes( int $attachment_id ): array {
+		$sizes      = array_merge( get_intermediate_image_sizes(), array( 'full' ) );
+		$sizes_data = array();
+		foreach ( $sizes as $size ) {
+			$src = wp_get_attachment_image_src( $attachment_id, $size );
+			if ( ! $src ) {
+				continue;
+			}
+			$sizes_data[ $size ] = array(
+				'source' => $src[0],
+				'width'  => $src[1],
+				'height' => $src[2],
+			);
+		}
+
+		return $sizes_data;
 	}
 
 	/**
