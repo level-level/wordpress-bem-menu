@@ -25,6 +25,10 @@ declare global {
 			trace_sample_rate: string;
 			error_sample_rate: string;
 			transaction_data: any;
-		},
+		};
 	}
 }
+
+export type RestApi = {
+	root: string;
+};

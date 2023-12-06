@@ -22,7 +22,10 @@
 				</div>
 			{% endif %}
 
-			<div class="comment-form-container" data-page-fragment="comment_form">
+			{% set config = {
+				post_id: object.get_id(),
+			} %}
+			<div class="comment-form-container" data-module="comment-form" data-config="{{ config|json_encode() }}">
 				{# Comment form will be rendered here by api #}
 			</div>
 		</div>
