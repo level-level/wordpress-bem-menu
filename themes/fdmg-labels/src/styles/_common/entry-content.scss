@@ -23,6 +23,17 @@
 		@apply mt-[10px];
 	}
 
+	> h2 {
+		@include font-size(18px, 24px);
+	}
+
+	> h3,
+	> h4,
+	> h5,
+	> h6 {
+		@include font-size(16px, 22px);
+	}
+
 	> *:not(h2, h3, h4, h5) + *:not([class]) {
 		@apply mt-6;
 	}
