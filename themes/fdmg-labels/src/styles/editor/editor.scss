@@ -29,20 +29,23 @@
 		@apply dark:text-base-100 dark:bg-base-700;
 
 		h2[data-type='core/heading'] {
-			@include heading-h2;
+			@include heading;
+			@include font-size(18px, 24px);
 		}
 
-		h3[data-type='core/heading'] {
-			@include heading-h3;
-		}
-
-		h4[data-type='core/heading'] {
-			@include heading-h4;
+		h3[data-type='core/heading'],
+		h4[data-type='core/heading'],
+		h5[data-type='core/heading'],
+		h6[data-type='core/heading'] {
+			@include heading;
+			@include font-size(16px, 22px);
 		}
 
 		h2[data-type='core/heading'],
 		h3[data-type='core/heading'],
-		h4[data-type='core/heading'] {
+		h4[data-type='core/heading'],
+		h5[data-type='core/heading'],
+		h6[data-type='core/heading'] {
 			margin-top: $spacing-4;
 
 			@include breakpoint(sm) {
