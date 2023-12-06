@@ -443,7 +443,7 @@ class ContentParser {
 
 			// Prepend image
 			$figure_html   = '';
-			$images        = $xpath->query( '//fdmg-image | //fdmg-text-frame-image', $text_frame_tag ) ?: new DOMNodeList();
+			$images        = $text_frame_tag->getElementsByTagName( 'fdmg-text-frame-image' );
 			$image_element = $images->item( 0 );
 			if ( $image_element instanceof DOMElement ) {
 				$figure_html = $this->fdmg_image_to_figure_html( $html_dom, $image_element );
