@@ -23,7 +23,6 @@ class Capabilities {
 
 	public function register_hooks(): void {
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_administrator_role' ) );
-		add_action( 'clarkson_update_capabilities', array( $this, 'update_editor_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_author_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_contributor_role' ) );
 		add_action( 'clarkson_update_capabilities', array( $this, 'update_client_admin_role' ) );
@@ -34,14 +33,6 @@ class Capabilities {
 
 	public function update_administrator_role(): void {
 		$role = get_role( self::ROLE_ADMINISTRATOR );
-		if ( ! $role instanceof WP_Role ) {
-			return;
-		}
-		$role->add_cap( self::CAP_WRITE_COMMENTS );
-	}
-
-	public function update_editor_role(): void {
-		$role = get_role( self::ROLE_EDITOR );
 		if ( ! $role instanceof WP_Role ) {
 			return;
 		}
@@ -110,6 +101,7 @@ class Capabilities {
 		$role->add_cap( 'dlm_view_reports' );
 		$role->add_cap( 'manage_dlm_email_logs' );
 		$role->add_cap( 'edit_theme_options' );
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
 	}
 
 	public function update_fdmg_account_holder_role(): void {

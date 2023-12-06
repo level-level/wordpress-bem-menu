@@ -1,8 +1,8 @@
 <?php
 namespace Clarkson\Theme;
 
-use FDMGLabels\API\Init as APIInit;
 use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+use FDMGLabels\API\Init as APIInit;
 use LevelLevel\Logging\Settings\SentryFrontend\Fields\DSN;
 
 class Assets {
