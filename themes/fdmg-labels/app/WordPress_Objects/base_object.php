@@ -69,8 +69,14 @@ class base_object extends Clarkson_Object {
 	}
 
 	public function get_comment_form(): string {
-		$twig = Templates::get_instance();
+		global $post;
+		// Setup global post variable for comment_form() function
+		$post_backup = $post;
+		setup_postdata( $this->_post );
+		$post        = $this->_post;
 
+		// Setup variables needed to render comment form
+		$twig = Templates::get_instance();
 		$user          = wp_get_current_user();
 		$user_identity = $user->exists() ? $user->display_name : '';
 
@@ -109,6 +115,10 @@ class base_object extends Clarkson_Object {
 		comment_form( $args, $this->_post );
 		$html = ob_get_contents() ?: '';
 		ob_end_clean();
+
+		// Reset global post variable
+		$post = $post_backup;
+		wp_reset_postdata();
 		return $html;
 	}
 
