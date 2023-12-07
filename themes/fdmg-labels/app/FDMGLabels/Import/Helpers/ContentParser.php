@@ -334,7 +334,7 @@ class ContentParser {
 
 			$author_element = $quote_tag->getElementsByTagName( 'fdmg-author' );
 			$author         = $author_element->item( 0 )->nodeValue ?? '';
-			$author_html    = $author ? sprintf( '<cite>%s</cite>', wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) ) : '';
+			$author_html    = $author ? sprintf( '<cite>%s</cite>', $author ) : '';
 
 			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph -->%s</blockquote><!-- /wp:quote -->';
 
