@@ -120,5 +120,6 @@ class Capabilities {
 			return;
 		}
 		$role->remove_cap( 'read' );
+		$role->add_cap( self::CAP_WRITE_COMMENTS );
 	}
 }
