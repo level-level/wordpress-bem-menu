@@ -2,10 +2,12 @@
 namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\ACFPages\ThemeOptions;
+use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
+use FDMGLabels\Comments\Comments;
 use FDMGLabels\StaticPages\AuthController;
 use WP_Term;
 use WPSEO_Primary_Term;
@@ -68,6 +70,10 @@ class base_object extends Clarkson_Object {
 		);
 	}
 
+	/**
+	 * Gets the comment form HTML for the current object.
+	 * This does not check for custom user permissions.
+	 */
 	public function get_comment_form(): string {
 		global $post;
 		// Setup global post variable for comment_form() function
@@ -76,39 +82,45 @@ class base_object extends Clarkson_Object {
 		$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		// Setup variables needed to render comment form
-		$twig          = Templates::get_instance();
-		$user          = wp_get_current_user();
-		$user_identity = $user->exists() ? $user->display_name : '';
-
-		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
-		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
+		$twig                = Templates::get_instance();
+		$user                = wp_get_current_user();
+		$user_identity       = $user->exists() ? $user->display_name : '';
+		$login_required_html = ( new Comments() )->get_subscription_required_html( $this );
 
 		$args = array(
 			'class_form'           => 'form-group',
 			'format'               => 'html5',
 			'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
 			'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
-			'comment_notes_before' => '<p>' . _x( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'Comments', 'fdmg-labels' ) . '</p>',
 			'comment_field'        => $twig->render_twig(
 				'styleguide/components/comments/form-fields/textarea.twig',
 				array(), true
 			),
-			'must_log_in'          => sprintf(
-				'<p class="must-log-in">%s</p>',
-				sprintf(
-					__( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.', 'fdmg-labels' ),
-					add_query_arg( 'redirect_to', rawurlencode( get_permalink( $this->get_id() ) ?: '' ), ( new AuthController() )->get_permalink( AuthController::PAGE_LOGIN ) ),
-					$subscribe_button['url'] ?? '',
-				)
-			),
+			'must_log_in'          => $login_required_html,
 			'logged_in_as'         => sprintf(
 				'<p class="logged-in-as">%s</p>',
-				sprintf(
-					__( 'Logged in as %s.', 'fdmg-labels' ),
-					$user_identity,
-				),
+				implode(
+					'<br/>', array(
+						sprintf(
+							_x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
+							$user_identity,
+						),
+						_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
+						_x( 'A comment is held for moderation.', 'Comments', 'fdmg-labels' ),
+						_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
+					)
+				)
 			),
-			'comment_notes_before' => '',
+			'comment_notes_before' => sprintf(
+				'<p class="comment-notes">%s</p>',
+				implode(
+					'<br/>', array(
+						_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
+						_x( 'A comment is held for moderation.', 'Comments', 'fdmg-labels' ),
+						_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
+					)
+				)
+			),
 		);
 
 		ob_start();

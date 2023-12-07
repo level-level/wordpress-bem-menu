@@ -5,6 +5,7 @@ namespace FDMGLabels\API;
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\base_object;
+use FDMGLabels\Comments\Comments;
 use WP_Error;
 use WP_Post;
 use WP_REST_Controller;
@@ -117,11 +118,13 @@ class PageFragmentsController extends WP_REST_Controller {
 			return $fragments;
 		}
 
-		// Only include comment form if user has permission to write comments
+		// Include subscription required html if user has no permission to write comments
 		if ( ! current_user_can( Capabilities::CAP_WRITE_COMMENTS ) ) {
+			$fragments['comment_form'] = ( new Comments() )->get_subscription_required_html( $object );
 			return $fragments;
 		}
 
+		// Include comment form
 		$fragments['comment_form'] = $object->get_comment_form();
 		return $fragments;
 	}

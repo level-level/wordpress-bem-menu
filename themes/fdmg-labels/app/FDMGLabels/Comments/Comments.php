@@ -2,8 +2,11 @@
 
 namespace FDMGLabels\Comments;
 
+use Clarkson\Theme\ACFPages\ThemeOptions;
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Templates;
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use FDMGLabels\StaticPages\AuthController;
 use WP_Error;
 
 class Comments {
@@ -77,5 +80,27 @@ class Comments {
 		}
 
 		return new WP_Error( 'comment_no_permission', __( 'You have no permission to write comments.', 'fdmg-labels-admin' ) );
+	}
+
+	/**
+	 * Get the HTML that should be shown if a user has no permission to write comments.
+	 */
+	public function get_subscription_required_html( Clarkson_Object|null $object = null ): string {
+		$login_url = ( new AuthController() )->get_permalink( AuthController::PAGE_LOGIN );
+		if ( $object ) {
+			$login_url = add_query_arg( 'redirect_to', rawurlencode( $object->get_permalink() ?: '' ), $login_url );
+		}
+
+		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
+		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
+
+		return sprintf(
+			'<p class="must-log-in">%s</p>',
+			sprintf(
+				_x( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.', 'Comments', 'fdmg-labels' ),
+				$login_url,
+				$subscribe_button['url'] ?? '',
+			)
+		);
 	}
 }
