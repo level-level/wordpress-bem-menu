@@ -73,10 +73,10 @@ class base_object extends Clarkson_Object {
 		// Setup global post variable for comment_form() function
 		$post_backup = $post;
 		setup_postdata( $this->_post );
-		$post        = $this->_post;
+		$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		// Setup variables needed to render comment form
-		$twig = Templates::get_instance();
+		$twig          = Templates::get_instance();
 		$user          = wp_get_current_user();
 		$user_identity = $user->exists() ? $user->display_name : '';
 
@@ -96,7 +96,7 @@ class base_object extends Clarkson_Object {
 			'must_log_in'          => sprintf(
 				'<p class="must-log-in">%s</p>',
 				sprintf(
-					__( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.' ),
+					__( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.', 'fdmg-labels' ),
 					add_query_arg( 'redirect_to', rawurlencode( get_permalink( $this->get_id() ) ?: '' ), ( new AuthController() )->get_permalink( AuthController::PAGE_LOGIN ) ),
 					$subscribe_button['url'] ?? '',
 				)
@@ -104,7 +104,7 @@ class base_object extends Clarkson_Object {
 			'logged_in_as'         => sprintf(
 				'<p class="logged-in-as">%s</p>',
 				sprintf(
-					__( 'Logged in as %s.' ),
+					__( 'Logged in as %s.', 'fdmg-labels' ),
 					$user_identity,
 				),
 			),
@@ -117,7 +117,7 @@ class base_object extends Clarkson_Object {
 		ob_end_clean();
 
 		// Reset global post variable
-		$post = $post_backup;
+		$post = $post_backup; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		wp_reset_postdata();
 		return $html;
 	}
