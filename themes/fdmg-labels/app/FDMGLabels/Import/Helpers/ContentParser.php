@@ -655,7 +655,7 @@ class ContentParser {
 		if ( str_contains( $fdmg_alignment, 'center' ) ) {
 			return 'center';
 		}
-		return '';
+		return 'wide';
 	}
 
 	protected function get_image_size_from_wp_alignment( string $wp_alignment ): string {
