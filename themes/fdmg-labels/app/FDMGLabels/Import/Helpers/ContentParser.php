@@ -549,8 +549,6 @@ class ContentParser {
 			return $html_dom;
 		}
 
-		$dlm_ids = array();
-
 		foreach ( $pdf_tags as $pdf_tag ) {
 			if ( ! $pdf_tag instanceof DOMElement ) {
 				continue;
@@ -565,28 +563,21 @@ class ContentParser {
 			$imported_content_finder = new ImportedContentFinder();
 			$found_id                = $imported_content_finder->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'attachment' );
 			$found_id                = $found_id ?: $imported_content_finder->get_download_id_from_old_path( $binary_filename );
-			if ( $found_id ) {
-				$dlm_ids[] = (string) $found_id;
+			if ( ! $found_id ) {
+				continue;
 			}
 
+			$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"right","mode":"preview"} /-->';
+			$dlm_ids_json        = wp_json_encode( array( $found_id ) );
+			$download_block_html = sprintf( $download_block_html, uniqid(), $dlm_ids_json );
+			$gb_download_block   = $html_dom->createDocumentFragment();
+			$gb_download_block->appendXML( $download_block_html );
+
+			// replace current <fdmg-pdf> with new $gb_download_block tag
 			if ( $pdf_tag->parentNode ) {
+				$pdf_tag->parentNode->insertBefore( $gb_download_block, $pdf_tag );
 				$pdf_tag->parentNode->removeChild( $pdf_tag );
 			}
-		}
-
-		if ( empty( $dlm_ids ) ) {
-			return $html_dom;
-		}
-
-		$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"center","mode":"preview"} /-->';
-		$dlm_ids_json        = wp_json_encode( $dlm_ids );
-		$download_block_html = sprintf( $download_block_html, uniqid(), $dlm_ids_json );
-		$download_block      = $html_dom->createDocumentFragment();
-		$download_block->appendXML( $download_block_html );
-
-		$wrapper = $html_dom->getElementById( self::WRAPPER_ID );
-		if ( $wrapper instanceof DOMElement ) {
-			$wrapper->insertBefore( $download_block, $wrapper->firstChild );
 		}
 
 		return $html_dom;
