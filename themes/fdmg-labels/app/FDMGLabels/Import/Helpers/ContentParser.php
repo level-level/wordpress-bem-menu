@@ -564,7 +564,7 @@ class ContentParser {
 				continue;
 			}
 
-			$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"center","mode":"preview"} /-->';
+			$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"right","mode":"preview"} /-->';
 			$dlm_ids_json        = wp_json_encode( array( $found_id ) );
 			$download_block_html = sprintf( $download_block_html, uniqid(), $dlm_ids_json );
 			$gb_download_block      = $html_dom->createDocumentFragment();
