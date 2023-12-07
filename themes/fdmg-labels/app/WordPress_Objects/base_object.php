@@ -1,10 +1,12 @@
 <?php
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson\Theme\ACFPages\ThemeOptions;
 use Clarkson_Core\Objects;
 use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
+use FDMGLabels\StaticPages\AuthController;
 use WP_Term;
 use WPSEO_Primary_Term;
 
@@ -69,6 +71,12 @@ class base_object extends Clarkson_Object {
 	public function get_comment_form(): string {
 		$twig = Templates::get_instance();
 
+		$user          = wp_get_current_user();
+		$user_identity = $user->exists() ? $user->display_name : '';
+
+		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
+		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
+
 		$args = array(
 			'class_form'           => 'form-group',
 			'format'               => 'html5',
@@ -79,6 +87,22 @@ class base_object extends Clarkson_Object {
 				'styleguide/components/comments/form-fields/textarea.twig',
 				array(), true
 			),
+			'must_log_in'          => sprintf(
+				'<p class="must-log-in">%s</p>',
+				sprintf(
+					__( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.' ),
+					add_query_arg( 'redirect_to', rawurlencode( get_permalink( $this->get_id() ) ?: '' ), ( new AuthController() )->get_permalink( AuthController::PAGE_LOGIN ) ),
+					$subscribe_button['url'] ?? '',
+				)
+			),
+			'logged_in_as'         => sprintf(
+				'<p class="logged-in-as">%s</p>',
+				sprintf(
+					__( 'Logged in as %s.' ),
+					$user_identity,
+				),
+			),
+			'comment_notes_before' => '',
 		);
 
 		ob_start();
