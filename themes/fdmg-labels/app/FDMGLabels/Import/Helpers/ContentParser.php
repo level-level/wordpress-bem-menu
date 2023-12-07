@@ -432,7 +432,10 @@ class ContentParser {
 			}
 
 			$heading_element = $text_frame_tag->getElementsByTagName( 'fdmg-heading' );
-			$heading         = $heading_element->item( 0 )->nodeValue ?? '';
+			$heading_element = $heading_element->item( 0 );
+			$heading         = $heading_element ? ( $html_dom->saveHTML( $heading_element ) ?: '' ) : '';
+			$heading         = mb_convert_encoding( $heading, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
+			$heading         = str_replace( array( '<fdmg-heading>', '</fdmg-heading>' ), array( '', '' ), $heading );
 
 			// Parse the content of the text frame just like a normal post
 			$content_element = $text_frame_tag->getElementsByTagName( 'fdmg-content' );
