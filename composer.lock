@@ -1467,11 +1467,11 @@
         },
         {
             "name": "ll-premium/wp-all-import-pro",
-            "version": "4.7.8",
+            "version": "4.8.5",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.7.8",
-                "shasum": "6abc0e2f62d96299590c10c7f24afe9862b7818f",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.5",
+                "shasum": "8f34f043094b6ffff6c519903ac55d901dbf996f",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
