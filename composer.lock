@@ -4703,15 +4703,15 @@
         },
         {
             "name": "wpackagist-plugin/download-monitor",
-            "version": "4.9.2",
+            "version": "4.9.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/download-monitor/",
-                "reference": "tags/4.9.2"
+                "reference": "tags/4.9.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
