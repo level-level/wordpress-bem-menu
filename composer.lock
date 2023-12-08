@@ -4928,15 +4928,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.10.7",
+            "version": "7.11.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.10.7"
+                "reference": "tags/7.11.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.10.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
