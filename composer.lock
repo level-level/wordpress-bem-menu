@@ -1188,16 +1188,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "453e4d0ce14225848fe26381755ad5e37a4f5fbc"
+                "reference": "602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/453e4d0ce14225848fe26381755ad5e37a4f5fbc",
-                "reference": "453e4d0ce14225848fe26381755ad5e37a4f5fbc",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f",
+                "reference": "602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1247,10 +1247,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v3.0.4",
+                "source": "https://github.com/level-level/logging/tree/v3.0.5",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2023-11-08T08:06:52+00:00"
+            "time": "2023-11-18T10:49:13+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
