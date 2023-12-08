@@ -949,16 +949,16 @@
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-wp-cli-twig-translations.git",
-                "reference": "6f6512e2b517458433ded0b4850fb0a3d4b79d7f"
+                "reference": "3d253c8d44239ba73dae5112f178836869aefec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/6f6512e2b517458433ded0b4850fb0a3d4b79d7f",
-                "reference": "6f6512e2b517458433ded0b4850fb0a3d4b79d7f",
+                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/3d253c8d44239ba73dae5112f178836869aefec7",
+                "reference": "3d253c8d44239ba73dae5112f178836869aefec7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -974,8 +974,14 @@
                 "twig/string-extra": "^3.1",
                 "twig/twig": "^3.1"
             },
+            "require-dev": {
+                "wp-cli/wp-cli": "^2.9"
+            },
             "type": "library",
             "autoload": {
+                "psr-4": {
+                    "Clarkson\\WPCLITwigTranslations\\": "src/"
+                },
                 "files": [
                     "clarkson-wp-cli-twig-translations.php"
                 ]
@@ -991,10 +997,10 @@
             ],
             "description": "Smart WP-CLI command to cache the Twig templates so they can be read by PoEdit",
             "support": {
-                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.1",
+                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.2",
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
-            "time": "2020-10-29T07:03:42+00:00"
+            "time": "2023-11-14T16:06:02+00:00"
         },
         {
             "name": "level-level/ll-paywall",
