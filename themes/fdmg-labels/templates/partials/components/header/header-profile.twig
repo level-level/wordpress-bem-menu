@@ -23,7 +23,8 @@
 	<div class="block fixed left-0 right-0 compact-header:top-[theme(space.header-height)] sm:left-auto sm:absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] p-0 bg-base-50 text-base-800 dark:text-base-50 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 sm:compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
 		<div class="p-5">
 
-			{% if is_plugin_active('daggerhart-openid-connect-generic/openid-connect-generic.php') %}
+			{# @TODO Properly need to check if login is possible instead using CSS to hide it #}
+			<div class="hidden theme-energeia:block theme-pensioen-pro:block">
 				<div data-module="login-button" class="flex flex-col gap-4 pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: _x('Login', 'Profile', 'fdmg-labels'),
@@ -36,7 +37,7 @@
 						class: 'btn-primary btn-full js-logout',
 					} %}
 				</div>
-			{% endif %}
+			</div>
 
 			{% include 'partials/components/header/header-display-options.twig' %}
 		</div>
