@@ -146,6 +146,23 @@ class OEmbed implements IModule {
 			return;
 		}
 
+		/**
+		 * Load the Twitter embed script if the embed is a Twitter embed
+		 * This is needed because WordPress doesn't allow script tags in the content
+		 * More info: https://developer.twitter.com/en/docs/twitter-for-websites/embedded-tweets/faq
+		 */
+		if (this.source === 'consent_embed_twitter') {
+			const widgetUrl = '//platform.twitter.com/widgets.js';
+			const existingScript = document.querySelector(`script[src="${widgetUrl}"]`);
+
+			if (!existingScript) {
+				const script = document.createElement('script');
+				script.src = widgetUrl;
+				script.async = true;
+				document.body.appendChild(script);
+			}
+		}
+
 		OEmbedContent.innerHTML = content.innerHTML;
 
 		if (this.type === 'video') {
