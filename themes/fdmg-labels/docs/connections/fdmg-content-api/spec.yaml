@@ -4,7 +4,7 @@ info:
   contact:
     name: FDMG Content API
     email: jeroen.snoeij@fdmediagroep.nl
-  version: 1.3.0
+  version: 1.4.0
 servers:
   - url: https://{domain}/Distributor/level2
     description: Server url
@@ -163,7 +163,9 @@ components:
             $ref: '#/components/schemas/Section'
         paywall:
           type: boolean
-
+        imported_id:
+          type: string
+          nullable: true
     User:
       type: object
       required:
@@ -270,6 +272,9 @@ components:
               format: url
             filesize:
               type: integer
+        imported_id:
+          type: string
+          nullable: true
     Genre:
       type: object
       required:
@@ -286,6 +291,9 @@ components:
           type: string
         description:
           type: string
+        imported_id:
+          type: string
+          nullable: true
     Section:
       type: object
       required:
@@ -302,6 +310,9 @@ components:
           type: string
         description:
           type: string
+        imported_id:
+          type: string
+          nullable: true
     TeamMember:
       type: object
       required:
@@ -333,6 +344,9 @@ components:
           format: url
         location:
           type: string
+        imported_id:
+          type: string
+          nullable: true
     SuccessResponse:
       type: object
       properties:
