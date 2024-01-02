@@ -18,8 +18,10 @@ class ImageSizes {
 
 	/**
 	 * Modify the list of image sizes that are available to administrators in the WordPress Media Library
+	 * @param  array<string,mixed> $sizes
+	 * @return array<string,mixed>
 	 */
-	public function add_custom_sizes_to_media_library( $sizes ): array {
+	public function add_custom_sizes_to_media_library( array $sizes ): array {
 		return array_merge(
 			$sizes, array(
 				'content_medium' => _x( 'Half', 'Image sizes', 'fdmg-labels-admin' ),
