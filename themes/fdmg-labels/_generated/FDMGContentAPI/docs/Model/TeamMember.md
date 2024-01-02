@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **email** | **string** |  |
 **linkedin** | **string** |  |
 **location** | **string** |  |
+**imported_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

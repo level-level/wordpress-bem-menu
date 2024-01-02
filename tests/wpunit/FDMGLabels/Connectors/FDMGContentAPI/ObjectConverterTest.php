@@ -30,12 +30,14 @@ class ObjectConverterTest extends WPTestCase {
 				)
 			)
 		);
+		$section->update_meta( 'fdmg_import_old_id', 'section_123' );
 
 		$section_model = $this->object_converter->section( $section );
 		$this->assertSame( $section->get_id(), $section_model->getId() );
 		$this->assertSame( 'Test section', $section_model->getName() );
 		$this->assertSame( 'test-section', $section_model->getSlug() );
 		$this->assertSame( 'Section description', $section_model->getDescription() );
+		$this->assertSame( 'section_123', $section_model->getImportedId() );
 	}
 
 	public function test_genre(): void {
@@ -49,12 +51,14 @@ class ObjectConverterTest extends WPTestCase {
 				)
 			)
 		);
+		$genre->update_meta( 'fdmg_import_old_id', 'genre_123' );
 
 		$genre_model = $this->object_converter->genre( $genre );
 		$this->assertSame( $genre->get_id(), $genre_model->getId() );
 		$this->assertSame( 'Test genre', $genre_model->getName() );
 		$this->assertSame( 'test-genre', $genre_model->getSlug() );
 		$this->assertSame( 'Genre description', $genre_model->getDescription() );
+		$this->assertSame( 'genre_123', $genre_model->getImportedId() );
 	}
 
 	public function test_user(): void {
@@ -86,8 +90,9 @@ class ObjectConverterTest extends WPTestCase {
 			DIR_TESTDATA . '/images/canola.jpg',
 		);
 
-		foreach ( $image_paths as $image_path ) {
+		foreach ( $image_paths as $index => $image_path ) {
 			$image = attachment::get( $this->factory()->attachment->create_upload_object( $image_path ) );
+			$image->update_meta( 'fdmg_import_old_id', 'picture_' . $index );
 
 			$image_model = $this->object_converter->image( $image );
 			$this->assertSame( $image->get_id(), $image_model->getId() );
@@ -102,6 +107,7 @@ class ObjectConverterTest extends WPTestCase {
 			$this->assertSame( $image->get_meta( '_wp_attachment_image_alt', true ) ?: '', $image_model->getAltText() );
 			$this->assertSame( 'image', $image_model->getMediaType() );
 			$this->assertSame( $image->get_object()->post_mime_type, $image_model->getMimeType() );
+			$this->assertSame( 'picture_' . $index, $image_model->getImportedId() );
 
 			$media_details_model = $image_model->getMediaDetails();
 			$this->assertSame( $image->get_meta( '_wp_attachment_metadata', true )['width'], $media_details_model->getWidth() );
@@ -131,7 +137,8 @@ class ObjectConverterTest extends WPTestCase {
 					'post_name'      => 'test-article',
 					'comment_status' => 'open',
 					'meta_input'     => array(
-						'alternative_title' => 'Test article alternative title',
+						'alternative_title'  => 'Test article alternative title',
+						'fdmg_import_old_id' => 'article_123',
 					),
 				)
 			)
@@ -153,6 +160,7 @@ class ObjectConverterTest extends WPTestCase {
 		$this->assertSame( $post->get_excerpt(), $article_model->getExcerpt() );
 		$this->assertSame( 'open', $article_model->getCommentStatus() );
 		$this->assertSame( true, $article_model->getPaywall() );
+		$this->assertSame( 'article_123', $article_model->getImportedId() );
 	}
 
 	public function test_team(): void {
@@ -168,9 +176,10 @@ class ObjectConverterTest extends WPTestCase {
 					'post_type'    => 'ii_team',
 					'post_name'    => 'john-doe',
 					'meta_input'   => array(
-						'email_address' => 'johndoe@example.test',
-						'linkedin'      => 'https://linkedin.com/in/johndoe',
-						'location'      => 'Rotterdam',
+						'email_address'      => 'johndoe@example.test',
+						'linkedin'           => 'https://linkedin.com/in/johndoe',
+						'location'           => 'Rotterdam',
+						'fdmg_import_old_id' => 'author_123',
 					),
 				)
 			)
@@ -185,5 +194,6 @@ class ObjectConverterTest extends WPTestCase {
 		$this->assertSame( 'johndoe@example.test', $team_member_model->getEmail() );
 		$this->assertSame( 'https://linkedin.com/in/johndoe', $team_member_model->getLinkedin() );
 		$this->assertSame( 'Rotterdam', $team_member_model->getLocation() );
+		$this->assertSame( 'author_123', $team_member_model->getImportedId() );
 	}
 }

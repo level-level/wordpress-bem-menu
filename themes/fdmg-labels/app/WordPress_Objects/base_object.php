@@ -80,4 +80,8 @@ class base_object extends Clarkson_Object {
 			return sprintf( __( '%s ago', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
 		}
 	}
+
+	public function get_imported_old_id(): ?string {
+		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
+	}
 }
