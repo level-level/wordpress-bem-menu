@@ -22,5 +22,6 @@ Name | Type | Description | Notes
 **genres** | [**\FDMGContentAPIClient\Model\Genre[]**](Genre.md) |  |
 **sections** | [**\FDMGContentAPIClient\Model\Section[]**](Section.md) |  |
 **paywall** | **bool** |  |
+**imported_id** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

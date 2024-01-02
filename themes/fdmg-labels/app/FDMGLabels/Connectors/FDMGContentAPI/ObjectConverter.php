@@ -76,6 +76,7 @@ class ObjectConverter {
 				}, $post->get_authors()
 			)
 		);
+		$article->setImportedId( $post->get_imported_old_id() );
 		return $article;
 	}
 
@@ -125,6 +126,7 @@ class ObjectConverter {
 		$image_model->setMediaType( wp_attachment_is_image( $image->get_object() ) ? 'image' : 'file' );
 		$image_model->setMimeType( $image->get_object()->post_mime_type );
 		$image_model->setMediaDetails( $media_details_model );
+		$image_model->setImportedId( $image->get_imported_old_id() );
 		return $image_model;
 	}
 
@@ -152,6 +154,7 @@ class ObjectConverter {
 		$genre_model->setSlug( $genre->get_slug() );
 		$genre_model->setName( $genre->get_name() );
 		$genre_model->setDescription( $genre->get_description() );
+		$genre_model->setImportedId( $genre->get_imported_old_id() );
 		return $genre_model;
 	}
 
@@ -164,6 +167,7 @@ class ObjectConverter {
 		$section_model->setSlug( $section->get_slug() );
 		$section_model->setName( $section->get_name() );
 		$section_model->setDescription( $section->get_description() );
+		$section_model->setImportedId( $section->get_imported_old_id() );
 		return $section_model;
 	}
 
@@ -177,6 +181,7 @@ class ObjectConverter {
 		$team_member_model->setEmail( $team_member->get_email_address() );
 		$team_member_model->setLinkedin( $team_member->get_linkedin() );
 		$team_member_model->setLocation( $team_member->get_location() );
+		$team_member_model->setImportedId( $team_member->get_imported_old_id() );
 		return $team_member_model;
 	}
 }
