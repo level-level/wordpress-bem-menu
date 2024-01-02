@@ -7,6 +7,10 @@ class base_term extends Clarkson_Term {
 	}
 
 	public function get_imported_old_id(): ?string {
-		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
+		$id = $this->get_meta( 'fdmg_import_old_id', true );
+		if ( ! is_string( $id ) || empty( $id ) ) {
+			return null;
+		}
+		return $id;
 	}
 }
