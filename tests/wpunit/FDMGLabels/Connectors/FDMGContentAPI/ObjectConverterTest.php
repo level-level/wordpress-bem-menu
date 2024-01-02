@@ -137,7 +137,7 @@ class ObjectConverterTest extends WPTestCase {
 					'post_name'      => 'test-article',
 					'comment_status' => 'open',
 					'meta_input'     => array(
-						'alternative_title' => 'Test article alternative title',
+						'alternative_title'  => 'Test article alternative title',
 						'fdmg_import_old_id' => 'article_123',
 					),
 				)
@@ -176,9 +176,9 @@ class ObjectConverterTest extends WPTestCase {
 					'post_type'    => 'ii_team',
 					'post_name'    => 'john-doe',
 					'meta_input'   => array(
-						'email_address' => 'johndoe@example.test',
-						'linkedin'      => 'https://linkedin.com/in/johndoe',
-						'location'      => 'Rotterdam',
+						'email_address'      => 'johndoe@example.test',
+						'linkedin'           => 'https://linkedin.com/in/johndoe',
+						'location'           => 'Rotterdam',
 						'fdmg_import_old_id' => 'author_123',
 					),
 				)
