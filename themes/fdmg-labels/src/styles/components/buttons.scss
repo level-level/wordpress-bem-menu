@@ -21,7 +21,7 @@
 
 .btn-menu {
 	@apply text-lg flex flex-col items-center justify-center p-0 min-w-[32px] dark:text-base-100;
-	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] compact-header:btn-text:text-sm aria-expanded:text-base-50 aria-expanded:z-20 compact-header:aria-expanded:z-0 leading-none;
+	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] compact-header:btn-text:text-sm aria-expanded:text-base-50 aria-expanded:z-0 leading-none;
 	@apply compact-header:text-base-50;
 }
 
