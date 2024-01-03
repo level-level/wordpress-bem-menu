@@ -21,16 +21,6 @@ class WidgetAreas {
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_COMPACT_HEADER ) ) {
 			register_sidebar(
 				array(
-					'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
-					'id'            => 'widget-area-navigation-ad',
-					'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div>',
-					'after_widget'  => '</div>',
-				)
-			);
-
-			register_sidebar(
-				array(
 					'name'          => _x( 'Menu', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-sidebar',
 					'description'   => _x( 'Widgets added in this area are shown inside the sidebar menu area behind the Menu button.', 'Widgets', 'fdmg-labels-admin' ),
@@ -39,6 +29,16 @@ class WidgetAreas {
 				)
 			);
 		}
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-navigation-ad',
+				'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div>',
+				'after_widget'  => '</div>',
+			)
+		);
 
 		register_sidebar(
 			array(

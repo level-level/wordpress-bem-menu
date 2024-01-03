@@ -53,7 +53,13 @@
 		{% endif %}
 
 		{% if options.enable_advertisements %}
-			<script async defer src="https://fdmg-forms-assets.s3.amazonaws.com/impactinvestor/iimpact_investor-message.js"></script>
+			{% if site.active_theme is same as('energeia') %}
+				<script async defer src="https://fdmg-forms-assets.s3.amazonaws.com/energeia/energeia-message.js"></script>
+			{% elseif site.active_theme is same as('pensioen-pro') %}
+				<script async defer src="https://fdmg-forms-assets.s3.amazonaws.com/pensioenpro/pensioen_pro-message.js"></script>
+			{% else %}
+				<script async defer src="https://fdmg-forms-assets.s3.amazonaws.com/impactinvestor/iimpact_investor-message.js"></script>
+			{% endif %}
 		{% endif %}
 
 		{{ wp_head() }}
