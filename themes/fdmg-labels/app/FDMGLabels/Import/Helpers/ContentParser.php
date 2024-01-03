@@ -660,7 +660,7 @@ class ContentParser {
 
 	protected function get_image_size_from_wp_alignment( string $wp_alignment ): string {
 		if ( in_array( $wp_alignment, array( 'left', 'right' ), true ) ) {
-			return 'medium';
+			return 'content_medium';
 		}
 		return 'full';
 	}
