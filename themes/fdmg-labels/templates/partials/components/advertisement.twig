@@ -9,9 +9,9 @@
 			{% endif %}
 
 			{% set class = 'ii-message' %}
-			{% if site.active_theme is same as('energeia') %}
+			{% if active_theme is same as('energeia') %}
 				{% set class = 'en-message' %}
-			{% elseif site.active_theme is same as('pensioen-pro') %}
+			{% elseif active_theme is same as('pensioen-pro') %}
 				{% set class = 'pp-message' %}
 			{% endif %}
 			<div class="{{ class }}" data-slot="{{ slot }}"></div>

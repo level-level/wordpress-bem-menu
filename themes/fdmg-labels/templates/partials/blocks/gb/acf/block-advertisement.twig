@@ -1,10 +1,12 @@
 {% set enable_advertisements = options.enable_advertisements %}
+{% set active_theme = site.active_theme %}
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
 	<div class="{{ align }}">
 		{% include 'partials/components/advertisement.twig' with {
-			slot: slot
+			slot: slot,
+			active_theme: active_theme,
 		} only %}
 	</div>
 {% elseif not enable_advertisements %}
