@@ -18,6 +18,7 @@ class SiteSettings {
 		add_action( 'acf/init', array( $this, 'register' ) );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
+		add_filter( 'clarkson_core_block_context_acf/block-advertisement', array( $this, 'add_context_args' ) );
 	}
 
 	/**
