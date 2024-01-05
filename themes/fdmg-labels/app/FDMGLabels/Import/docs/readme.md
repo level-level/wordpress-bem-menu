@@ -8,16 +8,16 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 2. [Tag -> Categories (taxonomy)](./tags_readme.md)
 3. [Sections (taxonomy)](./sections_readme.md)
 4. [Picture files as Media](./pictures_readme.md)
-5. [Binary files as Media](./binary_files_readme.md)
-6. [Author as Team](./authors_readme.md)
-7. [Articles as Posts](./articles_readme.md)
-8. Podcast series (taxonomy)
-9. Podcasts
-10. [Old URL's as redirects](./old_urls_readme.md)
-11. [Short URL's as redirects](./short_urls_readme.md)
-12. [Article redirects as redirects](./article_redirects.md)
-13. [Author redirects as redirects](./author_redirects.md)
-14. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
+5. Regenerate image sizes using `wp media regenerate --only-missing --url="URL_OF_SITE"`
+6. [Binary files as Media](./binary_files_readme.md)
+7. [Author as Team](./authors_readme.md)
+8. [Articles as Posts](./articles_readme.md)
+9. Podcast series (taxonomy)
+10. Podcasts
+11. [Old URL's as redirects](./old_urls_readme.md)
+12. [Short URL's as redirects](./short_urls_readme.md)
+13. [Article redirects as redirects](./article_redirects.md)
+14. [Author redirects as redirects](./author_redirects.md)
 
 ## Table structure
 
