@@ -99,7 +99,7 @@ class Comments {
 		$subscribe_button_text = esc_html_x( 'valid subscription', 'Comments', 'fdmg-labels' );
 		$subscribe_link_html   = sprintf( '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">%s</a>', $subscribe_button['url'] ?? '', $subscribe_button_text );
 
-		$paragraph_text = sprintf( _x( 'You must be %1$s and have a %2$s to post a comment.', 'Comments', 'fdmg-labels' ), $login_link_html, $subscribe_link_html );
+		$paragraph_text = sprintf( esc_html_x( 'You must be %1$s and have a %2$s to post a comment.', 'Comments', 'fdmg-labels' ), $login_link_html, $subscribe_link_html );
 		return sprintf( '<p class="px-3 py-3 text-base sm:px-6">%s</p>', $paragraph_text );
 	}
 }
