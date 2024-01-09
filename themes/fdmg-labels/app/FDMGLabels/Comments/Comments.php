@@ -91,16 +91,15 @@ class Comments {
 			$login_url = add_query_arg( 'redirect_to', rawurlencode( $object->get_permalink() ?: '' ), $login_url );
 		}
 
-		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
-		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
+		$login_text      = esc_html_x( 'logged in', 'Comments', 'fdmg-labels' );
+		$login_link_html = sprintf( '<a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">%s</a>', $login_url, $login_text );
 
-		return sprintf(
-			'<p class="px-3 py-3 text-base sm:px-6">%s</p>',
-			sprintf(
-				_x( 'You must be <a href="%1$s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">logged in</a> and have a <a href="%2$s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">valid subscription</a> to post a comment.', 'Comments', 'fdmg-labels' ),
-				$login_url,
-				$subscribe_button['url'] ?? '',
-			)
-		);
+		$subscribe_button      = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
+		$subscribe_button      = is_array( $subscribe_button ) ? $subscribe_button : array();
+		$subscribe_button_text = esc_html_x( 'valid subscription', 'Comments', 'fdmg-labels' );
+		$subscribe_link_html   = sprintf( '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">%s</a>', $subscribe_button['url'] ?? '', $subscribe_button_text );
+
+		$paragraph_text = sprintf( _x( 'You must be %1$s and have a %2$s to post a comment.', 'Comments', 'fdmg-labels' ), $login_link_html, $subscribe_link_html );
+		return sprintf( '<p class="px-3 py-3 text-base sm:px-6">%s</p>', $paragraph_text );
 	}
 }
