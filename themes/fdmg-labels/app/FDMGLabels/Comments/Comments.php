@@ -95,9 +95,9 @@ class Comments {
 		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
 
 		return sprintf(
-			'<p class="must-log-in">%s</p>',
+			'<p class="px-3 py-3 text-base sm:px-6">%s</p>',
 			sprintf(
-				_x( 'You must be <a href="%1$s">logged in</a> and have a <a href="%2$s">valid subscription</a> to post a comment.', 'Comments', 'fdmg-labels' ),
+				_x( 'You must be <a href="%1$s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">logged in</a> and have a <a href="%2$s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">valid subscription</a> to post a comment.', 'Comments', 'fdmg-labels' ),
 				$login_url,
 				$subscribe_button['url'] ?? '',
 			)

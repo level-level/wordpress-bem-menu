@@ -3,18 +3,20 @@
 		<div class="flex flex-col gap-3">
 
 			{% set comment_count = object.get_comments_count() %}
-			<div id="comments" class="pt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))] -mt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))]">
-				<div class="relative border-b-2 bg-secondary-100 border-secondary-400 dark:bg-base-600 dark:border-transparent">
-					<div class="px-3 py-3 border-b border-secondary-400 dark:border-base-800 sm:px-6">
-						<h2 class="font-bold font-figtree text-md text-primary dark:text-primary-300 sm:text-lg theme-energeia:text-base-800">
-							{{ _nx('%d comment', '%d comments', comment_count, 'Comment', 'fdmg-labels')|format(comment_count) }}
-						</h2>
+			{% if comment_count > 0 %}
+				<div id="comments" class="pt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))] -mt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))]">
+					<div class="relative border-b-2 bg-secondary-100 border-secondary-400 dark:bg-base-600 dark:border-transparent">
+						<div class="px-3 py-3 border-b border-secondary-400 dark:border-base-800 sm:px-6">
+							<h2 class="font-bold font-figtree text-md text-primary dark:text-primary-300 sm:text-lg theme-energeia:text-base-800">
+								{{ _nx('%d comment', '%d comments', comment_count, 'Comment', 'fdmg-labels')|format(comment_count) }}
+							</h2>
+						</div>
+						<ol>
+							{{ object.display_comments() }}
+						</ol>
 					</div>
-					<ol>
-						{{ object.display_comments() }}
-					</ol>
 				</div>
-			</div>
+			{% endif %}
 
 			{% set config = {
 				post_id: object.get_id(),
