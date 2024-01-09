@@ -29,8 +29,19 @@
 	} %}
 	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] bg-secondary-100 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-600 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
 
+		<div class="flex items-center px-3 border-b h-header-height border-secondary-700 dark:border-base-400 bg-secondary-500 dark:bg-base-600">
+			{% include 'styleguide/components/buttons/button-element.twig' with {
+				text: _x('Close', 'Menu', 'fdmg-labels'),
+				aria_expanded_support: false,
+				class: 'btn-menu-close js-close-menu',
+				aria_label: _x('Close menu', 'Menu', 'fdmg-labels'),
+				icon: 'close',
+				icon_left: true,
+			} %}
+		</div>
+
 		<div data-component="menu-dropdown" class="relative flex flex-col h-full outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-600">
-			<div class="mt-[theme(space.header-height)] max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
+			<div class="max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
 				<div class="my-3">
 					<div class="container">
 						{% include 'partials/components/search-header.twig' %}

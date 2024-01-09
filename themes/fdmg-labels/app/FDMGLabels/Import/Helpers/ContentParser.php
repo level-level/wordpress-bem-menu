@@ -334,7 +334,7 @@ class ContentParser {
 
 			$author_element = $quote_tag->getElementsByTagName( 'fdmg-author' );
 			$author         = $author_element->item( 0 )->nodeValue ?? '';
-			$author_html    = $author ? sprintf( '<cite>%s</cite>', wp_json_encode( $author, JSON_UNESCAPED_UNICODE ) ) : '';
+			$author_html    = $author ? sprintf( '<cite>%s</cite>', $author ) : '';
 
 			$json = '<!-- wp:quote --><blockquote class="wp-block-quote"><!-- wp:paragraph {"fontSize":"regular"} --><p class="has-regular-font-size">%s</p><!-- /wp:paragraph -->%s</blockquote><!-- /wp:quote -->';
 
@@ -432,7 +432,10 @@ class ContentParser {
 			}
 
 			$heading_element = $text_frame_tag->getElementsByTagName( 'fdmg-heading' );
-			$heading         = $heading_element->item( 0 )->nodeValue ?? '';
+			$heading_element = $heading_element->item( 0 );
+			$heading         = $heading_element ? ( $html_dom->saveHTML( $heading_element ) ?: '' ) : '';
+			$heading         = mb_convert_encoding( $heading, 'HTML-ENTITIES', 'UTF-8' ) ?: '';
+			$heading         = str_replace( array( '<fdmg-heading>', '</fdmg-heading>' ), array( '', '' ), $heading );
 
 			// Parse the content of the text frame just like a normal post
 			$content_element = $text_frame_tag->getElementsByTagName( 'fdmg-content' );
@@ -443,7 +446,7 @@ class ContentParser {
 
 			// Prepend image
 			$figure_html   = '';
-			$images        = $xpath->query( '//fdmg-image | //fdmg-text-frame-image', $text_frame_tag ) ?: new DOMNodeList();
+			$images        = $text_frame_tag->getElementsByTagName( 'fdmg-text-frame-image' );
 			$image_element = $images->item( 0 );
 			if ( $image_element instanceof DOMElement ) {
 				$figure_html = $this->fdmg_image_to_figure_html( $html_dom, $image_element );
@@ -546,8 +549,6 @@ class ContentParser {
 			return $html_dom;
 		}
 
-		$dlm_ids = array();
-
 		foreach ( $pdf_tags as $pdf_tag ) {
 			if ( ! $pdf_tag instanceof DOMElement ) {
 				continue;
@@ -562,28 +563,21 @@ class ContentParser {
 			$imported_content_finder = new ImportedContentFinder();
 			$found_id                = $imported_content_finder->get_post_id_from_old_id( 'binary_file_' . $binary_id, 'attachment' );
 			$found_id                = $found_id ?: $imported_content_finder->get_download_id_from_old_path( $binary_filename );
-			if ( $found_id ) {
-				$dlm_ids[] = (string) $found_id;
+			if ( ! $found_id ) {
+				continue;
 			}
 
+			$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"right","mode":"preview"} /-->';
+			$dlm_ids_json        = wp_json_encode( array( $found_id ) );
+			$download_block_html = sprintf( $download_block_html, uniqid(), $dlm_ids_json );
+			$gb_download_block   = $html_dom->createDocumentFragment();
+			$gb_download_block->appendXML( $download_block_html );
+
+			// replace current <fdmg-pdf> with new $gb_download_block tag
 			if ( $pdf_tag->parentNode ) {
+				$pdf_tag->parentNode->insertBefore( $gb_download_block, $pdf_tag );
 				$pdf_tag->parentNode->removeChild( $pdf_tag );
 			}
-		}
-
-		if ( empty( $dlm_ids ) ) {
-			return $html_dom;
-		}
-
-		$download_block_html = '<!-- wp:acf/block-downloads {"id":"block_%s","name":"acf/block-downloads","data":{"downloads_title":"","_downloads_title":"field_8c0f89d2","downloads_downloads":%s,"_downloads_downloads":"field_4f49a38d","downloads":"","_downloads":"field_432ce813"},"align":"center","mode":"preview"} /-->';
-		$dlm_ids_json        = wp_json_encode( $dlm_ids );
-		$download_block_html = sprintf( $download_block_html, uniqid(), $dlm_ids_json );
-		$download_block      = $html_dom->createDocumentFragment();
-		$download_block->appendXML( $download_block_html );
-
-		$wrapper = $html_dom->getElementById( self::WRAPPER_ID );
-		if ( $wrapper instanceof DOMElement ) {
-			$wrapper->insertBefore( $download_block, $wrapper->firstChild );
 		}
 
 		return $html_dom;
@@ -661,12 +655,12 @@ class ContentParser {
 		if ( str_contains( $fdmg_alignment, 'center' ) ) {
 			return 'center';
 		}
-		return '';
+		return 'wide';
 	}
 
 	protected function get_image_size_from_wp_alignment( string $wp_alignment ): string {
 		if ( in_array( $wp_alignment, array( 'left', 'right' ), true ) ) {
-			return 'medium';
+			return 'content_medium';
 		}
 		return 'full';
 	}

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7dd9fc5c3f777609d8b2367c353f1dc9",
+    "content-hash": "9ccd3b70f2a76a78959250b511e51869",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -231,11 +231,11 @@
         },
         {
             "name": "fdmg-labels/fdmg-content-api-client",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "dist": {
                 "type": "path",
                 "url": "themes/fdmg-labels/_generated/FDMGContentAPI",
-                "reference": "c24f937b659c14c78057f74de12c0df57483641a"
+                "reference": "863281d2fb053a023744ccac5b05e48a50504266"
             },
             "require": {
                 "ext-curl": "*",
@@ -804,16 +804,16 @@
         },
         {
             "name": "level-level/clarkson-404",
-            "version": "1.0.4",
+            "version": "1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-404.git",
-                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128"
+                "reference": "2ac350c29116424c85b82d6e357cdff2be7be260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/1268d58247d3444d15392aadf8ddff6d6c5b4128",
-                "reference": "1268d58247d3444d15392aadf8ddff6d6c5b4128",
+                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/2ac350c29116424c85b82d6e357cdff2be7be260",
+                "reference": "2ac350c29116424c85b82d6e357cdff2be7be260",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -854,23 +854,23 @@
             ],
             "description": "A plugin to set a custom page as 404 for using with Clarkson.",
             "support": {
-                "source": "https://github.com/level-level/clarkson-404/tree/1.0.4",
+                "source": "https://github.com/level-level/clarkson-404/tree/1.0.5",
                 "issues": "https://github.com/level-level/clarkson-404/issues"
             },
-            "time": "2022-03-24T12:23:50+00:00"
+            "time": "2023-11-17T14:48:30+00:00"
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.7.0",
+            "version": "1.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "2d62d269c9cbdfe462018268778984e15eeebb36"
+                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/2d62d269c9cbdfe462018268778984e15eeebb36",
-                "reference": "2d62d269c9cbdfe462018268778984e15eeebb36",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
+                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -942,23 +942,23 @@
             ],
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.0",
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.4",
                 "issues": "https://github.com/level-level/Clarkson-Core/issues"
             },
-            "time": "2022-10-14T10:17:47+00:00"
+            "time": "2023-11-20T09:51:23+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-wp-cli-twig-translations.git",
-                "reference": "6f6512e2b517458433ded0b4850fb0a3d4b79d7f"
+                "reference": "3d253c8d44239ba73dae5112f178836869aefec7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/6f6512e2b517458433ded0b4850fb0a3d4b79d7f",
-                "reference": "6f6512e2b517458433ded0b4850fb0a3d4b79d7f",
+                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/3d253c8d44239ba73dae5112f178836869aefec7",
+                "reference": "3d253c8d44239ba73dae5112f178836869aefec7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -974,8 +974,14 @@
                 "twig/string-extra": "^3.1",
                 "twig/twig": "^3.1"
             },
+            "require-dev": {
+                "wp-cli/wp-cli": "^2.9"
+            },
             "type": "library",
             "autoload": {
+                "psr-4": {
+                    "Clarkson\\WPCLITwigTranslations\\": "src/"
+                },
                 "files": [
                     "clarkson-wp-cli-twig-translations.php"
                 ]
@@ -991,10 +997,10 @@
             ],
             "description": "Smart WP-CLI command to cache the Twig templates so they can be read by PoEdit",
             "support": {
-                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.1",
+                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.2",
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
-            "time": "2020-10-29T07:03:42+00:00"
+            "time": "2023-11-14T16:06:02+00:00"
         },
         {
             "name": "level-level/ll-paywall",
@@ -1182,16 +1188,16 @@
         },
         {
             "name": "level-level/logging",
-            "version": "v3.0.4",
+            "version": "v3.0.5",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/logging.git",
-                "reference": "453e4d0ce14225848fe26381755ad5e37a4f5fbc"
+                "reference": "602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/logging/zipball/453e4d0ce14225848fe26381755ad5e37a4f5fbc",
-                "reference": "453e4d0ce14225848fe26381755ad5e37a4f5fbc",
+                "url": "https://api.github.com/repos/level-level/logging/zipball/602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f",
+                "reference": "602fd4a3fb4054b637d6b4f4cdb75e7c3400d97f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1241,10 +1247,10 @@
             ],
             "description": "Wonolog implementation for Level Level WordPress themes",
             "support": {
-                "source": "https://github.com/level-level/logging/tree/v3.0.4",
+                "source": "https://github.com/level-level/logging/tree/v3.0.5",
                 "issues": "https://github.com/level-level/logging/issues"
             },
-            "time": "2023-11-08T08:06:52+00:00"
+            "time": "2023-11-18T10:49:13+00:00"
         },
         {
             "name": "level-level/wordpress-bem-menu",
@@ -1323,11 +1329,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.2.2",
+            "version": "6.2.4",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.2",
-                "shasum": "f3bcbe7de4544a51a2f07300b0fbb97659129c94",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.4",
+                "shasum": "9cc0debe706cc2f85d6fe20fe3643d7b06a805ee",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1349,11 +1355,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.7.16",
+            "version": "2.7.17.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.16",
-                "shasum": "fdc3580ecf649734c45b21450b93739c7624a32f",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.7.17.1",
+                "shasum": "57af47dba631832650cfcb671a21cee587a68bf8",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1375,11 +1381,11 @@
         },
         {
             "name": "ll-premium/gravityformspolls",
-            "version": "4.1",
+            "version": "4.2.0",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.1",
-                "shasum": "81e2ae166dd87a9a6a0b267697965ec7973914d5",
+                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.2.0",
+                "shasum": "508f2e8f18ff0721e20304cec25d163864d97bba",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1461,11 +1467,11 @@
         },
         {
             "name": "ll-premium/wp-all-import-pro",
-            "version": "4.7.8",
+            "version": "4.8.5",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.7.8",
-                "shasum": "6abc0e2f62d96299590c10c7f24afe9862b7818f",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.5",
+                "shasum": "8f34f043094b6ffff6c519903ac55d901dbf996f",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4576,16 +4582,16 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.6.4",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "e7dafe215be5ef823392204535ee2e241f99a8cb"
+                "reference": "7a2046a5e6a15786068bb0298407522f30c694b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/e7dafe215be5ef823392204535ee2e241f99a8cb",
-                "reference": "e7dafe215be5ef823392204535ee2e241f99a8cb",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/7a2046a5e6a15786068bb0298407522f30c694b4",
+                "reference": "7a2046a5e6a15786068bb0298407522f30c694b4",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4616,9 +4622,9 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.6.4"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.0"
             },
-            "time": "2023-10-11T18:24:47+00:00"
+            "time": "2023-11-20T12:24:41+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
@@ -4697,15 +4703,15 @@
         },
         {
             "name": "wpackagist-plugin/download-monitor",
-            "version": "4.9.2",
+            "version": "4.9.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/download-monitor/",
-                "reference": "tags/4.9.2"
+                "reference": "tags/4.9.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4772,15 +4778,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.3.3",
+            "version": "1.3.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.3.3"
+                "reference": "tags/1.3.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.3.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.3.4.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4847,15 +4853,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.7.3",
+            "version": "2.8.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.7.3"
+                "reference": "tags/2.8.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.7.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.8.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4897,15 +4903,15 @@
         },
         {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.7.0",
+            "version": "1.7.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.7.0"
+                "reference": "tags/1.7.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4922,15 +4928,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.10.7",
+            "version": "7.11.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.10.7"
+                "reference": "tags/7.11.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.10.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4947,16 +4953,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "21.5",
+            "version": "21.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "d5ac648a05d08f247ffe19e704bbf31d73130934"
+                "reference": "9062f84e3c5b0c5be80a6eb78a76d24c40760eb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/d5ac648a05d08f247ffe19e704bbf31d73130934",
-                "reference": "d5ac648a05d08f247ffe19e704bbf31d73130934",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/9062f84e3c5b0c5be80a6eb78a76d24c40760eb6",
+                "reference": "9062f84e3c5b0c5be80a6eb78a76d24c40760eb6",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5014,7 +5020,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2023-10-31T09:27:40+00:00"
+            "time": "2023-11-28T10:01:21+00:00"
         }
     ],
     "packages-dev": [
@@ -6843,16 +6849,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "3.2.1",
+            "version": "3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "95a189fda634fd52cb44eebbbda3fabe0fdabdb2"
+                "reference": "88456c4d73ded85132c6bfa594f685a90952630c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/95a189fda634fd52cb44eebbbda3fabe0fdabdb2",
-                "reference": "95a189fda634fd52cb44eebbbda3fabe0fdabdb2",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/88456c4d73ded85132c6bfa594f685a90952630c",
+                "reference": "88456c4d73ded85132c6bfa594f685a90952630c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6948,7 +6954,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/3.2.1"
+                "source": "https://github.com/lucatume/wp-browser/tree/3.2.2"
             },
             "funding": [
                 {
@@ -6956,7 +6962,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-21T06:36:09+00:00"
+            "time": "2023-11-20T15:05:37+00:00"
         },
         {
             "name": "mikehaertl/php-shellcommand",
@@ -9731,12 +9737,12 @@
             "version": "3.7.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
+                "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
                 "reference": "1359e176e9307e906dc3d890bcc9603ff6d90619"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/1359e176e9307e906dc3d890bcc9603ff6d90619",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/1359e176e9307e906dc3d890bcc9603ff6d90619",
                 "reference": "1359e176e9307e906dc3d890bcc9603ff6d90619",
                 "shasum": "",
                 "mirrors": [
@@ -9786,6 +9792,20 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
+            "funding": [
+                {
+                    "url": "https://github.com/PHPCSStandards",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/jrfnl",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/php_codesniffer",
+                    "type": "open_collective"
+                }
+            ],
             "time": "2022-06-18T07:21:10+00:00"
         },
         {
@@ -11320,9 +11340,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-mbstring": "^7.1",
         "ext-dom": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-mbstring": "^7.1"
     },
     "platform-dev": [],
     "plugin-api-version": "2.6.0"

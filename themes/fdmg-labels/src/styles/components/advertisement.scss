@@ -11,7 +11,9 @@
 		display: block;
 
 		// Represents a advertisement element from Google
-		.ii-message {
+		.ii-message,
+		.en-message,
+		.pp-message {
 			& > div {
 				& > div {
 					&:before {

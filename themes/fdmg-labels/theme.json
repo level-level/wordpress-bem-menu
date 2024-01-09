@@ -14,7 +14,7 @@
     },
     "layout": {
       "contentSize": "var(--article-width)",
-      "wideSize": "var(--content-width)"
+      "wideSize": "var(--article-width)"
     },
     "typography": {
       "customFontSize": false,
