@@ -75,8 +75,7 @@ class PageFragmentsController extends WP_REST_Controller {
 	 */
 	public function get_item( $request ) {
 		// User unique content, disable caching
-		header( 'Pragma: no-cache' );
-		header( 'Expires: 0' );
+		nocache_headers();
 
 		$post = null;
 		if ( ! empty( $request['post_id'] ) ) {
