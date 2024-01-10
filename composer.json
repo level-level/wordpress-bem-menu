@@ -154,7 +154,7 @@
         "codeception/module-phpbrowser": "^1.0",
         "codeception/module-webdriver": "^1.2",
         "codeception/util-universalframework": "^1.0",
-        "friendsoftwig/twigcs": "v6.1.0",
+        "friendsoftwig/twigcs": "^6.4",
         "level-level/coding-standards": "^3.0",
         "level-level/phpstan-config": "^1.0",
         "lucatume/wp-browser": "^3.0",
