@@ -23,7 +23,7 @@
     "@fontsource-variable/figtree": "^5.0.19",
     "@fontsource/libre-caslon-text": "^5.0.18",
     "@level-level/recyclops": "^2.7.0",
-    "@sentry/browser": "^7.86.0",
+    "@sentry/browser": "^7.92.0",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5"
   },
