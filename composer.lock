@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "779e6630780076c5c56e53f574cc244f",
+    "content-hash": "655fcec47e638ea00175254201d74878",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -7662,16 +7662,16 @@
         },
         {
             "name": "level-level/coding-standards",
-            "version": "v3.1.0",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/coding-standards.git",
-                "reference": "42faa98a9f94581a4907a85ded01616da569d214"
+                "reference": "4ca6525971012f38684fad16bc4e1a221ebef463"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/coding-standards/zipball/42faa98a9f94581a4907a85ded01616da569d214",
-                "reference": "42faa98a9f94581a4907a85ded01616da569d214",
+                "url": "https://api.github.com/repos/level-level/coding-standards/zipball/4ca6525971012f38684fad16bc4e1a221ebef463",
+                "reference": "4ca6525971012f38684fad16bc4e1a221ebef463",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7681,11 +7681,11 @@
                 ]
             },
             "require": {
-                "automattic/vipwpcs": "^2.1",
+                "automattic/vipwpcs": "^2.1 || ^3",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "phpcompatibility/php-compatibility": "^9.3",
                 "slevomat/coding-standard": "^5.0 || ^6.0 || ^7.0",
-                "wp-coding-standards/wpcs": "^2.1"
+                "wp-coding-standards/wpcs": "^2.1 || ^3"
             },
             "require-dev": {
                 "phpunit/phpunit": "^7.0 || ^9.0"
@@ -7716,10 +7716,10 @@
             ],
             "description": "Level Level Coding standards",
             "support": {
-                "source": "https://github.com/level-level/coding-standards/tree/v3.1.0",
+                "source": "https://github.com/level-level/coding-standards/tree/v4.0.1",
                 "issues": "https://github.com/level-level/coding-standards/issues"
             },
-            "time": "2023-09-26T07:11:29+00:00"
+            "time": "2023-11-30T13:09:34+00:00"
         },
         {
             "name": "level-level/phpstan-config",
