@@ -28,7 +28,7 @@
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('Login', 'Paywall', 'fdmg-labels'),
-								url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
+								url: static_pages.login.get_permalink(constant('PAGE_LOGIN', static_pages.login)),
 								class: 'btn-primary',
 								icon: 'external-link',
 							} %}
