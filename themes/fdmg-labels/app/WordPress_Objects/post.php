@@ -76,6 +76,7 @@ class post extends base_object {
 			'number'            => (int) get_option( 'comments_per_page' ),
 			'paged'             => $cpage,
 			'reverse_top_level' => get_option( 'default_comments_page' ) === 'oldest' ? false : true,
+			'comment_type' 	    => 'comment',
 		);
 
 		$html = wp_list_comments(
