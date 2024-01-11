@@ -146,21 +146,21 @@
         }
     },
     "require-dev": {
-        "niels-de-blaauw/php-doc-check": "^0.2.1",
-        "level-level/coding-standards": "^3.0",
-        "friendsoftwig/twigcs": "v6.1.0",
-        "lucatume/wp-browser": "^3.0",
+        "cebe/php-openapi": "^1.7",
         "codeception/module-asserts": "^1.3",
-        "codeception/module-phpbrowser": "^1.0",
-        "codeception/module-webdriver": "^1.2",
+        "codeception/module-cli": "^1.1",
         "codeception/module-db": "^1.1",
         "codeception/module-filesystem": "^1.0",
-        "codeception/module-cli": "^1.1",
+        "codeception/module-phpbrowser": "^1.0",
+        "codeception/module-webdriver": "^1.2",
         "codeception/util-universalframework": "^1.0",
+        "friendsoftwig/twigcs": "^6.4",
+        "level-level/coding-standards": "^4.0",
         "level-level/phpstan-config": "^1.0",
+        "lucatume/wp-browser": "^3.0",
+        "niels-de-blaauw/php-doc-check": "^0.2.1",
         "phpstan/extension-installer": "^1.1",
-        "szepeviktor/phpstan-wordpress": "^1.1",
-        "cebe/php-openapi": "^1.7"
+        "szepeviktor/phpstan-wordpress": "^1.1"
     },
     "config": {
         "allow-plugins": {
