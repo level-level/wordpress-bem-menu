@@ -91,15 +91,14 @@ class Comments {
 			$login_url = add_query_arg( 'redirect_to', rawurlencode( $object->get_permalink() ?: '' ), $login_url );
 		}
 
-		$login_text      = esc_html_x( 'logged in', 'Comments', 'fdmg-labels' );
-		$login_link_html = sprintf( '<a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">%s</a>', $login_url, $login_text );
-
-		$subscribe_button      = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
-		$subscribe_button      = is_array( $subscribe_button ) ? $subscribe_button : array();
-		$subscribe_button_text = esc_html_x( 'valid subscription', 'Comments', 'fdmg-labels' );
-		$subscribe_link_html   = sprintf( '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">%s</a>', $subscribe_button['url'] ?? '', $subscribe_button_text );
-
-		$paragraph_text = sprintf( esc_html_x( 'You must be %1$s and have a %2$s to post a comment.', 'Comments', 'fdmg-labels' ), $login_link_html, $subscribe_link_html );
-		return sprintf( '<p class="px-3 py-3 text-base sm:px-6">%s</p>', $paragraph_text );
+		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
+		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
+		return Templates::get_instance()->render_twig(
+			'styleguide/components/comments/comment-no-permission.twig',
+			array(
+				'login_url'     => $login_url,
+				'subscribe_url' => $subscribe_button['url'] ?? '',
+			), true
+		);
 	}
 }

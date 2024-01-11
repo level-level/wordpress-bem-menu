@@ -25,9 +25,12 @@
 
 				{% set login_url = static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)) %}
 				{% set subscribe_url = options.subscribe_button.url %}
-				<p class="px-3 py-3 text-base sm:px-6">
-					{{ _x('You must be <a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">logged in</a> and have a <a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">valid subscription</a> to post a comment.', 'Comments', 'fdmg-labels')|format(login_url, subscribe_url)|raw }}
-				</p>
+				{% include 'styleguide/components/comments/comment-no-permission.twig' with {
+					login_url: login_url,
+					subscribe_url: subscribe_url,
+				} %}
+
+
 				{# Comment form will be rendered here by api #}
 			</div>
 		</div>
