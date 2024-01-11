@@ -4,7 +4,6 @@ namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
-use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
 use FDMGLabels\FeatureManager;
 use LevelLevel\Paywall\ContentExtractor;

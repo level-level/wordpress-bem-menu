@@ -1,4 +1,5 @@
 import { IModule, RestApi } from '../../globals';
+import User from '../model/user';
 
 declare const restApi: RestApi;
 
@@ -8,6 +9,7 @@ type FragmentApi = {
 
 class CommentForm implements IModule {
 	element: HTMLElement;
+	user: User | null;
 	config: {
 		post_id: number | null;
 	};
@@ -15,6 +17,13 @@ class CommentForm implements IModule {
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.config = this.element.dataset.config ? JSON.parse(this.element.dataset.config) : {};
+		this.user = User.getCurrentUser();
+
+		// Exit if not logged in
+		if (!this.user) {
+			return;
+		}
+
 		this.initialize();
 	}
 
