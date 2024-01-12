@@ -47,6 +47,6 @@ class LoginController extends AbstractMainController {
 		}
 
 		// Redirect to the login url.
-		$this->redirect_and_exit( oidcg_get_authentication_url(), 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
+		$this->redirect_and_exit( oidcg_get_authentication_url(), 302, 'FDMG Labels - Profile auth redirect to OpenID Connect', false );
 	}
 }
