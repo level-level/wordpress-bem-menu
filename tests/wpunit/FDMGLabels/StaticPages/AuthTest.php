@@ -16,11 +16,11 @@ class AuthTest extends WPTestCase {
 	public function test_login(): void {
 		add_filter( 'openid-connect-generic-auth-url', array( $this, 'change_openid_login_url' ) );
 
-		$_GET['ref'] = '1234';
+		$_GET['ref']         = '1234';
 		$_GET['kc_idp_hint'] = 'someone@example.test';
-		$_GET['_ga'] = '5678';
-		$_GET['loginHint'] = 'anotherone@example.test';
-		$controller = new LoginController();
+		$_GET['_ga']         = '5678';
+		$_GET['loginHint']   = 'anotherone@example.test';
+		$controller          = new LoginController();
 		$this->redirects_helper->start();
 		$controller->handle_request( '' );
 		$this->redirects_helper->stop();
