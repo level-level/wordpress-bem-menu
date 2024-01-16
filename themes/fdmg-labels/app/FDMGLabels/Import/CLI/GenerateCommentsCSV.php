@@ -46,7 +46,7 @@ class GenerateCommentsCSV {
 
 		$customers = $this->get_extracted_customers( $fdmg_customers_csv );
 		$this->process_comments( $fdmg_comments_csv, $generated_comments_csv, $customers );
-		WP_CLI::success( 'All authors have been processed' );
+		WP_CLI::success( 'All comments have been processed' );
 	}
 
 	/**
