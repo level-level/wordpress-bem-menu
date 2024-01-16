@@ -12,12 +12,13 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 6. [Binary files as Media](./binary_files_readme.md)
 7. [Author as Team](./authors_readme.md)
 8. [Articles as Posts](./articles_readme.md)
-9. Podcast series (taxonomy)
-10. Podcasts
-11. [Old URL's as redirects](./old_urls_readme.md)
-12. [Short URL's as redirects](./short_urls_readme.md)
-13. [Article redirects as redirects](./article_redirects.md)
-14. [Author redirects as redirects](./author_redirects.md)
+9. [Comments](./comments_readme.md)
+10. Podcast series (taxonomy)
+11. Podcasts
+12. [Old URL's as redirects](./old_urls_readme.md)
+13. [Short URL's as redirects](./short_urls_readme.md)
+14. [Article redirects as redirects](./article_redirects.md)
+15. [Author redirects as redirects](./author_redirects.md)
 
 ## Table structure
 
