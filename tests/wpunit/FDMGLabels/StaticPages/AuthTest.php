@@ -13,6 +13,12 @@ class AuthTest extends WPTestCase {
 		$this->redirects_helper = new Redirects();
 	}
 
+	public function tearDown(): void {
+		$_GET = array();
+		$_REQUEST = array();
+		parent::tearDown();
+	}
+
 	public function test_login(): void {
 		add_filter( 'openid-connect-generic-auth-url', array( $this, 'change_openid_login_url' ) );
 
