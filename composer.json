@@ -27,6 +27,19 @@
             "FDMGLabels\\": "themes/fdmg-labels/app/FDMGLabels/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "FDMGLabels\\Tests\\Helpers\\": [
+                "tests/helpers"
+            ],
+            "FDMGLabels\\Tests\\": [
+                "tests/wpunit/FDMGLabels"
+            ],
+            "FDMGLabels\\Tests\\Integration\\": [
+                "tests/wpunit/FDMGLabels"
+            ]
+        }
+    },
     "require": {
         "ext-dom": "*",
         "ext-libxml": "*",

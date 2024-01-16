@@ -1,13 +1,11 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
-class AuthController extends AbstractMainController {
+class LoginController extends AbstractMainController {
 
-	public const PAGE_LOGIN  = 'login';
-	public const PAGE_LOGOUT = 'logout';
-
+	public const PAGE_LOGIN = '';
 	public function get_slug(): string {
-		return 'auth';
+		return 'login';
 	}
 
 	/**
@@ -18,10 +16,6 @@ class AuthController extends AbstractMainController {
 			case self::PAGE_LOGIN:
 				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
 				$this->handle_login_link();
-				break;
-			case self::PAGE_LOGOUT:
-				$this->set_page_title( __( 'Logout', 'fdmg-labels' ) );
-				$this->handle_logout_link();
 				break;
 		}
 	}
@@ -53,31 +47,6 @@ class AuthController extends AbstractMainController {
 		}
 
 		// Redirect to the login url.
-		$this->redirect_and_exit( oidcg_get_authentication_url(), 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
-	}
-
-	/**
-	 * Redirect to the WordPress logout page.
-	 */
-	protected function handle_logout_link(): void {
-		// Disable caching
-		nocache_headers();
-
-		// Determine redirect url.
-		$redirect_to = home_url();
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
-			$redirect_to = $_REQUEST['redirect_to'];
-		}
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
-
-		// If already logged out, directly go to the redirect url.
-		if ( ! is_user_logged_in() ) {
-			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged out' );
-		}
-
-		// Redirect to the WP logout url.
-		$url = wp_specialchars_decode( wp_logout_url( $redirect_to ) );
-		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
+		$this->redirect_and_exit( oidcg_get_authentication_url(), 302, 'FDMG Labels - Profile auth redirect to OpenID Connect', false );
 	}
 }
