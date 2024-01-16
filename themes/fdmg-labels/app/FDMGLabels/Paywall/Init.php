@@ -2,6 +2,7 @@
 namespace FDMGLabels\Paywall;
 
 use Clarkson\WPadmin\Capabilities;
+use LevelLevel\Paywall\ContentExtractor;
 
 class Init {
 
@@ -16,6 +17,7 @@ class Init {
 		( new ACFFields() )->register_hooks();
 		( new ContentAccess() )->register_hooks();
 		( new ACFBlock() )->register_hooks();
+		( new ContentExtractor() )->register_hooks();
 
 		add_filter( 'll_paywall_paywall_object_classname', array( $this, 'change_paywall_object_class' ) );
 	}
