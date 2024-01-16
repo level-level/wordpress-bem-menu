@@ -91,15 +91,17 @@ class GenerateCommentsCSV {
 			exit;
 		}
 
-		$generated_comments_header_written = fputcsv( $generated_comments_file, array(
-			'comment_id',
-			'article_id',
-			'customer_id',
-			'customer_displayname',
-			'date',
-			'text',
-			'approved',
-		) );
+		$generated_comments_header_written = fputcsv(
+			$generated_comments_file, array(
+				'comment_id',
+				'article_id',
+				'customer_id',
+				'customer_displayname',
+				'date',
+				'text',
+				'approved',
+			)
+		);
 		if ( ! $generated_comments_header_written ) {
 			WP_CLI::error( sprintf( 'Could write generated comments CSV header "%s"', $generated_comments_header_written ) );
 			exit;
@@ -139,13 +141,13 @@ class GenerateCommentsCSV {
 		}
 
 		return array(
-			'comment_id' => $comment_id,
-			'article_id' => $row['articleId'],
-			'customer_id' => $row['customerId'],
+			'comment_id'           => $comment_id,
+			'article_id'           => $row['articleId'],
+			'customer_id'          => $row['customerId'],
 			'customer_displayname' => $customers[ $row['customerId'] ] ?? 'Anoniem',
-			'date' => $row['submitDate'],
-			'text' => $row['text'],
-			'approved' => $row['state'] === 'VISIBLE' ? '1' : '0',
+			'date'                 => $row['submitDate'],
+			'text'                 => $row['text'],
+			'approved'             => $row['state'] === 'VISIBLE' ? '1' : '0',
 		);
 	}
 }
