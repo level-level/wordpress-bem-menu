@@ -14,7 +14,7 @@ class AuthTest extends WPTestCase {
 	}
 
 	public function tearDown(): void {
-		$_GET = array();
+		$_GET     = array();
 		$_REQUEST = array();
 		parent::tearDown();
 	}
