@@ -27,7 +27,6 @@ class GenerateCommentsCSV {
 	 * wp fdmg-labels import generate-comments-csv run /path/to/fdmg-comments.csv /path/to/fdmg-customers.csv /path/to/generated-comments.csv
 	 */
 	public function run( array $args, array $assoc_args ): void {
-		// Check if both files are provided
 		$fdmg_comments_csv = $args[0] ?? '';
 		if ( empty( $fdmg_comments_csv ) || ! file_exists( $fdmg_comments_csv ) ) {
 			WP_CLI::error( sprintf( 'FDMG comments CSV "%s" does not exist', $fdmg_comments_csv ) );
@@ -64,13 +63,18 @@ class GenerateCommentsCSV {
 
 		$customers = array();
 		while ( $row = fgetcsv( $fdmg_customers_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
-			$customers[ $row[0] ] = $row[1];
+			$customers[ (int) $row[0] ] = $row[1];
 		}
 
 		fclose( $fdmg_customers_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 		return $customers;
 	}
 
+	/**
+	 * Loop all comments and create a CSV line for each comment.
+	 *
+	 * @param array<int,string> $customers
+	 */
 	protected function process_comments( string $fdmg_comments_csv, string $generated_comments_csv, array $customers ): void {
 		$fdmg_comments_file = fopen( $fdmg_comments_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
 		if ( ! is_resource( $fdmg_comments_file ) ) {
@@ -79,7 +83,7 @@ class GenerateCommentsCSV {
 		}
 
 		$fdmg_comments_header = fgetcsv( $fdmg_comments_file );
-		$fdmg_comments_header = $fdmg_comments_header[0] === 'SEP=' ? fgetcsv( $fdmg_comments_file ) : $fdmg_comments_header;
+		$fdmg_comments_header = ( $fdmg_comments_header && $fdmg_comments_header[0] === 'SEP=' ) ? fgetcsv( $fdmg_comments_file ) : $fdmg_comments_header;
 		if ( ! $fdmg_comments_header ) {
 			WP_CLI::error( sprintf( 'Could not read FDMG comments CSV header "%s"', $fdmg_comments_csv ) );
 			exit;
@@ -125,26 +129,21 @@ class GenerateCommentsCSV {
 	}
 
 	/**
-	 * Create a CSV line that's prepared for adding comments.
+	 * Generate a CSV line that's prepared for adding comments with WP All Import.
 	 *
 	 * @param array<string,string> $row
-	 * @param resource $redirects_file
+	 * @param array<int,string> $customers
 	 * @return array<string,string>
 	 */
 	protected function get_generated_comment( array $row, array $customers ): array {
 		$comment_id = sprintf( '%s - %s - %s', $row['articleId'], $row['customerId'], $row['submitDate'] );
 
 		WP_CLI::log( sprintf( 'Processing comment ID "%s"', $comment_id ) );
-		if ( $row['state'] !== 'VISIBLE' ) {
-			WP_CLI::log( sprintf( 'Comment ID "%s" is not visible, skipping...', $comment_id ) );
-			return array();
-		}
-
 		return array(
 			'comment_id'           => $comment_id,
 			'article_id'           => $row['articleId'],
 			'customer_id'          => $row['customerId'],
-			'customer_displayname' => $customers[ $row['customerId'] ] ?? 'Anoniem',
+			'customer_displayname' => $customers[ (int) $row['customerId'] ] ?? 'Anoniem',
 			'date'                 => $row['submitDate'],
 			'text'                 => $row['text'],
 			'approved'             => $row['state'] === 'VISIBLE' ? '1' : '0',
