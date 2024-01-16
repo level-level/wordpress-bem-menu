@@ -11,7 +11,7 @@ class ContentExtractor {
 
 	public function remove_paywall_block_if_paywall_is_disabled( bool $remove_paywall_block ): bool {
 		$options = ( new Paywall() )->get_options();
-		if( $options[ Paywall::META_PAYWALL_DISABLED ] ?? false ) {
+		if ( $options[ Paywall::META_PAYWALL_DISABLED ] ?? false ) {
 			return true;
 		}
 		return $remove_paywall_block;

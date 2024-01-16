@@ -35,9 +35,11 @@ class ContentExtractorTest extends WPTestCase {
 	 * @preserveGlobalState disabled
 	 */
 	public function test_disable_paywall(): void {
-		update_field( 'paywall', array(
-			'disabled' => '1',
-		), 'options' );
+		update_field(
+			'paywall', array(
+				'disabled' => '1',
+			), 'options'
+		);
 
 		$content = $this->get_post_content( $this->post );
 
