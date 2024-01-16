@@ -224,7 +224,7 @@ class CommentWalker extends \Walker_Comment {
 		$twig->echo_twig(
 			'styleguide/components/comments/comment-item.twig',
 			array(
-				'object' => $comment,
+				'object'      => $comment,
 				'object_text' => $comment_text,
 			), true
 		);
