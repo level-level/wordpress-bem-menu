@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "655fcec47e638ea00175254201d74878",
+    "content-hash": "9ba92a7a5ac5dc956873e193437b2238",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1004,16 +1004,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "v0.1.0",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "fbe87e2283d27f33d9f9cc9ce082f702e0f7e482"
+                "reference": "6c6ddb2ae7e1f48d85ab2b31c091c8f78d2cfa55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/fbe87e2283d27f33d9f9cc9ce082f702e0f7e482",
-                "reference": "fbe87e2283d27f33d9f9cc9ce082f702e0f7e482",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/6c6ddb2ae7e1f48d85ab2b31c091c8f78d2cfa55",
+                "reference": "6c6ddb2ae7e1f48d85ab2b31c091c8f78d2cfa55",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1027,18 +1027,18 @@
                 "php": ">=8.0"
             },
             "require-dev": {
-                "codeception/module-asserts": "^1.3",
-                "codeception/module-cli": "^1.1",
-                "codeception/module-db": "^1.1",
-                "codeception/module-filesystem": "^1.0",
-                "codeception/module-phpbrowser": "^1.0",
-                "codeception/module-webdriver": "^1.2",
+                "codeception/module-asserts": "^3.0",
+                "codeception/module-cli": "^2.0",
+                "codeception/module-db": "^3.1",
+                "codeception/module-filesystem": "^3.0",
+                "codeception/module-phpbrowser": "^3.0",
+                "codeception/module-webdriver": "^3.2",
                 "codeception/util-universalframework": "^1.0",
-                "friendsoftwig/twigcs": "^5.0",
-                "level-level/coding-standards": "^2.0",
+                "friendsoftwig/twigcs": "^6.4",
+                "level-level/coding-standards": "^4.1",
                 "level-level/phpstan-config": "^1.0",
                 "ll-premium/advanced-custom-fields-pro": "^6.1",
-                "lucatume/wp-browser": "^3.0",
+                "lucatume/wp-browser": "^4.0",
                 "niels-de-blaauw/php-doc-check": "^0.2.1",
                 "pronamic/wp-documentor": "^1.3",
                 "szepeviktor/phpstan-wordpress": "^1.1",
@@ -1131,9 +1131,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/v0.1.0"
+                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.0"
             },
-            "time": "2023-08-11T14:26:26+00:00"
+            "time": "2024-01-16T13:37:18+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
