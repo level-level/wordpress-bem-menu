@@ -3,7 +3,7 @@ namespace FDMGLabels\Paywall;
 
 use Clarkson\Theme\ACFPages\Paywall;
 
-class ContentAccess {
+class ContentExtractor {
 
 	public function register_hooks(): void {
 		add_filter( 'll_paywall_remove_paywall_block', array( $this, 'remove_paywall_block_if_paywall_is_disabled' ) );

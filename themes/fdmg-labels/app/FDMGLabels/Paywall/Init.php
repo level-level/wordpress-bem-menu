@@ -2,7 +2,6 @@
 namespace FDMGLabels\Paywall;
 
 use Clarkson\WPadmin\Capabilities;
-use LevelLevel\Paywall\ContentExtractor;
 
 class Init {
 

@@ -104,6 +104,6 @@ class Paywall {
 	 * @return array<string,mixed>
 	 */
 	public function get_options(): array {
-		return get_field( self::META_PAYWALL, 'option' ) ?? array();
+		return get_field( self::META_PAYWALL, 'options' ) ?? array();
 	}
 }
