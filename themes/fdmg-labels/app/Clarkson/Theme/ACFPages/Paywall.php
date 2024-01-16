@@ -15,6 +15,7 @@ class Paywall {
 
 	public const MENU_SLUG                          = 'acf-paywall-options';
 	public const META_PAYWALL                       = 'paywall';
+	public const META_PAYWALL_DISABLED              = 'disabled';
 	public const META_PAYWALL_TITLE                 = 'title';
 	public const META_PAYWALL_TITLE_REQUIRED_ROLE   = 'title_required_role';
 	public const META_PAYWALL_CONTENT               = 'content';
@@ -56,6 +57,10 @@ class Paywall {
 						array(
 							Tab::make( _x( 'General options', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_GENERAL_OPTIONS )
 								->placement( 'left' ),
+							TrueFalse::make( _x( 'Disable the paywall for all articles', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_DISABLED )
+								->instructions( _x( 'By selecting this option, content after a paywall block can be viewed by anyone.', 'Fields', 'fdmg-labels-admin' ) )
+								->stylisedUi()
+								->defaultValue( false ),
 							TrueFalse::make( _x( 'By default, all news articles are behind a paywall', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_DEFAULT_ACTIVE )
 								->instructions( _x( 'By enabling this option, all new articles are drafted with the paywall block included.', 'Fields', 'fdmg-labels-admin' ) )
 								->stylisedUi()
@@ -93,5 +98,12 @@ class Paywall {
 				),
 			)
 		);
+	}
+
+	/**
+	 * @return array<string,mixed>
+	 */
+	public function get_options(): array {
+		return get_field( self::META_PAYWALL, 'option' ) ?? array();
 	}
 }
