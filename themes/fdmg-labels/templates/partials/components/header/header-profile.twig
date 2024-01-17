@@ -28,7 +28,7 @@
 				<div data-module="login-button" class="flex flex-col gap-4 pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
 					{% include 'styleguide/components/buttons/button-link.twig' with {
 						text: _x('Login', 'Profile', 'fdmg-labels'),
-						url: static_pages.login.get_permalink(constant('PAGE_LOGIN', static_pages.login)),
+						url: static_pages.login.get_login_permalink(true),
 						class: 'btn-primary btn-full js-login',
 					} %}
 					{% include 'styleguide/components/buttons/button-link.twig' with {
