@@ -36,9 +36,8 @@ class FDMGIdentification {
 	 * @param FDMGIdentification::COOKIE_* $cookie_name
 	 */
 	protected function set_cookie( string $cookie_name, string $cookie_data, int $expires ): void {
-		$cookiepath     = defined( 'COOKIEPATH' ) ? COOKIEPATH : '/';
-		$sitecookiepath = defined( 'SITECOOKIEPATH' ) ? SITECOOKIEPATH : '/';
-		$cookie_domain  = defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '/';
+		$cookiepath    = trim( (string) wp_parse_url( get_option( 'siteurl' ), PHP_URL_PATH ), '/' ) ?: '/'; // Path needs to be for the whole current subsite
+		$cookie_domain = defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '/';
 
 		$cookie_options = array(
 			'expires'  => $expires,
@@ -50,11 +49,6 @@ class FDMGIdentification {
 		);
 
 		setcookie( $cookie_name, $cookie_data, $cookie_options );
-
-		if ( $cookiepath !== $sitecookiepath ) {
-			$cookie_options['path'] = $sitecookiepath;
-			setcookie( $cookie_name, $cookie_data, $cookie_options );
-		}
 	}
 
 	public function clear_cookies(): void {
