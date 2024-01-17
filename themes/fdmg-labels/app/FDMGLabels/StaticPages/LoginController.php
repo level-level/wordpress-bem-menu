@@ -65,4 +65,18 @@ class LoginController extends AbstractMainController {
 		$login_url = add_query_arg( $add_url_params, oidcg_get_authentication_url() );
 		$this->redirect_and_exit( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect', false );
 	}
+
+	public function get_login_permalink( bool $redirect_to_current_url ): string {
+		$permalink = $this->get_permalink( self::PAGE_LOGIN );
+		if ( ! $redirect_to_current_url ) {
+			return $permalink;
+		}
+
+		$https       = is_ssl() ? 'https' : 'http';
+		$host        = $_SERVER['HTTP_HOST'] ?? '';
+		$request_uri = $_SERVER['REQUEST_URI'] ?? '';
+		$redirect_to = $https . '://' . $host . $request_uri;
+		$permalink   = add_query_arg( 'redirect_to', rawurlencode( $redirect_to ), $permalink );
+		return $permalink;
+	}
 }
