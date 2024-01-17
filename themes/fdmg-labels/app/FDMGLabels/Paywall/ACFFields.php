@@ -36,7 +36,7 @@ class ACFFields {
 				->defaultValue( true ),
 			Select::make( _x( 'Allowed user roles', 'Fields', 'fdmg-labels-admin' ), self::META_ALLOWED_USER_ROLES )
 				->choices( $role_options )
-				->defaultValue( Capabilities::ROLE_FDMG_SUBSCRIBER )
+				->defaultValue( array( Capabilities::ROLE_FDMG_SUBSCRIBER ) )
 				->allowMultiple()
 				->stylisedUi( false )
 				->required()
