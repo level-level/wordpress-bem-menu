@@ -9,6 +9,12 @@
 	@apply theme-energeia:text-base-800 theme-energeia:hocus:text-base-800;
 }
 
+// Used when a primary button is used in a dark context
+.btn-primary-light-hover {
+	@apply hocus:border-base-50 theme-energeia:hocus:text-base-50 theme-energeia:hocus:dark:text-base-50 theme-energeia:hocus:dark:bg-transparent hocus:dark:border-primary-300;
+	@apply theme-pensioen-pro:hocus:text-base-50;
+}
+
 .btn-secondary {
 	@apply text-primary dark:text-primary-300;
 }
