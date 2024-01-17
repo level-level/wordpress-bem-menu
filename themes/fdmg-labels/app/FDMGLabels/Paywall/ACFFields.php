@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Paywall;
 
+use Clarkson\WPadmin\Capabilities;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Field;
 use Extended\ACF\Fields\Select;
@@ -32,9 +33,10 @@ class ACFFields {
 		$extra_fields = array(
 			TrueFalse::make( _x( 'Require user roles for access', 'Fields', 'fdmg-labels-admin' ), self::META_REQUIRE_ROLES_FOR_ACCESS )
 				->stylisedUi()
-				->defaultValue( false ),
+				->defaultValue( true ),
 			Select::make( _x( 'Allowed user roles', 'Fields', 'fdmg-labels-admin' ), self::META_ALLOWED_USER_ROLES )
 				->choices( $role_options )
+				->defaultValue( array( Capabilities::ROLE_FDMG_SUBSCRIBER ) )
 				->allowMultiple()
 				->stylisedUi( false )
 				->required()
