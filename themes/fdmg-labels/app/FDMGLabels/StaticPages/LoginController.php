@@ -66,6 +66,10 @@ class LoginController extends AbstractMainController {
 		$this->redirect_and_exit( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect', false );
 	}
 
+	/**
+	 * Get the permalink of the login page.
+	 * If chosen, it will redirect to the current url after the user has logged in.
+	 */
 	public function get_login_permalink( bool $redirect_to_current_url ): string {
 		$permalink = $this->get_permalink( self::PAGE_LOGIN );
 		if ( ! $redirect_to_current_url ) {
