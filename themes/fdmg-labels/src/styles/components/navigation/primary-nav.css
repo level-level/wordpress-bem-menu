@@ -20,17 +20,25 @@
 }
 
 .primary-nav__item--parent:focus-within .primary-nav__link,
-.primary-nav__item--parent:focus-within .primary-nav__arrow,
+.primary-nav__item--parent:focus-within .primary-nav__toggle,
 .primary-nav__item--parent:hover .primary-nav__link,
-.primary-nav__item--parent:hover .primary-nav__arrow {
+.primary-nav__item--parent:hover .primary-nav__toggle {
 	@apply text-base-50 sm:text-base-50 compact-header:text-base-800 compact-header:dark:text-base-50;
+}
+
+.primary-nav__item--parent.primary-nav__item--active {
+	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 compact-header:bg-secondary-400;
+}
+
+.primary-nav__item--parent.primary-nav__item--active.primary-nav-sub__item {
+	@apply bg-transparent dark:bg-transparent sm:dark:bg-transparent compact-header:bg-transparent;
 }
 
 .primary-nav__item--active .primary-nav__link {
 	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50 compact-header:dark:bg-base-300;
 }
 
-.primary-nav__item--active .primary-nav__arrow {
+.primary-nav__item--active .primary-nav__toggle {
 	@apply text-base-50;
 	@apply compact-header:text-base-800 compact-header:dark:text-base-50;
 }
@@ -44,7 +52,7 @@
 	@apply compact-header:focus:outline-base-50;
 }
 
-.primary-nav__arrow {
+.primary-nav__toggle {
 	@apply absolute top-0 right-0 text-sm bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
 	@apply sm:p-0 sm:right-4 sm:text-secondary-700 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
@@ -62,8 +70,8 @@
 	@apply sm:left-full sm:top-0;
 }
 
-.primary-nav-sub .primary-nav__arrow {
-	@apply sm:-rotate-90 sm:text-secondary-700 sm:right-[10px] sm:dark:text-base-100;
+.primary-nav-sub .primary-nav__toggle {
+	@apply sm:rotate-90 sm:text-secondary-700 sm:right-[10px] sm:dark:text-base-100;
 }
 
 .primary-nav-sub .primary-nav-sub__link {

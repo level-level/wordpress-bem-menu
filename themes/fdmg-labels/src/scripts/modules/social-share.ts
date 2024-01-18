@@ -60,6 +60,26 @@ class Socials implements IModule {
 		} else if (config.type === 'copy') {
 			try {
 				await navigator.clipboard.writeText(window.location.href);
+
+				// Add confirmation popover after copying link to clipboard
+				const popoverHTML = document.createElement('div');
+				popoverHTML.classList.add(
+					'absolute',
+					'top-[calc(100%+8px)]',
+					'bg-secondary-200',
+					'dark:bg-base-400',
+					'text-sm',
+					'!px-2',
+					'!py-1',
+					'left-1/2',
+					'-translate-x-1/2',
+				);
+				popoverHTML.innerHTML = `<div class="absolute bg-secondary-200 w-2 h-2 content-[''] rotate-45 -top-[4px] left-1/2 -translate-x-1/2 dark:bg-base-400"></div> ${i18n.copied}`;
+				currentTarget.parentElement?.appendChild(popoverHTML);
+
+				setTimeout(() => {
+					popoverHTML.remove();
+				}, 2000);
 			} catch (err) {
 				console.error('Failed to copy: ', err); // eslint-disable-line
 			}

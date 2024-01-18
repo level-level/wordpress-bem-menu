@@ -8,177 +8,180 @@
 {% set active_sections = filter.get_filter_value('fdmg_section') %}
 {% set active_categories = filter.get_filter_value('category_name')|split(',') %}
 
-<div class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
+<nav aria-label="{{ _x('Search results filter', 'Search', 'fdmg-labels') }}">
+	<div id="filters" class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
+		<div class="md:pt-[139px]">
+			<div data-component="search-filter" class="relative h-full bg-base-50 dark:bg-base-600 md:border-b-2 md:border-primary md:dark:border-0 md:h-auto">
+				<div class="flex flex-col h-full md:h-auto" data-module="filter-form">
 
-	<div data-component="search-filter" class="relative bg-base-50 dark:bg-base-600 md:mt-[139px] md:border-b-2 md:border-primary md:dark:border-0 h-full md:h-auto">
-		<div class="flex flex-col h-full md:h-auto" data-module="filter-form">
+					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+						<div class="md:hidden">
+							<div class="flex justify-between gap-4 text-base">
+								<div>
+									<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
+									<div class="mt-2">
+										{% include 'styleguide/components/buttons/button-element.twig' with {
+											text: _x('Empty filter', 'Search', 'fdmg-labels'),
+											class: 'btn-link !text-base-500 !underline js-reset-filter',
+											icon: 'trash',
+											icon_left: true,
+										} %}
+									</div>
+								</div>
+								<div>
+									{% include 'styleguide/components/buttons/button-element.twig' with {
+										text: '',
+										class: 'btn-link js-close-modal',
+										icon: 'close',
+										aria_label: _x('Close filter', 'Search', 'fdmg-labels'),
+									} %}
+								</div>
 
-			<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-				<div class="md:hidden">
-					<div class="flex justify-between gap-4 text-base">
-						<div>
-							<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
-							<div class="mt-2">
-								{% include 'styleguide/components/buttons/button-element.twig' with {
-									text: _x('Empty filter', 'Search', 'fdmg-labels'),
-									class: 'btn-link !text-base-500 !underline js-reset-filter',
-									icon: 'trash',
-									icon_left: true,
+							</div>
+						</div>
+						<div class="hidden md:block">
+							<div class="flex items-center justify-between gap-4 text-base">
+								<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
+								<div>
+									{% include 'styleguide/components/buttons/button-element.twig' with {
+										text: _x('Empty filter', 'Search', 'fdmg-labels'),
+										class: 'btn-link !text-base-500 !underline js-reset-filter',
+										icon: 'trash',
+										icon_left: true,
+									} %}
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden js-modal-body" novalidate>
+						<input type="hidden" name="s" value="{{ the_search_query() }}">
+
+						<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+							<label for="orderby" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
+							<select name="orderby">
+								<option value="relevance" {{ selected(orderby, 'relevance', false) }}>{{ _x('Relevance', 'Search', 'fdmg-labels') }}</option>
+								<option value="date" {{ selected(orderby, 'date', false) }}>{{ _x('Date', 'Search', 'fdmg-labels') }}</option>
+							</select>
+						</div>
+
+						<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+							{% include 'partials/components/filters/period-filters.twig' with {
+								active_period: period,
+								periods: [{
+									period: 'week',
+									label: _x('Week', 'Search', 'fdmg-labels'),
+								}, {
+									period: 'month',
+									label: _x('Month', 'Search', 'fdmg-labels'),
+								}, {
+									period: 'year',
+									label: _x('Year', 'Search', 'fdmg-labels'),
+								}, {
+									period: '3-years',
+									label: _x('3 years', 'Search', 'fdmg-labels'),
+								}, {
+									period: '2000-now',
+									label: _x('2000 - now', 'Search', 'fdmg-labels'),
+								}, {
+									period: 'custom-period',
+									label: _x('Custom period', 'Search', 'fdmg-labels'),
+								}],
+							} %}
+						</div>
+
+						<div class="{{ period is not same as('custom-period') ? 'hidden' }} js-date-range">
+							<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4" data-module="date-range-validator">
+								{% include 'partials/components/filters/date-range.twig' with {
+									title: _x('Filter on date', 'Search', 'fdmg-labels'),
+									start_name: 'post_date_min',
+									start_value: start_date_value ? start_date_value|date('Y-m-d') : '',
+									end_name: 'post_date_max',
+									end_value: end_date_value ? end_date_value|date('Y-m-d') : '',
+									hidden_legend: true,
 								} %}
 							</div>
 						</div>
-						<div>
-							{% include 'styleguide/components/buttons/button-element.twig' with {
-								text: '',
-								class: 'btn-link js-close-modal',
-								icon: 'close',
-								aria_label: _x('Close filter', 'Search', 'fdmg-labels'),
-							} %}
-						</div>
 
-					</div>
-				</div>
-				<div class="hidden md:block">
-					<div class="flex items-center justify-between gap-4 text-base">
-						<p class="text-base font-body-bold">{{ _x('Filter', 'Search', 'fdmg-labels') }}</p>
-						<div>
+						{% set categories = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_CATEGORIES', search_options)) %}
+						{% if categories %}
+							<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+								{% include 'partials/components/filters/checkboxes.twig' with {
+									title: _x('Category', 'Search', 'fdmg-labels'),
+									field_name: 'category',
+									checkboxes: categories|map(item => {
+										label: item.get_name(),
+										value: item.get_slug(),
+									}),
+									values: active_categories,
+									max_amount: search.search_results_category_amount,
+									button_label: _x('categories', 'Search', 'fdmg-labels'),
+								} %}
+							</div>
+							<input type="hidden" name="category_name" value="{{ active_categories|join(',')|escape('html_attr') }}" />
+						{% endif %}
+
+						{% set sections = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_SECTIONS', search_options)) %}
+						{% if sections %}
+							<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+								{% include 'partials/components/filters/checkboxes.twig' with {
+									title: _x('Section', 'Search', 'fdmg-labels'),
+									field_name: 'fdmg_section',
+									checkboxes: sections|map(item => {
+										label: item.get_name(),
+										value: item.get_slug(),
+									}),
+									values: active_sections,
+									max_amount: search.search_results_section_amount,
+									button_label: _x('sections', 'Search', 'fdmg-labels'),
+								} %}
+							</div>
+						{% endif %}
+
+						{% set genres = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_GENRES', search_options)) %}
+						{% if genres %}
+							<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+								{% include 'partials/components/filters/checkboxes.twig' with {
+									title: _x('Genre', 'Search', 'fdmg-labels'),
+									field_name: 'fdmg_genre',
+									checkboxes: genres|map(item => {
+										label: item.get_name(),
+										value: item.get_slug(),
+									}),
+									values: active_genres,
+									max_amount: search.search_results_genre_amount,
+									button_label: _x('genres', 'Search', 'fdmg-labels'),
+								} %}
+							</div>
+						{% endif %}
+
+						{% if authors_filters %}
+							<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
+								{% include 'partials/components/filters/checkboxes.twig' with {
+									title: _x('Authors', 'Search', 'fdmg-labels'),
+									field_name: 'author_id',
+									checkboxes: authors_filters|map(item => {
+										label: item.get_title(),
+										value: item.get_id(),
+									}),
+									values: author_ids,
+									max_amount: search.search_results_author_amount,
+									button_label: _x('authors', 'Search', 'fdmg-labels'),
+								} %}
+							</div>
+						{% endif %}
+
+						<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
 							{% include 'styleguide/components/buttons/button-element.twig' with {
-								text: _x('Empty filter', 'Search', 'fdmg-labels'),
-								class: 'btn-link !text-base-500 !underline js-reset-filter',
-								icon: 'trash',
-								icon_left: true,
+								text: _x('Apply filter', 'Search', 'fdmg-labels'),
+								class: 'btn-primary btn-full',
+								type: 'submit',
 							} %}
 						</div>
-					</div>
+					</form>
 				</div>
 			</div>
-
-			<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden js-modal-body" novalidate>
-				<input type="hidden" name="s" value="{{ the_search_query() }}">
-
-				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-					<label for="orderby" class="block mb-2">{{ _x('Sort', 'Search', 'fdmg-labels') }}</label>
-					<select name="orderby">
-						<option value="relevance" {{ selected(orderby, 'relevance', false) }}>{{ _x('Relevance', 'Search', 'fdmg-labels') }}</option>
-						<option value="date" {{ selected(orderby, 'date', false) }}>{{ _x('Date', 'Search', 'fdmg-labels') }}</option>
-					</select>
-				</div>
-
-				<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-					{% include 'partials/components/filters/period-filters.twig' with {
-						active_period: period,
-						periods: [{
-							period: 'week',
-							label: _x('Week', 'Search', 'fdmg-labels'),
-						}, {
-							period: 'month',
-							label: _x('Month', 'Search', 'fdmg-labels'),
-						}, {
-							period: 'year',
-							label: _x('Year', 'Search', 'fdmg-labels'),
-						}, {
-							period: '3-years',
-							label: _x('3 years', 'Search', 'fdmg-labels'),
-						}, {
-							period: '2000-now',
-							label: _x('2000 - now', 'Search', 'fdmg-labels'),
-						}, {
-							period: 'custom-period',
-							label: _x('Custom period', 'Search', 'fdmg-labels'),
-						}],
-					} %}
-				</div>
-
-				<div class="{{ period is not same as('custom-period') ? 'hidden' }} js-date-range">
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4" data-module="date-range-validator">
-						{% include 'partials/components/filters/date-range.twig' with {
-							title: _x('Filter on date', 'Search', 'fdmg-labels'),
-							start_name: 'post_date_min',
-							start_value: start_date_value ? start_date_value|date('Y-m-d') : '',
-							end_name: 'post_date_max',
-							end_value: end_date_value ? end_date_value|date('Y-m-d') : '',
-							hidden_legend: true,
-						} %}
-					</div>
-				</div>
-
-				{% set categories = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_CATEGORIES', search_options)) %}
-				{% if categories %}
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-						{% include 'partials/components/filters/checkboxes.twig' with {
-							title: _x('Category', 'Search', 'fdmg-labels'),
-							field_name: 'category',
-							checkboxes: categories|map(item => {
-								label: item.get_name(),
-								value: item.get_slug(),
-							}),
-							values: active_categories,
-							max_amount: search.search_results_category_amount,
-							button_label: _x('categories', 'Search', 'fdmg-labels'),
-						} %}
-					</div>
-					<input type="hidden" name="category_name" value="{{ active_categories|join(',')|escape('html_attr') }}" />
-				{% endif %}
-
-				{% set sections = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_SECTIONS', search_options)) %}
-				{% if sections %}
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-						{% include 'partials/components/filters/checkboxes.twig' with {
-							title: _x('Section', 'Search', 'fdmg-labels'),
-							field_name: 'fdmg_section',
-							checkboxes: sections|map(item => {
-								label: item.get_name(),
-								value: item.get_slug(),
-							}),
-							values: active_sections,
-							max_amount: search.search_results_section_amount,
-							button_label: _x('sections', 'Search', 'fdmg-labels'),
-						} %}
-					</div>
-				{% endif %}
-
-				{% set genres = filter.get_filterable_terms(constant('META_SEARCH_RESULTS_GENRES', search_options)) %}
-				{% if genres %}
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-						{% include 'partials/components/filters/checkboxes.twig' with {
-							title: _x('Genre', 'Search', 'fdmg-labels'),
-							field_name: 'fdmg_genre',
-							checkboxes: genres|map(item => {
-								label: item.get_name(),
-								value: item.get_slug(),
-							}),
-							values: active_genres,
-							max_amount: search.search_results_genre_amount,
-							button_label: _x('genres', 'Search', 'fdmg-labels'),
-						} %}
-					</div>
-				{% endif %}
-
-				{% if authors_filters %}
-					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
-						{% include 'partials/components/filters/checkboxes.twig' with {
-							title: _x('Authors', 'Search', 'fdmg-labels'),
-							field_name: 'author_id',
-							checkboxes: authors_filters|map(item => {
-								label: item.get_title(),
-								value: item.get_id(),
-							}),
-							values: author_ids,
-							max_amount: search.search_results_author_amount,
-							button_label: _x('authors', 'Search', 'fdmg-labels'),
-						} %}
-					</div>
-				{% endif %}
-
-				<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
-					{% include 'styleguide/components/buttons/button-element.twig' with {
-						text: _x('Apply filter', 'Search', 'fdmg-labels'),
-						class: 'btn-primary btn-full',
-						type: 'submit',
-					} %}
-				</div>
-			</form>
 		</div>
 	</div>
-</div>
-<div data-component="backdrop" aria-hidden="true" class="js-modal-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[59] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>
+	<div data-component="backdrop" aria-hidden="true" class="js-modal-backdrop fixed inset-0 bg-[rgb(0,0,0,0.5)] z-[59] transition-all dark:bg-[rgb(0,0,0,0.8)] aria-hidden:invisible aria-hidden:opacity-0"></div>
+</nav>
