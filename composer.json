@@ -70,7 +70,7 @@
         "wpackagist-plugin/disable-emojis": "^1.7",
         "wpackagist-plugin/download-monitor": "^4.8",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.16",
-        "wpackagist-plugin/elasticpress": "^4.7",
+        "wpackagist-plugin/elasticpress": "^5.0",
         "wpackagist-plugin/koko-analytics": "^1.0",
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/popup-maker": "^1.17",
