@@ -204,11 +204,11 @@ class Selligent {
 			add_filter(
 				'pre_http_request',
 				/**
-				 * @param mixed $false Can be anything, if this value is not
+				 * @param mixed $false_anything Can be anything, if this value is not
 				 * false, it will prevent the request from running.
 				 */
-				function ( $false, array $args, string $url ) {
-					return $this->preview_request( $false, $args, $url );
+				function ( $false_anything, array $args, string $url ) {
+					return $this->preview_request( $false_anything, $args, $url );
 				}, 10, 3
 			);
 		}

@@ -156,11 +156,11 @@ class Feed extends GFFeedAddOn {
 	 * @param mixed $default
 	 * @return mixed
 	 */
-	public function get_meta_of_feed( array $feed, string $meta_key, mixed $default = null ): mixed {
+	public function get_meta_of_feed( array $feed, string $meta_key, mixed $default_null = null ): mixed {
 		if ( empty( $feed['meta'] ) ) {
-			return $default;
+			return $default_null;
 		}
-		return $feed['meta'][ $meta_key ] ?? $default;
+		return $feed['meta'][ $meta_key ] ?? $default_null;
 	}
 
 	/**

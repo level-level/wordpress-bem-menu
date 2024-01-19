@@ -85,8 +85,8 @@ class acf_block_articles_in_columns extends base_block {
 	public function get_public_posts_only( array $posts ): array {
 		return array_filter(
 			$posts,
-			function ( Clarkson_Object $object ) {
-				return $object->get_status() === 'publish';
+			function ( Clarkson_Object $clarkson_object ) {
+				return $clarkson_object->get_status() === 'publish';
 			}
 		);
 	}

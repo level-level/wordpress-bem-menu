@@ -38,13 +38,13 @@ class AuthorRedirects {
 			exit;
 		}
 
-		$authors_file = fopen( $authors_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$authors_file = fopen( $authors_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $authors_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open authors CSV "%s"', $authors_csv ) );
 			exit;
 		}
 
-		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $redirects_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
 			exit;
@@ -56,12 +56,12 @@ class AuthorRedirects {
 			exit;
 		}
 
-		while ( $row = fgetcsv( $authors_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( $row = fgetcsv( $authors_file ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			$this->process_author( array_combine( $authors_header, $row ), $redirects_file );
 		}
 
-		fclose( $authors_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
-		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $authors_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		WP_CLI::success( 'All authors have been processed' );
 	}
 

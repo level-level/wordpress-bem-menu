@@ -16,9 +16,9 @@ class ContentParser {
 
 	public const WRAPPER_ID = 'fdmg-import-wrapper';
 
-	public function format_value( string $value, string $default = '' ): string {
+	public function format_value( string $value, string $default_string = '' ): string {
 		if ( $value === 'NULL' ) {
-			return $default;
+			return $default_string;
 		}
 		return $value;
 	}

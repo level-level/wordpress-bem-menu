@@ -47,7 +47,7 @@ class Styleguide {
 			return false;
 		}
 
-		if ( $environment === 'staging' && ! current_user_can( 'administrator' ) ) {
+		if ( $environment === 'staging' && ! current_user_can( 'delete_others_pages' ) ) {
 			return false;
 		}
 
