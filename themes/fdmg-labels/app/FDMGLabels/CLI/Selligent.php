@@ -76,7 +76,6 @@ class Selligent {
 
 		if ( empty( $posts ) ) {
 			WP_CLI::error( 'No valid posts were given' );
-			exit;
 		}
 
 		$newsletter_id = (int) ( $args[1] ?? 0 );
@@ -156,7 +155,6 @@ class Selligent {
 		$newsletter    = ii_newsletter::get( $newsletter_id );
 		if ( ! $newsletter instanceof ii_newsletter ) {
 			WP_CLI::error( 'No valid newsletter ID was given' );
-			exit;
 		}
 
 		$client = new Client();
@@ -189,7 +187,6 @@ class Selligent {
 
 		if ( ! filter_var( $args[0], FILTER_VALIDATE_EMAIL ) ) {
 			WP_CLI::error( 'No valid e-mail address was given' );
-			exit;
 		}
 
 		$client = new Client();

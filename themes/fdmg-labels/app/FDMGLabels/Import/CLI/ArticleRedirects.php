@@ -32,13 +32,11 @@ class ArticleRedirects {
 		$redirects_csv = $args[0] ?? '';
 		if ( empty( $redirects_csv ) || ! str_ends_with( $redirects_csv, '.csv' ) ) {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $redirects_csv ) );
-			exit;
 		}
 
 		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! $redirects_file ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
-			exit;
 		}
 
 		// Process articles in batches

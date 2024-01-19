@@ -102,7 +102,7 @@ class post extends base_object {
 			),
 		);
 
-		return comment_form( $args );
+		comment_form( $args );
 	}
 
 	/**
