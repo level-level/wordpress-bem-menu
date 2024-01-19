@@ -35,7 +35,7 @@ if ( function_exists( 'is_blog_installed' ) && is_blog_installed() ) {
  * This workaround makes sure that the pluggable functions are loaded on shutdown.
  */
 add_action(
-	'shutdown', function(): void {
+	'shutdown', function (): void {
 		require_once ABSPATH . 'wp-includes/pluggable.php';
 	}
 );
