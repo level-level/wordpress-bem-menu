@@ -138,6 +138,17 @@ class GenerateCommentsCSV {
 	protected function get_generated_comment( array $row, array $customers ): array {
 		$comment_id = sprintf( '%s - %s - %s', $row['articleId'], $row['customerId'], $row['submitDate'] );
 
+		switch ( $row['state'] ) {
+			case 'INVISIBLE':
+				$approved = 'trash'; // Trash
+				break;
+			case 'MODERATED':
+				$approved = '0'; // Pending
+				break;
+			default:
+				$approved = '1'; // Approved
+				break;
+		}
 		WP_CLI::log( sprintf( 'Processing comment ID "%s"', $comment_id ) );
 		return array(
 			'comment_id'           => $comment_id,
@@ -146,7 +157,7 @@ class GenerateCommentsCSV {
 			'customer_displayname' => $customers[ (int) $row['customerId'] ] ?? 'Anoniem',
 			'date'                 => $row['submitDate'],
 			'text'                 => $row['text'],
-			'approved'             => $row['state'] === 'VISIBLE' ? '1' : '0',
+			'approved'             => $approved,
 		);
 	}
 }
