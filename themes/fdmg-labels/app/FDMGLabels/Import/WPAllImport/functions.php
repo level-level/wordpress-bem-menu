@@ -125,3 +125,13 @@ function fdmg_wpai_get_slug_from_url( ?string $url ): string {
 	$parts = explode( '/', $url );
 	return (string) array_pop( $parts );
 }
+
+function fdmg_wpai_comment_status_for_post( ?string $disallow_comments ): string {
+	if ( (bool) $disallow_comments ) {
+		return 'closed';
+	}
+
+	// Use the default comment status from the site settings.
+	$site_default_comment_status = get_option( 'default_comment_status' );
+	return $site_default_comment_status === 'open' ? 'open' : 'closed';
+}
