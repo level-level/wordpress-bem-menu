@@ -48,7 +48,7 @@ class ArticleRedirects {
 			foreach ( $posts_batch as $post ) {
 				$this->process_post( $post, $redirects_file );
 			}
-			$batch_number++;
+			++$batch_number;
 		}
 
 		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose

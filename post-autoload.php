@@ -6,7 +6,7 @@ use Monolog\Handler\PsrHandler;
 use Monolog\Logger;
 
 add_filter(
-	'level_level_log_handlers', function( array $handlers ) {
+	'level_level_log_handlers', function ( array $handlers ) {
 		$handlers['fdmg_logger'] = new PsrHandler( new PSR3BaseLoggerAdapter(), Logger::INFO );
 
 		if ( class_exists( WP_CLI::class, false ) && defined( 'WP_CLI' ) && (bool) constant( 'WP_CLI' ) ) {

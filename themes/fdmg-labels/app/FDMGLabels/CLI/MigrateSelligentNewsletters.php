@@ -151,7 +151,7 @@ class MigrateSelligentNewsletters {
 			$articles_data[] = array(
 				Newsletter::META_ARTICLE_GROUP_ARTICLE_ARTICLE => $value,
 			);
-			$acf_article_field_index++;
+			++$acf_article_field_index;
 		}
 
 		update_field(

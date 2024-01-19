@@ -270,7 +270,7 @@ class base_block extends Block_Type {
 	 */
 	public function get_query_args( array $terms, array $post_types, array $exluded_objects = array(), int $count = 2, string $tax_relation = 'OR' ): array {
 		$exclude_ids = array_map(
-			function( Clarkson_Object $object ) {
+			function ( Clarkson_Object $object ) {
 				return $object->get_id();
 			},
 			$exluded_objects

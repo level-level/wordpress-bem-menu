@@ -604,7 +604,7 @@ class ContentParser {
 		foreach ( $images as $image_element ) {
 			if ( ! $image_element instanceof DOMElement ) {
 				continue;
-			};
+			}
 
 			/**
 			 * desired output example

@@ -27,7 +27,7 @@ class Selligent {
 		WP_CLI::line( 'Article list ID: ' . $settings->get_list_ids()->get_article() );
 
 		$types = array_map(
-			function( $type ) {
+			function ( $type ) {
 				return $type->get_type();
 			}, $settings->get_newsletter()->get_types()
 		);
@@ -35,7 +35,7 @@ class Selligent {
 
 		// Get publication names as string
 		$publications = array_map(
-			function( NewsletterPublicationSettings $publication ) {
+			function ( NewsletterPublicationSettings $publication ) {
 				return $publication->get_name();
 			}, $settings->get_newsletter()->get_publications()
 		);
@@ -207,7 +207,7 @@ class Selligent {
 				 * @param mixed $false Can be anything, if this value is not
 				 * false, it will prevent the request from running.
 				 */
-				function( $false, array $args, string $url ) {
+				function ( $false, array $args, string $url ) {
 					return $this->preview_request( $false, $args, $url );
 				}, 10, 3
 			);

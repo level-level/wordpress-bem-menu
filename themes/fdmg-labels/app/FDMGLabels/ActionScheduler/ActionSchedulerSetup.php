@@ -31,7 +31,6 @@ class ActionSchedulerSetup {
 
 		// Filter Action Scheduler queue runner time limit. Set LL_AS_TIME_LIMIT in wp-config.php to overwrite.
 		add_filter( 'action_scheduler_queue_runner_time_limit', array( $this, 'increase_time_limit' ) );
-
 	}
 
 	public function require_plugin_file(): void {
@@ -127,6 +126,4 @@ class ActionSchedulerSetup {
 		}
 		return constant( 'LL_AS_TIME_LIMIT' );
 	}
-
 }
-

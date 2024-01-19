@@ -23,5 +23,4 @@ class NewsletterPublicationSettings {
 	public function get_name(): string {
 		return (string) ( $this->data[ Selligent::OPTION_NEWSLETTER_PUBLICATION_NAME ] ?? '' );
 	}
-
 }

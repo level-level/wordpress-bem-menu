@@ -38,7 +38,7 @@ class acf_block_related_articles extends base_block {
 
 		if ( ! empty( $wp_query->posts ) ) {
 			$posts = array_filter(
-				$wp_query->posts, function( $post ): bool {
+				$wp_query->posts, function ( $post ): bool {
 					return $post instanceof WP_Post;
 				}
 			);
@@ -58,7 +58,7 @@ class acf_block_related_articles extends base_block {
 	public function get_public_posts_only( array $posts ): array {
 		return array_filter(
 			$posts,
-			function( Clarkson_Object $object ) {
+			function ( Clarkson_Object $object ) {
 				return $object->get_status() === 'publish';
 			}
 		);

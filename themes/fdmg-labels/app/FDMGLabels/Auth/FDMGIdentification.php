@@ -55,5 +55,4 @@ class FDMGIdentification {
 		$this->set_cookie( self::COOKIE_USER, '', time() - YEAR_IN_SECONDS );
 		$this->set_cookie( self::COOKIE_ORGANISATION, '', time() - YEAR_IN_SECONDS );
 	}
-
 }
