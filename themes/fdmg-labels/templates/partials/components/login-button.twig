@@ -1,0 +1,12 @@
+<div data-module="login-button" class="flex flex-col gap-4">
+	{% include 'styleguide/components/buttons/button-link.twig' with {
+		text: _x('Login', 'Profile', 'fdmg-labels'),
+		url: static_pages.login.get_login_permalink(true),
+		class: 'btn-primary btn-full js-login',
+	} %}
+	{% include 'styleguide/components/buttons/button-link.twig' with {
+		text: _x('Logout', 'Profile', 'fdmg-labels'),
+		url: static_pages.logout.get_permalink(constant('PAGE_LOGOUT', static_pages.logout)),
+		class: 'btn-primary btn-full js-logout',
+	} %}
+</div>
