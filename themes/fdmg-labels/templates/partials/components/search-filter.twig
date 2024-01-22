@@ -11,7 +11,7 @@
 <nav aria-label="{{ _x('Search results filter', 'Search', 'fdmg-labels') }}">
 	<div id="filters" class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
 		<div class="md:pt-[139px]">
-			<div data-component="search-filter" class="relative h-full bg-base-50 dark:bg-base-600 md:border-b-2 md:border-primary md:dark:border-0 md:h-auto">
+			<div data-component="search-filter" class="relative h-screen bg-base-50 dark:bg-base-600 md:border-b-2 md:border-primary md:dark:border-0 md:h-auto">
 				<div class="flex flex-col h-full md:h-auto" data-module="filter-form">
 
 					<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
@@ -171,7 +171,7 @@
 							</div>
 						{% endif %}
 
-						<div class="relative p-3 mt-auto bg-secondary-100 dark:bg-base-600 md:bg-transparent sm:p-4 md:mt-0">
+						<div class="relative p-3 mt-auto sm:p-4 md:mt-0">
 							{% include 'styleguide/components/buttons/button-element.twig' with {
 								text: _x('Apply filter', 'Search', 'fdmg-labels'),
 								class: 'btn-primary btn-full',
