@@ -173,6 +173,15 @@ class Filter {
 		return $selected_authors;
 	}
 
+	/**
+	 * Allow indexing post meta fields.
+	 * This is needed for searching content inside the meta fields,
+	 * as well as filtering by meta fields.
+	 *
+	 * @param array<string> $allowed_keys
+	 * @param WP_Post $post
+	 * @return array<string>
+	 */
 	public function elastic_index_meta( array $allowed_keys, WP_Post $post ): array {
 		if ( $post->post_type === Post::POST_TYPE_NAME ) {
 			$allowed_keys[] = Post::META_ALTERNATIVE_TITLE;
