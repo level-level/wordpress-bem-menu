@@ -3,6 +3,7 @@ namespace FDMGLabels\Search;
 
 use Clarkson\Theme\ACFPages\SearchOptions;
 use Clarkson\Theme\PostTypes\Post;
+use WP_Post;
 use WP_Query;
 
 class Filter {
@@ -12,6 +13,7 @@ class Filter {
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_min' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_max' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_author_id' ) );
+		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'elastic_index_meta' ) );
 	}
 
 	/**
@@ -169,5 +171,13 @@ class Filter {
 			return array();
 		}
 		return $selected_authors;
+	}
+
+	public function elastic_index_meta( array $allowed_keys, WP_Post $post ): array {
+		if ( $post->post_type === Post::POST_TYPE_NAME ) {
+			$allowed_keys[] = Post::META_ALTERNATIVE_TITLE;
+			$allowed_keys[] = Post::META_AUTHORS;
+		}
+		return $allowed_keys;
 	}
 }
