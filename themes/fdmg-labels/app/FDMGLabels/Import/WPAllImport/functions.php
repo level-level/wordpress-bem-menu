@@ -60,8 +60,8 @@ function fdmg_wpai_get_comment_id_by_old_id( string $prefix, string $old_id ): i
 	return ( new ImportedContentFinder() )->get_comment_id_from_old_id( $prefix . $old_id );
 }
 
-function fdmg_format_value( string $value, string $default = '' ): string {
-	return ( new ContentParser() )->format_value( $value, $default );
+function fdmg_format_value( string $value, string $default_string = '' ): string {
+	return ( new ContentParser() )->format_value( $value, $default_string );
 }
 
 function fdmg_wpai_picture_get_title( string $title, string $file_path ): string {

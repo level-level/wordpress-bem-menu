@@ -88,7 +88,7 @@ abstract class AbstractController {
 
 	public function set_page_title( string $title ): void {
 		add_filter(
-			'wpseo_title', function( $original_title ) use ( $title ) {
+			'wpseo_title', function ( $original_title ) use ( $title ) {
 				$separator = function_exists( 'YoastSEO' ) ? YoastSEO()->helpers->options->get_title_separator() : '-';
 				return sprintf( '%s %s %s', $title, $separator, get_bloginfo( 'name' ) );
 			}

@@ -6,7 +6,7 @@ use Monolog\Handler\PsrHandler;
 use Monolog\Logger;
 
 add_filter(
-	'level_level_log_handlers', function( array $handlers ) {
+	'level_level_log_handlers', function ( array $handlers ) {
 		$handlers['fdmg_logger'] = new PsrHandler( new PSR3BaseLoggerAdapter(), Logger::INFO );
 
 		if ( class_exists( WP_CLI::class, false ) && defined( 'WP_CLI' ) && (bool) constant( 'WP_CLI' ) ) {
@@ -35,7 +35,7 @@ if ( function_exists( 'is_blog_installed' ) && is_blog_installed() ) {
  * This workaround makes sure that the pluggable functions are loaded on shutdown.
  */
 add_action(
-	'shutdown', function(): void {
+	'shutdown', function (): void {
 		require_once ABSPATH . 'wp-includes/pluggable.php';
 	}
 );

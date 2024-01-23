@@ -16,9 +16,9 @@ class ContentParser {
 
 	public const WRAPPER_ID = 'fdmg-import-wrapper';
 
-	public function format_value( string $value, string $default = '' ): string {
+	public function format_value( string $value, string $default_string = '' ): string {
 		if ( $value === 'NULL' ) {
-			return $default;
+			return $default_string;
 		}
 		return $value;
 	}
@@ -604,7 +604,7 @@ class ContentParser {
 		foreach ( $images as $image_element ) {
 			if ( ! $image_element instanceof DOMElement ) {
 				continue;
-			};
+			}
 
 			/**
 			 * desired output example

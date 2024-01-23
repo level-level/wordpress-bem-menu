@@ -221,7 +221,7 @@ class Image {
 
 		return array_filter(
 			$this->get_available_image_sizes( $attachment_id ),
-			function( array $image_size_data ) use ( $ratio_width, $ratio_height ): bool {
+			function ( array $image_size_data ) use ( $ratio_width, $ratio_height ): bool {
 				$common_deviser    = gmp_intval( gmp_gcd( $image_size_data['width'], $image_size_data['height'] ) );
 				$size_ratio_width  = $image_size_data['width'] / $common_deviser;
 				$size_ratio_height = $image_size_data['height'] / $common_deviser;

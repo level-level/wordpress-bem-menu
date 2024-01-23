@@ -22,5 +22,4 @@ class NewsletterSenderService {
 		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 		}
 	}
-
 }

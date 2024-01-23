@@ -106,7 +106,7 @@ class ArticleGroup {
 		$articles = is_array( $articles ) ? $articles : array();
 
 		$article_ids = array_map(
-			function( array $articles_row ): int {
+			function ( array $articles_row ): int {
 				return (int) ( $articles_row[ Newsletter::META_ARTICLE_GROUP_ARTICLE_ARTICLE ] ?? 0 );
 			}, $articles
 		);
@@ -201,7 +201,7 @@ class ArticleGroup {
 
 		$posts    = \KokoAnalytics\get_most_viewed_posts( $args );
 		$post_ids = array_map(
-			function( WP_Post $post ): int {
+			function ( WP_Post $post ): int {
 				return $post->ID;
 			}, $posts
 		);
@@ -244,5 +244,4 @@ class ArticleGroup {
 		$post_ids = get_posts( $args );
 		return $post_ids;
 	}
-
 }

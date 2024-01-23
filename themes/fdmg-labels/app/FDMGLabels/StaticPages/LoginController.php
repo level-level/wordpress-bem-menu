@@ -41,7 +41,7 @@ class LoginController extends AbstractMainController {
 			 * @param string $param_name
 			 * @return bool
 			 */
-			$_GET, function( $param_value, string $param_name ): bool {
+			$_GET, function ( $param_value, string $param_name ): bool {
 				return ! in_array( $param_name, array( 'response_type', 'scope', 'client_id', 'state', 'redirect_uri' ), true )
 				&& is_scalar( $param_value );
 			}, ARRAY_FILTER_USE_BOTH

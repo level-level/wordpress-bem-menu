@@ -49,7 +49,7 @@ class ACFFields {
 
 		$fields = array_merge(
 			$fields, array_map(
-				function( Field $extra_field ): array {
+				function ( Field $extra_field ): array {
 					return $extra_field->get( Key::sanitize( ACFBlock::FIELD_GROUP ) );
 				}, $extra_fields
 			)

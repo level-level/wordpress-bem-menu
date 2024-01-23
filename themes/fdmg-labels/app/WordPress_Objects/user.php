@@ -13,5 +13,4 @@ class user extends Clarkson_User {
 	public function get_fdmg_organisation_id(): int {
 		return (int) $this->get_meta( FDMGIdentification::META_FDMG_ORGANISATION_ID, true );
 	}
-
 }

@@ -87,9 +87,9 @@ class DataGenerator {
 		return $data;
 	}
 
-	protected function format_publish_date( base_object $object ): string {
+	protected function format_publish_date( base_object $base_object ): string {
 		$now_date         = new DateTimeImmutable( 'now', wp_timezone() );
-		$publication_date = new DateTimeImmutable( $object->get_object()->post_date, wp_timezone() );
+		$publication_date = new DateTimeImmutable( $base_object->get_object()->post_date, wp_timezone() );
 
 		// Default to full date
 		$format = 'd F Y';
