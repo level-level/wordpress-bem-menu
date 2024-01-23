@@ -1,4 +1,5 @@
 import ModuleInitializer from './utilities/module-initializer';
+import DataLayerEvents from './utilities/datalayer-events';
 import ThemeSelection from './modules/theme-selection';
 import PrimaryNav from './modules/primary-nav';
 import HeaderMenu from './modules/header-menu';
@@ -17,6 +18,7 @@ import DateRangeValidator from './modules/date-range-validator';
 import ToggleListItems from './modules/toggle-list-items';
 import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
+import DataLayer from './modules/datalayer';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -36,8 +38,10 @@ ModuleInitializer({
 	'date-range-validator': DateRangeValidator,
 	'toggle-list-items': ToggleListItems,
 	'login-button': LoginButton,
-	'text-zoom': TextZoom,
+	'datalayer': DataLayer,
 });
+
+DataLayerEvents();
 
 /**
  * Event when the paywall is removed

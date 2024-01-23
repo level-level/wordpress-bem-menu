@@ -1,0 +1,9 @@
+{% if not is_singular('post') %}
+	{% set datalayer_config = {
+		title: title,
+		type: 'pageview',
+	}|json_encode(constant('JSON_HEX_QUOT')) %}
+
+	<div class="datalayer-event" data-module="datalayer" data-config="{{ datalayer_config }}"></div>
+{% endif %}
+

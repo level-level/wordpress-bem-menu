@@ -1,0 +1,11 @@
+{% set datalayer_config = {
+	title: title,
+	type: 'articleview',
+	id: article_id,
+	author: author,
+	publication_date: publication_date,
+	publication_time: publication_time,
+	revisions_count: revisions_count,
+}|json_encode(constant('JSON_HEX_QUOT')) %}
+
+<div class="datalayer-event" data-module="datalayer" data-config="{{ datalayer_config }}"></div>
