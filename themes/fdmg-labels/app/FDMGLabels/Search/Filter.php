@@ -13,7 +13,7 @@ class Filter {
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_min' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_date_max' ) );
 		add_action( 'parse_query', array( $this, 'parse_query_post_author_id' ) );
-		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'elastic_index_meta' ) );
+		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'elastic_index_meta' ), 10, 2 );
 	}
 
 	/**
