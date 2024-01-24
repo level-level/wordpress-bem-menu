@@ -27,7 +27,9 @@ class TagManager implements IModule {
 			data.companyId = this.FDMGOrganisationId;
 		}
 
-		window.dataLayer.push(data);
+		if (Object.keys(data).length !== 0) {
+			window.dataLayer.push(data);
+		}
 	}
 }
 
