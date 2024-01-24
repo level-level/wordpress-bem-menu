@@ -6,16 +6,29 @@ use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson\Utilities\Image;
 use Clarkson_Core\WordPress_Object\attachment;
+use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use Codeception\TestCase\WPTestCase;
 use DateTime;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
+use FDMGLabels\FeatureManager;
 
 class DataGeneratorTest extends WPTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+
+		$this->feature_manager = new FeatureManager();
+
+		$genre = new fdmg_genre(
+			$this->factory()->term->create_and_get(
+				array(
+					'taxonomy' => 'fdmg_genre',
+					'name'     => 'Some genre',
+				)
+			)
+		);
 
 		$this->post      = new post(
 			$this->factory()->post->create_and_get(
@@ -30,6 +43,7 @@ class DataGeneratorTest extends WPTestCase {
 		);
 		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image.png' ) );
 		set_post_thumbnail( $this->post->get_id(), $this->thumbnail->get_id() );
+		wp_set_post_terms( $this->post->get_id(), array( $genre->get_id() ), 'fdmg_genre' );
 
 		$this->post2 = new post(
 			$this->factory()->post->create_and_get(
@@ -72,11 +86,15 @@ class DataGeneratorTest extends WPTestCase {
 
 	public function tearDown(): void {
 		parent::tearDown();
+		delete_field( 'features', 'options' );
 		wp_delete_post( $this->post->get_id(), true );
 		wp_delete_post( $this->thumbnail->get_id(), true );
 	}
 
 	public function test_get_article_data(): void {
+		update_field( 'features', array( 'enable_genre_taxonomy' => true ), 'options' );
+		$this->assertTrue( $this->feature_manager->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) );
+
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
 				array(
@@ -94,7 +112,7 @@ class DataGeneratorTest extends WPTestCase {
 			'articleId'        => $this->post->get_id(),
 			'title'            => 'Test tip selligent',
 			'teaser'           => "<p>Some excerpt here<br />\nWith newline</p>\n",
-			'news_section'     => '',
+			'news_section'     => 'Some genre',
 			'img'              => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'full' )[0],
 			'img_square'       => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'large' )[0],
 			'cta'              => $this->post->get_permalink(),

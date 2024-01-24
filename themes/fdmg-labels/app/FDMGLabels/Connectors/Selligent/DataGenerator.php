@@ -3,6 +3,7 @@
 namespace FDMGLabels\Connectors\Selligent;
 
 use Clarkson\Theme\PostTypes\Newsletter;
+use Clarkson\Theme\Taxonomies\Genre;
 use Clarkson\Theme\Taxonomies\Section;
 use Clarkson\Utilities\Image;
 use Clarkson_Core\WordPress_Object\base_object;
@@ -49,10 +50,12 @@ class DataGenerator {
 		if ( $post instanceof post ) {
 			$news_section = array();
 
-			if ( $feature_manager->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
-				$primary_section = $post->get_primary_term( Section::TAXONOMY_NAME );
-				if ( $primary_section ) {
-					$news_section[] = $primary_section->get_name();
+			// If genres are enabled and post has primary genre, add it to the article data in the news_section field.
+			// Please note that we should not use the Section taxonomy to fill the news_section field.
+			if ( $feature_manager->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
+				$primary_genre = $post->get_primary_term( Genre::TAXONOMY_NAME );
+				if ( $primary_genre ) {
+					$news_section[] = $primary_genre->get_name();
 				}
 			}
 
