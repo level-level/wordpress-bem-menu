@@ -24,7 +24,7 @@ In the theme directory fdmg-labels run in the command line:
 ```bash
 npm ci
 npm run build
-````
+```
 
 If you are prompted for passwords: you can find those in the Level Level LastPass.
 
@@ -92,3 +92,6 @@ If you locally work with https you need to enable Chrome to allow invalid certif
 Theme comes with a .editorconfig file. For this to work you need to install a plugin that uses the `.editorconfig` file.
 - [Visual Code Studio](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 - [Atom](https://atom.io/packages/editorconfig)
+
+## ElasticSearch and ElasticPress
+This project uses ElasticSearch and ElasticPress for searching and showing related content. For more information on how to configure/setup ElasticPress, please visit our [ElasticPress readme](./themes/fdmg-labels/docs/elasticpress.md).
