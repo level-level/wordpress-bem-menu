@@ -172,6 +172,7 @@ class base_block extends Block_Type {
 			}
 		}
 		if ( is_callable( $this->original_render_callback ) ) {
+			return $content;
 			return (string) call_user_func( $this->original_render_callback, $attributes, $content, $block, $post_id );
 		}
 
