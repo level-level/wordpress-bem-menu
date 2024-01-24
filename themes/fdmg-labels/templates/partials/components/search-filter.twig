@@ -22,7 +22,7 @@
 									<div class="mt-2">
 										{% include 'styleguide/components/buttons/button-element.twig' with {
 											text: _x('Empty filter', 'Search', 'fdmg-labels'),
-											class: 'btn-link !text-base-500 !underline js-reset-filter',
+											class: 'btn-link !text-base-500 dark:!text-base-50 !underline js-reset-filter',
 											icon: 'trash',
 											icon_left: true,
 										} %}
@@ -45,7 +45,7 @@
 								<div>
 									{% include 'styleguide/components/buttons/button-element.twig' with {
 										text: _x('Empty filter', 'Search', 'fdmg-labels'),
-										class: 'btn-link !text-base-500 !underline js-reset-filter',
+										class: 'btn-link !text-base-500 dark:!text-base-50 !underline js-reset-filter',
 										icon: 'trash',
 										icon_left: true,
 									} %}
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 
-					<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden js-modal-body" novalidate>
+					<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden max-h-[calc(100%-147px)] sm:max-h-[calc(100%-167px)] md:max-h-none js-modal-body" novalidate>
 						<input type="hidden" name="s" value="{{ the_search_query() }}">
 
 						<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
@@ -171,7 +171,7 @@
 							</div>
 						{% endif %}
 
-						<div class="relative p-3 mt-auto sm:p-4 md:mt-0">
+						<div class="absolute bottom-0 left-0 right-0 z-10 p-3 border-t bg-base-50 dark:bg-base-600 border-base-200 dark:border-base-700 md:border-0 md:relative sm:p-4 md:mt-0">
 							{% include 'styleguide/components/buttons/button-element.twig' with {
 								text: _x('Apply filter', 'Search', 'fdmg-labels'),
 								class: 'btn-primary btn-full',
