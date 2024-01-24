@@ -27,7 +27,6 @@ class NavigationAdvertisement implements IModule {
 		this.interval = setInterval(this.checkHeightChange.bind(this), 1000);
 	}
 
-	// @TODO check if we can check if a ad is loaded
 	// Function to check if the height has changed
 	checkHeightChange() {
 		// Get the current height of the element

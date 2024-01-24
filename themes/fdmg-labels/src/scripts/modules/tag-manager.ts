@@ -20,10 +20,10 @@ class TagManager implements IModule {
 			companyId?: string;
 		} = {};
 
-		if (this.FDMGUserId) {
+		if (this.FDMGUserId && this.FDMGUserId !== '0') {
 			data.userId = this.FDMGUserId;
 		}
-		if (this.FDMGOrganisationId) {
+		if (this.FDMGOrganisationId && this.FDMGOrganisationId !== '0') {
 			data.companyId = this.FDMGOrganisationId;
 		}
 
