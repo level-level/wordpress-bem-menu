@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7291f069e5ce185522be44232f704eac",
+    "content-hash": "a1360f7bc97f994fb34e9f6b57038d4c",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4586,6 +4586,56 @@
             "homepage": "https://wordpress.org/plugins/daggerhart-openid-connect-generic/"
         },
         {
+            "name": "wpackagist-plugin/debug-bar",
+            "version": "1.1.4",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/debug-bar/",
+                "reference": "tags/1.1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.4.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/debug-bar/"
+        },
+        {
+            "name": "wpackagist-plugin/debug-bar-elasticpress",
+            "version": "3.1.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/debug-bar-elasticpress/",
+                "reference": "tags/3.1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/debug-bar-elasticpress.3.1.0.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/debug-bar-elasticpress/"
+        },
+        {
             "name": "wpackagist-plugin/disable-emojis",
             "version": "1.7.6",
             "source": {
@@ -4784,6 +4834,31 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/post-smtp/"
+        },
+        {
+            "name": "wpackagist-plugin/query-monitor",
+            "version": "3.15.0",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/query-monitor/",
+                "reference": "tags/3.15.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.15.0.zip",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "homepage": "https://wordpress.org/plugins/query-monitor/"
         },
         {
             "name": "wpackagist-plugin/redirection",
