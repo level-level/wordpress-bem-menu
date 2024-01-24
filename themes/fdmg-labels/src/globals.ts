@@ -27,5 +27,6 @@ declare global {
 			error_sample_rate: string;
 			transaction_data: any;
 		};
+		dataLayer: any[];
 	}
 }

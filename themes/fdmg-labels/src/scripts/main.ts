@@ -17,6 +17,7 @@ import DateRangeValidator from './modules/date-range-validator';
 import ToggleListItems from './modules/toggle-list-items';
 import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
+import TagManager from './modules/tag-manager';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -37,6 +38,7 @@ ModuleInitializer({
 	'toggle-list-items': ToggleListItems,
 	'login-button': LoginButton,
 	'text-zoom': TextZoom,
+	'tag-manager': TagManager,
 });
 
 /**
