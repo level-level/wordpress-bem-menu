@@ -9,7 +9,7 @@
 {% set active_categories = filter.get_filter_value('category_name')|split(',') %}
 
 <nav aria-label="{{ _x('Search results filter', 'Search', 'fdmg-labels') }}">
-	<div id="filters" class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
+	<div id="filters" class="fixed inset-0 left-auto top-admin-bar z-[60] js-filter-modal bg-base-50 dark:bg-base-600 dark:md:bg-transparent md:relative md:inset-auto md:z-0 md:bg-transparent !pb-0 w-[calc(100vw-theme(space.6))] sm:w-[376px] md:w-auto translate-x-0 visible ease-theme-bezier duration-300 aria-hidden:invisible aria-hidden:translate-x-full md:duration-0 md:translate-x-0" aria-hidden="true">
 		<div class="md:pt-[139px]">
 			<div data-component="search-filter" class="bg-base-50 dark:bg-base-600 md:border-b-2 md:border-primary md:dark:border-0 md:h-auto">
 				<div class="flex flex-col h-full md:h-auto" data-module="filter-form">
@@ -54,7 +54,7 @@
 						</div>
 					</div>
 
-					<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden max-h-[calc(100vh-147px)] sm:max-h-[calc(100vh-167px)] md:max-h-none js-modal-body" novalidate>
+					<form method="get" action="{{ get_home_url() }}" class="overflow-y-auto md:overflow-y-hidden max-h-[calc(100vh-147px)] sm:max-h-[calc(100vh-167px)] md:max-h-none pb-[80px] md:pb-0 js-modal-body" novalidate>
 						<input type="hidden" name="s" value="{{ the_search_query() }}">
 
 						<div class="relative p-3 border-b border-base-200 dark:border-base-700 sm:p-4">
