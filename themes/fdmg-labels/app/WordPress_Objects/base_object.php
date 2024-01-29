@@ -89,7 +89,7 @@ class base_object extends Clarkson_Object {
 
 			return $formatted_date;
 		} else {
-			return sprintf( __( ' %s ago', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
+			return sprintf( __( '%s ago', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
 		}
 	}
 
