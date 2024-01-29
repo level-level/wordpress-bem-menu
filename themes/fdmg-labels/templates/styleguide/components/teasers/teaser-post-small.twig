@@ -1,4 +1,17 @@
-<div data-component="teaser-post-small" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser sm:border-b-2 group/teaser">
+{% set datalayer_config = {
+	title: title,
+	type: 'article_teaser',
+	author: author,
+	id: article_id,
+	publication_date: publication_date,
+	publication_time: publication_time,
+	revisions_count: revisions_count,
+	article_index: article_index,
+	component_subtype: component_subtype,
+	categories: categories,
+}|json_encode(constant('JSON_HEX_QUOT')) %}
+
+<div data-component="teaser-post-small" data-module="datalayer" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser sm:border-b-2 group/teaser">
 
 	{# Mobile only #}
 	<div class="sm:hidden">

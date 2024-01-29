@@ -1,4 +1,17 @@
-<div data-component="teaser-post-inline" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
+{% set datalayer_config = {
+	title: title,
+	type: 'article_teaser',
+	author: author,
+	id: article_id,
+	publication_date: publication_date,
+	publication_time: publication_time,
+	revisions_count: revisions_count,
+	article_index: article_index,
+	component_subtype: component_subtype,
+	categories: categories,
+}|json_encode(constant('JSON_HEX_QUOT')) %}
+
+<div data-component="teaser-post-inline" data-module="datalayer" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
 
 	{# Mobile only #}
 	<div class="sm:hidden">

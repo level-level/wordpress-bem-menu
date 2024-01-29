@@ -25,6 +25,7 @@ class DataLayer implements IModule {
 		article_index: string;
 		component_subtype: string;
 		parent_component: string;
+		categories: string;
 	};
 
 	constructor(element: HTMLElement) {
@@ -36,33 +37,20 @@ class DataLayer implements IModule {
 	}
 
 	initialize() {
-		if (this.config.type === 'pageview') {
-			if (typeof window.__tcfapi !== 'undefined') {
-				this.initSourcepoint('pageview');
-			} else {
-				this.addPageViewEvent();
-			}
-		}
-		if (this.config.type === 'articleview') {
-			if (typeof window.__tcfapi !== 'undefined') {
-				this.initSourcepoint('articleview');
-			} else {
-				this.addArticleViewEvent();
-			}
-		}
-		if (this.config.type === 'article_click') {
+		if (this.config.type === 'article_teaser') {
+			this.element.addEventListener('click', this.addArticleImpression.bind(this));
 			this.element.addEventListener('click', this.addArticleClick.bind(this));
 		}
-		if (this.config.type === 'outbound_click') {
-			this.element.addEventListener('click', this.addOutBoundClick.bind(this));
-		}
-		if (this.config.type === 'cookiebanner_shown') {
-			this.initCookieConsent();
-			this.addCookieConsentAcceptEvent();
-		}
-
 		if (this.config.type === 'active_time_on_page') {
 			this.setupActivityTracker();
+		}
+		if ( this.config.type === 'article_view' ) {
+			if ( typeof window.__tcfapi !== 'undefined' ) {
+				this.initSourcepoint ( 'article_view' );
+			} else {
+				this.element.addEventListener('copy', this.addCopyText.bind(this));
+				this.element.addEventListener('cut', this.addCopyText.bind(this));
+			}
 		}
 	}
 
@@ -133,27 +121,57 @@ class DataLayer implements IModule {
 					tcData.eventStatus === 'tcloaded' ||
 					tcData.eventStatus === 'useractioncomplete'
 				) {
-					if (type === 'pageview') {
-						this.addPageViewEvent();
-					} else if (type === 'articleview') {
-						this.addArticleViewEvent();
+					if (type === 'article_view') {
+						this.element.addEventListener('copy', this.addCopyText.bind(this));
+						this.element.addEventListener('cut', this.addCopyText.bind(this));
 					}
 				}
 			},
 		);
 	}
 
-	addOutBoundClick() {
+	addCopyText() {
 		window.dataLayer.push({
-			event: 'outbound_click',
+			event: 'copy_text',
 			eventInfo: {
-				category: 'external click',
-				action: 'link click',
-				label: `${this.config.title}`,
-				value: `${this.config.url}`,
+				category: 'user interactions',
+				action: 'copy text',
+				label: `${this.config.id}`,
+				value: null,
 				event_context: {
-					component: `${this.config.parent_component}`,
-					click_text: `${this.config.title}`,
+					article_id: `${this.config.id}`,
+				},
+			},
+		});
+	}
+
+	addArticleImpression() {
+		window.dataLayer.push({
+			event: 'article_impression',
+			event_info: {
+				category: 'user interaction',
+				action: 'view item list',
+				label: `${this.config.id}`,
+				value: null,
+				event_context: {
+					component: 'article',
+					component_subtype: `${this.config.component_subtype}`,
+					section_title: `${this.config.parent_component}`,
+				},
+				ecommerce: {
+					article: [
+						{
+							article_id: `${this.config.id}`,
+							article_name: `${this.config.title}`,
+							article_category: `${this.config.categories}`,
+							article_type: 'article',
+							author_name: `${this.config.author}`,
+							article_publication_date: `${this.config.publication_date}`,
+							article_publication_time: `${this.config.publication_time}`,
+							article_version: `${this.config.revisions_count}`,
+							article_index: `${this.config.article_index}`,
+						},
+					],
 				},
 			},
 		});
@@ -191,31 +209,6 @@ class DataLayer implements IModule {
 		});
 	}
 
-	addPageViewEvent() {
-		window.dataLayer.push({
-			event: 'page_view',
-			event_info: {
-				category: 'pageviews',
-				action: 'pageview',
-				label: `${window.location.pathname}`,
-				value: null,
-				event_context: [
-					{
-						hostname: `${window.location.hostname}`,
-						pathname: `${window.location.pathname}`,
-						referrer: `${document.referrer}`,
-						search: '',
-						title: `${this.config.title}`,
-						category: 'partner content',
-						page_notification: null,
-						page_type: 'partner pagina',
-						page_sub_type: 'partner pagina',
-					},
-				],
-			},
-		});
-	}
-
 	addArticleViewEvent() {
 		window.dataLayer.push({
 			event: 'article_view',
@@ -240,26 +233,6 @@ class DataLayer implements IModule {
 				],
 			},
 		});
-
-		setTimeout(() => {
-			window.dataLayer.push({
-				event: 'quality_read',
-				event_info: {
-					category: 'user interaction',
-					action: 'quality read',
-					label: `${this.config.id}`,
-					value: null,
-					event_context: [
-						{
-							hostname: `${window.location.hostname}`,
-							pathname: `${window.location.pathname}`,
-							title: `${this.config.title}`,
-							category: 'partner content',
-						},
-					],
-				},
-			});
-		}, 15000);
 	}
 
 	initCookieConsent() {
