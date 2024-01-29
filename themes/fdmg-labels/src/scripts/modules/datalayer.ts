@@ -27,24 +27,30 @@ class DataLayer implements IModule {
 		parent_component: string;
 		categories: string;
 	};
+	event_type: string;
+	do_not_track: boolean;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.config = this.element.dataset.config
 			? JSON.parse(this.element.dataset.config)
 			: {};
+		this.event_type = this.element.dataset.type ?? '';
+		this.do_not_track = false;
 		this.initialize();
 	}
 
 	initialize() {
-		if (this.config.type === 'article_teaser') {
-			this.element.addEventListener('click', this.addArticleImpression.bind(this));
+		if (this.event_type === 'article_click') {
 			this.element.addEventListener('click', this.addArticleClick.bind(this));
 		}
-		if (this.config.type === 'active_time_on_page') {
+		if (this.event_type === 'article_impression') {
+			window.addEventListener( 'scroll', this.trackTeaserInViewport.bind(this) );
+		}
+		if (this.event_type === 'active_time_on_page') {
 			this.setupActivityTracker();
 		}
-		if ( this.config.type === 'article_view' ) {
+		if ( this.event_type === 'article_view' ) {
 			if ( typeof window.__tcfapi !== 'undefined' ) {
 				this.initSourcepoint ( 'article_view' );
 			} else {
@@ -131,6 +137,7 @@ class DataLayer implements IModule {
 	}
 
 	addCopyText() {
+		console.log( 'copy_text' );
 		window.dataLayer.push({
 			event: 'copy_text',
 			eventInfo: {
@@ -145,7 +152,25 @@ class DataLayer implements IModule {
 		});
 	}
 
+	trackTeaserInViewport() {
+		if ( this.elementIsVisibleInViewport( this.element ) && this.do_not_track === false ) {
+			this.addArticleImpression();
+			this.do_not_track = true;
+		}
+	}
+
+	elementIsVisibleInViewport( element: HTMLElement, partiallyVisible = false ) {
+		const { top, left, bottom, right } = element.getBoundingClientRect();
+		const { innerHeight, innerWidth } = window;
+		return partiallyVisible
+			? ( ( top > 0 && top < innerHeight ) ||
+			( bottom > 0 && bottom < innerHeight ) ) &&
+			( ( left > 0 && left < innerWidth ) || ( right > 0 && right < innerWidth ) )
+			: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+	};
+
 	addArticleImpression() {
+		console.log( 'article_impression' );
 		window.dataLayer.push({
 			event: 'article_impression',
 			event_info: {
@@ -178,6 +203,7 @@ class DataLayer implements IModule {
 	}
 
 	addArticleClick() {
+		console.log( 'article_click' );
 		window.dataLayer.push({
 			event: 'article_click',
 			event_info: {

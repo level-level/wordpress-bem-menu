@@ -45,6 +45,7 @@ class Support {
 			'wp_get_nav_menu_name',
 			'get_edit_post_link',
 			'gtm4wp_the_gtm_tag',
+			'wp_get_latest_revision_id_and_total_count',
 		);
 		$functions       = array_merge( $functions, $theme_functions );
 		return $functions;

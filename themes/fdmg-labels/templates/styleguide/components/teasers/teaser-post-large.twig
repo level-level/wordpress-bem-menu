@@ -1,6 +1,5 @@
 {% set datalayer_config = {
 	title: title,
-	type: 'article_teaser',
 	author: author,
 	id: article_id,
 	publication_date: publication_date,
@@ -11,7 +10,7 @@
 	categories: categories,
 }|json_encode(constant('JSON_HEX_QUOT')) %}
 
-<div data-component="teaser-post-large" data-module="datalayer" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
+<div data-component="teaser-post-large" data-module="datalayer" data-type="article_impression" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{% if image %}
 		<div class="relative overflow-hidden aspect-video image:w-full image:h-full image:object-cover">
@@ -36,6 +35,7 @@
 			date: date,
 			large: true,
 			show_paywall_label: show_paywall_label,
+			datalayer_config: datalayer_config,
 		} only %}
 
 		{% if excerpt %}

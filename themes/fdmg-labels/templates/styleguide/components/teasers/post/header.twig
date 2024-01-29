@@ -10,18 +10,7 @@
 <div class="flex flex-col">
 	<div class="order-2 mt-2 sm:mt-3">
 		<{{ useH3 ? 'h3' : 'h2' }} class="{{ title_style }}">
-			{% set datalayer_config = {
-				title: title,
-				type: 'article_click',
-				author: author,
-				id: article_id,
-				publication_date: publication_date,
-				publication_time: publication_time,
-				revisions_count: revisions_count,
-				article_index: article_index,
-				component_subtype: component_subtype,
-			}|json_encode(constant('JSON_HEX_QUOT')) %}
-			<a href="{{ url }}" data-module= "datalayer" data-config="{{ datalayer_config }}" class="no-underline break-words transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800">
+			<a href="{{ url }}" data-module= "datalayer" data-type="article_click" data-config="{{ datalayer_config }}" class="no-underline break-words transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800">
 				{{ title|raw }}
 			</a>
 		</{{ useH3 ? 'h3' : 'h2' }}>
