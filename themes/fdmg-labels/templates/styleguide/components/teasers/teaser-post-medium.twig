@@ -1,4 +1,4 @@
-{% set authors_string = authors|map(author.name)|join(', ') %}
+{% set authors_string = authors|map(author => author.name)|join(', ') %}
 {% set datalayer_config = {
 	title: title,
 	author: authors_string,
