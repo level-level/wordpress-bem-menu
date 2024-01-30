@@ -45,6 +45,7 @@ class DataLayer implements IModule {
 			this.element.addEventListener('click', this.addArticleClick.bind(this));
 		}
 		if (this.event_type === 'article_impression') {
+			this.trackTeaserInViewport();
 			window.addEventListener( 'scroll', this.trackTeaserInViewport.bind(this) );
 		}
 		if (this.event_type === 'active_time_on_page') {
