@@ -26,6 +26,7 @@ class DataLayer implements IModule {
 		component_subtype: string;
 		parent_component: string;
 		categories: string;
+		share_type: string;
 	};
 	event_type: string;
 	do_not_track: boolean;
@@ -47,6 +48,9 @@ class DataLayer implements IModule {
 		if (this.event_type === 'article_impression') {
 			this.trackTeaserInViewport();
 			window.addEventListener( 'scroll', this.trackTeaserInViewport.bind(this) );
+		}
+		if (this.event_type === 'share_article') {
+			this.element.addEventListener('click', this.addShareArticleShareEvent.bind(this));
 		}
 		if (this.event_type === 'active_time_on_page') {
 			this.setupActivityTracker();
@@ -138,7 +142,6 @@ class DataLayer implements IModule {
 	}
 
 	addCopyText() {
-		console.log( 'copy_text' );
 		window.dataLayer.push({
 			event: 'copy_text',
 			eventInfo: {
@@ -171,7 +174,6 @@ class DataLayer implements IModule {
 	};
 
 	addArticleImpression() {
-		console.log( 'article_impression' );
 		window.dataLayer.push({
 			event: 'article_impression',
 			event_info: {
@@ -204,7 +206,6 @@ class DataLayer implements IModule {
 	}
 
 	addArticleClick() {
-		console.log( 'article_click' );
 		window.dataLayer.push({
 			event: 'article_click',
 			event_info: {
@@ -231,6 +232,23 @@ class DataLayer implements IModule {
 							article_index: `${this.config.article_index}`,
 						},
 					],
+				},
+			},
+		});
+	}
+
+	addShareArticleShareEvent() {
+		console.log( 'share article event' );
+		window.dataLayer.push({
+			event: 'share_article',
+			event_info: {
+				category: 'user interactions',
+				action: 'share article',
+				label: `${this.config.share_type}`,
+				value: null,
+				event_context: {
+					article_id: `${this.config.id}`,
+					share_type: `${this.config.share_type}`,
 				},
 			},
 		});

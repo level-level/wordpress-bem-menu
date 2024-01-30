@@ -66,6 +66,10 @@
 				<ul class="flex gap-4 {{ sticky ? 'lg:flex-col lg:mt-0 lg:gap-0' }}" data-module="social-share">
 					{% for social in socials %}
 						<li class="relative">
+							{% set datalayer_config = {
+								id: article_id,
+								share_type: social.type,
+							}|json_encode(constant('JSON_HEX_QUOT')) %}
 
 							{% set args = {
 								text: '',
@@ -74,6 +78,9 @@
 								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
 								aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
 								focusable: sticky ? false,
+								data_module: 'datalayer',
+								data_type: 'share_article',
+								data_config: datalayer_config,
 							} %}
 
 							{% if social.type == 'email' %}

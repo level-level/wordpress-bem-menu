@@ -61,5 +61,6 @@
 {% block offset %}
 	{% include 'styleguide/components/social-share.twig' with {
 		sticky: true,
+		article_id: object.get_id(),
 	} %}
 {% endblock %}
