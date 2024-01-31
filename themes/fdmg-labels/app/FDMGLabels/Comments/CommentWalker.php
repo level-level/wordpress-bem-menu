@@ -214,7 +214,6 @@ class CommentWalker extends \Walker_Comment {
 	 * @param array      $args    An array of arguments.
 	 */
 	protected function comment( $comment, $depth, $args ): void {
-		$comment_text = $comment->comment_content;
 		$comment_text = get_comment_text( $comment, $args );
 		if ( $comment_text ) {
 			$comment_text = apply_filters( 'comment_text', $comment_text, $comment, $args );
