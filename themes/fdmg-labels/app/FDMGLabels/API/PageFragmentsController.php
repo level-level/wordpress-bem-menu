@@ -103,28 +103,28 @@ class PageFragmentsController extends WP_REST_Controller {
 	 * Add comment form to fragments.
 	 *
 	 * @param array<string,string> $fragments
-	 * @param base_object|null $object
+	 * @param base_object|null $clarkson_object
 	 * @return array<string,string>
 	 */
-	protected function maybe_add_comment_form( array $fragments, ?base_object $object ): array {
+	protected function maybe_add_comment_form( array $fragments, ?base_object $clarkson_object ): array {
 		// Only include comment form for posts
-		if ( ! $object ) {
+		if ( ! $clarkson_object ) {
 			return $fragments;
 		}
 
 		// Only include comment form if comments are enabled for post
-		if ( $object->get_object()->comment_status !== 'open' ) {
+		if ( $clarkson_object->get_object()->comment_status !== 'open' ) {
 			return $fragments;
 		}
 
 		// Include subscription required html if user has no permission to write comments
 		if ( ! current_user_can( Capabilities::CAP_WRITE_COMMENTS ) ) {
-			$fragments['comment_form'] = ( new Comments() )->get_subscription_required_html( $object );
+			$fragments['comment_form'] = ( new Comments() )->get_subscription_required_html( $clarkson_object );
 			return $fragments;
 		}
 
 		// Include comment form
-		$fragments['comment_form'] = $object->get_comment_form();
+		$fragments['comment_form'] = $clarkson_object->get_comment_form();
 		return $fragments;
 	}
 }

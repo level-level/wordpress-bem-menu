@@ -6,7 +6,7 @@ use Clarkson\Theme\ACFPages\ThemeOptions;
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
-use FDMGLabels\StaticPages\AuthController;
+use FDMGLabels\StaticPages\LoginController;
 use WP_Error;
 
 class Comments {
@@ -85,10 +85,10 @@ class Comments {
 	/**
 	 * Get the HTML that should be shown if a user has no permission to write comments.
 	 */
-	public function get_subscription_required_html( Clarkson_Object|null $object = null ): string {
-		$login_url = ( new AuthController() )->get_permalink( AuthController::PAGE_LOGIN );
-		if ( $object ) {
-			$login_url = add_query_arg( 'redirect_to', rawurlencode( $object->get_permalink() ?: '' ), $login_url );
+	public function get_subscription_required_html( Clarkson_Object|null $clarkson_object = null ): string {
+		$login_url = ( new LoginController() )->get_permalink( LoginController::PAGE_LOGIN );
+		if ( $clarkson_object ) {
+			$login_url = add_query_arg( 'redirect_to', rawurlencode( $clarkson_object->get_permalink() ?: '' ), $login_url );
 		}
 
 		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
