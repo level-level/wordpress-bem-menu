@@ -18,6 +18,7 @@ import ToggleListItems from './modules/toggle-list-items';
 import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
 import TagManager from './modules/tag-manager';
+import PaywallLoginButton from './modules/paywall-login-button';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -39,6 +40,7 @@ ModuleInitializer({
 	'login-button': LoginButton,
 	'text-zoom': TextZoom,
 	'tag-manager': TagManager,
+	'paywall-login-button': PaywallLoginButton,
 });
 
 /**
