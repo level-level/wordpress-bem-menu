@@ -177,6 +177,8 @@ class FilterForm implements IModule {
 		if (this.hiddenCategoryInput) {
 			this.hiddenCategoryInput.value = '';
 		}
+
+		this.form?.submit();
 	}
 }
 

@@ -3,7 +3,8 @@
 There are two tables containing author info; author and author_details.
 
 ## Import notes
-fdmg_import_old_id is prefixed with 'author_'
+
+fdmg*import_old_id is prefixed with 'author*'
 
 ## Authors export
 
@@ -12,7 +13,7 @@ SELECT id, first_name, last_name, full_name
 FROM author;
 ```
 
-There is another table author_details, some authors have overlap with this table. This table has more data; social media handles, email addresses, article counts and  columnist(always NULL or 0)
+There is another table author_details, some authors have overlap with this table. This table has more data; social media handles, email addresses, article counts and columnist(always NULL or 0)
 
 ```sql
 SELECT 	a.id AS author_id,
@@ -33,6 +34,7 @@ LEFT JOIN author_details AS ad
 ```
 
 ## Import
+
 1. Make sure the pictures/images are imported as attachments.
 2. Upload the generated CSV file, to create an import for team / authors
 3. Please use the template file to automatically apply the required import configuration

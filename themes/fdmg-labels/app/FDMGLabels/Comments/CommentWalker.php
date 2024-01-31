@@ -145,7 +145,6 @@ class CommentWalker extends \Walker_Comment {
 
 			unset( $children_elements[ $id ] );
 		}
-
 	}
 
 	/**
@@ -168,7 +167,7 @@ class CommentWalker extends \Walker_Comment {
 	 * @psalm-suppress ArgumentTypeCoercion
 	 */
 	public function start_el( &$output, $comment, $depth = 0, $args = array(), $id = 0 ): void {
-		$depth++;
+		++$depth;
 		$GLOBALS['comment_depth'] = $depth;
 		$GLOBALS['comment']       = $comment;
 

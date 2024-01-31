@@ -114,7 +114,7 @@ class WalkerMenu extends Walker_Nav_Menu {
 			$item_output .= $template->render_twig(
 				'styleguide/components/buttons/button-element.twig',
 				array(
-					'class'                 => $this->css_class_prefix . '__arrow',
+					'class'                 => $this->css_class_prefix . '__toggle',
 					'aria_label'            => sprintf( _x( 'Submenu %s', 'Navigation', 'fdmg-labels' ), $menu_item->title ),
 					'aria_expanded_support' => true,
 					'icon'                  => 'chevron-down',
@@ -199,8 +199,15 @@ class WalkerMenu extends Walker_Nav_Menu {
 		if ( '_blank' === $menu_item->target ) {
 			$atts['aria-label'] = sprintf( _x( '%s - opens in a new window', 'Navigation', 'fdmg-labels' ), $menu_item->title );
 		}
-		$atts['href']         = ! empty( $menu_item->url ) ? $menu_item->url : '';
-		$atts['aria-current'] = $menu_item->current ? 'page' : '';
+		$atts['href'] = ! empty( $menu_item->url ) ? $menu_item->url : '';
+
+		if ( $menu_item->current ) {
+			$atts['aria-current'] = 'page';
+		}
+
+		if ( $menu_item->current_item_ancestor ) {
+			$atts['aria-current'] = 'true';
+		}
 
 		$attributes = '';
 		foreach ( $atts as $attr => $value ) {

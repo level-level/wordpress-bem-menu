@@ -1,4 +1,3 @@
-import { ResponsiveHelper } from '@level-level/recyclops';
 import { IModule } from '../../globals';
 
 class PrimaryNav implements IModule {
@@ -9,13 +8,17 @@ class PrimaryNav implements IModule {
 	};
 	classNames: {
 		parent: string;
-		link: string;
-		arrow: string;
-		sub: string;
+		toggle: string;
+		submenu: string;
 	};
-	parentItem: HTMLElement[];
+	parentItems: HTMLElement[];
+	toggles: HTMLButtonElement[];
 	header: HTMLElement | null;
-	responsiveHelper: ResponsiveHelper;
+	expandedItem: {
+		toggle: HTMLButtonElement | null;
+		submenu: HTMLElement | null;
+	};
+	desktopBreakpoint: number;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
@@ -23,14 +26,18 @@ class PrimaryNav implements IModule {
 		this.mainClass = this.config.mainClass ? this.config.mainClass : 'primary-nav';
 		this.classNames = {
 			parent: `${this.mainClass}__item--parent`,
-			link: `${this.mainClass}__link`,
-			arrow: `${this.mainClass}__arrow`,
-			sub: `${this.mainClass}-sub`,
+			toggle: `${this.mainClass}__toggle`,
+			submenu: `${this.mainClass}-sub`,
 		};
 
-		this.parentItem = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
+		this.parentItems = Array.from(element.querySelectorAll(`.${this.classNames.parent}`));
+		this.toggles = Array.from(element.querySelectorAll(`.${this.classNames.toggle}`));
 		this.header = element.closest('header');
-		this.responsiveHelper = new ResponsiveHelper();
+		this.expandedItem = {
+			toggle: null,
+			submenu: null,
+		};
+		this.desktopBreakpoint = 1024;
 
 		this.initialize();
 	}
@@ -40,178 +47,114 @@ class PrimaryNav implements IModule {
 	}
 
 	addEventListeners() {
-		['load', 'resize', 'orientationchange'].forEach((e) => {
-			window.addEventListener(e, this.determineViewport.bind(this));
+		this.parentItems.forEach((el) => {
+			el.addEventListener('mouseenter', (e) => this.handleMouseEnter(e));
+			el.addEventListener('mouseleave', (e) => this.handleMouseLeave(e));
 		});
 
-		// On click on the new dropdown button
-		this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
-			el.addEventListener('click', this.showMobileDropdown.bind(this));
+		this.toggles.forEach((el) => {
+			el.addEventListener('click', (e) => this.handleClick(e));
 		});
 
-		this.element.addEventListener('keydown', this.handleKeyboard.bind(this));
-
-		if (!this.config.mainClass) {
-			this.header?.addEventListener('keyup', this.closeAllWhenNotActive.bind(this));
-		}
+		document.addEventListener('keydown', (e) => this.handleKeyDown(e));
 	}
 
-	determineViewport() {
-		// Dropdowns for desktops are using the mouseenter/mouseleave functionality
-		if (this.responsiveHelper.isDesktop() && !this.config.mainClass) {
-			this.parentItem.forEach((el) => {
-				el.addEventListener('mouseenter', this.showDropdown.bind(this));
-				el.addEventListener('mouseleave', this.hideDropdown.bind(this));
-			});
+	handleMouseEnter(event: Event) {
+		if (window.innerWidth < this.desktopBreakpoint) {
+			return;
+		}
+
+		const target = event.currentTarget as HTMLElement;
+		const toggle = target.querySelector(`.${this.classNames.toggle}`) as HTMLButtonElement;
+		const submenu = target.querySelector(`.${this.classNames.submenu}`) as HTMLElement;
+
+		this.openDropdown(toggle, submenu);
+	}
+
+	handleMouseLeave(event: Event) {
+		if (window.innerWidth < this.desktopBreakpoint) {
+			return;
+		}
+
+		const target = event.currentTarget as HTMLElement;
+		const toggle = target.querySelector(`.${this.classNames.toggle}`) as HTMLButtonElement;
+		const submenu = target.querySelector(`.${this.classNames.submenu}`) as HTMLElement;
+		const parent = toggle.closest(`.${this.classNames.parent}`) as HTMLElement;
+		const parentSubmenu = parent.closest(`.${this.classNames.submenu}`) as HTMLElement;
+
+		if (parentSubmenu) {
+			return;
+		}
+
+		this.closeDropdown(toggle, submenu);
+	}
+
+	handleClick(event: Event) {
+		const toggle = event.currentTarget as HTMLButtonElement;
+		const submenu = toggle.nextElementSibling as HTMLElement;
+
+		if (toggle.getAttribute('aria-expanded') === 'true') {
+			this.closeDropdown(toggle, submenu);
 		} else {
-			this.parentItem.forEach((el) => {
-				el.removeEventListener('mouseenter', this.showDropdown.bind(this));
-				el.removeEventListener('mouseleave', this.hideDropdown.bind(this));
-			});
-		}
-
-		// Only on viewports that are atleast the tablet landscape size close dropdowns that are not active
-		if (this.responsiveHelper.atLeastTabletLandscape()) {
-			this.element.addEventListener('keyup', this.handleTab.bind(this));
-		} else {
-			this.element.removeEventListener('keyup', this.handleTab.bind(this));
+			this.openDropdown(toggle, submenu);
 		}
 	}
 
-	/**
-	 * Show dropdown on mouseenter, set aria logic
-	 *
-	 * @param  event
-	 */
-	showDropdown(event: Event) {
-		const currentTarget = event.currentTarget as HTMLElement;
+	closeDropdown(toggle: HTMLButtonElement, submenu: HTMLElement) {
+		const parent = toggle.closest(`.${this.classNames.parent}`) as HTMLElement;
+		const parentSubmenu = parent.closest(`.${this.classNames.submenu}`) as HTMLElement;
 
-		Array.from(currentTarget.children).forEach((el) => {
-			if (el.classList.contains(this.classNames.sub)) {
-				el.setAttribute('aria-hidden', 'false');
-			}
+		toggle.setAttribute('aria-expanded', 'false');
+		submenu.setAttribute('aria-hidden', 'true');
+		parent.removeAttribute('open');
 
-			if (el.classList.contains(this.classNames.arrow)) {
-				el.setAttribute('aria-expanded', 'true');
-			}
-		});
+		this.expandedItem = {
+			toggle: null,
+			submenu: null,
+		};
 	}
 
-	/**
-	 * Hide dropdown on mouseleave, set aria logic
-	 *
-	 * @param  event
-	 */
-	hideDropdown(event: Event) {
-		const currentTarget = event.currentTarget as HTMLElement;
+	openDropdown(toggle: HTMLButtonElement, submenu: HTMLElement) {
+		const parent = toggle.closest(`.${this.classNames.parent}`) as HTMLElement;
 
-		Array.from(currentTarget.children).forEach((el) => {
-			if (el.classList.contains(this.classNames.sub)) {
-				el.setAttribute('aria-hidden', 'true');
-			}
+		submenu.setAttribute('aria-hidden', 'false');
+		toggle.setAttribute('aria-expanded', 'true');
+		parent.setAttribute('open', '');
 
-			if (el.classList.contains(this.classNames.arrow)) {
-				el.setAttribute('aria-expanded', 'false');
-			}
-		});
+		this.expandedItem = {
+			toggle,
+			submenu,
+		};
 	}
 
-	/**
-	 * Close all open dropdowns
-	 */
-	closeAll() {
-		this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
-			el.setAttribute('aria-hidden', 'true');
-		});
-
-		this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
-			el.setAttribute('aria-expanded', 'false');
-		});
-	}
-
-	/**
-	 * Show and hide dropdowns on click for mobile and tablet portrait
-	 *
-	 * @param  event
-	 */
-	showMobileDropdown(event: Event) {
-		const currentTarget = event.currentTarget as HTMLElement;
-
-		// Show dropdown
-		if (currentTarget.getAttribute('aria-expanded') === 'false') {
-			currentTarget.setAttribute('aria-expanded', 'true');
-			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'false');
-			currentTarget.closest(`.${this.classNames.parent}`)?.classList.add(`${this.classNames.parent}-is-open`);
-
-			// Hide dropdown
-		} else {
-			currentTarget.setAttribute('aria-expanded', 'false');
-			currentTarget.nextElementSibling?.setAttribute('aria-hidden', 'true');
-			currentTarget.closest(`.${this.classNames.parent}`)?.classList.remove(`${this.classNames.parent}-is-open`);
+	handleKeyDown(event: KeyboardEvent) {
+		if (!this.expandedItem.toggle || !this.expandedItem.submenu) {
+			return;
 		}
-	}
 
-	/**
-	 * Close dropdowns with the escape key
-	 *
-	 * @param  event
-	 */
-	handleKeyboard(event: KeyboardEvent) {
-		// Close dropdowns with the escape key
-		if (event.key === 'Escape') {
-			this.closeAll();
-		}
-	}
+		const parent = this.expandedItem.toggle.closest(`.${this.classNames.parent}`) as HTMLElement;
+		const toggle = this.expandedItem.toggle;
+		const submenu = this.expandedItem.submenu;
 
-	/**
-	 * Closes dropdowns when tabbing through the navigation
-	 *
-	 * @param  event
-	 */
-	handleTab(event: KeyboardEvent) {
 		if (event.key === 'Tab') {
-			// Current element that is focused
-			const focusedElement = this.element.querySelector(':focus') as HTMLElement;
+			const focusedElement = parent.querySelector(':focus');
+			const focusableElements = parent.querySelectorAll('a');
+			const firstFocusableElement = focusableElements[0];
+			const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
-			// When tabbing through top level links, close all dropdowns
-			if (focusedElement.getAttribute('class') === this.classNames.link) {
-				this.element.querySelectorAll(`.${this.classNames.sub}`).forEach((el) => {
-					el.setAttribute('aria-hidden', 'true');
-				});
+			if (!event.shiftKey && focusedElement === lastFocusableElement) {
+				this.closeDropdown(toggle, submenu);
+				return;
+			}
 
-				this.element.querySelectorAll(`.${this.classNames.arrow}`).forEach((el) => {
-					el.setAttribute('aria-expanded', 'false');
-				});
-
-				// When tabbing through sub menu links, close all sub dropdowns
-			} else if (focusedElement.closest(`.${this.classNames.sub}`)) {
-				focusedElement
-					.closest(`.${this.classNames.sub}`)
-					?.querySelectorAll(`.${this.classNames.sub}`)
-					.forEach((el) => {
-						el.setAttribute('aria-hidden', 'true');
-					});
-
-				focusedElement
-					.closest(`.${this.classNames.sub}`)
-					?.querySelectorAll(`.${this.classNames.arrow}`)
-					.forEach((el) => {
-						el.setAttribute('aria-expanded', 'false');
-					});
+			if (event.shiftKey && focusedElement === firstFocusableElement) {
+				this.closeDropdown(toggle, submenu);
+				return;
 			}
 		}
-	}
 
-	/**
-	 * Closes dropdowns when tabbing out of the navigation
-	 *
-	 * @param  event
-	 */
-	closeAllWhenNotActive(event: KeyboardEvent) {
-		if (event.key === 'Tab' && !event.shiftKey) {
-			if (!this.element.querySelector(':focus')?.closest(`.${this.mainClass}`)) {
-				this.closeAll();
-			}
+		if (event.key == 'Escape') {
+			this.closeDropdown(toggle, submenu);
 		}
 	}
 }

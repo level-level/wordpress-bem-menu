@@ -13,7 +13,16 @@
 	{% set sections = object.get_terms('fdmg_section') %}
 {% endif %}
 
+
 {% block content %}
+
+	{% if is_singular('post') %}
+		{% include 'partials/tag-manager/article-terms.twig' with {
+			genres: genres,
+			sections: sections,
+		} only %}
+	{% endif %}
+
 	<article class="section">
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {

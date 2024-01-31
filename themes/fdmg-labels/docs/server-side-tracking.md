@@ -1,7 +1,9 @@
 # Server side tracking
+
 For each request, FDMG would like to track their users.
 
 ## Server reads cookie data
+
 On a webserver level, the access log is analyzed, and information from it used for server side tracking. From the access log, at least the following information is read:
 
 - Request URL

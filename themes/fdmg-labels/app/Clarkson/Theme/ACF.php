@@ -24,6 +24,7 @@ class ACF {
 		add_filter( 'acf/format_value/type=relationship', array( $this, 'convert_relationship_objects' ), 11, 1 );
 		add_filter( 'acf/format_value/type=taxonomy', array( $this, 'convert_taxonomy_objects' ), 11, 1 );
 		add_filter( 'acf/fields/relationship/query', array( $this, 'order_items_by_date' ), 10, 1 );
+		add_filter( 'acf/fields/post_object/query', array( $this, 'order_items_by_date' ), 10, 1 );
 	}
 
 	/**
@@ -109,7 +110,7 @@ class ACF {
 	}
 
 	/**
-	 * Order relationship items by date
+	 * Order relationship and post object items by date
 	 * @param array<string,mixed> $args
 	 * @return array<string,mixed>
 	 */

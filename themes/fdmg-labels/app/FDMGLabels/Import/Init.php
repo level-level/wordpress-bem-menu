@@ -12,5 +12,4 @@ class Init {
 		( new WPAllImportInit() )->register_hooks();
 		( new CLIInit() )->register_commands();
 	}
-
 }

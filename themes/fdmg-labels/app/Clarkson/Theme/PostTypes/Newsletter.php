@@ -131,7 +131,7 @@ class Newsletter {
 
 		$publications        = Settings::get_instance()->get_newsletter()->get_publications();
 		$publication_choices = array_map(
-			function( NewsletterPublicationSettings $publication_settings ): string {
+			function ( NewsletterPublicationSettings $publication_settings ): string {
 				return $publication_settings->get_name();
 			}, $publications
 		);
@@ -141,7 +141,7 @@ class Newsletter {
 
 		$types        = Settings::get_instance()->get_newsletter()->get_types();
 		$type_choices = array_map(
-			function( NewsletterTypeSettings $type_settings ): string {
+			function ( NewsletterTypeSettings $type_settings ): string {
 				return $type_settings->get_type();
 			}, $types
 		);

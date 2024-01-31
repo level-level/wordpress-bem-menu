@@ -6,6 +6,7 @@ export type I18n = {
 	invalidDateInput: string;
 	formError: string;
 	loggedIn: string;
+	copied: string;
 };
 
 /**
@@ -25,6 +26,7 @@ declare global {
 			trace_sample_rate: string;
 			error_sample_rate: string;
 			transaction_data: any;
-		},
+		};
+		dataLayer: any[];
 	}
 }

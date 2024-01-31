@@ -23,11 +23,7 @@ class StickyAdvertisment implements IModule {
 		const ad = lastSection?.querySelector('.advertisement');
 
 		if (ad !== null) {
-			lastSection?.classList.add(
-				'md:sticky',
-				'md:mb-6',
-				'top-[calc(theme(space.admin-bar)+theme(space.header-height)+theme(space.6))]',
-			);
+			lastSection?.classList.add('md:sticky', 'md:mb-6', 'top-[calc(theme(space.admin-bar)+theme(space.header-height)+theme(space.6))]');
 		}
 	}
 }

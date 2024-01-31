@@ -227,11 +227,11 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 
 - id
 - tag_category_id --> taxonomy id (is always 1)
-- value      --> term_name
+- value --> term_name
 - intro_text --> description
 - enabled
 - X kvk_number --> empty
-- directory   --> slug
+- directory --> slug
 - X image_path --> empty
 
 ### old_url => redirect

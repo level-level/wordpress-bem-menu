@@ -3,9 +3,11 @@
 The database contains pdf files. They can be found in the "binary files" table.
 
 ## Import notes
-fdmg_import_old_id is prefixed with 'binary_file_'
+
+fdmg*import_old_id is prefixed with 'binary_file*'
 
 ## Export
+
 Select all binary files
 
 ```sql

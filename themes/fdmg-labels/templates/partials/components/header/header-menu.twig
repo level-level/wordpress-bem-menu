@@ -40,7 +40,7 @@
 			} %}
 		</div>
 
-		<div data-component="menu-dropdown" class="relative flex flex-col h-full outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-600">
+		<div data-component="menu-dropdown" class="relative flex flex-col h-[calc(100%-theme(space.header-height))] outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-600">
 			<div class="max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
 				<div class="my-3">
 					<div class="container">
@@ -49,19 +49,25 @@
 				</div>
 				<div class="pb-[2px]">
 					<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav">
-						{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav')|raw }}
+						{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav', 2)|raw }}
 					</nav>
 
 					<div class="mt-auto py-[10px] px-3 border-t border-secondary-700 dark:border-base-800">
 						{% include 'partials/components/header/header-display-options.twig' %}
 					</div>
+
+					<div class="hidden theme-energeia:block theme-pensioen-pro:block ">
+						<div class="p-3 border-t border-secondary-700 dark:border-base-800">
+							{% include 'partials/components/login-button.twig' %}
+						</div>
+					</div>
 				</div>
 			</div>
 
 			{% set newsletter = options.newsletter %}
-			<div class="mt-auto border-t border-secondary-300 height-[calc(theme(space.header-height+10px))] dark:border-base-400">
-				<ul class="flex justify-between h-full flex-nowrap">
-					{% if newsletter.button.title and newsletter.button.url %}
+			{% if newsletter.button.title and newsletter.button.url %}
+				<div class="mt-auto border-t border-secondary-300 height-[calc(theme(space.header-height+10px))] dark:border-base-400">
+					<ul class="flex justify-between h-full flex-nowrap">
 						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: newsletter.button.title,
@@ -73,9 +79,9 @@
 								icon_left: true,
 							} %}
 						</li>
-					{% endif %}
-				</ul>
-			</div>
+					</ul>
+				</div>
+			{% endif %}
 		</div>
 
 	</div>
@@ -84,6 +90,6 @@
 
 <div class="hidden sm:block">
 	<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav">
-		{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav')|raw }}
+		{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav', 2)|raw }}
 	</nav>
 </div>

@@ -1,0 +1,18 @@
+{% set genres_list = genres ? genres|map(genre => genre.get_name())|join(', ') %}
+{% set sections_list = sections ? sections|map(section => section.get_name())|join(', ') %}
+
+{% if genres_list %}
+	<script>
+		window.dataLayer.push({
+			'genre': '{{ genres_list }}',
+		});
+	</script>
+{% endif %}
+
+{% if sections_list %}
+	<script>
+		window.dataLayer.push({
+			'sectie': '{{ sections_list }}',
+		});
+	</script>
+{% endif %}
