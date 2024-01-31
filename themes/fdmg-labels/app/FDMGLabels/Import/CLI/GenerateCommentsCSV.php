@@ -35,13 +35,11 @@ class GenerateCommentsCSV {
 		$fdmg_customers_csv = $args[1] ?? '';
 		if ( empty( $fdmg_customers_csv ) || ! file_exists( $fdmg_customers_csv ) ) {
 			WP_CLI::error( sprintf( 'FDMG customers CSV "%s" is an invalid file name', $fdmg_customers_csv ) );
-			exit;
 		}
 
 		$generated_comments_csv = $args[2] ?? '';
 		if ( empty( $generated_comments_csv ) || file_exists( $generated_comments_csv ) ) {
 			WP_CLI::error( sprintf( 'Generated comments CSV "%s" is an invalid file name', $generated_comments_csv ) );
-			exit;
 		}
 
 		$customers = $this->get_extracted_customers( $fdmg_customers_csv );
