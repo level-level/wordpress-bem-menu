@@ -23,5 +23,4 @@ class NewsletterTypeArticleGroupSettings {
 	public function get_name(): string {
 		return (string) ( $this->data[ Selligent::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUP_NAME ] ?? '' );
 	}
-
 }

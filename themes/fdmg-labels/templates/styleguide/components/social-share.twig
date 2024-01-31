@@ -65,7 +65,7 @@
 			{% if socials %}
 				<ul class="flex gap-4 {{ sticky ? 'lg:flex-col lg:mt-0 lg:gap-0' }}" data-module="social-share">
 					{% for social in socials %}
-						<li>
+						<li class="relative">
 
 							{% set args = {
 								text: '',

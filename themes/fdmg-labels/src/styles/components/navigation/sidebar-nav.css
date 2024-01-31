@@ -26,7 +26,7 @@
 	@apply pr-[calc(theme(space.6)+10px)];
 }
 
-.sidebar-nav__item--active .sidebar-nav__arrow {
+.sidebar-nav__item--active .sidebar-nav__toggle {
 	@apply text-base-800 dark:text-base-50;
 }
 
@@ -56,7 +56,7 @@
 	@apply mr-3 relative top-[2px];
 }
 
-.sidebar-nav__arrow {
+.sidebar-nav__toggle {
 	@apply absolute top-0 right-0 bg-transparent leading-none px-3 h-[44px] text-base-50 border-0 scale-y-100 duration-150 flex items-center dark:text-base-50;
 	@apply aria-expanded:-scale-y-100 aria-expanded:dark:text-base-50;
 	@apply sm:p-0 sm:right-4 sm:text-secondary-700 sm:h-[theme(space.menu-height)] sm:dark:text-base-50;
@@ -73,7 +73,7 @@
 	@apply sm:left-full sm:top-0;
 }
 
-.sidebar-nav-sub .sidebar-nav__arrow {
+.sidebar-nav-sub .sidebar-nav__toggle {
 	@apply sm:-rotate-90 sm:text-secondary-700 sm:right-[10px] sm:dark:text-base-100;
 }
 

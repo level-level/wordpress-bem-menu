@@ -107,7 +107,7 @@ class Client {
 		$response = wp_remote_post(
 			$url, array(
 				'headers' => $this->get_auth_headers( self::BASE_PATH . $path ),
-				'body'    => wp_json_encode( $data ),
+				'body'    => strval( wp_json_encode( $data ) ),
 				'timeout' => 10,
 			)
 		);

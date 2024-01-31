@@ -35,9 +35,16 @@
 	</div>
 
 	{% if objects %}
-		<div class="section">
+		<div class="relative section">
+
+			{% include 'partials/components/skiplink.twig' with {
+				text: _x('Straight to filters', 'Screen reader text', 'fdmg-labels'),
+				target: '#filters',
+			} %}
+
 			<h2 class="sr-only">{{ _x('Search results', 'Screen reader text', 'fdmg-labels') }}</h2>
 			<ul class="flex flex-col gap-3 sm:gap-6">
+
 				{% for object in objects %}
 
 					{% set image_id = object.get_thumbnail_id() %}

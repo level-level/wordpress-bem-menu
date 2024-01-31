@@ -18,7 +18,7 @@ class Import {
 			remove_action( 'save_post', array( FWP()->indexer, 'save_post' ) );
 		}
 		add_filter(
-			'ep_indexable_sites', function() {
+			'ep_indexable_sites', function () {
 				return array();
 			}
 		);

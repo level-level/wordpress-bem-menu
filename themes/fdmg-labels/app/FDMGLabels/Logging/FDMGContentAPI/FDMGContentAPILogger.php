@@ -8,5 +8,4 @@ class FDMGContentAPILogger extends BaseLogger {
 	protected function get_logger_id(): string {
 		return 'fdmg-content-api';
 	}
-
 }

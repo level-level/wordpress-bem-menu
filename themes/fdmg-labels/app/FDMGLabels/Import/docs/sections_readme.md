@@ -3,7 +3,8 @@
 Select all from "sections" table.
 
 ## Import notes
-fdmg_import_old_id is prefixed with 'section_'
+
+fdmg*import_old_id is prefixed with 'section*'
 
 ## Export
 

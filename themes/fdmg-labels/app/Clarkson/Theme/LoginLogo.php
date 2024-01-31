@@ -31,5 +31,4 @@ class LoginLogo {
 	public function change_header_url(): string {
 		return esc_url( home_url( '/' ) );
 	}
-
 }

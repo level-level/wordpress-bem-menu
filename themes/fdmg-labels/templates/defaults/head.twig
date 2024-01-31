@@ -15,6 +15,9 @@
 		<meta name="dcterms.rights" content="Copyright FD Mediagroep BV">
 		<link rel="license" href="https://fdmg.nl/en/general-terms-conditions/">
 
+		<script>
+			window.dataLayer = window.dataLayer || [];
+		</script>
 		{#
 			Instantly set the theme style class on the <html> element based on the localStorage.
 			Also check all the radiobuttons with the active theme
@@ -73,5 +76,6 @@
 	{% endif %}
 
 	<span data-module="text-zoom" aria-hidden="true" class="opacity-0 absolute -left-full w-[1em] h-[1em]"></span>
+	<span data-module="tag-manager" aria-hidden="true"></span>
 
 	{% include 'defaults/header.twig' %}

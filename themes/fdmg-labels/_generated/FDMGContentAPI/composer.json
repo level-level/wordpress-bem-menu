@@ -31,9 +31,13 @@
         "friendsofphp/php-cs-fixer": "^2.12"
     },
     "autoload": {
-        "psr-4": { "FDMGContentAPIClient\\" : "lib/" }
+        "psr-4": {
+            "FDMGContentAPIClient\\": "lib/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "FDMGContentAPIClient\\Test\\" : "test/" }
+        "psr-4": {
+            "FDMGContentAPIClient\\Test\\": "test/"
+        }
     }
 }
