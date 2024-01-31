@@ -2,10 +2,9 @@
 
 All URIs are relative to https://dev-api.ota.fdmg.org/Distributor/level2.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**hooksHookNamePost()**](ArticleHookApi.md#hooksHookNamePost) | **POST** /hooks/{hookName} | Run hook to create or update an article
-
+| Method                                                         | HTTP request               | Description                             |
+| -------------------------------------------------------------- | -------------------------- | --------------------------------------- |
+| [**hooksHookNamePost()**](ArticleHookApi.md#hooksHookNamePost) | **POST** /hooks/{hookName} | Run hook to create or update an article |
 
 ## `hooksHookNamePost()`
 
@@ -47,10 +46,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **hook_name** | **string**| Hook name to run. Should represent the site where the article is for. |
- **article** | [**\FDMGContentAPIClient\Model\Article**](../Model/Article.md)| Post data |
+| Name          | Type                                                           | Description                                                           | Notes |
+| ------------- | -------------------------------------------------------------- | --------------------------------------------------------------------- | ----- |
+| **hook_name** | **string**                                                     | Hook name to run. Should represent the site where the article is for. |
+| **article**   | [**\FDMGContentAPIClient\Model\Article**](../Model/Article.md) | Post data                                                             |
 
 ### Return type
 

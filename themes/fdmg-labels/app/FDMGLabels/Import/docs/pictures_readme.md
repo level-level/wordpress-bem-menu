@@ -3,9 +3,11 @@
 The database contains images. Images can be found in "picture" table.
 
 ## Import notes
-fdmg_import_old_id is prefixed with 'picture_'
+
+fdmg*import_old_id is prefixed with 'picture*'
 
 ## Image files export
+
 Select all images
 
 ```sql

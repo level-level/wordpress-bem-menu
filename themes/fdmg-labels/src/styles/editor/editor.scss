@@ -161,7 +161,7 @@ strong {
 	&.alignleft {
 		@apply sm:w-[calc(theme(space.article-width)/2)];
 		@include breakpoint(sm) {
-			margin-left: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+			margin-left: calc((100% - var(--article-width)) / 2) !important;
 		}
 
 		.alignleft {
@@ -172,7 +172,7 @@ strong {
 	&.alignright {
 		@apply sm:w-[calc(theme(space.article-width)/2)];
 		@include breakpoint(sm) {
-			margin-right: calc( ( 100% - var(--article-width) ) / 2 ) !important;
+			margin-right: calc((100% - var(--article-width)) / 2) !important;
 		}
 
 		.alignright {

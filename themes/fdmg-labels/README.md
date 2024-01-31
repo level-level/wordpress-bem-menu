@@ -40,7 +40,13 @@ The `{{ assets.get_assets_directory_url() }}` function is the replacement of `{{
 For example placing a logo in the header:
 
 ```html
-<img src="{{ assets.get_assets_directory_url() }}/images/logo.jpg" loading="lazy" alt="" width="200" height="100" />
+<img
+	src="{{ assets.get_assets_directory_url() }}/images/logo.jpg"
+	loading="lazy"
+	alt=""
+	width="200"
+	height="100"
+/>
 ```
 
 #### Lazyload
@@ -65,7 +71,11 @@ All svg icons need to be located inside `src/images/icons/`. Make sure to run `n
 Usage example:
 
 ```html
-<span class="icon-inline" aria-hidden="true">{{ svg_icons.get('arrow-right')|raw }}</span>
+<span
+	class="icon-inline"
+	aria-hidden="true"
+	>{{ svg_icons.get('arrow-right')|raw }}</span
+>
 ```
 
 ## Storybook

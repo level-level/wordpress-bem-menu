@@ -51,8 +51,7 @@ class NavigationAdvertisement implements IModule {
 			return;
 		}
 
-		const adminbarHeight =
-			parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--wp-admin--admin-bar--height')) || 0;
+		const adminbarHeight = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--wp-admin--admin-bar--height')) || 0;
 
 		const top = adminbarHeight - height;
 
