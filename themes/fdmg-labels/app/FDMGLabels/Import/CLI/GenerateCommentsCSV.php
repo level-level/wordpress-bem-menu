@@ -56,7 +56,6 @@ class GenerateCommentsCSV {
 		$fdmg_customers_file = fopen( $fdmg_customers_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $fdmg_customers_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open FDMG customers CSV "%s"', $fdmg_customers_file ) );
-			exit;
 		}
 
 		$customers = array();
@@ -77,20 +76,17 @@ class GenerateCommentsCSV {
 		$fdmg_comments_file = fopen( $fdmg_comments_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $fdmg_comments_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open FDMG comments CSV "%s"', $fdmg_comments_csv ) );
-			exit;
 		}
 
 		$fdmg_comments_header = fgetcsv( $fdmg_comments_file );
 		$fdmg_comments_header = ( $fdmg_comments_header && $fdmg_comments_header[0] === 'SEP=' ) ? fgetcsv( $fdmg_comments_file ) : $fdmg_comments_header;
 		if ( ! $fdmg_comments_header ) {
 			WP_CLI::error( sprintf( 'Could not read FDMG comments CSV header "%s"', $fdmg_comments_csv ) );
-			exit;
 		}
 
 		$generated_comments_file = fopen( $generated_comments_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $generated_comments_file ) ) {
 			WP_CLI::error( sprintf( 'Could not create and open generated comments CSV "%s"', $generated_comments_csv ) );
-			exit;
 		}
 
 		$generated_comments_header_written = fputcsv(
@@ -106,7 +102,6 @@ class GenerateCommentsCSV {
 		);
 		if ( ! $generated_comments_header_written ) {
 			WP_CLI::error( sprintf( 'Could write generated comments CSV header "%s"', $generated_comments_header_written ) );
-			exit;
 		}
 
 		while ( $row = fgetcsv( $fdmg_comments_file ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
@@ -118,7 +113,7 @@ class GenerateCommentsCSV {
 			$line_written = fputcsv( $generated_comments_file, $generated_comment );
 			if ( ! $line_written ) {
 				WP_CLI::warning( sprintf( 'Could not write generated comment "%s"', $generated_comment['comment_id'] ) );
-				exit;
+				continue;
 			}
 		}
 
