@@ -53,18 +53,18 @@ class GenerateCommentsCSV {
 	 * @return array<int,string> Key-value array containing the customer_id => displayname
 	 */
 	protected function get_extracted_customers( string $fdmg_customers_csv ): array {
-		$fdmg_customers_file = fopen( $fdmg_customers_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$fdmg_customers_file = fopen( $fdmg_customers_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $fdmg_customers_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open FDMG customers CSV "%s"', $fdmg_customers_file ) );
 			exit;
 		}
 
 		$customers = array();
-		while ( $row = fgetcsv( $fdmg_customers_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( $row = fgetcsv( $fdmg_customers_file ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			$customers[ (int) $row[0] ] = $row[1];
 		}
 
-		fclose( $fdmg_customers_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $fdmg_customers_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		return $customers;
 	}
 
@@ -74,7 +74,7 @@ class GenerateCommentsCSV {
 	 * @param array<int,string> $customers
 	 */
 	protected function process_comments( string $fdmg_comments_csv, string $generated_comments_csv, array $customers ): void {
-		$fdmg_comments_file = fopen( $fdmg_comments_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$fdmg_comments_file = fopen( $fdmg_comments_csv, 'r' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $fdmg_comments_file ) ) {
 			WP_CLI::error( sprintf( 'Could not open FDMG comments CSV "%s"', $fdmg_comments_csv ) );
 			exit;
@@ -87,7 +87,7 @@ class GenerateCommentsCSV {
 			exit;
 		}
 
-		$generated_comments_file = fopen( $generated_comments_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$generated_comments_file = fopen( $generated_comments_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! is_resource( $generated_comments_file ) ) {
 			WP_CLI::error( sprintf( 'Could not create and open generated comments CSV "%s"', $generated_comments_csv ) );
 			exit;
@@ -109,7 +109,7 @@ class GenerateCommentsCSV {
 			exit;
 		}
 
-		while ( $row = fgetcsv( $fdmg_comments_file ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( $row = fgetcsv( $fdmg_comments_file ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			$generated_comment = $this->get_generated_comment( array_combine( $fdmg_comments_header, $row ), $customers );
 			if ( empty( $generated_comment ) ) {
 				continue;
@@ -122,8 +122,8 @@ class GenerateCommentsCSV {
 			}
 		}
 
-		fclose( $fdmg_comments_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
-		fclose( $generated_comments_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $fdmg_comments_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
+		fclose( $generated_comments_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 	}
 
 	/**
