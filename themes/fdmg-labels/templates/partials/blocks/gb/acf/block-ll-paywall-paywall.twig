@@ -28,7 +28,7 @@
 						<div class="mt-3">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('Login', 'Paywall', 'fdmg-labels'),
-								url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
+								url: static_pages.login.get_login_permalink(true),
 								class: 'btn-primary',
 								icon: 'external-link',
 							} %}
@@ -41,7 +41,7 @@
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('Choose your subscription', 'Paywall', 'fdmg-labels'),
 								url: button.url,
-								class: 'btn-primary',
+								class: 'btn-primary btn-primary-light-hover',
 								icon: 'external-link',
 							} %}
 						</div>

@@ -31,10 +31,9 @@ class NewsletterTypeSettings {
 		$article_groups = $this->data[ Selligent::OPTION_NEWSLETTER_TYPE_ARTICLE_GROUPS ] ?? array();
 		$article_groups = is_array( $article_groups ) ? $article_groups : array();
 		return array_map(
-			function( array $article_group_data ): NewsletterTypeArticleGroupSettings {
+			function ( array $article_group_data ): NewsletterTypeArticleGroupSettings {
 				return new NewsletterTypeArticleGroupSettings( $article_group_data );
 			}, $article_groups
 		);
 	}
-
 }

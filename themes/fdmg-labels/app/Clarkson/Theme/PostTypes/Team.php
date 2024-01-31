@@ -20,7 +20,6 @@ class Team {
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_action( 'template_redirect', array( $this, 'redirect_archive_page' ) );
 		add_action( 'template_redirect', array( $this, 'prevent_pagination_redirect' ), 0 );
-
 	}
 
 	public function register(): void {

@@ -37,7 +37,7 @@ class OpenIDConnectTest extends WPTestCase {
 
 		$user = OpenID_Connect_Generic::instance()->client_wrapper->create_new_user( $claim['sapId'], $claim );
 		$this->assertInstanceOf( WP_User::class, $user );
-		$this->assertEquals( '4601292-levellevel', $user->user_login );
+		$this->assertEquals( 'customer-4601292', $user->user_login );
 		$this->assertEquals( 'levellevel@asdasd.nl', $user->user_email );
 		$this->assertEquals( 'L.', $user->first_name );
 		$this->assertEquals( 'de Level', $user->last_name );

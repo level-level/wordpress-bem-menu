@@ -11,6 +11,7 @@ WHERE redirect = 1;
 ```
 
 ## Import
+
 1. Make sure the redirection plugin is active.
 2. Create a new redirect group, called "Imported Short URL's".
 3. Determine the group ID. You can do so by filtering redirects by your created group, and looking at the url.

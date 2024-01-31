@@ -46,8 +46,12 @@ abstract class AbstractController {
 	 * Perform a redirect.
 	 * Then exits running code, except for when we are in a testing environment.
 	 */
-	public function redirect_and_exit( string $location, int $status, string $x_redirect_by ): void {
-		wp_safe_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore WordPressVIPMinimum.Security.ExitAfterRedirect.NoExit
+	public function redirect_and_exit( string $location, int $status, string $x_redirect_by, bool $safe = true ): void {
+		if ( $safe ) {
+			wp_safe_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
+		} else {
+			wp_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
+		}
 		$this->maybe_exit();
 	}
 
@@ -84,7 +88,7 @@ abstract class AbstractController {
 
 	public function set_page_title( string $title ): void {
 		add_filter(
-			'wpseo_title', function( $original_title ) use ( $title ) {
+			'wpseo_title', function ( $original_title ) use ( $title ) {
 				$separator = function_exists( 'YoastSEO' ) ? YoastSEO()->helpers->options->get_title_separator() : '-';
 				return sprintf( '%s %s %s', $title, $separator, get_bloginfo( 'name' ) );
 			}

@@ -33,6 +33,5 @@ class ConfigurationTest extends WPTestCase {
 		$configuration_model = $configuration->get_configuration();
 		$this->assertSame( 'https://dev-api.ota.fdmg.org/Distributor/level2', $configuration_model->getHost() );
 		$this->assertSame( '1234567890', $configuration_model->getApiKey( 'x-api-key' ) );
-
 	}
 }

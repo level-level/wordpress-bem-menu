@@ -71,7 +71,7 @@ class ObjectConverter {
 		$article->setPaywall( $post->has_paywall_block() );
 		$article->setTeamMembers(
 			array_map(
-				function( ii_team $team_member ): TeamMember {
+				function ( ii_team $team_member ): TeamMember {
 					return $this->team( $team_member );
 				}, $post->get_authors()
 			)

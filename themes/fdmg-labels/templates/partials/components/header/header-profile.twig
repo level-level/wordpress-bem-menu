@@ -25,17 +25,8 @@
 
 			{# @TODO Properly need to check if login is possible instead using CSS to hide it #}
 			<div class="hidden theme-energeia:block theme-pensioen-pro:block">
-				<div data-module="login-button" class="flex flex-col gap-4 pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
-					{% include 'styleguide/components/buttons/button-link.twig' with {
-						text: _x('Login', 'Profile', 'fdmg-labels'),
-						url: static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)),
-						class: 'btn-primary btn-full js-login',
-					} %}
-					{% include 'styleguide/components/buttons/button-link.twig' with {
-						text: _x('Logout', 'Profile', 'fdmg-labels'),
-						url: static_pages.auth.get_permalink(constant('PAGE_LOGOUT', static_pages.auth)),
-						class: 'btn-primary btn-full js-logout',
-					} %}
+				<div class="pb-4 mb-4 border-b border-[rgb(0,0,0,0.1)] dark:border-base-400">
+					{% include 'partials/components/login-button.twig' %}
 				</div>
 			</div>
 

@@ -1,0 +1,9 @@
+{% if target and text %}
+	<a
+		href="{{ target }}"
+		data-component="skip-link"
+		class="text-lg underline sr-only focus:not-sr-only focus:absolute focus:p-4 focus:z-50 bg-base-50 hover:no-underline border-base-800 text-base-800 dark:bg-base-300"
+	>
+		{{ text }}
+	</a>
+{% endif %}

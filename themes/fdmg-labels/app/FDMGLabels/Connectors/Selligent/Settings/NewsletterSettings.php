@@ -27,7 +27,7 @@ class NewsletterSettings {
 		$publications = $this->data[ Selligent::OPTION_NEWSLETTER_PUBLICATIONS ] ?? array();
 		$publications = is_array( $publications ) ? $publications : array();
 		return array_map(
-			function( array $publication_data ): NewsletterPublicationSettings {
+			function ( array $publication_data ): NewsletterPublicationSettings {
 				return new NewsletterPublicationSettings( $publication_data );
 			}, $publications
 		);
@@ -40,10 +40,9 @@ class NewsletterSettings {
 		$types = $this->data[ Selligent::OPTION_NEWSLETTER_TYPES ] ?? array();
 		$types = is_array( $types ) ? $types : array();
 		return array_map(
-			function( array $type_data ): NewsletterTypeSettings {
+			function ( array $type_data ): NewsletterTypeSettings {
 				return new NewsletterTypeSettings( $type_data );
 			}, $types
 		);
 	}
-
 }
