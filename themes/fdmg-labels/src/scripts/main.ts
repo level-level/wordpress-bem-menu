@@ -57,7 +57,4 @@ document.addEventListener('onLLPaywallRemoved', () => {
 });
 
 // eslint-disable-next-line
-console.log(
-	'%c  Powered by level-level.com 💪  ',
-	'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;',
-);
+console.log('%c  Powered by level-level.com 💪  ', 'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;');

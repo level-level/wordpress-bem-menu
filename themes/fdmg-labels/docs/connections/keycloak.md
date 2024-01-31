@@ -64,7 +64,6 @@ These options need to be entered in the OpenID Connect Generic Client plugin as 
 > For local development, you might need to disable SSL verification by checking the "Disable SSL Verify" checkbox. Do not disable SSL verification on production environments.
 
 > Some of this configuration could seem to be ignored in code, as some values are overwritten [in PHP code](./../../app/Listn/OpenIDConnect.php).
->
 
 ## Whitelisting
 
@@ -72,6 +71,7 @@ For usage of this connection, your local development URL needs to be whitelisted
 The following urls have been whitelisted:
 
 DEV:
+
 - http://impact-investor.test
 - https://impact-investor.test
 - http://impact-investor.local
@@ -110,10 +110,12 @@ ACC:
 - https://energeia-acc.level-level.nl
 
 PROD:
+
 - https://pensioenpro.nl
 - https://energeia.nl
 
 ## Login / logout urls
+
 Because the KeyCloak login system needs to generate a new url for each login every time, it's important that this url isn't cached.
 Therefore, when website visitors want to login/logout using keycloak, they need to be redirected to https://{site_url}/auth/login or https://{site_url}/auth/logout, which shouldn't be cached.
 
@@ -124,6 +126,7 @@ And in the nginx logs, you will find errors like "upstream sent too big header w
 This can be fixed by changing the size of the fastcgi buffers.
 
 Change the factcgi buffer sizes in the Nginx config to a larger size, for example the following:
+
 ```
 fastcgi_buffers 16 16k;
 fastcgi_buffer_size 32k;
