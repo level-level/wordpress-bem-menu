@@ -27,6 +27,7 @@ class DataLayer implements IModule {
 		parent_component: string;
 		categories: string;
 		share_type: string;
+		wordcount: number;
 	};
 	event_type: string;
 	do_not_track: boolean;
@@ -60,11 +61,10 @@ class DataLayer implements IModule {
 			if ( typeof window.__tcfapi !== 'undefined' ) {
 				this.initSourcepoint ( 'article_view' );
 			} else {
-				console.log( 'article view');
 				this.element.addEventListener('copy', this.addCopyText.bind(this));
 				this.element.addEventListener('cut', this.addCopyText.bind(this));
 				this.trackScrollPercentage();
-				// add read percenbtage tracker
+				this.trackReadPercentage();
 			}
 		}
 	}
@@ -137,11 +137,10 @@ class DataLayer implements IModule {
 					tcData.eventStatus === 'useractioncomplete'
 				) {
 					if (this.event_type === 'article_view') {
-						console.log( 'article view');
 						this.element.addEventListener('copy', this.addCopyText.bind(this));
 						this.element.addEventListener('cut', this.addCopyText.bind(this));
 						this.trackScrollPercentage();
-						// add read percenbtage tracker
+						this.trackReadPercentage();
 					}
 				}
 			},
@@ -245,7 +244,6 @@ class DataLayer implements IModule {
 	}
 
 	addShareArticleShareEvent() {
-		console.log( 'share article event' );
 		window.dataLayer.push({
 			event: 'share_article',
 			event_info: {
@@ -283,6 +281,44 @@ class DataLayer implements IModule {
 						article_index: '1',
 					},
 				],
+			},
+		});
+	}
+
+	trackReadPercentage() {
+		const averageReadingSpeed = 200; // Assume 200 words per minute for average reading speed
+		const percentageValues = [25, 50, 75, 100]; // Percentages to track
+		const expectedReadingTimeInSeconds = (this.config.wordcount / averageReadingSpeed) * 60;
+
+		setTimeout(() => {
+			console.log('Timer started');
+
+			// Loop through percentage values
+			percentageValues.forEach(percentage => {
+				// Calculate the time to reach the given percentage of the reading
+				const timeToReachPercentage = (percentage / 100) * expectedReadingTimeInSeconds;
+
+				// Set a timer for each percentage
+				setTimeout(() => {
+					this.addReadPercentageEvent(percentage);
+					console.log(`User has reached ${percentage}% of the reading.`);
+				}, timeToReachPercentage * 1000); // Convert seconds to milliseconds
+			});
+		}, 0);
+	}
+
+	addReadPercentageEvent( readPercentage: number ) {
+		window.dataLayer.push({
+			event: 'read_percentage',
+			event_info: {
+				category: 'user interactions',
+				action: 'read percentage',
+				label: `${readPercentage}`,
+				value: null,
+				event_context: {
+					article_id: `${this.config.id}`,
+					page_notification: null,
+				},
 			},
 		});
 	}
