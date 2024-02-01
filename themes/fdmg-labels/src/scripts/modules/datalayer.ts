@@ -163,6 +163,7 @@ class DataLayer implements IModule {
 	}
 
 	trackTeaserInViewport() {
+		// Only track the first time the element is in the viewport (based on do_not_track flag)
 		if ( this.elementIsVisibleInViewport( this.element ) && this.do_not_track === false ) {
 			this.addArticleImpression();
 			this.do_not_track = true;
@@ -259,52 +260,59 @@ class DataLayer implements IModule {
 		});
 	}
 
-	addArticleViewEvent() {
-		window.dataLayer.push({
-			event: 'article_view',
-			event_info: {
-				category: 'user interactions',
-				action: 'article view',
-				label: `${this.config.id}`,
-				value: null,
-				article: [
-					{
-						article_id: `${this.config.id}`,
-						article_name: `${this.config.title}`,
-						article_category: 'partner content',
-						article_type: 'article',
-						author_name: `${this.config.author}`,
-						article_label: 'partner content',
-						article_publication_date: `${this.config.publication_date}`,
-						article_publication_time: `${this.config.publication_time}`,
-						article_version: `${this.config.revisions_count}`,
-						article_index: '1',
-					},
-				],
-			},
-		});
-	}
-
 	trackReadPercentage() {
 		const averageReadingSpeed = 200; // Assume 200 words per minute for average reading speed
-		const percentageValues = [25, 50, 75, 100]; // Percentages to track
 		const expectedReadingTimeInSeconds = (this.config.wordcount / averageReadingSpeed) * 60;
+		const inactivityThresholdInSeconds = 30;
+		const userActivityEvents = ['scroll', 'mousemove', 'click', 'touchstart', 'keydown'];
 
-		setTimeout(() => {
-			console.log('Timer started');
+		let percentageValues = [25, 50, 75, 100]; // Percentages to track
+		let interaction = false;
+		let activeTime = 0;
+		let lastInteraction = Date.now();
+
+		const setInteracting = () => {
+			interaction = true;
+			lastInteraction = Date.now();
+		};
+
+		userActivityEvents.forEach(event => {
+			document.addEventListener(event, setInteracting);
+		});
+
+		setInterval( () => {
+			// Check if there actually was an interaction
+			if ( interaction === false || document.hidden ) return;
+
+			// Reset interaction if ast interaction was longer then 30 seconds ago.
+			if ( Date.now() - lastInteraction > inactivityThresholdInSeconds * 1000 ) {
+				interaction = false;
+			}
+
+			// Increase active time by 1 second
+			activeTime++;
+
+			console.log(activeTime);
 
 			// Loop through percentage values
 			percentageValues.forEach(percentage => {
+
 				// Calculate the time to reach the given percentage of the reading
 				const timeToReachPercentage = (percentage / 100) * expectedReadingTimeInSeconds;
 
-				// Set a timer for each percentage
-				setTimeout(() => {
+				if (activeTime >= timeToReachPercentage) {
+					// add event to dataLayer
 					this.addReadPercentageEvent(percentage);
 					console.log(`User has reached ${percentage}% of the reading.`);
-				}, timeToReachPercentage * 1000); // Convert seconds to milliseconds
+
+					// Remove the percentage from the array so it won't be tracked again
+					percentageValues = percentageValues.filter( (value) => {
+						return value !== percentage;
+					});
+				}
 			});
-		}, 0);
+
+		}, 1000);
 	}
 
 	addReadPercentageEvent( readPercentage: number ) {
