@@ -30,6 +30,7 @@ class DataLayer implements IModule {
 	};
 	event_type: string;
 	do_not_track: boolean;
+	pushedScrollPercentages: Set<number>;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
@@ -38,6 +39,7 @@ class DataLayer implements IModule {
 			: {};
 		this.event_type = this.element.dataset.type ?? '';
 		this.do_not_track = false;
+		this.pushedScrollPercentages = new Set();
 		this.initialize();
 	}
 
@@ -46,7 +48,6 @@ class DataLayer implements IModule {
 			this.element.addEventListener('click', this.addArticleClick.bind(this));
 		}
 		if (this.event_type === 'article_impression') {
-			this.trackTeaserInViewport();
 			window.addEventListener( 'scroll', this.trackTeaserInViewport.bind(this) );
 		}
 		if (this.event_type === 'share_article') {
@@ -59,8 +60,11 @@ class DataLayer implements IModule {
 			if ( typeof window.__tcfapi !== 'undefined' ) {
 				this.initSourcepoint ( 'article_view' );
 			} else {
+				console.log( 'article view');
 				this.element.addEventListener('copy', this.addCopyText.bind(this));
 				this.element.addEventListener('cut', this.addCopyText.bind(this));
+				this.trackScrollPercentage();
+				// add read percenbtage tracker
 			}
 		}
 	}
@@ -132,9 +136,12 @@ class DataLayer implements IModule {
 					tcData.eventStatus === 'tcloaded' ||
 					tcData.eventStatus === 'useractioncomplete'
 				) {
-					if (type === 'article_view') {
+					if (this.event_type === 'article_view') {
+						console.log( 'article view');
 						this.element.addEventListener('copy', this.addCopyText.bind(this));
 						this.element.addEventListener('cut', this.addCopyText.bind(this));
+						this.trackScrollPercentage();
+						// add read percenbtage tracker
 					}
 				}
 			},
@@ -276,6 +283,50 @@ class DataLayer implements IModule {
 						article_index: '1',
 					},
 				],
+			},
+		});
+	}
+
+	trackScrollPercentage() {
+		window.addEventListener('scroll', () => {
+			const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+			const scrollTop = window.scrollY;
+			let scrollPercentage = Math.floor((scrollTop / scrollHeight) * 100);
+
+			// Ensure that the scroll percentage doesn't exceed 100%
+			scrollPercentage = Math.min(scrollPercentage, 100);
+
+			// Add percentages below the current scroll position if page is opened at a high percentage
+			if (!this.pushedScrollPercentages.size && scrollPercentage < 100) {
+				for (let i = 0; i <= scrollPercentage; i += 25) {
+					this.pushedScrollPercentages.add(i);
+					this.addScrollEvent(i);
+				}
+			}
+
+			// Calculate nearest multiple of 25%
+			const nearestMultipleOf25 = Math.ceil(scrollPercentage / 25) * 25;
+
+			// Push events to dataLayer at specific scroll percentages only if not pushed before
+			if (nearestMultipleOf25 <= 100 && !this.pushedScrollPercentages.has(nearestMultipleOf25)) {
+				this.pushedScrollPercentages.add(nearestMultipleOf25);
+				this.addScrollEvent(nearestMultipleOf25);
+			}
+		});
+	}
+
+	addScrollEvent( scrollPercentage: number ) {
+		window.dataLayer.push({
+			event: 'scroll_depth',
+			event_info: {
+				category: 'user interactions',
+				action: 'scroll depth',
+				label: `${scrollPercentage}`,
+				value: null,
+				event_context: {
+					article_id: `${this.config.id}`,
+					page_notification: null,
+				},
 			},
 		});
 	}

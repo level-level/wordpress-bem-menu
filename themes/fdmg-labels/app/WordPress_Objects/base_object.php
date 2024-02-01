@@ -6,6 +6,8 @@ use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
 use WP_Term;
 use WPSEO_Primary_Term;
+use DOMDocument;
+use DOMXPath;
 
 class base_object extends Clarkson_Object {
 
@@ -83,5 +85,16 @@ class base_object extends Clarkson_Object {
 
 	public function get_imported_old_id(): ?string {
 		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
+	}
+
+	public function get_content_wordcount(): int {
+		$html = $this->get_content();
+		$pattern = '/<div[^>]*\bdata-name="acf\/[^"]*"[^>]*>.*?<\/div>/i';
+		var_dump($html);
+		$content = str_replace($pattern, '', $html);
+		var_dump($content);
+		$content = trim( strip_tags( $content ) );
+
+		return sizeof(explode(" ", $content));
 	}
 }
