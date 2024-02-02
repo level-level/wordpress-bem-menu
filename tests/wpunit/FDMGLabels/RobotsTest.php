@@ -10,7 +10,7 @@ class RobotsTest extends WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		$default_robots_lines_by_yoast = array(
+		$default_robots_lines = array(
 			'# START YOAST BLOCK',
 			'# ---------------------------',
 			'User-agent: *',
@@ -19,9 +19,10 @@ class RobotsTest extends WPTestCase {
 			'Sitemap: http://fdmg-labels.nl/sitemap_index.xml',
 			'# ---------------------------',
 			'# END YOAST BLOCK',
+			'I am a random line that should just be gone',
 		);
 
-		$this->default_robots = implode( PHP_EOL, $default_robots_lines_by_yoast );
+		$this->default_robots = implode( PHP_EOL, $default_robots_lines );
 		update_field(
 			'robots_options', array(
 				'copyright_notice' => "Please don\'t copy me!\nI said, don\'t copy me!",
