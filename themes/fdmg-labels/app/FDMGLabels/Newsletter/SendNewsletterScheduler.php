@@ -78,7 +78,7 @@ class SendNewsletterScheduler {
 		}
 
 		// Schedule
-		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP, true );
+		$scheduled = as_schedule_single_action( $schedule_date->getTimestamp(), self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
 		if ( ! $scheduled ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
@@ -118,7 +118,7 @@ class SendNewsletterScheduler {
 		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
 
 		// Schedule
-		$scheduled = as_schedule_recurring_action( $schedule_date->getTimestamp(), DAY_IN_SECONDS, self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP, true );
+		$scheduled = as_schedule_recurring_action( $schedule_date->getTimestamp(), DAY_IN_SECONDS, self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
 		if ( ! $scheduled ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
