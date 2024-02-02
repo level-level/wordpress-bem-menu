@@ -235,7 +235,7 @@
             "dist": {
                 "type": "path",
                 "url": "themes/fdmg-labels/_generated/FDMGContentAPI",
-                "reference": "863281d2fb053a023744ccac5b05e48a50504266"
+                "reference": "ea5e105741133f392bad7c10aba627058c8b0ddd"
             },
             "require": {
                 "ext-curl": "*",
@@ -1355,11 +1355,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.1",
+            "version": "2.8.3",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.1",
-                "shasum": "481bf3b4bf8dc081a3de32c654feff6e8ee65cdb",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.3",
+                "shasum": "ab38991aa16e1a714c3aa93b9150d58d4abe02f1",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
