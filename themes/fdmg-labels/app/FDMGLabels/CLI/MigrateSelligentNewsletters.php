@@ -128,13 +128,11 @@ class MigrateSelligentNewsletters {
 		$publication         = $newsletter_settings->get_publications()[0] ?? null;
 		if ( ! $publication ) {
 			WP_CLI::error( 'No publication set. Please configure Selligent.' );
-			return;
 		}
 
 		$type = $newsletter_settings->get_types()[0] ?? null;
 		if ( ! $type ) {
 			WP_CLI::error( 'No type set. Please configure Selligent.' );
-			return;
 		}
 
 		update_field( Newsletter::META_PUBLICATION, $publication->get_name(), $newsletter->get_id() );
@@ -151,7 +149,7 @@ class MigrateSelligentNewsletters {
 			$articles_data[] = array(
 				Newsletter::META_ARTICLE_GROUP_ARTICLE_ARTICLE => $value,
 			);
-			$acf_article_field_index++;
+			++$acf_article_field_index;
 		}
 
 		update_field(

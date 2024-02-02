@@ -46,7 +46,7 @@ class ii_newsletter extends base_object {
 		$newsletter_type_settings = Settings::get_instance()->get_newsletter()->get_types();
 		$current_type             = array_filter(
 			$newsletter_type_settings,
-			function( NewsletterTypeSettings $type_setting ) {
+			function ( NewsletterTypeSettings $type_setting ) {
 				return $type_setting->get_type() === $this->get_type();
 			}
 		);

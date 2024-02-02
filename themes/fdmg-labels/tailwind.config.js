@@ -179,12 +179,7 @@ module.exports = {
 				modifySelectors(({ className }) => {
 					const modifiedClassName = e(`btn-text${separator}${className}`);
 
-					return [
-						`.${modifiedClassName} .btn__text`,
-						`.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__text`,
-						`.${modifiedClassName}:focus .btn__text`,
-						`.${modifiedClassName}:focus-within .btn__text`,
-					];
+					return [`.${modifiedClassName} .btn__text`, `.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__text`, `.${modifiedClassName}:focus .btn__text`, `.${modifiedClassName}:focus-within .btn__text`];
 				});
 			});
 
@@ -192,12 +187,7 @@ module.exports = {
 				modifySelectors(({ className }) => {
 					const modifiedClassName = e(`btn-icon${separator}${className}`);
 
-					return [
-						`.${modifiedClassName} .btn__icon`,
-						`.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__icon`,
-						`.${modifiedClassName}:focus .btn__icon`,
-						`.${modifiedClassName}:focus-within .btn__icon`,
-					];
+					return [`.${modifiedClassName} .btn__icon`, `.${e(`group-hover${separator}${modifiedClassName}`)}:hover .btn__icon`, `.${modifiedClassName}:focus .btn__icon`, `.${modifiedClassName}:focus-within .btn__icon`];
 				});
 			});
 
@@ -228,7 +218,7 @@ module.exports = {
 					modifySelectors(({ className }) => {
 						return `.${zoomVariants[key]} .${e(`${key}${separator}${className}`)}`;
 					});
-				})
+				});
 			});
 		}),
 	],

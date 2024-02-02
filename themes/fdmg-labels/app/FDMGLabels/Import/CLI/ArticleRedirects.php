@@ -32,26 +32,24 @@ class ArticleRedirects {
 		$redirects_csv = $args[0] ?? '';
 		if ( empty( $redirects_csv ) || ! str_ends_with( $redirects_csv, '.csv' ) ) {
 			WP_CLI::error( sprintf( 'Redirects CSV "%s" is an invalid file name', $redirects_csv ) );
-			exit;
 		}
 
-		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_read_fopen
+		$redirects_file = fopen( $redirects_csv, 'w' ); // phpcs:disable WordPress.WP.AlternativeFunctions.file_system_operations_fopen
 		if ( ! $redirects_file ) {
 			WP_CLI::error( sprintf( 'Could not open redirects CSV "%s"', $redirects_csv ) );
-			exit;
 		}
 
 		// Process articles in batches
 		$batch_number = 1;
-		while ( $posts_batch = $this->get_posts_batch( $batch_number ) ) { // phpcs:ignore WordPress.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
+		while ( $posts_batch = $this->get_posts_batch( $batch_number ) ) { // phpcs:ignore Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition
 			WP_CLI::log( sprintf( 'Processing batch number %d', $batch_number ) );
 			foreach ( $posts_batch as $post ) {
 				$this->process_post( $post, $redirects_file );
 			}
-			$batch_number++;
+			++$batch_number;
 		}
 
-		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
+		fclose( $redirects_file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose
 		WP_CLI::success( 'All articles have been processed' );
 	}
 

@@ -37,7 +37,6 @@ class Assets {
 	}
 
 	public function dequeue(): void {
-
 	}
 
 	public function enqueue_admin(): void {
@@ -127,5 +126,4 @@ class Assets {
 		$protocol = $secure ? 'https' : 'http';
 		return $protocol . '://localhost:' . $port . $path;
 	}
-
 }

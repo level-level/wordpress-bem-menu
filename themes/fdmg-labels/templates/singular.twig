@@ -20,6 +20,13 @@
 }|json_encode(constant('JSON_HEX_QUOT')) %}
 
 {% block content %}
+	{% if is_singular('post') %}
+		{% include 'partials/tag-manager/article-terms.twig' with {
+			genres: genres,
+			sections: sections,
+		} only %}
+	{% endif %}
+
 	<article class="section" data-module="datalayer" data-type="article_view" data-config="{{ datalayer_config }}">
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {

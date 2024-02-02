@@ -27,7 +27,7 @@ class Selligent {
 		WP_CLI::line( 'Article list ID: ' . $settings->get_list_ids()->get_article() );
 
 		$types = array_map(
-			function( $type ) {
+			function ( $type ) {
 				return $type->get_type();
 			}, $settings->get_newsletter()->get_types()
 		);
@@ -35,7 +35,7 @@ class Selligent {
 
 		// Get publication names as string
 		$publications = array_map(
-			function( NewsletterPublicationSettings $publication ) {
+			function ( NewsletterPublicationSettings $publication ) {
 				return $publication->get_name();
 			}, $settings->get_newsletter()->get_publications()
 		);
@@ -76,7 +76,6 @@ class Selligent {
 
 		if ( empty( $posts ) ) {
 			WP_CLI::error( 'No valid posts were given' );
-			exit;
 		}
 
 		$newsletter_id = (int) ( $args[1] ?? 0 );
@@ -156,7 +155,6 @@ class Selligent {
 		$newsletter    = ii_newsletter::get( $newsletter_id );
 		if ( ! $newsletter instanceof ii_newsletter ) {
 			WP_CLI::error( 'No valid newsletter ID was given' );
-			exit;
 		}
 
 		$client = new Client();
@@ -189,7 +187,6 @@ class Selligent {
 
 		if ( ! filter_var( $args[0], FILTER_VALIDATE_EMAIL ) ) {
 			WP_CLI::error( 'No valid e-mail address was given' );
-			exit;
 		}
 
 		$client = new Client();
@@ -204,11 +201,11 @@ class Selligent {
 			add_filter(
 				'pre_http_request',
 				/**
-				 * @param mixed $false Can be anything, if this value is not
+				 * @param mixed $false_anything Can be anything, if this value is not
 				 * false, it will prevent the request from running.
 				 */
-				function( $false, array $args, string $url ) {
-					return $this->preview_request( $false, $args, $url );
+				function ( $false_anything, array $args, string $url ) {
+					return $this->preview_request( $false_anything, $args, $url );
 				}, 10, 3
 			);
 		}

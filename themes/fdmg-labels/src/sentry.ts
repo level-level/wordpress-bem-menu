@@ -1,11 +1,4 @@
-import {
-	BrowserClient,
-	BrowserTracing,
-	getCurrentHub,
-	makeFetchTransport,
-	defaultStackParser,
-	GlobalHandlers,
-} from '@sentry/browser';
+import { BrowserClient, BrowserTracing, getCurrentHub, makeFetchTransport, defaultStackParser, GlobalHandlers } from '@sentry/browser';
 
 if (window.sentry) {
 	const client = new BrowserClient({

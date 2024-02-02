@@ -36,8 +36,7 @@ export default {
 		image_square: '<img src="https://place-hold.it/115x115" loading="lazy" width="115" height="115" alt="">',
 		title: 'Example Post teaser',
 		url: '#',
-		excerpt:
-			'<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
+		excerpt: '<p>Nesciunt eligendi sociis metus penatibus velit accumsan! Corrupti convallis nisl? Inventore, autem urna elit nibh, ultricies illo sodales vero massa.</p>',
 		categories: Terms,
 		date: {
 			date: '21 Apr, 2021',

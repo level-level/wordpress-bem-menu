@@ -19,6 +19,8 @@ import ToggleListItems from './modules/toggle-list-items';
 import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
 import DataLayer from './modules/datalayer';
+import TagManager from './modules/tag-manager';
+import PaywallLoginButton from './modules/paywall-login-button';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -39,6 +41,9 @@ ModuleInitializer({
 	'toggle-list-items': ToggleListItems,
 	'login-button': LoginButton,
 	'datalayer': DataLayer,
+	'text-zoom': TextZoom,
+	'tag-manager': TagManager,
+	'paywall-login-button': PaywallLoginButton,
 });
 
 DataLayerEvents();
@@ -59,7 +64,4 @@ document.addEventListener('onLLPaywallRemoved', () => {
 });
 
 // eslint-disable-next-line
-console.log(
-	'%c  Powered by level-level.com 💪  ',
-	'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;',
-);
+console.log('%c  Powered by level-level.com 💪  ', 'background: #222; color: #fff; font-size: 14px; font-weight: normal; border-radius: 5px; line-height: 30px;');

@@ -34,7 +34,7 @@ abstract class BaseLogger {
 		$messages[] = new LogLine( time(), $message, $level, $extra );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
-			function( LogLine $log_line ): array {
+			function ( LogLine $log_line ): array {
 				return $log_line->get_data();
 			}, $messages
 		);
@@ -52,7 +52,7 @@ abstract class BaseLogger {
 			$messages = array();
 		}
 		return array_map(
-			function( array $message ): LogLine {
+			function ( array $message ): LogLine {
 				return LogLine::from_data( $message );
 			}, $messages
 		);
@@ -72,7 +72,7 @@ abstract class BaseLogger {
 		$messages[] = new LogLine( time(), $message, $level, $extra );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
-			function( LogLine $log_line ): array {
+			function ( LogLine $log_line ): array {
 				return $log_line->get_data();
 			}, $messages
 		);
@@ -90,7 +90,7 @@ abstract class BaseLogger {
 			$messages = array();
 		}
 		return array_map(
-			function( array $message ): LogLine {
+			function ( array $message ): LogLine {
 				return LogLine::from_data( $message );
 			}, $messages
 		);
@@ -114,7 +114,7 @@ abstract class BaseLogger {
 		$messages[] = new LogLine( time(), $message, $level );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
-			function( LogLine $log_line ): array {
+			function ( LogLine $log_line ): array {
 				return $log_line->get_data();
 			}, $messages
 		);
@@ -136,7 +136,7 @@ abstract class BaseLogger {
 			$messages = array();
 		}
 		return array_map(
-			function( array $message ): LogLine {
+			function ( array $message ): LogLine {
 				return LogLine::from_data( $message );
 			}, $messages
 		);

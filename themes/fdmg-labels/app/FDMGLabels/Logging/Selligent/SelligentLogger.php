@@ -8,5 +8,4 @@ class SelligentLogger extends BaseLogger {
 	protected function get_logger_id(): string {
 		return 'selligent';
 	}
-
 }

@@ -63,5 +63,4 @@ class PSR3BaseLoggerAdapter extends AbstractLogger {
 		}
 		return $fdmg_level;
 	}
-
 }

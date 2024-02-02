@@ -139,7 +139,7 @@ components:
         author:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/User'
+            - $ref: '#/components/schemas/User'
         team_members:
           type: array
           items:
@@ -147,7 +147,7 @@ components:
         featured_image:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/Image'
+            - $ref: '#/components/schemas/Image'
         comment_status:
           type: string
           enum:
@@ -238,7 +238,7 @@ components:
         author:
           nullable: true
           allOf:
-          - $ref: '#/components/schemas/User'
+            - $ref: '#/components/schemas/User'
         caption:
           type: string
         alt_text:
@@ -250,8 +250,7 @@ components:
             - file
         mime_type:
           type: string
-          format:
-            mimetype
+          format: mimetype
         media_details:
           type: object
           required:
