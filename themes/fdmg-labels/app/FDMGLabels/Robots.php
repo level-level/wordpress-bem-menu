@@ -13,11 +13,11 @@ class Robots {
 	/**
 	 * Overwrite the robots.txt file with custom content.
 	 */
-	public function overwrite_robots_txt( string $output ): string {
+	public function overwrite_robots_txt( string $original_output ): string {
 		$new_output = array(
-			$this->get_copyright_notice( $output ),
-			$this->get_fdmg_configurable_block( $output ),
-			$this->get_stripped_yoast_block( $output ),
+			$this->get_copyright_notice(),
+			$this->get_fdmg_configurable_block(),
+			$this->get_stripped_yoast_block( $original_output ),
 		);
 
 		return implode( PHP_EOL . PHP_EOL, $new_output );
