@@ -37,15 +37,15 @@ class SEOOptions {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'SEO options', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'SEO options', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Group::make( _x( 'Robots', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP_ROBOTS )
+					Group::make( _x( 'Robots', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP_ROBOTS )
 						->fields(
 							array(
-								Textarea::make( _x( 'Copyright notice', 'Fields', 'fdmg-labels' ), self::OPTION_ROBOTS_COPYRIGHT_NOTICE )
-									->instructions( _x( 'You may add a copyright notice. This piece of text will be converted to a comment, and prepended to the robots.txt file.', 'Fields', 'fdmg-labels' ) ),
-								Textarea::make( _x( 'Custom content', 'Fields', 'fdmg-labels' ), self::OPTION_ROBOTS_CUSTOM_CONTENT )
-									->instructions( _x( 'Add custom content to the robots.txt file.', 'Fields', 'fdmg-labels' ) ),
+								Textarea::make( _x( 'Copyright notice', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ROBOTS_COPYRIGHT_NOTICE )
+									->instructions( _x( 'You may add a copyright notice. This piece of text will be converted to a comment, and prepended to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
+								Textarea::make( _x( 'Custom content', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ROBOTS_CUSTOM_CONTENT )
+									->instructions( _x( 'Add custom content to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
 							)
 						),
 				),
