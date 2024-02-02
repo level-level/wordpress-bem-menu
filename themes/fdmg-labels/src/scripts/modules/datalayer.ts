@@ -27,6 +27,9 @@ class DataLayer implements IModule {
 		parent_component: string;
 		categories: string;
 		share_type: string;
+		page_category: string;
+		page_type: string;
+		page_subtype: string;
 	};
 	event_type: string;
 	do_not_track: boolean;
@@ -53,9 +56,6 @@ class DataLayer implements IModule {
 		if (this.event_type === 'share_article') {
 			this.element.addEventListener('click', this.addShareArticleShareEvent.bind(this));
 		}
-		if (this.event_type === 'active_time_on_page') {
-			this.setupActivityTracker();
-		}
 		if ( this.event_type === 'article_view' ) {
 			if ( typeof window.__tcfapi !== 'undefined' ) {
 				this.initSourcepoint ( 'article_view' );
@@ -66,67 +66,20 @@ class DataLayer implements IModule {
 				this.trackReadPercentage();
 			}
 		}
-	}
-
-	setupActivityTracker() {
-		const inactivityThreshold = 10000; // 10 seconds in milliseconds
-		let activeTime = 0; // Active time in milliseconds
-		let startTime = 0;
-		let activityTimer: number | undefined;
-
-		const setInteracting = () => {
-			clearTimeout(activityTimer);
-
-			if (startTime === 0) {
-				startTime = Date.now();
+		if ( this.event_type === 'pageview' ) {
+			if ( typeof window.__tcfapi !== 'undefined' ) {
+				this.initSourcepoint ( 'pageview' );
+			} else {
+				this.addPageview();
 			}
-
-			activityTimer = window.setTimeout(() => {
-				const timeElapsed = Date.now() - startTime;
-
-				// Ensure we don't add negative time
-				if (timeElapsed > inactivityThreshold) {
-					activeTime += timeElapsed - inactivityThreshold;
-				}
-
-				startTime = 0;
-			}, inactivityThreshold);
-		};
-
-		window.addEventListener('scroll', setInteracting);
-		document.body.addEventListener('mousemove', setInteracting);
-		document.body.addEventListener('click', setInteracting);
-		document.body.addEventListener('touchstart', setInteracting);
-		document.body.addEventListener('keydown', setInteracting);
-
-		window.addEventListener('beforeunload', () => {
-			if (activeTime === 0) {
-				activeTime = Date.now() - startTime;
-			}
-
-			window.dataLayer.push({
-				event: 'active_time_on_page',
-				event_info: {
-					category: 'engagement',
-					action: 'active time',
-					label: 'Time spent actively on page',
-					value: Math.ceil(activeTime / 1000), // Convert milliseconds to seconds
-					event_context: {
-						article_id: `${this.config.id}`,
-						hostname: `${window.location.hostname}`,
-						pathname: `${window.location.pathname}`,
-						title: `${this.config.title}`,
-					},
-				},
-			});
-		});
+		}
 	}
 
 	/**
 	 * Use the Sourcepoint (tcfapi) to handle user consent
 	 */
 	initSourcepoint(type: string) {
-		// Add the pageview event if the tcfapi is loaded or when a user has changed something in their consent settings
+		// Add the pageview & article_view event if the tcfapi is loaded or when a user has changed something in their consent settings
 		window.__tcfapi(
 			'addEventListener',
 			2,
@@ -141,9 +94,34 @@ class DataLayer implements IModule {
 						this.trackScrollPercentage();
 						this.trackReadPercentage();
 					}
+					if (this.event_type === 'pageview') {
+						this.addPageview();
+					}
 				}
 			},
 		);
+	}
+
+	addPageview()	{
+		window.dataLayer.push({
+			event: 'page_view',
+			eventInfo: {
+				category: 'pageviews',
+				action: 'pageview',
+				label: `${window.location.pathname}`,
+				value: null,
+				event_context: {
+					hostname: `${window.location.hostname}`,
+					pathname: `${window.location.pathname}`,
+					referrer: `${document.referrer}`,
+					search: `${window.location.search}`,
+					title: `${this.config.title}`,
+					category: `${this.config.page_category}`,
+					page_type: `${this.config.page_type}`,
+					page_sub_type: `${this.config.page_subtype}`,
+				},
+			},
+		});
 	}
 
 	addCopyText() {

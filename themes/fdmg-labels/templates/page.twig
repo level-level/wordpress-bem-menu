@@ -1,8 +1,14 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
 
+{% set datalayer_config = {
+	title: object.get_title(),
+	page_category: 'page',
+	page_type: 'content page',
+}|json_encode(constant('JSON_HEX_QUOT')) %}
+
 {% block content %}
-	<div class="section">
+	<div class="section" data-module="datalayer" data-type="pageview" data-config="{{ datalayer_config }}">
 		{% include 'styleguide/components/article-header.twig' with {
 			title: object.get_title(),
 		} %}
