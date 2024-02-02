@@ -26,7 +26,7 @@ class RobotsTest extends WPTestCase {
 		$this->default_robots = implode( PHP_EOL, $default_robots_lines );
 		update_field(
 			'robots_options', array(
-				'copyright_notice' => "Please don\'t copy me!\nI said, don\'t copy me!",
+				'copyright_notice' => "Please don't copy me!\nI said, don't copy me!",
 				'custom_content'   => "# Custom lines\nDisallow: /custom-url/",
 			), 'options'
 		);
