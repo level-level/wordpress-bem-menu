@@ -29,8 +29,8 @@ class FDMGContentAPI {
 	public function register(): void {
 		acf_add_options_sub_page(
 			array(
-				'menu_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels' ),
-				'page_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels' ),
+				'menu_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels-admin' ),
+				'page_title'  => _x( 'FDMG Content API', 'Options', 'fdmg-labels-admin' ),
 				'menu_slug'   => self::MENU_SLUG,
 				'parent_slug' => SiteSettings::MENU_SLUG,
 				'icon_url'    => 'dashicons-admin-settings',
@@ -43,21 +43,21 @@ class FDMGContentAPI {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'FDMG Content API options', 'Fields', 'fdmg-labels' ),
+				'title'    => _x( 'FDMG Content API options', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Group::make( _x( 'FDMG Content API options', 'Fields', 'fdmg-labels' ), self::OPTION_GROUP )
+					Group::make( _x( 'FDMG Content API options', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP )
 						->fields(
 							array(
-								TrueFalse::make( _x( 'Enabled', 'Fields', 'fdmg-labels' ), self::OPTION_ENABLED )
-									->instructions( _x( 'Enable sending articles to the FDMG Content API.', 'Fields', 'fdmg-labels' ) )
+								TrueFalse::make( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ENABLED )
+									->instructions( _x( 'Enable sending articles to the FDMG Content API.', 'Fields', 'fdmg-labels-admin' ) )
 									->stylisedUi(),
 
-								Select::make( _x( 'Domain', 'Fields', 'fdmg-labels' ), self::OPTION_DOMAIN )
+								Select::make( _x( 'Domain', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DOMAIN )
 									->choices(
 										array(
-											Configuration::DOMAIN_DEV  => sprintf( _x( 'Development (%s)', 'Fields', 'fdmg-labels' ), Configuration::DOMAIN_DEV ),
-											Configuration::DOMAIN_ACC  => sprintf( _x( 'Acceptance (%s)', 'Fields', 'fdmg-labels' ), Configuration::DOMAIN_ACC ),
-											Configuration::DOMAIN_PROD => sprintf( _x( 'Production (%s)', 'Fields', 'fdmg-labels' ), Configuration::DOMAIN_PROD ),
+											Configuration::DOMAIN_DEV  => sprintf( _x( 'Development (%s)', 'Fields', 'fdmg-labels-admin' ), Configuration::DOMAIN_DEV ),
+											Configuration::DOMAIN_ACC  => sprintf( _x( 'Acceptance (%s)', 'Fields', 'fdmg-labels-admin' ), Configuration::DOMAIN_ACC ),
+											Configuration::DOMAIN_PROD => sprintf( _x( 'Production (%s)', 'Fields', 'fdmg-labels-admin' ), Configuration::DOMAIN_PROD ),
 										)
 									)
 									->required()
@@ -66,14 +66,14 @@ class FDMGContentAPI {
 											ConditionalLogic::where( self::OPTION_GROUP . '_' . self::OPTION_ENABLED, '==', '1' ),
 										)
 									),
-								Password::make( _x( 'API Key', 'Fields', 'fdmg-labels' ), self::OPTION_API_KEY )
+								Password::make( _x( 'API Key', 'Fields', 'fdmg-labels-admin' ), self::OPTION_API_KEY )
 									->required()
 									->conditionalLogic(
 										array(
 											ConditionalLogic::where( self::OPTION_GROUP . '_' . self::OPTION_ENABLED, '==', '1' ),
 										)
 									),
-								Select::make( _x( 'Site connection', 'Fields', 'fdmg-labels' ), self::OPTION_SITE_CONNECTION )
+								Select::make( _x( 'Site connection', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SITE_CONNECTION )
 									->choices(
 										array_combine( array_keys( Configuration::HOOK_NAMES ), array_keys( Configuration::HOOK_NAMES ) )
 									)
