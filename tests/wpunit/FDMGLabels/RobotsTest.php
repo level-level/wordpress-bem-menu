@@ -19,6 +19,7 @@ class RobotsTest extends WPTestCase {
 			'Sitemap: http://fdmg-labels.nl/sitemap_index.xml',
 			'# ---------------------------',
 			'# END YOAST BLOCK',
+			'',
 			'I am a random line that should just be gone',
 		);
 
