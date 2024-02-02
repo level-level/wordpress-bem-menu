@@ -27,7 +27,6 @@ class DataLayer implements IModule {
 		parent_component: string;
 		categories: string;
 		share_type: string;
-		wordcount: number;
 	};
 	event_type: string;
 	do_not_track: boolean;
@@ -262,7 +261,8 @@ class DataLayer implements IModule {
 
 	trackReadPercentage() {
 		const averageReadingSpeed = 200; // Assume 200 words per minute for average reading speed
-		const expectedReadingTimeInSeconds = (this.config.wordcount / averageReadingSpeed) * 60;
+		const wordCount = this.getArticleWordcount();
+		const expectedReadingTimeInSeconds = (wordCount / averageReadingSpeed) * 60;
 		const inactivityThresholdInSeconds = 30;
 		const userActivityEvents = ['scroll', 'mousemove', 'click', 'touchstart', 'keydown'];
 
@@ -280,12 +280,12 @@ class DataLayer implements IModule {
 			document.addEventListener(event, setInteracting);
 		});
 
-		setInterval( () => {
+		const intervalId = setInterval(() => {
 			// Check if there actually was an interaction
-			if ( interaction === false || document.hidden ) return;
+			if (interaction === false || document.hidden) return;
 
-			// Reset interaction if ast interaction was longer then 30 seconds ago.
-			if ( Date.now() - lastInteraction > inactivityThresholdInSeconds * 1000 ) {
+			// Reset interaction if last interaction was longer than 30 seconds ago
+			if (Date.now() - lastInteraction > inactivityThresholdInSeconds * 1000) {
 				interaction = false;
 			}
 
@@ -296,23 +296,67 @@ class DataLayer implements IModule {
 
 			// Loop through percentage values
 			percentageValues.forEach(percentage => {
-
 				// Calculate the time to reach the given percentage of the reading
 				const timeToReachPercentage = (percentage / 100) * expectedReadingTimeInSeconds;
 
 				if (activeTime >= timeToReachPercentage) {
-					// add event to dataLayer
+					// Add event to dataLayer
 					this.addReadPercentageEvent(percentage);
 					console.log(`User has reached ${percentage}% of the reading.`);
 
 					// Remove the percentage from the array so it won't be tracked again
-					percentageValues = percentageValues.filter( (value) => {
-						return value !== percentage;
-					});
+					percentageValues = percentageValues.filter(value => value !== percentage);
 				}
 			});
 
+			// Check if all percentage values have been reached
+			if (percentageValues.length === 0) {
+				// Clear the interval if all percentage values have been reached
+				clearInterval(intervalId);
+				console.log("Reached 100% reading. Stopping interval.");
+			}
 		}, 1000);
+	}
+
+	getArticleWordcount() {
+		let totalWords = 0;
+
+		// Count words in the title
+		const title = this.element.querySelector('h1');
+		const titleContent = title?.textContent?.trim();
+		const titleWords = titleContent?.split(/\s+/).filter( ( word ) => {
+			return word.length > 0;
+		});
+
+		totalWords += titleWords?.length ?? 0;
+
+		// Count words in the article content
+		const article = this.element.querySelector('.entry-content');
+
+		if( article ) {
+			Array.from( article.children ).forEach(function(child) {
+
+				// Check if the child is a div with data-name containing 'acf' or a figure
+				if ( (child.getAttribute('data-name') && child.getAttribute('data-name')?.includes('acf') ) ||
+					child.tagName.toLowerCase() === 'figure') {
+					// Skip counting words in divs with data-name containing 'acf' and figures
+					return;
+				}
+
+				// Count words in the text content of the child element
+				const textContent = child.textContent?.trim();
+				const words = textContent?.split(/\s+/).filter( (word) => {
+					return word.length > 0; // Filter out empty strings
+				});
+
+				// Add the number of words to the total
+				totalWords += words?.length ?? 0;
+			});
+		}
+
+		console.log(`Total word count: ${totalWords}`);
+
+		return totalWords;
 	}
 
 	addReadPercentageEvent( readPercentage: number ) {

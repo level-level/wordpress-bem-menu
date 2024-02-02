@@ -16,7 +16,6 @@
 {% set datalayer_config = {
 	title: object.get_title(),
 	id: object.get_id(),
-	wordcount: object.get_content_wordcount(),
 }|json_encode(constant('JSON_HEX_QUOT')) %}
 
 {% block content %}

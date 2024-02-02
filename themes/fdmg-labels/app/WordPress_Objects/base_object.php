@@ -4,10 +4,10 @@ namespace Clarkson_Core\WordPress_Object;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
-use WP_Term;
-use WPSEO_Primary_Term;
 use DOMDocument;
 use DOMXPath;
+use WP_Term;
+use WPSEO_Primary_Term;
 
 class base_object extends Clarkson_Object {
 
@@ -99,54 +99,4 @@ class base_object extends Clarkson_Object {
 		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
 	}
 
-	public function get_content_wordcount(): int {
-		$title = $this->get_title();
-		$html= $this->remove_divs_with_data_name_containing_acf($this->get_content());
-
-		// add title to string
-		$complete_text = $title . ' ' . $html;
-
-		// Count the number of words
-		return str_word_count(strip_tags($complete_text));
-	}
-
-	private function remove_divs_with_data_name_containing_acf(string $html_string): string {
-		// Create a new DOMDocument
-		$dom = new DOMDocument();
-
-		// Load the HTML string
-		libxml_use_internal_errors(true);
-		$dom->loadHTML($html_string);
-		libxml_clear_errors();
-
-		// Create a DOMXPath object to query the DOM
-		$xpath = new DOMXPath($dom);
-
-		// remove social share block
-		$divs_to_remove = $xpath->query('//div[contains(@data-name, "acf/block-social-share")]');
-		foreach ($divs_to_remove as $div) {
-			$div->parentNode->removeChild($div);
-		}
-
-		// remove related articles block
-		$divs_to_remove = $xpath->query('//div[contains(@data-name, "acf/block-related-articles")]');
-		foreach ($divs_to_remove as $div) {
-			$div->parentNode->removeChild($div);
-		}
-
-		// remove figures
-		$figures_to_remove = $xpath->query('//figure');
-		foreach ($figures_to_remove as $figure) {
-			$figure->parentNode->removeChild($figure);
-		}
-
-		// remove forms
-		$forms_to_remove = $xpath->query('//form');
-		foreach ($forms_to_remove as $form) {
-			$form->parentNode->removeChild($form);
-		}
-
-		// Save and return the modified HTML
-		return $dom->saveHTML();
-	}
 }
