@@ -4862,15 +4862,15 @@
         },
         {
             "name": "wpackagist-plugin/redirection",
-            "version": "5.4.1",
+            "version": "5.4.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/redirection/",
-                "reference": "tags/5.4.1"
+                "reference": "tags/5.4.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/redirection.5.4.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/redirection.5.4.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
