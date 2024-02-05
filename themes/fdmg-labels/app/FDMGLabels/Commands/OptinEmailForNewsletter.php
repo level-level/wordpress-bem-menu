@@ -13,11 +13,13 @@ class OptinEmailForNewsletter implements CommandInterface, LoggerAwareInterface 
 
 	use LoggerAwareTrait;
 
+	protected string $source;
 	protected string $email;
 	protected bool $optin_commercial;
 	protected bool $optin_research;
 
 	public function __construct(
+		string $source,
 		string $email,
 		bool $optin_commercial,
 		bool $optin_research
@@ -35,7 +37,7 @@ class OptinEmailForNewsletter implements CommandInterface, LoggerAwareInterface 
 	 */
 	public function execute(): array|WP_Error {
 		$client   = new Client();
-		$response = $client->optin_email( $this->email, $this->optin_commercial, $this->optin_research );
+		$response = $client->optin_email( $this->source, $this->email, $this->optin_commercial, $this->optin_research );
 		if ( $response instanceof WP_Error ) {
 			$this->logger?->error(
 				'Error while optin email for newsletter',

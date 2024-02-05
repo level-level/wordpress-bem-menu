@@ -97,7 +97,12 @@ class OptinNewsletterOnSubmission {
 
 		// Subscribe to the newsletter
 		try {
-			$command = new OptinEmailForNewsletter( $field_email_value, $field_commercial_optin_value, $field_research_optin_value );
+			$command = new OptinEmailForNewsletter(
+				sprintf( 'Form entry %d - %s', $entry_id, home_url() ),
+				$field_email_value,
+				$field_commercial_optin_value,
+				$field_research_optin_value
+			);
 			$command->execute();
 		} catch ( Exception $e ) {
 			$this->selligent_logger->add_gravityforms_entry_log(

@@ -198,6 +198,7 @@ class Selligent {
 		$client = new Client();
 		$this->echo_response(
 			$client->optin_email(
+				'CLI - ' . home_url(),
 				$args[0],
 				get_flag_value( $args_assoc, 'commercial', false ) ? true : false,
 				get_flag_value( $args_assoc, 'research', false ) ? true : false
