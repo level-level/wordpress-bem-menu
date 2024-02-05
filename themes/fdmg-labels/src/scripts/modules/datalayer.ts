@@ -102,6 +102,9 @@ class DataLayer implements IModule {
 		);
 	}
 
+	/**
+	 * Add a pageview event to the dataLayer
+	 */
 	addPageview()	{
 		window.dataLayer.push({
 			event: 'page_view',
@@ -124,6 +127,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Add a copy text event to the dataLayer
+	 */
 	addCopyText() {
 		window.dataLayer.push({
 			event: 'copy_text',
@@ -139,6 +145,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Track the article teaser in the viewport
+	 */
 	trackTeaserInViewport() {
 		// Only track the first time the element is in the viewport (based on do_not_track flag)
 		if ( this.elementIsVisibleInViewport( this.element ) && this.do_not_track === false ) {
@@ -147,6 +156,12 @@ class DataLayer implements IModule {
 		}
 	}
 
+	/**
+	 * Check if the element is (partially) in the viewport
+	 * @param element
+	 * @param partiallyVisible
+	 * @returns boolean
+	 */
 	elementIsVisibleInViewport( element: HTMLElement, partiallyVisible = false ) {
 		const { top, left, bottom, right } = element.getBoundingClientRect();
 		const { innerHeight, innerWidth } = window;
@@ -157,6 +172,9 @@ class DataLayer implements IModule {
 			: top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
 	};
 
+	/**
+	 * Add article impression event to the datalayer
+	 */
 	addArticleImpression() {
 		window.dataLayer.push({
 			event: 'article_impression',
@@ -189,6 +207,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Add an article click event to the dataLayer
+	 */
 	addArticleClick() {
 		window.dataLayer.push({
 			event: 'article_click',
@@ -221,6 +242,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Add a share article event to the dataLayer
+	 */
 	addShareArticleShareEvent() {
 		window.dataLayer.push({
 			event: 'share_article',
@@ -237,6 +261,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Track the reading percentage of the article based on the wordcount and average reading speed
+	 */
 	trackReadPercentage() {
 		const averageReadingSpeed = 200; // Assume 200 words per minute for average reading speed
 		const wordCount = this.getArticleWordcount();
@@ -296,6 +323,10 @@ class DataLayer implements IModule {
 		}, 1000);
 	}
 
+	/**
+	 * Get the total word count of the article
+	 * @returns The total word count of the article pls the article title minus figures and divs with data-name containing 'acf'
+	 */
 	getArticleWordcount() {
 		let totalWords = 0;
 
@@ -337,6 +368,10 @@ class DataLayer implements IModule {
 		return totalWords;
 	}
 
+	/**
+	 * Add a read percentage event to the dataLayer
+	 * @param readPercentage
+	 */
 	addReadPercentageEvent( readPercentage: number ) {
 		window.dataLayer.push({
 			event: 'read_percentage',
@@ -353,6 +388,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Track the scroll percentage of the article
+	 */
 	trackScrollPercentage() {
 		window.addEventListener('scroll', () => {
 			const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -381,6 +419,10 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Add a scroll event to the dataLayer
+	 * @param scrollPercentage
+	 */
 	addScrollEvent( scrollPercentage: number ) {
 		window.dataLayer.push({
 			event: 'scroll_depth',
@@ -397,6 +439,9 @@ class DataLayer implements IModule {
 		});
 	}
 
+	/**
+	 * Add datalayer event for cookie banner shown
+	 */
 	initCookieConsent() {
 		window.__tcfapi(
 			'addEventListener',
@@ -427,6 +472,9 @@ class DataLayer implements IModule {
 		);
 	}
 
+	/**
+	 * Add datalayer event for cookie consent accepted
+	 */
 	addCookieConsentAcceptEvent() {
 		window.__tcfapi(
 			'addEventListener',
