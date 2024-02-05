@@ -72,12 +72,15 @@ class Client {
 	 *
 	 * @return array|WP_Error
 	 */
-	public function optin_email( string $email ) {
+	public function optin_email( string $email, bool $commercial, bool $research ) {
 		$endpoint = 'campaigns/triggerbyjsonwithresult';
 		$data     = array(
 			'Gate'      => $this->settings->get_gates()->get_optin(),
 			'Gateinput' => array(
-				'MAIL' => $email,
+				'MAIL'              => $email,
+				'OPTIN_NIEUWSBRIEF' => '1', // Always true
+				'OPTIN_COMMERCIEEL' => $commercial ? '1' : '0',
+				'OPTIN_ONDERZOEK'   => $research ? '1' : '0',
 			),
 		);
 
