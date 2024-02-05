@@ -32,6 +32,7 @@ class OptinEmailForNewsletter {
 		}
 
 		$command = new CommandsOptinEmailForNewsletter(
+			'CLI - ' . home_url(),
 			$args[0],
 			get_flag_value( $assoc_args, 'commercial', false ),
 			get_flag_value( $assoc_args, 'research', false )

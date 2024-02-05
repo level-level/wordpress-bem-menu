@@ -25,6 +25,7 @@ class OptinEmailForNewsletter implements CommandInterface, LoggerAwareInterface 
 		bool $optin_research
 	) {
 		$this->logger           = new NullLogger();
+		$this->source           = $source;
 		$this->email            = $email;
 		$this->optin_commercial = $optin_commercial;
 		$this->optin_research   = $optin_research;
