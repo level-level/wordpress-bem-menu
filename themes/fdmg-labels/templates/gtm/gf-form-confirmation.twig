@@ -1,6 +1,7 @@
 <script type="text/javascript">
-	if ( typeof window.trackFormConfirmationGTM !== 'undefined' ) {
-		console.log( 'trackFormConfirmationGTM', JSON.parse( '{{ submission_data|json_encode()|raw }}' ) );
-		window.trackFormConfirmationGTM( JSON.parse( '{{ submission_data|json_encode()|raw }}' ) );
-	}
+	window.addEventListener( 'load', () => {
+		if ( typeof window.trackFormConfirmationGTM !== 'undefined' ) {
+			window.trackFormConfirmationGTM( JSON.parse( '{{ submission_data|json_encode()|raw }}' ) );
+		}
+	} );
 </script>

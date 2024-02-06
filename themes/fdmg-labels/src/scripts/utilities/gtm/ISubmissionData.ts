@@ -7,6 +7,9 @@ export default interface ISubmissionData {
 	post_url: string;
 	post_title: string;
 	post_categories: Array<string>;
+	post_publication_date: string;
+	post_publication_time: string;
+	post_version: string;
 	post_author: string;
 	email_address: string;
 	entry_id: number;

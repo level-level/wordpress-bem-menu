@@ -72,7 +72,7 @@ class ConfirmationPageParams {
 		$post = get_post( $post_id );
 		$post_title = $post ? $post->post_title : '';
 		$form_type = ( new Type() )->get_value( $form );
-		$categories = wp_get_post_categories($post_id, array( 'fields' => 'all'));
+		$categories = wp_get_post_categories($post_id, array( 'fields' => 'names'));
 		$author = get_the_author_meta('display_name', $post->post_author);
 
 		$data = array(
@@ -83,7 +83,7 @@ class ConfirmationPageParams {
 			'post_id'            => (int) $post_id,
 			'post_url'           => (string) $entry['source_url'],
 			'post_title'         => (string) $post_title,
-			'post_category'      => (array) $categories[0]->name,
+			'post_category'      => (array) $categories,
 			'post_author'        => (string) $author,
 			'entry_id'           => (int) $entry['id'],
 		);

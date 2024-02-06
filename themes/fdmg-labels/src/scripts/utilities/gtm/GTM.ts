@@ -51,14 +51,53 @@ class GTM {
 	// track newsletter subscription
 	trackNewsletterSubscription(data: ISubmissionData): void {
 		window.dataLayer.push({
-			event: 'newsletter_subscription',
+			event: 'form_submit',
+			event_info: {
+				category: 'forms',
+				action: 'subscribe',
+				label: 'newsletter',
+				value: null,
+			},
+			event_context: {
+				component: 'form',
+				sub_component: 'newsletter',
+				index: '',
+				section_title: data.form_title,
+				click_text: data.click_text,
+				page_url: window.location.href,
+				referrer: '',
+			}
 		});
 	}
 
 	// track download
 	trackDownload(data: ISubmissionData): void {
 		window.dataLayer.push({
-			event: 'download',
+			event: 'artcile_download',
+			event_info: {
+				category: 'downloads',
+				action: 'article_download',
+				label: data.post_id,
+				value: null,
+			},
+			event_context: {
+				component: 'report',
+				sub_component: 'main article',
+				section_title: data.form_title,
+			},
+			ecommerce: {
+				article: [{
+					article_id: data.post_id,
+					article_name: data.post_title,
+					article_type: '',
+					article_category: data.post_categories[0],
+					author_name: data.post_author,
+					article_publication_date: data.post_publication_date,
+					article_publication_time: data.post_publication_time,
+					article_version: data.post_version,
+					article_index: '',
+				}]
+			}
 		});
 	}
 }
