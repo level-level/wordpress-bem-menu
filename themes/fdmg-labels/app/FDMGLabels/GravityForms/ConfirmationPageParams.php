@@ -7,6 +7,7 @@ use GF_Field_Email;
 use GFAPI;
 use GFCommon;
 use Clarkson_Core\Templates;
+use FDMGLabels\GravityForms\FormSettings\Type;
 
 class ConfirmationPageParams {
 
@@ -16,12 +17,12 @@ class ConfirmationPageParams {
 		add_filter( 'gform_confirmation', array( $this, 'add_entry_data_to_confirmation' ), 10, 3 );
 	}
 
-	public function add_entry_data_to_confirmation( string|array $confirmation, array $form, array $entry, bool $ajax ): string|array {
+	public function add_entry_data_to_confirmation( string|array $confirmation, array $form, array $entry ): string|array {
 		if ( is_array( $confirmation ) && isset( $confirmation['redirect'] ) ) {
 			return $this->add_entry_data_to_confirmation_url( $confirmation, $form, $entry );
 		}
 
-		if ( is_string( $confirmation ) && $ajax ) {
+		if ( is_string( $confirmation ) ) {
 			return $this->add_tracking_to_ajax_no_redirect_form( $confirmation, $form, $entry );
 		}
 
@@ -67,11 +68,24 @@ class ConfirmationPageParams {
 	 * @return array<string,mixed>
 	 */
 	public function get_entry_data_to_add( array $form, array $entry ): array {
+		$post_id = url_to_postid( $entry['source_url'] );
+		$post = get_post( $post_id );
+		$post_title = $post ? $post->post_title : '';
+		$form_type = ( new Type() )->get_value( $form );
+		$categories = wp_get_post_categories($post_id, array( 'fields' => 'all'));
+		$author = get_the_author_meta('display_name', $post->post_author);
+
 		$data = array(
 			'form_id'            => (int) $form['id'],
+			'form_type'          => (string) $form_type, // 'default', 'newsletter', 'download
 			'form_title'         => (string) $form['title'],
+			'click_text'         => (string) $form['buttonText'],
+			'post_id'            => (int) $post_id,
+			'post_url'           => (string) $entry['source_url'],
+			'post_title'         => (string) $post_title,
+			'post_category'      => (array) $categories[0]->name,
+			'post_author'        => (string) $author,
 			'entry_id'           => (int) $entry['id'],
-			'email_address'      => $this->get_email_address_from_entry( $entry, $form ),
 		);
 		return $data;
 	}
