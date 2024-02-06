@@ -64,6 +64,7 @@ class DataLayer implements IModule {
 				this.element.addEventListener('cut', this.addCopyText.bind(this));
 				this.trackScrollPercentage();
 				this.trackReadPercentage();
+				this.addPageview();
 			}
 		}
 		if ( this.event_type === 'pageview' ) {
@@ -93,6 +94,7 @@ class DataLayer implements IModule {
 						this.element.addEventListener('cut', this.addCopyText.bind(this));
 						this.trackScrollPercentage();
 						this.trackReadPercentage();
+						this.addPageview();
 					}
 					if (this.event_type === 'pageview') {
 						this.addPageview();
@@ -106,6 +108,55 @@ class DataLayer implements IModule {
 	 * Add a pageview event to the dataLayer
 	 */
 	addPageview()	{
+		const pathName = window.location.pathname.split('/').join(''); //remove slashes from pathname
+		let pageType = this.config.page_type;
+		let pageSubType = this.config.page_subtype;
+
+		if ( this.config.page_type === 'page' ) {
+			switch ( pathName ) {
+				case 'contact-us':
+					pageType = 'contact';
+					pageSubType = 'contact us';
+					break;
+				case 'about':
+					pageType = 'about';
+					pageSubType = 'about impact investor';
+					break;
+				case 'guide-2023':
+					pageType = 'reports';
+					pageSubType = 'guide 2023';
+					break;
+				case 'guide-2024':
+					pageType = 'reports';
+					pageSubType = 'guide 2024';
+					break;
+				case 'impact-investing-for-pensions-2023':
+					pageType = 'reports';
+					pageSubType = 'impact investing for pensions';
+					break;
+				case 'events':
+					pageType = 'events';
+					pageSubType = 'other events';
+					break;
+				case 'partners':
+					pageType = 'partners';
+					pageSubType = 'partners';
+					break;
+				case 'share-news-tip':
+					pageType = 'support';
+					pageSubType = 'share news tip';
+					break;
+				case 'newsletter-header-and-widget':
+					pageType = 'newsletter';
+					pageSubType = 'sign up';
+					break;
+				case 'meet-our-board-of-advisors':
+					pageType = 'support';
+					pageSubType = 'meet our board of investors';
+					break;
+			}
+		}
+
 		window.dataLayer.push({
 			event: 'page_view',
 			eventInfo: {
@@ -120,8 +171,8 @@ class DataLayer implements IModule {
 					search: `${window.location.search}`,
 					title: `${this.config.title}`,
 					category: `${this.config.page_category}`,
-					page_type: `${this.config.page_type}`,
-					page_sub_type: `${this.config.page_subtype}`,
+					page_type: `${ pageType }`,
+					page_sub_type: `${ pageSubType }`,
 				},
 			},
 		});
