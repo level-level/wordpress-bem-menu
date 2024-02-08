@@ -36,8 +36,6 @@ class GTM {
 
 		// check for consent here
 
-		window.dataLayer = window.dataLayer || [];
-
 		if(data.form_type === 'newsletter') {
 			this.trackNewsletterSubscription(data);
 		}
@@ -49,6 +47,7 @@ class GTM {
 
 	// track newsletter subscription
 	trackNewsletterSubscription(data: ISubmissionData): void {
+		window.dataLayer = window.dataLayer || [];
 		window.dataLayer.push({
 			event: 'form_submit',
 			event_info: {
@@ -71,6 +70,10 @@ class GTM {
 
 	// track download
 	trackDownload(data: ISubmissionData): void {
+		window.dataLayer = window.dataLayer || [];
+
+		const categories = data.post_categories ? data.post_categories.join(', ') : '';
+
 		window.dataLayer.push({
 			event: 'artcile_download',
 			event_info: {
@@ -89,7 +92,7 @@ class GTM {
 					article_id: data.post_id,
 					article_name: data.post_title,
 					article_type: '',
-					article_category: data.post_categories[0],
+					article_category: categories,
 					author_name: data.post_author,
 					article_publication_date: data.post_publication_date,
 					article_publication_time: data.post_publication_time,
