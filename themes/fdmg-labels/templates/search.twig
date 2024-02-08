@@ -9,7 +9,13 @@
 					{% if found_posts is same as(1) %}
 						{{ _x('%s result found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query)|raw }}
 					{% else %}
-						{{ _x('%s results found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query)|raw }}
+						{# For performance reasons, Elasticsearch will never return more results than 10000.
+						Even if there are actually more results.
+						To show the user there are actually more results, add a plus character. #}
+						{{ _x('%s results found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(
+							found_posts < 10000 or not is_elasticsearch_result ? found_posts : '10000+',
+							query
+						)|raw }}
 					{% endif %}
 				</h1>
 			</div>

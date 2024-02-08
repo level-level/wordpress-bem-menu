@@ -2,6 +2,6 @@
 	{% include 'styleguide/components/teasers/teaser-comment.twig' with {
 		author: object.comment_author,
 		time: _x('%s ago', 'Comments', 'fdmg-labels')|format(human_time_diff(get_comment_time('U'), current_time('timestamp'))),
-		content: object.comment_content,
+		content: object_text,
 	} %}
 </li>

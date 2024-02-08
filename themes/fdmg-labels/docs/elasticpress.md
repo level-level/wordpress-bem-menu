@@ -23,3 +23,11 @@ docker run -d --name elasticsearch-fdmg-labels -p 9200:9200 -p 9300:9300 -e "dis
 
 Test if the Elasticsearch server is running by visiting this url in the browser: `http://localhost:9200/`.
 It could take a few minutes before the server is booted.
+
+## Known issues
+
+When performing an elasticsearch search query, [no more than 10000 results will be returned](https://discuss.elastic.co/t/max-limit-for-number-of-search-results/329544).
+This is set in the default elasticsearch configuration and is there for performance reasons.
+Changing this value is not advised, as this will eat the server's RAM memory.
+To bypass this issue, we've progammed that if a query is performed by elasticsearch, we show the total amount of results as 10000+ to the user.
+
