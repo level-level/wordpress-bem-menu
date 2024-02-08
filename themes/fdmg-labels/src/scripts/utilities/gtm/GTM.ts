@@ -33,7 +33,6 @@ class GTM {
 	}
 
 	trackFormConfirmation(data: ISubmissionData): void {
-		console.log('trackFormConfirmation', data);
 
 		// check for consent here
 
@@ -103,11 +102,3 @@ class GTM {
 }
 
 export default GTM;
-
-/**
- * Track a form submission.
- * Make available globally on window for use in HTML directly.
- */
-window.trackFormConfirmationGTM = (data: ISubmissionData): void => {
-	new GTM().trackFormConfirmation(data);
-};
