@@ -2,13 +2,13 @@
 
 namespace FDMGLabels\GravityForms;
 
+use Clarkson_Core\Templates;
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use FDMGLabels\GravityForms\FormSettings\Type;
 use GF_Field;
 use GF_Field_Email;
 use GFAPI;
 use GFCommon;
-use Clarkson_Core\Templates;
-use Clarkson_Core\WordPress_Object\Clarkson_Object;
-use FDMGLabels\GravityForms\FormSettings\Type;
 
 class ConfirmationPageParams {
 
@@ -69,16 +69,16 @@ class ConfirmationPageParams {
 	 * @return array<string,mixed>
 	 */
 	public function get_entry_data_to_add( array $form, array $entry ): array {
-		$post_id = url_to_postid( $entry['source_url'] );
-		$post = get_post( $post_id );
-		$post_object = Clarkson_Object::get( $post_id );
-		$post_title = $post ? $post_object->get_title() : '';
-		$form_type = ( new Type() )->get_value( $form );
-		$categories = wp_get_post_categories($post_id, array( 'fields' => 'names'));
-		$author = get_the_author_meta('display_name', $post->post_author);
-		$publication_date = $post_object->get_date_i18n('Y-m-d');
-		$publication_time = $post_object->get_date_i18n('H:i');
-		$revisions = wp_get_latest_revision_id_and_total_count($post_id);
+		$post_id          = url_to_postid( $entry['source_url'] );
+		$post             = get_post( $post_id );
+		$post_object      = Clarkson_Object::get( $post_id );
+		$post_title       = $post ? $post_object->get_title() : '';
+		$form_type        = ( new Type() )->get_value( $form );
+		$categories       = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
+		$author           = get_the_author_meta( 'display_name', $post->post_author );
+		$publication_date = $post_object->get_date_i18n( 'Y-m-d' );
+		$publication_time = $post_object->get_date_i18n( 'H:i' );
+		$revisions        = wp_get_latest_revision_id_and_total_count( $post_id );
 
 		$data = array(
 			'form_id'               => (int) $form['id'],
