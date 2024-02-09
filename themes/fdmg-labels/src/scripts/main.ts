@@ -53,6 +53,8 @@ window.trackFormConfirmationGTM = (data: ISubmissionData): void => {
 	new GTM().trackFormConfirmation(data);
 };
 
+new GTM().trackFormConfirmationFromUrl();
+
 /**
  * Event when the paywall is removed
  */
