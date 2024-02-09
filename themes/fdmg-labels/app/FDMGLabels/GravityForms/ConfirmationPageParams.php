@@ -35,12 +35,12 @@ class ConfirmationPageParams {
 	 * Adds form entry data to the url of the confirmation.
 	 * It's first JSON-encoded, and then base64-encoded, to not show the user what's in it.
 	 *
-	 * @param string|array<string,mixed> $confirmation
+	 * @param array<string,mixed> $confirmation
 	 * @param array<string,mixed> $form
 	 * @param array<mixed> $entry
-	 * @return string|array<string,mixed>
+	 * @return array<string,mixed>
 	 */
-	public function add_entry_data_to_confirmation_url( string|array $confirmation, array $form, array $entry ): string|array {
+	public function add_entry_data_to_confirmation_url( string|array $confirmation, array $form, array $entry ): array {
 		$confirmation['redirect'] = $this->add_query_arg_to_url( $confirmation['redirect'], $form, $entry );
 		return $confirmation;
 	}
