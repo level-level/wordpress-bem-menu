@@ -87,9 +87,9 @@ class ConfirmationPageParams {
 		$post_title       = $post_object ? $post_object->get_title() : '';
 		$form_type        = ( new Type() )->get_value( $form );
 		$categories       = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
-		$author           = get_the_author_meta( 'display_name', $post_object->get_object()->post_author );
-		$publication_date = $post_object->get_date_i18n( 'Y-m-d' );
-		$publication_time = $post_object->get_date_i18n( 'H:i' );
+		$author           = get_the_author_meta( 'display_name', intval( $post_object->get_object()->post_author ) );
+		$publication_date = $post_object ? $post_object->get_date_i18n( 'Y-m-d' ) : '';
+		$publication_time = $post_object ? $post_object->get_date_i18n( 'H:i' ) : '';
 		$revisions        = wp_get_latest_revision_id_and_total_count( $post_id );
 
 		$data = array(
