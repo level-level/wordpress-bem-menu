@@ -21,10 +21,10 @@ class ConfirmationPageParams {
 	/**
 	 * Add entry data to the confirmation message or redirect url.
 	 *
-	 * @param string|array $confirmation
+	 * @param string|array<mixed> $confirmation
 	 * @param array<mixed> $form
 	 * @param array<mixed> $entry
-	 * @return string|array
+	 * @return string|array<mixed>
 	 */
 	public function add_entry_data_to_confirmation( string|array $confirmation, array $form, array $entry ): string|array {
 		if ( is_array( $confirmation ) && isset( $confirmation['redirect'] ) ) {
@@ -117,7 +117,7 @@ class ConfirmationPageParams {
 	 * @return string|array<string,mixed>
 	 */
 	public function add_tracking_to_ajax_no_redirect_form( string|array $confirmation, array $form, array $entry ): string|array {
-		if ( ! is_string( $confirmation ) || ! $ajax ) {
+		if ( ! is_string( $confirmation ) ) {
 			return $confirmation;
 		}
 
