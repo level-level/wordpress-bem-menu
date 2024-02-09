@@ -71,8 +71,8 @@ class ConfirmationPageParams {
 	public function get_entry_data_to_add( array $form, array $entry ): array {
 		$post_id          = url_to_postid( $entry['source_url'] );
 		$post             = get_post( $post_id );
-		$post_object      = Clarkson_Object::get( $post_id );
-		$post_title       = $post ? $post_object->get_title() : '';
+		$post_object      = $post ? Objects::get_instance()->get_object( $post ) : null;
+		$post_title       = $post_object ? $post_object->get_title() : '';
 		$form_type        = ( new Type() )->get_value( $form );
 		$categories       = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );
 		$author           = get_the_author_meta( 'display_name', $post_object->get_object()->post_author );
