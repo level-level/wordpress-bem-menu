@@ -48,7 +48,11 @@ class ConfirmationPageParams {
 	 * @param array<mixed> $entry
 	 * @return array<string,mixed>
 	 */
-	public function add_entry_data_to_confirmation_url( string|array $confirmation, array $form, array $entry ): array {
+	public function add_entry_data_to_confirmation_url( string|array $confirmation, array $form, array $entry ): string|array {
+		if ( ! is_array( $confirmation ) || ! isset( $confirmation['redirect'] ) ) {
+			return $confirmation;
+		}
+
 		$confirmation['redirect'] = $this->add_query_arg_to_url( $confirmation['redirect'], $form, $entry );
 		return $confirmation;
 	}
