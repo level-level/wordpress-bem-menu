@@ -5,6 +5,11 @@ namespace FDMGLabels\GravityForms\FormSettings;
 use FDMGLabels\GravityForms\FormSettings\BaseSetting;
 
 final class Type extends BaseSetting {
+
+	public const TYPE_DEFAULT    = 'default';
+	public const TYPE_NEWSLETTER = 'newsletter';
+	public const TYPE_DOWNLOAD   = 'download';
+
 	public function get_type(): string {
 		return 'select';
 	}
@@ -18,7 +23,7 @@ final class Type extends BaseSetting {
 	}
 
 	/**
-	 * @return array<string,string>
+	 * @return array<mixed>
 	 */
 	protected function get_choices(): array {
 		return array_merge(
