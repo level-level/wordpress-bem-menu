@@ -127,6 +127,7 @@ class Init {
 	 * @return array<string,mixed>
 	 */
 	public function set_comment_status( array $article_data, PMXI_Import_Record $import, $post_to_update, array $current_xml_node ): array {
+		// It might be a weard check, but WP All Import sets the post type to 'comments' for actual comments.
 		if ( $article_data['post_type'] !== 'comments' ) {
 			return $article_data;
 		}
