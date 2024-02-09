@@ -1,7 +1,9 @@
 <?php
 namespace FDMGLabels\GravityForms\Selligent;
 
+use Exception;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
+use FDMGLabels\Commands\OptinEmailForNewsletter;
 use FDMGLabels\Connectors\Selligent\Client;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
@@ -81,41 +83,69 @@ class OptinNewsletterOnSubmission {
 			return;
 		}
 
-		// Get the email field input id
-		$map            = $feed_class->get_map( $feed );
-		$email_input_id = $map[ Feed::META_FIELD_MAP_EMAIL ] ?? null;
-		if ( ! $email_input_id ) {
-			$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Could not subscribe to the newsletter because the email field is not mapped.', LogLine::LEVEL_ERROR );
-			return;
-		}
-
-		// Get the email field
-		$email_field = GFAPI::get_field( $form, $email_input_id );
-		if ( ! $email_field instanceof GF_Field ) {
-			$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Could not subscribe to the newsletter because the form does not contain a field mapped to email.', LogLine::LEVEL_ERROR );
-			return;
-		}
-
-		// Get the value from the email field
-		$field_email_value = RGFormsModel::get_lead_field_value( $entry, $email_field );
+		// Get the value of the email field
+		$map               = $feed_class->get_map( $feed );
+		$field_email_value = $this->get_mapped_field_value_from_entry( $form, $entry, $map, Feed::META_FIELD_MAP_EMAIL );
 		if ( ! is_string( $field_email_value ) || ! filter_var( $field_email_value, FILTER_VALIDATE_EMAIL ) ) {
 			$this->selligent_logger->add_gravityforms_entry_log( $entry_id, 'Could not subscribe to the newsletter because the entry has no valid e-mail address.', LogLine::LEVEL_ERROR );
 			return;
 		}
 
+		// Get the value of the commercial optin field
+		$field_commercial_optin_value = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, Feed::META_FIELD_MAP_OPTIN_COMMERCIAL );
+		$field_research_optin_value   = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, Feed::META_FIELD_MAP_OPTIN_RESEARCH );
+
 		// Subscribe to the newsletter
-		$client   = new Client();
-		$response = $client->optin_email( $field_email_value );
-		if ( $response instanceof WP_Error ) {
+		try {
+			$command = new OptinEmailForNewsletter(
+				sprintf( 'Form entry %d - %s', $entry_id, home_url() ),
+				$field_email_value,
+				$field_commercial_optin_value,
+				$field_research_optin_value
+			);
+			$command->execute();
+		} catch ( Exception $e ) {
 			$this->selligent_logger->add_gravityforms_entry_log(
 				$entry_id, sprintf(
 					'Could not subscribe to the newsletter: %1$s - %2$s.',
-					(string) $response->get_error_code(),
-					$response->get_error_message()
+					(string) $e->getCode(),
+					$e->getMessage()
 				), LogLine::LEVEL_ERROR
 			);
 			return;
 		}
 		$this->selligent_logger->add_gravityforms_entry_log( $entry_id, sprintf( 'Subscribing %s to the newsletter has finished.', $field_email_value ), LogLine::LEVEL_SUCCESS );
+	}
+
+	/**
+	 * Gets the value of a field from an entry.
+	 * The field can be selected from the mapped fields of the form.
+	 *
+	 * @param array<string,mixed> $form
+	 * @param array<mixed> $entry
+	 * @param array<string,mixed> $map
+	 * @param string $mapped_field_name
+	 * @return mixed
+	 */
+	protected function get_mapped_field_value_from_entry( array $form, array $entry, array $map, string $mapped_field_name ): mixed {
+		// Get the field input id
+		$email_input_id = $map[ $mapped_field_name ] ?? null;
+		if ( ! $email_input_id ) {
+			return null;
+		}
+
+		// Get the field object
+		$field = GFAPI::get_field( $form, $email_input_id );
+		if ( ! $field instanceof GF_Field ) {
+			return null;
+		}
+
+		$field_value = RGFormsModel::get_lead_field_value( $entry, $field );
+
+		// If input ID is for a sub field, get the value from the sub field
+		if ( is_array( $field_value ) && str_contains( (string) $email_input_id, '.' ) ) {
+			$field_value = $field_value[ $email_input_id ] ?? null;
+		}
+		return $field_value;
 	}
 }

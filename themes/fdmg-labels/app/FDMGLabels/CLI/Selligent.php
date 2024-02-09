@@ -177,6 +177,12 @@ class Selligent {
 	 * <email>
 	 * : E-mail address to subscribe
 	 *
+	 * [--commercial]
+	 * : Opt-in for commercial e-mails
+	 *
+	 * [--research]
+	 * : Opt-in for research e-mails
+	 *
 	 * [--preview]
 	 * : Preview the body data without sending the request.
 	 *
@@ -190,7 +196,14 @@ class Selligent {
 		}
 
 		$client = new Client();
-		$this->echo_response( $client->optin_email( $args[0] ) );
+		$this->echo_response(
+			$client->optin_email(
+				'CLI - ' . home_url(),
+				$args[0],
+				get_flag_value( $args_assoc, 'commercial', false ) ? true : false,
+				get_flag_value( $args_assoc, 'research', false ) ? true : false
+			)
+		);
 	}
 
 	/**

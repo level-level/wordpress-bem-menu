@@ -19,6 +19,7 @@ import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
 import CommentForm from './modules/comment-form';
 import TagManager from './modules/tag-manager';
+import PaywallLoginButton from './modules/paywall-login-button';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -41,6 +42,7 @@ ModuleInitializer({
 	'text-zoom': TextZoom,
 	'comment-form': CommentForm,
 	'tag-manager': TagManager,
+	'paywall-login-button': PaywallLoginButton,
 });
 
 /**
