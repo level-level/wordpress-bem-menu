@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\GravityForms;
 
-use Clarkson_Core\Templates;
 use Clarkson_Core\Objects;
+use Clarkson_Core\Templates;
 use FDMGLabels\GravityForms\FormSettings\Type;
 use GF_Field;
 use GF_Field_Email;
