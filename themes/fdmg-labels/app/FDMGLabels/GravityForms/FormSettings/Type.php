@@ -23,9 +23,9 @@ final class Type extends BaseSetting {
 	protected function get_choices(): array {
 		return array_merge(
 			array(
-				'default'    => __( 'Standaard formulier', 'fdmg-labels-admin' ),
-				'newsletter' => __( 'Newsletter formulier', 'fdmg-labels-admin' ),
-				'download'   => __( 'Artikel download', 'fdmg-labels-admin' ),
+				self::TYPE_DEFAULT    => __( 'Standaard formulier', 'fdmg-labels-admin' ),
+				self::TYPE_NEWSLETTER => __( 'Newsletter formulier', 'fdmg-labels-admin' ),
+				self::TYPE_DOWNLOAD   => __( 'Artikel download', 'fdmg-labels-admin' ),
 			),
 		);
 	}
