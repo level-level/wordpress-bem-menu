@@ -12,7 +12,7 @@ class GTM {
 
 	getSubmissionDataFromUrl(): ISubmissionData | null {
 		const urlSearchParams = new URLSearchParams(window.location.search);
-		const urlParameterValue = urlSearchParams.get('gf-data');
+		const urlParameterValue = urlSearchParams.get('fdmg-gf-data');
 		if (!urlParameterValue) {
 			return null;
 		}

@@ -12,7 +12,7 @@ use GFCommon;
 
 class ConfirmationPageParams {
 
-	protected const URL_PARAM = 'gf-data';
+	protected const URL_PARAM = 'fdmg-gf-data';
 
 	public function register_hooks(): void {
 		add_filter( 'gform_confirmation', array( $this, 'add_entry_data_to_confirmation' ), 10, 3 );
