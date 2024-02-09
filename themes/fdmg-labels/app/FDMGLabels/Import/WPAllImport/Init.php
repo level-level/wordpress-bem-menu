@@ -24,6 +24,7 @@ class Init {
 		add_action( 'pmxi_after_post_import', array( $this, 'after_post_import' ) );
 
 		add_filter( 'pmxi_article_data', array( $this, 'set_post_data_for_attachment' ), 10, 4 );
+		add_filter( 'pmxi_article_data', array( $this, 'set_comment_status' ), 10, 4 );
 		add_action( 'pmxi_saved_post', array( $this, 'convert_pdf_to_download' ), 10, 2 );
 		add_action( 'pmxi_saved_post', array( $this, 'set_post_modified_date' ), 10, 2 );
 	}
@@ -111,6 +112,26 @@ class Init {
 			$article_data['post_excerpt'] = join( ' | ', $excerpt_parts );
 		}
 
+		return $article_data;
+	}
+
+	/**
+	 * WP All Import does not support comment statuses other than 1 or 0.
+	 * This function runs just before importing a comment, and sets the comment status
+	 * to the correct value.
+	 *
+	 * @param array<string,mixed> $article_data
+	 * @param PMXI_Import_Record $import
+	 * @param WP_Post|false $post_to_update
+	 * @param array<string,mixed> $current_xml_node
+	 * @return array<string,mixed>
+	 */
+	public function set_comment_status( array $article_data, PMXI_Import_Record $import, $post_to_update, array $current_xml_node ): array {
+		if ( $article_data['post_type'] !== 'comments' ) {
+			return $article_data;
+		}
+
+		$article_data['comment_approved'] = $current_xml_node['approved'] ?? '0';
 		return $article_data;
 	}
 
