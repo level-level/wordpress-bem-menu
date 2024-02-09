@@ -21,7 +21,7 @@ class ConfirmationPageParams {
 	/**
 	 * Add entry data to the confirmation message or redirect url.
 	 *
-	 * @param string|array<mixed> $confirmation
+	 * @param string|array<string,mixed> $confirmation
 	 * @param array<mixed> $form
 	 * @param array<mixed> $entry
 	 * @return string|array<mixed>
@@ -43,7 +43,7 @@ class ConfirmationPageParams {
 	 * Adds form entry data to the url of the confirmation.
 	 * It's first JSON-encoded, and then base64-encoded, to not show the user what's in it.
 	 *
-	 * @param array<string,mixed> $confirmation
+	 * @param string|array<string,mixed> $confirmation
 	 * @param array<string,mixed> $form
 	 * @param array<mixed> $entry
 	 * @return array<string,mixed>
