@@ -1,5 +1,16 @@
 import ISubmissionData from './ISubmissionData';
 
+window.__tcfapi = window.__tcfapi || undefined;
+
+declare global {
+	interface Window {
+		dataLayer: any[];
+	}
+	interface Window {
+		__tcfapi: any;
+	}
+}
+
 class GTM {
 	trackFormConfirmationFromUrl(): void {
 		const submissionData = this.getSubmissionDataFromUrl();
@@ -33,16 +44,44 @@ class GTM {
 	}
 
 	trackFormConfirmation(data: ISubmissionData): void {
-
-		// check for consent here
-
 		if(data.form_type === 'newsletter') {
-			this.trackNewsletterSubscription(data);
+			if ( typeof window.__tcfapi !== 'undefined' ) {
+				this.initSourcepoint ( 'newsletter', data );
+			} else {
+				this.trackNewsletterSubscription(data);
+			}
 		}
 
 		if(data.form_type === 'download') {
-			this.trackDownload(data);
+			if ( typeof window.__tcfapi !== 'undefined' ) {
+				this.initSourcepoint ( 'download', data );
+			} else {
+				this.trackDownload(data);
+			}
 		}
+	}
+
+	/**
+	 * Use the Sourcepoint (tcfapi) to handle user consent
+	 */
+	initSourcepoint(type: string, data: ISubmissionData) {
+		window.__tcfapi(
+			'addEventListener',
+			2,
+			(tcData: { eventStatus: string }) => {
+				if (
+					tcData.eventStatus === 'tcloaded' ||
+					tcData.eventStatus === 'useractioncomplete'
+				) {
+					if (type === 'newsletter') {
+						this.trackNewsletterSubscription(data);
+					}
+					if (type === 'download') {
+						this.trackDownload(data);
+					}
+				}
+			},
+		);
 	}
 
 	// track newsletter subscription

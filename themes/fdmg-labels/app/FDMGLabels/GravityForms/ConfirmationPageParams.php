@@ -3,7 +3,7 @@
 namespace FDMGLabels\GravityForms;
 
 use Clarkson_Core\Templates;
-use Clarkson_Core\WordPress_Object\Clarkson_Object;
+use Clarkson_Core\Objects;
 use FDMGLabels\GravityForms\FormSettings\Type;
 use GF_Field;
 use GF_Field_Email;
@@ -91,7 +91,7 @@ class ConfirmationPageParams {
 			'post_category'         => (array) $categories,
 			'post_author'           => (string) $author,
 			'entry_id'              => (int) $entry['id'],
-			'post_revisions'        => (int) $revisions['count'],
+			'post_version'          => (int) $revisions['count'],
 			'post_publication_date' => (string) $publication_date,
 			'post_publication_time' => (string) $publication_time,
 		);
