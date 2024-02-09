@@ -99,33 +99,6 @@ class ConfirmationPageParams {
 	}
 
 	/**
-	 * Get email address from entry.
-	 *
-	 * @param array<string|int,mixed> $entry
-	 * @param array<string,mixed> $form
-	 * @return string
-	 */
-	public function get_email_address_from_entry( array $entry, array $form ): string {
-		// Get the first email field
-		$email_field = null;
-		foreach ( $form['fields'] as $field ) {
-			if ( $field instanceof GF_Field_Email ) {
-				$email_field = $field;
-				break;
-			}
-		}
-
-		// If no email field, email is empty
-		if ( ! $email_field ) {
-			return '';
-		}
-
-		// Hash the email address value of the entry
-		$entry_email_value = $entry[ $email_field->id ] ?? '';
-		return hash( 'sha256', $entry_email_value );
-	}
-
-	/**
 	 * Ajax forms that don't redirect, can't use our default tracking code.
 	 * So instead, we track the same data but now using a script that gets
 	 * appended after the confirmation message.
