@@ -18,6 +18,14 @@ class ConfirmationPageParams {
 		add_filter( 'gform_confirmation', array( $this, 'add_entry_data_to_confirmation' ), 10, 3 );
 	}
 
+	/**
+	 * Add entry data to the confirmation message or redirect url.
+	 *
+	 * @param string|array $confirmation
+	 * @param array<mixed> $form
+	 * @param array<mixed> $entry
+	 * @return string|array
+	 */
 	public function add_entry_data_to_confirmation( string|array $confirmation, array $form, array $entry ): string|array {
 		if ( is_array( $confirmation ) && isset( $confirmation['redirect'] ) ) {
 			return $this->add_entry_data_to_confirmation_url( $confirmation, $form, $entry );
@@ -109,6 +117,10 @@ class ConfirmationPageParams {
 	 * @return string|array<string,mixed>
 	 */
 	public function add_tracking_to_ajax_no_redirect_form( string|array $confirmation, array $form, array $entry ): string|array {
+		if ( ! is_string( $confirmation ) || ! $ajax ) {
+			return $confirmation;
+		}
+
 		$submisison_data             = ( new ConfirmationPageParams() )->get_entry_data_to_add( $form, $entry );
 		$submisison_data_json_string = wp_json_encode( $submisison_data );
 		if ( ! $submisison_data_json_string ) {
