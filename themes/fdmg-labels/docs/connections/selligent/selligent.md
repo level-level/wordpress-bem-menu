@@ -180,7 +180,11 @@ Data:
 $data = [
   'Gate' => '[[GATE]]',
   'Gateinput' => [
-    'MAIL' => 'mail@example.com'
+    'MAIL' => 'mail@example.com',
+	'SOURCE' => 'Form entry 123 - https://example.test/',
+	'OPTIN_NIEUWSBRIEF' => '1',
+	'OPTIN_COMMERCIEEL'=> '1',
+    'OPTIN_ONDERZOEK'=> '1',
   ]
 ];
 ```

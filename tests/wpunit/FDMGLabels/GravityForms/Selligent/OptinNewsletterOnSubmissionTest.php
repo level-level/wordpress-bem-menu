@@ -6,8 +6,10 @@ use Codeception\TestCase\WPTestCase;
 use FDMGLabels\GravityForms\FormSettings\IsSelligentForm;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
+use GF_Field_Consent;
 use GF_Field_Email;
 use GFAPI;
+use GFFormsModel;
 
 class OptinNewsletterOnSubmissionTest extends WPTestCase {
 
@@ -19,8 +21,78 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 					'fields' => array(
 						new GF_Field_Email(
 							array(
+								'ids'        => 1,
 								'label'      => 'Email',
 								'isRequired' => true,
+							)
+						),
+						new GF_Field_Consent(
+							array(
+								'id'            => 2,
+								'label'         => 'Commercial optin',
+								'checkboxLabel' => 'Yes you may send me commercial emails',
+								'inputs'        => array(
+									array(
+										'id'    => '2.1',
+										'label' => 'Consent',
+										'name'  => '',
+									),
+									array(
+										'id'       => '2.2',
+										'label'    => 'Text',
+										'name'     => '',
+										'isHidden' => true,
+									),
+									array(
+										'id'       => '2.3',
+										'label'    => 'Description',
+										'name'     => '',
+										'isHidden' => true,
+									),
+								),
+								'choices'       => array(
+									array(
+										'text'       => 'Checked',
+										'value'      => '1',
+										'isSelected' => false,
+										'price'      => false,
+									),
+								),
+							)
+						),
+						new GF_Field_Consent(
+							array(
+								'id'            => 3,
+								'label'         => 'Research optin',
+								'checkboxLabel' => 'You may contact me for research purposes',
+								'inputs'        => array(
+									array(
+										'id'    => '3.1',
+										'label' => 'Consent',
+										'name'  => '',
+									),
+									array(
+										'id'       => '3.2',
+										'label'    => 'Text',
+										'name'     => '',
+										'isHidden' => true,
+									),
+									array(
+										'id'       => '3.3',
+										'label'    => 'Description',
+										'name'     => '',
+										'isHidden' => true,
+									),
+								),
+								'choices'       => array(
+									array(
+										'text'       => 'Checked',
+										'value'      => '1',
+										'isSelected' => false,
+										'price'      => false,
+									),
+								),
+								'visibility'    => 'hidden',
 							)
 						),
 					),
@@ -30,7 +102,9 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 		GFAPI::add_feed(
 			$form['id'],
 			array(
-				'selligent_enabled' => true,
+				'selligent_enabled'                    => true,
+				'selligent_field_map_optin_commercial' => 2,
+				'selligent_field_map_optin_research'   => 3,
 			),
 			'selligent'
 		);
@@ -38,6 +112,12 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 		$submission_data = GFAPI::submit_form(
 			$form['id'], array(
 				sprintf( 'input_%s', (string) $form['fields'][0]->id ) => 'mail@example.test',
+				'input_2_1' => '1',
+				'input_2_2' => 'Yes you may send me commercial emails',
+				'input_2_3' => GFFormsModel::get_latest_form_revisions_id( $form['id'] ),
+				'input_3_1' => '',
+				'input_3_2' => 'You may contact me for research purposes',
+				'input_3_3' => GFFormsModel::get_latest_form_revisions_id( $form['id'] ),
 			)
 		);
 
