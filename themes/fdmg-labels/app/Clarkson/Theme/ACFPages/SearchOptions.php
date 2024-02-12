@@ -9,6 +9,8 @@ use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Relationship;
+use Extended\ACF\Fields\Select;
+use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Location;
 use FDMGLabels\FeatureManager;
@@ -19,6 +21,8 @@ class SearchOptions {
 
 	public const MENU_SLUG                           = 'acf-search-result-options-options';
 	public const META_SEARCH_RESULTS                 = 'search_results';
+	public const META_SEARCH_TAB_FILTERS             = 'search_tab_filters';
+	public const META_SEARCH_TAB_OPTIONS             = 'search_tab_options';
 	public const META_SEARCH_RESULTS_GENRES          = 'search_results_genres';
 	public const META_SEARCH_RESULTS_SECTIONS        = 'search_results_sections';
 	public const META_SEARCH_RESULTS_CATEGORIES      = 'search_results_categories';
@@ -27,6 +31,8 @@ class SearchOptions {
 	public const META_SEARCH_RESULTS_CATEGORY_AMOUNT = 'search_results_category_amount';
 	public const META_SEARCH_RESULTS_GENRE_AMOUNT    = 'search_results_genre_amount';
 	public const META_SEARCH_RESULTS_SECTION_AMOUNT  = 'search_results_section_amount';
+	public const META_SEARCH_DEFAULT_SORTING         = 'search_default_sorting';
+	public const META_SEARCH_DEFAULT_MIN_POST_DATE   = 'search_default_min_post_date';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -109,6 +115,8 @@ class SearchOptions {
 
 		// Default fields
 		$fields = array(
+			Tab::make( _x( 'Filters', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_TAB_FILTERS )
+				->placement( 'left' ),
 			Message::make( _x( 'Filters on the search results page', 'Fields', 'fdmg-labels-admin' ) )
 				->message( _x( 'Define what filters to be used on the search results page.', 'Fields', 'fdmg-labels-admin' ) ),
 			Relationship::make( _x( 'Select the authors to show as a filter option on the search results page.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_AUTHORS )
@@ -127,6 +135,32 @@ class SearchOptions {
 				->min( 3 ),
 		);
 
+		$option_fields = array(
+			Tab::make( _x( 'Options', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_TAB_OPTIONS )
+				->placement( 'left' ),
+			Message::make( _x( 'Search result options', 'Fields', 'fdmg-labels-admin' ) )
+				->message( _x( 'Select the default sorting and minimum post date when a user does a new search query.', 'Fields', 'fdmg-labels-admin' ) ),
+			Select::make( _x( 'Default sorting', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_DEFAULT_SORTING )
+				->choices(
+					array(
+						'relevance' => _x( 'Relevance', 'Fields', 'fdmg-labels-admin' ),
+						'date'      => _x( 'Date', 'Fields', 'fdmg-labels-admin' ),
+					)
+				)
+				->defaultValue( 'relevance' ),
+			Select::make( _x( 'Default period', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_DEFAULT_MIN_POST_DATE )
+				->choices(
+					array(
+						'week'     => _x( 'Week', 'Fields', 'fdmg-labels-admin' ),
+						'month'    => _x( 'Month', 'Fields', 'fdmg-labels-admin' ),
+						'year'     => _x( 'Year', 'Fields', 'fdmg-labels-admin' ),
+						'3-years'  => _x( '3 years', 'Fields', 'fdmg-labels-admin' ),
+						'2000-now' => _x( '2000 - now', 'Fields', 'fdmg-labels-admin' ),
+					)
+				)
+				->defaultValue( '3-years' ),
+		);
+
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
@@ -134,7 +168,7 @@ class SearchOptions {
 				'fields'   => array(
 					Group::make( _x( 'Search result options', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS )
 					->fields(
-						array_merge( $fields, $taxonomy_fields ),
+						array_merge( $fields, $taxonomy_fields, $option_fields ),
 					),
 				),
 				'location' => array(
