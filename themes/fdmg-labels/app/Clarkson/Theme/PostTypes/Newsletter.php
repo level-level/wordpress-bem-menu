@@ -308,7 +308,7 @@ class Newsletter {
 				Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLES )
 					->instructions( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
 					->min( 0 )
-					->max( 6 )
+					->max( 10 )
 					->collapsed( 'article' )
 					->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
 					->fields(
@@ -339,7 +339,7 @@ class Newsletter {
 					),
 				Number::make( _x( 'Maximum number of articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_COUNT )
 					->min( 1 )
-					->max( 6 )
+					->max( 10 )
 					->required()
 					->conditionalLogic(
 						array(
