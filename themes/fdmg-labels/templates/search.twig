@@ -1,7 +1,7 @@
 {% extends 'layouts/sidebar-layout-with-header.twig' %}
 
 {% set query = get_search_query() %}
-{% set search_title = found_posts is same as(1) ?  _x('%s result found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query) : _x('%s results found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query) %}
+{% set search_title = found_posts is same as(1) ? _x('%s result found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query) : _x('%s results found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query) %}
 
 {% set datalayer_config = {
 	title: search_title,
