@@ -6,6 +6,7 @@ use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\ACFPages\Paywall;
 use Clarkson\Theme\ACFPages\SearchOptions;
 use Clarkson\Theme\ACFPages\Selligent;
+use Clarkson\Theme\ACFPages\SEOOptions;
 use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson\Theme\ACFPages\ThemeOptions;
 
@@ -19,6 +20,7 @@ class ACFPages {
 		SearchOptions::class,
 		Selligent::class,
 		FDMGContentAPI::class,
+		SEOOptions::class,
 	);
 
 	public function register_hooks(): void {

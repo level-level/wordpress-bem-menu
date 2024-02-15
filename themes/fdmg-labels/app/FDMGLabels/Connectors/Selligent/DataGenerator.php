@@ -20,10 +20,14 @@ class DataGenerator {
 	 */
 	public function get_article_data( base_object $post, ii_newsletter $newsletter ): array {
 		$feature_manager = new FeatureManager();
-		$data            = array(
+		$title           = $post->get_title();
+		if ( $post instanceof post ) {
+			$title = $post->get_alternative_title() ?: $title;
+		}
+		$data = array(
 			'publication'      => $newsletter->get_publication(),
 			'articleId'        => $post->get_id(),
-			'title'            => substr( $post->get_title(), 0, 255 ),
+			'title'            => substr( $title, 0, 255 ),
 			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
 			'img'              => '',
