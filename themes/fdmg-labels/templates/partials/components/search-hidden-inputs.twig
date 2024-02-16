@@ -1,0 +1,15 @@
+{% if default_period is same as('week') %}
+	{% set post_date_min = now|date_modify('-1 week') %}
+{% elseif default_period is same as('month') %}
+	{% set post_date_min = now|date_modify('-1 month') %}
+{% elseif default_period is same as('year') %}
+	{% set post_date_min = now|date_modify('-1 year') %}
+{% elseif default_period is same as('3-years') %}
+	{% set post_date_min = now|date_modify('-3 year') %}
+{% elseif default_period is same as('2000-now') %}
+	{% set post_date_min = '2000-01-01'|date('Y-m-d') %}
+{% endif %}
+
+<input type="hidden" name="period" value="{{ default_period }}">
+<input type="hidden" name="post_date_min" value="{{ post_date_min|date('Y-m-d') }}">
+<input type="hidden" name="orderby" value="{{ default_sort }}">

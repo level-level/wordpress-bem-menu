@@ -98,5 +98,4 @@ class base_object extends Clarkson_Object {
 	public function get_imported_old_id(): ?string {
 		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
 	}
-
 }

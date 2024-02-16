@@ -13,8 +13,10 @@ class Feed extends GFFeedAddOn {
 	public const META_ENABLED = 'selligent_enabled';
 
 	// Field map
-	public const META_FIELD_MAP       = 'selligent_field_map';
-	public const META_FIELD_MAP_EMAIL = 'email';
+	public const META_FIELD_MAP                  = 'selligent_field_map';
+	public const META_FIELD_MAP_EMAIL            = 'email';
+	public const META_FIELD_MAP_OPTIN_COMMERCIAL = 'optin_commercial';
+	public const META_FIELD_MAP_OPTIN_RESEARCH   = 'optin_research';
 
 	// Automatically set meta
 	public const META_IS_SELLIGENT_ENTRY = 'is_selligent_entry';
@@ -79,7 +81,7 @@ class Feed extends GFFeedAddOn {
 			array(
 				'name'          => self::META_ENABLED,
 				'type'          => 'toggle',
-				'label'         => __( 'Send entries to Selligent', 'fdmg-labels-admin' ),
+				'label'         => __( 'Send entries to Selligent as an opt-in', 'fdmg-labels-admin' ),
 				'default_value' => 0,
 			),
 			array(
@@ -93,6 +95,18 @@ class Feed extends GFFeedAddOn {
 						'label'      => __( 'E-mail address', 'fdmg-labels-admin' ),
 						'field_type' => array( 'email' ),
 						'required'   => true,
+					),
+					array(
+						'name'       => self::META_FIELD_MAP_OPTIN_COMMERCIAL,
+						'label'      => __( 'Commercial optin', 'fdmg-labels-admin' ),
+						'field_type' => array( 'consent' ),
+						'required'   => false,
+					),
+					array(
+						'name'       => self::META_FIELD_MAP_OPTIN_RESEARCH,
+						'label'      => __( 'Research optin', 'fdmg-labels-admin' ),
+						'field_type' => array( 'consent' ),
+						'required'   => false,
 					),
 				),
 				'dependency' => array(

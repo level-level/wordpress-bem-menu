@@ -30,10 +30,10 @@ class DataGeneratorTest extends WPTestCase {
 			)
 		);
 
-		$this->post      = new post(
+		$this->post = new post(
 			$this->factory()->post->create_and_get(
 				array(
-					'post_title'   => 'Test tip selligent',
+					'post_title'   => 'Test article selligent',
 					'post_type'    => PostTypesPost::POST_TYPE_NAME,
 					'post_content' => 'Some content here',
 					'post_excerpt' => "Some excerpt here\nWith newline",
@@ -41,6 +41,7 @@ class DataGeneratorTest extends WPTestCase {
 				)
 			)
 		);
+		update_field( 'alternative_title', 'Test teaser title for Test article selligent', $this->post->get_id() );
 		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image.png' ) );
 		set_post_thumbnail( $this->post->get_id(), $this->thumbnail->get_id() );
 		wp_set_post_terms( $this->post->get_id(), array( $genre->get_id() ), 'fdmg_genre' );
@@ -48,7 +49,7 @@ class DataGeneratorTest extends WPTestCase {
 		$this->post2 = new post(
 			$this->factory()->post->create_and_get(
 				array(
-					'post_title'   => 'Test tip selligent',
+					'post_title'   => 'Test article selligent 2',
 					'post_type'    => PostTypesPost::POST_TYPE_NAME,
 					'post_content' => 'Some content here',
 					'post_excerpt' => "Some excerpt here\nWith newline",
@@ -110,7 +111,7 @@ class DataGeneratorTest extends WPTestCase {
 		$expected = array(
 			'publication'      => 'PUBLICATION_NAME',
 			'articleId'        => $this->post->get_id(),
-			'title'            => 'Test tip selligent',
+			'title'            => 'Test teaser title for Test article selligent',
 			'teaser'           => "<p>Some excerpt here<br />\nWith newline</p>\n",
 			'news_section'     => 'Some genre',
 			'img'              => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'full' )[0],

@@ -1,8 +1,8 @@
 {% extends 'layouts/sidebar-layout-with-header.twig' %}
 
 {% set archive_title = single_cat_title('', false) ? single_cat_title('', false) : post_type.get_archive_title() %}
-{% set page_type = 'category'  %}
-{% set page_subtype = ( is_category() || is_tax() ) ? archive_title : post_type.get_the_archive_title() %}
+{% set page_type = 'category' %}
+{% set page_subtype = (is_category() or is_tax()) ? archive_title : post_type.get_the_archive_title() %}
 
 {% set datalayer_config = {
 	title: archive_title,
