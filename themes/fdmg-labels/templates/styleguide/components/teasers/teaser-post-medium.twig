@@ -6,9 +6,8 @@
 	publication_date: publication_date,
 	publication_time: publication_time,
 	revisions_count: revisions_count,
-	article_index: article_index,
 	component_subtype: component_subtype,
-	categories: categories,
+	categories: categories ? categories|map(category => category.name)|join(', ') : '',
 }|json_encode(constant('JSON_HEX_QUOT')) %}
 
 <div data-component="teaser-post-medium" data-module="datalayer" data-type="article_impression" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">

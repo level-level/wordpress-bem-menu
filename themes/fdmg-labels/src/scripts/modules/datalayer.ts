@@ -22,7 +22,7 @@ class DataLayer implements IModule {
 		publication_date: string;
 		publication_time: string;
 		revisions_count: string;
-		article_index: string;
+		article_index: number;
 		component_subtype: string;
 		parent_component: string;
 		categories: string;
@@ -48,9 +48,16 @@ class DataLayer implements IModule {
 
 	initialize() {
 		if (this.event_type === 'article_click') {
+			const articles = document.querySelectorAll(`[data-type='${this.event_type}']`);
+			const articlesArray = Array.from(articles);
+			this.config.article_index = ( articlesArray.indexOf(this.element) + 1 );
+
 			this.element.addEventListener('click', this.addArticleClick.bind(this));
 		}
 		if (this.event_type === 'article_impression') {
+			const articles = document.querySelectorAll(`[data-type='${this.event_type}']`);
+			const articlesArray = Array.from(articles);
+			this.config.article_index = ( articlesArray.indexOf(this.element) + 1 );
 			window.addEventListener( 'scroll', this.trackTeaserInViewport.bind(this) );
 		}
 		if (this.event_type === 'share_article') {
@@ -348,8 +355,6 @@ class DataLayer implements IModule {
 			// Increase active time by 1 second
 			activeTime++;
 
-			console.log(activeTime);
-
 			// Loop through percentage values
 			percentageValues.forEach(percentage => {
 				// Calculate the time to reach the given percentage of the reading
@@ -358,7 +363,6 @@ class DataLayer implements IModule {
 				if (activeTime >= timeToReachPercentage) {
 					// Add event to dataLayer
 					this.addReadPercentageEvent(percentage);
-					console.log(`User has reached ${percentage}% of the reading.`);
 
 					// Remove the percentage from the array so it won't be tracked again
 					percentageValues = percentageValues.filter(value => value !== percentage);
@@ -369,7 +373,6 @@ class DataLayer implements IModule {
 			if (percentageValues.length === 0) {
 				// Clear the interval if all percentage values have been reached
 				clearInterval(intervalId);
-				console.log("Reached 100% reading. Stopping interval.");
 			}
 		}, 1000);
 	}
@@ -413,8 +416,6 @@ class DataLayer implements IModule {
 				totalWords += words?.length ?? 0;
 			});
 		}
-
-		console.log(`Total word count: ${totalWords}`);
 
 		return totalWords;
 	}
