@@ -22,6 +22,8 @@ class OpenIDConnect {
 		add_filter( 'openid-connect-generic-alter-user-data', array( $this, 'change_new_user_data' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'set_user_roles' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'update_user_data' ), 10, 2 );
+		add_filter( 'openid-connect-generic-remember-me', '__return_true' );
+		add_filter( 'openid-connect-generic-use-token-refresh-expiration', '__return_true' );
 	}
 
 	/**
