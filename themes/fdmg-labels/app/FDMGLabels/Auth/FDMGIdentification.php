@@ -3,6 +3,7 @@
 namespace FDMGLabels\Auth;
 
 use Clarkson_Core\WordPress_Object\user;
+use FDMGLabels\CookieHelper;
 
 class FDMGIdentification {
 
@@ -11,6 +12,12 @@ class FDMGIdentification {
 
 	protected const COOKIE_USER         = 'fdmg_user_id';
 	protected const COOKIE_ORGANISATION = 'fdmg_organisation_id';
+
+	protected CookieHelper $cookie_helper;
+
+	public function __construct( CookieHelper $cookie_helper ) {
+		$this->cookie_helper = $cookie_helper;
+	}
 
 	public function register_hooks(): void {
 		add_action( 'set_auth_cookie', array( $this, 'set_cookies' ), 10, 4 );
@@ -38,33 +45,12 @@ class FDMGIdentification {
 			return;
 		}
 
-		$this->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) $expire );
-		$this->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) $expire );
-	}
-
-	/**
-	 * Set a cookie
-	 *
-	 * @param FDMGIdentification::COOKIE_* $cookie_name
-	 */
-	protected function set_cookie( string $cookie_name, string $cookie_data, int $expires ): void {
-		$cookiepath    = trim( (string) wp_parse_url( get_option( 'siteurl' ), PHP_URL_PATH ), '/' ) ?: '/'; // Path needs to be for the whole current subsite
-		$cookie_domain = defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '/';
-
-		$cookie_options = array(
-			'expires'  => $expires,
-			'path'     => $cookiepath,
-			'domain'   => $cookie_domain,
-			'secure'   => is_ssl(),
-			'samesite' => 'None',
-			'httponly' => false,
-		);
-
-		setcookie( $cookie_name, $cookie_data, $cookie_options );
+		$this->cookie_helper->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) $expire, false );
+		$this->cookie_helper->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) $expire, false );
 	}
 
 	public function clear_cookies(): void {
-		$this->set_cookie( self::COOKIE_USER, '', time() - YEAR_IN_SECONDS );
-		$this->set_cookie( self::COOKIE_ORGANISATION, '', time() - YEAR_IN_SECONDS );
+		$this->cookie_helper->clear_cookie( self::COOKIE_USER, false );
+		$this->cookie_helper->clear_cookie( self::COOKIE_ORGANISATION, false );
 	}
 }

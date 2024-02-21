@@ -55,6 +55,24 @@ class FDMGIdentificationTest extends WPTestCase {
 		$this->assertArrayNotHasKey( 'fdmg_user_id', $_COOKIE );
 		$this->assertArrayNotHasKey( 'fdmg_organisation_id', $_COOKIE );
 	}
+
+	public function test_clear_on_expired_wp_cookie(): void {
+		$_COOKIE['fdmg_user_id']         = '1';
+		$_COOKIE['fdmg_organisation_id'] = '1';
+		do_action(
+			'auth_cookie_expired', array(
+				'username'   => 'test',
+				'expiration' => time() - HOUR_IN_SECONDS,
+				'token'      => 'test',
+				'hmac'       => 'test',
+				'scheme'     => 'auth',
+			)
+		);
+
+		// Assert no cookie is set
+		$this->assertArrayNotHasKey( 'fdmg_user_id', $_COOKIE );
+		$this->assertArrayNotHasKey( 'fdmg_organisation_id', $_COOKIE );
+	}
 }
 
 require_once __DIR__ . '/cookiefaker.php';
