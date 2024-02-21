@@ -15,6 +15,17 @@ class UserCookies {
 
 		add_action( 'clear_auth_cookie', array( $this, 'clear_user_cookie' ) );
 		add_action( 'clear_auth_cookie', array( $this, 'clear_editor_cookie' ) );
+
+		/**
+		 * The WordPress cookie expiration time is later than the actual
+		 * session expiration time. Because of how the remember-me function
+		 * in WordPress works, we need to set our cookie to the same time as
+		 * the WordPress cookie expiration time. This can however result in our
+		 * cookie existing for longer than the actual expiration time.
+		 * This action will therefore if the WordPress session has expired,
+		 * clear our cookies as well.
+		 */
+		add_action( 'auth_cookie_expired', array( $this, 'clear_cookies' ) );
 	}
 
 	/**
