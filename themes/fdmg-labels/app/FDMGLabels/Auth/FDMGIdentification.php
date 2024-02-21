@@ -26,8 +26,8 @@ class FDMGIdentification {
 			return;
 		}
 
-		$this->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) ( $expire ?: $expiration ) );
-		$this->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) ( $expire ?: $expiration ) );
+		$this->set_cookie( self::COOKIE_USER, (string) $user->get_fdmg_user_id(), (int) $expire );
+		$this->set_cookie( self::COOKIE_ORGANISATION, (string) $user->get_fdmg_organisation_id(), (int) $expire );
 	}
 
 	/**
