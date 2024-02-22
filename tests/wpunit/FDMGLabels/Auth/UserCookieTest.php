@@ -81,7 +81,6 @@ class UserCookieTest extends WPTestCase {
 	public function change_cookie_expiration(): int {
 		return -1;
 	}
-
 }
 
 require_once __DIR__ . '/cookiefaker.php';
