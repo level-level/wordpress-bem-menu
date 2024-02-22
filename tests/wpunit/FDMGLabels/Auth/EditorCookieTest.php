@@ -6,6 +6,18 @@ use Codeception\TestCase\WPTestCase;
 
 class EditorCookieTest extends WPTestCase {
 
+	public function setUp(): void {
+		parent::setUp();
+
+		$_COOKIE = array();
+	}
+
+	public function tearDown(): void {
+		$_COOKIE = array();
+
+		parent::tearDown();
+	}
+
 	public function test_set_cookie(): void {
 		// Test an administrator user
 		$administrator_user = $this->factory()->user->create_and_get(
@@ -18,7 +30,7 @@ class EditorCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_editor', $_COOKIE );
-		$this->assertEquals( '1', $_COOKIE['fdmg_labels_editor'] );
+		$this->assertTrue( json_decode( $_COOKIE['fdmg_labels_editor'] )->data->is_editor );
 
 		wp_logout();
 		// Assert no cookie is set
@@ -41,20 +53,26 @@ class EditorCookieTest extends WPTestCase {
 		$this->assertArrayNotHasKey( 'fdmg_labels_editor', $_COOKIE );
 	}
 
-	public function test_clear_on_expired_wp_cookie(): void {
-		$_COOKIE['fdmg_labels_editor'] = '1';
-		do_action(
-			'auth_cookie_expired', array(
-				'username'   => 'test',
-				'expiration' => time() - HOUR_IN_SECONDS,
-				'token'      => 'test',
-				'hmac'       => 'test',
-				'scheme'     => 'auth',
+	public function test_cookies_delete_on_invalidate(): void {
+		// Create user
+		$user = $this->factory()->user->create_and_get(
+			array(
+				'role' => 'administrator',
 			)
 		);
 
-		// Assert no cookie is set
+		wp_set_auth_cookie( $user->ID, false, true );
+		wp_set_current_user( $user->ID, $user->user_login );
+
+		// Assert cookie is set
+		$this->assertArrayHasKey( 'fdmg_labels_editor', $_COOKIE );
+
+		// Assert cookie is deleted
+		$editor_cookie = new EditorCookie( new AuthCookieHelper() );
+		$editor_cookie->clear_cookie_if_invalid();
 		$this->assertArrayNotHasKey( 'fdmg_labels_editor', $_COOKIE );
+
+		wp_logout();
 	}
 }
 

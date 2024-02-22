@@ -15,7 +15,7 @@ class User {
 
 	static getCurrentUser() {
 		const userCookie = Cookies.get('fdmg_labels_user');
-		const data = userCookie ? (JSON.parse(userCookie) as UserData) : null;
+		const data = userCookie ? (JSON.parse(userCookie).data as UserData) : null;
 
 		if (!data) {
 			return null;

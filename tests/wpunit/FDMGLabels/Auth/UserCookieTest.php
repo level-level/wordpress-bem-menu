@@ -6,6 +6,18 @@ use Codeception\TestCase\WPTestCase;
 
 class UserCookieTest extends WPTestCase {
 
+	public function setUp(): void {
+		parent::setUp();
+
+		$_COOKIE = array();
+	}
+
+	public function tearDown(): void {
+		$_COOKIE = array();
+
+		parent::tearDown();
+	}
+
 	public function test_set_cookies(): void {
 		// Test an administrator user
 		$administrator_user = $this->factory()->user->create_and_get(
@@ -18,7 +30,7 @@ class UserCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
-		$this->assertEquals( $administrator_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->id );
+		$this->assertEquals( $administrator_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->data->id );
 
 		wp_logout();
 		// Assert no cookie is set
@@ -35,27 +47,33 @@ class UserCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
-		$this->assertEquals( $subscriber_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->id );
+		$this->assertEquals( $subscriber_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->data->id );
 
 		wp_logout();
 		// Assert no cookie is set
 		$this->assertArrayNotHasKey( 'fdmg_labels_user', $_COOKIE );
 	}
 
-	public function test_clear_on_expired_wp_cookie(): void {
-		$_COOKIE['fdmg_labels_user'] = wp_json_encode( array( 'id' => 1 ) );
-		do_action(
-			'auth_cookie_expired', array(
-				'username'   => 'test',
-				'expiration' => time() - HOUR_IN_SECONDS,
-				'token'      => 'test',
-				'hmac'       => 'test',
-				'scheme'     => 'auth',
+	public function test_cookies_delete_on_invalidate(): void {
+		// Create user
+		$user = $this->factory()->user->create_and_get(
+			array(
+				'role' => 'subscriber',
 			)
 		);
 
-		// Assert no cookie is set
+		wp_set_auth_cookie( $user->ID, false, true );
+		wp_set_current_user( $user->ID, $user->user_login );
+
+		// Assert cookie is set
+		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
+
+		// Assert cookie is deleted
+		$user_cookie = new UserCookie( new AuthCookieHelper() );
+		$user_cookie->clear_cookie_if_invalid();
 		$this->assertArrayNotHasKey( 'fdmg_labels_user', $_COOKIE );
+
+		wp_logout();
 	}
 }
 

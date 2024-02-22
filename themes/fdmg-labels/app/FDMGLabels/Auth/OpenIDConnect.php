@@ -3,6 +3,7 @@ namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
 use WP_Error;
 use WP_User;
 
@@ -126,8 +127,8 @@ class OpenIDConnect {
 
 		// Update FDMG User ID and Organisation ID
 		$user_data['meta_input'] = array(
-			FDMGIdentification::META_FDMG_USER_ID         => $fdmg_user_id,
-			FDMGIdentification::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
+			ServerSideTrackingInit::META_FDMG_USER_ID => $fdmg_user_id,
+			ServerSideTrackingInit::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
 		);
 		return $user_data;
 	}

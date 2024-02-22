@@ -38,4 +38,30 @@ class CookieHelper {
 	public function clear_cookie( string $cookie_name, bool $http_only = true ): bool {
 		return $this->set_cookie( $cookie_name, '', time() - YEAR_IN_SECONDS, $http_only );
 	}
+
+	/**
+	 * Get the value of a cookie.
+	 * Please note that a cookie only exists after a page reload,
+	 * so if you set a cookie and then immediately try to get it, it won't
+	 * be available.
+	 *
+	 * @param string $cookie_name The name of the cookie
+	 * @return null|string|array<mixed> Null if empty, string for one cookie, array for multiple cookies.
+	 */
+	public function get_cookie( string $cookie_name ) {
+		return $_COOKIE[ $cookie_name ] ?? null;
+	}
+
+	/**
+	 * Check if a cookie exists.
+	 * Please note that a cookie only exists after a page reload,
+	 * so if you set a cookie and then immediately try to check if it exists,
+	 * it won't be available.
+	 *
+	 * @param string $cookie_name The name of the cookie
+	 * @return boolean
+	 */
+	public function cookie_exists( string $cookie_name ): bool {
+		return array_key_exists( $cookie_name, $_COOKIE );
+	}
 }
