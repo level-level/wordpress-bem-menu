@@ -61,7 +61,8 @@ class UserCookie {
 		}
 
 		// If cookie is valid, there is no need to clear it.
-		$cookie_valid = $this->cookie_helper->validate_cookie_data( $cookie_data, get_current_user_id() );
+		$user_id = get_current_user_id();
+		$cookie_valid = $this->cookie_helper->validate_cookie_data( $cookie_data, $user_id );
 		if ( $cookie_valid ) {
 			return;
 		}

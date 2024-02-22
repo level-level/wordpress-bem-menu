@@ -12,7 +12,7 @@ if ( ! function_exists( '\\FDMGLabels\\Auth\\setcookie' ) ) {
 		if ( empty( $value ) ) {
 			unset( $_COOKIE[ $name ] );
 		} else {
-			$_COOKIE[ $name ] = $value;
+			$_COOKIE[ $name ] = addslashes( $value );
 		}
 		return true;
 	}

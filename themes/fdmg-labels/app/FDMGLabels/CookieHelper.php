@@ -49,7 +49,15 @@ class CookieHelper {
 	 * @return null|string|array<mixed> Null if empty, string for one cookie, array for multiple cookies.
 	 */
 	public function get_cookie( string $cookie_name ) {
-		return $_COOKIE[ $cookie_name ] ?? null;
+		$value = $_COOKIE[ $cookie_name ] ?? null;
+		if ( $value === null ) {
+			return $value;
+		}
+
+		if ( is_array( $value ) ) {
+			return array_map( 'stripslashes', $value );
+		}
+		return stripslashes( $value );
 	}
 
 	/**

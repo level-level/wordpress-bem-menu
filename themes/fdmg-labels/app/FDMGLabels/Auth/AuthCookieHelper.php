@@ -62,7 +62,6 @@ class AuthCookieHelper extends CookieHelper {
 	 * @param mixed $cookie_data
 	 * @return array{
 	 *     expiration: int,
-	 *     scheme: string,
 	 *     token: string,
 	 *     hash: string,
 	 *     data: array<string,mixed>
@@ -81,7 +80,7 @@ class AuthCookieHelper extends CookieHelper {
 		}
 
 		// Check all required JSON properties exist
-		$required_keys = array( 'expiration', 'scheme', 'token', 'hash', 'data' );
+		$required_keys = array( 'expiration', 'token', 'hash', 'data' );
 		foreach ( $required_keys as $key ) {
 			if ( ! array_key_exists( $key, $cookie_data ) ) {
 				return null;
@@ -91,7 +90,6 @@ class AuthCookieHelper extends CookieHelper {
 		// Check if all properties are of the correct type
 		if (
 			! is_int( $cookie_data['expiration'] )
-			|| ! is_string( $cookie_data['scheme'] )
 			|| ! is_string( $cookie_data['token'] )
 			|| ! is_string( $cookie_data['hash'] )
 			|| ! is_array( $cookie_data['data'] )
