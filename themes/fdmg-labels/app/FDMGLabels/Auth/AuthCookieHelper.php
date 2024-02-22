@@ -109,8 +109,6 @@ class AuthCookieHelper extends CookieHelper {
 	 * @return string
 	 */
 	protected function get_cookie_hash( int $user_id, array $data, int $expiration, string $token ): string {
-		$manager       = WP_Session_Tokens::get_instance( $user_id );
-		$token         = $manager->create( $expiration );
 		$hash_key_data = $expiration . '|' . $token;
 
 		$user = get_userdata( $user_id );
