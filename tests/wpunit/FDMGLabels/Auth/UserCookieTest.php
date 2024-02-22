@@ -62,8 +62,10 @@ class UserCookieTest extends WPTestCase {
 			)
 		);
 
+		add_filter( 'auth_cookie_expiration', array( $this, 'change_cookie_expiration' ) );
 		wp_set_auth_cookie( $user->ID, false, true );
 		wp_set_current_user( $user->ID, $user->user_login );
+		remove_filter( 'auth_cookie_expiration', array( $this, 'change_cookie_expiration' ) );
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
@@ -75,6 +77,11 @@ class UserCookieTest extends WPTestCase {
 
 		wp_logout();
 	}
+
+	public function change_cookie_expiration(): int {
+		return -1;
+	}
+
 }
 
 require_once __DIR__ . '/cookiefaker.php';
