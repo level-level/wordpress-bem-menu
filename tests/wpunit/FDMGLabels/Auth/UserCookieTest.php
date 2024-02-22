@@ -30,7 +30,7 @@ class UserCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
-		$this->assertEquals( $administrator_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->data->id );
+		$this->assertEquals( $administrator_user->ID, json_decode( stripslashes( $_COOKIE['fdmg_labels_user'] ) )->data->id );
 
 		wp_logout();
 		// Assert no cookie is set
@@ -47,7 +47,7 @@ class UserCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_user', $_COOKIE );
-		$this->assertEquals( $subscriber_user->ID, json_decode( $_COOKIE['fdmg_labels_user'] )->data->id );
+		$this->assertEquals( $subscriber_user->ID, json_decode( stripslashes( $_COOKIE['fdmg_labels_user'] ) )->data->id );
 
 		wp_logout();
 		// Assert no cookie is set

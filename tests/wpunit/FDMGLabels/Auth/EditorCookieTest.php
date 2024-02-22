@@ -30,7 +30,7 @@ class EditorCookieTest extends WPTestCase {
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_editor', $_COOKIE );
-		$this->assertTrue( json_decode( $_COOKIE['fdmg_labels_editor'] )->data->is_editor );
+		$this->assertTrue( json_decode( stripslashes( $_COOKIE['fdmg_labels_editor'] ) )->data->is_editor );
 
 		wp_logout();
 		// Assert no cookie is set
