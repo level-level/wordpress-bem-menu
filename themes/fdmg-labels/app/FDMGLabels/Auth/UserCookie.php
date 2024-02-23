@@ -25,15 +25,17 @@ class UserCookie {
 	 */
 	public function maybe_set_cookie( ?string $logged_in_cookie, ?int $expire, ?int $expiration, ?int $user_id, ?string $scheme, ?string $token = null ): void {
 		$user = user::get( (int) $user_id );
-		if ( ! $user ) {
+		if ( ! $user instanceof user ) {
 			return;
 		}
 
 		$cookie_data = $this->cookie_helper->build_cookie_data(
 			(int) $user_id,
 			array(
-				'id'           => (int) $user_id,
-				'display_name' => $user->get_display_name(),
+				'id'                   => (int) $user_id,
+				'display_name'         => $user->get_display_name(),
+				'fdmg_user_id'         => $user->get_fdmg_user_id(),
+				'fdmg_organisation_id' => $user->get_fdmg_organisation_id(),
 			),
 			(int) $expiration,
 			(string) $token

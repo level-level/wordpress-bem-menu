@@ -3,6 +3,8 @@ import Cookies from 'js-cookie';
 export type UserData = {
 	id: number;
 	display_name: string;
+	fdmg_user_id: number;
+	fdmg_organisation_id: number;
 };
 
 class User {
@@ -15,7 +17,8 @@ class User {
 
 	static getCurrentUser() {
 		const userCookie = Cookies.get('fdmg_labels_user');
-		const data = userCookie ? (JSON.parse(userCookie).data as UserData) : null;
+		const userCookieData = userCookie ? JSON.parse(userCookie) : null;
+		const data = userCookieData && typeof userCookieData.data !== 'undefined' ? userCookieData.data as UserData : null;
 
 		if (!data) {
 			return null;
@@ -34,6 +37,14 @@ class User {
 
 	getDisplayName() {
 		return this.data.display_name;
+	}
+
+	getFDMGUserId() {
+		return this.data.fdmg_user_id;
+	}
+
+	getFDMGOrganisationId() {
+		return this.data.fdmg_organisation_id;
 	}
 }
 
