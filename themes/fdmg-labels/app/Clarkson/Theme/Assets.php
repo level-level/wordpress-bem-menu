@@ -49,6 +49,7 @@ class Assets {
 
 	public function enqueue(): void {
 		if ( $this->is_development_mode() ) {
+			$this->enqueue_development( 'clarkson_head', array(), '/src/head.js', false );
 			$this->enqueue_development( 'clarkson_main', array( 'jquery' ), '/src/main.js', true );
 		} else {
 			$this->enqueue_production();
@@ -81,6 +82,7 @@ class Assets {
 			wp_enqueue_script( 'clarkson_sentry', get_template_directory_uri() . '/dist/sentry.js', array(), $this->version, false );
 		}
 
+		wp_enqueue_script( 'clarkson_head', get_template_directory_uri() . '/dist/head.js', array(), $this->version, false );
 		wp_enqueue_script( 'clarkson_main', get_template_directory_uri() . '/dist/main.js', array( 'jquery' ), $this->version, true );
 		wp_enqueue_style( 'clarkson_main', get_template_directory_uri() . '/dist/main.css', array(), $this->version, 'all' );
 	}

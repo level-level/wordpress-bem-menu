@@ -3,11 +3,20 @@ namespace FDMGLabels\Auth;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use FDMGLabels\CookieHelper;
 use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
 use WP_Error;
 use WP_User;
 
 class OpenIDConnect {
+
+	protected const REMEMBER_ME_COOKIE_NAME = 'fdmg_idp_remember_me';
+
+	protected CookieHelper $cookie_helper;
+
+	public function __construct( CookieHelper $cookie_helper ) {
+		$this->cookie_helper = $cookie_helper;
+	}
 
 	/**
 	 * Defines all roles that can be granted to a user by KeyCloak
@@ -23,6 +32,9 @@ class OpenIDConnect {
 		add_filter( 'openid-connect-generic-alter-user-data', array( $this, 'change_new_user_data' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'set_user_roles' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'update_user_data' ), 10, 2 );
+
+		add_action( 'openid-connect-generic-user-logged-in', array( $this, 'create_rememberme_cookie_after_login' ) );
+		add_action( 'wp_logout', array( $this, 'remove_rememberme_cookie_after_logout' ) );
 	}
 
 	/**
@@ -178,5 +190,71 @@ class OpenIDConnect {
 		}
 
 		return array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
+	}
+
+	/**
+	 * After a user is successfully logged in using openid connect, set a cookie
+	 * on the user indicating that the user should be remembered. This is
+	 * then used in JavaScript to redirect the user to the login page when the
+	 * user is not logged in and the cookie is present.
+	 */
+	public function create_rememberme_cookie_after_login( WP_User $user ): void {
+		$token_response = get_user_meta( $user->ID, 'openid-connect-generic-last-token-response', true );
+		if ( ! is_array( $token_response ) ) {
+			return;
+		}
+
+		$remember_me = $this->determine_remember_me_from_token_response( $token_response );
+		if ( ! $remember_me ) {
+			return;
+		}
+
+		$this->cookie_helper->set_cookie(
+			self::REMEMBER_ME_COOKIE_NAME,
+			'1',
+			time() + YEAR_IN_SECONDS,
+			false,
+		);
+	}
+
+	/**
+	 * Extract the rememberMe value from the access token inside the token response.
+	 *
+	 * @param array<string,mixed> $token_response
+	 * @return boolean
+	 */
+	protected function determine_remember_me_from_token_response( array $token_response ): bool {
+		if ( ! isset( $token_response['access_token'] ) ) {
+			return false;
+		}
+
+		$access_token = $token_response['access_token'];
+		$access_token_parts = explode( '.', $access_token );
+		if ( count( $access_token_parts ) < 2 ) {
+			return false;
+		}
+
+		$extracted_access_token_data = json_decode(
+			base64_decode(
+				str_replace( // Because token is encoded in base64 URL (and not just base64).
+					array( '-', '_' ),
+					array( '+', '/' ),
+					$access_token_parts[1]
+				)
+			),
+			true
+		);
+		if ( ! is_array( $extracted_access_token_data ) || ! isset( $extracted_access_token_data['rememberMe'] ) ) {
+			return false;
+		}
+
+		return $extracted_access_token_data['rememberMe'] ?? false;
+	}
+
+	/**
+	 * When a user logs out by it's own choice, remove the remember me cookie.
+	 */
+	public function remove_rememberme_cookie_after_logout(): void {
+		$this->cookie_helper->clear_cookie( self::REMEMBER_ME_COOKIE_NAME, false );
 	}
 }
