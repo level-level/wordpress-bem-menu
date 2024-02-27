@@ -228,14 +228,14 @@ class OpenIDConnect {
 			return false;
 		}
 
-		$access_token = $token_response['access_token'];
+		$access_token       = $token_response['access_token'];
 		$access_token_parts = explode( '.', $access_token );
 		if ( count( $access_token_parts ) < 2 ) {
 			return false;
 		}
 
 		$extracted_access_token_data = json_decode(
-			base64_decode(
+			base64_decode( // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 				str_replace( // Because token is encoded in base64 URL (and not just base64).
 					array( '-', '_' ),
 					array( '+', '/' ),
@@ -244,11 +244,11 @@ class OpenIDConnect {
 			),
 			true
 		);
-		if ( ! is_array( $extracted_access_token_data ) || ! isset( $extracted_access_token_data['rememberMe'] ) ) {
+		if ( ! is_array( $extracted_access_token_data ) ) {
 			return false;
 		}
 
-		return $extracted_access_token_data['rememberMe'] ?? false;
+		return (bool) ( $extracted_access_token_data['rememberMe'] ?? false );
 	}
 
 	/**
