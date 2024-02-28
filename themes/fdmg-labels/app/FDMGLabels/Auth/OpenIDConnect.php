@@ -204,7 +204,11 @@ class OpenIDConnect {
 			return;
 		}
 
-		$remember_me = $this->determine_remember_me_from_token_response( $token_response );
+		$access_token      = $token_response['access_token'] ?? '';
+		$access_token_data = $this->parse_access_token( $access_token );
+
+		$remember_me   = (bool) ( $access_token_data['rememberMe'] ?? false );
+		$seconds_valid = (int) ( $token_response['refresh_expires_in'] ?? 0 );
 		if ( ! $remember_me ) {
 			return;
 		}
@@ -212,26 +216,21 @@ class OpenIDConnect {
 		$this->cookie_helper->set_cookie(
 			self::REMEMBER_ME_COOKIE_NAME,
 			'1',
-			time() + YEAR_IN_SECONDS,
+			time() + $seconds_valid,
 			false,
 		);
 	}
 
 	/**
-	 * Extract the rememberMe value from the access token inside the token response.
+	 * Parses the access token and returns the data inside it.
 	 *
-	 * @param array<string,mixed> $token_response
-	 * @return boolean
+	 * @param string $access_token
+	 * @return array<string,mixed>
 	 */
-	protected function determine_remember_me_from_token_response( array $token_response ): bool {
-		if ( ! isset( $token_response['access_token'] ) ) {
-			return false;
-		}
-
-		$access_token       = $token_response['access_token'];
+	protected function parse_access_token( string $access_token ): array {
 		$access_token_parts = explode( '.', $access_token );
 		if ( count( $access_token_parts ) < 2 ) {
-			return false;
+			return array();
 		}
 
 		$extracted_access_token_data = json_decode(
@@ -245,10 +244,9 @@ class OpenIDConnect {
 			true
 		);
 		if ( ! is_array( $extracted_access_token_data ) ) {
-			return false;
+			return array();
 		}
-
-		return (bool) ( $extracted_access_token_data['rememberMe'] ?? false );
+		return $extracted_access_token_data;
 	}
 
 	/**
