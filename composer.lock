@@ -1329,11 +1329,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.2.5",
+            "version": "6.2.7",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.5",
-                "shasum": "ff802ba67accef10407b3836de338cf899469ec0",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.7",
+                "shasum": "2417e355d431cc686bcdd354f775732924e39ec7",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
