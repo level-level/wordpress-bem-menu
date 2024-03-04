@@ -9,6 +9,10 @@ export type I18n = {
 	copied: string;
 };
 
+export type Auth = {
+	loginUrl: string;
+}
+
 /**
  * Interface for all modules used by the data attribute: data-module
  */
