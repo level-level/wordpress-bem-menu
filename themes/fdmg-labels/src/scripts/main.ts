@@ -21,6 +21,9 @@ import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
+import Cookies from 'js-cookie';
+import User from './model/user';
+import { Auth } from '../globals';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
