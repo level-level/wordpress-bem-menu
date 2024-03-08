@@ -36,12 +36,7 @@ class LogoutController extends AbstractMainController {
 		}
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-		// If already logged out, directly go to the redirect url.
-		if ( ! is_user_logged_in() ) {
-			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged out' );
-		}
-
-		// Redirect to the WP logout url.
+		// Redirect to the WP logout url. Your current login status does not matter.
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_to ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}

@@ -4,6 +4,7 @@ module.exports = {
 		admin: './src/admin.ts',
 		editor: './src/editor.ts',
 		sentry: './src/sentry.ts',
+		head: './src/head.ts',
 	},
 	dist: './dist',
 	src: './src',
