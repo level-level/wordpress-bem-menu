@@ -2,8 +2,8 @@
 
 namespace Gutenberg\Blocks;
 
-use Clarkson\Theme\DataLayer;
 use Clarkson\Theme\ACFPages\SiteSettings;
+use Clarkson\Theme\DataLayer;
 use Clarkson\Theme\SVGIcons;
 use Clarkson_Core\Gutenberg\Block_Type;
 use Clarkson_Core\Templates;
