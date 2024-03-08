@@ -18,7 +18,6 @@ class DataLayer {
 	/**
 	 * get_post_config
 	 *
-	 * @param WP_Post $post
 	 * @return array
 	 */
 	public function get_post_config( $post ): array {
@@ -36,7 +35,7 @@ class DataLayer {
 	/**
 	 * get archive config
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function get_archive_config(): array {
 		$archive_title = single_cat_title( '', false ) ? single_cat_title( '', false ) : get_the_archive_title();
@@ -55,7 +54,7 @@ class DataLayer {
 	/**
 	 * get frontpage config
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function get_front_page_config(): array {
 		$config = array(
@@ -72,7 +71,7 @@ class DataLayer {
 	/**
 	 * get home config
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function get_home_config(): array {
 		$config = array(
@@ -89,7 +88,7 @@ class DataLayer {
 	/**
 	 * get search config
 	 *
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function get_search_config(): array {
 		$query  = get_search_query();
@@ -107,8 +106,7 @@ class DataLayer {
 	/**
 	 * get page config
 	 *
-	 * @param WP_Post $post
-	 * @return array
+	 * @return array<mixed>
 	 */
 	public function get_page_config( $post ): array {
 		$config = array(
@@ -125,7 +123,6 @@ class DataLayer {
 	/**
 	 * get partner config
 	 *
-	 * @param WP_Post $post
 	 * @return void
 	 */
 	public function get_partner_config( $post ) {
@@ -143,10 +140,9 @@ class DataLayer {
 	/**
 	 * get vacancy config
 	 *
-	 * @param WP_Post $post
-	 * @return void
+	 * @return array<mixed>
 	 */
-	public function get_vacancy_config( $post ) {
+	public function get_vacancy_config( $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -162,9 +158,9 @@ class DataLayer {
 	 * get team config
 	 *
 	 * @param WP_Post $post
-	 * @return void
+	 * @return array<mixed>
 	 */
-	public function get_team_config( $post ) {
+	public function get_team_config( $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -179,8 +175,6 @@ class DataLayer {
 	/**
 	 * get teaser config
 	 *
-	 * @param WP_Post $post
-	 * @param string $component_subtype
 	 * @return array
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
@@ -206,7 +200,6 @@ class DataLayer {
 	/**
 	 * get share config
 	 *
-	 * @param WP_Post $post
 	 * @param string $type
 	 * @return void
 	 */
@@ -223,7 +216,6 @@ class DataLayer {
 	/**
 	 * Get config
 	 *
-	 * @param WP_Post $post
 	 * @param string $type
 	 * @param boolean $component_subtype
 	 * @return void
