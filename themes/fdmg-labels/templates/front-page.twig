@@ -1,16 +1,9 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
 
-{% set datalayer_config = {
-	title: 'homepage',
-	page_category: 'home',
-	page_type: 'homepage',
-	page_subtype: 'homepage',
-}|json_encode(constant('JSON_HEX_QUOT')) %}
-
 {% block content %}
 	<h1 class="sr-only">{{ object.get_title()|raw }}</h1>
-	<div class="section" data-module="datalayer" data-type="pageview" data-config="{{ datalayer_config }}">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="entry-content">
 			{{ object.get_content()|raw }}
 		</div>

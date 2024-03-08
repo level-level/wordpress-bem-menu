@@ -4,14 +4,8 @@
 {% set content = object.get_content() %}
 {% set author_posts = object.get_current_paginated_posts() %}
 
-{% set datalayer_config = {
-	title: object.get_title(),
-	page_category: 'team',
-	page_type: 'team detail page',
-}|json_encode(constant('JSON_HEX_QUOT')) %}
-
 {% block header %}
-	<div class="section" data-module="datalayer" data-type="pageview" data-config="{{ datalayer_config }}">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">
 			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				{% include 'styleguide/components/author-header.twig' with {
@@ -43,7 +37,6 @@
 
 					{% set image_id = object.get_thumbnail_id() %}
 					{% set authors = object.get_authors() %}
-					{% set revisions = wp_get_latest_revision_id_and_total_count(object.get_id()) %}
 
 					{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
 						{% set categories = object.get_terms('category') %}
@@ -83,9 +76,6 @@
 							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 							article_id: object.get_id(),
 							component_subtype: 'team',
-							publication_date: object.get_date_i18n('Y-m-d'),
-							publication_time: object.get_date_i18n('H:i'),
-							revisions_count: revisions.count,
 						} %}
 					</li>
 				{% endfor %}

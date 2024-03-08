@@ -1,16 +1,4 @@
-{% set authors_string = authors|map(author => author.name)|join(', ') %}
-{% set datalayer_config = {
-	title: title,
-	author: authors_string,
-	id: article_id,
-	publication_date: publication_date,
-	publication_time: publication_time,
-	revisions_count: revisions_count,
-	component_subtype: component_subtype,
-	categories: categories ? categories|map(category => category.name)|join(', ') : '',
-}|json_encode(constant('JSON_HEX_QUOT')) %}
-
-<div data-component="teaser-post-inline" data-module="datalayer" data-type="article_impression" data-config="{{ datalayer_config }}" class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
+<div data-teaser-post data-component="teaser-post-inline" {{ datalayer.get_config(object, 'TEASER', component_subtype) }} class="relative flex flex-col h-full transition-shadow border-b font-figtree bg-transparent border-secondary-400 dark:border-base-800 group/teaser {{ is_last_item ? '!border-0' }}">
 
 	{# Mobile only #}
 	<div class="sm:hidden">
@@ -26,7 +14,6 @@
 						sections: sections,
 						wide: true,
 						show_paywall_label: show_paywall_label,
-						datalayer_config: datalayer_config,
 					} only %}
 
 					{% if show_paywall_label %}

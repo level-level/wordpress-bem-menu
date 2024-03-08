@@ -24,8 +24,6 @@
 							{% set sections = object.get_terms('fdmg_section') %}
 						{% endif %}
 
-						{% set revisions = wp_get_latest_revision_id_and_total_count(object.get_id()) %}
-
 						{% include 'styleguide/components/teasers/teaser-post-inline.twig' with {
 							image: image_id ? wp_get_attachment_image(image_id, 'medium', false, {alt: ''}),
 							image_square: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
@@ -45,9 +43,6 @@
 							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 							article_id: object.get_id(),
 							component_subtype: 'related articles',
-							publication_date: object.get_date_i18n('Y-m-d'),
-							publication_time: object.get_date_i18n('H:i'),
-							revisions_count: revisions.count,
 						} %}
 					</li>
 				{% endfor %}

@@ -2,6 +2,7 @@
 
 namespace Gutenberg\Blocks;
 
+use Clarkson\Theme\DataLayer;
 use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson\Theme\SVGIcons;
 use Clarkson_Core\Gutenberg\Block_Type;
@@ -144,6 +145,7 @@ class base_block extends Block_Type {
 				'is_acf'     => $this->is_acf,
 				'is_preview' => $this->is_preview,
 				'svg_icons'  => SVGIcons::get_instance(),
+				'datalayer'  => new DataLayer(),
 			);
 
 			$block_args = apply_filters( 'clarkson_core_block_context_' . $this->name, $block_args, $this );

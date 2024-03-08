@@ -4,15 +4,8 @@
 {% set page_type = 'category' %}
 {% set page_subtype = (is_category() or is_tax()) ? archive_title : post_type.get_the_archive_title() %}
 
-{% set datalayer_config = {
-	title: archive_title,
-	page_category: 'archive',
-	page_type: page_type,
-	page_subtype: page_subtype,
-}|json_encode(constant('JSON_HEX_QUOT')) %}
-
 {% block header %}
-	<div class="section" data-module="datalayer" data-type="pageview" data-config="{{ datalayer_config }}">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">
 			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				<h1 class="pb-3 text-lg font-bold border-b-4 font-libre sm:text-3xl text-primary theme-energeia:text-base-500 theme-pensioen-pro:text-base-500 border-secondary-400 dark:text-primary-300 dark:border-primary-300">{{ single_cat_title() ? single_cat_title() : post_type.get_archive_title() }}</h1>
@@ -29,7 +22,6 @@
 
 					{% set image_id = object.get_thumbnail_id() %}
 					{% set authors = object.get_authors() %}
-					{% set revisions = wp_get_latest_revision_id_and_total_count(object.get_id()) %}
 
 					{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
 						{% set categories = object.get_terms('category') %}
@@ -68,9 +60,6 @@
 							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 							article_id: object.get_id(),
 							component_subtype: 'archive',
-							publication_date: object.get_date_i18n('Y-m-d'),
-							publication_time: object.get_date_i18n('H:i'),
-							revisions_count: revisions.count,
 						} %}
 					</li>
 				{% endfor %}

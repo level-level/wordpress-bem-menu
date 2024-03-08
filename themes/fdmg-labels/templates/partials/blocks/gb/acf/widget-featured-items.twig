@@ -6,7 +6,6 @@
 			{% for object in objects %}
 				{% set image_id = object.get_thumbnail_id() %}
 				{% set authors = object.get_authors() %}
-				{% set revisions = wp_get_latest_revision_id_and_total_count(object.get_id()) %}
 
 				{% if not feature_manager.is_enabled(constant('FEATURE_DISABLE_CATEGORY_TAXONOMY', feature_manager)) %}
 					{% set categories = object.get_terms('category') %}
@@ -45,9 +44,6 @@
 						show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 						article_id: object.get_id(),
 						component_subtype: 'featured articles',
-						publication_date: object.get_date_i18n('Y-m-d'),
-						publication_time: object.get_date_i18n('H:i'),
-						revisions_count: revisions.count,
 					} %}
 				</li>
 			{% endfor %}
