@@ -115,7 +115,7 @@ class GTM {
 		const categories = data.post_categories ? data.post_categories.join(', ') : '';
 
 		window.dataLayer.push({
-			event: 'artcile_download',
+			event: 'article_download',
 			event_info: {
 				category: 'downloads',
 				action: 'article_download',
