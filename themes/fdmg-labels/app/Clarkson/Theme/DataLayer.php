@@ -4,6 +4,7 @@ namespace Clarkson\Theme;
 use Clarkson\Theme\Taxonomies\Category;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
 use Exception;
+use WP_Post;
 
 class DataLayer {
 	public function register_hooks(): void {
@@ -14,7 +15,13 @@ class DataLayer {
 	public const EVENT_PAGEVIEW = 'PAGEVIEW';
 	public const EVENT_SHARE    = 'SOCIAL_SHARE';
 
-	public function get_post_config( $post ) {
+	/**
+	 * get_post_config
+	 *
+	 * @param WP_Post $post
+	 * @return array
+	 */
+	public function get_post_config( $post ): array {
 		$config = array(
 			'event'        => self::EVENT_PAGEVIEW,
 			'id'           => $post->get_id(),
@@ -26,7 +33,12 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_archive_config( $post ) {
+	/**
+	 * get archive config
+	 *
+	 * @return array
+	 */
+	public function get_archive_config(): array {
 		$archive_title = single_cat_title( '', false ) ? single_cat_title( '', false ) : get_the_archive_title();
 		$page_subtype  = ( is_category() || is_tax() ) ? $archive_title : get_the_archive_title();
 		$config        = array(
@@ -40,7 +52,12 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_front_page_config( $post ) {
+	/**
+	 * get frontpage config
+	 *
+	 * @return array
+	 */
+	public function get_front_page_config(): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => 'homepage',
@@ -52,7 +69,12 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_home_config( $post ) {
+	/**
+	 * get home config
+	 *
+	 * @return array
+	 */
+	public function get_home_config(): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => 'Latest news',
@@ -64,7 +86,12 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_search_config( $post ) {
+	/**
+	 * get search config
+	 *
+	 * @return array
+	 */
+	public function get_search_config(): array {
 		$query  = get_search_query();
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
@@ -77,7 +104,13 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_page_config( $post ) {
+	/**
+	 * get page config
+	 *
+	 * @param WP_Post $post
+	 * @return array
+	 */
+	public function get_page_config( $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -89,6 +122,12 @@ class DataLayer {
 		return $config;
 	}
 
+	/**
+	 * get partner config
+	 *
+	 * @param WP_Post $post
+	 * @return void
+	 */
 	public function get_partner_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
@@ -101,6 +140,12 @@ class DataLayer {
 		return $config;
 	}
 
+	/**
+	 * get vacancy config
+	 *
+	 * @param WP_Post $post
+	 * @return void
+	 */
 	public function get_vacancy_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
@@ -113,6 +158,12 @@ class DataLayer {
 		return $config;
 	}
 
+	/**
+	 * get team config
+	 *
+	 * @param WP_Post $post
+	 * @return void
+	 */
 	public function get_team_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
@@ -125,7 +176,14 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_teaser_config( $post, $component_subtype ) {
+	/**
+	 * get teaser config
+	 *
+	 * @param WP_Post $post
+	 * @param string $component_subtype
+	 * @return array
+	 */
+	public function get_teaser_config( $post, $component_subtype ): array {
 		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
 
 		$config = array(
@@ -145,6 +203,13 @@ class DataLayer {
 		return $config;
 	}
 
+	/**
+	 * get share config
+	 *
+	 * @param WP_Post $post
+	 * @param string $type
+	 * @return void
+	 */
 	public function get_share_config( $post, $type ) {
 		$config = array(
 			'event'      => self::EVENT_SHARE,
@@ -155,6 +220,14 @@ class DataLayer {
 		return $config;
 	}
 
+	/**
+	 * Get config
+	 *
+	 * @param WP_Post $post
+	 * @param string $type
+	 * @param boolean $component_subtype
+	 * @return void
+	 */
 	public function get_config( $post, $type, $component_subtype = false ): void {
 		$config = array();
 
