@@ -259,7 +259,7 @@ class DataLayer {
 			throw new Exception( 'Invalid data layer event type' );
 		}
 
-		$config = !empty( $config ) ?  wp_json_encode( $config ) : '';
+		$config = ! empty( $config ) ? wp_json_encode( $config ) : '';
 
 		echo 'data-datalayer="' . esc_attr( $config ) . '"';
 	}
