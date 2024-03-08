@@ -18,6 +18,7 @@ class DataLayer {
 	/**
 	 * get_post_config
 	 *
+	 * @param WP_Post $post
 	 * @return array
 	 */
 	public function get_post_config( $post ): array {
@@ -106,6 +107,7 @@ class DataLayer {
 	/**
 	 * get page config
 	 *
+	 * @param WP_Post $post
 	 * @return array<mixed>
 	 */
 	public function get_page_config( $post ): array {
@@ -123,9 +125,10 @@ class DataLayer {
 	/**
 	 * get partner config
 	 *
-	 * @return void
+	 * @param WP_Post $post
+	 * @return array<mixed>
 	 */
-	public function get_partner_config( $post ) {
+	public function get_partner_config( $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -140,6 +143,7 @@ class DataLayer {
 	/**
 	 * get vacancy config
 	 *
+	 * @param WP_Post $post
 	 * @return array<mixed>
 	 */
 	public function get_vacancy_config( $post ): array {
@@ -175,7 +179,9 @@ class DataLayer {
 	/**
 	 * get teaser config
 	 *
-	 * @return array
+	 * @param WP_Post $post
+	 * @param string $component_subtype
+	 * @return array<mixed>
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
 		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
@@ -200,10 +206,11 @@ class DataLayer {
 	/**
 	 * get share config
 	 *
+	 * @param WP_Post $post
 	 * @param string $type
-	 * @return void
+	 * @return array<mixed>
 	 */
-	public function get_share_config( $post, $type ) {
+	public function get_share_config( $post, $type ): array {
 		$config = array(
 			'event'      => self::EVENT_SHARE,
 			'id'         => $post->get_id(),
@@ -216,11 +223,12 @@ class DataLayer {
 	/**
 	 * Get config
 	 *
+	 * @param WP_Post $post
 	 * @param string $type
-	 * @param boolean $component_subtype
+	 * @param string $component_subtype
 	 * @return void
 	 */
-	public function get_config( $post, $type, $component_subtype = false ): void {
+	public function get_config( $post, $type, $component_subtype = '' ): void {
 		$config = array();
 
 		if ( $type === self::EVENT_TEASER ) {
