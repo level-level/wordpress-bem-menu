@@ -14,11 +14,11 @@ class DataLayer {
 	public const EVENT_PAGEVIEW = 'PAGEVIEW';
 	public const EVENT_SHARE    = 'SOCIAL_SHARE';
 
-	public function get_post_config( $object ) {
+	public function get_post_config( $post ) {
 		$config = array(
 			'event'        => self::EVENT_PAGEVIEW,
-			'id'           => $object->get_id(),
-			'title'        => $object->get_title(),
+			'id'           => $post->get_id(),
+			'title'        => $post->get_title(),
 			'page_type'    => 'article',
 			'page_subtype' => 'article detail page',
 		);
@@ -26,7 +26,7 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_archive_config( $object ) {
+	public function get_archive_config( $post ) {
 		$archive_title = single_cat_title( '', false ) ? single_cat_title( '', false ) : get_the_archive_title();
 		$page_subtype  = ( is_category() || is_tax() ) ? $archive_title : get_the_archive_title();
 		$config        = array(
@@ -40,7 +40,7 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_front_page_config( $object ) {
+	public function get_front_page_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => 'homepage',
@@ -52,7 +52,7 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_home_config( $object ) {
+	public function get_home_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => 'Latest news',
@@ -64,7 +64,7 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_search_config( $object ) {
+	public function get_search_config( $post ) {
 		$query  = get_search_query();
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
@@ -77,22 +77,22 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_page_config( $object ) {
+	public function get_page_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
-			'title'         => $object->get_title(),
+			'title'         => $post->get_title(),
 			'page_category' => 'page',
 			'page_type'     => 'page',
-			'page_subtype'  => $object->get_title(),
+			'page_subtype'  => $post->get_title(),
 		);
 
 		return $config;
 	}
 
-	public function get_partner_config( $object ) {
+	public function get_partner_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
-			'title'         => $object->get_title(),
+			'title'         => $post->get_title(),
 			'page_category' => 'partner',
 			'page_type'     => 'partner detail page',
 			'page_subtype'  => 'partner',
@@ -101,10 +101,10 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_vacancy_config( $object ) {
+	public function get_vacancy_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
-			'title'         => $object->get_title(),
+			'title'         => $post->get_title(),
 			'page_category' => 'vacancy',
 			'page_type'     => 'vacancy detail page',
 			'page_subtype'  => 'vacancy',
@@ -113,10 +113,10 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_team_config( $object ) {
+	public function get_team_config( $post ) {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
-			'title'         => $object->get_title(),
+			'title'         => $post->get_title(),
 			'page_category' => 'team',
 			'page_type'     => 'team detail page',
 			'page_subtype'  => 'team',
@@ -125,19 +125,19 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_teaser_config( $object, $component_subtype ) {
-		$revisions = wp_get_latest_revision_id_and_total_count( $object->get_id() );
+	public function get_teaser_config( $post, $component_subtype ) {
+		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
 
 		$config = array(
 			'event'             => self::EVENT_TEASER,
-			'post_type'         => $object->get_post_type(),
-			'id'                => $object->get_id(),
-			'title'             => $object->get_title(),
-			'url'               => $object->get_permalink(),
-			'categories'        => implode( ', ', array_map( fn( Clarkson_Term $category ) => $category->get_name(), $object->get_terms( Category::TAXONOMY_NAME ) ) ),
-			'author'            => $object->get_author()->get_display_name(),
-			'publication_date'  => $object->get_date_i18n( 'Y-m-d' ),
-			'publication_time'  => $object->get_date_i18n( 'H:i' ),
+			'post_type'         => $post->get_post_type(),
+			'id'                => $post->get_id(),
+			'title'             => $post->get_title(),
+			'url'               => $post->get_permalink(),
+			'categories'        => implode( ', ', array_map( fn( Clarkson_Term $category ) => $category->get_name(), $post->get_terms( Category::TAXONOMY_NAME ) ) ),
+			'author'            => $post->get_author()->get_display_name(),
+			'publication_date'  => $post->get_date_i18n( 'Y-m-d' ),
+			'publication_time'  => $post->get_date_i18n( 'H:i' ),
 			'revisions_count'   => $revisions['count'],
 			'component_subtype' => $component_subtype,
 		);
@@ -145,43 +145,43 @@ class DataLayer {
 		return $config;
 	}
 
-	public function get_share_config( $object, $type ) {
+	public function get_share_config( $post, $type ) {
 		$config = array(
 			'event'      => self::EVENT_SHARE,
-			'id'         => $object->get_id(),
+			'id'         => $post->get_id(),
 			'share_type' => $type,
 		);
 
 		return $config;
 	}
 
-	public function get_config( $object, $type, $component_subtype = false ): void {
+	public function get_config( $post, $type, $component_subtype = false ): void {
 		$config = array();
 
 		if ( $type === self::EVENT_TEASER ) {
-			$config = $this->get_teaser_config( $object, $component_subtype );
+			$config = $this->get_teaser_config( $post, $component_subtype );
 		} elseif ( $type === self::EVENT_PAGEVIEW ) {
 			if ( is_front_page() ) {
-				$config = $this->get_front_page_config( $object );
+				$config = $this->get_front_page_config( $post );
 			} elseif ( is_home() ) {
-				$config = $this->get_home_config( $object );
+				$config = $this->get_home_config( $post );
 			} elseif ( is_search() ) {
-				$config = $this->get_search_config( $object );
+				$config = $this->get_search_config( $post );
 			} elseif ( is_archive() ) {
-				$config = $this->get_archive_config( $object );
+				$config = $this->get_archive_config( $post );
 			} elseif ( is_page() ) {
-				$config = $this->get_page_config( $object );
+				$config = $this->get_page_config( $post );
 			} elseif ( is_singular( 'ii_partner' ) ) {
-				$config = $this->get_partner_config( $object );
+				$config = $this->get_partner_config( $post );
 			} elseif ( is_singular( 'ii_vacancy' ) ) {
-				$config = $this->get_vacancy_config( $object );
+				$config = $this->get_vacancy_config( $post );
 			} elseif ( is_singular( 'ii_team' ) ) {
-				$config = $this->get_team_config( $object );
+				$config = $this->get_team_config( $post );
 			} else {
-				$config = $this->get_post_config( $object );
+				$config = $this->get_post_config( $post );
 			}
 		} elseif ( $type === self::EVENT_SHARE ) {
-			$config = $this->get_share_config( $object, $component_subtype );
+			$config = $this->get_share_config( $post, $component_subtype );
 		} else {
 			throw new Exception( 'Invalid data layer event type' );
 		}
