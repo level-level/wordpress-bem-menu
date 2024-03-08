@@ -10,9 +10,9 @@ class DataLayer {
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
 	}
 
-	const EVENT_TEASER   = 'TEASER';
-	const EVENT_PAGEVIEW = 'PAGEVIEW';
-	const EVENT_SHARE    = 'SOCIAL_SHARE';
+	public const EVENT_TEASER   = 'TEASER';
+	public const EVENT_PAGEVIEW = 'PAGEVIEW';
+	public const EVENT_SHARE    = 'SOCIAL_SHARE';
 
 	public function get_post_config( $object ) {
 		$config = array(
@@ -28,7 +28,7 @@ class DataLayer {
 
 	public function get_archive_config( $object ) {
 		$archive_title = single_cat_title( '', false ) ? single_cat_title( '', false ) : get_the_archive_title();
-		$page_subtype  = ( is_category() or is_tax() ) ? $archive_title : get_the_archive_title();
+		$page_subtype  = ( is_category() || is_tax() ) ? $archive_title : get_the_archive_title();
 		$config        = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $archive_title,
@@ -186,7 +186,7 @@ class DataLayer {
 			throw new Exception( 'Invalid data layer event type' );
 		}
 
-		echo 'data-datalayer="' . esc_attr( json_encode( $config ) ) . '"';
+		echo 'data-datalayer="' . esc_attr( wp_json_encode( $config ) ) . '"';
 	}
 
 	/**
