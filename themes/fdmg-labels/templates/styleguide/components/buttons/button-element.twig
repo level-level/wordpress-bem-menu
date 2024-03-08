@@ -37,14 +37,6 @@
 	{% set aria_expanded_text = 'data-expanded="%s"'|format(aria_expanded_text) %}
 {% endif %}
 
-{% if data_module %}
-	{% set data_module = 'data-module="%s"'|format(data_module) %}
-{% endif %}
-
-{% if data_type %}
-	{% set data_type = "data-type='%s'"|format(data_type) %}
-{% endif %}
-
 {% if data_config %}
 	{% set data_config = "data-config='%s'"|format(data_config) %}
 {% endif %}
@@ -63,7 +55,7 @@
 
 {% set highlighted_icon_style = 'bg-primary text-base-50 w-[28px] h-[28px] rounded-full flex items-center justify-center transition-all dark:bg-primary-300 theme-energeia:dark:text-base-700 group-hover/button:translate-x-2 group-hover/button:bg-transparent group-focus/button:translate-x-2 group-focus/button:bg-transparent' %}
 
-<button class="btn {{ class|raw }} group/button" {{ id|raw }} {{ data_share ? datalayer.get_config(object, 'SOCIAL_SHARE', social.type) }} {{ data_module|raw }} {{ data_type|raw }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }} {{ tabindex|raw }}>
+<button class="btn {{ class|raw }} group/button" {{ id|raw }} {{ data_share ? datalayer.get_config(object, 'SOCIAL_SHARE', social.type) }} {{ data_config|raw }} {{ aria_expanded|raw }} {{ aria_label|raw }} {{ aria_collapsed_text|raw }} {{ aria_expanded_text|raw }} {{ type|raw }} {{ tabindex|raw }}>
 	{% if icon and icon_left %}
 		<span class="btn__icon {{ highlight_icon ? highlighted_icon_style }}">
 			<span class="icon-inline icon-{{ icon }}" aria-hidden="true">{{ svg_icons.get(icon)|raw }}</span>
