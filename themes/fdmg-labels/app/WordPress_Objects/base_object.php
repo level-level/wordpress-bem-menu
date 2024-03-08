@@ -4,8 +4,6 @@ namespace Clarkson_Core\WordPress_Object;
 use Clarkson_Core\Objects;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
-use DOMDocument;
-use DOMXPath;
 use WP_Term;
 use WPSEO_Primary_Term;
 
