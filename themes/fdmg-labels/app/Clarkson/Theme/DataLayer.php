@@ -235,13 +235,13 @@ class DataLayer {
 			$config = $this->get_teaser_config( $post, $component_subtype );
 		} elseif ( $type === self::EVENT_PAGEVIEW ) {
 			if ( is_front_page() ) {
-				$config = $this->get_front_page_config( $post );
+				$config = $this->get_front_page_config();
 			} elseif ( is_home() ) {
-				$config = $this->get_home_config( $post );
+				$config = $this->get_home_config();
 			} elseif ( is_search() ) {
-				$config = $this->get_search_config( $post );
+				$config = $this->get_search_config();
 			} elseif ( is_archive() ) {
-				$config = $this->get_archive_config( $post );
+				$config = $this->get_archive_config();
 			} elseif ( is_page() ) {
 				$config = $this->get_page_config( $post );
 			} elseif ( is_singular( 'ii_partner' ) ) {
@@ -259,7 +259,9 @@ class DataLayer {
 			throw new Exception( 'Invalid data layer event type' );
 		}
 
-		echo 'data-datalayer="' . esc_attr( wp_json_encode( $config ) ) . '"';
+		$config = !empty( $config ) ?  wp_json_encode( $config ) : '';
+
+		echo 'data-datalayer="' . esc_attr( $config ) . '"';
 	}
 
 	/**
