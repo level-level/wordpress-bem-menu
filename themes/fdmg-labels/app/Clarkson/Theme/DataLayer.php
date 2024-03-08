@@ -134,7 +134,7 @@ class DataLayer {
 			'id'                => $object->get_id(),
 			'title'             => $object->get_title(),
 			'url'               => $object->get_permalink(),
-			'categories'        => implode( ', ' ,array_map( fn( Clarkson_Term $category ) => $category->get_name(), $object->get_terms( Category::TAXONOMY_NAME ) ) ),
+			'categories'        => implode( ', ', array_map( fn( Clarkson_Term $category ) => $category->get_name(), $object->get_terms( Category::TAXONOMY_NAME ) ) ),
 			'author'            => $object->get_author()->get_display_name(),
 			'publication_date'  => $object->get_date_i18n( 'Y-m-d' ),
 			'publication_time'  => $object->get_date_i18n( 'H:i' ),
