@@ -1,15 +1,16 @@
 import { IModule } from '../../globals';
-import Cookies from 'js-cookie';
+import User from '../model/user';
 
 class TagManager implements IModule {
 	element: HTMLElement;
-	FDMGUserId: string | undefined;
-	FDMGOrganisationId: string | undefined;
+	FDMGUserId: number;
+	FDMGOrganisationId: number;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
-		this.FDMGUserId = Cookies.get('fdmg_user_id');
-		this.FDMGOrganisationId = Cookies.get('fdmg_organisation_id');
+		const user = User.getCurrentUser();
+		this.FDMGUserId = user ? user.getFDMGUserId() : 0;
+		this.FDMGOrganisationId = user ? user.getFDMGOrganisationId() : 0;
 
 		this.initialize();
 	}
@@ -20,11 +21,11 @@ class TagManager implements IModule {
 			companyId?: string;
 		} = {};
 
-		if (this.FDMGUserId && this.FDMGUserId !== '0') {
-			data.userId = this.FDMGUserId;
+		if (this.FDMGUserId && this.FDMGUserId) {
+			data.userId = String(this.FDMGUserId);
 		}
-		if (this.FDMGOrganisationId && this.FDMGOrganisationId !== '0') {
-			data.companyId = this.FDMGOrganisationId;
+		if (this.FDMGOrganisationId && this.FDMGOrganisationId) {
+			data.companyId = String(this.FDMGOrganisationId);
 		}
 
 		if (Object.keys(data).length !== 0) {
