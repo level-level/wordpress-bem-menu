@@ -184,7 +184,8 @@ class DataLayer {
 	 * @return array<mixed>
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
-		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
+		$revisions  = wp_get_latest_revision_id_and_total_count( $post->get_id() );
+		$categories = is_array( $post->get_terms( Category::TAXONOMY_NAME ) ) ? $post->get_terms( Category::TAXONOMY_NAME ) : array();
 
 		$config = array(
 			'event'             => self::EVENT_TEASER,
@@ -192,11 +193,11 @@ class DataLayer {
 			'id'                => $post->get_id(),
 			'title'             => $post->get_title(),
 			'url'               => $post->get_permalink(),
-			'categories'        => implode( ', ', array_map( fn( Clarkson_Term $category ) => $category->get_name(), $post->get_terms( Category::TAXONOMY_NAME ) ) ),
-			'author'            => $post->get_author()->get_display_name(),
+			'categories'        => implode( ', ', array_map( fn( Clarkson_Term $category ) => $category->get_name(), $categories ) ),
+			'author'            => $post->get_author() ? $post->get_author()->get_display_name() : '',
 			'publication_date'  => $post->get_date_i18n( 'Y-m-d' ),
 			'publication_time'  => $post->get_date_i18n( 'H:i' ),
-			'revisions_count'   => $revisions['count'],
+			'revisions_count'   => isset( $revisions['count'] ) ? $revisions['count'] : 0,
 			'component_subtype' => $component_subtype,
 		);
 
@@ -261,7 +262,9 @@ class DataLayer {
 
 		$config = ! empty( $config ) ? wp_json_encode( $config ) : '';
 
-		echo 'data-datalayer="' . esc_attr( $config ) . '"';
+		if ( $config ) {
+			echo 'data-datalayer="' . esc_attr( $config ) . '"';
+		}
 	}
 
 	/**
