@@ -2,9 +2,9 @@
 namespace Clarkson\Theme;
 
 use Clarkson\Theme\Taxonomies\Category;
+use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
 use Exception;
-use WP_Post;
 
 class DataLayer {
 	public function register_hooks(): void {
@@ -18,8 +18,8 @@ class DataLayer {
 	/**
 	 * get_post_config
 	 *
-	 * @param WP_Post $post
-	 * @return array
+	 * @param Clarkson_Object $post
+	 * @return array<mixed>
 	 */
 	public function get_post_config( $post ): array {
 		$config = array(
@@ -107,7 +107,7 @@ class DataLayer {
 	/**
 	 * get page config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @return array<mixed>
 	 */
 	public function get_page_config( $post ): array {
@@ -125,7 +125,7 @@ class DataLayer {
 	/**
 	 * get partner config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @return array<mixed>
 	 */
 	public function get_partner_config( $post ): array {
@@ -143,7 +143,7 @@ class DataLayer {
 	/**
 	 * get vacancy config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @return array<mixed>
 	 */
 	public function get_vacancy_config( $post ): array {
@@ -161,7 +161,7 @@ class DataLayer {
 	/**
 	 * get team config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @return array<mixed>
 	 */
 	public function get_team_config( $post ): array {
@@ -179,7 +179,7 @@ class DataLayer {
 	/**
 	 * get teaser config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @param string $component_subtype
 	 * @return array<mixed>
 	 */
@@ -206,7 +206,7 @@ class DataLayer {
 	/**
 	 * get share config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @param string $type
 	 * @return array<mixed>
 	 */
@@ -223,7 +223,7 @@ class DataLayer {
 	/**
 	 * Get config
 	 *
-	 * @param WP_Post $post
+	 * @param Clarkson_Object $post
 	 * @param string $type
 	 * @param string $component_subtype
 	 * @return void
