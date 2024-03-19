@@ -66,7 +66,6 @@
 				<ul class="flex gap-4 {{ sticky ? 'lg:flex-col lg:mt-0 lg:gap-0' }}" data-module="social-share">
 					{% for social in socials %}
 						<li class="relative">
-
 							{% set args = {
 								text: '',
 								class: sticky ? 'btn-share btn-share-small js--share' : 'btn-share js--share',
@@ -74,6 +73,7 @@
 								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
 								aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
 								focusable: sticky ? false,
+								data_share: true,
 							} %}
 
 							{% if social.type == 'email' %}

@@ -5,7 +5,7 @@
 {% set author_posts = object.get_current_paginated_posts() %}
 
 {% block header %}
-	<div class="section">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">
 			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
 				{% include 'styleguide/components/author-header.twig' with {
@@ -74,6 +74,8 @@
 							comments: object.get_comments_count(),
 							useH3: true,
 							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
+							article_id: object.get_id(),
+							component_subtype: 'team',
 						} %}
 					</li>
 				{% endfor %}
