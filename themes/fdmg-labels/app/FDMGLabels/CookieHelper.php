@@ -21,7 +21,6 @@ class CookieHelper {
 			'path'     => $cookiepath,
 			'domain'   => $cookie_domain,
 			'secure'   => is_ssl(),
-			'samesite' => 'None',
 			'httponly' => $http_only,
 		);
 

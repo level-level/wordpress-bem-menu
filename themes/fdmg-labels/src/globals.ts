@@ -35,5 +35,32 @@ declare global {
 		};
 		dataLayer: any[];
 		trackFormConfirmationGTM(data: ISubmissionData): void;
+		__tcfapi: any;
 	}
+}
+
+/**
+ * Interface for dataLayer configs
+ */
+
+export interface DataLayerConfig {
+	element: HTMLElement;
+	event: string;
+	id?: string;
+	title?: string;
+	url?: string;
+	author?: string;
+	type?: string;
+	publication_date?: string;
+	publication_time?: string;
+	revisions_count?: string;
+	article_index?: number;
+	component_subtype?: string;
+	parent_component?: string;
+	categories?: string;
+	share_type?: string;
+	page_category?: string;
+	page_type?: string;
+	page_subtype?: string;
+	do_not_track?: boolean;
 }

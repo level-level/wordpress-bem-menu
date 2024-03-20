@@ -24,6 +24,7 @@ import PaywallLoginButton from './modules/paywall-login-button';
 import Cookies from 'js-cookie';
 import User from './model/user';
 import { Auth } from '../globals';
+import dataLayer from './datalayer/datalayer';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -47,6 +48,8 @@ ModuleInitializer({
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
 });
+
+dataLayer();
 
 /**
  * Track a form submission.

@@ -13,17 +13,14 @@
 	{% set sections = object.get_terms('fdmg_section') %}
 {% endif %}
 
-
 {% block content %}
-
 	{% if is_singular('post') %}
 		{% include 'partials/tag-manager/article-terms.twig' with {
 			genres: genres,
 			sections: sections,
 		} only %}
 	{% endif %}
-
-	<article class="section">
+	<article class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
 			title: object.get_title(),
@@ -65,5 +62,6 @@
 {% block offset %}
 	{% include 'styleguide/components/social-share.twig' with {
 		sticky: true,
+		article_id: object.get_id(),
 	} %}
 {% endblock %}

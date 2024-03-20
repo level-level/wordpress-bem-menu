@@ -41,6 +41,8 @@
 							useH3: true,
 							is_last_item: loop.last,
 							show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
+							article_id: object.get_id(),
+							component_subtype: 'related articles',
 						} %}
 					</li>
 				{% endfor %}

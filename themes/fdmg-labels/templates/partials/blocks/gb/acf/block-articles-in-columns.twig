@@ -61,6 +61,8 @@
 						}),
 						comments: object.get_comments_count(),
 						show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
+						article_id: object.get_id(),
+						component_subtype: 'articles in columns',
 					} %}
 				</li>
 			{% endfor %}
