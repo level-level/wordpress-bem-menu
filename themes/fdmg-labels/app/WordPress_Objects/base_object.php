@@ -52,6 +52,18 @@ class base_object extends Clarkson_Object {
 	}
 
 	/**
+	 * We use the post_date_gmt variable to show the date on an article, this variable converts the time to GMT.
+	 * We want to use the date/time in the timezone where we have published the article
+	 *
+	 * @param string $format
+	 * @param boolean $gmt
+	 * @return void
+	 */
+	public function get_date_i18n( $format = 'U', $gmt = false ) {
+		return date_i18n( $format, strtotime( $this->_post->post_date ), $gmt );
+	}
+
+	/**
 	 * @return array<string,string>
 	 */
 	public function get_publish_date( string $date_format = '' ): array {
