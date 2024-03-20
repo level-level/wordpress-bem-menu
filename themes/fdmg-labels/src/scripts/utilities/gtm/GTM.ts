@@ -99,11 +99,11 @@ class GTM {
 			event_context: {
 				component: 'form',
 				sub_component: 'newsletter',
-				index: '',
-				section_title: data.form_title,
-				click_text: data.click_text,
-				page_url: window.location.href,
-				referrer: '',
+				index: null,
+				section_title: data.form_title ?? null,
+				click_text: data.click_text ?? null,
+				page_url: window.location.href ?? null,
+				referrer: null,
 			}
 		});
 	}
@@ -131,13 +131,13 @@ class GTM {
 				article: [{
 					article_id: data.post_id,
 					article_name: data.post_title,
-					article_type: '',
-					article_category: categories,
-					author_name: data.post_author,
-					article_publication_date: data.post_publication_date,
-					article_publication_time: data.post_publication_time,
-					article_version: data.post_version,
-					article_index: '',
+					article_type: null,
+					article_category: categories ?? null,
+					author_name: data.post_author ?? null,
+					article_publication_date: data.post_publication_date ?? null,
+					article_publication_time: data.post_publication_time ?? null,
+					article_version: data.post_version ?? null,
+					article_index: null,
 				}]
 			}
 		});
