@@ -103,7 +103,7 @@ class GTM {
 				section_title: data.form_title ?? null,
 				click_text: data.click_text ?? null,
 				page_url: window.location.href ?? null,
-				referrer: null,
+				referrer: document.referrer,
 			}
 		});
 	}
