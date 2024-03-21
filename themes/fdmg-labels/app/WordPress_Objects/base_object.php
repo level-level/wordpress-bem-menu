@@ -82,17 +82,17 @@ class base_object extends Clarkson_Object {
 	 * Appends the post year if it's not already present in the formatted date and when it's from a previous year
 	 */
 	public function get_human_readable_date(): string {
-		$date_str     = $this->get_date();
+		$date_str     = $this->get_date_i18n();
 		$date         = (int) $date_str;
 		$current_time = time();
 		$time_diff    = $current_time - $date;
 
 		if ( $time_diff >= 86400 ) { // 86400 seconds = 24 hours
-			$formatted_date = $this->get_date_i18n( get_option( 'date_format' ), $date );
+			$formatted_date = date_i18n( get_option( 'date_format' ), $date );
 
 			// Check if the year is already in the formatted date
-			$post_year    = $this->get_date_i18n( 'Y', $date );
-			$current_year = $this->get_date_i18n( 'Y', $current_time );
+			$post_year    = date_i18n( 'Y', $date );
+			$current_year = date_i18n( 'Y', $current_time );
 
 			if ( strpos( $formatted_date, $post_year ) === false && $post_year < $current_year ) {
 				// Append the post year only if it's not already present and it's from a previous year
