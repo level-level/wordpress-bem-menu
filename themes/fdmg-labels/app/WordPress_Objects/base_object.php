@@ -57,9 +57,9 @@ class base_object extends Clarkson_Object {
 	 *
 	 * @param string $format
 	 * @param boolean $gmt
-	 * @return void
+	 * @return string
 	 */
-	public function get_date_i18n( $format = 'U', $gmt = false ) {
+	public function get_date_i18n( $format = 'U', $gmt = false ): string {
 		return date_i18n( $format, strtotime( $this->_post->post_date ), $gmt );
 	}
 
