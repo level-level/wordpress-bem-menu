@@ -2,7 +2,7 @@
 {% set object = objects|first %}
 
 {% block content %}
-	<div class="section">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		{% include 'styleguide/components/article-header.twig' with {
 			title: object.get_title(),
 		} %}
