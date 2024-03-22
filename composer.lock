@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e06f3e55148f556e061caf185c0fd198",
+    "content-hash": "5d75e0697e248642ea5911dccd45c4e3",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1070,16 +1070,16 @@
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
-            "version": "dev-main",
+            "version": "v0.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-server-side-tracking.git",
-                "reference": "32f8cbd65f7409f93c8b46ad6f6c85a2fd32b91f"
+                "reference": "d19c844f5bf565ab14a0e77a2c11f81c9e932016"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/32f8cbd65f7409f93c8b46ad6f6c85a2fd32b91f",
-                "reference": "32f8cbd65f7409f93c8b46ad6f6c85a2fd32b91f",
+                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/d19c844f5bf565ab14a0e77a2c11f81c9e932016",
+                "reference": "d19c844f5bf565ab14a0e77a2c11f81c9e932016",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1112,7 +1112,6 @@
                 "wpackagist-plugin/user-switching": "^1.5",
                 "zorac/phpstan-php-di": "^1.0"
             },
-            "default-branch": true,
             "type": "wordpress-plugin",
             "extra": {
                 "installer-paths": {
@@ -1196,9 +1195,9 @@
             ],
             "description": "This plugin contains logic to make variables available in server logs, which can be used for server side tracking.",
             "support": {
-                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/main"
+                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v0.1.0"
             },
-            "time": "2024-03-22T12:41:15+00:00"
+            "time": "2024-03-22T15:21:02+00:00"
         },
         {
             "name": "level-level/ll-paywall",
@@ -15298,9 +15297,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "level-level/fdmg-server-side-tracking": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
