@@ -142,7 +142,7 @@ class OpenIDConnect {
 
 		// Update FDMG User ID and Organisation ID
 		$user_data['meta_input'] = array(
-			self::META_FDMG_USER_ID => $fdmg_user_id,
+			self::META_FDMG_USER_ID         => $fdmg_user_id,
 			self::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
 		);
 		return $user_data;
