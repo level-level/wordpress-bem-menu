@@ -4,7 +4,8 @@ namespace FDMGLabels\Newsletter;
 use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Utilities\I18n;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
-use DateTime;
+use DateTimeImmutable;
+use DateTimeZone;
 use FDMGLabels\ActionScheduler\ActionSchedulerSetup;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
@@ -67,11 +68,11 @@ class SendNewsletterScheduler {
 		$once_settings = get_field( Newsletter::META_SEND . '_' . Newsletter::META_SEND_ONCE, $newsletter_id ) ?: array();
 
 		// Determine the date to schedule
-		$schedule_date      = new DateTime( 'now', wp_timezone() );
+		$schedule_date      = new DateTimeImmutable( 'now', wp_timezone() );
 		$schedule_in_future = (bool) ( $once_settings[ Newsletter::META_SEND_ONCE_FUTURE ] ?? false );
 		if ( $schedule_in_future ) {
 			$date_string = $once_settings[ Newsletter::META_SEND_ONCE_DATE ] ?? null;
-			$date_obj    = is_string( $date_string ) ? date_create_from_format( 'Y-m-d H:i:s', $date_string, wp_timezone() ) : null;
+			$date_obj    = is_string( $date_string ) ? date_create_immutable_from_format( 'Y-m-d H:i:s', $date_string, wp_timezone() ) : null;
 			if ( $date_obj ) {
 				$schedule_date = $date_obj;
 			}
@@ -107,18 +108,24 @@ class SendNewsletterScheduler {
 
 		// Determine the date to schedule first run
 		$time_string = $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_TIME ] ?? null;
-		$time_obj    = is_string( $time_string ) ? date_create_from_format( 'H:i:s', $time_string, wp_timezone() ) : null;
-		if ( ! $time_obj instanceof DateTime ) {
+		$time_obj    = is_string( $time_string ) ? date_create_immutable_from_format( 'H:i:s', $time_string, wp_timezone() ) : null;
+		if ( ! $time_obj instanceof DateTimeImmutable ) {
 			return;
 		}
 
-		$date_now      = new DateTime( 'now', wp_timezone() );
-		$date_today    = ( new DateTime( 'now', wp_timezone() ) )->setTime( (int) $time_obj->format( 'H' ), (int) $time_obj->format( 'i' ), (int) $time_obj->format( 's' ), 0 );
-		$date_tomorrow = ( new DateTime( 'tomorrow', wp_timezone() ) )->setTime( (int) $time_obj->format( 'H' ), (int) $time_obj->format( 'i' ), (int) $time_obj->format( 's' ), 0 );
-		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
+		// Determine the schedule to repeat
+		$allowed_weekday_numbers = array_map( 'intval', $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_WEEKDAYS ] ?? array() );
+		if ( empty( $allowed_weekday_numbers ) ) {
+			return;
+		}
+
+		$cron_schedule = $this->determine_cron_schedule(
+			$time_obj,
+			$allowed_weekday_numbers,
+		);
 
 		// Schedule
-		$scheduled = as_schedule_recurring_action( $schedule_date->getTimestamp(), DAY_IN_SECONDS, self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+		$scheduled = as_schedule_cron_action( time(), $cron_schedule, self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
 		if ( ! $scheduled ) {
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
@@ -132,6 +139,24 @@ class SendNewsletterScheduler {
 			$newsletter_id,
 			'Sending the newsletter has been queued to be sent repetitive.',
 			LogLine::LEVEL_INFO
+		);
+	}
+
+	/**
+	 * Determine the cron schedule for sending the newsletter repetitive.
+	 * It makes sure to convert the time to UTC, as all crontab actions run on UTC timezone.
+	 * @param DateTimeImmutable $time_obj The time to send the newsletter in local time.
+	 * @param non-empty-array<int> $weekday_numbers
+	 * @return string
+	 */
+	protected function determine_cron_schedule( DateTimeImmutable $time_obj, array $weekday_numbers ): string {
+		// Cron schedule always needs to be in UTC timezone.
+		$utc_time_obj = $time_obj->setTimezone( new DateTimeZone( 'UTC' ) );
+		return sprintf(
+			'%d %d * * %s',
+			(int) $utc_time_obj->format( 'i' ),
+			(int) $utc_time_obj->format( 'H' ),
+			implode( ',', $weekday_numbers )
 		);
 	}
 
@@ -152,30 +177,7 @@ class SendNewsletterScheduler {
 			return;
 		}
 
-		if ( ! $this->should_sync( $newsletter_id ) ) {
-			return;
-		}
-
 		$this->sync( $newsletter_id );
-	}
-
-	/**
-	 * Check if newsletter is allowed to be sent.
-	 * If newsletter is repetitive, but today is not an allowed sending day, dont allow.
-	 * Otherwise allow.
-	 */
-	protected function should_sync( int $newsletter_id ): bool {
-		$send_settings = get_field( Newsletter::META_SEND, $newsletter_id ) ?: array();
-		$interval      = $send_settings[ Newsletter::META_SEND_INTERVAL ] ?? null;
-		if ( $interval === Newsletter::META_SEND_INTERVAL_OPTION_REPETITIVE ) {
-			$repetitive_settings     = $send_settings[ Newsletter::META_SEND_REPETITIVE ] ?: array();
-			$allowed_weekday_numbers = array_map( 'intval', $repetitive_settings[ Newsletter::META_SEND_REPETITIVE_WEEKDAYS ] ?? array() );
-			$today_weekday_number    = (int) ( new DateTime( 'now', wp_timezone() ) )->format( 'w' );
-			if ( ! in_array( $today_weekday_number, $allowed_weekday_numbers, true ) ) {
-				return false;
-			}
-		}
-		return true;
 	}
 
 	protected function sync( int $newsletter_id ): void {
