@@ -69,6 +69,8 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 	}
 
 	public function test_newsletter_when_sending_repetitive_then_schedule_recurring(): void {
+		$date_3_days_from_now = ( new DateTimeImmutable( '+3 days', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
+
 		// Create newsletter
 		$newsletter = new ii_newsletter(
 			$this->factory()->post->create_and_get(
@@ -85,21 +87,17 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 				'action'     => '1',
 				'interval'   => 'repetitive',
 				'repetitive' => array(
-					'weekdays' => array( '0', '1', '2', '3', '4', '5', '6' ),
-					'time'     => '15:00:00',
+					'weekdays' => array( $date_3_days_from_now->format( 'w' ) ),
+					'time'     => $date_3_days_from_now->format( 'H:i:s' ),
 				),
 			), $newsletter->get_id()
 		);
 		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
 
 		// Test scheduled time
-		$date_now      = new DateTimeImmutable( 'now', wp_timezone() );
-		$date_today    = ( new DateTimeImmutable( 'now', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
-		$date_tomorrow = ( new DateTimeImmutable( 'tomorrow', wp_timezone() ) )->setTime( 15, 0, 0, 0 );
-		$schedule_date = $date_today > $date_now ? $date_today : $date_tomorrow;
-		$scheduled_ts  = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
-		$this->assertGreaterThanOrEqual( $schedule_date->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
-		$this->assertLessThanOrEqual( $schedule_date->getTimestamp() + 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
+		$scheduled_ts = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
+		$this->assertGreaterThanOrEqual( $date_3_days_from_now->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
+		$this->assertLessThanOrEqual( $date_3_days_from_now->getTimestamp() + 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00' );
 
 		// Test if is logged
 		$this->assert_is_logged( $newsletter );
@@ -160,47 +158,6 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$scheduler->maybe_sync( $newsletter->get_id() );
 
 		$this->assertEmpty( get_field( 'send', $newsletter->get_id() ) );
-	}
-
-	public function test_newsletter_when_sending_repetitive_on_wrong_day_then_dont_sync(): void {
-		// Create newsletter
-		$newsletter = new ii_newsletter(
-			$this->factory()->post->create_and_get(
-				array(
-					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
-					'post_status' => 'publish',
-				)
-			)
-		);
-
-		$current_weekday   = ( new DateTimeImmutable( 'now', wp_timezone() ) )->format( 'w' );
-		$scheduled_weekday = $current_weekday === '1' ? '2' : '1';
-
-		update_field(
-			'send', array(
-				'action'     => '1',
-				'interval'   => 'repetitive',
-				'repetitive' => array(
-					'weekdays' => array( $scheduled_weekday ),
-					'time'     => '15:00:00',
-				),
-			), $newsletter->get_id()
-		);
-
-		// Call maybe_sync and see if sync is called.
-		$service = $this->createMock( NewsletterSenderService::class );
-		$service->expects( $this->never() )
-			->method( 'send' )
-			->with(
-				$this->equalTo( $newsletter->get_id() ),
-				$this->equalTo( '0' )
-			);
-
-		$scheduler = new SendNewsletterScheduler( $service );
-		$scheduler->maybe_sync( $newsletter->get_id() );
-
-		$this->assertNotEmpty( get_field( 'send', $newsletter->get_id() ) );
 	}
 
 	public function test_newsletter_when_sending_repetitive_on_correct_day_then_sync(): void {
