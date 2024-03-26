@@ -3,7 +3,7 @@
 
 {% block content %}
 	<h1 class="sr-only">{{ object.get_title()|raw }}</h1>
-	<div class="section">
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="entry-content">
 			{{ object.get_content()|raw }}
 		</div>

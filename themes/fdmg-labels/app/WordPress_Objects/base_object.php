@@ -57,6 +57,18 @@ class base_object extends Clarkson_Object {
 	}
 
 	/**
+	 * We use the post_date_gmt variable to show the date on an article, this variable converts the time to GMT.
+	 * We want to use the date/time in the timezone where we have published the article
+	 *
+	 * @param string $format
+	 * @param boolean $gmt
+	 * @return string
+	 */
+	public function get_date_i18n( $format = 'U', $gmt = false ): string {
+		return date_i18n( $format, strtotime( $this->_post->post_date ), $gmt );
+	}
+
+	/**
 	 * @return array<string,string>
 	 */
 	public function get_publish_date( string $date_format = '' ): array {
@@ -139,7 +151,7 @@ class base_object extends Clarkson_Object {
 	 * Appends the post year if it's not already present in the formatted date and when it's from a previous year
 	 */
 	public function get_human_readable_date(): string {
-		$date_str     = $this->get_date();
+		$date_str     = $this->get_date_i18n();
 		$date         = (int) $date_str;
 		$current_time = time();
 		$time_diff    = $current_time - $date;

@@ -20,6 +20,10 @@ import TextZoom from './modules/text-zoom';
 import CommentForm from './modules/comment-form';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
+import Cookies from 'js-cookie';
+import User from './model/user';
+import { Auth } from '../globals';
+import dataLayer from './datalayer/datalayer';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -44,6 +48,8 @@ ModuleInitializer({
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
 });
+
+dataLayer();
 
 /**
  * Event when the paywall is removed

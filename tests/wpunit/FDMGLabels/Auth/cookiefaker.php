@@ -1,6 +1,6 @@
 <?php
 
-namespace FDMGLabels\Auth;
+namespace FDMGLabels;
 
 if ( ! function_exists( '\\FDMGLabels\\Auth\\setcookie' ) ) {
 	/**
@@ -8,11 +8,12 @@ if ( ! function_exists( '\\FDMGLabels\\Auth\\setcookie' ) ) {
 	 * Because of stubs being stupid, the value of $data['expires'] can be empty.
 	 * Instead, just clear the cookie if the value is empty.
 	 */
-	function setcookie( string $name, string $value, array $data ): void {
+	function setcookie( string $name, string $value, array $data ): bool {
 		if ( empty( $value ) ) {
 			unset( $_COOKIE[ $name ] );
 		} else {
-			$_COOKIE[ $name ] = $value;
+			$_COOKIE[ $name ] = addslashes( $value );
 		}
+		return true;
 	}
 }
