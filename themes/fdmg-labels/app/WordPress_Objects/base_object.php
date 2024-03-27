@@ -82,13 +82,11 @@ class base_object extends Clarkson_Object {
 	 * Appends the post year if it's not already present in the formatted date and when it's from a previous year
 	 */
 	public function get_human_readable_date(): string {
-		$date_str       = $this->get_date_i18n();
-		$date           = (int) $date_str;
-		$current_time   = time();
-		$time_diff      = $current_time - $date;
-		$formatted_date = '';
+		$date_str     = $this->get_date_i18n();
+		$date         = (int) $date_str;
+		$current_time = time();
+		$time_diff    = $current_time - $date;
 
-		// If the post is older than 24 hours, show the date
 		if ( $time_diff >= 86400 ) { // 86400 seconds = 24 hours
 			$formatted_date = date_i18n( get_option( 'date_format' ), $date );
 
@@ -96,18 +94,15 @@ class base_object extends Clarkson_Object {
 			$post_year    = date_i18n( 'Y', $date );
 			$current_year = date_i18n( 'Y', $current_time );
 
-			// Append the post year only if it's not already present and it's from a previous year
 			if ( strpos( $formatted_date, $post_year ) === false && $post_year < $current_year ) {
+				// Append the post year only if it's not already present and it's from a previous year
 				$formatted_date .= ' ' . $post_year;
 			}
-		}
 
-		// If the date is today, show absolute time
-		if ( gmdate( 'Y-m-d', $date ) === gmdate( 'Y-m-d', $current_time ) ) {
-			$formatted_date = date_i18n( get_option( 'time_format' ), $date );
+			return $formatted_date;
+		} else {
+			return sprintf( __( '%s ago', 'fdmg-labels' ), human_time_diff( $date, $current_time ) );
 		}
-
-		return $formatted_date;
 	}
 
 	public function get_imported_old_id(): ?string {
