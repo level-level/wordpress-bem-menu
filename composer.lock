@@ -1201,16 +1201,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "e9aa9020445008271909c9fd060a9a2e3a6b8feb"
+                "reference": "4c55658ffae28abedbced62735e38450911dd943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/e9aa9020445008271909c9fd060a9a2e3a6b8feb",
-                "reference": "e9aa9020445008271909c9fd060a9a2e3a6b8feb",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/4c55658ffae28abedbced62735e38450911dd943",
+                "reference": "4c55658ffae28abedbced62735e38450911dd943",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1328,9 +1328,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.2"
+                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.3"
             },
-            "time": "2024-02-22T15:21:08+00:00"
+            "time": "2024-03-12T15:50:26+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
