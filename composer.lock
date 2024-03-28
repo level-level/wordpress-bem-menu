@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a1360f7bc97f994fb34e9f6b57038d4c",
+    "content-hash": "4e8dbe9dfa500cb8cffd781d9c6f420e",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -803,6 +803,72 @@
             "time": "2021-10-08T21:21:46+00:00"
         },
         {
+            "name": "laravel/serializable-closure",
+            "version": "v1.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/serializable-closure.git",
+                "reference": "3dbf8a8e914634c48d389c1234552666b3d43754"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/serializable-closure/zipball/3dbf8a8e914634c48d389c1234552666b3d43754",
+                "reference": "3dbf8a8e914634c48d389c1234552666b3d43754",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "nesbot/carbon": "^2.61",
+                "pestphp/pest": "^1.21.3",
+                "phpstan/phpstan": "^1.8.2",
+                "symfony/var-dumper": "^5.4.11"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\SerializableClosure\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                },
+                {
+                    "name": "Nuno Maduro",
+                    "email": "nuno@laravel.com"
+                }
+            ],
+            "description": "Laravel Serializable Closure provides an easy and secure way to serialize closures in PHP.",
+            "keywords": [
+                "closure",
+                "laravel",
+                "serializable"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/serializable-closure/issues",
+                "source": "https://github.com/laravel/serializable-closure"
+            },
+            "time": "2023-11-08T14:08:06+00:00"
+        },
+        {
             "name": "level-level/clarkson-404",
             "version": "1.0.5",
             "source": {
@@ -1001,6 +1067,137 @@
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
             "time": "2023-11-14T16:06:02+00:00"
+        },
+        {
+            "name": "level-level/fdmg-server-side-tracking",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:level-level/fdmg-server-side-tracking.git",
+                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/01593087f7b23deb86460365a0b6709d2d9b9eae",
+                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=8.0",
+                "php-di/php-di": "^7.0"
+            },
+            "require-dev": {
+                "codeception/module-asserts": "^3.0",
+                "codeception/module-cli": "^2.0",
+                "codeception/module-db": "^3.1",
+                "codeception/module-filesystem": "^3.0",
+                "codeception/module-phpbrowser": "^3.0",
+                "codeception/module-webdriver": "^3.2",
+                "codeception/util-universalframework": "^1.0",
+                "friendsoftwig/twigcs": "^6.4",
+                "level-level/coding-standards": "^4.1",
+                "level-level/phpstan-config": "^1.0",
+                "lucatume/wp-browser": "^4.0",
+                "niels-de-blaauw/php-doc-check": "^0.2.1",
+                "pronamic/wp-documentor": "^1.3",
+                "szepeviktor/phpstan-wordpress": "^1.1",
+                "wp-cli/wp-cli-bundle": "^2.8",
+                "wpackagist-plugin/user-switching": "^1.5",
+                "zorac/phpstan-php-di": "^1.0"
+            },
+            "type": "wordpress-plugin",
+            "extra": {
+                "installer-paths": {
+                    "./../../mu-plugins/{$name}": [
+                        "type:wordpress-muplugin"
+                    ],
+                    "./../../plugins/{$name}": [
+                        "type:wordpress-plugin"
+                    ],
+                    "./../../themes/{$name}": [
+                        "type:wordpress-theme"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "FDMG\\ServerSideTracking\\": "app/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "FDMG\\ServerSideTracking\\": [
+                        "tests/unit",
+                        "tests/wpunit"
+                    ]
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "scripts": {
+                "post-autoload-dump": [
+                    "mkdir -p ../../mu-plugins",
+                    "touch ../../mu-plugins/.gitkeep"
+                ],
+                "test": [
+                    "echo Running tests",
+                    "@test:composer",
+                    "@test:phpcs",
+                    "@test:phpstan",
+                    "@test:docs"
+                ],
+                "fix": [
+                    "phpcbf",
+                    "@make-docs"
+                ],
+                "test:composer": [
+                    "composer validate"
+                ],
+                "test:phpcs": [
+                    "phpcs"
+                ],
+                "test:phpstan": [
+                    "./vendor/bin/phpstan --memory-limit=2G"
+                ],
+                "test:codeception": [
+                    "test ! -f codeception.yml && { echo NO LOCAL CONFIGURATION HAS BEEN SET UP. See README.md; exit 1; } || echo 'Local configuration found!'",
+                    "codecept run acceptance",
+                    "codecept run functional",
+                    "codecept run unit",
+                    "codecept run wpunit"
+                ],
+                "test:codeception:ci": [
+                    "codecept run acceptance",
+                    "codecept run functional",
+                    "codecept run unit",
+                    "codecept run wpunit"
+                ],
+                "test:docs": [
+                    "php-doc-check ./app -x vendor"
+                ],
+                "make-pot": [
+                    "wp i18n make-pot ./ --path=./ --skip-js --slug=fdmg-server-side-tracking",
+                    "wp i18n make-pot ./ --path=./ --skip-js --slug=fdmg-server-side-tracking-slugs --domain=fdmg-server-side-tracking-slugs",
+                    "wp i18n make-pot ./ --path=./ --skip-js --slug=fdmg-server-side-tracking-admin --domain=fdmg-server-side-tracking-admin"
+                ],
+                "make-docs": [
+                    "vendor/bin/wp-documentor parse app --format=markdown --prefix=fdmg_server_side_tracking --output=docs/php-hooks.md"
+                ]
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "This plugin contains logic to make variables available in server logs, which can be used for server side tracking.",
+            "support": {
+                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.0.0"
+            },
+            "time": "2024-03-22T15:50:05+00:00"
         },
         {
             "name": "level-level/ll-paywall",
@@ -1720,6 +1917,146 @@
                 }
             ],
             "time": "2022-06-09T08:53:42+00:00"
+        },
+        {
+            "name": "php-di/invoker",
+            "version": "2.3.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-DI/Invoker.git",
+                "reference": "33234b32dafa8eb69202f950a1fc92055ed76a86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-DI/Invoker/zipball/33234b32dafa8eb69202f950a1fc92055ed76a86",
+                "reference": "33234b32dafa8eb69202f950a1fc92055ed76a86",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=7.3",
+                "psr/container": "^1.0|^2.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1.8",
+                "mnapoli/hard-mode": "~0.3.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Invoker\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Generic and extensible callable invoker",
+            "homepage": "https://github.com/PHP-DI/Invoker",
+            "keywords": [
+                "callable",
+                "dependency",
+                "dependency-injection",
+                "injection",
+                "invoke",
+                "invoker"
+            ],
+            "support": {
+                "issues": "https://github.com/PHP-DI/Invoker/issues",
+                "source": "https://github.com/PHP-DI/Invoker/tree/2.3.4"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-09-08T09:24:21+00:00"
+        },
+        {
+            "name": "php-di/php-di",
+            "version": "7.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHP-DI/PHP-DI.git",
+                "reference": "8097948a89f6ec782839b3e958432f427cac37fd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHP-DI/PHP-DI/zipball/8097948a89f6ec782839b3e958432f427cac37fd",
+                "reference": "8097948a89f6ec782839b3e958432f427cac37fd",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "laravel/serializable-closure": "^1.0",
+                "php": ">=8.0",
+                "php-di/invoker": "^2.0",
+                "psr/container": "^1.1 || ^2.0"
+            },
+            "provide": {
+                "psr/container-implementation": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3",
+                "friendsofphp/proxy-manager-lts": "^1",
+                "mnapoli/phpunit-easymock": "^1.3",
+                "phpunit/phpunit": "^9.5",
+                "vimeo/psalm": "^4.6"
+            },
+            "suggest": {
+                "friendsofphp/proxy-manager-lts": "Install it if you want to use lazy injection (version ^1)"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "DI\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The dependency injection container for humans",
+            "homepage": "https://php-di.org/",
+            "keywords": [
+                "PSR-11",
+                "container",
+                "container-interop",
+                "dependency injection",
+                "di",
+                "ioc",
+                "psr11"
+            ],
+            "support": {
+                "issues": "https://github.com/PHP-DI/PHP-DI/issues",
+                "source": "https://github.com/PHP-DI/PHP-DI/tree/7.0.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/mnapoli",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/php-di/php-di",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-11-02T10:04:50+00:00"
         },
         {
             "name": "php-http/client-common",
