@@ -20,7 +20,7 @@
     "build:sentry": "dawn build:sentry"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.0.19",
+    "@fontsource-variable/figtree": "^5.0.20",
     "@fontsource/libre-caslon-text": "^5.0.18",
     "@level-level/recyclops": "^2.9.0",
     "@sentry/browser": "^7.103.0",
