@@ -4924,15 +4924,15 @@
         },
         {
             "name": "wpackagist-plugin/debug-bar",
-            "version": "1.1.4",
+            "version": "1.1.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/debug-bar/",
-                "reference": "tags/1.1.4"
+                "reference": "tags/1.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
