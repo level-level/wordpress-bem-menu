@@ -1,7 +1,7 @@
 <?php
 namespace FDMGLabels;
 
-class EmbedRemover {
+class EmbedCacheRemover {
 	public function register_hooks(): void {
 		add_action( 'transition_post_status', array( $this, 'on_post_publish' ), 10, 3 );
 	}
@@ -14,14 +14,15 @@ class EmbedRemover {
 	 * @param \WP_Post $post
 	 */
 	public function on_post_publish( $new_status, $old_status, $post ): void {
+		global $wpdb;
+
 		if ( 'publish' !== $new_status || 'publish' === $old_status ) {
 			return;
 		}
 
 		$post_id = $post->ID;
 
-		global $wpdb;
-		$like      = '%_oembed_%';
+		$like      = '_oembed_%';
 		$meta_keys = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT meta_key FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key LIKE %s",
