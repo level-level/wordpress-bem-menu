@@ -56,6 +56,7 @@
 ( new \FDMGLabels\Robots() )->register_hooks();
 ( new \FDMGLabels\Redirection() )->register_hooks();
 ( new \FDMGLabels\ServerSideTracking\Init() )->register_hooks();
+( new \FDMGLabels\EmbedRemover() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
