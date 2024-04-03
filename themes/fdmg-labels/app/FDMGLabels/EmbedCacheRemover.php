@@ -22,11 +22,10 @@ class EmbedCacheRemover {
 
 		$post_id = $post->ID;
 
-		$like      = '_oembed_%';
 		$meta_keys = $wpdb->get_col(
 			$wpdb->prepare(
 				"SELECT meta_key FROM {$wpdb->postmeta} WHERE post_id = %d AND meta_key LIKE %s",
-				$post_id, $wpdb->esc_like( $like )
+				$post_id, $wpdb->esc_like( '_oembed_' ) . '%'
 			)
 		);
 
