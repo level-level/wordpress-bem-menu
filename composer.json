@@ -76,7 +76,7 @@
         "wpackagist-plugin/elasticpress": "^5.0",
         "wpackagist-plugin/koko-analytics": "^1.0",
         "wpackagist-plugin/loco-translate": "^2.4",
-        "wpackagist-plugin/popup-maker": "^1.17",
+        "wpackagist-plugin/popup-maker": "^1.18",
         "wpackagist-plugin/post-smtp": "^2.0",
         "wpackagist-plugin/query-monitor": "^3.15",
         "wpackagist-plugin/redirection": "^5.3",
