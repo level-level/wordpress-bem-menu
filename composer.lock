@@ -1201,16 +1201,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "e9aa9020445008271909c9fd060a9a2e3a6b8feb"
+                "reference": "4c55658ffae28abedbced62735e38450911dd943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/e9aa9020445008271909c9fd060a9a2e3a6b8feb",
-                "reference": "e9aa9020445008271909c9fd060a9a2e3a6b8feb",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/4c55658ffae28abedbced62735e38450911dd943",
+                "reference": "4c55658ffae28abedbced62735e38450911dd943",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1328,9 +1328,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.2"
+                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.3"
             },
-            "time": "2024-02-22T15:21:08+00:00"
+            "time": "2024-03-12T15:50:26+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
@@ -1552,11 +1552,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.4",
+            "version": "2.8.6",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.4",
-                "shasum": "7649fd4b5cd0c34019d49a45c3082e4c9f0659c4",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.6",
+                "shasum": "8265d43aa1f88a0a3d2f710ac715a50026e72e29",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4825,16 +4825,16 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.7.2",
+            "version": "3.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "cb3c7854b31a285b46964931425fef6f485be145"
+                "reference": "8aa895a6edfeb92f40d6eddc9dfc35df65da38ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/cb3c7854b31a285b46964931425fef6f485be145",
-                "reference": "cb3c7854b31a285b46964931425fef6f485be145",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/8aa895a6edfeb92f40d6eddc9dfc35df65da38ae",
+                "reference": "8aa895a6edfeb92f40d6eddc9dfc35df65da38ae",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4868,9 +4868,9 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.2"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.3"
             },
-            "time": "2024-02-14T21:35:25+00:00"
+            "time": "2024-03-20T10:16:56+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
@@ -4924,15 +4924,15 @@
         },
         {
             "name": "wpackagist-plugin/debug-bar",
-            "version": "1.1.4",
+            "version": "1.1.6",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/debug-bar/",
-                "reference": "tags/1.1.4"
+                "reference": "tags/1.1.6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/debug-bar.1.1.6.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5024,15 +5024,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.20",
+            "version": "1.20.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.20"
+                "reference": "tags/1.20.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.20.zip",
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.20.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5099,15 +5099,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.6",
+            "version": "2.6.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.6"
+                "reference": "tags/2.6.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.7.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5149,15 +5149,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.8.11",
+            "version": "2.8.13",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.8.11"
+                "reference": "trunk"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.8.11.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.zip?timestamp=1711439848",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5249,15 +5249,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.11.3",
+            "version": "7.11.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.11.3"
+                "reference": "tags/7.11.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.4.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -12563,16 +12563,16 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.3.3",
+            "version": "v1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "f7ff091331bc00c5688fe4ce0c4d51d06fa61553"
+                "reference": "891d0767855a32c886a439efae090408cc1fa156"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/f7ff091331bc00c5688fe4ce0c4d51d06fa61553",
-                "reference": "f7ff091331bc00c5688fe4ce0c4d51d06fa61553",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/891d0767855a32c886a439efae090408cc1fa156",
+                "reference": "891d0767855a32c886a439efae090408cc1fa156",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -12625,9 +12625,9 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.3"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.4"
             },
-            "time": "2024-02-26T13:55:50+00:00"
+            "time": "2024-03-21T16:32:59+00:00"
         },
         {
             "name": "theseer/tokenizer",
