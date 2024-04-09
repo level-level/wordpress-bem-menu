@@ -3,11 +3,11 @@ const pushToDataLayer = (type: string, text: string) => {
 		'event': 'click',
 			'event_info': {
 			'category': `${type}`,
-			'action': 'button click',
+			'action': 'link click',
 			'label': `${text}`, // e.g. linkedin | het financieele dagblad
 			'value': null,
 			'event_context': {
-				'component': 'link',
+				'component': 'button',
 				'index': '',
 				'section_title': '',
 				'click_text': `${text}`
@@ -47,7 +47,7 @@ const handleClicks = () => {
 		// else add internal link click event
 		else {
 			element.addEventListener('click', () => {
-				pushToDataLayer('outbound click', text);
+				pushToDataLayer('external click', text);
 			} );
 		}
 
