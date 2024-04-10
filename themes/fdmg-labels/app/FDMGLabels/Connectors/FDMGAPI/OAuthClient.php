@@ -1,0 +1,45 @@
+<?php
+
+namespace FDMGLables\Connectors\FDMGAPI;
+
+use Exception;
+use GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\RequestOptions;
+
+class OAuthClient {
+	public const IDENTITY_TOKEN_PATH = '/identity/connect/token';
+
+	public function __construct(
+		protected GuzzleClient $client,
+		protected Configuration $configuration,
+	) {}
+
+	/**
+	 * @return array{
+	 * 	access_token: string,
+	 * 	expires_in: int,
+	 * 	refresh_expires_in: int,
+	 * 	token_type: string,
+	 * 	not-before-policy: int,
+	 * 	scope: string
+	 * }
+	 */
+	public function get_token(): array {
+		try {
+			$response = $this->client->post(
+				self::IDENTITY_TOKEN_PATH,
+				array(
+					RequestOptions::FORM_PARAMS => array(
+						'client_id'     => $this->configuration->get_client_id(),
+						'client_secret' => $this->configuration->get_client_secret(),
+						'grant_type'    => 'client_credentials',
+					),
+				)
+			);
+		} catch ( Exception $e ) {
+			throw $e;
+		}
+
+		return json_decode( $response->getBody(), true, 512, JSON_THROW_ON_ERROR );
+	}
+}
