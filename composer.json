@@ -16,10 +16,6 @@
         "1": {
             "type": "path",
             "url": "themes/fdmg-labels/_generated/FDMGContentAPI"
-        },
-        "2": {
-            "type": "path",
-            "url": "themes/fdmg-labels/_generated/FDMGAPI"
         }
     },
     "autoload": {
@@ -151,12 +147,6 @@
             "sudo rm -rf themes/fdmg-labels/_generated/FDMGContentAPI",
             "mkdir -p themes/fdmg-labels/_generated/FDMGContentAPI",
             "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml | docker run --rm -i evns/yq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli generate -i /local/themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml -g php --additional-properties=invokerPackage=FDMGContentAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-content-api-client -o /local/themes/fdmg-labels/_generated/FDMGContentAPI"
-        ],
-        "generate:fdmg-api": [
-            "Composer\\Config::disableProcessTimeout",
-            "sudo rm -rf themes/fdmg-labels/_generated/FDMGAPI",
-            "mkdir -p themes/fdmg-labels/_generated/FDMGAPI",
-            "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-api/spec.json | docker run --rm -i stedolan/jq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli generate -i /local/themes/fdmg-labels/docs/connections/fdmg-api/spec.json -g php --additional-properties=invokerPackage=FDMGAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-api-client -o /local/themes/fdmg-labels/_generated/FDMGAPI"
         ]
     },
     "extra": {
