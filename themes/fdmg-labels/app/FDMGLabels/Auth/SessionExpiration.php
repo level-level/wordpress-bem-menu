@@ -9,7 +9,7 @@ class SessionExpiration {
 	public const SESSION_EXPIRATION_MINUTES = 30;
 
 	public function register_hooks(): void {
-		add_filter( 'auth_cookie_expiration', array( $this, 'limit_session_expiration_for_non_editors' ), 10, 3 );
+		add_filter( 'auth_cookie_expiration', array( $this, 'limit_session_expiration_for_non_editors' ), 10, 2 );
 	}
 
 	/**
@@ -22,13 +22,8 @@ class SessionExpiration {
 	 * if able). This will also trigger logging in the IDP, which FDMG uses to
 	 * track user activity and invoice business customers accordingly based on
 	 * the amount of active logged in users on the website.
-	 *
-	 * @param int $expiration
-	 * @param WP_User $user
-	 * @param boolean $remember
-	 * @return int
 	 */
-	public function limit_session_expiration_for_non_editors( int $expiration, int $user_id, bool $remember ): int {
+	public function limit_session_expiration_for_non_editors( int $expiration, int $user_id ): int {
 		if ( user_can( $user_id, 'read' ) ) {
 			return $expiration;
 		}
