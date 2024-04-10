@@ -1,0 +1,380 @@
+openapi: 3.0.3
+info:
+  title: FDMG Content API
+  contact:
+    name: FDMG Content API
+    email: jeroen.snoeij@fdmediagroep.nl
+  version: 1.4.0
+servers:
+  - url: https://{domain}/Distributor/level2
+    description: Server url
+    variables:
+      domain:
+        enum:
+          - dev-api.ota.fdmg.org
+          - acc-api.ota.fdmg.org
+          - api.prod.fdmg.org
+        default: dev-api.ota.fdmg.org
+paths:
+  /hooks/{hookName}:
+    post:
+      tags:
+        - Article hook
+      summary: Run hook to create or update an article
+      security:
+        - apiKey: []
+      parameters:
+        - in: path
+          name: hookName
+          description: Hook name to run. Should represent the site where the article is for.
+          required: true
+          schema:
+            type: string
+            enum:
+              - PPR
+              - ENG
+      requestBody:
+        description: Post data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Article'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '503':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: header
+      name: x-api-key
+  schemas:
+    Article:
+      type: object
+      required:
+        - id
+        - date
+        - modified
+        - slug
+        - status
+        - type
+        - title
+        - teaser_title
+        - content
+        - excerpt
+        - comment_status
+        - genres
+        - sections
+        - paywall
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        slug:
+          type: string
+        status:
+          type: string
+          enum:
+            - publish
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+        type:
+          type: string
+        link:
+          type: string
+          nullable: true
+        title:
+          type: string
+        teaser_title:
+          type: string
+        content:
+          type: string
+          format: html
+        excerpt:
+          type: string
+        author:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/User'
+        team_members:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+        featured_image:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/Image'
+        comment_status:
+          type: string
+          enum:
+            - open
+            - closed
+        genres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Section'
+        paywall:
+          type: boolean
+        imported_id:
+          type: string
+          nullable: true
+    User:
+      type: object
+      required:
+        - id
+        - username
+        - display_name
+        - first_name
+        - last_name
+        - email
+        - nickname
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+        display_name:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        nickname:
+          type: string
+    Image:
+      type: object
+      required:
+        - id
+        - date
+        - modified
+        - slug
+        - status
+        - type
+        - title
+        - description
+        - caption
+        - alt_text
+        - media_type
+        - mime_type
+        - media_details
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        slug:
+          type: string
+        status:
+          type: string
+          enum:
+            - publish
+            - draft
+            - pending
+            - private
+            - trash
+            - auto-draft
+            - inherit
+        type:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        author:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/User'
+        caption:
+          type: string
+        alt_text:
+          type: string
+        media_type:
+          type: string
+          enum:
+            - image
+            - file
+        mime_type:
+          type: string
+          format: mimetype
+        media_details:
+          type: object
+          required:
+            - width
+            - height
+            - file
+            - url
+            - filesize
+          properties:
+            width:
+              type: integer
+            height:
+              type: integer
+            file:
+              type: string
+            url:
+              type: string
+              format: url
+            filesize:
+              type: integer
+        imported_id:
+          type: string
+          nullable: true
+    Genre:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        imported_id:
+          type: string
+          nullable: true
+    Section:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        imported_id:
+          type: string
+          nullable: true
+    TeamMember:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - content
+        - excerpt
+        - email
+        - linkedin
+        - location
+      properties:
+        id:
+          type: integer
+        slug:
+          type: string
+        name:
+          type: string
+        content:
+          type: string
+          format: html
+        excerpt:
+          type: string
+        email:
+          type: string
+          format: email
+        linkedin:
+          type: string
+          format: url
+        location:
+          type: string
+        imported_id:
+          type: string
+          nullable: true
+    SuccessResponse:
+      type: object
+      properties:
+        PublishResponse:
+          type: object
+          required:
+            - PublishResult
+            - ResponseMetadata
+          properties:
+            PublishResult:
+              type: object
+              required:
+                - MessageId
+              properties:
+                MessageId:
+                  type: string
+                SequenceNumber:
+                  type: string
+                  nullable: true
+            ResponseMetadata:
+              type: object
+              properties:
+                RequestId:
+                  type: string
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          nullable: true
