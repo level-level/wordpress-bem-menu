@@ -67,7 +67,7 @@
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
-        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.9",
+        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.10",
         "wpackagist-plugin/debug-bar": "^1.1",
         "wpackagist-plugin/debug-bar-elasticpress": "^3.1",
         "wpackagist-plugin/disable-emojis": "^1.7",
