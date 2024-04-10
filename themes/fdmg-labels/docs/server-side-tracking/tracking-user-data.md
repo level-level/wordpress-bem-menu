@@ -4,7 +4,7 @@ For this project, customisations have been made to the [tracking of user data](h
 
 ## Extra data that is tracked
 
-Some extra data is tracked inside the data property of the json.
+Some extra data is tracked inside the data property of the json, in addition to the data already tracked by the fdmg-server-side-tracking plugin.
 
 - `fdmg_user_id` (int): The FDMG user ID of the currently logged in user. This is not the WordPress user ID.
 - `fdmg_organisation_id` (int): The FDMG organisation ID of the currently logged in user.

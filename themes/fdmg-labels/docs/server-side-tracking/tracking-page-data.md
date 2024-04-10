@@ -4,6 +4,6 @@ For this project, customisations have been made to the [tracking of page data](h
 
 ## Extra data that is tracked
 
-Some extra data is tracked as headers.
+Some extra data is tracked as headers, in addition to the data already tracked by the fdmg-server-side-tracking plugin.
 
 - `x-fdmg-sst-paywall` (string): Specifies the type of paywall. `free` = no paywall, `account` = account needed, and `subscription` = subscription needed.
