@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fe86ce2c8dc9759c666944def771245a",
+    "content-hash": "1aae71c6f70b0256d891cdd34aa9c77a",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -4899,15 +4899,15 @@
         },
         {
             "name": "wpackagist-plugin/daggerhart-openid-connect-generic",
-            "version": "3.9.1",
+            "version": "3.10.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/daggerhart-openid-connect-generic/",
-                "reference": "tags/3.9.1"
+                "reference": "tags/3.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/daggerhart-openid-connect-generic.3.9.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/daggerhart-openid-connect-generic.3.10.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
