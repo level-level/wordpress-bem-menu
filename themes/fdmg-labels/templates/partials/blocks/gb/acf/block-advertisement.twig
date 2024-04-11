@@ -3,7 +3,7 @@
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
-	<div class="{{ align }}">
+	<div class="{{ align }}" data-module="advertisement">
 		{% include 'partials/components/advertisement.twig' with {
 			slot: slot,
 			active_theme: active_theme,
@@ -18,3 +18,6 @@
 		required_fields: [_x('Slot', 'Block', 'fdmg-labels-admin')]
 	} %}
 {% endif %}
+{#
+no ad: ii-message ii-message-processed ii-message-home-mid2 ii-message-page-home ii-message-type-mid2 ii-message-variant-b ii-message-rendered ii-message-collapsed
+has-add: ii-message ii-message-processed ii-message-home-mid2 ii-message-page-home ii-message-type-mid2 ii-message-variant-b ii-message-rendered #}

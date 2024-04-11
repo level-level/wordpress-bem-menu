@@ -19,10 +19,8 @@ import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
-import Cookies from 'js-cookie';
-import User from './model/user';
-import { Auth } from '../globals';
 import dataLayer from './datalayer/datalayer';
+import Advertisement from './modules/advertisement';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -45,6 +43,7 @@ ModuleInitializer({
 	'text-zoom': TextZoom,
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
+	'advertisement': Advertisement,
 });
 
 dataLayer();
@@ -61,6 +60,7 @@ document.addEventListener('onLLPaywallRemoved', () => {
 		oembed: OEmbed,
 		table: Table,
 		'social-share': SocialShare,
+		'advertisement': Advertisement,
 	});
 });
 
