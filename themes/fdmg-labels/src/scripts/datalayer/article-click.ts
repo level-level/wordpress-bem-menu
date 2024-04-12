@@ -8,16 +8,17 @@ const pushToDataLayer = (config: DataLayerConfig) => {
 			action: 'article click',
 			label: `${config.id}`,
 			value: null,
-			component: {
+			event_context: {
 				component: 'article',
 				component_subtype: `${config.component_subtype}`,
+				section_title: `${config.categories}`,
 			},
 			ecommerce: {
 				article: [
 					{
 						article_id: `${config.id}`,
 						article_name: `${config.title}`,
-						article_category: 'partner content',
+						article_category: `${config.categories}`,
 						article_type: 'article',
 						author_name: `${config.author}`,
 						article_label: `${config.id}`,

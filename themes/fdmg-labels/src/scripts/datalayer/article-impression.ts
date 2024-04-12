@@ -11,7 +11,7 @@ const pushToDataLayer = (config: DataLayerConfig) => {
 			event_context: {
 				component: 'article',
 				component_subtype: `${config.component_subtype}`,
-				section_title: `${config.parent_component}`,
+				section_title: `${config.categories}`,
 			},
 			ecommerce: {
 				article: [

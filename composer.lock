@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "664ed74865561994f224dc0b29743aa7",
+    "content-hash": "6fd8194e72f104d5de26e060613ac344",
     "packages": [
         {
             "name": "brick/math",
@@ -1678,7 +1678,8 @@
                 ]
             },
             "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/"
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "time": "2023-10-11T10:24:44+00:00"
         },
         {
             "name": "ll-premium/popup-maker-exit-intent-popups",
@@ -1695,7 +1696,8 @@
                 ]
             },
             "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/"
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "time": "2023-10-11T10:22:29+00:00"
         },
         {
             "name": "ll-premium/searchwp",
@@ -5236,15 +5238,15 @@
         },
         {
             "name": "wpackagist-plugin/daggerhart-openid-connect-generic",
-            "version": "3.9.1",
+            "version": "3.10.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/daggerhart-openid-connect-generic/",
-                "reference": "tags/3.9.1"
+                "reference": "tags/3.10.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/daggerhart-openid-connect-generic.3.9.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/daggerhart-openid-connect-generic.3.10.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
