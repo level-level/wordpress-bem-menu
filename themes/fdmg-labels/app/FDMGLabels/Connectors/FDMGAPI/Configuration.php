@@ -4,6 +4,9 @@ namespace FDMGLabels\Connectors\FDMGAPI;
 
 class Configuration {
 
+	/**
+	 * Determines if all the required API settings are configured.
+	 */
 	public function is_configured(): bool {
 		return ! empty( $this->get_base_url() )
 			&& ! empty( $this->get_oauth_base_url() )
