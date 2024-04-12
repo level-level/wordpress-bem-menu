@@ -7,7 +7,7 @@ use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\RequestOptions;
 
 class OAuthClient {
-	public const IDENTITY_TOKEN_PATH = '/identity/connect/token';
+	public const TOKEN_PATH = '/auth/realms/services/protocol/openid-connect/token';
 
 	public function __construct(
 		protected GuzzleClient $client,
@@ -29,7 +29,7 @@ class OAuthClient {
 	public function get_token(): array {
 		try {
 			$response = $this->client->post(
-				self::IDENTITY_TOKEN_PATH,
+				self::TOKEN_PATH,
 				array(
 					RequestOptions::FORM_PARAMS => array(
 						'client_id'     => $this->configuration->get_client_id(),

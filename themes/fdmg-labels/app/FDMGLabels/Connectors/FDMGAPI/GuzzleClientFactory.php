@@ -103,7 +103,7 @@ class GuzzleClientFactory {
 					\GuzzleHttp\Psr7\Response $response = null,
 					\Throwable $exception = null
 				) {
-					if ( $retries >= 1 || $request->getUri()->getPath() === OAuthClient::IDENTITY_TOKEN_PATH ) {
+					if ( $retries >= 1 || $request->getUri()->getPath() === OAuthClient::TOKEN_PATH ) {
 						return false;
 					}
 
@@ -120,7 +120,7 @@ class GuzzleClientFactory {
 		$stack->push(
 			Middleware::mapRequest(
 				function ( RequestInterface $request ) {
-					if ( $request->getUri()->getPath() !== OAuthClient::IDENTITY_TOKEN_PATH ) {
+					if ( $request->getUri()->getPath() !== OAuthClient::TOKEN_PATH ) {
 						return $request->withHeader( 'Authorization', 'Bearer ' . $this->get_access_token() );
 					}
 					return $request;
