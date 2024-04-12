@@ -26,9 +26,9 @@ class SAMLClient {
 	 *  errorType: string,
 	 *  message: string,
 	 *  details: string,
-	 *  details: errorCode,
-	 *  details: path,
-	 *  details: method
+	 *  errorCode: string,
+	 *  path: string,
+	 *  method: string
 	 * }
 	 *
 	 * @throws Exception
