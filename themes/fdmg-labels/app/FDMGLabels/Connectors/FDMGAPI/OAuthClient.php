@@ -23,6 +23,8 @@ class OAuthClient {
 	 * 	not-before-policy: int,
 	 * 	scope: string
 	 * }
+	 *
+	 * @throws Exception
 	 */
 	public function get_token(): array {
 		try {
@@ -40,6 +42,11 @@ class OAuthClient {
 			throw $e;
 		}
 
-		return json_decode( $response->getBody(), true, 512, JSON_THROW_ON_ERROR );
+		$decoded_json = json_decode( $response->getBody(), true, 512, JSON_THROW_ON_ERROR );
+		if ( ! is_array( $decoded_json ) ) {
+			throw new Exception( 'Invalid response from API' );
+		}
+
+		return $decoded_json;
 	}
 }
