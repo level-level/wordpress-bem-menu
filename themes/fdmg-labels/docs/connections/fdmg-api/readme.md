@@ -17,9 +17,9 @@ You can also view the latest version of the specification at [https://api.fdmg.o
 
 ## Endpoints
 
-PROD: https://api.fdmg.org/private/fdmg/account/
-ACC: https://api-acc.fdmg.org/private/fdmg/account/
-TEST: https://api-test.fdmg.org/private/fdmg/account/
+- PROD: https://api.fdmg.org/private/fdmg/account/
+- ACC: https://api-acc.fdmg.org/private/fdmg/account/
+- TEST: https://api-test.fdmg.org/private/fdmg/account/
 
 ### Authentication
 
