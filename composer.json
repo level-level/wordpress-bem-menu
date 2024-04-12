@@ -44,6 +44,7 @@
         "ext-dom": "*",
         "ext-libxml": "*",
         "ext-mbstring": "^7.1",
+        "fdmg-labels/fdmg-content-api-client": "^1.4",
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
         "level-level/clarkson-wp-cli-twig-translations": "^1.0",
