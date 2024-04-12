@@ -1,6 +1,6 @@
 <?php
 
-namespace FDMGLables\Connectors\FDMGAPI;
+namespace FDMGLabels\Connectors\FDMGAPI;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
@@ -20,13 +20,48 @@ class GuzzleClientFactory {
 		protected LoggerInterface $logger,
 	) { }
 
+	/**
+	 * Get a client that is used for all requests except OAuth to the FDMG API.
+	 * @throws \Exception
+	 */
 	public function get_client(): GuzzleClient {
 		if ( ! $this->configuration->is_configured() ) {
 			throw new \Exception( 'FDMG API is not configured' );
 		}
 
-		$stack = HandlerStack::create();
+		$stack = $this->get_handler_stack();
+		$stack = $this->add_automatic_token_refresh_to_stack( $stack );
 
+		return new GuzzleClient(
+			array(
+				'base_uri' => trailingslashit( $this->configuration->get_base_url() ),
+				'timeout'  => self::CLIENT_TIMEOUT,
+				'handler'  => $stack,
+			)
+		);
+	}
+
+	/**
+	 * Get a client that is only used for OAuth requests.
+	 * @throws Exception
+	 */
+	public function get_oauth_client(): GuzzleClient {
+		if ( ! $this->configuration->is_configured() ) {
+			throw new Exception( 'FDMG API is not configured' );
+		}
+
+		$stack = $this->get_handler_stack();
+		return new GuzzleClient(
+			array(
+				'base_uri' => trailingslashit( $this->configuration->get_oauth_base_url() ),
+				'timeout'  => self::CLIENT_TIMEOUT,
+				'handler'  => $stack,
+			)
+		);
+	}
+
+	protected function get_handler_stack(): HandlerStack {
+		$stack = HandlerStack::create();
 		$stack->push(
 			Middleware::log(
 				$this->logger,
@@ -42,16 +77,7 @@ class GuzzleClientFactory {
 				}
 			), 'request_id'
 		);
-
-		$stack = $this->add_automatic_token_refresh_to_stack( $stack );
-
-		return new GuzzleClient(
-			array(
-				'base_uri' => trailingslashit( $this->configuration->get_base_url() ),
-				'timeout'  => self::CLIENT_TIMEOUT,
-				'handler'  => $stack,
-			)
-		);
+		return $stack;
 	}
 
 	/**
@@ -74,10 +100,9 @@ class GuzzleClientFactory {
 			return $token;
 		}
 
-		$client = new OAuthClient( $this->get_client(), $this->configuration );
-
 		try {
-			$token = $client->get_token();
+			$client = new OAuthClient( $this->get_oauth_client(), $this->configuration );
+			$token  = $client->get_token();
 		} catch ( Exception $e ) {
 			return null;
 		}
@@ -103,7 +128,7 @@ class GuzzleClientFactory {
 					\GuzzleHttp\Psr7\Response $response = null,
 					\Throwable $exception = null
 				) {
-					if ( $retries >= 1 || $request->getUri()->getPath() === OAuthClient::TOKEN_PATH ) {
+					if ( $retries >= 1 ) {
 						return false;
 					}
 
@@ -120,10 +145,7 @@ class GuzzleClientFactory {
 		$stack->push(
 			Middleware::mapRequest(
 				function ( RequestInterface $request ) {
-					if ( $request->getUri()->getPath() !== OAuthClient::TOKEN_PATH ) {
-						return $request->withHeader( 'Authorization', 'Bearer ' . $this->get_access_token() );
-					}
-					return $request;
+					return $request->withHeader( 'Authorization', 'Bearer ' . $this->get_access_token() );
 				}
 			)
 		);

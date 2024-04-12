@@ -1,6 +1,6 @@
 <?php
 
-namespace FDMGLables\Connectors\FDMGAPI;
+namespace FDMGLabels\Connectors\FDMGAPI;
 
 use Exception;
 use GuzzleHttp\Client as GuzzleClient;
@@ -16,12 +16,12 @@ class OAuthClient {
 
 	/**
 	 * @return array{
-	 * 	access_token: string,
-	 * 	expires_in: int,
-	 * 	refresh_expires_in: int,
-	 * 	token_type: string,
-	 * 	not-before-policy: int,
-	 * 	scope: string
+	 *  access_token: string,
+	 *  expires_in: int,
+	 *  refresh_expires_in: int,
+	 *  token_type: string,
+	 *  not-before-policy: int,
+	 *  scope: string
 	 * }
 	 *
 	 * @throws Exception
@@ -29,11 +29,11 @@ class OAuthClient {
 	public function get_token(): array {
 		try {
 			$response = $this->client->post(
-				self::TOKEN_PATH,
+				$this->configuration->get_oauth_base_url() . self::TOKEN_PATH,
 				array(
 					RequestOptions::FORM_PARAMS => array(
-						'client_id'     => $this->configuration->get_client_id(),
-						'client_secret' => $this->configuration->get_client_secret(),
+						'client_id'     => $this->configuration->get_oauth_client_id(),
+						'client_secret' => $this->configuration->get_oauth_client_secret(),
 						'grant_type'    => 'client_credentials',
 					),
 				)
