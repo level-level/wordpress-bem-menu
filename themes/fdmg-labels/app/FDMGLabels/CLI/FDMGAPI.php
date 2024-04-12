@@ -34,7 +34,6 @@ class FDMGAPI {
 			$response = $saml->get_redirect_ip_ranges();
 		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
 			WP_CLI::error( sprintf( '%s: %s', $e->getCode(), $e->getMessage() ) );
-			exit;
 		}
 
 		WP_CLI::line( wp_json_encode( $response, JSON_PRETTY_PRINT ) ?: '' );
