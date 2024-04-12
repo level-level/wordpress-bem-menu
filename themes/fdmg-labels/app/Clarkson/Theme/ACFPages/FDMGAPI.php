@@ -47,7 +47,7 @@ class FDMGAPI {
 			$environment_keys
 		) );
 
-		$site_connections = array_combine( array_keys( Configuration::SITE_CONNECTIONS ), array_keys( Configuration::SITE_CONNECTIONS ) );
+		$site_connections = array_combine( Configuration::SITE_CONNECTIONS, Configuration::SITE_CONNECTIONS );
 
 		register_extended_field_group(
 			array(
