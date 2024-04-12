@@ -12,6 +12,26 @@ use WP_CLI;
 class FDMGAPI {
 
 	/**
+	 * Check if FDMG API is configured
+	 *
+	 * @subcommand is-configured
+	 * @param string[] $args
+	 * @param array<string,string> $assoc_args
+	 *
+	 * ## EXAMPLES
+	 *
+	 * wp fdmg-labels fdmg-api is-configured
+	 */
+	public function is_configured( array $args, array $assoc_args ): void {
+		$config = new Configuration();
+		if ( $config->is_configured() ) {
+			WP_CLI::success( 'FDMG API is configured' );
+		} else {
+			WP_CLI::error( 'FDMG API is not configured' );
+		}
+	}
+
+	/**
 	 * Get SAML Redirect IP ranges
 	 *
 	 * @subcommand get-saml-redirect-ip-ranges
