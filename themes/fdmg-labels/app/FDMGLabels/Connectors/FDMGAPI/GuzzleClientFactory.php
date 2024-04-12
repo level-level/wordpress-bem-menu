@@ -94,22 +94,21 @@ class GuzzleClientFactory {
 	 * token to be fetched.
 	 */
 	protected function get_access_token( bool $use_transient = true ): ?string {
-		$token = get_transient( self::ACCESS_TOKEN_TRANSIENT );
-
-		if ( $token && $use_transient ) {
-			return $token;
+		$access_token = get_transient( self::ACCESS_TOKEN_TRANSIENT );
+		if ( $access_token && $use_transient ) {
+			return $access_token;
 		}
 
 		try {
-			$client = new OAuthClient( $this->get_oauth_client(), $this->configuration );
-			$token  = $client->get_token();
+			$client         = new OAuthClient( $this->get_oauth_client(), $this->configuration );
+			$token_response = $client->get_token();
 		} catch ( Exception $e ) {
 			return null;
 		}
 
-		set_transient( self::ACCESS_TOKEN_TRANSIENT, $token['access_token'], $token['expires_in'] );
+		set_transient( self::ACCESS_TOKEN_TRANSIENT, $token_response->get_access_token(), $token_response->get_expires_in() );
 
-		return $token['access_token'];
+		return $token_response->get_access_token();
 	}
 
 	/**

@@ -3,6 +3,7 @@
 namespace FDMGLabels\Connectors\FDMGAPI;
 
 use Exception;
+use FDMGLabels\Connectors\FDMGAPI\Objects\SAMLRedirectIPRangesResponse;
 use GuzzleHttp\Client as GuzzleClient;
 
 class SAMLClient {
@@ -12,28 +13,9 @@ class SAMLClient {
 	) {}
 
 	/**
-	 * @return array{
-	 *  status: integer,
-	 *  statusType: string,
-	 *  content: array<
-	 *      array{
-	 *          idpAlias: string,
-	 *          ipStart: string,
-	 *          ipEnd: string,
-	 *          clients: string
-	 *      }
-	 *  >,
-	 *  errorType: string,
-	 *  message: string,
-	 *  details: string,
-	 *  errorCode: string,
-	 *  path: string,
-	 *  method: string
-	 * }
-	 *
 	 * @throws Exception
 	 */
-	public function get_redirect_ip_ranges(): array {
+	public function get_redirect_ip_ranges(): SAMLRedirectIPRangesResponse {
 		try {
 			$response = $this->client->get( 'private/fdmg/account/saml/redirectipranges' );
 		} catch ( Exception $e ) {
@@ -45,6 +27,28 @@ class SAMLClient {
 			throw new Exception( 'Invalid response from API' );
 		}
 
-		return $decoded_json;
+		/**
+		 * Force type the array to be of this type.
+		 *
+		 * @var array{
+		 *  'status': integer,
+		 *  'statusType': string,
+		 *  'content': array<
+		 *      array{
+		 *          'idpAlias': string,
+		 *          'ipStart': string,
+		 *          'ipEnd': string,
+		 *          'clients': string
+		 *      }
+		 *  >,
+		 *  'errorType': string,
+		 *  'message': string,
+		 *  'details': string,
+		 *  'errorCode': string,
+		 *  'path': string,
+		 *  'method': string
+		 * } $decoded_json
+		 */
+		return SAMLRedirectIPRangesResponse::from_data( $decoded_json );
 	}
 }
