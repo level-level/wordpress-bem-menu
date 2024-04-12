@@ -134,8 +134,7 @@
             "php-doc-check ./themes/fdmg-labels/app -x vendor"
         ],
         "test:openapi-spec": [
-            "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-api/spec.yaml",
-            "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-api/spec.json"
+            "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
             "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
