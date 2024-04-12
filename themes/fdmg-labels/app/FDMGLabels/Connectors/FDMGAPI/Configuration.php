@@ -8,15 +8,15 @@ class Configuration {
 
 	public const ENVIRONMENTS = array(
 		'DEV'  => array(
-			'base_url' => 'https://api-dev.fdmg.org',
+			'base_url'       => 'https://api-dev.fdmg.org',
 			'oauth_base_url' => 'https://login-dev.fdmg.nl',
 		),
 		'ACC'  => array(
-			'base_url' => 'https://api-acc.fdmg.org',
-			'oauth_base_url'=> 'https://login-acc.fdmg.nl',
+			'base_url'       => 'https://api-acc.fdmg.org',
+			'oauth_base_url' => 'https://login-acc.fdmg.nl',
 		),
-		'PROD'  => array(
-			'base_url' => 'https://api.fdmg.org',
+		'PROD' => array(
+			'base_url'       => 'https://api.fdmg.org',
 			'oauth_base_url' => 'https://login.fdmg.nl',
 		),
 	);

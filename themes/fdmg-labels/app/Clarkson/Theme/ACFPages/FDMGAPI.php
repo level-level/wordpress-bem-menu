@@ -16,8 +16,8 @@ class FDMGAPI {
 
 	public const OPTION_GROUP           = 'fdmg_api';
 	public const OPTION_ENVIRONMENT     = 'environment';
-	public const OPTION_CLIENT_ID 	    = 'client_id';
-	public const OPTION_CLIENT_SECRET  = 'client_secret';
+	public const OPTION_CLIENT_ID       = 'client_id';
+	public const OPTION_CLIENT_SECRET   = 'client_secret';
 	public const OPTION_SITE_CONNECTION = 'site_connection';
 
 	public function register_hooks(): void {
@@ -40,12 +40,14 @@ class FDMGAPI {
 
 	public function register_fields(): void {
 		$environment_keys = array_keys( Configuration::ENVIRONMENTS );
-		$environments = array_combine( $environment_keys, array_map(
-			function ( $key ) {
-				return sprintf( _x( '%s (%s)', 'Fields', 'fdmg-labels-admin' ), $key, Configuration::ENVIRONMENTS[ $key ]['base_url'] );
-			},
-			$environment_keys
-		) );
+		$environments     = array_combine(
+			$environment_keys, array_map(
+				function ( $key ) {
+					return sprintf( _x( '%1$s (%2$s)', 'Fields', 'fdmg-labels-admin' ), $key, Configuration::ENVIRONMENTS[ $key ]['base_url'] );
+				},
+				$environment_keys
+			)
+		);
 
 		$site_connections = array_combine( Configuration::SITE_CONNECTIONS, Configuration::SITE_CONNECTIONS );
 
