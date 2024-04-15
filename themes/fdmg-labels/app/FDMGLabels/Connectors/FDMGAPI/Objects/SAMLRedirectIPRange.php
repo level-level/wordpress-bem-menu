@@ -23,6 +23,22 @@ class SAMLRedirectIPRange extends AbstractObject {
 		$this->data = $data;
 	}
 
+	public function get_idp_alias(): string {
+		return $this->data['idpAlias'];
+	}
+
+	public function get_ip_start(): string {
+		return $this->data['ipStart'];
+	}
+
+	public function get_ip_end(): string {
+		return $this->data['ipEnd'];
+	}
+
+	public function get_clients(): string {
+		return $this->data['clients'];
+	}
+
 	/**
 	 * @param T $data
 	 */
