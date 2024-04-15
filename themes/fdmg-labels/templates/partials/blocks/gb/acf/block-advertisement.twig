@@ -3,7 +3,7 @@
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
-	<div class="{{ align }}">
+	<div class="{{ align }}" data-module="advertisement">
 		{% include 'partials/components/advertisement.twig' with {
 			slot: slot,
 			active_theme: active_theme,
