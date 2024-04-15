@@ -44,7 +44,7 @@ class IPAddressIDPRedirect {
 	/**
 	 * @return array<SAMLRedirectIPRange>
 	 */
-	protected function get_redirect_list( bool $from_transient ): array {
+	public function get_redirect_list( bool $from_transient ): array {
 		if ( $from_transient ) {
 			$redirect_ip_ranges = $this->get_redirect_ip_ranges_from_transient();
 			if ( is_array( $redirect_ip_ranges ) ) {
@@ -52,7 +52,9 @@ class IPAddressIDPRedirect {
 			}
 		}
 
-		return $this->get_redirect_list_from_api();
+		$redirect_ip_ranges = $this->get_redirect_list_from_api();
+		$this->save_redirect_ip_ranges_to_transient( $redirect_ip_ranges );
+		return $redirect_ip_ranges;
 	}
 
 	/**
@@ -68,9 +70,7 @@ class IPAddressIDPRedirect {
 			return array();
 		}
 
-		$redirect_ip_ranges = $redirect_ip_ranges_response->get_content();
-		$this->save_redirect_ip_ranges_to_transient( $redirect_ip_ranges );
-		return $redirect_ip_ranges;
+		return $redirect_ip_ranges_response->get_content();
 	}
 
 	/**
