@@ -24,6 +24,14 @@ class FDMGAPI {
 	 */
 	public function is_configured( array $args, array $assoc_args ): void {
 		$config = new Configuration();
+
+		WP_CLI::line( 'Environment: ' . $config->get_environment() );
+		WP_CLI::line( 'Base URL: ' . $config->get_base_url() );
+		WP_CLI::line( 'OAuth Base URL: ' . $config->get_oauth_base_url() );
+		WP_CLI::line( 'OAuth Client ID: ' . $config->get_oauth_client_id() );
+		WP_CLI::line( 'OAuth Client Secret: ' . ( $config->get_oauth_client_secret() ? '********' : '' ) );
+		WP_CLI::line( 'Site Connection: ' . $config->get_site_connection() );
+
 		if ( $config->is_configured() ) {
 			WP_CLI::success( 'FDMG API is configured' );
 		} else {
