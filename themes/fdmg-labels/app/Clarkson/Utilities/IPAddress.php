@@ -3,7 +3,7 @@ namespace Clarkson\Utilities;
 
 class IPAddress {
 	public function get_visitor_ip_address(): ?string {
-		$server_ip_variables = array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP' );
+		$server_ip_variables = array( 'HTTP_CF_CONNECTING_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_REAL_IP', 'REMOTE_ADDR' );
 		foreach ( $server_ip_variables as $server_ip_variable ) {
 			if ( ! empty( $_SERVER[ $server_ip_variable ] ) ) {
 				return $_SERVER[ $server_ip_variable ];
