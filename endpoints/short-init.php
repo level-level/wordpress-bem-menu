@@ -8,9 +8,6 @@ if ( ! $wp_path ) {
 }
 require $wp_path;
 
-// Require link template
-require_once ABSPATH . WPINC . '/link-template.php';
-
 // Load Composer autoloader
 require realpath( __DIR__ . '/../vendor/autoload.php' );
 
@@ -23,17 +20,21 @@ function fdmg_labels_validate_referer(): void {
 		return;
 	}
 
-	$referer_host = parse_url( wp_get_referer(), PHP_URL_HOST );
-	$current_url = sprintf(
+	$referer_host = parse_url( wp_get_referer(), PHP_URL_HOST ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
+	$current_url  = sprintf(
 		'%s://%s%s',
 		is_ssl() ? 'https' : 'http',
 		$_SERVER['HTTP_HOST'] ?? '',
 		$_SERVER['REQUEST_URI'] ?? ''
 	);
-	$current_host = parse_url( $current_url, PHP_URL_HOST );
+	$current_host = parse_url( $current_url, PHP_URL_HOST ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
 	if ( $referer_host !== $current_host ) {
-		wp_send_json_error( new WP_Error( 'invalid_referer', 'Invalid referer', array(
-			'status' => 403,
-		) ), 403 );
+		wp_send_json_error(
+			new WP_Error(
+				'invalid_referer', 'Invalid referer', array(
+					'status' => 403,
+				)
+			), 403
+		);
 	}
 }

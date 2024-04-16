@@ -62,7 +62,7 @@ class IPAddressIDPRedirect {
 	 * @return array<SAMLRedirectIPRange>
 	 */
 	protected function get_redirect_list_from_api(): array {
-		$config                = new Configuration();
+		$config = new Configuration();
 		try {
 			$logger = Registry::wordpress();
 		} catch ( Exception $e ) {
