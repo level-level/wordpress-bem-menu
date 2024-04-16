@@ -1,10 +1,10 @@
-# Login redirect endpoints
+# Short init endpoints
 
-## IP to IDP
+## IP to IDP Redirect
 
 This endpoint can be used to retrieve the IDP login url for a visitor. This is done by determining it's IP-address.
 
-GET: `/wp-json/fdmg-labels/v1/login-redirect/ip-to-idp`
+GET: `/wp-content/endpoints/ip-to-idp-redirect.php`
 
 ### Success response:
 

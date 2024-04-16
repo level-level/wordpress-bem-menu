@@ -9,6 +9,7 @@ use FDMGLabels\Connectors\FDMGAPI\GuzzleClientFactory;
 use FDMGLabels\Connectors\FDMGAPI\Objects\SAMLRedirectIPRange;
 use FDMGLabels\Connectors\FDMGAPI\SAMLClient;
 use Monolog\Registry;
+use Psr\Log\NullLogger;
 
 class IPAddressIDPRedirect {
 
@@ -62,7 +63,12 @@ class IPAddressIDPRedirect {
 	 */
 	protected function get_redirect_list_from_api(): array {
 		$config                = new Configuration();
-		$guzzle_client_factory = ( new GuzzleClientFactory( $config, Registry::wordpress() ) );
+		try {
+			$logger = Registry::wordpress();
+		} catch ( Exception $e ) {
+			$logger = new NullLogger();
+		}
+		$guzzle_client_factory = ( new GuzzleClientFactory( $config, $logger ) );
 		try {
 			$saml_client                 = new SAMLClient( $guzzle_client_factory->get_client(), $config );
 			$redirect_ip_ranges_response = $saml_client->get_redirect_ip_ranges();

@@ -6,6 +6,7 @@ parameters:
   checkGenericClassInNonGenericObjectType: false
   paths:
     - themes/fdmg-labels/app
+		- endpoints
   ignoreErrors:
     - '#Parameter \#2 \$callable of static method WP_CLI::add_command\(\) expects callable\(\): mixed, [a-zA-Z\\_'']+ given.#'
     - '#Used function WP_CLI\\Utils\\get_flag_value not found.#'

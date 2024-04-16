@@ -4,6 +4,7 @@
 	<config name="testVersion" value="8.0-"/>
 	<file>./themes/fdmg-labels/app</file>
 	<file>./themes/fdmg-labels/functions.php</file>
+	<file>./endpoints</file>
 	<file>./tests/acceptance/</file>
 	<file>./tests/functional/</file>
 	<file>./tests/unit/</file>
