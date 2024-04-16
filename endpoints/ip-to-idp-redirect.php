@@ -5,7 +5,7 @@ use FDMGLabels\Auth\IPAddressIDPRedirect;
 use FDMGLabels\StaticPages\LoginController;
 
 require __DIR__ . '/short-init.php';
-require_once constant( 'ABSPATH' ) . constant( 'WPINC' ) . '/link-template.php';
+require_once ABSPATH . WPINC . '/link-template.php'; // @phpstan-ignore-line
 nocache_headers();
 fdmg_labels_validate_referer();
 
