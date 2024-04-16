@@ -12,4 +12,4 @@ GET: `/wp-content/endpoints/ip-to-idp-redirect.php`
 - Content Type: `applicartion/json`
 
 Response structure: `object`
-- redirect_url: `string|null`
+- redirect_url (`string`): The url to redirect the user back to after logging in.

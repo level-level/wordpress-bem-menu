@@ -8,6 +8,9 @@ if ( ! $wp_path ) {
 }
 require $wp_path;
 
+// Require link template
+require_once ABSPATH . WPINC . '/link-template.php';
+
 // Load Composer autoloader
 require realpath( __DIR__ . '/../vendor/autoload.php' );
 
@@ -15,11 +18,22 @@ require realpath( __DIR__ . '/../vendor/autoload.php' );
  * Function to validate if the referer is from the same domain as the current site.
  */
 function fdmg_labels_validate_referer(): void {
-	$referer   = wp_get_referer();
 	$debugging = defined( 'WP_DEBUG' ) && WP_DEBUG;
-	if ( ! $debugging && ( ! $referer || ! str_contains( $referer, home_url() ) ) ) {
+	if ( $debugging ) {
+		return;
+	}
+
+	$referer_host = parse_url( wp_get_referer(), PHP_URL_HOST );
+	$current_url = sprintf(
+		'%s://%s%s',
+		is_ssl() ? 'https' : 'http',
+		$_SERVER['HTTP_HOST'] ?? '',
+		$_SERVER['REQUEST_URI'] ?? ''
+	);
+	$current_host = parse_url( $current_url, PHP_URL_HOST );
+	if ( $referer_host !== $current_host ) {
 		wp_send_json_error( new WP_Error( 'invalid_referer', 'Invalid referer', array(
 			'status' => 403,
-		) ) );
+		) ), 403 );
 	}
 }
