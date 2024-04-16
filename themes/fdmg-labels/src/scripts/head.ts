@@ -46,8 +46,8 @@ async function fdmgLabelsIPToIDPRedirect(): Promise<boolean> {
 		} );
 		const responseJson = await response.json();
 
-		if ( responseJson.redirect_url ) {
-			window.location.href = responseJson.redirect_url;
+		if ( responseJson.data.redirect_url ) {
+			window.location.href = responseJson.data.redirect_url;
 			return true;
 		} else {
 			return false;
