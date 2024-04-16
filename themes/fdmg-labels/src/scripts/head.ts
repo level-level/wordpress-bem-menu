@@ -34,6 +34,14 @@ function fdmgLabelsRedirectRememberMeUser(): boolean {
  * @returns true if the visitor was redirected to the IDP, false otherwise
  */
 async function fdmgLabelsIPToIDPRedirect(): Promise<boolean> {
+	// Prevent sending the API request on every pageload. Instead only perform once every 30 minutes.
+	const nowTimestampSeconds = Math.round( new Date().getTime() / 1000 );
+	const lastAttemptedTimestampSeconds = Number( localStorage.getItem( 'fdmg_idp_ip_redirect_attempted_ts' ) );
+	if ( lastAttemptedTimestampSeconds && lastAttemptedTimestampSeconds + ( 60 * 30 ) > nowTimestampSeconds) {
+		return false;
+	}
+
+	// Get the redirect URL from the API, and redirect if found
 	try {
 		const response = await fetch( `${short_init.url}/ip-to-idp-redirect.php`, {
 			method: 'POST',
@@ -48,11 +56,14 @@ async function fdmgLabelsIPToIDPRedirect(): Promise<boolean> {
 
 		if ( responseJson.data.success && responseJson.data.redirect_url ) {
 			window.location.href = responseJson.data.redirect_url;
+			localStorage.removeItem( 'fdmg_idp_ip_redirect_attempted_ts' ); // After login redirect we delete the cookie to reset the timer.
 			return true;
 		} else {
+			localStorage.setItem( 'fdmg_idp_ip_redirect_attempted_ts', String( nowTimestampSeconds ) ); // Store the timestamp of the last attempt
 			return false;
 		}
 	} catch ( error ) {
+		localStorage.setItem( 'fdmg_idp_ip_redirect_attempted_ts', String( nowTimestampSeconds ) ); // Store the timestamp of the last attempt
 		return false;
 	}
 }
