@@ -20,7 +20,7 @@ function fdmg_labels_validate_referer(): void {
 		return;
 	}
 
-	$referer_host = parse_url( wp_get_referer(), PHP_URL_HOST ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
+	$referer_host = parse_url( wp_get_referer() ?: '', PHP_URL_HOST ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
 	$current_url  = sprintf(
 		'%s://%s%s',
 		is_ssl() ? 'https' : 'http',
@@ -28,7 +28,7 @@ function fdmg_labels_validate_referer(): void {
 		$_SERVER['REQUEST_URI'] ?? ''
 	);
 	$current_host = parse_url( $current_url, PHP_URL_HOST ); // phpcs:ignore WordPress.WP.AlternativeFunctions.parse_url_parse_url
-	if ( $referer_host !== $current_host ) {
+	if ( $referer_host && $referer_host !== $current_host ) {
 		wp_send_json_error(
 			new WP_Error(
 				'invalid_referer', 'Invalid referer', array(
