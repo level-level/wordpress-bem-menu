@@ -17,7 +17,7 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 	if ( ! filter_var( $redirect_to, FILTER_VALIDATE_URL ) ) {
 		wp_send_json_error(
 			new WP_Error(
-				'invalid_parameter', 'redirect_to parameter is not a valid url.', array(
+				'invalid_parameter', 'The redirect_to parameter is not a valid url.', array(
 					'status' => 400,
 				)
 			), 400
