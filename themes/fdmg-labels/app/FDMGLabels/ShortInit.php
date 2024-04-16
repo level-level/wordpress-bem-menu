@@ -8,7 +8,7 @@ class ShortInit {
 			'clarkson_head',
 			'short_init',
 			array(
-				'url'   => home_url( 'wp-content/endpoints' ),
+				'url' => home_url( 'wp-content/endpoints' ),
 			)
 		);
 	}
