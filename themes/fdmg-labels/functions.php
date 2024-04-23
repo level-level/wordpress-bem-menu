@@ -58,6 +58,7 @@
 ( new \FDMGLabels\ServerSideTracking\Init() )->register_hooks();
 ( new \FDMGLabels\EmbedCacheRemover() )->register_hooks();
 
+
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
 

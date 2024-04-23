@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+use FDMGLabels\ShortInit;
 use LevelLevel\Logging\Settings\SentryFrontend\Fields\DSN;
 
 class Assets {
@@ -56,6 +57,7 @@ class Assets {
 		}
 
 		( new ScriptTranslations() )->register_hooks();
+		( new ShortInit() )->localize_head();
 	}
 
 	public function enqueue_editor(): void {
