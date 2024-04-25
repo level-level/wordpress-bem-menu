@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.0.21",
-    "@fontsource/libre-caslon-text": "^5.0.19",
+    "@fontsource/libre-caslon-text": "^5.0.20",
     "@level-level/recyclops": "^2.9.1",
     "@sentry/browser": "^7.108.0",
     "dayjs": "^1.11.10",
