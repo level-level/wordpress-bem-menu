@@ -5488,15 +5488,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.8.13",
+            "version": "2.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "trunk"
+                "reference": "tags/2.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.zip?timestamp=1711439848",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
