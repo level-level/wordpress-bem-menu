@@ -31,7 +31,7 @@
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-typescript": "^7.24.1",
     "@jest/globals": "^29.7.0",
-    "@level-level/eslint-config-level-level": "^1.4.0",
+    "@level-level/eslint-config-level-level": "^1.6.0",
     "@level-level/storybook-config": "^1.0.6",
     "@level-level/stylelint-config-level-level": "^1.1.0",
     "@level-level/webpack-config": "^1.8.0",
