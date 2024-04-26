@@ -200,7 +200,7 @@ class DataLayer {
 			'author'            => $post->get_author() ? $post->get_author()->get_display_name() : '',
 			'publication_date'  => $post->get_date_i18n( 'Y-m-d' ),
 			'publication_time'  => $post->get_date_i18n( 'H:i' ),
-			'revisions_count'   => isset( $revisions['count'] ) ? $revisions['count'] : 0,
+			'revisions_count'   => $revisions['count'],
 			'component_subtype' => $component_subtype,
 		);
 
