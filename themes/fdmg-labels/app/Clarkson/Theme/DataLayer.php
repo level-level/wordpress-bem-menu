@@ -184,7 +184,7 @@ class DataLayer {
 	 * @return array<mixed>
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
-		$revisions = wp_get_latest_revision_id_and_total_count( url_to_postid( $post->get_id() ) );
+		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
 		if ( is_wp_error( $revisions ) ) {
 			$revisions = array( 'count' => 0 );
 		}
