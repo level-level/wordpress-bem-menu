@@ -38,6 +38,7 @@
 					objects: most_read ? most_read|map(post => {
 						title: post.get_alternative_title()|default(post.get_title()),
 						url: post.get_permalink(),
+						object: post,
 					}),
 				} %}
 			</div>
