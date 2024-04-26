@@ -184,7 +184,12 @@ class DataLayer {
 	 * @return array<mixed>
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
-		$revisions  = wp_get_latest_revision_id_and_total_count( $post->get_id() );
+		$url = $post->get_permalink();
+		if ( $url === false ) {
+			exit;
+		}
+
+		$revisions  = wp_get_latest_revision_id_and_total_count( url_to_postid( $url ) );
 		$categories = is_array( $post->get_terms( Category::TAXONOMY_NAME ) ) ? $post->get_terms( Category::TAXONOMY_NAME ) : array();
 
 		$config = array(
