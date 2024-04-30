@@ -2,11 +2,7 @@
 
 <main class="main" id="main-content">
 
-	{% if is_active_sidebar('widget-area-header-ad') %}
-		<div class="top-advertisement">
-			{{ sidebar.get_widgetarea('widget-area-header-ad')|raw }}
-		</div>
-	{% endif %}
+	{% block header_advertisement_area %}{% endblock %}
 
 	<div class="section section--no-top">
 		<div class="container">

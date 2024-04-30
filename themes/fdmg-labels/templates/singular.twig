@@ -13,6 +13,14 @@
 	{% set sections = object.get_terms('fdmg_section') %}
 {% endif %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-article-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-article-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 	{% if is_singular('post') %}
 		{% include 'partials/tag-manager/article-terms.twig' with {

@@ -76,22 +76,28 @@ class Advertisement {
 	 */
 	protected function get_ad_slots(): array {
 		return array(
-			'Web/Header',
+			'Article/Header',
+			'Article/Mid1',
+			'Article/Mid2',
+			'Author/Header',
+			'Author/Mid1',
+			'Category/Header',
+			'Category/Mid1',
+			'Home/Header',
 			'Home/Mid1',
 			'Home/Mid2',
 			'Home/Mid3',
 			'Home/Mid4',
 			'Home/Mid5',
 			'Home/Mid6',
-			'Article/Mid1',
-			'Article/Mid2',
-			'Category/Mid1',
+			'Page/Header',
 			'Page/Mid1',
 			'Page/Mid2',
-			'Searchresult/Mid1',
-			'Author/Mid1',
+			'Partner/Header',
 			'Partner/Mid1',
 			'Partner/Mid2',
+			'Searchresult/Header',
+			'Searchresult/Mid1',
 		);
 	}
 }
