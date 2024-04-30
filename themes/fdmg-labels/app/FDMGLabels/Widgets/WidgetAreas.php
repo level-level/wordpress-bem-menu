@@ -42,13 +42,75 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
-				'id'            => 'widget-area-header-ad',
-				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'fdmg-labels-admin' ),
+				'name'          => _x( 'Homepage header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-homepage-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the homepage.', 'Widgets', 'fdmg-labels-admin' ),
 				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Article header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-article-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of an article.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Category header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-category-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the category archive', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-page-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of a page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Search results header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-search-results-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the search results page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Author header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-author-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of a author page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Partner header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-partner-header-ad',
+					'description'   => _x( 'Add a single advertisement block to appear on the top of a partner page.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section widget">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
 
 		register_sidebar(
 			array(

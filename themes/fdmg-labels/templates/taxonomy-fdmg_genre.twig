@@ -1,5 +1,13 @@
 {% extends 'archive.twig' %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-category-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-category-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block sidebar %}
 	{% if is_active_sidebar('widget-area-genre') %}
 		{{ sidebar.get_widgetarea('widget-area-genre')|raw }}

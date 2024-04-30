@@ -1,5 +1,13 @@
 {% extends 'layouts/sidebar-layout-with-header.twig' %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-search-results-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-search-results-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block header %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">

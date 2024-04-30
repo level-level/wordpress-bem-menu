@@ -4,6 +4,14 @@
 {% set content = object.get_content() %}
 {% set author_posts = object.get_current_paginated_posts() %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-author-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-author-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block header %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">
