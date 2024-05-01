@@ -19,6 +19,12 @@
       "ipStart": "192.168.2.1",
       "ipEnd": "192.168.2.1",
       "clients": "fd,energeia,pensioenpro"
+    },
+    {
+      "idpAlias": "aliasfour",
+      "ipStart": "192.168.3.1",
+      "ipEnd": "192.168.3.1",
+      "clients": "*"
     }
   ]
 }
