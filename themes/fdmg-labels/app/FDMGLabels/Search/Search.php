@@ -25,15 +25,24 @@ class Search {
 	}
 
 	/**
+	 * Add context arguments for search page
 	 *
 	 * @param array<string,mixed> $context
 	 * @return array<string,mixed>
 	 */
 	public function add_context_args( array $context ): array {
+		// Add global context data
 		$search_options = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' ) ?: array();
-
 		$context['default_sort']   = $search_options[ SearchOptions::META_SEARCH_DEFAULT_SORTING ] ?? 'relevance';
 		$context['default_period'] = $search_options[ SearchOptions::META_SEARCH_DEFAULT_MIN_POST_DATE ] ?? '3-years';
+
+		// If not a search page, return context
+		if ( ! is_search() ) {
+			return $context;
+		}
+
+		// Add search context data
+		$context['search_query'] = get_search_query();
 		return $context;
 	}
 }
