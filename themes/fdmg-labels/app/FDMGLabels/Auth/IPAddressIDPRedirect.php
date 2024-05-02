@@ -26,9 +26,10 @@ class IPAddressIDPRedirect {
 		$config    = new Configuration();
 		$idp_alias = null;
 		foreach ( $redirect_ip_ranges as $redirect_ip_range ) {
-			$site_connections = explode( ',', $redirect_ip_range->get_clients() );
-			$site_connections = array_map( 'trim', $site_connections );
-			if ( ! in_array( $config->get_site_connection(), $site_connections, true ) ) {
+			$site_connections       = $redirect_ip_range->get_clients();
+			$site_connections_parts = explode( ',', $site_connections );
+			$site_connections_parts = array_map( 'trim', $site_connections_parts );
+			if ( $site_connections !== '*' && ! in_array( $config->get_site_connection(), $site_connections_parts, true ) ) {
 				continue;
 			}
 
