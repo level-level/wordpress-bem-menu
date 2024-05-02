@@ -32,7 +32,7 @@ class Search {
 	 */
 	public function add_context_args( array $context ): array {
 		// Add global context data
-		$search_options = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' ) ?: array();
+		$search_options            = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' ) ?: array();
 		$context['default_sort']   = $search_options[ SearchOptions::META_SEARCH_DEFAULT_SORTING ] ?? 'relevance';
 		$context['default_period'] = $search_options[ SearchOptions::META_SEARCH_DEFAULT_MIN_POST_DATE ] ?? '3-years';
 
