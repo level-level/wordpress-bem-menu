@@ -13,6 +13,10 @@ export type Auth = {
 	loginUrl: string;
 }
 
+export type ShortInit = {
+	url: string;
+}
+
 /**
  * Interface for all modules used by the data attribute: data-module
  */
