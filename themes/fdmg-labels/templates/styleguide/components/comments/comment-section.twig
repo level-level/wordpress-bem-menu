@@ -23,7 +23,7 @@
 			} %}
 			<div class="comment-form-container" data-module="comment-form" data-config="{{ config|json_encode() }}">
 
-				{% set login_url = static_pages.auth.get_permalink(constant('PAGE_LOGIN', static_pages.auth)) %}
+				{% set login_url = static_pages.login.get_permalink(constant('PAGE_LOGIN', static_pages.login)) %}
 				{% set subscribe_url = options.subscribe_button.url %}
 				{% include 'styleguide/components/comments/comment-no-permission.twig' with {
 					login_url: login_url,
