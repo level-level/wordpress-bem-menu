@@ -24,6 +24,7 @@ class PageFragmentsController extends WP_REST_Controller {
 	public function register_hooks(): void {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 		add_filter( 'rest_authentication_errors', array( $this, 'remove_nonce_check' ), 1 );
+		add_filter( 'rest_send_nocache_headers', array( $this, 'send_nocache_headers' ) );
 	}
 
 	public function register_routes(): void {
@@ -68,15 +69,23 @@ class PageFragmentsController extends WP_REST_Controller {
 	}
 
 	/**
+	 * Send nocache headers for this endpoint.
+	 * The content can be unique for every visitor.
+	 */
+	public function send_nocache_headers( bool $send ): bool {
+		if ( strstr( $_SERVER['REQUEST_URI'], $this->namespace . '/' . $this->rest_base ) ) {
+			return true;
+		}
+		return $send;
+	}
+
+	/**
 	 * Get the content of the post that was initially blocked by the access wall.
 	 *
 	 * @param WP_REST_Request $request Full details about the request.
 	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 	 */
 	public function get_item( $request ) {
-		// User unique content, disable caching
-		nocache_headers();
-
 		$post = null;
 		if ( ! empty( $request['post_id'] ) ) {
 			$post = get_post( (int) $request['post_id'] );
