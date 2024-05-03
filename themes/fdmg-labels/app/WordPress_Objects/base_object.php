@@ -99,6 +99,30 @@ class base_object extends Clarkson_Object {
 		$user_identity       = $user->exists() ? $user->display_name : '';
 		$login_required_html = ( new Comments() )->get_subscription_required_html( $this );
 
+		$rules_page           = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_DISCUSSION_RULES_PAGE ), 'options' );
+		$rules_page_html      = $rules_page instanceof Clarkson_Object ? sprintf(
+			_x( 'Comments must comply with our %s.', 'Comments', 'fdmg-labels' ),
+			sprintf(
+				'<a href="%s">%s</a>',
+				$rules_page->get_permalink(),
+				_x( 'commenting rules', 'Comments', 'fdmg-labels' ),
+			),
+		) : null;
+		$comment_notes_before = array(
+			_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
+			$rules_page_html,
+			_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
+		);
+
+		$must_log_in_as_notes = array_merge(
+			array(
+				sprintf(
+					_x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
+					$user_identity,
+				),
+			), $comment_notes_before
+		);
+
 		$args = array(
 			'class_form'           => 'form-group',
 			'format'               => 'html5',
@@ -111,27 +135,11 @@ class base_object extends Clarkson_Object {
 			'must_log_in'          => $login_required_html,
 			'logged_in_as'         => sprintf(
 				'<p class="logged-in-as">%s</p>',
-				implode(
-					'<br/>', array(
-						sprintf(
-							_x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
-							$user_identity,
-						),
-						_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
-						_x( 'A comment is held for moderation.', 'Comments', 'fdmg-labels' ),
-						_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
-					)
-				)
+				implode( '<br/>', array_filter( $must_log_in_as_notes ) )
 			),
 			'comment_notes_before' => sprintf(
 				'<p class="comment-notes">%s</p>',
-				implode(
-					'<br/>', array(
-						_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
-						_x( 'A comment is held for moderation.', 'Comments', 'fdmg-labels' ),
-						_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
-					)
-				)
+				implode( '<br/>', array_filter( $comment_notes_before ) )
 			),
 		);
 
