@@ -20,31 +20,31 @@
     "build:sentry": "dawn build:sentry"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.0.20",
-    "@fontsource/libre-caslon-text": "^5.0.19",
+    "@fontsource-variable/figtree": "^5.0.21",
+    "@fontsource/libre-caslon-text": "^5.0.20",
     "@level-level/recyclops": "^2.9.1",
-    "@sentry/browser": "^7.108.0",
+    "@sentry/browser": "^7.112.2",
     "dayjs": "^1.11.10",
     "js-cookie": "^3.0.5"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.23.9",
-    "@babel/preset-typescript": "^7.23.3",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-typescript": "^7.24.1",
     "@jest/globals": "^29.7.0",
-    "@level-level/eslint-config-level-level": "^1.4.0",
+    "@level-level/eslint-config-level-level": "^1.6.0",
     "@level-level/storybook-config": "^1.0.6",
     "@level-level/stylelint-config-level-level": "^1.1.0",
-    "@level-level/webpack-config": "^1.8.0",
+    "@level-level/webpack-config": "^1.9.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/jest": "^29.5.12",
     "@types/js-cookie": "^3.0.6",
-    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
     "babel-jest": "^29.7.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jest": "^27.6.3",
+    "eslint-plugin-jest": "^27.9.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prettier": "^3.2.4",
+    "prettier": "^3.2.5",
     "stylelint-config-prettier": "^9.0.5"
   }
 }

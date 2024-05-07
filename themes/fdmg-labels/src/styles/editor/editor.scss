@@ -138,7 +138,13 @@
 		max-width: calc(#{var(--sidebar-width)} + 32px);
 		margin: 0 auto !important;
 
-		&[data-widget-area-id='widget-area-header-ad'] {
+		&[data-widget-area-id='widget-area-homepage-header-ad'],
+		&[data-widget-area-id='widget-area-article-header-ad'],
+		&[data-widget-area-id='widget-area-category-header-ad'],
+		&[data-widget-area-id='widget-area-page-header-ad'],
+		&[data-widget-area-id='widget-area-search-results-header-ad'],
+		&[data-widget-area-id='widget-area-author-header-ad'],
+		&[data-widget-area-id='widget-area-partner-header-ad'] {
 			max-width: none;
 		}
 	}

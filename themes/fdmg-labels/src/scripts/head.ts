@@ -54,9 +54,9 @@ async function fdmgLabelsIPToIDPRedirect(): Promise<boolean> {
 		} );
 		const responseJson = await response.json();
 
-		if ( responseJson.data.success && responseJson.data.redirect_url ) {
+		if ( responseJson.success && responseJson.data.redirect_url ) {
+			localStorage.removeItem( 'fdmg_idp_ip_redirect_attempted_ts' ); // Just before login redirect we delete the cookie to reset the timer.
 			window.location.href = responseJson.data.redirect_url;
-			localStorage.removeItem( 'fdmg_idp_ip_redirect_attempted_ts' ); // After login redirect we delete the cookie to reset the timer.
 			return true;
 		} else {
 			localStorage.setItem( 'fdmg_idp_ip_redirect_attempted_ts', String( nowTimestampSeconds ) ); // Store the timestamp of the last attempt

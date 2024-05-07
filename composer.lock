@@ -1587,11 +1587,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.2.7",
+            "version": "6.2.9",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.7",
-                "shasum": "2417e355d431cc686bcdd354f775732924e39ec7",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.9",
+                "shasum": "65723dd460970cfbf820629e278d71acc6bc0848",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1613,11 +1613,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.6",
+            "version": "2.8.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.6",
-                "shasum": "8265d43aa1f88a0a3d2f710ac715a50026e72e29",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.8",
+                "shasum": "2c823ed8cd1b5c12796d54c1e2ed01756fce704d",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1701,11 +1701,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.3.13",
+            "version": "4.3.15",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.13",
-                "shasum": "cbf9bed609ad36f5ff8f3aed43ad5948f5d08405",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.15",
+                "shasum": "f37f58f247bc8e4419804d7698548cba7fc18995",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1727,11 +1727,11 @@
         },
         {
             "name": "ll-premium/wp-all-import-pro",
-            "version": "4.8.5",
+            "version": "4.8.7",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.5",
-                "shasum": "8f34f043094b6ffff6c519903ac55d901dbf996f",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.7",
+                "shasum": "17ffacd6d6a6eff8c1fbab66d4e2d641eceecf0c",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5164,16 +5164,16 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.7.3",
+            "version": "3.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "8aa895a6edfeb92f40d6eddc9dfc35df65da38ae"
+                "reference": "5fb655253dc004bb7a6d840da807f0949aea8bcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/8aa895a6edfeb92f40d6eddc9dfc35df65da38ae",
-                "reference": "8aa895a6edfeb92f40d6eddc9dfc35df65da38ae",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/5fb655253dc004bb7a6d840da807f0949aea8bcd",
+                "reference": "5fb655253dc004bb7a6d840da807f0949aea8bcd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5207,9 +5207,9 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.3"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.4"
             },
-            "time": "2024-03-20T10:16:56+00:00"
+            "time": "2024-04-05T14:42:07+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
@@ -5338,15 +5338,15 @@
         },
         {
             "name": "wpackagist-plugin/download-monitor",
-            "version": "4.9.11",
+            "version": "4.9.13",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/download-monitor/",
-                "reference": "tags/4.9.11"
+                "reference": "tags/4.9.13"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.11.zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.13.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5363,15 +5363,15 @@
         },
         {
             "name": "wpackagist-plugin/duracelltomi-google-tag-manager",
-            "version": "1.20.1",
+            "version": "1.20.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/duracelltomi-google-tag-manager/",
-                "reference": "tags/1.20.1"
+                "reference": "tags/1.20.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.20.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/duracelltomi-google-tag-manager.1.20.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5488,15 +5488,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.8.13",
+            "version": "2.9.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "trunk"
+                "reference": "tags/2.9.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.zip?timestamp=1711439848",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5513,15 +5513,15 @@
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "3.15.0",
+            "version": "3.16.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/3.15.0"
+                "reference": "tags/3.16.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.15.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.16.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5588,15 +5588,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "7.11.4",
+            "version": "7.11.5",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/7.11.4"
+                "reference": "tags/7.11.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.7.11.5.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
