@@ -99,8 +99,9 @@ class ii_team extends base_object {
 				'post_status' => 'publish',
 				'meta_query'  => array(
 					array(
-						'key'     => 'authors',
-						'value'   => maybe_serialize( (string) $this->get_id() ), // ACF saves post ID's as a serialized array of strings
+						'key'     => PostTypesPost::META_AUTHORS,
+						// ACF saves post ID's as a serialized array of strings
+						'value'   => serialize( (string) $this->get_id() ), // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
 						'compare' => 'LIKE',
 					),
 				),
