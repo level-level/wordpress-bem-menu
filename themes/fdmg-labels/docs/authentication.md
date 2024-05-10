@@ -34,7 +34,7 @@ FDMG has some Business clients.
 Employees of these businesses are able to view paid articles in the website, and their company pays for it.
 Payments are made based on the amount of articles the employees have read each month.
 
-To make this effective, users working at those companies should be redirected to the login page of KeyCloak when they visit the website.
+To make this effective, users working at those companies should be redirected to the login page of KeyCloak when they visit the website, and are not logged in yet.
 And not just the login page of KeyCloak, but they should be redirected directly to their Identity Provider (Google, Microsoft, etc.) of choice.
 
 That's why, on first page load, [via JavaScript placed in the head](./../src/scripts/head.ts), we perform a request to a [short-init endpoint](./../../../endpoints/ip-to-idp-redirect.php) to check the visitors IP-address.
