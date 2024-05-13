@@ -47,7 +47,12 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 
 	// Build the redirect URL
 	$redirect_url = ( new LoginController() )->get_login_permalink( $redirect_to );
-	$redirect_url = add_query_arg( 'kc_idp_hint', rawurlencode( $idp_alias ), $redirect_url );
+	$redirect_url = add_query_arg(
+		array(
+			'kc_idp_hint' => rawurlencode( $idp_alias ),
+			'method'      => 'ipBasedRedirect',
+		), $redirect_url
+	);
 
 	// Return the response
 	wp_send_json_success(
