@@ -1,5 +1,3 @@
-{% set authors_string = authors|map(author => author.name)|join(', ') %}
-
 <div data-teaser-post data-component="teaser-post-large" {{ datalayer.get_config(object, 'TEASER', component_subtype) }} class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
 
 	{% if image %}

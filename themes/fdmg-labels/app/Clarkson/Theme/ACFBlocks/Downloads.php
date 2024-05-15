@@ -29,7 +29,7 @@ class Downloads {
 				'title'       => _x( 'Downloads', 'Block', 'fdmg-labels-admin' ),
 				'description' => _x( 'Displays downloads from Download monitor.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'download',
-				'align'       => 'center', // full, wide, left, center, right
+				'align'       => 'right', // full, wide, left, center, right
 				'keywords'    => array(
 					_x( 'download monitor', 'Keyword', 'fdmg-labels-admin' ),
 					_x( 'file', 'Keyword', 'fdmg-labels-admin' ),

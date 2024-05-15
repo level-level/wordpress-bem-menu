@@ -43,6 +43,7 @@
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
 ( new \FDMGLabels\Search\Filter() )->register_hooks();
+( new \FDMGLabels\Search\ElasticPress() )->register_hooks();
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
@@ -55,6 +56,9 @@
 ( new \FDMGLabels\AdminAjax\Init() )->register_hooks();
 ( new \FDMGLabels\Robots() )->register_hooks();
 ( new \FDMGLabels\Redirection() )->register_hooks();
+( new \FDMGLabels\ServerSideTracking\Init() )->register_hooks();
+( new \FDMGLabels\EmbedCacheRemover() )->register_hooks();
+
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();

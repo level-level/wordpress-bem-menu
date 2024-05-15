@@ -1,0 +1,5262 @@
+{
+  "openapi": "3.0.1",
+  "servers": [
+    {
+      "url": "https://api.fdmg.org/private/fdmg/account",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "KeyCloak login with LDAP user": []
+    },
+    {
+      "Services Client Credentials login": []
+    }
+  ],
+  "paths": {
+    "/{id}": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "from local account db",
+        "description": "Get account by sap id",
+        "operationId": "getAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "propegates changes to all queue`s",
+        "description": "Update account",
+        "operationId": "updateAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/update/email": {
+      "put": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "propegates changes to all queue`s",
+        "description": "Update account",
+        "operationId": "updateAccountEmail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/optIns": {
+      "get": {
+        "tags": [
+          "opt-in-controller"
+        ],
+        "summary": "will update the local account with newsletter preferences",
+        "description": "get optIns from sim for account",
+        "operationId": "getOptIns",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "opt-in-controller"
+        ],
+        "summary": "propegates changes to all queue`s",
+        "description": "Update account",
+        "operationId": "updateOptIns",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/newsletters": {
+      "get": {
+        "tags": [
+          "newsletter-controller"
+        ],
+        "description": "get newsLetters from sim for account",
+        "operationId": "getNewsletters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "newsletter-controller"
+        ],
+        "description": "update newsLetters in sim for account",
+        "operationId": "updateNewsletters",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/email": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send new email confirm mail",
+        "operationId": "updateEmail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/email/saml/expired": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send saml expired email",
+        "operationId": "sendSamlExpiredMail",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "idp",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyName",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/allOptIns": {
+      "get": {
+        "tags": [
+          "all-opt-ins-controller"
+        ],
+        "summary": "Get all optIns. Not only the ones that match the Newsletters and Optins enums",
+        "description": "Get all optIns for account",
+        "operationId": "getOptIns_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseMapStringBoolean"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "all-opt-ins-controller"
+        ],
+        "summary": "Updates all given optIns and leaves all other configured optIns as they are.",
+        "description": "Update optIns for account",
+        "operationId": "updateOptIns_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/wso2/{id}": {
+      "get": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "See the account representation as it is currently in SAP",
+        "description": "Get account from wso2 by sap id",
+        "operationId": "getAccount_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "Get the account from SAP and update the local account with the updates",
+        "description": "Update account by sapId",
+        "operationId": "updateAccount_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2/{id}/sync": {
+      "put": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "Get the account from SAP and update the local account with the updates",
+        "description": "Update account sync by sapId",
+        "operationId": "updateAccountSync",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2/{id}/async": {
+      "put": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "Get the account from SAP and update the local account with the updates",
+        "description": "Update account async by sapId",
+        "operationId": "updateAccountAsync",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2/salesforce/upsert": {
+      "put": {
+        "tags": [
+          "WSO2 Salesforce service"
+        ],
+        "summary": "Upsert Account",
+        "description": "Update account used by sf via wso2",
+        "operationId": "upsertAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Upserted account",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{sapId}": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "updateAccount_2",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lastLoggedin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "keycloakId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{sapId}/sync": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId, return updated Account",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lastLoggedin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{sapId}/roles": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "updateAccountRoles",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{sapId}/removeClientRoles/{client}": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "removeClientRoles",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "client",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}/idp/remove": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "description": "remove IDP from account",
+        "operationId": "removeIdp",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IDP"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}/idp/add": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "description": "add IDP to account",
+        "operationId": "addIdp",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IDP"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/{id}/gz": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "propegates changes to all queue`s",
+        "description": "Update account",
+        "operationId": "updateAccountGz",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/async/{sapId}": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId, executed ASYNC",
+        "operationId": "updateAccountAsync_1",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lastLoggedin",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/async/{sapId}/roles": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "updateAccountRolesAsync",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/update/async/{sapId}/removeClientRoles/{client}": {
+      "put": {
+        "tags": [
+          "update-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "removeClientRolesAsync",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "client",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saml/evict-all-redirectipranges": {
+      "put": {
+        "tags": [
+          "saml-controller"
+        ],
+        "summary": "evict the caches for redirect ip ranges.",
+        "description": "Evicts the caches for redirect ip ranges",
+        "operationId": "evictSamlRedirectIpRanges",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/products/{productId}/evict": {
+      "put": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Evict product by capmaignId",
+        "operationId": "evictProductByProductId",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/evict": {
+      "put": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Evict all products from cache",
+        "operationId": "evictProductsCache",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productCatalog": {
+      "get": {
+        "tags": [
+          "product catalog"
+        ],
+        "description": "Get complete product catalog",
+        "operationId": "getAllProducts_1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListProduct"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "product catalog"
+        ],
+        "description": "Get and update complete product catalog from SF",
+        "operationId": "updateProductCatalog",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListProduct"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "product catalog"
+        ],
+        "description": "Post and save new product catalog",
+        "operationId": "createProductCatalog",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SfProductCatalog"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/keycloak/accountattributes/{id}": {
+      "get": {
+        "tags": [
+          "keycloak-controller"
+        ],
+        "summary": "get user's (custom) attributes from keycloak. Used by fitnesse to validate tests",
+        "description": "get custom attribute list from keyCloak",
+        "operationId": "getKeyCloakUserAttributes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "keycloak-controller"
+        ],
+        "summary": "update custom user attribute in keyCloak. value null will remove the attribute. Used by fitnesse to validate tests",
+        "description": "update custom user attribute in keyCloak, returns all attributes",
+        "operationId": "updateKeyCloakUserAttribute",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "value",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/import/{sapId}": {
+      "put": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId",
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "post": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "will update if user already exists",
+        "description": "Import user from SAP into account by sapId ",
+        "operationId": "importUser",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/import/sim/{sapId}": {
+      "put": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId, executed ASYNC",
+        "operationId": "updateUserAsyncSimTrigger",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/import/async/{sapId}": {
+      "put": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "triggered from KeyCloak, not by SAP (see wso2Controller)",
+        "description": "UPDATE user from SAP into account by sapId, executed ASYNC",
+        "operationId": "updateUserAsync",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      },
+      "post": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "will update if user already exists",
+        "description": "Import user from SAP into account by sapId, executed ASYNC",
+        "operationId": "importUserAsync",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email/{uniqueId}": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "confirm and update email",
+        "operationId": "confirmEmail",
+        "parameters": [
+          {
+            "name": "uniqueId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email/verify": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send account email verify mail",
+        "operationId": "verifyEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email/verify/code/send": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send new email confirm mail",
+        "operationId": "sendEmailVerifyCode",
+        "parameters": [
+          {
+            "name": "keycloakId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email/verify/code/confirm": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send new email confirm mail",
+        "operationId": "confirmEmailVerifyCode",
+        "parameters": [
+          {
+            "name": "keycloakId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email/register": {
+      "put": {
+        "tags": [
+          "email-controller"
+        ],
+        "description": "send account registration email verify mail",
+        "operationId": "registrationEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "link",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaignId}/evict": {
+      "put": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Evict product by capmaignId",
+        "operationId": "evictProductByCampaignId",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/{id}": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Trigger update from local account db to all queue listeners",
+        "operationId": "updateAccount_3",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Delete account from local account db (sapid)",
+        "operationId": "deleteAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/wso2/email": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Update emailaddress in wso2 and selligent only (doesn't update in account/iam) Only possible if newEmail doesn't exist yet in wso2",
+        "operationId": "updateWso2Email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newEmail",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/wso2/email/verwijderavg": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Only for testing email verwijderAVG: sets lastname to VERWIJDERDAVG (to give 410 gone iam-406) and sets email to domain .verwijderdavgEmail is set to domain .verwijderdavg to be able to simulate prod situation , so a new account on existing email can be created.",
+        "operationId": "verwijderAvgWso2Email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/subscriptions/default/{id}": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Create a default 5 articles free subscription with endDate 9999-12-31 for user by sapId",
+        "operationId": "createSubscription",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/subscriptions/activate": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "summary": "Date format example : 2021-04-14",
+        "description": "Trigger update of keyCloakRoles for subscriptions starting and ending on this date (not more then 6 days in advance)",
+        "operationId": "updateAccount_4",
+        "parameters": [
+          {
+            "name": "localDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/evict/{id}": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Trigger cache evict of account in hazelcast",
+        "operationId": "evictAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/data/consistency/lastloggedin/{id}": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Checks Account if the field Firstname is filled by accountId (sapID). If it is empty or blank the firstname gets filled with the first character of the full-name property.",
+        "operationId": "updateLastLoggedin",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "lastLoggedin",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/data/consistency/firstname/{id}": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Checks Account if the field Firstname is filled by accountId (sapID). If it is empty or blank the firstname gets filled with the first character of the full-name property.",
+        "operationId": "updateFirstnameIfNeeded",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/admin/data/consistency/email": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Update emailaddress, sapId and userName to match the user's account (based on email), with customerNumber in WSO2 (sap, sim). Only possible if new email doesn't exist already. Current email AND customerNumber needed for verification.",
+        "operationId": "updateEmail_1",
+        "parameters": [
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newEmail",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/data/consistency/customernumber": {
+      "put": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Update customerNumber, sapId and userName to match the user's account (based on email), with customerNumber in WSO2 (sap, sim). Only possible if new customer number doesn't exist already. Current email AND customerNumber needed for verification.",
+        "operationId": "updateCustomerNumber",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newCustomerNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "description": "create order",
+        "operationId": "createOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseSubscription"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/order/{id}/1weekfreenewspaper": {
+      "post": {
+        "tags": [
+          "order-controller"
+        ],
+        "description": "create newspaper order",
+        "operationId": "createFreeNewsPaperOrder",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invoices": {
+      "post": {
+        "tags": [
+          "invoice-controller"
+        ],
+        "summary": "...",
+        "description": "Save a invoice pdf",
+        "operationId": "uploadInvoice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": [
+                  "file"
+                ],
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/import": {
+      "get": {
+        "tags": [
+          "import-controller"
+        ],
+        "summary": "will update if user already exists",
+        "description": "Import user from SAP into account by email ",
+        "operationId": "findOrImportUser",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "enableWso2Import",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "import-controller"
+        ],
+        "operationId": "importUserByEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deliverystop/{id}": {
+      "post": {
+        "tags": [
+          "deplivery-stop-controller"
+        ],
+        "description": "post complaint",
+        "operationId": "postDeliveryStop",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/create": {
+      "post": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "Complete the registration, create user in WSO2",
+        "description": "Complete account registration",
+        "operationId": "createAccount",
+        "parameters": [
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "emailConsent",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "false"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Account"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contact": {
+      "post": {
+        "tags": [
+          "contact-controller"
+        ],
+        "description": "post contact form",
+        "operationId": "postComplaint",
+        "parameters": [
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseContact"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/complaint/{id}": {
+      "post": {
+        "tags": [
+          "complaint-controller"
+        ],
+        "description": "post complaint",
+        "operationId": "postComplaint_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Complaint"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseComplaint"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/ids/delete": {
+      "post": {
+        "tags": [
+          "admin-controller"
+        ],
+        "operationId": "deleteListLongs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/delete": {
+      "post": {
+        "tags": [
+          "admin-controller"
+        ],
+        "operationId": "deleteListStrings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{sapId}/invoices": {
+      "get": {
+        "tags": [
+          "invoice-controller"
+        ],
+        "summary": "including there latest payment state, and update local account",
+        "description": "Get all invoices from SAP",
+        "operationId": "getInvoices",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListInvoice"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/quotum/used": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Get list of articleIds viewed for a subscription interval",
+        "description": "Get list of all articles per interval for current quotumSubscription",
+        "operationId": "getQuotumViewList",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseMapLongInteger"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/quotum/used/current": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Get list of articleIds viewed for a subscription interval",
+        "description": "Get list of articles viewed with quotum for current interval",
+        "operationId": "getQuotumViewListForCurrentInterval",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}/quotum/clear": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "delete all views in current interval",
+        "description": "clear all entries in current interval by customerNumber",
+        "operationId": "clearQuotumViewListForCurrentInterval",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2": {
+      "get": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "See the account representation as it is currently in SAP",
+        "description": "Get account from wso2 by email",
+        "operationId": "getAccountByEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2/salesforce/{id}": {
+      "get": {
+        "tags": [
+          "WSO2 Salesforce service"
+        ],
+        "summary": "Get account from Salesforce",
+        "description": "Get account from Salesforce via wso2",
+        "operationId": "getSfAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get account from Salesforce",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Account"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/subscriptionroles": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "Get (active) roles for account's active subscriptions",
+        "description": "Get (active) roles for account's active subscriptions by sap id",
+        "operationId": "getActiveSubscriptionRoles",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simid/{sapId}": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "from Selligent db",
+        "description": "Get simUSerHash by sapId",
+        "operationId": "getSimUserId",
+        "parameters": [
+          {
+            "name": "sapId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sim/{simUserId}/hash": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "from Selligent db",
+        "description": "Get simUSerHash by simUserId",
+        "operationId": "getSimUserHash",
+        "parameters": [
+          {
+            "name": "simUserId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saml/redirectipranges": {
+      "get": {
+        "tags": [
+          "saml-controller"
+        ],
+        "summary": "Idps with redirect ipranges",
+        "description": "Get Saml Idps with redirect ipranges",
+        "operationId": "getSamlRedirectIpRanges",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListSamlIpRange"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saml/info": {
+      "get": {
+        "tags": [
+          "saml-controller"
+        ],
+        "summary": "more details about idp saml provider in json format",
+        "description": "Get SamlInfo list",
+        "operationId": "getSamlInfo",
+        "parameters": [
+          {
+            "name": "detailed",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "no"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/saml/expire": {
+      "get": {
+        "tags": [
+          "saml-controller"
+        ],
+        "summary": "days utill cert expires",
+        "description": "Get Saml Expire list",
+        "operationId": "getSamlExpire",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseMapStringInteger"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resetcredentials": {
+      "get": {
+        "tags": [
+          "reset-cred-controller"
+        ],
+        "summary": "Will send the user an email with reset credential link",
+        "description": "Trigger reset credentials by email",
+        "operationId": "triggerUpdatePasswordActionByEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "linkResetcred",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "linkExpiretime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resetcredentials/{id}": {
+      "get": {
+        "tags": [
+          "reset-cred-controller"
+        ],
+        "summary": "Will send the user an email with reset credential link",
+        "description": "Trigger reset credentials by sapId",
+        "operationId": "triggerUpdatePasswordAction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clientid",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "linkResetcred",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "linkExpiretime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotum/used": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Get list of articleIds viewed for a subscription interval",
+        "description": "Get list of articles viewed with quotum by interval",
+        "operationId": "getQuotumViewListByInterval",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "quotumInterval",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotum/overview": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Get overview of all quotum views for a subscription",
+        "description": "Get quotum overview",
+        "operationId": "getQuotumOverview",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListQuotumView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotum/mark/{articleId}/sub/{subscriptionId}": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Check if user has a subscription with a quotum, not already seen the article with the subscription and still has quotum views left. Mark as viewed if allowed to read ",
+        "description": "quotum view allowed check",
+        "operationId": "markQuotumView",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "quotum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "quotumInterval",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotum/clear": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "delete all views for a user_subscription per interval",
+        "description": "clear all entries based on subscriptionId and interval",
+        "operationId": "clearQuotumViewList",
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "quotumInterval",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/quotum/check/{articleId}/sub/{subscriptionId}": {
+      "get": {
+        "tags": [
+          "quotum-controller"
+        ],
+        "summary": "Check if user has a subscription with a quotum, not already seen the article with the subscription and still has quotum views left. Mark as viewed if allowed to read ",
+        "description": "quotum view allowed check",
+        "operationId": "checkQuotumView",
+        "parameters": [
+          {
+            "name": "articleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "customerNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "quotum",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "quotumInterval",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "markView",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          },
+          {
+            "name": "publication",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products": {
+      "get": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Get all products from productConfigurator",
+        "operationId": "getAllProducts",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/{productId}": {
+      "get": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Get Product by Id from productConfigurator",
+        "operationId": "getProductByName",
+        "parameters": [
+          {
+            "name": "productId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productCatalog/campaign/{campaignCode}": {
+      "get": {
+        "tags": [
+          "product catalog"
+        ],
+        "description": "Get product by campaign id",
+        "operationId": "getCampaign",
+        "parameters": [
+          {
+            "name": "campaignCode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/linkedin/{linkedinId}": {
+      "get": {
+        "tags": [
+          "linkedin-controller"
+        ],
+        "operationId": "isImported",
+        "parameters": [
+          {
+            "name": "linkedinId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseBoolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/keycloak/{keycloakId}": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "from local account db",
+        "description": "Get account by keyCloak id",
+        "operationId": "getAccountByKeyCloakId",
+        "parameters": [
+          {
+            "name": "keycloakId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/keycloak/idp/{clientId}": {
+      "get": {
+        "tags": [
+          "keycloak-controller"
+        ],
+        "summary": "returns if a user is registered with that email and IDP info for that email domain.",
+        "description": "Find IDP by user email",
+        "operationId": "getIpdByUserEmail",
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdpByUserEmail"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/keycloak/account/{id}": {
+      "get": {
+        "tags": [
+          "keycloak-controller"
+        ],
+        "summary": "get all account data as saved in keyCloak db",
+        "description": "get account from keyCloak",
+        "operationId": "getKeyCloakUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "description": "Account service health (liveness+readiness check",
+        "operationId": "healthCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/readiness": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "description": "Account service health readiness check",
+        "operationId": "healthReadinessCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/liveness": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "description": "Account service health liveness check",
+        "operationId": "healthLivenessCheck",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/email": {
+      "get": {
+        "tags": [
+          "account service"
+        ],
+        "summary": "from local account db",
+        "description": "Get account by email ",
+        "operationId": "getAccountByEmail_1",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/campaigns/{campaignId}": {
+      "get": {
+        "tags": [
+          "product service"
+        ],
+        "description": "Get campaign by ID from productConfigurator",
+        "operationId": "getCampaignById",
+        "parameters": [
+          {
+            "name": "campaignId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseProduct"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/users/emailnotverified": {
+      "get": {
+        "tags": [
+          "admin-controller"
+        ],
+        "summary": "offsetDaysCreated: until creation date (current - offset)",
+        "description": "Gets list of customerNumbers for users that are NOT email verified",
+        "operationId": "getUsernamesNotVerified",
+        "parameters": [
+          {
+            "name": "offsetDaysCreated",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 30
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100
+            }
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseListString"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/sim": {
+      "get": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Get the SimId by email",
+        "operationId": "getSimAccountByEmail",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/sim/{id}": {
+      "get": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Get the simId by Sapid",
+        "operationId": "getSimAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseLong"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/keycloak/{id}": {
+      "get": {
+        "tags": [
+          "admin-controller"
+        ],
+        "summary": "from local account db",
+        "description": "Get account directly from keycloak, by keycloak-id OR sap id",
+        "operationId": "getKeycloakAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/addressLookup": {
+      "get": {
+        "tags": [
+          "address-lookup-controller"
+        ],
+        "description": "Get address by postcalCode and houseNumber",
+        "operationId": "addressLookup",
+        "parameters": [
+          {
+            "name": "postalCode",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "houseNumber",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addition",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAddress"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wso2/{id}/address": {
+      "delete": {
+        "tags": [
+          "wso-2-controller"
+        ],
+        "summary": "by sapID. Will delete the future newDeliveryAddress in SAP and update the local account",
+        "description": "Delete newDeliveryAddress in SAP",
+        "operationId": "deleteNewDeliveryAddress",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseAccount"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admin/inactive/{id}": {
+      "delete": {
+        "tags": [
+          "admin-controller"
+        ],
+        "description": "Delete inactive account in keycloak, profile and account if lastloggedin > configured month (24)",
+        "operationId": "deleteInactiveAccount",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountServiceResponseString"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Account": {
+        "required": [
+          "customerNumber"
+        ],
+        "type": "object",
+        "properties": {
+          "personAccount": {
+            "type": "boolean"
+          },
+          "customerNumber": {
+            "type": "integer",
+            "description": "customerNumber (sapId or salesforceid)",
+            "format": "int64"
+          },
+          "sapId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "Contact AND user-login address, required on new account"
+          },
+          "genderIndicator": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "initials": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "invoiceEmail": {
+            "type": "string"
+          },
+          "registrationDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "mobilePhoneNumber": {
+            "type": "string"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            }
+          },
+          "subscriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subscription"
+            }
+          }
+        }
+      },
+      "Address": {
+        "required": [
+          "addressId"
+        ],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "description": "<Id>_<postalCode>_<houseNumber>_<houseNumberAddition>"
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "Sap or salesforce id",
+            "format": "int64"
+          },
+          "businessName": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "houseNumberAddition": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "poBox": {
+            "type": "boolean"
+          },
+          "primary": {
+            "type": "boolean"
+          }
+        }
+      },
+      "IDP": {
+        "type": "object",
+        "properties": {
+          "idp": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "string"
+          },
+          "organizationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fdmgOrganizationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expireDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Invoice": {
+        "type": "object",
+        "properties": {
+          "invoiceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "paymentMethod": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "url": {
+            "type": "string"
+          },
+          "companyCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "importStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "Subscription": {
+        "required": [
+          "orderId"
+        ],
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "description": "Sap or salesforce id",
+            "format": "int64"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "campaignCode": {
+            "type": "string"
+          },
+          "campaignName": {
+            "type": "string"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateUntil": {
+            "type": "string",
+            "format": "date"
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionAddress"
+            }
+          }
+        }
+      },
+      "AccountServiceResponseAccount": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseString": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "SubscriptionAddress": {
+        "required": [
+          "addressId",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "string",
+            "description": "Reference to the unique address_id: <orderId>_<postalCode>_<houseNumber>_<houseNumberAddition>"
+          },
+          "role": {
+            "type": "string",
+            "description": "Bezorgadres|Factuuradres"
+          },
+          "attention": {
+            "type": "string"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateUntil": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "AccountServiceResponseListProduct": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "Campaign": {
+        "type": "object",
+        "properties": {
+          "campaignId": {
+            "type": "string"
+          },
+          "campaignCode": {
+            "type": "string"
+          },
+          "campaignName": {
+            "type": "string"
+          },
+          "campaignDescription": {
+            "type": "string"
+          },
+          "campaignSalesForceReference": {
+            "type": "string"
+          },
+          "campaignUnitReferencePrice": {
+            "type": "string"
+          },
+          "campaignDiscountPercentage": {
+            "type": "string"
+          },
+          "campaignDiscountAmount": {
+            "type": "string"
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productTitle": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "productDescription": {
+            "type": "string"
+          },
+          "permissions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "campaigns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Campaign"
+            }
+          },
+          "subProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubProduct"
+            }
+          }
+        }
+      },
+      "SubProduct": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string"
+          },
+          "productDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "SfCampaign": {
+        "type": "object",
+        "properties": {
+          "campaignName": {
+            "type": "string"
+          },
+          "campaignDescription": {
+            "type": "string"
+          },
+          "campaignUnitReferencePrice": {
+            "type": "string"
+          },
+          "campaignDiscountPercentage": {
+            "type": "string"
+          },
+          "campaignDiscountAmount": {
+            "type": "string"
+          },
+          "sapProductReference": {
+            "type": "string"
+          },
+          "readableIdentifier": {
+            "type": "string"
+          },
+          "campaignId": {
+            "type": "string"
+          }
+        }
+      },
+      "SfPermission": {
+        "type": "object",
+        "properties": {
+          "quotum": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quotumInterval": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "SfProduct": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "productId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "productTitle": {
+            "type": "string"
+          },
+          "productDescription": {
+            "type": "string"
+          },
+          "campaigns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SfCampaign"
+            }
+          },
+          "productImageUrl": {
+            "type": "string"
+          },
+          "bundledProducts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SfSubProduct"
+            }
+          },
+          "fd4Permissions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "SfProductCatalog": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SfProduct"
+            }
+          }
+        }
+      },
+      "SfSubProduct": {
+        "type": "object",
+        "properties": {
+          "productName": {
+            "type": "string"
+          },
+          "productDescription": {
+            "type": "string"
+          },
+          "fd4Permissions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SfPermission"
+            }
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          },
+          "accountUpdated": {
+            "type": "boolean",
+            "deprecated": true
+          },
+          "productId": {
+            "type": "string"
+          },
+          "campaignId": {
+            "type": "string"
+          },
+          "productName": {
+            "type": "string"
+          },
+          "publication": {
+            "type": "string"
+          },
+          "productOption": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateFrom": {
+            "type": "string",
+            "format": "date"
+          },
+          "dateUntil": {
+            "type": "string",
+            "format": "date",
+            "deprecated": true
+          },
+          "duration": {
+            "type": "string",
+            "enum": [
+              "D1",
+              "D7",
+              "WK",
+              "CWK",
+              "D30",
+              "MN",
+              "CMN",
+              "D90",
+              "KW",
+              "HJ",
+              "1J",
+              "2J",
+              "9999"
+            ]
+          },
+          "quotumInterval": {
+            "type": "string",
+            "enum": [
+              "D1",
+              "D7",
+              "WK",
+              "CWK",
+              "D30",
+              "MN",
+              "CMN",
+              "D90",
+              "KW",
+              "HJ",
+              "1J",
+              "2J",
+              "9999"
+            ]
+          },
+          "paymentMethod": {
+            "type": "string"
+          },
+          "billingTerm": {
+            "type": "string"
+          },
+          "iban": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseSubscription": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Subscription"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "Complaint": {
+        "type": "object",
+        "properties": {
+          "publication": {
+            "type": "string"
+          },
+          "contactType": {
+            "type": "string",
+            "enum": [
+              "COMPLAINT",
+              "SAP_COMPLAINT",
+              "RECALL",
+              "CANCEL",
+              "CONTACT"
+            ]
+          },
+          "complaintDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "complaint": {
+            "type": "string"
+          },
+          "complaintText": {
+            "type": "string"
+          },
+          "orderId": {
+            "type": "string"
+          },
+          "redelivery": {
+            "type": "boolean"
+          },
+          "orderNumber": {
+            "type": "string"
+          },
+          "contactName": {
+            "type": "string"
+          },
+          "contactPhone": {
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          }
+        }
+      },
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "publication": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "customerNumber": {
+            "type": "string"
+          },
+          "contactType": {
+            "type": "string",
+            "enum": [
+              "COMPLAINT",
+              "SAP_COMPLAINT",
+              "RECALL",
+              "CANCEL",
+              "CONTACT"
+            ]
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "contactText": {
+            "type": "string"
+          },
+          "recallText": {
+            "type": "string"
+          },
+          "cancelReason": {
+            "type": "string"
+          },
+          "cancelDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "cancelText": {
+            "type": "string"
+          },
+          "complaint": {
+            "$ref": "#/components/schemas/Complaint"
+          },
+          "account": {
+            "$ref": "#/components/schemas/Account"
+          }
+        }
+      },
+      "AccountServiceResponseContact": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Contact"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseComplaint": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Complaint"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseListString": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseListInvoice": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Invoice"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseMapLongInteger": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseListLong": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseMapStringBoolean": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseLong": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseListSamlIpRange": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SamlIpRange"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "SamlIpRange": {
+        "type": "object",
+        "properties": {
+          "idpAlias": {
+            "type": "string"
+          },
+          "ipStart": {
+            "type": "string"
+          },
+          "ipEnd": {
+            "type": "string"
+          },
+          "clients": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseMapStringInteger": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseListQuotumView": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QuotumView"
+            }
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "QuotumView": {
+        "type": "object",
+        "properties": {
+          "articleId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "quotumInterval": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "viewedOn": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "AccountServiceResponseBoolean": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "type": "boolean"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "AccountServiceResponseProduct": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      },
+      "IdpByUserEmail": {
+        "type": "object",
+        "properties": {
+          "registered": {
+            "type": "boolean"
+          },
+          "idpAlias": {
+            "type": "string"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "vpn": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AccountServiceResponseAddress": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "statusType": {
+            "type": "string"
+          },
+          "content": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "errorType": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "method": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "KeyCloak login with LDAP user": {
+        "type": "oauth2",
+        "description": "Use \"swagger\" as clientId to login with your LDAP user for full access",
+        "flows": {
+          "authorizationCode": {
+            "authorizationUrl": "https://login.fdmg.nl/auth/realms/intern/protocol/openid-connect/auth",
+            "tokenUrl": "https://login.fdmg.nl/auth/realms/intern/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "default",
+              "root:read": "full access"
+            }
+          }
+        }
+      },
+      "Services Client Credentials login": {
+        "type": "oauth2",
+        "description": "Use client credentials of a client that has access to this server. Login with keyCloak for general access",
+        "flows": {
+          "clientCredentials": {
+            "authorizationUrl": "https://login.fdmg.nl/auth/realms/services/protocol/openid-connect/auth",
+            "tokenUrl": "https://login.fdmg.nl/auth/realms/services/protocol/openid-connect/token",
+            "scopes": {
+              "openid": "default"
+            }
+          }
+        }
+      }
+    }
+  }
+}

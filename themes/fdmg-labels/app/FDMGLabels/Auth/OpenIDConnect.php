@@ -10,6 +10,9 @@ use WP_User;
 
 class OpenIDConnect {
 
+	public const META_FDMG_USER_ID         = 'fdmg_user_id';
+	public const META_FDMG_ORGANISATION_ID = 'fdmg_organisation_id';
+
 	protected const REMEMBER_ME_COOKIE_NAME = 'fdmg_idp_remember_me';
 
 	protected CookieHelper $cookie_helper;
@@ -139,8 +142,8 @@ class OpenIDConnect {
 
 		// Update FDMG User ID and Organisation ID
 		$user_data['meta_input'] = array(
-			ServerSideTrackingInit::META_FDMG_USER_ID => $fdmg_user_id,
-			ServerSideTrackingInit::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
+			self::META_FDMG_USER_ID         => $fdmg_user_id,
+			self::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
 		);
 		return $user_data;
 	}

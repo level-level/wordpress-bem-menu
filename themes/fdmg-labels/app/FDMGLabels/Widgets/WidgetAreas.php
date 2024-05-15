@@ -35,7 +35,37 @@ class WidgetAreas {
 				'name'          => _x( 'Navigation advertisement area', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-navigation-ad',
 				'description'   => _x( 'Add a single advertisement block to appear above the navigation.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div>',
+				'before_widget' => '<div class="widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Homepage header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-homepage-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the homepage.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Article header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-article-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of an article.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Category header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-category-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the category archive', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -43,19 +73,51 @@ class WidgetAreas {
 		register_sidebar(
 			array(
 				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
-				'id'            => 'widget-area-header-ad',
-				'description'   => _x( 'Add a single advertisement block to appear on the top of all pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'id'            => 'widget-area-page-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of a page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
 
 		register_sidebar(
 			array(
+				'name'          => _x( 'Search results header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-search-results-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of the search results page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		register_sidebar(
+			array(
+				'name'          => _x( 'Author header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+				'id'            => 'widget-area-author-header-ad',
+				'description'   => _x( 'Add a single advertisement block to appear on the top of a author page.', 'Widgets', 'fdmg-labels-admin' ),
+				'before_widget' => '<div class="section widget">',
+				'after_widget'  => '</div>',
+			)
+		);
+
+		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_PARTNER_POST_TYPE ) ) {
+			register_sidebar(
+				array(
+					'name'          => _x( 'Partner header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
+					'id'            => 'widget-area-partner-header-ad',
+					'description'   => _x( 'Add a single advertisement block to appear on the top of a partner page.', 'Widgets', 'fdmg-labels-admin' ),
+					'before_widget' => '<div class="section widget">',
+					'after_widget'  => '</div>',
+				)
+			);
+		}
+
+		register_sidebar(
+			array(
 				'name'          => _x( 'Homepage', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-homepage',
 				'description'   => _x( 'Add widgets to appear on the homepage.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -65,7 +127,7 @@ class WidgetAreas {
 				'name'          => _x( 'Article', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-article',
 				'description'   => _x( 'Add widgets to appear on article pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -75,7 +137,7 @@ class WidgetAreas {
 				'name'          => _x( 'Page', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-page',
 				'description'   => _x( 'Add widgets to appear on the content pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -85,7 +147,7 @@ class WidgetAreas {
 				'name'          => _x( 'Author', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-author',
 				'description'   => _x( 'Add widgets to appear on the author pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -96,7 +158,7 @@ class WidgetAreas {
 					'name'          => _x( 'Partner', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-partner',
 					'description'   => _x( 'Add widgets to appear on the partner pages.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="section">',
+					'before_widget' => '<div class="section widget">',
 					'after_widget'  => '</div>',
 				)
 			);
@@ -107,7 +169,7 @@ class WidgetAreas {
 				'name'          => _x( 'Vacancy', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-vacancy',
 				'description'   => _x( 'Add widgets to appear on the vacancy pages.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);
@@ -118,7 +180,7 @@ class WidgetAreas {
 					'name'          => _x( 'Category', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-category',
 					'description'   => _x( 'Add widgets to appear on the category pages.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="section">',
+					'before_widget' => '<div class="section widget">',
 					'after_widget'  => '</div>',
 				)
 			);
@@ -130,7 +192,7 @@ class WidgetAreas {
 					'name'          => _x( 'Section', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-section',
 					'description'   => _x( 'Add widgets to appear on the section pages.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="section">',
+					'before_widget' => '<div class="section widget">',
 					'after_widget'  => '</div>',
 				)
 			);
@@ -142,7 +204,7 @@ class WidgetAreas {
 					'name'          => _x( 'Genre', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-genre',
 					'description'   => _x( 'Add widgets to appear on the genre pages.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="section">',
+					'before_widget' => '<div class="section widget">',
 					'after_widget'  => '</div>',
 				)
 			);
@@ -153,7 +215,7 @@ class WidgetAreas {
 				'name'          => _x( 'Search results', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-search-results',
 				'description'   => _x( 'Add widgets to appear on the search results page.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section">',
+				'before_widget' => '<div class="section widget">',
 				'after_widget'  => '</div>',
 			)
 		);

@@ -11,6 +11,7 @@ class Init {
 		( new EditorCookie( $cookie_helper ) )->register_hooks();
 		( new UserCookie( $cookie_helper ) )->register_hooks();
 		( new OpenIDConnect( $cookie_helper ) )->register_hooks();
+		( new SessionExpiration() )->register_hooks();
 
 		add_filter( 'show_admin_bar', array( $this, 'hide_admin_bar' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'localize_scripts' ) );

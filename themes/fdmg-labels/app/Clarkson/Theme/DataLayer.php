@@ -184,7 +184,10 @@ class DataLayer {
 	 * @return array<mixed>
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
-		$revisions  = wp_get_latest_revision_id_and_total_count( $post->get_id() );
+		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
+		if ( is_wp_error( $revisions ) ) {
+			$revisions = array( 'count' => 0 );
+		}
 		$categories = is_array( $post->get_terms( Category::TAXONOMY_NAME ) ) ? $post->get_terms( Category::TAXONOMY_NAME ) : array();
 
 		$config = array(
@@ -197,7 +200,7 @@ class DataLayer {
 			'author'            => $post->get_author() ? $post->get_author()->get_display_name() : '',
 			'publication_date'  => $post->get_date_i18n( 'Y-m-d' ),
 			'publication_time'  => $post->get_date_i18n( 'H:i' ),
-			'revisions_count'   => isset( $revisions['count'] ) ? $revisions['count'] : 0,
+			'revisions_count'   => $revisions['count'],
 			'component_subtype' => $component_subtype,
 		);
 

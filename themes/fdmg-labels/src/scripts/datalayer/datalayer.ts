@@ -20,7 +20,6 @@ const initializeGlobalEvents = () => {
 };
 
 const dataLayer = () => {
-	window.dataLayer = [];
 	const elements = Array.from(document.querySelectorAll('[data-datalayer]'));
 	const configs: DataLayerConfig[] = elements.map((el) => {
 		const rawData = el.getAttribute('data-datalayer');

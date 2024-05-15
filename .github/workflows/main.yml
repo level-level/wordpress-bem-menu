@@ -31,7 +31,7 @@ jobs:
           php-version: 8.0
           extensions: mbstring, dom, simplexml
           tools: wp
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           path: wp-content/
           ref: ${{ github.event.pull_request.head.sha }}
@@ -98,12 +98,12 @@ jobs:
     name: NPM test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
           ref: ${{github.event.pull_request.head.sha}}
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           always-auth: true
           node-version-file: '.nvmrc'
