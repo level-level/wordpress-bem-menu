@@ -28,6 +28,7 @@ class ConfirmationPageParams {
 	 * @return string|array<mixed>
 	 */
 	public function add_entry_data_to_confirmation( string|array $confirmation, array $form, array $entry ): string|array {
+
 		if ( is_array( $confirmation ) && isset( $confirmation['redirect'] ) ) {
 			return $this->add_entry_data_to_confirmation_url( $confirmation, $form, $entry );
 		}
@@ -93,12 +94,15 @@ class ConfirmationPageParams {
 		$publication_time = $post_object ? $post_object->get_date_i18n( 'H:i' ) : '';
 		$revisions        = wp_get_latest_revision_id_and_total_count( $post_id );
 		$count            = ! ( $revisions instanceof WP_Error ) ? $revisions['count'] : 0;
+		$form_id          = $form['id'] ? $form['id'] : '';
+		$form_title       = $form['title'] ? $form['title'] : '';
+		$form_click_text  = $form['buttonText'] ? (string) $form['buttonText'] : '';
 
 		$data = array(
-			'form_id'               => (int) $form['id'],
+			'form_id'               => (int) $form_id,
 			'form_type'             => (string) $form_type, // 'default', 'newsletter', 'download
-			'form_title'            => (string) $form['title'],
-			'click_text'            => (string) $form['buttonText'],
+			'form_title'            => (string) $form_title,
+			'click_text'            => (string) $form_click_text,
 			'post_id'               => (int) $post_id,
 			'post_url'              => (string) $entry['source_url'],
 			'post_title'            => (string) $post_title,
