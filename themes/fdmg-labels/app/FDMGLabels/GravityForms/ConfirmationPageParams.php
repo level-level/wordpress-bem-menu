@@ -91,7 +91,7 @@ class ConfirmationPageParams {
 		$publication_date = $post_object ? $post_object->get_date_i18n( 'Y-m-d' ) : '';
 		$publication_time = $post_object ? $post_object->get_date_i18n( 'H:i' ) : '';
 		$revisions        = wp_get_latest_revision_id_and_total_count( $post_id );
-		$count            = isset( $revisions['count'] ) ? $revisions['count'] : 0;
+		$count            = is_array( $revisions ) ? $revisions['count'] : 0;
 
 		$data = array(
 			'form_id'               => (int) $form['id'],
