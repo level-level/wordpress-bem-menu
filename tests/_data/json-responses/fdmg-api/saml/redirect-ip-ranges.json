@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "statusType": "OK",
+  "content": [
+    {
+      "idpAlias": "aliasone",
+      "ipStart": "192.168.0.1",
+      "ipEnd": "192.168.0.10",
+      "clients": "fd,pensioenpro"
+    },
+    {
+      "idpAlias": "aliastwo",
+      "ipStart": "192.168.1.1",
+      "ipEnd": "192.168.1.5",
+      "clients": "energeia"
+    },
+    {
+      "idpAlias": "aliasthree",
+      "ipStart": "192.168.2.1",
+      "ipEnd": "192.168.2.1",
+      "clients": "fd,energeia,pensioenpro"
+    },
+    {
+      "idpAlias": "aliasfour",
+      "ipStart": "192.168.3.1",
+      "ipEnd": "192.168.3.1",
+      "clients": "*"
+    }
+  ]
+}

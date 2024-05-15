@@ -1,4 +1,4 @@
-<div data-component="list-item" class="relative flex flex-col w-full">
+<div data-teaser-post data-component="list-item" {{ datalayer.get_config(object, 'TEASER', component_subtype) }} class="relative flex flex-col w-full">
 
 	{% if comment_content %}
 		<div class="order-2 mb-2 text-base">

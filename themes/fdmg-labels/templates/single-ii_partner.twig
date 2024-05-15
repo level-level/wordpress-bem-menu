@@ -2,6 +2,14 @@
 {% set object = objects|first %}
 {% set content = object.get_content() %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-partner-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-partner-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block content %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		{% include 'styleguide/components/article-header.twig' with {

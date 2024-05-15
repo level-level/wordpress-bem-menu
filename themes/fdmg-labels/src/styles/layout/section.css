@@ -3,13 +3,13 @@
 }
 
 .section {
-	@apply pt-6;
+	@apply mt-6;
 }
 
 .section--no-top {
-	@apply pt-0;
+	@apply mt-0;
 }
 
 .section--no-bottom {
-	@apply pb-0;
+	@apply mb-0;
 }

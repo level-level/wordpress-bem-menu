@@ -1,14 +1,16 @@
 {% set objects = block.get_posts() %}
+{% set title = data.title %}
 
 {% if objects %}
 	<div class="{{ align }}" data-name="{{ block.name }}">
 		{% include 'styleguide/components/list-component.twig' with {
-			heading: _x('Jobs', 'Block', 'fdmg-labels'),
+			heading: title|default(_x('Jobs', 'Block', 'fdmg-labels')),
 			objects: objects ? objects|map(vacancy => {
 				title: vacancy.get_title(),
 				url: vacancy.get_permalink(),
 				date: vacancy.get_human_readable_date(),
 				datetime: vacancy.get_date_i18n('Y-m-d'),
+				post: vacancy,
 			}),
 			style: 'light',
 		} %}
