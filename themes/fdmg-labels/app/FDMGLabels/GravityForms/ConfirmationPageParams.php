@@ -9,6 +9,7 @@ use GF_Field;
 use GF_Field_Email;
 use GFAPI;
 use GFCommon;
+use WP_Error;
 
 class ConfirmationPageParams {
 
@@ -91,7 +92,7 @@ class ConfirmationPageParams {
 		$publication_date = $post_object ? $post_object->get_date_i18n( 'Y-m-d' ) : '';
 		$publication_time = $post_object ? $post_object->get_date_i18n( 'H:i' ) : '';
 		$revisions        = wp_get_latest_revision_id_and_total_count( $post_id );
-		$count            = is_array( $revisions ) ? $revisions['count'] : 0;
+		$count            = ! ( $revisions instanceof WP_Error ) ? $revisions['count'] : 0;
 
 		$data = array(
 			'form_id'               => (int) $form['id'],
