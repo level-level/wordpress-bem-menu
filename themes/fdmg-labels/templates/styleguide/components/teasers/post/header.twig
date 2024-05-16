@@ -21,8 +21,8 @@
 	</div>
 
 	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
-		<div data-component="terms" class="text-sm">
-			<div class="flex items-center justify-between flex-nowrap">
+		<div data-component="terms" class="text-[13px] leading-5">
+			<div class="flex items-center justify-between gap-2 flex-nowrap">
 
 				{% if categories or genres or sections %}
 					<div class="flex gap-1">
@@ -55,7 +55,7 @@
 
 				{% if date.datetime and date.date_full and date.readable %}
 					<div class="shrink-0">
-						<div class="text-sm text-secondary-700 dark:text-base-100">
+						<div class="text-[13px] text-secondary-700 dark:text-base-100">
 							<time datetime="{{ date.datetime|raw }}">{{ date.readable|raw }}</time>
 						</div>
 					</div>

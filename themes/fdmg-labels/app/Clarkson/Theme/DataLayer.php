@@ -235,6 +235,10 @@ class DataLayer {
 	public function get_config( $post, $type, $component_subtype = '' ): void {
 		$config = array();
 
+		if ( ! $post instanceof Clarkson_Object ) {
+			return;
+		}
+
 		if ( $type === self::EVENT_TEASER ) {
 			$config = $this->get_teaser_config( $post, $component_subtype );
 		} elseif ( $type === self::EVENT_PAGEVIEW ) {
