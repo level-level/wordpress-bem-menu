@@ -1,9 +1,9 @@
-{% set login_html = '<a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">logged in</a>'|format(
+{% set login_html = '<a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">%s</a>'|format(
 	login_url,
 	esc_html_x('logged in', 'Comments', 'fdmg-labels')
 ) %}
 
-{% set subscribe_html = '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">valid subscription</a>'|format(
+{% set subscribe_html = '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">%s</a>'|format(
 	subscribe_url,
 	esc_html_x('valid subscription', 'Comments', 'fdmg-labels')
 ) %}
