@@ -38,6 +38,7 @@
 					objects: most_read ? most_read|map(post => {
 						title: post.get_alternative_title()|default(post.get_title()),
 						url: post.get_permalink(),
+						object: post,
 					}),
 				} %}
 			</div>
@@ -55,6 +56,7 @@
 						term_label: feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? _x('genre', 'Screen reader text', 'fdmg-labels') : _x('category', 'Screen reader text', 'fdmg-labels'),
 						date: post.get_human_readable_date(),
 						datetime: post.get_date_i18n('Y-m-d'),
+						post: post,
 					}),
 					button_text: latest_button_title|default(_x('More articles', 'Block', 'fdmg-labels')),
 					button_link: get_post_type_archive_link('post'),

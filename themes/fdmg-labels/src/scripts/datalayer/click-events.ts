@@ -1,13 +1,13 @@
-const pushToDataLayer = (type: string, text: string) => {
+const pushToDataLayer = (type: string, text: string, action: string, component: string, ) => {
 	window.dataLayer.push({
 		'event': 'click',
 			'event_info': {
 			'category': `${type}`,
-			'action': 'link click',
+			'action': `${action}`,
 			'label': `${text}`, // e.g. linkedin | het financieele dagblad
 			'value': null,
 			'event_context': {
-				'component': 'button',
+				'component': `${component}`,
 				'index': '',
 				'section_title': '',
 				'click_text': `${text}`
@@ -33,21 +33,21 @@ const handleClicks = () => {
 		// if element has hash links add internal button click event
 		if ( href.indexOf( '#' ) === 0 ) {
 			element.addEventListener('click', () => {
-				pushToDataLayer('internal click', text);
+				pushToDataLayer( 'internal click', text, 'button click', 'button');
 			} );
 		}
 
 		// if element is external link add external link click event
 		else if ( href.indexOf( '/' ) === 0 || href.includes( location.origin ) ) {
 			element.addEventListener('click', () => {
-				pushToDataLayer('internal click', text);
+				pushToDataLayer('internal click', text, 'link click', 'link');
 			} );
 		}
 
 		// else add internal link click event
 		else {
 			element.addEventListener('click', () => {
-				pushToDataLayer('external click', text);
+				pushToDataLayer('external click', text, 'link click', 'link');
 			} );
 		}
 
