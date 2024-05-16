@@ -17,6 +17,7 @@ import DateRangeValidator from './modules/date-range-validator';
 import ToggleListItems from './modules/toggle-list-items';
 import LoginButton from './modules/login-button';
 import TextZoom from './modules/text-zoom';
+import CommentForm from './modules/comment-form';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
 import dataLayer from './datalayer/datalayer';
@@ -41,6 +42,7 @@ ModuleInitializer({
 	'toggle-list-items': ToggleListItems,
 	'login-button': LoginButton,
 	'text-zoom': TextZoom,
+	'comment-form': CommentForm,
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
 	'advertisement': Advertisement,

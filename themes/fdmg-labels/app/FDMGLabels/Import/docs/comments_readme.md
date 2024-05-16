@@ -7,8 +7,8 @@ fdmg_import_old_id is prefixed with 'comment_'
 
 ## Export
 
-Make sure you have downloaded the fdmg-comments.csv and fdmg-customers.csv to your local machine.
-Then, run `wp fdmg-labels import generate-comments-csv run /path/to/fdmg-comments.csv /path/to/fdmg-customers.csv /path/to/generated-comments.csv  --url="SITE_URL"`
+Make sure you have downloaded the fdmg-comments.csv to your local machine.
+Then, run `wp fdmg-labels import generate-comments-csv run /path/to/fdmg-comments.csv /path/to/generated-comments.csv  --url="SITE_URL"`
 
 ## Import
 

@@ -8,11 +8,7 @@
 					<div class="relative border-b-2 bg-secondary-100 border-secondary-400 dark:bg-base-600 dark:border-transparent">
 						<div class="px-3 py-3 border-b border-secondary-400 dark:border-base-800 sm:px-6">
 							<h2 class="font-bold font-figtree text-md text-primary dark:text-primary-300 sm:text-lg theme-energeia:text-base-800">
-								{% if comment_count is same as(1) %}
-									{{ _x('%s comment', 'Comment', 'fdmg-labels')|format(comment_count) }}
-								{% else %}
-									{{ _x('%s comments', 'Comment', 'fdmg-labels')|format(comment_count) }}
-								{% endif %}
+								{{ _nx('%d comment', '%d comments', comment_count, 'Comment', 'fdmg-labels')|format(comment_count) }}
 							</h2>
 						</div>
 						<ol>
@@ -22,7 +18,19 @@
 				</div>
 			{% endif %}
 
-			<div class="comment-form-container" data-page-fragment="comment_form">
+			{% set config = {
+				post_id: object.get_id(),
+			} %}
+			<div class="comment-form-container" data-module="comment-form" data-config="{{ config|json_encode() }}">
+
+				{% set login_url = static_pages.login.get_permalink(constant('PAGE_LOGIN', static_pages.login)) %}
+				{% set subscribe_url = options.subscribe_button.url %}
+				{% include 'styleguide/components/comments/comment-no-permission.twig' with {
+					login_url: login_url,
+					subscribe_url: subscribe_url,
+				} %}
+
+
 				{# Comment form will be rendered here by api #}
 			</div>
 		</div>

@@ -41,7 +41,7 @@ for (const theme of customThemes) {
 }
 
 module.exports = {
-	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}', './.storybook/preview-head.html'],
+	content: ['./templates/**/*.twig', './src/scripts/**/*.{tsx,ts}', './.storybook/preview-head.html', './app/**/*.php'],
 	darkMode: ['class', '[data-mode="dark"]'],
 	theme: {
 		extend: {

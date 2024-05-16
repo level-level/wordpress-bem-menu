@@ -40,10 +40,13 @@ declare global {
 	}
 }
 
+export type RestApi = {
+	root: string;
+};
+
 /**
  * Interface for dataLayer configs
  */
-
 export interface DataLayerConfig {
 	element: HTMLElement;
 	event: string;
