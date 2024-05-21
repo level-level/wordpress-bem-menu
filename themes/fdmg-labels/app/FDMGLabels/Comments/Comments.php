@@ -86,10 +86,8 @@ class Comments {
 	 * Get the HTML that should be shown if a user has no permission to write comments.
 	 */
 	public function get_subscription_required_html( Clarkson_Object|null $clarkson_object = null ): string {
-		$login_url = ( new LoginController() )->get_permalink( LoginController::PAGE_LOGIN );
-		if ( $clarkson_object ) {
-			$login_url = add_query_arg( 'redirect_to', rawurlencode( $clarkson_object->get_permalink() ?: '' ), $login_url );
-		}
+		$login_redirect_permalink = $clarkson_object ? $clarkson_object->get_permalink() : true;
+		$login_url                = ( new LoginController() )->get_login_permalink( $login_redirect_permalink );
 
 		$subscribe_button = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_SUBSCRIBE_BUTTON ), 'options' );
 		$subscribe_button = is_array( $subscribe_button ) ? $subscribe_button : array();
