@@ -113,6 +113,11 @@ class post extends base_object {
 		return $message;
 	}
 
+	/**
+	 * Overwrite the search result title.
+	 * If the alternative title is set, use that instead of the post title.
+	 * It also highlights the search query in the alternative title.
+	 */
 	public function get_search_result_title(): string {
 		if ( isset( $this->search_result_title ) ) {
 			return parent::get_search_result_title();
