@@ -96,7 +96,7 @@ class ConfirmationPageParams {
 		$count            = ! ( $revisions instanceof WP_Error ) ? $revisions['count'] : 0;
 		$form_id          = $form['id'] ? $form['id'] : '';
 		$form_title       = $form['title'] ? $form['title'] : '';
-		$form_click_text  = $form['buttonText'] ? (string) $form['buttonText'] : '';
+		$form_click_text  = isset( $form['buttonText'] ) ? (string) $form['buttonText'] : '';
 
 		$data = array(
 			'form_id'               => (int) $form_id,
