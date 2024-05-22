@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use FDMGLabels\AdminAjax\Init as AdminAjaxInit;
+use FDMGLabels\API\Init as APIInit;
 use FDMGLabels\ShortInit;
 use LevelLevel\Logging\Settings\SentryFrontend\Fields\DSN;
 
@@ -57,6 +58,7 @@ class Assets {
 		}
 
 		( new ScriptTranslations() )->register_hooks();
+		( new APIInit() )->add_script_variables();
 		( new ShortInit() )->localize_head();
 	}
 

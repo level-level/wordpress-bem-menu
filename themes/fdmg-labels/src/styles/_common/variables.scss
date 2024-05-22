@@ -36,7 +36,7 @@ $spacing-16: theme('spacing.16');
 
 	@include breakpoint(md) {
 		--container: 960px;
-		--content-width: 895px;
+		--content-width: 952px;
 		--sidebar-width: 300px;
 	}
 
@@ -46,7 +46,7 @@ $spacing-16: theme('spacing.16');
 	}
 
 	@include breakpoint(xl) {
-		--container: 1224px;
+		--container: 1300px;
 	}
 
 	// The feature option to use a compact header

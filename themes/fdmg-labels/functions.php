@@ -40,6 +40,7 @@
 ( new \Clarkson\Utilities\Init() )->register_hooks();
 
 // FDMG Labels
+( new \FDMGLabels\API\Init() )->register_hooks();
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
 ( new \FDMGLabels\Search\Filter() )->register_hooks();

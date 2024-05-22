@@ -4,7 +4,6 @@ namespace Clarkson_Core\WordPress_Object;
 
 use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
-use Clarkson_Core\Templates;
 use FDMGLabels\Comments\CommentWalker;
 use FDMGLabels\FeatureManager;
 use LevelLevel\Paywall\ContentExtractor;
@@ -66,43 +65,26 @@ class post extends base_object {
 		return $comments->approved;
 	}
 
-	/**
-	 * @return mixed
-	 */
-	public function display_comments() {
-		$args = array(
-			'post_id' => $this->get_id(),
-			'order'   => 'ASC',
-			'status'  => 'approve',
+	public function display_comments(): string {
+		$cpage = get_query_var( 'cpage' ) ? get_query_var( 'cpage' ) : 1;
+		$args  = array(
+			'post_id'           => $this->get_id(),
+			'orderby'           => 'comment_date_gmt',
+			'order'             => 'ASC',
+			'status'            => 'approve',
+			'number'            => (int) get_option( 'comments_per_page' ),
+			'paged'             => $cpage,
+			'reverse_top_level' => get_option( 'default_comments_page' ) === 'oldest' ? false : true,
+			'comment_type'      => 'comment',
 		);
 
-		return wp_list_comments(
+		$html = wp_list_comments(
 			array(
 				'walker' => new CommentWalker(),
 				'style'  => 'ol',
 			), get_comments( $args )
 		);
-	}
-
-	/**
-	 * @return mixed
-	 */
-	public function get_comment_form() {
-		$twig = Templates::get_instance();
-
-		$args = array(
-			'class_form'           => 'form-group',
-			'format'               => 'html5',
-			'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
-			'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
-			'comment_notes_before' => '<p>' . _x( 'Your email address will not be published. A comment is held for moderation. <br>Required fields are marked *.', 'Comments', 'fdmg-labels' ) . '</p>',
-			'comment_field'        => $twig->render_twig(
-				'styleguide/components/comments/form-fields/textarea.twig',
-				array(), true
-			),
-		);
-
-		comment_form( $args );
+		return is_string( $html ) ? $html : '';
 	}
 
 	/**
