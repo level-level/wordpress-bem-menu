@@ -1131,16 +1131,16 @@
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-server-side-tracking.git",
-                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae"
+                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/01593087f7b23deb86460365a0b6709d2d9b9eae",
-                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae",
+                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
+                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1256,9 +1256,9 @@
             ],
             "description": "This plugin contains logic to make variables available in server logs, which can be used for server side tracking.",
             "support": {
-                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.0.0"
+                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.1.0"
             },
-            "time": "2024-03-22T15:50:05+00:00"
+            "time": "2024-05-10T11:43:03+00:00"
         },
         {
             "name": "level-level/ll-paywall",
