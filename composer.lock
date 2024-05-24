@@ -5514,15 +5514,15 @@
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "3.16.2",
+            "version": "3.16.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/3.16.2"
+                "reference": "tags/3.16.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.16.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.16.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
