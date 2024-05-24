@@ -1262,16 +1262,16 @@
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "4c55658ffae28abedbced62735e38450911dd943"
+                "reference": "551444846acde471b354d1e6457bb80507a174aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/4c55658ffae28abedbced62735e38450911dd943",
-                "reference": "4c55658ffae28abedbced62735e38450911dd943",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/551444846acde471b354d1e6457bb80507a174aa",
+                "reference": "551444846acde471b354d1e6457bb80507a174aa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1301,6 +1301,7 @@
                 "pronamic/wp-documentor": "^1.3",
                 "szepeviktor/phpstan-wordpress": "^1.1",
                 "wp-cli/wp-cli-bundle": "^2.8",
+                "wpackagist-plugin/loco-translate": "^2.6",
                 "wpackagist-plugin/user-switching": "^1.5"
             },
             "type": "wordpress-plugin",
@@ -1389,9 +1390,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.3"
+                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.4"
             },
-            "time": "2024-03-12T15:50:26+00:00"
+            "time": "2024-05-23T09:10:15+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
