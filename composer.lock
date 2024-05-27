@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fd8194e72f104d5de26e060613ac344",
+    "content-hash": "03305278399b07953b1d2cf193586dd1",
     "packages": [
         {
             "name": "brick/math",
@@ -1076,16 +1076,16 @@
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-wp-cli-twig-translations.git",
-                "reference": "3d253c8d44239ba73dae5112f178836869aefec7"
+                "reference": "6509c1c52b986be06ca6d82a477e3d42d2ad8dfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/3d253c8d44239ba73dae5112f178836869aefec7",
-                "reference": "3d253c8d44239ba73dae5112f178836869aefec7",
+                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/6509c1c52b986be06ca6d82a477e3d42d2ad8dfa",
+                "reference": "6509c1c52b986be06ca6d82a477e3d42d2ad8dfa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1124,23 +1124,23 @@
             ],
             "description": "Smart WP-CLI command to cache the Twig templates so they can be read by PoEdit",
             "support": {
-                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.2",
+                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.3",
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
-            "time": "2023-11-14T16:06:02+00:00"
+            "time": "2024-05-03T11:51:32+00:00"
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-server-side-tracking.git",
-                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae"
+                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/01593087f7b23deb86460365a0b6709d2d9b9eae",
-                "reference": "01593087f7b23deb86460365a0b6709d2d9b9eae",
+                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
+                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1256,22 +1256,22 @@
             ],
             "description": "This plugin contains logic to make variables available in server logs, which can be used for server side tracking.",
             "support": {
-                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.0.0"
+                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.1.0"
             },
-            "time": "2024-03-22T15:50:05+00:00"
+            "time": "2024-05-10T11:43:03+00:00"
         },
         {
             "name": "level-level/ll-paywall",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/ll-paywall.git",
-                "reference": "4c55658ffae28abedbced62735e38450911dd943"
+                "reference": "551444846acde471b354d1e6457bb80507a174aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/4c55658ffae28abedbced62735e38450911dd943",
-                "reference": "4c55658ffae28abedbced62735e38450911dd943",
+                "url": "https://api.github.com/repos/level-level/ll-paywall/zipball/551444846acde471b354d1e6457bb80507a174aa",
+                "reference": "551444846acde471b354d1e6457bb80507a174aa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1301,6 +1301,7 @@
                 "pronamic/wp-documentor": "^1.3",
                 "szepeviktor/phpstan-wordpress": "^1.1",
                 "wp-cli/wp-cli-bundle": "^2.8",
+                "wpackagist-plugin/loco-translate": "^2.6",
                 "wpackagist-plugin/user-switching": "^1.5"
             },
             "type": "wordpress-plugin",
@@ -1389,9 +1390,9 @@
             ],
             "description": "This plugin allows you to create paywalls in your website.",
             "support": {
-                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.3"
+                "source": "https://github.com/level-level/ll-paywall/tree/v1.0.4"
             },
-            "time": "2024-03-12T15:50:26+00:00"
+            "time": "2024-05-23T09:10:15+00:00"
         },
         {
             "name": "level-level/ll-plugin-autoloader",
@@ -1587,11 +1588,11 @@
         },
         {
             "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.2.9",
+            "version": "6.3.0.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.2.9",
-                "shasum": "65723dd460970cfbf820629e278d71acc6bc0848",
+                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.3.0.1",
+                "shasum": "df1d651902c432552941ba039f4d3a25a04e9c3f",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1613,11 +1614,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.8",
+            "version": "2.8.11",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.8",
-                "shasum": "2c823ed8cd1b5c12796d54c1e2ed01756fce704d",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.11",
+                "shasum": "dfea745b3bb980f3cc3f309d4739a4cadedd11c2",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1779,16 +1780,16 @@
         },
         {
             "name": "mentosmenno2/image-crop-positioner",
-            "version": "v0.6.0",
+            "version": "v0.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mentosmenno2/image-crop-positioner.git",
-                "reference": "8af88b863cfaa270c962d6e83d170eefa7e25bc1"
+                "reference": "4ddb660b0ad201dea0eabc7210119d3084028498"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/8af88b863cfaa270c962d6e83d170eefa7e25bc1",
-                "reference": "8af88b863cfaa270c962d6e83d170eefa7e25bc1",
+                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/4ddb660b0ad201dea0eabc7210119d3084028498",
+                "reference": "4ddb660b0ad201dea0eabc7210119d3084028498",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1825,9 +1826,9 @@
             "description": "Face recognition and hotspot selection for cropping images in WordPress.",
             "support": {
                 "issues": "https://github.com/mentosmenno2/image-crop-positioner/issues",
-                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v0.6.0"
+                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v0.6.1"
             },
-            "time": "2023-06-10T11:47:34+00:00"
+            "time": "2024-05-10T12:39:26+00:00"
         },
         {
             "name": "mhcg/monolog-wp-cli",
@@ -2974,16 +2975,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "4.7.5",
+            "version": "4.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "5f0df49ae5ad6efb7afa69e6bfab4e5b1e080d8e"
+                "reference": "91039bc1faa45ba123c4328958e620d382ec7088"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/5f0df49ae5ad6efb7afa69e6bfab4e5b1e080d8e",
-                "reference": "5f0df49ae5ad6efb7afa69e6bfab4e5b1e080d8e",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/91039bc1faa45ba123c4328958e620d382ec7088",
+                "reference": "91039bc1faa45ba123c4328958e620d382ec7088",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -2993,7 +2994,7 @@
                 ]
             },
             "require": {
-                "brick/math": "^0.8.8 || ^0.9 || ^0.10 || ^0.11",
+                "brick/math": "^0.8.8 || ^0.9 || ^0.10 || ^0.11 || ^0.12",
                 "ext-json": "*",
                 "php": "^8.0",
                 "ramsey/collection": "^1.2 || ^2.0"
@@ -3056,7 +3057,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/uuid/issues",
-                "source": "https://github.com/ramsey/uuid/tree/4.7.5"
+                "source": "https://github.com/ramsey/uuid/tree/4.7.6"
             },
             "funding": [
                 {
@@ -3068,7 +3069,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-11-08T05:53:05+00:00"
+            "time": "2024-04-27T21:32:50+00:00"
         },
         {
             "name": "sentry/sdk",
@@ -5164,16 +5165,16 @@
         },
         {
             "name": "woocommerce/action-scheduler",
-            "version": "3.7.4",
+            "version": "3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/woocommerce/action-scheduler.git",
-                "reference": "5fb655253dc004bb7a6d840da807f0949aea8bcd"
+                "reference": "99cd7981f51c98883082534d4852491858d72834"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/5fb655253dc004bb7a6d840da807f0949aea8bcd",
-                "reference": "5fb655253dc004bb7a6d840da807f0949aea8bcd",
+                "url": "https://api.github.com/repos/woocommerce/action-scheduler/zipball/99cd7981f51c98883082534d4852491858d72834",
+                "reference": "99cd7981f51c98883082534d4852491858d72834",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5207,9 +5208,9 @@
             "homepage": "https://actionscheduler.org/",
             "support": {
                 "issues": "https://github.com/woocommerce/action-scheduler/issues",
-                "source": "https://github.com/woocommerce/action-scheduler/tree/3.7.4"
+                "source": "https://github.com/woocommerce/action-scheduler/tree/3.8.0"
             },
-            "time": "2024-04-05T14:42:07+00:00"
+            "time": "2024-05-22T13:50:29+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
@@ -5388,15 +5389,15 @@
         },
         {
             "name": "wpackagist-plugin/elasticpress",
-            "version": "5.0.2",
+            "version": "5.1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elasticpress/",
-                "reference": "tags/5.0.2"
+                "reference": "tags/5.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elasticpress.5.0.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/elasticpress.5.1.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5438,15 +5439,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.7",
+            "version": "2.6.9",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.7"
+                "reference": "tags/2.6.9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.7.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.9.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5463,15 +5464,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.18.5",
+            "version": "1.19.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.18.5"
+                "reference": "tags/1.19.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.18.5.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.19.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5488,15 +5489,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.9.1",
+            "version": "2.9.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.9.1"
+                "reference": "tags/2.9.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.1.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5513,15 +5514,15 @@
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "3.16.2",
+            "version": "3.16.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/3.16.2"
+                "reference": "tags/3.16.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.16.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.3.16.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5612,17 +5613,75 @@
             "homepage": "https://wordpress.org/plugins/wordfence/"
         },
         {
-            "name": "yoast/wordpress-seo",
-            "version": "21.9.1",
+            "name": "yoast/whip",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "e865ec16d9bc39eed7413ae3b4e355ebb8aad4fc"
+                "url": "https://github.com/Yoast/whip.git",
+                "reference": "5cfd9c3b433774548ec231fe896d5e85d17ed0d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/e865ec16d9bc39eed7413ae3b4e355ebb8aad4fc",
-                "reference": "e865ec16d9bc39eed7413ae3b4e355ebb8aad4fc",
+                "url": "https://api.github.com/repos/Yoast/whip/zipball/5cfd9c3b433774548ec231fe896d5e85d17ed0d1",
+                "reference": "5cfd9c3b433774548ec231fe896d5e85d17ed0d1",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-console-highlighter": "^1.0.0",
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpunit/phpunit": "^4.8.36 || ^5.7.21 || ^6.0 || ^7.0 || ^8.0 || ^9.0",
+                "roave/security-advisories": "dev-master",
+                "yoast/yoastcs": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Facades/wordpress.php"
+                ],
+                "psr-4": {
+                    "Yoast\\WHIPv2\\": "src/"
+                }
+            },
+            "notification-url": "https://repo.packagist.com/level-level/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Team Yoast",
+                    "email": "support@yoast.com"
+                }
+            ],
+            "description": "A WordPress package to nudge users to upgrade their software versions (starting with PHP)",
+            "homepage": "https://github.com/Yoast/whip",
+            "support": {
+                "issues": "https://github.com/Yoast/whip/issues",
+                "security": "https://yoast.com/security-program/",
+                "source": "https://github.com/Yoast/whip"
+            },
+            "time": "2023-12-27T11:39:30+00:00"
+        },
+        {
+            "name": "yoast/wordpress-seo",
+            "version": "22.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Yoast-dist/wordpress-seo.git",
+                "reference": "8142ea93d0d554f6a9d87a0e87a75f79d7ec15aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/8142ea93d0d554f6a9d87a0e87a75f79d7ec15aa",
+                "reference": "8142ea93d0d554f6a9d87a0e87a75f79d7ec15aa",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5634,7 +5693,8 @@
             "require": {
                 "composer/installers": "^1.12 || ^2.0",
                 "ext-filter": "*",
-                "php": "^7.2.5 || ^8.0"
+                "php": "^7.2.5 || ^8.0",
+                "yoast/whip": "^2.0"
             },
             "require-dev": {
                 "guzzlehttp/guzzle": "7.8.1",
@@ -5646,7 +5706,7 @@
                 "symfony/dependency-injection": "^3.4",
                 "wordproof/wordpress-sdk": "1.3.5",
                 "yoast/wp-test-utils": "^1.2",
-                "yoast/yoastcs": "^3.0"
+                "yoast/yoastcs": "^3.1.0"
             },
             "suggest": {
                 "ext-bcmath": "For more accurate calculations",
@@ -5688,7 +5748,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2024-01-25T10:14:47+00:00"
+            "time": "2024-05-14T08:12:34+00:00"
         }
     ],
     "packages-dev": [
