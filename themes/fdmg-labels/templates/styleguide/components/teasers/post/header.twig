@@ -22,10 +22,10 @@
 
 	{% if categories or genres or sections or date.date and date.datetime and date.date_full %}
 		<div data-component="terms" class="text-[13px] leading-5">
-			<div class="flex items-center justify-between gap-2 flex-nowrap">
+			<div class="flex justify-between gap-2 flex-nowrap">
 
 				{% if categories or genres or sections %}
-					<div class="flex gap-1">
+					<div class="flex flex-wrap gap-1">
 						{% if categories %}
 							{% include 'styleguide/components/post-terms.twig' with {
 								terms: categories,
