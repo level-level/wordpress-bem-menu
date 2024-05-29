@@ -1,3 +1,5 @@
+import ISubmissionData from './scripts/utilities/gtm/ISubmissionData';
+
 /**
  * Data is defined in ScriptTranslations.php via wp_localize_script()
  */
@@ -36,6 +38,7 @@ declare global {
 			transaction_data: any;
 		};
 		dataLayer: any[];
+		trackFormConfirmationGTM(data: ISubmissionData): void;
 		__tcfapi: any;
 	}
 }

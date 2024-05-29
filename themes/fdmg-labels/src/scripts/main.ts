@@ -1,4 +1,6 @@
 import ModuleInitializer from './utilities/module-initializer';
+import GTM from './utilities/gtm/GTM';
+import ISubmissionData from './utilities/gtm/ISubmissionData';
 import ThemeSelection from './modules/theme-selection';
 import PrimaryNav from './modules/primary-nav';
 import HeaderMenu from './modules/header-menu';
@@ -49,6 +51,16 @@ ModuleInitializer({
 });
 
 dataLayer();
+
+/**
+ * Track a form submission.
+ * Make available globally on window for use in HTML directly.
+ */
+window.trackFormConfirmationGTM = (data: ISubmissionData): void => {
+	new GTM().trackFormConfirmation(data);
+};
+
+new GTM().trackFormConfirmationFromUrl();
 
 /**
  * Event when the paywall is removed
