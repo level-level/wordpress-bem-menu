@@ -96,15 +96,13 @@ class ElasticPress {
 				break;
 			}
 
-			// Highlight the string
-			$highlighted_string_replacement = preg_replace_callback(
-				'/' . preg_quote( $string_to_highlight, '/' ) . '/i',
-				function ( $matches ) use ( $opening_tag, $closing_tag, &$number_of_highlights ) {
-					$number_of_highlights++;
-					return $opening_tag . $matches[0] . $closing_tag;
-				},
-				$highlighted_string
-			);
+			// Wrap the $string_to_highlight with the $opening_tag and $closing_tag if it's not already wrapped by them
+			$escaped_string_to_highlight    = preg_quote( $string_to_highlight, '/' );
+			$escaped_opening_tag            = preg_quote( $opening_tag, '/' );
+			$escaped_closing_tag            = preg_quote( $closing_tag, '/' );
+			$replacement                    = $opening_tag . '$1' . $closing_tag;
+			$pattern                        = '/(?!' . $escaped_opening_tag . '.*?)(' . $escaped_string_to_highlight . ')(?!.*?' . $escaped_closing_tag . ')/i';
+			$highlighted_string_replacement = preg_replace( $pattern, $replacement, $highlighted_string, 1 );
 			$highlighted_string             = $highlighted_string_replacement ? $highlighted_string_replacement : $highlighted_string;
 		}
 		return $highlighted_string;
