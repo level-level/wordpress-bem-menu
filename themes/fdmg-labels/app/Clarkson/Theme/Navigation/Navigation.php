@@ -60,6 +60,7 @@ class Navigation {
 		$args = array(
 			'theme_location' => $theme_location,
 			'menu_class'     => $menu_class,
+			'items_wrap'     => '<ul class="%2$s">%3$s</ul>',
 			'echo'           => false,
 			'walker'         => new WalkerMenu( $menu_class, $show_icons ),
 			'depth'          => $depth,

@@ -62,7 +62,7 @@ jobs:
       # Edit the WordPress install, activated theme and plugins for your test here.
       - name: Download & configure WP
         run: |
-          wp core download --allow-root --version=6.4 --skip-content
+          wp core download --allow-root --version=6.5 --skip-content
           wp config create --allow-root --dbname=test --dbuser=root --dbpass=root --dbhost=127.0.0.1
           wp config set WP_DEBUG true --allow-root
           wp core install --allow-root  --url=localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@test.test

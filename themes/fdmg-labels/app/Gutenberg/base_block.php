@@ -49,6 +49,11 @@ class base_block extends Block_Type {
 	public $original_render_callback;
 
 	/**
+	 * @var array<string>
+	 */
+	public $uses_context = array( 'postId', 'postType' );
+
+	/**
 	 * Constructor.
 	 *
 	 * Will populate object properties from the provided arguments.
