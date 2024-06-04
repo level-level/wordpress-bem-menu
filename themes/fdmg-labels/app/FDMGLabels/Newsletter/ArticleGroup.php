@@ -190,7 +190,7 @@ class ArticleGroup {
 	protected function get_automatic_most_viewed_article_ids(): array {
 		// Get post ids ordered by most viewed
 		$args = array(
-			'number'    => $this->get_article_count(),
+			'number'    => 150,
 			'post_type' => Post::POST_TYPE_NAME,
 			'days'      => $this->get_article_age(),
 		);
