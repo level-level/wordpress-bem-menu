@@ -141,7 +141,7 @@ class DataGenerator {
 		// Normalize <br>
 		$text = str_replace( array( '<br>', '<br/>' ), '<br />', $text );
 
-		// Replace any new line characters that aren't preceded by a <br /> with a <br />.
+		// Replace all new line characters with a <br />.
 		$text = str_replace( "\n", '<br />', $text );
 
 		// Replace newline placeholders with newlines.
