@@ -1,5 +1,6 @@
 {% set objects = block.get_posts() %}
 {% set title = data.title %}
+{% set link = data.link %}
 
 {% if objects %}
 	<div class="{{ align }}" data-name="{{ block.name }}">
@@ -13,6 +14,8 @@
 				post: vacancy,
 			}),
 			style: 'light',
+			button_text: link.title,
+			button_link: link.url,
 		} %}
 	</div>
 {% else %}
