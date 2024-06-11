@@ -3,6 +3,7 @@ namespace Clarkson\Theme\ACFWidgets;
 
 use Clarkson\Theme\PostTypes\Vacancy;
 use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Relationship;
@@ -21,7 +22,7 @@ class Vacancies {
 	public const WIDGET_META_SELECTED_POSTS  = 'selected_posts';
 	public const WIDGET_META_IS_FILL_ENABLED = 'is_fill_enabled';
 	public const WIDGET_META_AMOUNT          = 'amount';
-
+	public const WIDGET_META_LINK            = 'link';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -89,6 +90,8 @@ class Vacancies {
 						->step( 1 )
 						->append( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
+					Link::make( _x( 'Link to all vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_LINK )
+						->returnFormat( 'object' ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),
