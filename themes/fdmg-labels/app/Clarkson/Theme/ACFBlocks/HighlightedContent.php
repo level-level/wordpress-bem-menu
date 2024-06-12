@@ -66,7 +66,7 @@ class HighlightedContent {
 						->required()
 						->tabs( 'visual' )
 						->toolbar( 'basic' )
-						->mediaUpload( false ),
+						->mediaUpload( true ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),
