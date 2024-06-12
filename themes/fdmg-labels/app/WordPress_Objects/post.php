@@ -6,6 +6,7 @@ use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use FDMGLabels\Comments\CommentWalker;
 use FDMGLabels\FeatureManager;
+use FDMGLabels\Search\ElasticPress;
 use LevelLevel\Paywall\ContentExtractor;
 
 class post extends base_object {
@@ -110,5 +111,28 @@ class post extends base_object {
 		}
 
 		return $message;
+	}
+
+	/**
+	 * Overwrite the search result title.
+	 * If the alternative title is set, use that instead of the post title.
+	 * It also highlights the search query in the alternative title.
+	 */
+	public function get_search_result_title(): string {
+		if ( isset( $this->search_result_title ) ) {
+			return parent::get_search_result_title();
+		}
+
+		$alternative_title = $this->get_alternative_title();
+		if ( ! empty( $alternative_title ) ) {
+			$this->search_result_title = ( new ElasticPress() )->highlight_search_result_string(
+				$alternative_title,
+				get_search_query(),
+				sprintf( 'meta.%s', PostTypesPost::META_ALTERNATIVE_TITLE )
+			);
+			return $this->search_result_title;
+		}
+
+		return parent::get_search_result_title();
 	}
 }
