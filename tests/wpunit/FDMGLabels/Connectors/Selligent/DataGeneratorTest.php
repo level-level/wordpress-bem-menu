@@ -42,7 +42,7 @@ class DataGeneratorTest extends WPTestCase {
 			)
 		);
 		update_field( 'alternative_title', 'Test teaser title for Test article selligent', $this->post->get_id() );
-		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image.png' ) );
+		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( codecept_data_dir() . '/images/test-image.png' ) );
 		set_post_thumbnail( $this->post->get_id(), $this->thumbnail->get_id() );
 		wp_set_post_terms( $this->post->get_id(), array( $genre->get_id() ), 'fdmg_genre' );
 
