@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ruleset name="clarkson_core">
 	<description>Level Level FDMG Labels ruleset</description>
-	<config name="testVersion" value="8.0-"/>
+	<config name="testVersion" value="8.2-"/>
 	<file>./themes/fdmg-labels/app</file>
 	<file>./themes/fdmg-labels/functions.php</file>
 	<file>./endpoints</file>
