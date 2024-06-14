@@ -4,7 +4,7 @@ namespace FDMGLabels\Newsletter;
 
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use DateTime;
 use DateTimeImmutable;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;

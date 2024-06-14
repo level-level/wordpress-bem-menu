@@ -2,7 +2,7 @@
 
 namespace FDMGLabels\Auth;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\CookieHelper;
 use OpenID_Connect_Generic;
 use WP_User;

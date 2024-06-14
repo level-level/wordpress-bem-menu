@@ -7,7 +7,7 @@ use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
 use Clarkson_Core\WordPress_Object\post;
 use Clarkson_Core\WordPress_Object\user;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use DateTime;
 
 class SavePostSyncTest extends WPTestCase {

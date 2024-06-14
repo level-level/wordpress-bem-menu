@@ -2,7 +2,7 @@
 
 namespace FDMGLabels\Auth;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\Connectors\FDMGAPI\Objects\SAMLRedirectIPRangesResponse;
 
 class IPAddressIDPRedirectTest extends WPTestCase {
