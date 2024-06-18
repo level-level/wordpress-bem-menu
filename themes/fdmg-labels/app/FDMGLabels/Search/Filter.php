@@ -164,8 +164,8 @@ class Filter {
 	 * @return array<int, \Clarkson_Core\WordPress_Object\Clarkson_Object>
 	 */
 	public function get_filterable_authors(): array {
-		$options          = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' );
-		$selected_authors = $options[ SearchOptions::META_SEARCH_RESULTS_AUTHORS ];
+		$options          = get_field( SearchOptions::META_SEARCH_RESULTS, 'options' ) ?: array();
+		$selected_authors = $options[ SearchOptions::META_SEARCH_RESULTS_AUTHORS ] ?? array();
 
 		if ( ! $selected_authors ) {
 			return array();
