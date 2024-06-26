@@ -9,9 +9,24 @@ use FDMGLabels\Logging\Selligent\SelligentLogger;
 use GF_Field_Consent;
 use GF_Field_Email;
 use GFAPI;
+use GFFormDisplay;
 use GFFormsModel;
 
 class OptinNewsletterOnSubmissionTest extends WPTestCase {
+
+	public function setUp(): void {
+		$this->gf_display_submission_state = serialize( GFFormDisplay::$submission ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
+		parent::setUp();
+	}
+
+	public function tearDown(): void {
+		global $_gf_state;
+		$_gf_state                 = null;
+		$_POST                     = array();
+		$_REQUEST                  = array();
+		GFFormDisplay::$submission = unserialize( $this->gf_display_submission_state ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
+		parent::tearDown();
+	}
 
 	public function test_schedule(): void {
 		$form = GFAPI::get_form(
