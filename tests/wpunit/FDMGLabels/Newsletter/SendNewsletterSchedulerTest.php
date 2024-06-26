@@ -120,7 +120,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$scheduled = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
-		wp_delete_post( $newsletter, true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_newsletter_when_sending_once_then_sync(): void {
