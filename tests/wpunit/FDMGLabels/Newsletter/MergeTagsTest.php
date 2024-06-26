@@ -79,14 +79,15 @@ class MergeTagsTest extends WPTestCase {
 	}
 
 	public function test_replaced_merge_tags(): void {
-		$date_now = new DateTimeImmutable( 'now', wp_timezone() );
+		$timezone = wp_timezone();
+		$date_now = new DateTimeImmutable( 'now', $timezone );
 
 		$this->assertStringContainsString(
 			date_i18n( get_option( 'date_format' ), $date_now ),
 			$this->newsletter->get_subject()
 		);
 		$this->assertStringContainsString(
-			date_i18n( 'l j F Y H:i:s', $date_now ),
+			date_i18n( 'l j F Y H:i:s', $date_now->getTimestamp() + $timezone->getOffset( $date_now ) ),
 			$this->newsletter->get_pre_header()
 		);
 		$this->assertStringContainsString(
