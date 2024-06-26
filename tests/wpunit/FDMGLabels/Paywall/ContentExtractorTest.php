@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\Paywall;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use LevelLevel\Paywall\ContentExtractor;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use WP_Post;
 
 class ContentExtractorTest extends WPTestCase {

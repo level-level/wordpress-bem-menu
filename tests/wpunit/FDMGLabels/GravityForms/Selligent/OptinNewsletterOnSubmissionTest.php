@@ -2,7 +2,6 @@
 
 namespace FDMGLabels\Sync;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\GravityForms\FormSettings\IsSelligentForm;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
@@ -11,6 +10,7 @@ use GF_Field_Email;
 use GFAPI;
 use GFFormDisplay;
 use GFFormsModel;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class OptinNewsletterOnSubmissionTest extends WPTestCase {
 

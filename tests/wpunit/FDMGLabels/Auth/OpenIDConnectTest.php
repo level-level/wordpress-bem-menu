@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\Auth;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\CookieHelper;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use OpenID_Connect_Generic;
 use WP_User;
 

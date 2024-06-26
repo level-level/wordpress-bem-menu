@@ -64,7 +64,7 @@ class MergeTagsReplacer {
 
 	protected function format_date( string $format, DateTimeInterface $post_date ): string {
 		$timezone = $post_date->getTimezone();
-		$offset = $timezone ? $timezone->getOffset( $post_date ) : 0;
+		$offset   = $timezone ? $timezone->getOffset( $post_date ) : 0;
 		return date_i18n( $format, $post_date->getTimestamp() + $offset );
 	}
 }

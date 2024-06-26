@@ -8,8 +8,8 @@ use Clarkson_Core\WordPress_Object\fdmg_section;
 use Clarkson_Core\WordPress_Object\ii_team;
 use Clarkson_Core\WordPress_Object\post;
 use Clarkson_Core\WordPress_Object\user;
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use DateTime;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class ObjectConverterTest extends WPTestCase {
 

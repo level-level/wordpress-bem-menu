@@ -2,8 +2,8 @@
 
 namespace FDMGLabels;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\FeatureManager;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class RobotsTest extends WPTestCase {
 

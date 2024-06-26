@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\StaticPages;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use FDMGLabels\Tests\Helpers\Redirects;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class AuthTest extends WPTestCase {
 

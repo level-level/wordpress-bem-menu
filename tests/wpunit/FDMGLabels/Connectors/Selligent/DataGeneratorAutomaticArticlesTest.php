@@ -11,9 +11,9 @@ use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use DateTime;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 

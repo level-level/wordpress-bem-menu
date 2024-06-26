@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\Paywall;
 
-use lucatume\WPBrowser\TestCase\WPTestCase;
 use LevelLevel\Paywall\ContentAccess;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class ContentAccessTest extends WPTestCase {
 
