@@ -143,7 +143,7 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );
 		GFAPI::delete_form( $form['id'] );
-		as_unschedule_action( $scheduled, 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
+		as_unschedule_action( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
 	}
 
 	public function test_no_schedule(): void {
