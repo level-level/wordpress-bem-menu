@@ -25,11 +25,16 @@ class DataGenerator {
 		if ( $post instanceof post ) {
 			$title = $post->get_alternative_title() ?: $title;
 		}
+
+		remove_filter( 'the_excerpt', 'wpautop' );
+		$excerpt = $this->add_br_tags( $post->get_excerpt() );
+		add_filter( 'the_excerpt', 'wpautop' );
+
 		$data = array(
 			'publication'      => $newsletter->get_publication(),
 			'articleId'        => $post->get_id(),
 			'title'            => substr( $title, 0, 255 ),
-			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
+			'teaser'           => substr( $excerpt, 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
 			'img'              => '',
 			'img_square'       => '',
@@ -79,12 +84,16 @@ class DataGenerator {
 	 * @return array<string,string>
 	 */
 	public function get_newsletter_data( ii_newsletter $newsletter, string $test_mode ): array {
+		remove_filter( 'acf_the_content', 'wpautop' );
+		$intro = $this->add_br_tags( $newsletter->get_introduction() );
+		add_filter( 'acf_the_content', 'wpautop' );
+
 		$data = array(
 			'publication'  => substr( $newsletter->get_publication(), 0, 50 ),
 			'type'         => substr( $newsletter->get_type(), 0, 50 ),
 			'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
 			'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
-			'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),
+			'introduction' => substr( $intro, 0, 2000 ),
 			'test'         => $test_mode,
 		);
 
@@ -117,5 +126,27 @@ class DataGenerator {
 		}
 
 		return date_i18n( $format, $publication_date->getTimestamp() );
+	}
+
+	/**
+	 * Replace newline characters with <br> tags.
+	 * This code is mostly extracted from the wpautop function.
+	 * Except that we want to replace <br> tags when they are preceded with a <br> tag.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/wpautop/
+	 */
+	protected function add_br_tags( string $text ): string {
+		// Replace newlines that shouldn't be touched with a placeholder.
+		$text = (string) preg_replace_callback( '/<(script|style|svg).*?<\/\\1>/s', '_autop_newline_preservation_helper', $text );
+
+		// Normalize <br>
+		$text = str_replace( array( '<br>', '<br/>' ), '<br />', $text );
+
+		// Replace all new line characters with a <br />.
+		$text = str_replace( "\n", '<br />', $text );
+
+		// Replace newline placeholders with newlines.
+		$text = str_replace( '<WPPreserveNewline />', "\n", $text );
+		return $text;
 	}
 }
