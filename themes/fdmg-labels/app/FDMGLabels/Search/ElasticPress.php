@@ -56,6 +56,11 @@ class ElasticPress {
 	 * @return string
 	 */
 	public function highlight_search_result_string( string $input_string, string $search_query, string $input_string_identifier ): string {
+		// Check if search query is empty then highlight nothing
+		if ( empty( $search_query ) ) {
+			return $input_string;
+		}
+
 		// Check if the ElasticPress plugin is active
 		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
 			return $input_string;
