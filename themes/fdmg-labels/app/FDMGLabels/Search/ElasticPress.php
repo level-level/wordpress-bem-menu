@@ -57,7 +57,7 @@ class ElasticPress {
 	 */
 	public function highlight_search_result_string( string $input_string, string $search_query, string $input_string_identifier ): string {
 		// Check if search query is empty then highlight nothing
-		if ( empty ( $search_query ) ) {
+		if ( empty( $search_query ) ) {
 			return $input_string;
 		}
 
