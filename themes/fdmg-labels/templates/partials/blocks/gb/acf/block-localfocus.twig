@@ -3,7 +3,7 @@
 {% set text_alternative = data.text_alternative %}
 {% set pointer_events = is_admin() ? 'none' : 'auto' %}
 {% set skiplink_id = uniqid('localfocus-skip-') %}
-{% set height = data.height ?: '650' %}
+{% set height = data.height ?: '550' %}
 
 {% if embed_id %}
 	<div class="{{ align }}" data-name="{{ block.name }}">

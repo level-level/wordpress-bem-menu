@@ -65,8 +65,8 @@ class LocalFocus {
 					Textarea::make( _x( 'Text alternative', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TEXT_ALTERNATIVE )
 						->instructions( _x( 'Add a text alternative for the LocalFocus embed. This is used for screen reader software to tell a user what the content is about.', 'Fields', 'fdmg-labels-admin' ) ),
 					Number::make( _x( 'Height of the widget', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_HEIGHT )
-						->instructions( _x( 'The height of the embed, by default it is set to 650px.', 'Fields', 'fdmg-labels-admin' ) )
-						->defaultValue( 650 )
+						->instructions( _x( 'The height of the embed, by default it is set to 550px.', 'Fields', 'fdmg-labels-admin' ) )
+						->defaultValue( 550 )
 						->append( 'px' )
 						->required(),
 				),
