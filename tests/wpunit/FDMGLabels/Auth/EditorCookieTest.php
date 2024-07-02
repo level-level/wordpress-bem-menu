@@ -2,7 +2,7 @@
 
 namespace FDMGLabels\Auth;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class EditorCookieTest extends WPTestCase {
 
@@ -61,8 +61,10 @@ class EditorCookieTest extends WPTestCase {
 			)
 		);
 
+		add_filter( 'auth_cookie_expiration', array( $this, 'change_cookie_expiration' ) );
 		wp_set_auth_cookie( $user->ID, false, true );
 		wp_set_current_user( $user->ID, $user->user_login );
+		remove_filter( 'auth_cookie_expiration', array( $this, 'change_cookie_expiration' ) );
 
 		// Assert cookie is set
 		$this->assertArrayHasKey( 'fdmg_labels_editor', $_COOKIE );
@@ -73,6 +75,10 @@ class EditorCookieTest extends WPTestCase {
 		$this->assertArrayNotHasKey( 'fdmg_labels_editor', $_COOKIE );
 
 		wp_logout();
+	}
+
+	public function change_cookie_expiration(): int {
+		return -1;
 	}
 }
 

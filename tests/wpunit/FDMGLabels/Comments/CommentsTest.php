@@ -2,7 +2,7 @@
 
 namespace FDMGLabels\Comments;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class CommentsTest extends WPTestCase {
 
