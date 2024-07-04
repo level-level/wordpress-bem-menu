@@ -3,7 +3,7 @@
 namespace FDMGLabels;
 
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use WP_Query;
 
 class ServerSideTrackingTest extends WPTestCase {

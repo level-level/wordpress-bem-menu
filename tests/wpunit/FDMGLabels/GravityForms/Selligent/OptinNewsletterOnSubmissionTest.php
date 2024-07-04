@@ -2,16 +2,31 @@
 
 namespace FDMGLabels\Sync;
 
-use Codeception\TestCase\WPTestCase;
 use FDMGLabels\GravityForms\FormSettings\IsSelligentForm;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use GF_Field_Consent;
 use GF_Field_Email;
 use GFAPI;
+use GFFormDisplay;
 use GFFormsModel;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class OptinNewsletterOnSubmissionTest extends WPTestCase {
+
+	public function setUp(): void {
+		$this->gf_display_submission_state = serialize( GFFormDisplay::$submission ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_serialize
+		parent::setUp();
+	}
+
+	public function tearDown(): void {
+		global $_gf_state;
+		$_gf_state                 = null;
+		$_POST                     = array();
+		$_REQUEST                  = array();
+		GFFormDisplay::$submission = unserialize( $this->gf_display_submission_state ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.serialize_unserialize
+		parent::tearDown();
+	}
 
 	public function test_schedule(): void {
 		$form = GFAPI::get_form(
@@ -128,7 +143,7 @@ class OptinNewsletterOnSubmissionTest extends WPTestCase {
 
 		GFAPI::delete_entry( (int) $submission_data['entry_id'] );
 		GFAPI::delete_form( $form['id'] );
-		as_unschedule_action( $scheduled, 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
+		as_unschedule_action( 'fdmg_labels_optin_newsletter', array( (int) $submission_data['entry_id'] ), 'fdmg_labels' );
 	}
 
 	public function test_no_schedule(): void {

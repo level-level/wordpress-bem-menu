@@ -11,6 +11,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeZone;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 
@@ -104,27 +105,31 @@ class DataGenerator {
 	}
 
 	protected function format_publish_date( base_object $base_object ): string {
-		$now_date         = new DateTimeImmutable( 'now', wp_timezone() );
-		$publication_date = new DateTimeImmutable( $base_object->get_object()->post_date, wp_timezone() );
+		$timezone         = wp_timezone();
+		$now_date         = new DateTimeImmutable( 'now', $timezone );
+		$publication_date = new DateTimeImmutable( $base_object->get_object()->post_date, $timezone );
 
 		// Default to full date
 		$format = 'd F Y';
 
+		// Get timestamp offset of the wp_timezone
+		$timezone_offset_seconds = $timezone->getOffset( $publication_date );
+
 		// If post is published in same year, only show date and month
-		$current_year = date_i18n( 'Y', $now_date->getTimestamp() );
-		$post_year    = date_i18n( 'Y', $publication_date->getTimestamp() );
+		$current_year = date_i18n( 'Y', $now_date->getTimestamp() + $timezone_offset_seconds );
+		$post_year    = date_i18n( 'Y', $publication_date->getTimestamp() + $timezone_offset_seconds );
 		if ( $current_year === $post_year ) {
 			$format = 'd F';
 		}
 
 		// If post is published on same day, only show time
-		$current_day = date_i18n( 'Ymd', $now_date->getTimestamp() );
-		$post_day    = date_i18n( 'Ymd', $publication_date->getTimestamp() );
+		$current_day = date_i18n( 'Ymd', $now_date->getTimestamp() + $timezone_offset_seconds );
+		$post_day    = date_i18n( 'Ymd', $publication_date->getTimestamp() + $timezone_offset_seconds );
 		if ( $current_day === $post_day ) {
 			$format = 'H:i';
 		}
 
-		return date_i18n( $format, $publication_date->getTimestamp() );
+		return date_i18n( $format, $publication_date->getTimestamp() + $timezone_offset_seconds );
 	}
 
 	/**

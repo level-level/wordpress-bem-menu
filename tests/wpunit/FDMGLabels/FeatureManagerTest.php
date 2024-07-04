@@ -2,8 +2,8 @@
 
 namespace FDMGLabels;
 
-use Codeception\TestCase\WPTestCase;
 use FDMGLabels\FeatureManager;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class FeatureManagerTest extends WPTestCase {
 

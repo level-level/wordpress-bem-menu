@@ -5,6 +5,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTimeImmutable;
 use DateTimeInterface;
+use DateTimeZone;
 
 class MergeTagsReplacer {
 
@@ -63,6 +64,8 @@ class MergeTagsReplacer {
 	}
 
 	protected function format_date( string $format, DateTimeInterface $post_date ): string {
-		return date_i18n( $format, $post_date->getTimestamp() );
+		$timezone = $post_date->getTimezone();
+		$offset   = $timezone->getOffset( $post_date );
+		return date_i18n( $format, $post_date->getTimestamp() + $offset );
 	}
 }

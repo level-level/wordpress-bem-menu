@@ -65,7 +65,7 @@ Run `composer run test` to verify results locally.
 This example is specifically written for `Local`, but most steps should be applicable to other development platforms. This is quite a bit faster, but might not be 100% accurate.
 
 1. Copy `codeception.dist.yml` to `codeception.yml`.
-2. Edit the `params` property to point to `.env.testing.local`.
+2. Edit the `params` property and append `.env.testing.local` to the list.
 3. Create a new (empty) database.
 4. Import `tests/_data/dump.sql` into this new empty database.
 5. Copy `.env.testing` to `.env.testing.local`.

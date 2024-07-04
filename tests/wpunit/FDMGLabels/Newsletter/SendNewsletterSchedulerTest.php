@@ -6,10 +6,10 @@ use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
 use DateTimeImmutable;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class SendNewsletterSchedulerTest extends WPTestCase {
 
@@ -120,7 +120,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$scheduled = as_has_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
 		$this->assertFalse( $scheduled, 'Sync should not be scheduled' );
 
-		wp_delete_post( $newsletter, true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_newsletter_when_sending_once_then_sync(): void {
