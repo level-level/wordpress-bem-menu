@@ -48,7 +48,7 @@
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
         "level-level/clarkson-wp-cli-twig-translations": "^1.0",
-        "level-level/fdmg-server-side-tracking": "^1.0",
+        "level-level/fdmg-server-side-tracking": "^1.1",
         "level-level/ll-paywall": "^1.0",
         "level-level/ll-plugin-autoloader": "^3.0",
         "level-level/logging": "^3.0",
