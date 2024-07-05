@@ -74,3 +74,17 @@
 		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 }
+
+.highlighted-content {
+	.alignleft {
+		float: left;
+		margin-right: 24px !important;
+		width: auto;
+	}
+
+	.alignright {
+		float: right;
+		margin-left: 24px !important;
+		width: auto;
+	}
+}

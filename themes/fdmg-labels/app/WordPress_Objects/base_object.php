@@ -1,13 +1,45 @@
 <?php
 namespace Clarkson_Core\WordPress_Object;
 
+use Clarkson\Theme\ACFPages\ThemeOptions;
+use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use Clarkson_Core\Templates;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
+use FDMGLabels\Comments\Comments;
+use FDMGLabels\StaticPages\AuthController;
 use WP_Term;
 use WPSEO_Primary_Term;
 
 class base_object extends Clarkson_Object {
+
+	protected string|null $search_result_title = null;
+
+	/**
+	 * Custom function to get the search result title.
+	 * This allows ElasticPress to add highlight tags, because it uses the_title().
+	 * Function should only be used on the search template, or where the 's'
+	 * query variable is set.
+	 */
+	public function get_search_result_title(): string {
+		global $post;
+		if ( ! isset( $this->search_result_title ) ) {
+			if ( ! empty( $post ) ) {
+				$oldpost = clone $post;
+			} else {
+				$oldpost = null;
+			}
+			$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			setup_postdata( $this->_post );
+			ob_start();
+			the_title();
+			$this->search_result_title = ob_get_clean() ?: '';
+			wp_reset_postdata();
+			$post = $oldpost; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		}
+		return $this->search_result_title;
+	}
 
 	/**
 	 * Get WPSEO (Yoast) primary term or first term from array
@@ -75,6 +107,78 @@ class base_object extends Clarkson_Object {
 			'date_full' => $this->get_date_i18n( 'j F Y' ),
 			'readable'  => $this->get_human_readable_date(),
 		);
+	}
+
+	/**
+	 * Gets the comment form HTML for the current object.
+	 * This does not check for custom user permissions.
+	 */
+	public function get_comment_form(): string {
+		global $post;
+		// Setup global post variable for comment_form() function
+		$post_backup = $post;
+		setup_postdata( $this->_post );
+		$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+
+		// Setup variables needed to render comment form
+		$twig                = Templates::get_instance();
+		$user                = wp_get_current_user();
+		$user_identity       = $user->exists() ? $user->display_name : '';
+		$login_required_html = ( new Comments() )->get_subscription_required_html( $this );
+
+		$rules_page           = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_DISCUSSION_RULES_PAGE ), 'options' );
+		$rules_page_html      = $rules_page instanceof Clarkson_Object ? sprintf(
+			_x( 'Comments must comply with our %s.', 'Comments', 'fdmg-labels' ),
+			sprintf(
+				'<a href="%s">%s</a>',
+				$rules_page->get_permalink(),
+				_x( 'commenting rules', 'Comments', 'fdmg-labels' ),
+			),
+		) : null;
+		$comment_notes_before = array(
+			_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
+			$rules_page_html,
+			_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
+		);
+
+		$must_log_in_as_notes = array_merge(
+			array(
+				sprintf(
+					_x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
+					$user_identity,
+				),
+			), $comment_notes_before
+		);
+
+		$args = array(
+			'class_form'           => 'form-group',
+			'format'               => 'html5',
+			'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
+			'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
+			'comment_field'        => $twig->render_twig(
+				'styleguide/components/comments/form-fields/textarea.twig',
+				array(), true
+			),
+			'must_log_in'          => $login_required_html,
+			'logged_in_as'         => sprintf(
+				'<p class="logged-in-as">%s</p>',
+				implode( '<br/>', array_filter( $must_log_in_as_notes ) )
+			),
+			'comment_notes_before' => sprintf(
+				'<p class="comment-notes">%s</p>',
+				implode( '<br/>', array_filter( $comment_notes_before ) )
+			),
+		);
+
+		ob_start();
+		comment_form( $args, $this->_post );
+		$html = ob_get_contents() ?: '';
+		ob_end_clean();
+
+		// Reset global post variable
+		$post = $post_backup; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		wp_reset_postdata();
+		return $html;
 	}
 
 	/**

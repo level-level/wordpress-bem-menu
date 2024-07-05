@@ -2,8 +2,8 @@
 
 namespace FDMGLabels\StaticPages;
 
-use Codeception\TestCase\WPTestCase;
 use FDMGLabels\Tests\Helpers\Redirects;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class AuthTest extends WPTestCase {
 
@@ -23,9 +23,10 @@ class AuthTest extends WPTestCase {
 		add_filter( 'openid-connect-generic-auth-url', array( $this, 'change_openid_login_url' ) );
 
 		$_GET['ref']         = '1234';
-		$_GET['kc_idp_hint'] = 'someone@example.test';
+		$_GET['kc_idp_hint'] = 'MicrosoftAuth';
 		$_GET['_ga']         = '5678';
 		$_GET['loginHint']   = 'anotherone@example.test';
+		$_GET['method']      = 'ipBasedRedirect';
 		$controller          = new LoginController();
 		$this->redirects_helper->start();
 		$controller->handle_request( '' );
@@ -35,9 +36,10 @@ class AuthTest extends WPTestCase {
 		$this->redirects_helper->assert_redirect_status( 302 );
 		$this->assertStringContainsString( 'https://example-login-url.test', $this->redirects_helper->get_redirect_location() );
 		$this->assertStringContainsString( 'ref=1234', $this->redirects_helper->get_redirect_location() );
-		$this->assertStringContainsString( 'kc_idp_hint=someone%40example.test', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'kc_idp_hint=MicrosoftAuth', $this->redirects_helper->get_redirect_location() );
 		$this->assertStringContainsString( '_ga=5678', $this->redirects_helper->get_redirect_location() );
 		$this->assertStringContainsString( 'loginHint=anotherone%40example.test', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'method=ipBasedRedirect', $this->redirects_helper->get_redirect_location() );
 
 		remove_filter( 'openid-connect-generic-auth-url', array( $this, 'change_openid_login_url' ) );
 	}

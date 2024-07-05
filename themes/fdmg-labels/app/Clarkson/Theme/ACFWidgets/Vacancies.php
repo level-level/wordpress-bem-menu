@@ -3,9 +3,11 @@ namespace Clarkson\Theme\ACFWidgets;
 
 use Clarkson\Theme\PostTypes\Vacancy;
 use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Number;
 use Extended\ACF\Fields\Relationship;
+use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
@@ -16,10 +18,11 @@ class Vacancies {
 	protected const FIELD_GROUP = 'widget_vacancies';
 
 	public const WIDGET_META_USAGE           = 'usage';
+	public const WIDGET_META_TITLE           = 'title';
 	public const WIDGET_META_SELECTED_POSTS  = 'selected_posts';
 	public const WIDGET_META_IS_FILL_ENABLED = 'is_fill_enabled';
 	public const WIDGET_META_AMOUNT          = 'amount';
-
+	public const WIDGET_META_LINK            = 'link';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -64,6 +67,7 @@ class Vacancies {
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_USAGE )
 						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
+					Text::make( _x( 'Use this field to overwrite the default "Jobs" title', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_TITLE ),
 					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_SELECTED_POSTS )
 						->postTypes( array( Vacancy::POST_TYPE_NAME ) )
 						->filters(
@@ -86,6 +90,8 @@ class Vacancies {
 						->step( 1 )
 						->append( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
+					Link::make( _x( 'Link to all vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_LINK )
+						->returnFormat( 'object' ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

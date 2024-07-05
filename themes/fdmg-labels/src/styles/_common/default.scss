@@ -11,3 +11,7 @@
 html {
 	@apply scroll-smooth;
 }
+
+mark.ep-highlight {
+	@apply bg-[#feff01] text-base-800 not-italic font-bold;
+}

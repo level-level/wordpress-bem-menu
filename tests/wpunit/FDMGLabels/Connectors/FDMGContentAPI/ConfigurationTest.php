@@ -2,7 +2,7 @@
 
 namespace FDMGLabels\Connectors\FDMGContentAPI;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class ConfigurationTest extends WPTestCase {
 

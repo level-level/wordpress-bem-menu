@@ -2,11 +2,13 @@
 namespace Clarkson\Theme\ACFPages;
 
 use Clarkson\Theme\Fields\Socials;
+use Clarkson\Theme\PostTypes\Page;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Number;
+use Extended\ACF\Fields\PostObject;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
@@ -41,6 +43,8 @@ class ThemeOptions {
 	public const OPTIONS_SOCIALS                  = 'socials';
 	public const OPTIONS_SOCIALS_TYPE             = 'type';
 	public const OPTIONS_SOCIALS_URL              = 'url';
+	public const OPTION_DISCUSSION_TAB            = 'discussion_tab';
+	public const OPTION_DISCUSSION_RULES_PAGE     = 'discussion_rules_page';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -151,6 +155,13 @@ class ThemeOptions {
 									)
 									->buttonLabel( _x( 'Add social media channel', 'Fields', 'fdmg-labels-admin' ) )
 									->layout( 'table' ),
+								Tab::make( _x( 'Discussion', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DISCUSSION_TAB )
+									->placement( 'left' ),
+								PostObject::make( _x( 'Rules page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DISCUSSION_RULES_PAGE )
+									->postTypes( array( Page::POST_TYPE_NAME ) )
+									->returnFormat( 'object' )
+									->allowNull()
+									->required(),
 							)
 						),
 				),

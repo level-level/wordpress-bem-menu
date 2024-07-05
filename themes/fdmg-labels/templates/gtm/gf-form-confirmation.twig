@@ -1,0 +1,7 @@
+<script type="text/javascript">
+	window.addEventListener( 'load', () => {
+		if ( typeof window.trackFormConfirmationGTM !== 'undefined' ) {
+			window.trackFormConfirmationGTM( JSON.parse( '{{ submission_data|json_encode()|raw }}' ) );
+		}
+	} );
+</script>

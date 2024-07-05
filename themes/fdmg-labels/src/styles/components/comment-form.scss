@@ -1,7 +1,6 @@
 .comment-form-container {
 	position: relative;
 	background-color: var(--secondary-100);
-	border-bottom: 2px solid var(--secondary-400);
 
 	@include dark-mode {
 		background-color: var(--base-600);

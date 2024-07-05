@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFPages\FDMGAPI;
 use Clarkson\Theme\ACFPages\FDMGContentAPI;
 use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\ACFPages\Paywall;
@@ -19,6 +20,7 @@ class ACFPages {
 		Paywall::class,
 		SearchOptions::class,
 		Selligent::class,
+		FDMGAPI::class,
 		FDMGContentAPI::class,
 		SEOOptions::class,
 	);

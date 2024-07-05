@@ -64,25 +64,26 @@
         "ll-premium/wpai-acf-add-on": "^3.3",
         "mentosmenno2/image-crop-positioner": "^0.6.0",
         "mhcg/monolog-wp-cli": "^1.0",
+        "ramsey/uuid": "^4.7",
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
-        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.9",
+        "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.10",
         "wpackagist-plugin/debug-bar": "^1.1",
         "wpackagist-plugin/debug-bar-elasticpress": "^3.1",
         "wpackagist-plugin/disable-emojis": "^1.7",
-        "wpackagist-plugin/download-monitor": "^4.8",
+        "wpackagist-plugin/download-monitor": "^4.9",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.16",
-        "wpackagist-plugin/elasticpress": "^5.0",
+        "wpackagist-plugin/elasticpress": "^5.1",
         "wpackagist-plugin/koko-analytics": "^1.0",
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/popup-maker": "^1.18",
-        "wpackagist-plugin/post-smtp": "^2.0",
+        "wpackagist-plugin/post-smtp": "^2.9",
         "wpackagist-plugin/query-monitor": "^3.15",
         "wpackagist-plugin/redirection": "^5.3",
         "wpackagist-plugin/user-switching": "^1.7",
         "wpackagist-plugin/wordfence": "^7.8",
-        "yoast/wordpress-seo": "^21.3"
+        "yoast/wordpress-seo": "^22.7"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -145,7 +146,7 @@
             "Composer\\Config::disableProcessTimeout",
             "sudo rm -rf themes/fdmg-labels/_generated/FDMGContentAPI",
             "mkdir -p themes/fdmg-labels/_generated/FDMGContentAPI",
-            "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml | docker run --rm -i evns/yq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli generate -i /local/themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml -g php --additional-properties=invokerPackage=FDMGContentAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-content-api-client -o /local/themes/fdmg-labels/_generated/FDMGContentAPI"
+            "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml | docker run --rm -i evns/yq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli:v7.6.0 generate -i /local/themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml -g php --additional-properties=invokerPackage=FDMGContentAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-content-api-client -o /local/themes/fdmg-labels/_generated/FDMGContentAPI"
         ]
     },
     "extra": {
@@ -164,20 +165,22 @@
     },
     "require-dev": {
         "cebe/php-openapi": "^1.7",
-        "codeception/module-asserts": "^1.3",
-        "codeception/module-cli": "^1.1",
-        "codeception/module-db": "^1.1",
-        "codeception/module-filesystem": "^1.0",
-        "codeception/module-phpbrowser": "^1.0",
-        "codeception/module-webdriver": "^1.2",
+        "codeception/codeception": "^5.0",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-cli": "^2.0",
+        "codeception/module-db": "^3.1",
+        "codeception/module-filesystem": "^3.0",
+        "codeception/module-phpbrowser": "^3.0",
+        "codeception/module-webdriver": "^3.2",
         "codeception/util-universalframework": "^1.0",
         "friendsoftwig/twigcs": "^6.4",
         "level-level/coding-standards": "^4.0",
         "level-level/phpstan-config": "^1.0",
-        "lucatume/wp-browser": "^3.2",
+        "lucatume/wp-browser": "^4.2",
         "niels-de-blaauw/php-doc-check": "^0.2.1",
         "phpstan/extension-installer": "^1.1",
-        "szepeviktor/phpstan-wordpress": "^1.1"
+        "szepeviktor/phpstan-wordpress": "^1.1",
+        "wp-cli/wp-cli-bundle": "^2.10"
     },
     "config": {
         "allow-plugins": {

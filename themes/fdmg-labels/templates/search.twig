@@ -1,5 +1,13 @@
 {% extends 'layouts/sidebar-layout-with-header.twig' %}
 
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-search-results-header-ad') %}
+		<div class="top-advertisement">
+			{{ sidebar.get_widgetarea('widget-area-search-results-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
 {% block header %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		<div class="container">
@@ -7,14 +15,14 @@
 				<h1 class="pb-3 text-lg font-bold border-b-4 font-libre sm:text-3xl text-primary theme-energeia:text-base-500 theme-pensioen-pro:text-base-500 border-secondary-400 dark:text-primary-300 dark:border-primary-300">
 
 					{% if found_posts is same as(1) %}
-						{{ _x('%s result found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, query)|raw }}
+						{{ _x('%s result found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(found_posts, search_query)|raw }}
 					{% else %}
 						{# For performance reasons, Elasticsearch will never return more results than 10000.
 						Even if there are actually more results.
 						To show the user there are actually more results, add a plus character. #}
 						{{ _x('%s results found for &lsquo;%s&rsquo;', 'Search', 'fdmg-labels')|format(
 							found_posts < 10000 or not is_elasticsearch_result ? found_posts : '10000+',
-							query
+							search_query
 						)|raw }}
 					{% endif %}
 				</h1>
@@ -71,7 +79,7 @@
 					<li>
 						{% include 'styleguide/components/teasers/teaser-post-wide.twig' with {
 							image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
-							title: object.get_alternative_title()|default(object.get_title()),
+							title: object.get_search_result_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
 							date: object.get_publish_date(),

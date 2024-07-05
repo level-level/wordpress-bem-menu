@@ -1,0 +1,13 @@
+{% set login_html = '<a href="%s" class="hocus:text-primary hocus:no-underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800">%s</a>'|format(
+	login_url,
+	esc_html_x('logged in', 'Comments', 'fdmg-labels')
+) %}
+
+{% set subscribe_html = '<a href="%s" class="hocus:text-primary hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 hocus:no-underline">%s</a>'|format(
+	subscribe_url,
+	esc_html_x('valid subscription', 'Comments', 'fdmg-labels')
+) %}
+
+<p class="px-3 py-3 text-base sm:px-6">
+	{{ esc_html_x('You must be %s and have a %s to post a comment.', 'Comments', 'fdmg-labels')|format(login_html, subscribe_html)|raw }}
+</p>

@@ -27,7 +27,7 @@ class InlineLink {
 				'title'       => _x( 'Inline link', 'Block', 'fdmg-labels-admin' ),
 				'description' => _x( 'Displays a inline link inside an article.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'admin-links',
-				'align'       => 'center', // full, wide, left, center, right
+				'align'       => 'right', // full, wide, left, center, right
 				'keywords'    => array(
 					_x( 'link', 'Keyword', 'fdmg-labels-admin' ),
 					_x( 'read also', 'Keyword', 'fdmg-labels-admin' ),

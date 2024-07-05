@@ -112,7 +112,7 @@ class Client {
 			$url, array(
 				'headers' => $this->get_auth_headers( self::BASE_PATH . $path ),
 				'body'    => strval( wp_json_encode( $data ) ),
-				'timeout' => 10,
+				'timeout' => 20,
 			)
 		);
 

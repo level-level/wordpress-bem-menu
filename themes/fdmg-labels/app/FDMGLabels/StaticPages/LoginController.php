@@ -69,18 +69,26 @@ class LoginController extends AbstractMainController {
 	/**
 	 * Get the permalink of the login page.
 	 * If chosen, it will redirect to the current url after the user has logged in.
+	 *
+	 * @param bool|string $redirect_to_current_url False to not redirect. True to redirect to the current url. String to redirect to a specific url.
+	 * @return string
 	 */
-	public function get_login_permalink( bool $redirect_to_current_url ): string {
+	public function get_login_permalink( $redirect_to_current_url ): string {
 		$permalink = $this->get_permalink( self::PAGE_LOGIN );
-		if ( ! $redirect_to_current_url ) {
+		if ( $redirect_to_current_url === false ) {
 			return $permalink;
 		}
 
-		$https       = is_ssl() ? 'https' : 'http';
-		$host        = $_SERVER['HTTP_HOST'] ?? '';
-		$request_uri = $_SERVER['REQUEST_URI'] ?? '';
-		$redirect_to = $https . '://' . $host . $request_uri;
-		$permalink   = add_query_arg( 'redirect_to', rawurlencode( $redirect_to ), $permalink );
+		if ( $redirect_to_current_url === true ) {
+			$https       = is_ssl() ? 'https' : 'http';
+			$host        = $_SERVER['HTTP_HOST'] ?? '';
+			$request_uri = $_SERVER['REQUEST_URI'] ?? '';
+			$redirect_to = $https . '://' . $host . $request_uri;
+		} else {
+			$redirect_to = $redirect_to_current_url;
+		}
+
+		$permalink = add_query_arg( 'redirect_to', rawurlencode( $redirect_to ), $permalink );
 		return $permalink;
 	}
 }

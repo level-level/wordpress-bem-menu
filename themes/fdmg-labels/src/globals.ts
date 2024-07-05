@@ -1,3 +1,5 @@
+import ISubmissionData from './scripts/utilities/gtm/ISubmissionData';
+
 /**
  * Data is defined in ScriptTranslations.php via wp_localize_script()
  */
@@ -11,6 +13,10 @@ export type I18n = {
 
 export type Auth = {
 	loginUrl: string;
+}
+
+export type ShortInit = {
+	url: string;
 }
 
 /**
@@ -32,14 +38,18 @@ declare global {
 			transaction_data: any;
 		};
 		dataLayer: any[];
+		trackFormConfirmationGTM(data: ISubmissionData): void;
 		__tcfapi: any;
 	}
 }
 
+export type RestApi = {
+	root: string;
+};
+
 /**
  * Interface for dataLayer configs
  */
-
 export interface DataLayerConfig {
 	element: HTMLElement;
 	event: string;
