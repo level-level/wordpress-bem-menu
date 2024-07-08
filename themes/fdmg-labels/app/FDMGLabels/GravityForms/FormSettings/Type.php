@@ -19,7 +19,7 @@ final class Type extends BaseSetting {
 	}
 
 	public function get_name(): string {
-		return __( 'Formulier Type', 'fdmg-labels-admin' );
+		return __( 'Form Type', 'fdmg-labels-admin' );
 	}
 
 	/**
@@ -28,9 +28,9 @@ final class Type extends BaseSetting {
 	protected function get_choices(): array {
 		return array_merge(
 			array(
-				self::TYPE_DEFAULT    => __( 'Standaard formulier', 'fdmg-labels-admin' ),
-				self::TYPE_NEWSLETTER => __( 'Newsletter formulier', 'fdmg-labels-admin' ),
-				self::TYPE_DOWNLOAD   => __( 'Artikel download', 'fdmg-labels-admin' ),
+				self::TYPE_DEFAULT    => __( 'Standard form', 'fdmg-labels-admin' ),
+				self::TYPE_NEWSLETTER => __( 'Newsletter form', 'fdmg-labels-admin' ),
+				self::TYPE_DOWNLOAD   => __( 'Article download', 'fdmg-labels-admin' ),
 			),
 		);
 	}
