@@ -90,8 +90,8 @@ class ArticleIDRedirects {
 	protected function process_post( WordPress_ObjectPost $post, $redirects_file ): void {
 		WP_CLI::log( sprintf( 'Processing article ID "%d"', $post->get_id() ) );
 
-		$old_id = $post->get_meta( Init::META_OLD_ID, true );
-		if ( ! $old_id ) {
+		$old_id_prefixed = $post->get_meta( Init::META_OLD_ID, true );
+		if ( ! $old_id_prefixed ) {
 			WP_CLI::log( sprintf( 'Old ID is empty for article ID "%d"', $post->get_id() ) );
 			return;
 		}
@@ -102,9 +102,10 @@ class ArticleIDRedirects {
 			return;
 		}
 
+		$old_id = (int) str_replace( 'article_', '', $old_id_prefixed );
 		$old_url = sprintf(
 			'%s/%d',
-			untrailingslashit( home_url() ),
+			untrailingslashit( home_url( '/' ) ),
 			$old_id
 		);
 		$redirect_data = array(
