@@ -1,4 +1,5 @@
 import { IModule } from '../../globals';
+import playerjs from 'player.js';
 
 type EmbedType = 'video' | 'audio';
 
@@ -230,10 +231,24 @@ class OEmbed implements IModule {
 		}
 
 		iframe.allow = 'autoplay';
-		iframe.setAttribute('src', src + '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false');
+		iframe.setAttribute('src', src);
 
 		const placeholder = embedElement.querySelector(`[${this.dataAttribute}="placeholder"]`);
 		placeholder?.remove();
+
+		if (this.source === 'consent_embed_omny') {
+			// Removing the sandbox attribute will allow us to use the player.js library
+			iframe.removeAttribute('sandbox');
+			this.initOmnyPlayer(iframe);
+		}
+	}
+
+	initOmnyPlayer(iframe: HTMLIFrameElement) {
+		const player = new playerjs.Player(iframe);
+
+		player.on('ready', () => {
+			player.play();
+		});
 	}
 }
 
