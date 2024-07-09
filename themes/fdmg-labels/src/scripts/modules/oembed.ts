@@ -231,7 +231,7 @@ class OEmbed implements IModule {
 		}
 
 		iframe.allow = 'autoplay';
-		iframe.setAttribute('src', src);
+		iframe.setAttribute('src', src + '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false');
 
 		const placeholder = embedElement.querySelector(`[${this.dataAttribute}="placeholder"]`);
 		placeholder?.remove();
