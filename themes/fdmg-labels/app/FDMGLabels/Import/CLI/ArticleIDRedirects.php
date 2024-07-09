@@ -102,7 +102,7 @@ class ArticleIDRedirects {
 			return;
 		}
 
-		$old_id        = (int) str_replace( 'article_', '', $old_id_prefixed );
+		$old_id = (int) str_replace( 'article_', '', $old_id_prefixed );
 		if ( ! $old_id ) {
 			WP_CLI::log( sprintf( 'Old ID is empty for article ID "%d"', $post->get_id() ) );
 		}
