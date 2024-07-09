@@ -102,8 +102,8 @@ class ArticleIDRedirects {
 			return;
 		}
 
-		$old_id = (int) str_replace( 'article_', '', $old_id_prefixed );
-		$old_url = sprintf(
+		$old_id        = (int) str_replace( 'article_', '', $old_id_prefixed );
+		$old_url       = sprintf(
 			'%s/%d',
 			untrailingslashit( home_url( '/' ) ),
 			$old_id
