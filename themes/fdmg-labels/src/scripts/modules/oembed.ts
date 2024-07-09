@@ -26,6 +26,8 @@ class OEmbed implements IModule {
 	type: EmbedType;
 	disableNotice: string | undefined;
 	cmpId: number | undefined;
+	theme: string | undefined;
+
 
 	constructor(element: HTMLElement) {
 		this.element = element;
@@ -34,6 +36,7 @@ class OEmbed implements IModule {
 		this.button = this.element.querySelector(`.js-consent-button`);
 		this.source = this.element.dataset.source;
 		this.type = this.element.dataset.type as EmbedType;
+		this.theme = this.element.dataset.theme;
 		this.disableNotice = this.element.dataset.disableNotice;
 		this.cmpId = this.element.dataset.cmpId ? parseInt(this.element.dataset.cmpId) : undefined;
 		this.initialize();
@@ -224,19 +227,29 @@ class OEmbed implements IModule {
 
 	playAudio(embedElement: HTMLElement) {
 		const iframe = embedElement.querySelector('iframe');
-		const src = iframe?.getAttribute('data-src');
+		let src = iframe?.getAttribute('data-src');
 
 		if (!src || !iframe) {
 			return;
 		}
 
 		iframe.allow = 'autoplay';
-		iframe.setAttribute('src', src + '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false');
+		src += '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false';
+		iframe.setAttribute('src', src);
 
 		const placeholder = embedElement.querySelector(`[${this.dataAttribute}="placeholder"]`);
 		placeholder?.remove();
 
 		if (this.source === 'consent_embed_omny') {
+
+			if (this.theme === 'energeia') {
+				iframe.setAttribute('src', src + '&utm_source=CustomPlayer8');
+			}
+
+			if (this.theme === 'pensioen-pro') {
+				iframe.setAttribute('src', src + '&utm_source=CustomPlayer9');
+			}
+
 			// Removing the sandbox attribute will allow us to use the player.js library
 			iframe.removeAttribute('sandbox');
 			this.initOmnyPlayer(iframe);
