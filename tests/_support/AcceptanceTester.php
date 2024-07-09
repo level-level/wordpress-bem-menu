@@ -30,8 +30,8 @@ class AcceptanceTester extends \Codeception\Actor {
 	public function iHaveAPageWithContent($arg1, $arg2)
 	{
 		$this->havePageInDatabase(array(
-			'post_name'=>$arg1,
-			'post_content'=>$arg2
+			'post_name'=>(string)$arg1,
+			'post_content'=>(string)$arg2
 		));	}
 
    /**

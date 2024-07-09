@@ -14,7 +14,6 @@
 <!--- Include details of your testing environment, tests ran to see how -->
 <!--- your change affects other areas of the code, etc. -->
 - [ ] This change is covered by an automated (integration) test.
-- [ ] I have added/updated a JavaScript test.
 - [ ] This change has been tested for the following a11y basics: [A11y test criteria](https://intranet.level-level.net/wiki/a11y-testen-van-je-code/)
 
 Steps to show the feature, or reproduce the bug:
@@ -25,8 +24,6 @@ Steps to show the feature, or reproduce the bug:
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
 <!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
 - [ ] I have set a label for this PR reflecting the change type (bug, feature, breaking change, etc.).
-- [ ] I have added/updated Storybook component(s).
-- [ ] I have tested new components in darkmode.
 - [ ] I have updated [the documentation](https://docs.google.com/document/d/1RVvER6Yf0R9ceyxUzLcjCLOnObAiJgQrtJ-WPP7HrXQ/edit?usp=sharing) accordingly.
 
 ## Screenshots (if appropriate)

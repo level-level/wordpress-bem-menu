@@ -2,7 +2,7 @@
 
 namespace Clarkson\Theme;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class BlocksTest extends WPTestCase {
 	public function test_controls_allowed_blocks() {

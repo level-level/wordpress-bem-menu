@@ -46,8 +46,8 @@ class Init {
 	 */
 	public function track_user_data( array $variables ): array {
 		$custom_user_data = array(
-			'fdmg_user_id'         => '',
-			'fdmg_organisation_id' => '',
+			'fdmg_user_id'         => '0',
+			'fdmg_organisation_id' => '0',
 			'has_subscription'     => '0',
 		);
 

@@ -3,7 +3,7 @@
 namespace Clarkson;
 
 use Clarkson\MailStyling;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use WP_Mock;
 
 class MailStylingTest extends WPTestCase {

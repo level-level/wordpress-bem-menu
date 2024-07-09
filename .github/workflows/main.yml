@@ -119,10 +119,6 @@ jobs:
         run: |
           cd themes/fdmg-labels
           npm run lint
-      - name: JavaScript tests
-        run: |
-          cd themes/fdmg-labels
-          npm run test
       - name: Build
         run: |
           cd themes/fdmg-labels

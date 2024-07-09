@@ -4,14 +4,11 @@
 ( new \Clarkson\CronAuth() )->register_hooks();
 ( new \Clarkson\Hardening() )->register_hooks();
 ( new \Clarkson\MailStyling() )->register_hooks();
-( new \Clarkson\Storybook() )->register_hooks();
 
 // Clarkson WPAdmin
 ( new \Clarkson\WPadmin\Capabilities() )->register_hooks();
 ( new \Clarkson\WPadmin\Gutenberg() )->register_hooks();
 ( new \Clarkson\WPadmin\Plugins() )->register_hooks();
-( new \Clarkson\WPadmin\Tools\Base() )->register_hooks();
-( new \Clarkson\WPadmin\Tools\Styleguide() )->register_hooks();
 
 // Clarkson Theme
 ( new \Clarkson\Theme\Assets() )->register_hooks();

@@ -8,8 +8,8 @@ use Clarkson_Core\WordPress_Object\fdmg_section;
 use Clarkson_Core\WordPress_Object\ii_team;
 use Clarkson_Core\WordPress_Object\post;
 use Clarkson_Core\WordPress_Object\user;
-use Codeception\TestCase\WPTestCase;
 use DateTime;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class ObjectConverterTest extends WPTestCase {
 
@@ -86,8 +86,8 @@ class ObjectConverterTest extends WPTestCase {
 	public function test_image(): void {
 		// Use different path to test the getDescription function
 		$image_paths = array(
-			DIR_TESTDATA . '/images/test-image-large.png',
-			DIR_TESTDATA . '/images/canola.jpg',
+			codecept_data_dir() . '/images/test-image-large.png',
+			codecept_data_dir() . '/images/canola.jpg',
 		);
 
 		foreach ( $image_paths as $index => $image_path ) {
@@ -176,7 +176,7 @@ class ObjectConverterTest extends WPTestCase {
 					'post_type'    => 'ii_team',
 					'post_name'    => 'john-doe',
 					'meta_input'   => array(
-						'email_address'      => 'johndoe@example.test',
+						'email'              => 'johndoe@example.test',
 						'linkedin'           => 'https://linkedin.com/in/johndoe',
 						'location'           => 'Rotterdam',
 						'fdmg_import_old_id' => 'author_123',

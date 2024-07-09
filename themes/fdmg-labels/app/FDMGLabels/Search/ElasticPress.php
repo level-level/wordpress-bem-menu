@@ -50,12 +50,22 @@ class ElasticPress {
 	 * When ElasticPress Post Search feature is enabled, this function will
 	 * highlight the search query (or parts of it) in the input string.
 	 *
+		 * ElasticPress does highlight the search result string in the post title and excerpt by itself.
+	 * This feature exists to also do this with other texts, like the alternative title field.
+	 *
+		 * Please note that this function is custom built and can behave differently (mark less words) than the default feature of ElasticPress.
+	 *
 	 * @param string $input_string The string to highlight.
 	 * @param string $search_query The search query.
 	 * @param string $input_string_identifier A self-made-up identifier of the input string. Must be unique for each input string.
 	 * @return string
 	 */
 	public function highlight_search_result_string( string $input_string, string $search_query, string $input_string_identifier ): string {
+		// Check if search query is empty then highlight nothing
+		if ( empty( $search_query ) ) {
+			return $input_string;
+		}
+
 		// Check if the ElasticPress plugin is active
 		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
 			return $input_string;
