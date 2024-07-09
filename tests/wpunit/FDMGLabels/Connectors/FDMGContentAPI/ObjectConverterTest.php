@@ -176,7 +176,7 @@ class ObjectConverterTest extends WPTestCase {
 					'post_type'    => 'ii_team',
 					'post_name'    => 'john-doe',
 					'meta_input'   => array(
-						'email_address'      => 'johndoe@example.test',
+						'email'              => 'johndoe@example.test',
 						'linkedin'           => 'https://linkedin.com/in/johndoe',
 						'location'           => 'Rotterdam',
 						'fdmg_import_old_id' => 'author_123',
