@@ -103,6 +103,10 @@ class ArticleIDRedirects {
 		}
 
 		$old_id        = (int) str_replace( 'article_', '', $old_id_prefixed );
+		if ( ! $old_id ) {
+			WP_CLI::log( sprintf( 'Old ID is empty for article ID "%d"', $post->get_id() ) );
+		}
+
 		$old_url       = sprintf(
 			'%s/%d',
 			untrailingslashit( home_url( '/' ) ),
