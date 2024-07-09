@@ -12,9 +12,7 @@ To get started duplicate the `config.local.json.example` file and rename it to `
 - `npm run lint`
 - `npm run fix`
 - `npm run build`
-  - `npm run optimize-images`
-- `npm run storybook`
-- `npm run storybook:build`
+- `npm run optimize-images`
 
 If you run into any problems locally with the initial installation of the node_modules (especially webpack) try setting your local environment to DEV by executing the following on your CLI:
 
@@ -77,18 +75,6 @@ Usage example:
 	>{{ svg_icons.get('arrow-right')|raw }}</span
 >
 ```
-
-## Storybook
-
-### Setup
-
-Add `define( 'WP_ENVIRONMENT_TYPE', 'local' );` to `wp-config.php`.
-Important note: For security reasons Storybook will only work on your local machine and on a staging server.
-
-### Examples
-
-FDMG Labels comes with some [predefined stories](https://github.com/level-level/fdmg-labels/tree/main/themes/fdmg-labels/src/stories).
-What is important for a story to work is that a story should always be located in the `src/stories` folder and that the name should include the `.stories` affix.
 
 ## Cookiebot
 
