@@ -227,14 +227,15 @@ class OEmbed implements IModule {
 
 	playAudio(embedElement: HTMLElement) {
 		const iframe = embedElement.querySelector('iframe');
-		const src = iframe?.getAttribute('data-src');
+		let src = iframe?.getAttribute('data-src');
 
 		if (!src || !iframe) {
 			return;
 		}
 
 		iframe.allow = 'autoplay';
-		iframe.setAttribute('src', src + '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false');
+		src += '&auto_play=true&hide_related=true&show_comments=false&show_reposts=false';
+		iframe.setAttribute('src', src);
 
 		const placeholder = embedElement.querySelector(`[${this.dataAttribute}="placeholder"]`);
 		placeholder?.remove();
