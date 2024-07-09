@@ -1,6 +1,6 @@
 # Article ID redirects
 
-The old website has urls containing the article ID, like {{energeia.nl/12345}}. These urls now won't work anymore. Therefore, we need to redirect these urls to the new article permalinks.
+The old website has urls containing the article ID, like https://energeia.nl/12345. These urls now won't work anymore. Therefore, we need to redirect these urls to the new article permalinks.
 
 ## Export
 
