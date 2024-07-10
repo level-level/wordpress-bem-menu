@@ -65,11 +65,10 @@ class NavigationAdvertisement implements IModule {
 					return;
 				}
 				mutation.addedNodes.forEach((node) => {
-					// Check if the added node is an iframe
+					// Check if the added node is an iframe if not skip
 					if (node.nodeName !== 'IFRAME') {
 						return;
 					}
-
 
 					// Set the initial top position of the navigation
 					this.setNavigationTopPosition(this.element.clientHeight);
