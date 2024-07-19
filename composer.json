@@ -54,7 +54,6 @@
         "level-level/logging": "^3.0",
         "level-level/wordpress-bem-menu": "^1.0",
         "level-level/wp-file-mods": "^1.0",
-        "ll-premium/advanced-custom-fields-pro": "^6.0",
         "ll-premium/gravityforms": "^2.6",
         "ll-premium/gravityformspolls": "^4.0",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
@@ -83,6 +82,7 @@
         "wpackagist-plugin/redirection": "^5.3",
         "wpackagist-plugin/user-switching": "^1.7",
         "wpackagist-plugin/wordfence": "^7.8",
+        "wpengine/advanced-custom-fields-pro": "^6.3",
         "yoast/wordpress-seo": "^22.7"
     },
     "scripts": {

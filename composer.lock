@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61a54a6f31916a6997ff12a3270b693e",
+    "content-hash": "2ae2c7cbb9b26ac051412718b9b69591",
     "packages": [
         {
             "name": "brick/math",
@@ -1608,33 +1608,6 @@
                 "source": "https://github.com/level-level/wp-file-mods/tree/v1.0.0"
             },
             "time": "2023-08-17T08:05:06+00:00"
-        },
-        {
-            "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.3.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.3.1",
-                "shasum": "950e848ecafea976a6a8cf87be050c767451bfbc",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "WP Engine",
-                "homepage": "https://wpengine.com/?utm_source=wordpress.org&#038;utm_medium=referral&#038;utm_campaign=plugin_directory&#038;utm_content=advanced_custom_fields"
-            },
-            "description": "Customize WordPress with powerful, professional and intuitive fields.",
-            "homepage": "https://www.advancedcustomfields.com",
-            "abandoned": true
         },
         {
             "name": "ll-premium/gravityforms",
@@ -5614,6 +5587,28 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/wordfence/"
+        },
+        {
+            "name": "wpengine/advanced-custom-fields-pro",
+            "version": "6.3.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.3.4",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "replace": {
+                "wpackagist-plugin/advanced-custom-fields": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/"
         },
         {
             "name": "yoast/whip",
