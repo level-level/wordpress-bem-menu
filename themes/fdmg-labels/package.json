@@ -21,7 +21,7 @@
     "@fontsource/libre-caslon-text": "^5.0.20",
     "@level-level/recyclops": "^2.9.1",
     "@sentry/browser": "^7.118.0",
-    "dayjs": "^1.11.11",
+    "dayjs": "^1.11.12",
     "js-cookie": "^3.0.5",
     "player.js": "^0.1.0"
   },
