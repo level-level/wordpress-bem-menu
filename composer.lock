@@ -1633,7 +1633,8 @@
                 "homepage": "https://wpengine.com/?utm_source=wordpress.org&#038;utm_medium=referral&#038;utm_campaign=plugin_directory&#038;utm_content=advanced_custom_fields"
             },
             "description": "Customize WordPress with powerful, professional and intuitive fields.",
-            "homepage": "https://www.advancedcustomfields.com"
+            "homepage": "https://www.advancedcustomfields.com",
+            "abandoned": true
         },
         {
             "name": "ll-premium/gravityforms",
