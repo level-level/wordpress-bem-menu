@@ -89,6 +89,9 @@ class SendNewsletterScheduler {
 			return;
 		}
 
+		// Reset the field values for sending. Should only happen after scheduling once.
+		delete_field( Newsletter::META_SEND, $newsletter_id );
+
 		$i18n_util = new I18n();
 		$this->selligent_logger->add_post_log(
 			$newsletter_id,
