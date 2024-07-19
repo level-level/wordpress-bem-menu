@@ -1726,11 +1726,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.3.15",
+            "version": "4.3.16",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.15",
-                "shasum": "f37f58f247bc8e4419804d7698548cba7fc18995",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.16",
+                "shasum": "9b86e46ee186a1da48edbcaf6ecd0b9266e7bdd0",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
