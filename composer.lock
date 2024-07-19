@@ -1011,16 +1011,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5"
+                "reference": "39d600ec77a08103fdf57cfd390056c7546d226e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
-                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/39d600ec77a08103fdf57cfd390056c7546d226e",
+                "reference": "39d600ec77a08103fdf57cfd390056c7546d226e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1092,10 +1092,10 @@
             ],
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.4",
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.5",
                 "issues": "https://github.com/level-level/Clarkson-Core/issues"
             },
-            "time": "2023-11-20T09:51:23+00:00"
+            "time": "2024-06-24T13:35:55+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
