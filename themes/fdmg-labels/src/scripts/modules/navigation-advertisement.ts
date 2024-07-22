@@ -20,17 +20,17 @@ class NavigationAdvertisement implements IModule {
 	}
 
 	addEventListeners() {
-		// Set the initial top position of the navigation
-		this.setNavigationTopPosition(this.element.clientHeight);
-
-		// Check every second if the height has changed
-		this.interval = setInterval(this.checkHeightChange.bind(this), 1000);
+		this.observeAdvertisement();
 	}
 
 	// Function to check if the height has changed
 	checkHeightChange() {
 		// Get the current height of the element
 		const currentHeight = this.element.clientHeight;
+
+		if (currentHeight === 0) {
+			return;
+		}
 
 		// Compare it to the previous height
 		// Height changed:
@@ -56,6 +56,30 @@ class NavigationAdvertisement implements IModule {
 		const top = adminbarHeight - height;
 
 		this.header.style.top = `${top}px`;
+	}
+
+	observeAdvertisement() {
+		const observer = new MutationObserver((mutationsList) => {
+			for (const mutation of mutationsList) {
+				if (mutation.type !== 'childList' && mutation.addedNodes.length === 0) {
+					return;
+				}
+				mutation.addedNodes.forEach((node) => {
+					// Check if the added node is an iframe if not skip
+					if (node.nodeName !== 'IFRAME') {
+						return;
+					}
+
+					// Set the initial top position of the navigation
+					this.setNavigationTopPosition(this.element.clientHeight);
+
+					// Check every second if the height has changed
+					this.interval = setInterval(this.checkHeightChange.bind(this), 1000);
+				});
+			}
+		});
+
+		observer.observe(this.element, { childList: true, subtree: true });
 	}
 }
 
