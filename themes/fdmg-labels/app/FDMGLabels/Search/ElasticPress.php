@@ -11,6 +11,7 @@ class ElasticPress {
 	public function register_hooks(): void {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_elasticsearch_to_context' ), 10, 2 );
+		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
 	}
 
 	/**
