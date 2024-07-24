@@ -56,6 +56,12 @@
 						{% include 'partials/components/header/header-display-options.twig' %}
 					</div>
 
+					{% if has_nav_menu(constant('PROFILE_NAV', navigation)) %}
+						<div class="p-3 border-t border-secondary-700 dark:border-base-800 js-profile-nav">
+							{{ navigation.get_menu(constant('PROFILE_NAV', navigation), 'profile-nav', 1, true)|raw }}
+						</div>
+					{% endif %}
+
 					<div class="hidden theme-energeia:block theme-pensioen-pro:block ">
 						<div class="p-3 border-t border-secondary-700 dark:border-base-800">
 							{% include 'partials/components/login-button.twig' %}
