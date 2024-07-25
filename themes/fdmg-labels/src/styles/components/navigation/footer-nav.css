@@ -3,7 +3,7 @@
 }
 
 .footer-nav__link {
-	@apply font-figtree text-base text-secondary-700 block no-underline;
+	@apply block text-base no-underline font-figtree text-secondary-700;
 	@apply dark:text-base-100;
 	@apply hocus:underline;
 }

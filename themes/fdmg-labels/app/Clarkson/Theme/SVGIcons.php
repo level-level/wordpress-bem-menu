@@ -94,14 +94,9 @@ class SVGIcons {
 		}
 
 		$choices = array();
-		foreach ( $svgs as $icon_name => $svg ) {
-			$formatted_name = ucwords( str_replace( '-', ' ', $icon_name ) );
-
-			$choices[ $icon_name ] = "
-				<span style='display:flex; gap:10px; align-items:center'>
-					<span aria-hidden='true' style='display:flex;'>{$svg}</span>{$formatted_name}
-				</span>
-			";
+		foreach ( array_keys( $svgs ) as $icon_name ) {
+			$formatted_name        = ucwords( str_replace( '-', ' ', $icon_name ) );
+			$choices[ $icon_name ] = $formatted_name;
 		}
 
 		return $choices;
