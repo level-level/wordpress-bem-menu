@@ -1,0 +1,13 @@
+.profile-nav {
+	@apply flex flex-col gap-[10px];
+}
+
+.profile-nav__link {
+	@apply flex items-center gap-2 text-base no-underline font-figtree;
+	@apply hocus:underline;
+	@apply sm:dark:text-base-50 sm:text-base-800 compact-header:text-base-800 compact-header:dark:text-base-50;
+}
+
+.profile-nav__link-icon {
+	@apply text-md;
+}

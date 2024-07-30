@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61a54a6f31916a6997ff12a3270b693e",
+    "content-hash": "4a4ac020b0aed24c97ee3f6e3614743e",
     "packages": [
         {
             "name": "brick/math",
@@ -1011,16 +1011,16 @@
         },
         {
             "name": "level-level/clarkson-core",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/Clarkson-Core.git",
-                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5"
+                "reference": "39d600ec77a08103fdf57cfd390056c7546d226e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
-                "reference": "f2ac2cfe7791ea767399d3ca0bbe94e5fad4d9e5",
+                "url": "https://api.github.com/repos/level-level/Clarkson-Core/zipball/39d600ec77a08103fdf57cfd390056c7546d226e",
+                "reference": "39d600ec77a08103fdf57cfd390056c7546d226e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1092,10 +1092,10 @@
             ],
             "description": "A plugin to write Object-Oriented code in combination with the Twig templating engine while keeping the WordPress Way of working in mind.",
             "support": {
-                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.4",
+                "source": "https://github.com/level-level/Clarkson-Core/tree/1.7.5",
                 "issues": "https://github.com/level-level/Clarkson-Core/issues"
             },
-            "time": "2023-11-20T09:51:23+00:00"
+            "time": "2024-06-24T13:35:55+00:00"
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
@@ -1610,38 +1610,12 @@
             "time": "2023-08-17T08:05:06+00:00"
         },
         {
-            "name": "ll-premium/advanced-custom-fields-pro",
-            "version": "6.3.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/advanced-custom-fields-pro/6.3.1",
-                "shasum": "950e848ecafea976a6a8cf87be050c767451bfbc",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "WP Engine",
-                "homepage": "https://wpengine.com/?utm_source=wordpress.org&#038;utm_medium=referral&#038;utm_campaign=plugin_directory&#038;utm_content=advanced_custom_fields"
-            },
-            "description": "Customize WordPress with powerful, professional and intuitive fields.",
-            "homepage": "https://www.advancedcustomfields.com"
-        },
-        {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.12",
+            "version": "2.8.14",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.12",
-                "shasum": "24247d5cc2f8ac17ccac9fed5613b878188cd345",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.14",
+                "shasum": "48a386e4e7b91b0d7d95526b8cbd0a8f2c8c0c01",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1725,11 +1699,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.3.15",
+            "version": "4.3.16",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.15",
-                "shasum": "f37f58f247bc8e4419804d7698548cba7fc18995",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.16",
+                "shasum": "9b86e46ee186a1da48edbcaf6ecd0b9266e7bdd0",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1751,11 +1725,11 @@
         },
         {
             "name": "ll-premium/wp-all-import-pro",
-            "version": "4.8.7",
+            "version": "4.8.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.7",
-                "shasum": "17ffacd6d6a6eff8c1fbab66d4e2d641eceecf0c",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.8.8",
+                "shasum": "2a5a0865a3ec8dfa0be898c1f3787bbe259e7075",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5441,15 +5415,15 @@
         },
         {
             "name": "wpackagist-plugin/loco-translate",
-            "version": "2.6.10",
+            "version": "2.6.11",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/loco-translate/",
-                "reference": "tags/2.6.10"
+                "reference": "tags/2.6.11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.10.zip",
+                "url": "https://downloads.wordpress.org/plugin/loco-translate.2.6.11.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5491,15 +5465,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "2.9.4",
+            "version": "2.9.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/2.9.4"
+                "reference": "tags/2.9.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.2.9.7.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5613,6 +5587,28 @@
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "homepage": "https://wordpress.org/plugins/wordfence/"
+        },
+        {
+            "name": "wpengine/advanced-custom-fields-pro",
+            "version": "6.3.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.3.4",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "~1.0 || ~2.0"
+            },
+            "replace": {
+                "wpackagist-plugin/advanced-custom-fields": "self.version"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/"
         },
         {
             "name": "yoast/whip",
@@ -8170,16 +8166,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "4.2.4",
+            "version": "4.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "620a8e2901f0669a190b0e9eeebc9c8c564a07e2"
+                "reference": "442e488aec53278b8e3b2b6ee8f688bd4315b09b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/620a8e2901f0669a190b0e9eeebc9c8c564a07e2",
-                "reference": "620a8e2901f0669a190b0e9eeebc9c8c564a07e2",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/442e488aec53278b8e3b2b6ee8f688bd4315b09b",
+                "reference": "442e488aec53278b8e3b2b6ee8f688bd4315b09b",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8263,7 +8259,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/4.2.4"
+                "source": "https://github.com/lucatume/wp-browser/tree/4.2.5"
             },
             "funding": [
                 {
@@ -8271,7 +8267,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-06T06:06:07+00:00"
+            "time": "2024-06-26T07:01:47+00:00"
         },
         {
             "name": "mck89/peast",
@@ -12466,16 +12462,16 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v1.3.4",
+            "version": "v1.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "891d0767855a32c886a439efae090408cc1fa156"
+                "reference": "7f8cfe992faa96b6a33bbd75c7bace98864161e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/891d0767855a32c886a439efae090408cc1fa156",
-                "reference": "891d0767855a32c886a439efae090408cc1fa156",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/7f8cfe992faa96b6a33bbd75c7bace98864161e7",
+                "reference": "7f8cfe992faa96b6a33bbd75c7bace98864161e7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -12496,7 +12492,8 @@
                 "php-parallel-lint/php-parallel-lint": "^1.1",
                 "phpstan/phpstan-strict-rules": "^1.2",
                 "phpunit/phpunit": "^8.0 || ^9.0",
-                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^0.8"
+                "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "^1.0",
+                "wp-coding-standards/wpcs": "3.1.0 as 2.3.0"
             },
             "suggest": {
                 "swissspidy/phpstan-no-private": "Detect usage of internal core functions, classes and methods"
@@ -12528,9 +12525,9 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.4"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v1.3.5"
             },
-            "time": "2024-03-21T16:32:59+00:00"
+            "time": "2024-06-28T22:27:19+00:00"
         },
         {
             "name": "theseer/tokenizer",

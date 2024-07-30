@@ -18,7 +18,8 @@ Because some content has dependencies to be rendered / imported correctly, it's 
 12. [Old URL's as redirects](./old_urls_readme.md)
 13. [Short URL's as redirects](./short_urls_readme.md)
 14. [Article redirects as redirects](./article_redirects.md)
-15. [Author redirects as redirects](./author_redirects.md)
+15. [Article ID redirects as redirects](./article_id_redirects.md)
+16. [Author redirects as redirects](./author_redirects.md)
 
 ## Table structure
 

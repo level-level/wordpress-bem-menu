@@ -1,20 +1,26 @@
 import { MrToggle } from '@level-level/recyclops';
 import { IOptions } from '@level-level/recyclops/types/mr-toggle';
 import { IModule } from '../../globals';
+import User from '../model/user';
+
 
 class HeaderMenu implements IModule {
 	element: HTMLElement;
+	user: User | null;
 	backdrop: HTMLElement | null;
 	html: HTMLElement | null;
 	dropdown: HTMLElement | null;
 	closeButton: HTMLButtonElement | null;
+	profileNav: HTMLElement | null;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
+		this.user = User.getCurrentUser();
 		this.backdrop = this.element.querySelector('.js-header-menu-backdrop');
 		this.html = document.querySelector('html');
 		this.dropdown = this.element.querySelector('.js-header-menu-dropdown');
 		this.closeButton = this.element.querySelector('.js-close-menu');
+		this.profileNav = this.element.querySelector('.js-profile-nav');
 
 		this.initialize();
 	}
@@ -66,6 +72,11 @@ class HeaderMenu implements IModule {
 			// Remove style property that fixes iOS Safari 15 issue
 			this.html?.removeAttribute('style');
 		});
+
+		if (!this.user) {
+			// If the user is not logged in, remove the profile nav
+			this.profileNav?.remove();
+		}
 	}
 
 	showBackdrop() {
