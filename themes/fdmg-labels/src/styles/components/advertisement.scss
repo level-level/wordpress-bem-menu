@@ -49,3 +49,9 @@
 		margin-top: 0;
 	}
 }
+
+.advertisement:has(.pp-message-collapsed),
+.advertisement:has(.ii-message-collapsed),
+.advertisement:has(.en-message-collapsed) {
+	display: none !important;
+}

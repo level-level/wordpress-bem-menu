@@ -23,7 +23,6 @@ import CommentForm from './modules/comment-form';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
 import dataLayer from './datalayer/datalayer';
-import Advertisement from './modules/advertisement';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -47,7 +46,6 @@ ModuleInitializer({
 	'comment-form': CommentForm,
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
-	'advertisement': Advertisement,
 });
 
 dataLayer();
@@ -74,7 +72,6 @@ document.addEventListener('onLLPaywallRemoved', () => {
 		oembed: OEmbed,
 		table: Table,
 		'social-share': SocialShare,
-		'advertisement': Advertisement,
 	});
 });
 
