@@ -20,7 +20,7 @@
 		icon: 'user',
 		icon_left: true,
 	} %}
-	<div class="block fixed left-0 right-0 compact-header:top-[theme(space.header-height)] sm:left-auto sm:absolute top-[calc(theme(space.header-height)-theme(space.menu-height))] p-0 bg-base-50 text-base-800 dark:text-base-50 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 sm:compact-header:top-full dark:bg-base-600 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
+	<div class="block fixed left-0 right-0 top-[calc(theme(space.header-height)+theme(space.admin-bar))] sm:left-auto sm:absolute sm:top-[calc(theme(space.header-height)-theme(space.menu-height))] p-0 bg-secondary-100 text-base-800 dark:text-base-50 z-10 min-w-[330px] opacity-100 visible transition-all border-b-2 border-secondary-400 sm:compact-header:top-full dark:bg-base-300 dark:border-transparent aria-hidden:opacity-0 aria-hidden:invisible {{ target }}" aria-hidden="true">
 		<div class="p-5">
 
 			{% if has_nav_menu(constant('PROFILE_NAV', navigation)) %}
