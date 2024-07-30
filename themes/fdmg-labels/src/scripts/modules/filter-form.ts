@@ -15,6 +15,18 @@ class FilterForm implements IModule {
 	checkedCategories: string[];
 	hiddenCategoryInput: HTMLInputElement | null;
 
+	sectionCheckboxes: NodeListOf<HTMLInputElement> | undefined;
+	checkedSections: string[];
+	hiddenSectionInputs: NodeListOf<HTMLInputElement> | null;
+
+	genreCheckboxes: NodeListOf<HTMLInputElement> | undefined;
+	checkedGenres: string[];
+	hiddenGenreInputs: NodeListOf<HTMLInputElement> | null;
+
+	authorCheckboxes: NodeListOf<HTMLInputElement> | undefined;
+	checkedAuthors: string[];
+	hiddenAuthorInputs: NodeListOf<HTMLInputElement> | null;
+
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.form = this.element.querySelector('form');
@@ -25,9 +37,22 @@ class FilterForm implements IModule {
 		this.minimumDateInput = element.querySelector('input[name="post_date_min"]');
 		this.maximumDateInput = element.querySelector('input[name="post_date_max"]');
 		this.dateRangeContainer = element.querySelector('.js-date-range');
+
 		this.checkedCategories = [];
 		this.categoryCheckboxes = this.element.querySelectorAll('input[name="category[]"]');
-		this.hiddenCategoryInput = this.element.querySelector('input[name="category_name"]');
+		this.hiddenCategoryInput = document.querySelector('input[type="hidden"][name="category_name"]');
+
+		this.checkedSections = [];
+		this.sectionCheckboxes = this.element.querySelectorAll('input[name="fdmg_section[]"]');
+		this.hiddenSectionInputs = document.querySelectorAll('input[type="hidden"][name="fdmg_section"]');
+
+		this.checkedGenres = [];
+		this.genreCheckboxes = this.element.querySelectorAll('input[name="fdmg_genre[]"]');
+		this.hiddenGenreInputs = document.querySelectorAll('input[type="hidden"][name="fdmg_genre"]');
+
+		this.checkedAuthors = [];
+		this.authorCheckboxes = this.element.querySelectorAll('input[name="author_id[]"]');
+		this.hiddenAuthorInputs = document.querySelectorAll('input[type="hidden"][name="author_id[]"]');
 
 		this.initialize();
 	}
@@ -37,6 +62,18 @@ class FilterForm implements IModule {
 
 		if (this.hiddenCategoryInput && this.categoryCheckboxes) {
 			this.populateCheckedCategories();
+		}
+
+		if (this.hiddenSectionInputs && this.sectionCheckboxes) {
+			this.populateCheckedSections();
+		}
+
+		if (this.hiddenGenreInputs && this.genreCheckboxes) {
+			this.populateCheckedGenres();
+		}
+
+		if (this.hiddenAuthorInputs && this.authorCheckboxes) {
+			this.populateCheckedAuthors();
 		}
 	}
 
@@ -49,8 +86,22 @@ class FilterForm implements IModule {
 			input.addEventListener('change', this.handleRadioButtonChange.bind(this));
 		});
 
+		this.orderBySelect?.addEventListener('change', this.handleSortByChange.bind(this));
+
 		this.categoryCheckboxes?.forEach((checkbox) => {
 			checkbox.addEventListener('change', this.handleCategoryCheckboxChange.bind(this));
+		});
+
+		this.sectionCheckboxes?.forEach((checkbox) => {
+			checkbox.addEventListener('change', this.handleSectionCheckboxChange.bind(this));
+		});
+
+		this.genreCheckboxes?.forEach((checkbox) => {
+			checkbox.addEventListener('change', this.handleGenreCheckboxChange.bind(this));
+		});
+
+		this.authorCheckboxes?.forEach((checkbox) => {
+			checkbox.addEventListener('change', this.handleAuthorCheckboxChange.bind(this));
 		});
 
 		this.form?.addEventListener('submit', (event) => {
@@ -66,16 +117,72 @@ class FilterForm implements IModule {
 		});
 	}
 
+	handleSortByChange(event: Event) {
+		const selectedSort = event.target as HTMLSelectElement;
+		const hiddenSortInput: NodeListOf<HTMLInputElement> | undefined = document.querySelectorAll('input[type="hidden"][name="orderby"]');
+		if (hiddenSortInput) {
+			hiddenSortInput.forEach((input) => {
+				input.value = selectedSort.value;
+			});
+		}
+	}
+
 	/**
 	 * Populate checked categories from the URL
 	 */
 	populateCheckedCategories() {
 		const url = new URL(document.location.href);
 		const search = new URLSearchParams(url.search);
-		const categoryName = search.get('category_name')?.split(',');
-		if (categoryName) {
-			this.checkedCategories = categoryName;
+		const name = search.get('category_name');
+		if (name) {
+			this.checkedCategories = name.split(',');
 		}
+	}
+
+	/**
+	 * Populate checked sections from the URL
+	 */
+	populateCheckedSections() {
+		const url = new URL(document.location.href);
+		const search = new URLSearchParams(url.search);
+		const name = search.get('fdmg_section');
+		if (name) {
+			this.checkedSections = name.split(',');
+		}
+	}
+
+	/**
+	 * Populate checked genres from the URL
+	 */
+	populateCheckedGenres() {
+		const url = new URL(document.location.href);
+		const search = new URLSearchParams(url.search);
+		const name = search.get('fdmg_genre');
+		if (name) {
+			this.checkedGenres = name.split(',');
+		}
+	}
+
+	/**
+	 * Populate checked authors from the URL
+	 */
+	populateCheckedAuthors() {
+		const url = new URL(document.location.href);
+		const search = new URLSearchParams(url.search);
+		const authorIds = this.getArrayParam('author_id', search);
+		if (authorIds.length > 0) {
+			this.checkedAuthors = authorIds;
+		}
+	}
+
+	getArrayParam(param: string, searchParams: URLSearchParams): string[] {
+		const values: string[] = [];
+		searchParams.forEach((value, key) => {
+			if (key.startsWith(param)) {
+				values.push(decodeURIComponent(value));
+			}
+		});
+		return values;
 	}
 
 	/**
@@ -97,6 +204,71 @@ class FilterForm implements IModule {
 
 		if (this.hiddenCategoryInput) {
 			this.hiddenCategoryInput.value = this.checkedCategories.join(',');
+		}
+	}
+
+	handleSectionCheckboxChange(event: Event) {
+		const targetCheckbox = event.target as HTMLInputElement;
+
+		if (targetCheckbox.checked) {
+			// If the checkbox is checked, add its value to the array.
+			this.checkedSections.push(targetCheckbox.value);
+		} else {
+			// If the checkbox is unchecked, remove its value from the array.
+			const index = this.checkedSections.indexOf(targetCheckbox.value);
+			if (index !== -1) {
+				this.checkedSections.splice(index, 1);
+			}
+		}
+
+		if (this.hiddenSectionInputs) {
+			this.hiddenSectionInputs.forEach((input) => {
+				input.value = this.checkedSections.join(',');
+			});
+		}
+	}
+
+	handleGenreCheckboxChange(event: Event) {
+		const targetCheckbox = event.target as HTMLInputElement;
+
+		if (targetCheckbox.checked) {
+			// If the checkbox is checked, add its value to the array.
+			this.checkedGenres.push(targetCheckbox.value);
+		} else {
+			// If the checkbox is unchecked, remove its value from the array.
+			const index = this.checkedGenres.indexOf(targetCheckbox.value);
+			if (index !== -1) {
+				this.checkedGenres.splice(index, 1);
+			}
+		}
+
+		if (this.hiddenGenreInputs) {
+			this.hiddenGenreInputs.forEach((input) => {
+				input.value = this.checkedGenres.join(',');
+			});
+		}
+	}
+
+	handleAuthorCheckboxChange(event: Event) {
+		const targetCheckbox = event.target as HTMLInputElement;
+
+		if (targetCheckbox.checked) {
+			// If the checkbox is checked, add its value to the array.
+			this.checkedAuthors.push(targetCheckbox.value);
+		} else {
+			// If the checkbox is unchecked, remove its value from the array.
+			const index = this.checkedAuthors.indexOf(targetCheckbox.value);
+			if (index !== -1) {
+				this.checkedAuthors.splice(index, 1);
+			}
+		}
+
+
+		if (this.hiddenAuthorInputs) {
+			console.log(this.checkedAuthors);
+			this.hiddenAuthorInputs.forEach((input) => {
+				input.value = this.checkedAuthors.join(',');
+			});
 		}
 	}
 
