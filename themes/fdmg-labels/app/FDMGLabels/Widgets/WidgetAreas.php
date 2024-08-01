@@ -72,16 +72,6 @@ class WidgetAreas {
 
 		register_sidebar(
 			array(
-				'name'          => _x( 'Page header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
-				'id'            => 'widget-area-page-header-ad',
-				'description'   => _x( 'Add a single advertisement block to appear on the top of a page.', 'Widgets', 'fdmg-labels-admin' ),
-				'before_widget' => '<div class="section widget">',
-				'after_widget'  => '</div>',
-			)
-		);
-
-		register_sidebar(
-			array(
 				'name'          => _x( 'Search results header advertisement area', 'Widgets', 'fdmg-labels-admin' ),
 				'id'            => 'widget-area-search-results-header-ad',
 				'description'   => _x( 'Add a single advertisement block to appear on the top of the search results page.', 'Widgets', 'fdmg-labels-admin' ),

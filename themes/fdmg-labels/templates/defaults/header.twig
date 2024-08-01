@@ -9,9 +9,9 @@
 		target: '#main-content',
 	} %}
 
-	{# Don't render this advertisement if on single post page and the article header ad is active #}
-	{% set advertisement_is_active_on_article_page = is_active_sidebar('widget-area-article-header-ad') and is_singular('post') %}
-	{% if navigation_ad_active and not advertisement_is_active_on_article_page %}
+	{# Don't render this advertisement if on singular (except single vacancy) and other article header ads are active #}
+	{% set advertisement_is_active_on_single = (is_active_sidebar('widget-area-article-header-ad') or is_active_sidebar('widget-area-author-header-ad') or is_active_sidebar('widget-area-partner-header-ad') ) and (is_single() and not is_singular('ii_vacancy')) %}
+	{% if navigation_ad_active and not advertisement_is_active_on_single %}
 		<div data-component="navigation-advertisement" class="bg-secondary-100 dark:bg-base-400" data-module="navigation-advertisement">
 			<div class="container">
 				{{ sidebar.get_widgetarea('widget-area-navigation-ad')|raw }}
