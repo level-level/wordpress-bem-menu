@@ -19,7 +19,10 @@ class NewsletterSenderService {
 		$command->setLogger( Registry::wordpress() );
 		try {
 			$command->execute();
-		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+		} catch ( Exception $e ) {
+			// Even though known errors already get logged in the command, coding crashes will not get logged.
+			// So we log the exception again, just in case we've missed it.
+			Registry::wordpress()->error( $e->getMessage() );
 		}
 	}
 }
