@@ -105,7 +105,7 @@
             "composer validate"
         ],
         "test:phpcs": [
-            "phpcs --runtime-set testVersion 8.0-"
+            "phpcs"
         ],
         "test:twigcs": [
             "twigcs themes/fdmg-labels/templates --severity error"
