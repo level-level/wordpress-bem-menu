@@ -83,7 +83,7 @@
         "wpackagist-plugin/user-switching": "^1.7",
         "wpackagist-plugin/wordfence": "^7.8",
         "wpengine/advanced-custom-fields-pro": "^6.3",
-        "yoast/wordpress-seo": "^22.7"
+        "yoast/wordpress-seo": "^23.2"
     },
     "scripts": {
         "post-autoload-dump": [
