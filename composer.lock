@@ -5540,15 +5540,15 @@
         },
         {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.7.3",
+            "version": "1.8.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.7.3"
+                "reference": "tags/1.8.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.7.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.8.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
