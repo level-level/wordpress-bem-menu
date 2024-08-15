@@ -1611,11 +1611,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.8.14",
+            "version": "2.8.16",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.14",
-                "shasum": "48a386e4e7b91b0d7d95526b8cbd0a8f2c8c0c01",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.8.16",
+                "shasum": "ae0c92aefc1c2c30a4ba5a2f1c39c0f4eb6af585",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
