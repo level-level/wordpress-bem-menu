@@ -28,7 +28,7 @@
   "devDependencies": {
     "@level-level/eslint-config-level-level": "^1.6.0",
     "@level-level/stylelint-config-level-level": "^1.1.0",
-    "@level-level/webpack-config": "^1.9.0",
+    "@level-level/webpack-config": "^1.10.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/js-cookie": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
