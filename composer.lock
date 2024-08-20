@@ -5440,15 +5440,15 @@
         },
         {
             "name": "wpackagist-plugin/popup-maker",
-            "version": "1.19.0",
+            "version": "1.19.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/popup-maker/",
-                "reference": "tags/1.19.0"
+                "reference": "tags/1.19.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.19.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/popup-maker.1.19.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
