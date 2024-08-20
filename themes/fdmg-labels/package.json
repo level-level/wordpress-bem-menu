@@ -20,7 +20,7 @@
     "@fontsource-variable/figtree": "^5.0.21",
     "@fontsource/libre-caslon-text": "^5.0.20",
     "@level-level/recyclops": "^2.9.1",
-    "@sentry/browser": "^7.118.0",
+    "@sentry/browser": "^7.119.0",
     "dayjs": "^1.11.12",
     "js-cookie": "^3.0.5",
     "player.js": "^0.1.0"
@@ -28,7 +28,7 @@
   "devDependencies": {
     "@level-level/eslint-config-level-level": "^1.6.0",
     "@level-level/stylelint-config-level-level": "^1.1.0",
-    "@level-level/webpack-config": "^1.9.0",
+    "@level-level/webpack-config": "^1.10.0",
     "@types/body-scroll-lock": "^3.1.2",
     "@types/js-cookie": "^3.0.6",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
