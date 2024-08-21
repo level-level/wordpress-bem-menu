@@ -11,7 +11,7 @@ use WP_Post;
 class Init {
 	public function register_hooks(): void {
 		add_filter( 'fdmg_server_side_tracking_page_variables', array( $this, 'track_page_data' ) );
-		add_filter( 'fdmg_server_side_tracking_user_variables', array( $this, 'track_user_data' ) );
+		add_filter( 'fdmg_server_side_tracking_user_variables', array( $this, 'track_user_data' ), 10, 2 );
 	}
 
 	/**
@@ -44,14 +44,14 @@ class Init {
 	 * @param array<string,string> $variables
 	 * @return array<string,string>
 	 */
-	public function track_user_data( array $variables ): array {
+	public function track_user_data( array $variables, int $user_id ): array {
 		$custom_user_data = array(
 			'fdmg_user_id'         => '0',
 			'fdmg_organisation_id' => '0',
 			'has_subscription'     => '0',
 		);
 
-		$user = user::current_user();
+		$user = $user_id ? user::get( $user_id ) : null;
 		if ( ! $user instanceof user ) {
 			return array_merge( $variables, $custom_user_data );
 		}
