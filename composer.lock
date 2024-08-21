@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "04d538ed2e4037dd0dd9c0929a3897f7",
+    "content-hash": "33d6136f2358e5645611ae93a05ad1fa",
     "packages": [
         {
             "name": "brick/math",
@@ -1154,16 +1154,16 @@
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
-            "version": "v1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-server-side-tracking.git",
-                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c"
+                "reference": "44e8c8ec8cbd8c6ebea92e0154a721502656461c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
-                "reference": "b058c65e6507d1cb06d16af4bd5c162a5ebc389c",
+                "url": "https://api.github.com/repos/level-level/fdmg-server-side-tracking/zipball/44e8c8ec8cbd8c6ebea92e0154a721502656461c",
+                "reference": "44e8c8ec8cbd8c6ebea92e0154a721502656461c",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1279,9 +1279,9 @@
             ],
             "description": "This plugin contains logic to make variables available in server logs, which can be used for server side tracking.",
             "support": {
-                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/v1.1.0"
+                "source": "https://github.com/level-level/fdmg-server-side-tracking/tree/1.2.0"
             },
-            "time": "2024-05-10T11:43:03+00:00"
+            "time": "2024-08-21T14:28:46+00:00"
         },
         {
             "name": "level-level/ll-paywall",
