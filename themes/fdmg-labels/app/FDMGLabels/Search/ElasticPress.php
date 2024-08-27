@@ -236,10 +236,16 @@ class ElasticPress {
 				$end_of_scentence_positions_before_highlight_start[] = $end_of_scentence_pos;
 			}
 		}
-		$end_of_scentence_pos_before_highlight_start = max( $end_of_scentence_positions_before_highlight_start );
 
-		// Start the text at the word before the highlight start position
-		$text = ltrim( substr( $text, $end_of_scentence_pos_before_highlight_start + 1 ) );
+		if ( $end_of_scentence_positions_before_highlight_start ) {
+			$end_of_scentence_pos_before_highlight_start = max( $end_of_scentence_positions_before_highlight_start );
+
+			// Start the text at the word before the highlight start position
+			$text = ltrim( substr( $text, $end_of_scentence_pos_before_highlight_start + 1 ) );
+		} else {
+			// Start the text from the beginning. It should be the first scentence where the word is in.
+			$text = ltrim( $text );
+		}
 
 		/**
 		 * WordPress would handle this using `wp_trim_words` but that removes all tags,
