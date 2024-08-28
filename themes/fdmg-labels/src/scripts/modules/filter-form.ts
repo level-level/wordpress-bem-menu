@@ -26,6 +26,9 @@ class FilterForm implements IModule {
 	authorCheckboxes: NodeListOf<HTMLInputElement> | undefined;
 	checkedAuthors: string[];
 
+	hiddenPeriodRadio: NodeListOf<HTMLInputElement> | undefined;
+	hiddenMinimumDateInput: NodeListOf<HTMLInputElement> | undefined;
+
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.form = this.element.querySelector('form');
@@ -52,6 +55,9 @@ class FilterForm implements IModule {
 		this.checkedAuthors = [];
 		this.authorCheckboxes = this.element.querySelectorAll('input[name="author_id[]"]');
 
+		this.hiddenPeriodRadio = document.querySelectorAll('input[type="hidden"][name="period"]');
+		this.hiddenMinimumDateInput = document.querySelectorAll('input[type="hidden"][name="post_date_min"]');
+
 		this.initialize();
 	}
 
@@ -73,6 +79,10 @@ class FilterForm implements IModule {
 		if (this.authorCheckboxes) {
 			this.populateCheckedAuthors();
 		}
+
+		if (this.periodRadioButtons) {
+			this.getActivePeriod();
+		}
 	}
 
 	addEventListeners() {
@@ -81,7 +91,7 @@ class FilterForm implements IModule {
 		});
 
 		this.periodRadioButtons?.forEach((input) => {
-			input.addEventListener('change', this.handleRadioButtonChange.bind(this));
+			input.addEventListener('change', this.handlePeriodRadioChange.bind(this));
 		});
 
 		this.orderBySelect?.addEventListener('change', this.handleSortByChange.bind(this));
@@ -173,6 +183,21 @@ class FilterForm implements IModule {
 
 			// Create hidden inputs for each checked author
 			this.createHiddenAuthorInputs();
+		}
+	}
+
+	getActivePeriod() {
+		const url = new URL(document.location.href);
+		const search = new URLSearchParams(url.search);
+		const period = search.get('period');
+		if (period) {
+			this.setMinimumDateInputValue(period);
+
+			if (this.hiddenPeriodRadio) {
+				this.hiddenPeriodRadio.forEach((input) => {
+					input.value = period;
+				});
+			}
 		}
 	}
 
@@ -289,7 +314,7 @@ class FilterForm implements IModule {
 		});
 	}
 
-	handleRadioButtonChange(event: Event) {
+	handlePeriodRadioChange(event: Event) {
 		if (!this.minimumDateInput || !this.maximumDateInput) {
 			return;
 		}
@@ -310,6 +335,12 @@ class FilterForm implements IModule {
 		}
 
 		this.setMinimumDateInputValue(target.value);
+
+		if (this.hiddenPeriodRadio) {
+			this.hiddenPeriodRadio.forEach((input) => {
+				input.value = target.value;
+			});
+		}
 	}
 
 	/**
@@ -322,22 +353,37 @@ class FilterForm implements IModule {
 
 		if (value === 'week') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'week').format('YYYY-MM-DD');
+			this.hiddenMinimumDateInput?.forEach((input) => {
+				input.value = dayjs().subtract(1, 'week').format('YYYY-MM-DD');
+			});
 		}
 
 		if (value === 'month') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'month').format('YYYY-MM-DD');
+			this.hiddenMinimumDateInput?.forEach((input) => {
+				input.value = dayjs().subtract(1, 'month').format('YYYY-MM-DD');
+			});
 		}
 
 		if (value === 'year') {
 			this.minimumDateInput.value = dayjs().subtract(1, 'year').format('YYYY-MM-DD');
+			this.hiddenMinimumDateInput?.forEach((input) => {
+				input.value = dayjs().subtract(1, 'year').format('YYYY-MM-DD');
+			});
 		}
 
 		if (value === '3-years') {
 			this.minimumDateInput.value = dayjs().subtract(3, 'year').format('YYYY-MM-DD');
+			this.hiddenMinimumDateInput?.forEach((input) => {
+				input.value = dayjs().subtract(3, 'year').format('YYYY-MM-DD');
+			});
 		}
 
 		if (value === '2000-now') {
 			this.minimumDateInput.value = dayjs('2000-01-01').format('YYYY-MM-DD');
+			this.hiddenMinimumDateInput?.forEach((input) => {
+				input.value = dayjs('2000-01-01').format('YYYY-MM-DD');
+			});
 		}
 	}
 
