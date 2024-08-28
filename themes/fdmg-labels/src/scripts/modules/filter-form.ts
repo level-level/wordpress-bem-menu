@@ -29,6 +29,8 @@ class FilterForm implements IModule {
 	hiddenPeriodRadio: NodeListOf<HTMLInputElement> | undefined;
 	hiddenMinimumDateInput: NodeListOf<HTMLInputElement> | undefined;
 
+	hiddenOrderBy: NodeListOf<HTMLInputElement> | undefined;
+
 	constructor(element: HTMLElement) {
 		this.element = element;
 		this.form = this.element.querySelector('form');
@@ -58,6 +60,8 @@ class FilterForm implements IModule {
 		this.hiddenPeriodRadio = document.querySelectorAll('input[type="hidden"][name="period"]');
 		this.hiddenMinimumDateInput = document.querySelectorAll('input[type="hidden"][name="post_date_min"]');
 
+		this.hiddenOrderBy = document.querySelectorAll('input[type="hidden"][name="orderby"]');
+
 		this.initialize();
 	}
 
@@ -82,6 +86,10 @@ class FilterForm implements IModule {
 
 		if (this.periodRadioButtons) {
 			this.getActivePeriod();
+		}
+
+		if (this.hiddenOrderBy) {
+			this.getActiveSort();
 		}
 	}
 
@@ -196,6 +204,19 @@ class FilterForm implements IModule {
 			if (this.hiddenPeriodRadio) {
 				this.hiddenPeriodRadio.forEach((input) => {
 					input.value = period;
+				});
+			}
+		}
+	}
+
+	getActiveSort() {
+		const url = new URL(document.location.href);
+		const search = new URLSearchParams(url.search);
+		const orderby = search.get('orderby');
+		if (orderby) {
+			if (this.hiddenOrderBy) {
+				this.hiddenOrderBy.forEach((input) => {
+					input.value = orderby;
 				});
 			}
 		}
