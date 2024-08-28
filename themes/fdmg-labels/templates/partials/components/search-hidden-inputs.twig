@@ -23,5 +23,5 @@
 {% set active_genres = filter.get_filter_value('fdmg_genre') %}
 <input type="hidden" name="fdmg_genre" value="{{ active_genres|join(',') }}">
 
-{% set author_ids = filter.get_filter_value('author_id') %}
-<input type="hidden" name="author_id" value="{{ author_ids|join(',') }}">
+{# Container to hold all hidden author inputs populated via JS #}
+<div class="js-author-inputs"></div>

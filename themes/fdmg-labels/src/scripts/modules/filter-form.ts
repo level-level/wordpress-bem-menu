@@ -25,7 +25,6 @@ class FilterForm implements IModule {
 
 	authorCheckboxes: NodeListOf<HTMLInputElement> | undefined;
 	checkedAuthors: string[];
-	hiddenAuthorInputs: NodeListOf<HTMLInputElement> | null;
 
 	constructor(element: HTMLElement) {
 		this.element = element;
@@ -52,7 +51,6 @@ class FilterForm implements IModule {
 
 		this.checkedAuthors = [];
 		this.authorCheckboxes = this.element.querySelectorAll('input[name="author_id[]"]');
-		this.hiddenAuthorInputs = document.querySelectorAll('input[type="hidden"][name="author_id[]"]');
 
 		this.initialize();
 	}
@@ -72,7 +70,7 @@ class FilterForm implements IModule {
 			this.populateCheckedGenres();
 		}
 
-		if (this.hiddenAuthorInputs && this.authorCheckboxes) {
+		if (this.authorCheckboxes) {
 			this.populateCheckedAuthors();
 		}
 	}
@@ -169,9 +167,12 @@ class FilterForm implements IModule {
 	populateCheckedAuthors() {
 		const url = new URL(document.location.href);
 		const search = new URLSearchParams(url.search);
-		const authorIds = this.getArrayParam('author_id', search);
-		if (authorIds.length > 0) {
-			this.checkedAuthors = authorIds;
+		const authorId = this.getArrayParam('author_id', search);
+		if (authorId.length > 0) {
+			this.checkedAuthors = authorId;
+
+			// Create hidden inputs for each checked author
+			this.createHiddenAuthorInputs();
 		}
 	}
 
@@ -249,6 +250,9 @@ class FilterForm implements IModule {
 		}
 	}
 
+	/**
+	 * The authors work a bit different than the other checkboxes, we need to actually create hidden inputs for each checked author.
+	 */
 	handleAuthorCheckboxChange(event: Event) {
 		const targetCheckbox = event.target as HTMLInputElement;
 
@@ -263,13 +267,26 @@ class FilterForm implements IModule {
 			}
 		}
 
+		this.createHiddenAuthorInputs();
+	}
 
-		if (this.hiddenAuthorInputs) {
-			console.log(this.checkedAuthors);
-			this.hiddenAuthorInputs.forEach((input) => {
-				input.value = this.checkedAuthors.join(',');
+	createHiddenAuthorInputs() {
+		// Clear existing hidden inputs
+		const hiddenInputsContainer = document.querySelectorAll('.js-author-inputs');
+		hiddenInputsContainer.forEach((container) => {
+			container.innerHTML = '';
+		});
+
+		// Create new hidden inputs for each value in checkedAuthors
+		this.checkedAuthors.forEach((authorId) => {
+			const hiddenInput = document.createElement('input');
+			hiddenInput.type = 'hidden';
+			hiddenInput.name = 'author_id[]';
+			hiddenInput.value = authorId;
+			hiddenInputsContainer.forEach((container) => {
+				container.appendChild(hiddenInput);
 			});
-		}
+		});
 	}
 
 	handleRadioButtonChange(event: Event) {
