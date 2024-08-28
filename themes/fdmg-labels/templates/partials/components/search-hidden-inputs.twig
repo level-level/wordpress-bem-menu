@@ -13,3 +13,15 @@
 <input type="hidden" name="period" value="{{ default_period }}">
 <input type="hidden" name="post_date_min" value="{{ post_date_min|date('Y-m-d') }}">
 <input type="hidden" name="orderby" value="{{ default_sort }}">
+
+{% set active_categories = filter.get_filter_value('category_name')|split(',') %}
+<input type="hidden" name="category_name" value="{{ active_categories|join(',') }}">
+
+{% set active_sections = filter.get_filter_value('fdmg_section') %}
+<input type="hidden" name="fdmg_section" value="{{ active_sections|join(',') }}">
+
+{% set active_genres = filter.get_filter_value('fdmg_genre') %}
+<input type="hidden" name="fdmg_genre" value="{{ active_genres|join(',') }}">
+
+{# Container to hold all hidden author inputs populated via JS #}
+<div class="js-author-inputs"></div>
