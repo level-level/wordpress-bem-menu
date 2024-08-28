@@ -7,11 +7,15 @@ use ElasticPress\Features;
 use WP_Post;
 use WP_Query;
 
+use function ElasticPress\Utils\is_integrated_request;
+
 class ElasticPress {
 	public function register_hooks(): void {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_elasticsearch_to_context' ), 10, 2 );
 		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
+		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
+		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
 	}
 
 	/**
@@ -29,6 +33,17 @@ class ElasticPress {
 			$allowed_keys[] = Post::META_AUTHORS;
 		}
 		return $allowed_keys;
+	}
+
+	/**
+	 * Highlight the alternative title field in the search results.
+	 *
+	 * @param array<string> $fields
+	 * @return array<string>
+	 */
+	public function highlight_alternative_title( array $fields ): array {
+		$fields[] = Post::META_ALTERNATIVE_TITLE;
+		return $fields;
 	}
 
 	/**
@@ -117,5 +132,132 @@ class ElasticPress {
 			$highlighted_string             = $highlighted_string_replacement ? $highlighted_string_replacement : $highlighted_string;
 		}
 		return $highlighted_string;
+	}
+
+	/**
+	 * Elastic post content excerpt highlighting only works
+	 * when a post has no excerpt, and also does not focus on the highlighted content.
+	 *
+	 * This function replaces the ElasticPress post content excerpt highlighting.
+	 *
+	 * @return void
+	 */
+	public function replace_post_content_excerpt_highlighting(): void {
+		// Check if the ElasticPress plugin is active
+		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+			return;
+		}
+
+		// Check if the ElasticPress Post Search feature is enabled
+		/** @var Features */
+		$feature_factory = Features::factory();
+		$search_feature  = $feature_factory->get_registered_feature( 'search' );
+		if ( ! $search_feature instanceof Search ) {
+			return;
+		}
+
+		if ( ! is_integrated_request( 'highlighting', array( 'public' ) ) ) {
+			return;
+		}
+
+		// Check if the highlight feature is enabled
+		$settings = $search_feature->get_settings();
+
+		if ( ! empty( $settings['highlight_excerpt'] ) && '1' === $settings['highlight_excerpt'] ) {
+			remove_filter( 'get_the_excerpt', array( $search_feature, 'ep_highlight_excerpt' ), 10 );
+			add_filter( 'get_the_excerpt', array( $this, 'highlight_excerpt_from_content' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Replicate the ep_highlight_excerpt function from ElasticPress,
+	 * but with some changes
+	 *
+	 * - Use the content instead of the excerpt, if the content contains
+	 *   the highlight tag
+	 * - When using the content, start the excerpt from the beginning of the
+	 *   sentence where the highlight tag is found.
+	 */
+	public function highlight_excerpt_from_content( string $excerpt, WP_Post $post ): string {
+		// Check if the ElasticPress plugin is active
+		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+			return $excerpt;
+		}
+
+		// Check if the ElasticPress Post Search feature is enabled
+		/** @var Features */
+		$feature_factory = Features::factory();
+		$search_feature  = $feature_factory->get_registered_feature( 'search' );
+		if ( ! $search_feature instanceof Search ) {
+			return $excerpt;
+		}
+
+		$settings = $search_feature->get_settings();
+
+		// If the excerpt contains the highlighting tag, do nothing
+		$current_tag     = $settings['highlight_tag'];
+		$highlight_tag   = apply_filters( 'ep_highlighting_tag', $current_tag );
+		$highlight_class = apply_filters( 'ep_highlighting_class', 'ep-highlight' );
+		$opening_tag     = '<' . $highlight_tag . " class='" . $highlight_class . "'>";
+		if ( str_contains( $excerpt, $opening_tag ) ) {
+			return $excerpt;
+		}
+
+		// Excerpt has nothing highlighted. Use the content instead.
+		$text = get_the_content( '', false, $post );
+
+		$text = strip_shortcodes( $text );
+		$text = excerpt_remove_blocks( $text );
+
+		$text = apply_filters( 'the_content', $text );
+		$text = str_replace( '\]\]\>', ']]&gt;', $text );
+
+		$text = strip_tags( $text, '<' . esc_html( $highlight_tag ) . '>' );
+
+		// use the defined length, if already applied...
+		$excerpt_length = apply_filters( 'excerpt_length', 55 );
+
+		// use defined excerpt_more filter if it is used
+		$excerpt_more = apply_filters( 'excerpt_more', $text );
+		$excerpt_more = $excerpt_more !== $text ? $excerpt_more : '[&hellip;]';
+
+		// If highlight cannot be found in the content, return the excerpt
+		$highlight_start_pos = strpos( $text, $opening_tag );
+		if ( false === $highlight_start_pos ) {
+			return $excerpt;
+		}
+
+		// Find end of scentence characters before $highlight_start
+		$end_of_scentence_chars                            = array( '.', '!', '?' );
+		$end_of_scentence_positions_before_highlight_start = array();
+		foreach ( $end_of_scentence_chars as $end_of_scentence_char ) {
+			$end_of_scentence_pos = strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_scentence_char );
+			if ( false !== $end_of_scentence_pos ) {
+				$end_of_scentence_positions_before_highlight_start[] = $end_of_scentence_pos;
+			}
+		}
+
+		if ( $end_of_scentence_positions_before_highlight_start ) {
+			$end_of_scentence_pos_before_highlight_start = max( $end_of_scentence_positions_before_highlight_start );
+
+			// Start the text at the word before the highlight start position
+			$text = ltrim( substr( $text, $end_of_scentence_pos_before_highlight_start + 1 ) );
+		} else {
+			// Start the text from the beginning. It should be the first scentence where the word is in.
+			$text = ltrim( $text );
+		}
+
+		/**
+		 * WordPress would handle this using `wp_trim_words` but that removes all tags,
+		 * including the one used to highlight the search term.
+		 */
+		$words = explode( ' ', $text, $excerpt_length + 1 );
+		if ( count( $words ) > $excerpt_length ) {
+			array_pop( $words );
+			array_push( $words, $excerpt_more );
+			$text = implode( ' ', $words );
+		}
+
+		return $text;
 	}
 }

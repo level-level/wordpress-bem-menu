@@ -205,7 +205,7 @@ class Image {
 	 */
 	protected function get_aspect_ratio_image_sizes( int $attachment_id, int $ratio_width, int $ratio_height ): array {
 		if ( ! extension_loaded( 'gmp' ) ) {
-			Registry::getInstance( 'WordPress' )->warning(
+			Registry::wordpress()->warning(
 				'Could not get available aspect ratio image sizes because the GMP PHP extension is not installed.', array(
 					'attachment_id' => $attachment_id,
 					'ratio_width'   => $ratio_width,

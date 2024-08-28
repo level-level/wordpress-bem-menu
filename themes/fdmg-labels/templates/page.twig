@@ -1,14 +1,6 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
 
-{% block header_advertisement_area %}
-	{% if is_active_sidebar('widget-area-page-header-ad') %}
-		<div class="top-advertisement">
-			{{ sidebar.get_widgetarea('widget-area-page-header-ad')|raw }}
-		</div>
-	{% endif %}
-{% endblock %}
-
 {% block content %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		{% include 'styleguide/components/article-header.twig' with {
