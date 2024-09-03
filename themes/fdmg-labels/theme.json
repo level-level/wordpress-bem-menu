@@ -18,7 +18,6 @@
     },
     "typography": {
       "customFontSize": false,
-      "fontSizes": [],
       "customLineHeight": false,
       "dropCap": false,
       "fontStyle": false,
