@@ -52,14 +52,8 @@
 						{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'primary-nav', 2)|raw }}
 					</nav>
 
-					<div class="mt-auto py-[10px] px-3 border-t border-secondary-700 dark:border-base-800">
+					<div class="theme-energeia:hidden theme-pensioen-pro:hidden mt-auto py-[10px] px-3 border-t border-secondary-700 dark:border-base-800">
 						{% include 'partials/components/header/header-display-options.twig' %}
-					</div>
-
-					<div class="hidden theme-energeia:block theme-pensioen-pro:block ">
-						<div class="p-3 border-t border-secondary-700 dark:border-base-800">
-							{% include 'partials/components/login-button.twig' %}
-						</div>
 					</div>
 				</div>
 			</div>

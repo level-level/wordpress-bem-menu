@@ -3,7 +3,7 @@
 namespace FDMGLabels;
 
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 use WP_Query;
 
 class ServerSideTrackingTest extends WPTestCase {
@@ -20,11 +20,13 @@ class ServerSideTrackingTest extends WPTestCase {
 			)
 		);
 		wp_set_auth_cookie( $user->ID, false, true );
-		wp_set_current_user( $user->ID, $user->user_login );
 
 		// Get user variables
 		$user_variables = array(); // Default data from plugin is empty
-		$user_variables = apply_filters( 'fdmg_server_side_tracking_user_variables', $user_variables );
+		$user_variables = apply_filters( 'fdmg_server_side_tracking_user_variables', $user_variables, $user->ID );
+
+		// Set user
+		wp_set_current_user( $user->ID, $user->user_login );
 
 		// Reset the logged in user
 		wp_logout();

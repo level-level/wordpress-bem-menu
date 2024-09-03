@@ -1,7 +1,6 @@
 .advertisement {
 	position: relative;
 	background-color: var(--secondary-100);
-	padding: $spacing-3 0;
 
 	@include dark-mode {
 		background-color: var(--base-400);
@@ -44,8 +43,20 @@
 	}
 }
 
-.top-advertisement {
+.top-adver {
 	.section {
 		margin-top: 0;
 	}
+}
+
+.advertisement:has(.pp-message-collapsed),
+.advertisement:has(.ii-message-collapsed),
+.advertisement:has(.en-message-collapsed) {
+	display: none !important;
+}
+
+.advertisement:has(.pp-message-rendered),
+.advertisement:has(.ii-message-rendered),
+.advertisement:has(.en-message-rendered) {
+	padding: $spacing-3 0;
 }

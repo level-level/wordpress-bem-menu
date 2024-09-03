@@ -10,6 +10,10 @@
 				{% include 'partials/components/header/logo.twig' %}
 			</div>
 
+			<div class="hidden theme-energeia:block theme-pensioen-pro:block sm:hidden sm:theme-energeia:hidden sm:theme-pensioen-pro:hidden">
+				{% include 'partials/components/header/header-profile.twig' %}
+			</div>
+
 			<div class="hidden shrink-0 sm:block">
 				<div class="flex items-center gap-2">
 					{% set newsletter = options.newsletter %}

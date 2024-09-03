@@ -3,7 +3,7 @@
 namespace FDMGLabels\Auth;
 
 use Clarkson_Core\WordPress_Object\user;
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class SessionExpirationTest extends WPTestCase {
 

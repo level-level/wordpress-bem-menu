@@ -2,7 +2,7 @@
 
 namespace Clarkson\Utilities;
 
-use Codeception\TestCase\WPTestCase;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class IPAddressTest extends WPTestCase {
 

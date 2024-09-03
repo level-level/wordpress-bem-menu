@@ -14,6 +14,33 @@ use WPSEO_Primary_Term;
 
 class base_object extends Clarkson_Object {
 
+	protected string|null $search_result_title = null;
+
+	/**
+	 * Custom function to get the search result title.
+	 * This allows ElasticPress to add highlight tags, because it uses the_title().
+	 * Function should only be used on the search template, or where the 's'
+	 * query variable is set.
+	 */
+	public function get_search_result_title(): string {
+		global $post;
+		if ( ! isset( $this->search_result_title ) ) {
+			if ( ! empty( $post ) ) {
+				$oldpost = clone $post;
+			} else {
+				$oldpost = null;
+			}
+			$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+			setup_postdata( $this->_post );
+			ob_start();
+			the_title();
+			$this->search_result_title = ob_get_clean() ?: '';
+			wp_reset_postdata();
+			$post = $oldpost; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		}
+		return $this->search_result_title;
+	}
+
 	/**
 	 * Get WPSEO (Yoast) primary term or first term from array
 	 *

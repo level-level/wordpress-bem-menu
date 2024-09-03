@@ -11,6 +11,7 @@ use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTime;
 use DateTimeImmutable;
+use DateTimeZone;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 
@@ -24,11 +25,16 @@ class DataGenerator {
 		if ( $post instanceof post ) {
 			$title = $post->get_alternative_title() ?: $title;
 		}
+
+		remove_filter( 'the_excerpt', 'wpautop' );
+		$excerpt = $this->add_br_tags( $post->get_excerpt() );
+		add_filter( 'the_excerpt', 'wpautop' );
+
 		$data = array(
 			'publication'      => $newsletter->get_publication(),
 			'articleId'        => $post->get_id(),
 			'title'            => substr( $title, 0, 255 ),
-			'teaser'           => substr( $post->get_excerpt(), 0, 2000 ),
+			'teaser'           => substr( $excerpt, 0, 2000 ),
 			'news_section'     => substr( '', 0, 50 ),
 			'img'              => '',
 			'img_square'       => '',
@@ -78,12 +84,16 @@ class DataGenerator {
 	 * @return array<string,string>
 	 */
 	public function get_newsletter_data( ii_newsletter $newsletter, string $test_mode ): array {
+		remove_filter( 'acf_the_content', 'wpautop' );
+		$intro = $this->add_br_tags( $newsletter->get_introduction() );
+		add_filter( 'acf_the_content', 'wpautop' );
+
 		$data = array(
 			'publication'  => substr( $newsletter->get_publication(), 0, 50 ),
 			'type'         => substr( $newsletter->get_type(), 0, 50 ),
 			'subject'      => substr( $newsletter->get_subject(), 0, 255 ),
 			'preheader'    => substr( $newsletter->get_pre_header(), 0, 255 ),
-			'introduction' => substr( $newsletter->get_introduction(), 0, 2000 ),
+			'introduction' => substr( $intro, 0, 2000 ),
 			'test'         => $test_mode,
 		);
 
@@ -95,26 +105,52 @@ class DataGenerator {
 	}
 
 	protected function format_publish_date( base_object $base_object ): string {
-		$now_date         = new DateTimeImmutable( 'now', wp_timezone() );
-		$publication_date = new DateTimeImmutable( $base_object->get_object()->post_date, wp_timezone() );
+		$timezone         = wp_timezone();
+		$now_date         = new DateTimeImmutable( 'now', $timezone );
+		$publication_date = new DateTimeImmutable( $base_object->get_object()->post_date, $timezone );
 
 		// Default to full date
 		$format = 'd F Y';
 
+		// Get timestamp offset of the wp_timezone
+		$timezone_offset_seconds = $timezone->getOffset( $publication_date );
+
 		// If post is published in same year, only show date and month
-		$current_year = date_i18n( 'Y', $now_date->getTimestamp() );
-		$post_year    = date_i18n( 'Y', $publication_date->getTimestamp() );
+		$current_year = date_i18n( 'Y', $now_date->getTimestamp() + $timezone_offset_seconds );
+		$post_year    = date_i18n( 'Y', $publication_date->getTimestamp() + $timezone_offset_seconds );
 		if ( $current_year === $post_year ) {
 			$format = 'd F';
 		}
 
 		// If post is published on same day, only show time
-		$current_day = date_i18n( 'Ymd', $now_date->getTimestamp() );
-		$post_day    = date_i18n( 'Ymd', $publication_date->getTimestamp() );
+		$current_day = date_i18n( 'Ymd', $now_date->getTimestamp() + $timezone_offset_seconds );
+		$post_day    = date_i18n( 'Ymd', $publication_date->getTimestamp() + $timezone_offset_seconds );
 		if ( $current_day === $post_day ) {
 			$format = 'H:i';
 		}
 
-		return date_i18n( $format, $publication_date->getTimestamp() );
+		return date_i18n( $format, $publication_date->getTimestamp() + $timezone_offset_seconds );
+	}
+
+	/**
+	 * Replace newline characters with <br> tags.
+	 * This code is mostly extracted from the wpautop function.
+	 * Except that we want to replace <br> tags when they are preceded with a <br> tag.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/wpautop/
+	 */
+	protected function add_br_tags( string $text ): string {
+		// Replace newlines that shouldn't be touched with a placeholder.
+		$text = (string) preg_replace_callback( '/<(script|style|svg).*?<\/\\1>/s', '_autop_newline_preservation_helper', $text );
+
+		// Normalize <br>
+		$text = str_replace( array( '<br>', '<br/>' ), '<br />', $text );
+
+		// Replace all new line characters with a <br />.
+		$text = str_replace( "\n", '<br />', $text );
+
+		// Replace newline placeholders with newlines.
+		$text = str_replace( '<WPPreserveNewline />', "\n", $text );
+		return $text;
 	}
 }

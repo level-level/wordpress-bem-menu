@@ -38,15 +38,15 @@ class ii_team extends base_object {
 	}
 
 	public function get_email_address(): string {
-		return get_field( 'email_address', $this->get_id() ) ?: '';
+		return get_field( Team::META_EMAIL, $this->get_id() ) ?: '';
 	}
 
 	public function get_linkedin(): string {
-		return get_field( 'linkedin', $this->get_id() ) ?: '';
+		return get_field( Team::META_LINKEDIN, $this->get_id() ) ?: '';
 	}
 
 	public function get_location(): string {
-		return get_field( 'location', $this->get_id() ) ?: '';
+		return get_field( Team::META_LOCATION, $this->get_id() ) ?: '';
 	}
 
 	/**

@@ -6,9 +6,9 @@ use Clarkson\Theme\PostTypes\Newsletter;
 use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class PreviewNewsletterSchedulerTest extends WPTestCase {
 
@@ -78,7 +78,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 		$this->assert_is_logged( $newsletter, '2' );
 		as_unschedule_action( 'fdmg_labels_preview_newsletter', array( $newsletter->get_id(), '2' ), 'fdmg_labels' );
 
-		wp_delete_post( $newsletter, true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_newsletter_when_preview_disabled_then_dont_schedule(): void {
@@ -97,7 +97,7 @@ class PreviewNewsletterSchedulerTest extends WPTestCase {
 		$this->assertFalse( $scheduled_1, 'Sync should not be scheduled' );
 		$this->assertFalse( $scheduled_2, 'Sync should not be scheduled' );
 
-		wp_delete_post( $newsletter, true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	protected function assert_preview_meta_reset( ii_newsletter $newsletter ): void {

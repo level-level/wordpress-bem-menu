@@ -9,10 +9,10 @@ use Clarkson_Core\WordPress_Object\attachment;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use Codeception\TestCase\WPTestCase;
 use DateTime;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
+use lucatume\WPBrowser\TestCase\WPTestCase;
 
 class DataGeneratorTest extends WPTestCase {
 
@@ -36,13 +36,13 @@ class DataGeneratorTest extends WPTestCase {
 					'post_title'   => 'Test article selligent',
 					'post_type'    => PostTypesPost::POST_TYPE_NAME,
 					'post_content' => 'Some content here',
-					'post_excerpt' => "Some excerpt here\nWith newline",
+					'post_excerpt' => "Some excerpt here\nWith newline\n\nAnd new paragraph",
 					'post_status'  => 'publish',
 				)
 			)
 		);
 		update_field( 'alternative_title', 'Test teaser title for Test article selligent', $this->post->get_id() );
-		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( DIR_TESTDATA . '/images/test-image.png' ) );
+		$this->thumbnail = attachment::get( $this->factory()->attachment->create_upload_object( codecept_data_dir() . '/images/test-image.png' ) );
 		set_post_thumbnail( $this->post->get_id(), $this->thumbnail->get_id() );
 		wp_set_post_terms( $this->post->get_id(), array( $genre->get_id() ), 'fdmg_genre' );
 
@@ -52,7 +52,7 @@ class DataGeneratorTest extends WPTestCase {
 					'post_title'   => 'Test article selligent 2',
 					'post_type'    => PostTypesPost::POST_TYPE_NAME,
 					'post_content' => 'Some content here',
-					'post_excerpt' => "Some excerpt here\nWith newline",
+					'post_excerpt' => "Some excerpt here\nWith newline\n\nAnd new paragraph",
 					'post_status'  => 'publish',
 				)
 			)
@@ -112,7 +112,7 @@ class DataGeneratorTest extends WPTestCase {
 			'publication'      => 'PUBLICATION_NAME',
 			'articleId'        => $this->post->get_id(),
 			'title'            => 'Test teaser title for Test article selligent',
-			'teaser'           => "<p>Some excerpt here<br />\nWith newline</p>\n",
+			'teaser'           => 'Some excerpt here<br />With newline<br /><br />And new paragraph',
 			'news_section'     => 'Some genre',
 			'img'              => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'full' )[0],
 			'img_square'       => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'large' )[0],
@@ -176,7 +176,7 @@ class DataGeneratorTest extends WPTestCase {
 		update_field( 'type', 'WEEKLY', $newsletter->get_id() );
 		update_field( 'subject', 'Subject', $newsletter->get_id() );
 		update_field( 'pre_header', 'Pre header', $newsletter->get_id() );
-		update_field( 'introduction', "Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.\n\nAnd multiple lines.", $newsletter->get_id() );
+		update_field( 'introduction', "Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.\nIt has newlines\n\nand paragraphs.", $newsletter->get_id() );
 
 		update_field(
 			'article_groups_weekly', array(
@@ -194,7 +194,7 @@ class DataGeneratorTest extends WPTestCase {
 			'type'           => 'WEEKLY',
 			'subject'        => 'Subject',
 			'preheader'      => 'Pre header',
-			'introduction'   => "<p>Some <strong>intro text</strong> with simple <a href=\"#\">elements</a>.</p>\n<p>And multiple lines.</p>\n",
+			'introduction'   => 'Some <strong>intro text</strong> with simple <a href="#">elements</a>.<br />It has newlines<br /><br />and paragraphs.',
 			'test'           => '1',
 			'articlegroup_1' => '',
 			'articlegroup_2' => implode( ',', array( $this->post->get_id(), $this->post2->get_id() ) ),

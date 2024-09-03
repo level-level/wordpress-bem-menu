@@ -22,7 +22,7 @@ class Init {
 	 */
 	public function add_settings_section( array $fields, array $form ): array {
 		$fields['fdmg_form_settings'] = array(
-			'title'  => esc_html__( 'FDMG Formulierinstellingen', 'fdmg-labels-admin' ),
+			'title'  => esc_html__( 'FDMG Formsettings', 'fdmg-labels-admin' ),
 			'fields' => array_map(
 				function ( BaseSetting $setting ) use ( $form ): array {
 					return $setting->get_data( $form );

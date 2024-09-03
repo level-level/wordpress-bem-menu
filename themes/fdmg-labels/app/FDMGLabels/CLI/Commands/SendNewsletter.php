@@ -50,7 +50,9 @@ class SendNewsletter {
 		try {
 			$result = $command->execute();
 		} catch ( Exception $e ) { // phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
-			exit;
+			WP_CLI::log( $e->getMessage() );
+			WP_CLI::log( $e->getTraceAsString() );
+			WP_CLI::error( 'Failed to send newsletter' );
 		}
 
 		WP_CLI::success( 'Successfully sent newsletter' );
