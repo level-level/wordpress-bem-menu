@@ -11,14 +11,6 @@ import './styles/components/navigation/widget-nav.css';
 declare const wp: any; // eslint-disable-line
 declare const lodash: any; // eslint-disable-line
 
-/**
- * Disable default WordPress fullscreen mode
- */
-const isFullscreenMode = wp.data.select('core/edit-post').isFeatureActive('fullscreenMode');
-if (isFullscreenMode) {
-	wp.data.dispatch('core/edit-post').toggleFeature('fullscreenMode');
-}
-
 type Block = {
 	[key: string]: string;
 };
