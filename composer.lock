@@ -8165,16 +8165,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "4.2.5",
+            "version": "4.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "442e488aec53278b8e3b2b6ee8f688bd4315b09b"
+                "reference": "1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/442e488aec53278b8e3b2b6ee8f688bd4315b09b",
-                "reference": "442e488aec53278b8e3b2b6ee8f688bd4315b09b",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301",
+                "reference": "1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8190,7 +8190,7 @@
                 "codeception/module-db": "^2.0 || ^3.0",
                 "codeception/module-filesystem": "^2.0 || ^3.0",
                 "codeception/module-phpbrowser": "^2.0 || ^3.0",
-                "codeception/module-webdriver": "^2.0 || ^3.0",
+                "codeception/module-webdriver": "^2.0 || ^3.0 || ^4.0",
                 "composer-runtime-api": "^2.2",
                 "druidfi/mysqldump-php": "^1.1",
                 "ext-curl": "*",
@@ -8200,6 +8200,7 @@
                 "ext-pdo": "*",
                 "ext-zip": "*",
                 "php": "^8.0",
+                "phpunit/phpunit": "<=12.0.0",
                 "symfony/filesystem": ">=4.4.24 <7.0",
                 "symfony/process": ">=4.4.24 <7.0",
                 "vlucas/phpdotenv": "^5.0"
@@ -8258,7 +8259,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/4.2.5"
+                "source": "https://github.com/lucatume/wp-browser/tree/4.3.3"
             },
             "funding": [
                 {
@@ -8266,7 +8267,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-06-26T07:01:47+00:00"
+            "time": "2024-09-11T07:51:35+00:00"
         },
         {
             "name": "mck89/peast",
