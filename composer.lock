@@ -751,16 +751,16 @@
         },
         {
             "name": "inpsyde/wonolog",
-            "version": "1.0.4",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/inpsyde/Wonolog.git",
-                "reference": "60ee47b0b2040e54fd11327751e69546df5750ee"
+                "reference": "967a4ce0739262537d82d60d6182967aff9559ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/inpsyde/Wonolog/zipball/60ee47b0b2040e54fd11327751e69546df5750ee",
-                "reference": "60ee47b0b2040e54fd11327751e69546df5750ee",
+                "url": "https://api.github.com/repos/inpsyde/Wonolog/zipball/967a4ce0739262537d82d60d6182967aff9559ab",
+                "reference": "967a4ce0739262537d82d60d6182967aff9559ab",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -781,16 +781,17 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.0.x-dev",
+                    "dev-2.x": "2.x-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Inpsyde\\Wonolog\\": "src"
-                },
                 "files": [
                     "inc/bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Inpsyde\\Wonolog\\": "src"
+                }
             },
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
             "license": [
@@ -820,7 +821,12 @@
                 "psr-3",
                 "wordpress"
             ],
-            "time": "2020-07-21T15:58:57+00:00"
+            "support": {
+                "docs": "https://inpsyde.github.io/Wonolog/",
+                "issues": "https://github.com/inpsyde/Wonolog/issues",
+                "source": "https://github.com/inpsyde/Wonolog"
+            },
+            "time": "2023-11-08T12:11:26+00:00"
         },
         {
             "name": "jean85/pretty-package-versions",
