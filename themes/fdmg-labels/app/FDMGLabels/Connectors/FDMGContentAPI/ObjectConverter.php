@@ -54,7 +54,7 @@ class ObjectConverter {
 		$article = new Article();
 		$article->setId( $post->get_id() );
 		$article->setDate( new DateTime( $post->get_object()->post_modified, wp_timezone() ) );
-		$article->setModified( new DateTime( $post->get_object()->post_date, wp_timezone() ) );
+		$article->setModified( new DateTime( $post->get_object()->post_modified, wp_timezone() ) );
 		$article->setSlug( $post->get_post_name() );
 		$article->setStatus( $post->get_status() );
 		$article->setType( $post->get_post_type() );
@@ -113,8 +113,8 @@ class ObjectConverter {
 		// Create the image model.
 		$image_model = new Image();
 		$image_model->setId( $image->get_id() );
-		$image_model->setDate( new DateTime( $image->get_object()->post_date, wp_timezone() ) );
-		$image_model->setModified( new DateTime( $image->get_object()->post_date, wp_timezone() ) );
+		$image_model->setDate( new DateTime( $image->get_object()->post_modified, wp_timezone() ) );
+		$image_model->setModified( new DateTime( $image->get_object()->post_modified, wp_timezone() ) );
 		$image_model->setSlug( $image->get_post_name() );
 		$image_model->setStatus( $image->get_status() );
 		$image_model->setType( $image->get_post_type() );
