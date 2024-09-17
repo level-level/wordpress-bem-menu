@@ -44,7 +44,7 @@
 				name: section.get_name(),
 				url: section.get_permalink(),
 			}),
-			date: object.get_publish_date(),
+			date: object.get_modified_date(),
 			authors: authors ? authors|map(author => {
 				name: author.get_title(),
 				location: author.get_location(),

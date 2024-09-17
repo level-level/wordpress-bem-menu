@@ -92,7 +92,7 @@ class base_object extends Clarkson_Object {
 	 * @return string
 	 */
 	public function get_date_i18n( $format = 'U', $gmt = false ): string {
-		return date_i18n( $format, strtotime( $this->_post->post_modified ), $gmt );
+		return date_i18n( $format, strtotime( $this->_post->post_date ), $gmt );
 	}
 
 	/**
@@ -105,6 +105,32 @@ class base_object extends Clarkson_Object {
 			'date'      => $this->get_date_i18n( $date_format ),
 			'datetime'  => $this->get_date_i18n( 'Y-m-d' ),
 			'date_full' => $this->get_date_i18n( 'j F Y' ),
+			'readable'  => $this->get_human_readable_date(),
+		);
+	}
+
+	/**
+	 * We use the post_date_gmt variable to show the date on an article, this variable converts the time to GMT.
+	 * We want to use the date/time in the timezone where we have published the article
+	 *
+	 * @param string $format
+	 * @param boolean $gmt
+	 * @return string
+	 */
+	public function get_modified_date_i18n( $format = 'U', $gmt = false ): string {
+		return date_i18n( $format, strtotime( $this->_post->post_modified ), $gmt );
+	}
+
+	/**
+	 * @return array<string,string>
+	 */
+	public function get_modified_date( string $date_format = '' ): array {
+		$date_format = $date_format ?: get_option( 'date_format' );
+
+		return array(
+			'date'      => $this->get_modified_date_i18n( $date_format ),
+			'datetime'  => $this->get_modified_date_i18n( 'Y-m-d' ),
+			'date_full' => $this->get_modified_date_i18n( 'j F Y' ),
 			'readable'  => $this->get_human_readable_date(),
 		);
 	}
@@ -187,6 +213,35 @@ class base_object extends Clarkson_Object {
 	 */
 	public function get_human_readable_date(): string {
 		$date_str       = $this->get_date_i18n();
+		$date           = (int) $date_str;
+		$current_time   = time();
+		$time_diff      = $current_time - $date;
+		$formatted_date = date_i18n( get_option( 'date_format' ), $date );
+
+		// If the post is older than 24 hours, show the date
+		if ( $time_diff >= 86400 ) { // 86400 seconds = 24 hours
+			// Check if the year is already in the formatted date
+			$post_year    = date_i18n( 'Y', $date );
+			$current_year = date_i18n( 'Y', $current_time );
+
+			// Append the post year only if it's not already present and it's from a previous year
+			if ( $post_year < $current_year && strpos( $formatted_date, $post_year ) === false ) {
+				$formatted_date .= ' ' . $post_year;
+			}
+		} elseif ( gmdate( 'Y-m-d', $date ) === gmdate( 'Y-m-d', $current_time ) ) {
+			// If the date is today, show absolute time
+			$formatted_date = date_i18n( get_option( 'time_format' ), $date );
+		}
+
+		return $formatted_date;
+	}
+
+	/**
+	 * Display the modified date of the post in a human readable format if it's been modified for less than 24 hours
+	 * Appends the post year if it's not already present in the formatted date and when it's from a previous year
+	 */
+	public function get_human_readable_modified_date(): string {
+		$date_str       = $this->get_modified_date();
 		$date           = (int) $date_str;
 		$current_time   = time();
 		$time_diff      = $current_time - $date;
