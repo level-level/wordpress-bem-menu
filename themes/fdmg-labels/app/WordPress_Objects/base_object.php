@@ -131,7 +131,7 @@ class base_object extends Clarkson_Object {
 			'date'      => $this->get_modified_date_i18n( $date_format ),
 			'datetime'  => $this->get_modified_date_i18n( 'Y-m-d' ),
 			'date_full' => $this->get_modified_date_i18n( 'j F Y' ),
-			'readable'  => $this->get_human_readable_date(),
+			'readable'  => $this->get_human_readable_modified_date(),
 		);
 	}
 
@@ -241,7 +241,7 @@ class base_object extends Clarkson_Object {
 	 * Appends the post year if it's not already present in the formatted date and when it's from a previous year
 	 */
 	public function get_human_readable_modified_date(): string {
-		$date_str       = $this->get_modified_date();
+		$date_str       = $this->get_modified_date_i18n();
 		$date           = (int) $date_str;
 		$current_time   = time();
 		$time_diff      = $current_time - $date;
