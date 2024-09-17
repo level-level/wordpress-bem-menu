@@ -17,11 +17,11 @@
     "build:sentry": "dawn build:sentry"
   },
   "dependencies": {
-    "@fontsource-variable/figtree": "^5.0.21",
-    "@fontsource/libre-caslon-text": "^5.0.20",
+    "@fontsource-variable/figtree": "^5.1.0",
+    "@fontsource/libre-caslon-text": "^5.1.0",
     "@level-level/recyclops": "^2.9.1",
     "@sentry/browser": "^7.119.0",
-    "dayjs": "^1.11.12",
+    "dayjs": "^1.11.13",
     "js-cookie": "^3.0.5",
     "player.js": "^0.1.0"
   },
