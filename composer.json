@@ -63,6 +63,7 @@
         "ll-premium/wpai-acf-add-on": "^3.3",
         "mentosmenno2/image-crop-positioner": "^0.6.0",
         "mhcg/monolog-wp-cli": "^1.0",
+        "php-http/message-factory": "^1.1",
         "ramsey/uuid": "^4.7",
         "vinkla/extended-acf": "^13.3",
         "woocommerce/action-scheduler": "^3.6",

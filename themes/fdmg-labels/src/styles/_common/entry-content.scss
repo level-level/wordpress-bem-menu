@@ -59,12 +59,16 @@
 		@apply mb-0;
 	}
 
+	ul.wp-block-list,
 	ul:not([class]) {
 		@include unordered-list-style;
+		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 
+	ol.wp-block-list,
 	ol:not([class]) {
 		@include ordered-list-style;
+		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
 	}
 
 	> p:not([class]),
