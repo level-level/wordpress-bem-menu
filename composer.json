@@ -178,7 +178,7 @@
         "level-level/coding-standards": "^4.0",
         "level-level/phpstan-config": "^1.0",
         "lucatume/wp-browser": "^4.2",
-        "niels-de-blaauw/php-doc-check": "^0.2.1",
+        "niels-de-blaauw/php-doc-check": "^0.4.0",
         "phpstan/extension-installer": "^1.1",
         "szepeviktor/phpstan-wordpress": "^1.1",
         "wp-cli/wp-cli-bundle": "^2.10"

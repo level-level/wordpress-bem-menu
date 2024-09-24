@@ -214,9 +214,9 @@ class base_object extends Clarkson_Object {
 		return ( (string) $this->get_meta( 'fdmg_import_old_id', true ) ) ?: null;
 	}
 
-	public function get_thumbnail_url(){
-		$post = get_post();
+	public function get_thumbnail_url(): string {
+		$post          = get_post();
 		$thumbnail_url = get_the_post_thumbnail_url( $post, 'thumbnail' );
-		return $thumbnail_url;
+		return $thumbnail_url ?: '';
 	}
 }
