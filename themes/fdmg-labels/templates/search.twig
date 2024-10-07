@@ -82,7 +82,7 @@
 							title: object.get_search_result_title(),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
-							date: object.get_publish_date(),
+							date: object.get_modified_date(),
 							categories: categories ? categories|map(category => {
 								name: category.get_name(),
 							}),
