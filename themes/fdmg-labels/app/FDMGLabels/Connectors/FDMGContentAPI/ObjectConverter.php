@@ -54,7 +54,7 @@ class ObjectConverter {
 		$article = new Article();
 		$article->setId( $post->get_id() );
 		$article->setDate( new DateTime( $post->get_object()->post_date, wp_timezone() ) );
-		$article->setModified( new DateTime( $post->get_object()->post_date, wp_timezone() ) );
+		$article->setModified( new DateTime( $post->get_object()->post_modified, wp_timezone() ) );
 		$article->setSlug( $post->get_post_name() );
 		$article->setStatus( $post->get_status() );
 		$article->setType( $post->get_post_type() );
