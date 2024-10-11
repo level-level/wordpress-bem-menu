@@ -5495,10 +5495,10 @@
         },
         {
             "name": "wpengine/advanced-custom-fields-pro",
-            "version": "6.3.6",
+            "version": "6.3.8",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.3.6",
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.3.8",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
