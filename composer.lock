@@ -8065,16 +8065,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "4.3.3",
+            "version": "4.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301"
+                "reference": "22f4f4e795079f2c1165074a550f9d0459bfcfc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301",
-                "reference": "1f2c893ca2cb19b92382fa70a4e4c83bd0c1b301",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/22f4f4e795079f2c1165074a550f9d0459bfcfc7",
+                "reference": "22f4f4e795079f2c1165074a550f9d0459bfcfc7",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8159,7 +8159,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/4.3.3"
+                "source": "https://github.com/lucatume/wp-browser/tree/4.3.4"
             },
             "funding": [
                 {
@@ -8167,7 +8167,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-09-11T07:51:35+00:00"
+            "time": "2024-09-13T08:24:51+00:00"
         },
         {
             "name": "mck89/peast",
