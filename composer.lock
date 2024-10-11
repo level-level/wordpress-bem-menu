@@ -962,16 +962,16 @@
         },
         {
             "name": "level-level/clarkson-404",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-404.git",
-                "reference": "2ac350c29116424c85b82d6e357cdff2be7be260"
+                "reference": "85e2d47052fb0e9437ca6b7ab712c1749f4b9bb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/2ac350c29116424c85b82d6e357cdff2be7be260",
-                "reference": "2ac350c29116424c85b82d6e357cdff2be7be260",
+                "url": "https://api.github.com/repos/level-level/clarkson-404/zipball/85e2d47052fb0e9437ca6b7ab712c1749f4b9bb1",
+                "reference": "85e2d47052fb0e9437ca6b7ab712c1749f4b9bb1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1012,10 +1012,10 @@
             ],
             "description": "A plugin to set a custom page as 404 for using with Clarkson.",
             "support": {
-                "source": "https://github.com/level-level/clarkson-404/tree/1.0.5",
+                "source": "https://github.com/level-level/clarkson-404/tree/1.0.6",
                 "issues": "https://github.com/level-level/clarkson-404/issues"
             },
-            "time": "2023-11-17T14:48:30+00:00"
+            "time": "2024-09-30T13:22:09+00:00"
         },
         {
             "name": "level-level/clarkson-core",
