@@ -228,7 +228,7 @@ class ElasticPress {
 		}
 
 		// Find end of scentence charsets before $highlight_start
-		$end_of_scentence_charsets                                  = array( '. ', '! ', '? ', "\n", '’ ', '‘ ' );
+		$end_of_scentence_charsets                                  = array( '.', '!', '?', "\n", '’', '‘' );
 		$end_of_scentence_charsets_positions_before_highlight_start = array();
 		foreach ( $end_of_scentence_charsets as $end_of_scentence_charset ) {
 			$end_of_scentence_pos = mb_strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_scentence_charset );
