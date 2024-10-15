@@ -222,26 +222,27 @@ class ElasticPress {
 		$excerpt_more = $excerpt_more !== $text ? $excerpt_more : '[&hellip;]';
 
 		// If highlight cannot be found in the content, return the excerpt
-		$highlight_start_pos = strpos( $text, $opening_tag );
+		$highlight_start_pos = mb_strpos( $text, $opening_tag );
 		if ( false === $highlight_start_pos ) {
 			return $excerpt;
 		}
 
-		// Find end of scentence characters before $highlight_start
-		$end_of_scentence_chars                            = array( '.', '!', '?' );
-		$end_of_scentence_positions_before_highlight_start = array();
-		foreach ( $end_of_scentence_chars as $end_of_scentence_char ) {
-			$end_of_scentence_pos = strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_scentence_char );
+		// Find end of scentence charsets before $highlight_start
+		$end_of_scentence_charsets                                  = array( '. ', '! ', '? ', "\n", '’ ', '‘ ' );
+		$end_of_scentence_charsets_positions_before_highlight_start = array();
+		foreach ( $end_of_scentence_charsets as $end_of_scentence_charset ) {
+			$end_of_scentence_pos = mb_strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_scentence_charset );
 			if ( false !== $end_of_scentence_pos ) {
-				$end_of_scentence_positions_before_highlight_start[] = $end_of_scentence_pos;
+				$end_of_scentence_charsets_positions_before_highlight_start[ $end_of_scentence_pos ] = $end_of_scentence_charset;
 			}
 		}
 
-		if ( $end_of_scentence_positions_before_highlight_start ) {
-			$end_of_scentence_pos_before_highlight_start = max( $end_of_scentence_positions_before_highlight_start );
+		if ( $end_of_scentence_charsets_positions_before_highlight_start ) {
+			$end_of_scentence_pos_before_highlight_start     = max( array_keys( $end_of_scentence_charsets_positions_before_highlight_start ) );
+			$end_of_scentence_charset_before_highlight_start = $end_of_scentence_charsets_positions_before_highlight_start[ $end_of_scentence_pos_before_highlight_start ];
 
 			// Start the text at the word before the highlight start position
-			$text = ltrim( substr( $text, $end_of_scentence_pos_before_highlight_start + 1 ) );
+			$text = ltrim( mb_substr( $text, $end_of_scentence_pos_before_highlight_start + mb_strlen( $end_of_scentence_charset_before_highlight_start ) ) );
 		} else {
 			// Start the text from the beginning. It should be the first scentence where the word is in.
 			$text = ltrim( $text );
