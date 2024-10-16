@@ -227,24 +227,24 @@ class ElasticPress {
 			return $excerpt;
 		}
 
-		// Find end of scentence charsets before $highlight_start
-		$end_of_scentence_charsets                                  = array( '.', '!', '?', "\n", '’', '‘' );
-		$end_of_scentence_charsets_positions_before_highlight_start = array();
-		foreach ( $end_of_scentence_charsets as $end_of_scentence_charset ) {
-			$end_of_scentence_pos = mb_strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_scentence_charset );
-			if ( false !== $end_of_scentence_pos ) {
-				$end_of_scentence_charsets_positions_before_highlight_start[ $end_of_scentence_pos ] = $end_of_scentence_charset;
+		// Find end of sentence charsets before $highlight_start
+		$end_of_sentence_charsets                                  = array( '.', '!', '?', "\n", '’', '‘' );
+		$end_of_sentence_charsets_positions_before_highlight_start = array();
+		foreach ( $end_of_sentence_charsets as $end_of_sentence_charset ) {
+			$end_of_sentence_pos = mb_strrpos( substr( $text, 0, $highlight_start_pos ), $end_of_sentence_charset );
+			if ( false !== $end_of_sentence_pos ) {
+				$end_of_sentence_charsets_positions_before_highlight_start[ $end_of_sentence_pos ] = $end_of_sentence_charset;
 			}
 		}
 
-		if ( $end_of_scentence_charsets_positions_before_highlight_start ) {
-			$end_of_scentence_pos_before_highlight_start     = max( array_keys( $end_of_scentence_charsets_positions_before_highlight_start ) );
-			$end_of_scentence_charset_before_highlight_start = $end_of_scentence_charsets_positions_before_highlight_start[ $end_of_scentence_pos_before_highlight_start ];
+		if ( $end_of_sentence_charsets_positions_before_highlight_start ) {
+			$end_of_sentence_pos_before_highlight_start     = max( array_keys( $end_of_sentence_charsets_positions_before_highlight_start ) );
+			$end_of_sentence_charset_before_highlight_start = $end_of_sentence_charsets_positions_before_highlight_start[ $end_of_sentence_pos_before_highlight_start ];
 
 			// Start the text at the word before the highlight start position
-			$text = ltrim( mb_substr( $text, $end_of_scentence_pos_before_highlight_start + mb_strlen( $end_of_scentence_charset_before_highlight_start ) ) );
+			$text = ltrim( mb_substr( $text, $end_of_sentence_pos_before_highlight_start + mb_strlen( $end_of_sentence_charset_before_highlight_start ) ) );
 		} else {
-			// Start the text from the beginning. It should be the first scentence where the word is in.
+			// Start the text from the beginning. It should be the first sentence where the word is in.
 			$text = ltrim( $text );
 		}
 
