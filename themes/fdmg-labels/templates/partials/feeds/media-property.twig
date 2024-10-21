@@ -1,1 +1,4 @@
-<media:content url="{{ object.get_thumbnail_url() }}" height="288" width="512" />
+{% set thumbnail_id = get_post_thumbnail_id() %}
+{% set thumbnail_src = wp_get_attachment_image_src(thumbnail_id) %}
+
+<media:content url="{{ thumbnail_src[0] }}" height="{{ thumbnail_src[2] }}" width="{{ thumbnail_src[1] }}" />

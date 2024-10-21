@@ -24,7 +24,7 @@ class MediaItemRSSFeed {
 
 		Templates::get_instance()->echo_twig(
 			'partials/feeds/media-property.twig', array(
-				'object' => ( new ACF() )->convert_post_object( $post ),
+				'object' => Objects::get_instance()->get_object( $post ),
 			), true
 		);
 	}
