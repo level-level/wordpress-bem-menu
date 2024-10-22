@@ -91,11 +91,7 @@ const initSourcepoint = (config: DataLayerConfig) => {
 }
 
 const handlePageView = (config: DataLayerConfig) => {
-	if ( typeof window.__tcfapi !== 'undefined' ) {
-		initSourcepoint ( config );
-	} else {
-		pushToDataLayer(config);
-	}
+	pushToDataLayer(config);
 };
 
 export default handlePageView;
