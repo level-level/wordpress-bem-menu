@@ -1,5 +1,5 @@
 {% set object = block.get_object() %}
-<div class="{{ align }}" data-name="{{ block.name }}">
+<div class="{{ align }} print:hidden" data-name="{{ block.name }}">
 	{% include 'styleguide/components/social-share.twig' with {
 		heading: _x('Share on social media', 'Block', 'fdmg-labels'),
 		sticky: false,

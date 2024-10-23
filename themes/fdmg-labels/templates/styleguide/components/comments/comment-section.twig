@@ -21,7 +21,7 @@
 			{% set config = {
 				post_id: object.get_id(),
 			} %}
-			<div class="comment-form-container" data-module="comment-form" data-config="{{ config|json_encode() }}">
+			<div class="comment-form-container print:hidden" data-module="comment-form" data-config="{{ config|json_encode() }}">
 
 				{% set login_url = static_pages.login.get_login_permalink(object.get_permalink()) %}
 				{% set subscribe_url = options.subscribe_button.url %}
