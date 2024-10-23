@@ -158,8 +158,13 @@ strong {
 }
 
 /* Editor sidebar styling */
-.interface-complementary-area {
-	width: 400px;
+.interface-complementary-area,
+.interface-complementary-area__fill {
+	width: 280px !important;
+
+	@include breakpoint(lg) {
+		width: 400px !important;
+	}
 }
 
 .wp-block {
