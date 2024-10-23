@@ -4,7 +4,10 @@
 		<div class="order-2 mb-2 text-base">
 			<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800">
 				<span class="block mb-2">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
-				<span>"{{ comment_content }}"</span>
+
+				{% set max_length = 80 %}
+				{% set truncated_comment = comment_content|length > max_length ? comment_content|slice(0, max_length) ~ '...' : comment_content %}
+				<span>"{{ truncated_comment }}"</span>
 
 				<div class="absolute right-0 -translate-y-1/2 top-1/2">
 					<span class="text-[11px] icon-inline" aria-hidden="true">{{ svg_icons.get('chevron-right')|raw }}</span>
