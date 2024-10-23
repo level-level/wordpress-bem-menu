@@ -23,14 +23,14 @@
 		{% endif %}
 
 		{% for object in objects %}
-			<li class="p-3 border-t sm:p-4 border-[rgb(0,0,0,0.1)] dark:border-base-400
+			<li class="p-3 border-t sm:px-4 sm:py-[10px] border-[rgb(0,0,0,0.1)] dark:border-base-400
 			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800' }}
 			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600' }}">
 				{% include 'styleguide/components/list-item.twig' with {
 					title: object.title,
 					url: object.url,
 					terms: object.terms,
-					term_label: term_label,
+					term_label: object.term_label,
 					date: object.date,
 					datetime: object.datetime,
 					comment_content: object.comment_content,

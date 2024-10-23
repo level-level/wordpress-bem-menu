@@ -50,10 +50,10 @@
 					objects: latest ? latest|map(post => {
 						title: post.get_alternative_title()|default(post.get_title()),
 						url: post.get_permalink(),
-						terms: post.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category')|map(term => {
+						terms: show_terms ? (post.get_terms(feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? 'fdmg_genre' : 'category')|map(term => {
 							name: term.get_name(),
-						}),
-						term_label: feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? _x('genre', 'Screen reader text', 'fdmg-labels') : _x('category', 'Screen reader text', 'fdmg-labels'),
+						})),
+						term_label: show_terms ? (feature_manager.is_enabled(constant('FEATURE_ENABLE_GENRE_TAXONOMY', feature_manager)) ? _x('genre', 'Screen reader text', 'fdmg-labels') : _x('category', 'Screen reader text', 'fdmg-labels')),
 						date: post.get_human_readable_date(),
 						datetime: post.get_date_i18n('Y-m-d'),
 						post: post,
