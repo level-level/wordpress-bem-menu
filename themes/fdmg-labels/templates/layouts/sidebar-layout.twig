@@ -9,7 +9,7 @@
 			<div class="flex flex-col md:flex-row md:flex-nowrap md:gap-6 md:justify-between">
 
 				{% if block('offset') is defined and not is_front_page() %}
-					<div class="hidden lg:shrink-0 lg:mb-[96px] lg:block">
+					<div class="hidden lg:shrink-0 lg:mb-[96px] lg:block print:hidden">
 						{% block offset %}{% endblock %}
 					</div>
 				{% endif %}
@@ -25,7 +25,7 @@
 					{% block responsibility %}{% endblock %}
 				{% endif %}
 
-				<div class="md:w-[theme(space.sidebar-width)] md:shrink-0">
+				<div class="md:w-[theme(space.sidebar-width)] md:shrink-0 print:hidden">
 					<aside data-component="sidebar" class="h-full" data-module="sticky-advertisement" aria-labelledby="aside-additional">
 						<h2 class="sr-only" id="aside-additional">
 							{{ _x('Additional', 'Screen reader text', 'fdmg-labels') }}

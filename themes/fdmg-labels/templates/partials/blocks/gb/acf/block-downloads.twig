@@ -2,7 +2,7 @@
 {% set downloads = data.downloads.downloads %}
 
 {% if downloads %}
-	<div class="{{ align }}" data-name="{{ block.name }}">
+	<div class="{{ align }} print:hidden" data-name="{{ block.name }}">
 		<div class="flex flex-col gap-3 p-3 sm:p-4 bg-secondary-100 dark:bg-base-600">
 
 			{% if title %}

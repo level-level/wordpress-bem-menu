@@ -2,7 +2,7 @@
 {% set objects = block.get_posts() %}
 
 {% if objects %}
-	<div class="{{ align }}" data-name="{{ block.name }}">
+	<div class="{{ align }} print:hidden" data-name="{{ block.name }}">
 		<div class="relative border-b-2 border-secondary-400 bg-secondary-100 dark:bg-base-600 dark:border-transparent">
 
 			<h2 class="p-3 text-lg font-bold border-b text-primary border-secondary-400 dark:border-base-800 sm:text-xl sm:py-3 sm:px-6 theme-energeia:text-base-800 dark:text-primary-300">{{ title|raw }}</h2>
