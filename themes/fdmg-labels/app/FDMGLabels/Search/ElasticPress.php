@@ -16,6 +16,7 @@ class ElasticPress {
 		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
 		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
+		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
 	}
 
 	/**
@@ -260,5 +261,23 @@ class ElasticPress {
 		}
 
 		return $text;
+	}
+
+	/**
+	 * Add the post_content_filtered to the weight configuration.
+	 * This will allow the rendered post content to be used when searching.
+	 *
+	 * @see https://www.elasticpress.io/documentation/article/how-to-search-using-rendered-content-shortcodes-and-reusable-blocks/
+	 *
+	 * @param array<array<string,mixed>> $weight_config
+	 * @return array<array<string,mixed>>
+	 */
+	public function search_rendered_content( array $weight_config ): array {
+		foreach ( $weight_config as &$post_type_config ) {
+			if ( isset( $post_type_config['post_content'] ) ) {
+				$post_type_config['post_content_filtered'] = $post_type_config['post_content'];
+			}
+		}
+		return $weight_config;
 	}
 }
