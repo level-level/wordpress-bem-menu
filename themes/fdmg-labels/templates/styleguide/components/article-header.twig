@@ -2,7 +2,7 @@
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-8">
 
 	<div class="hidden print:font-bold print:block print:mb-8">
-		{{ __('Source: %s, %s')|format(get_bloginfo('name'), date.date_full)|raw }}
+		{{ __('Source: %s, %s', 'fdmg-labels')|format(get_bloginfo('name'), date.date_full)|raw }}
 	</div>
 
 	<div class="order-2">
