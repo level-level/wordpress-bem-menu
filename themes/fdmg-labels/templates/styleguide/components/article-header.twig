@@ -1,6 +1,10 @@
 {% set has_paywall_block = object.has_paywall_block() %}
 <div data-component="article-header" class="relative flex flex-col mb-6 sm:mb-8">
 
+	<div class="hidden print:font-bold print:block print:mb-8">
+		{{ __('Source: %s, %s', 'fdmg-labels')|format(get_bloginfo('name'), date.date_full)|raw }}
+	</div>
+
 	<div class="order-2">
 		<h1 class="text-lg font-bold break-words font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl" {{ has_paywall_block ? 'aria-describedby="a11y-paywall-description"' }}>
 			{{ title|raw }}
@@ -29,7 +33,7 @@
 	{% endif %}
 
 	{% if categories or genres or sections %}
-		<div class="order-1 mb-3 sm:mb-9">
+		<div class="order-1 mb-3 sm:mb-9 print:hidden">
 
 			<div class="flex gap-2">
 				{% if categories %}

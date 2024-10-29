@@ -4,7 +4,7 @@
 
 {% block header_advertisement_area %}
 	{% if is_active_sidebar('widget-area-partner-header-ad') %}
-		<div class="top-adver">
+		<div class="top-adver print:hidden">
 			{{ sidebar.get_widgetarea('widget-area-partner-header-ad')|raw }}
 		</div>
 	{% endif %}
