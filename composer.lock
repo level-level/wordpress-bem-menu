@@ -14925,16 +14925,16 @@
         },
         {
             "name": "wp-cli/super-admin-command",
-            "version": "v2.0.14",
+            "version": "v2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/super-admin-command.git",
-                "reference": "0fc8a6146d0450a8b522485e50886e976f5249b6"
+                "reference": "ecd9cee09918eb34f60c05944cc188f4916cb026"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/super-admin-command/zipball/0fc8a6146d0450a8b522485e50886e976f5249b6",
-                "reference": "0fc8a6146d0450a8b522485e50886e976f5249b6",
+                "url": "https://api.github.com/repos/wp-cli/super-admin-command/zipball/ecd9cee09918eb34f60c05944cc188f4916cb026",
+                "reference": "ecd9cee09918eb34f60c05944cc188f4916cb026",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -14986,9 +14986,9 @@
             "homepage": "https://github.com/wp-cli/super-admin-command",
             "support": {
                 "issues": "https://github.com/wp-cli/super-admin-command/issues",
-                "source": "https://github.com/wp-cli/super-admin-command/tree/v2.0.14"
+                "source": "https://github.com/wp-cli/super-admin-command/tree/v2.0.15"
             },
-            "time": "2024-02-26T12:17:45+00:00"
+            "time": "2024-10-01T10:48:29+00:00"
         },
         {
             "name": "wp-cli/widget-command",
