@@ -13035,16 +13035,16 @@
         },
         {
             "name": "wp-cli/checksum-command",
-            "version": "v2.2.5",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wp-cli/checksum-command.git",
-                "reference": "f6911998734018da08f75464a168feb0d07b4475"
+                "reference": "bc82cfb0b1e24eec99cd1bfa515a62c63bd46936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wp-cli/checksum-command/zipball/f6911998734018da08f75464a168feb0d07b4475",
-                "reference": "f6911998734018da08f75464a168feb0d07b4475",
+                "url": "https://api.github.com/repos/wp-cli/checksum-command/zipball/bc82cfb0b1e24eec99cd1bfa515a62c63bd46936",
+                "reference": "bc82cfb0b1e24eec99cd1bfa515a62c63bd46936",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -13094,9 +13094,9 @@
             "homepage": "https://github.com/wp-cli/checksum-command",
             "support": {
                 "issues": "https://github.com/wp-cli/checksum-command/issues",
-                "source": "https://github.com/wp-cli/checksum-command/tree/v2.2.5"
+                "source": "https://github.com/wp-cli/checksum-command/tree/v2.3.0"
             },
-            "time": "2023-11-10T21:54:15+00:00"
+            "time": "2024-10-01T21:53:46+00:00"
         },
         {
             "name": "wp-cli/config-command",
