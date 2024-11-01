@@ -5495,10 +5495,10 @@
         },
         {
             "name": "wpengine/advanced-custom-fields-pro",
-            "version": "6.3.8",
+            "version": "6.3.10",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?p=pro&t=6.3.8",
+                "url": "https://connect.advancedcustomfields.com/v2/plugins/composer_download?s=composer&p=pro&t=6.3.10",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -5510,7 +5510,8 @@
                 "composer/installers": "~1.0 || ~2.0"
             },
             "replace": {
-                "wpackagist-plugin/advanced-custom-fields": "self.version"
+                "wpackagist-plugin/advanced-custom-fields": "self.version",
+                "wpengine/advanced-custom-fields": "self.version"
             },
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/"
