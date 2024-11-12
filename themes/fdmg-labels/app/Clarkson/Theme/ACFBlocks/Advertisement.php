@@ -79,6 +79,7 @@ class Advertisement {
 			'Article/Header',
 			'Article/Mid1',
 			'Article/Mid2',
+			'Article/Mid3',
 			'Author/Header',
 			'Author/Mid1',
 			'Category/Header',
