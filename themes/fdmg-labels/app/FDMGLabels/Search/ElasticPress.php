@@ -17,6 +17,7 @@ class ElasticPress {
 		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ), 10, 2 );
 	}
 
 	/**
@@ -279,5 +280,25 @@ class ElasticPress {
 			}
 		}
 		return $weight_config;
+	}
+
+	/**
+	 * Remove the analyzer from the query if present. It does fuzzy searching
+	 * even if fuzzy is disabled.
+	 *
+	 * @param array<string,mixed> $query
+	 * @return array<string,mixed>
+	 */
+	public function remove_analyzer_from_query( array $query, array $query_vars ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		foreach ($query['bool']['should'] as &$should) {
+			if ( isset( $should['multi_match']['analyzer'] ) ) {
+				unset( $should['multi_match']['analyzer'] );
+			}
+		}
+		return $query;
 	}
 }
