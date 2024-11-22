@@ -294,7 +294,7 @@ class ElasticPress {
 			return $query;
 		}
 
-		foreach ($query['bool']['should'] as &$should) {
+		foreach ( $query['bool']['should'] as &$should ) {
 			if ( isset( $should['multi_match']['analyzer'] ) ) {
 				unset( $should['multi_match']['analyzer'] );
 			}
