@@ -16,10 +16,9 @@ class ElasticPress {
 		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
 		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
+		add_filter( 'ep_weighting_default_post_type_weights', array( $this, 'add_rendered_content_to_default_weighting_config' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
-		add_filter( 'ep_search_fields', array( $this, 'add_rendered_content_as_search_field' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ), 10, 2 );
-		add_filter( 'ep_post_formatted_args_query', array( $this, 'search_rendered_post_content' ), 10, 2 );
 	}
 
 	/**
@@ -267,7 +266,7 @@ class ElasticPress {
 	}
 
 	/**
-	 * Add the post_content_filtered to the weight configuration.
+	 * Add the post_content_filtered to the custom weight configuration.
 	 * This will allow the rendered post content to be used when searching.
 	 *
 	 * @see https://www.elasticpress.io/documentation/article/how-to-search-using-rendered-content-shortcodes-and-reusable-blocks/
@@ -279,30 +278,25 @@ class ElasticPress {
 		foreach ( $weight_config as &$post_type_config ) {
 			if ( isset( $post_type_config['post_content'] ) ) {
 				$post_type_config['post_content_filtered'] = $post_type_config['post_content'];
-				unset( $post_type_config['post_content'] );
 			}
 		}
 		return $weight_config;
 	}
 
 	/**
-	 * Add the post_content_filtered to the search fields.
+	 * Add the post_content_filtered to the default weight configuration.
 	 * This will allow the rendered post content to be used when searching.
 	 *
-	 * @param array<string> $search_fields
-	 * @return array<string>
+	 * @param array<string,mixed> $default_weighting_config
+	 * @return array<string,mixed>
 	 */
-	public function add_rendered_content_as_search_field( array $search_fields ): array {
-		foreach ( $search_fields as $key => $field ) {
-			$field_parts = explode( '^', $field );
-			if ( 'post_content' === $field_parts[0] ) {
-				$field_parts[0] = 'post_content_filtered';
-				$search_fields[ $key ] = implode( '^', $field_parts );
-				break;
-			}
+	public function add_rendered_content_to_default_weighting_config( array $default_weighting_config ): array {
+		if ( ! isset( $default_weighting_config['post_content'] ) ) {
+			return $default_weighting_config;
 		}
 
-		return $search_fields;
+		$default_weighting_config['post_content_filtered'] = $default_weighting_config['post_content'];
+		return $default_weighting_config;
 	}
 
 	/**
@@ -320,29 +314,6 @@ class ElasticPress {
 		foreach ( $query['bool']['should'] as &$should ) {
 			if ( isset( $should['multi_match']['analyzer'] ) ) {
 				unset( $should['multi_match']['analyzer'] );
-			}
-		}
-		return $query;
-	}
-
-	public function search_rendered_post_content( array $query, array $query_vars ): array {
-		if ( empty( $query['bool']['should'] ) ) {
-			return $query;
-		}
-
-		foreach ( $query['bool']['should'] as &$should ) {
-			if ( ! isset( $should['multi_match']['fields'] ) ) {
-				continue;
-			}
-
-			$fields = $should['multi_match']['fields'];
-			foreach ( $fields as &$field ) {
-				$field_parts = explode( '^', $field );
-				if ( 'post_content' === $field_parts[0] ) {
-					$field_parts[0] = 'post_content_filtered';
-					$field = implode( '^', $field_parts );
-					break;
-				}
 			}
 		}
 		return $query;
