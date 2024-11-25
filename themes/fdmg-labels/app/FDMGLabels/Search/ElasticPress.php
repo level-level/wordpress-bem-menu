@@ -293,10 +293,15 @@ class ElasticPress {
 	 * @return array<string>
 	 */
 	public function add_rendered_content_as_search_field( array $search_fields ): array {
-		if ( ! in_array( 'post_content_filtered', $search_fields, true ) ) {
-			$search_fields[] = 'post_content_filtered';
-			unset( $search_fields[ array_search( 'post_content', $search_fields, true ) ] );
+		foreach ( $search_fields as $key => $field ) {
+			$field_parts = explode( '^', $field );
+			if ( 'post_content' === $field_parts[0] ) {
+				$field_parts[0] = 'post_content_filtered';
+				$search_fields[ $key ] = implode( '^', $field_parts );
+				break;
+			}
 		}
+
 		return $search_fields;
 	}
 
@@ -326,9 +331,18 @@ class ElasticPress {
 		}
 
 		foreach ( $query['bool']['should'] as &$should ) {
-			if ( ! isset( $should['multi_match']['fields'] ) || ! in_array( 'post_content_filtered', $should['multi_match']['fields'], true ) ) {
-				$should['multi_match']['fields'] = array_diff( $should['multi_match']['fields'], array( 'post_content_filtered' ) );
-				$should['multi_match']['fields'][] = 'post_content';
+			if ( ! isset( $should['multi_match']['fields'] ) ) {
+				continue;
+			}
+
+			$fields = $should['multi_match']['fields'];
+			foreach ( $fields as &$field ) {
+				$field_parts = explode( '^', $field );
+				if ( 'post_content' === $field_parts[0] ) {
+					$field_parts[0] = 'post_content_filtered';
+					$field = implode( '^', $field_parts );
+					break;
+				}
 			}
 		}
 		return $query;
