@@ -19,7 +19,7 @@ class ElasticPress {
 		add_filter( 'ep_weighting_default_post_type_weights', array( $this, 'add_rendered_content_to_default_weighting_config' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
 		add_filter( 'ep_search_post_return_args', array( $this, 'return_rendered_content_from_query' ) );
-		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ), 10, 2 );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 	}
 
 	/**
@@ -326,7 +326,7 @@ class ElasticPress {
 	 * @param array<string,mixed> $query
 	 * @return array<string,mixed>
 	 */
-	public function remove_analyzer_from_query( array $query, array $query_vars ): array {
+	public function remove_analyzer_from_query( array $query ): array {
 		if ( empty( $query['bool']['should'] ) ) {
 			return $query;
 		}
