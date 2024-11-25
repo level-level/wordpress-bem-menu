@@ -16,8 +16,10 @@ class ElasticPress {
 		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
 		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
-		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
+		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
+		add_filter( 'ep_search_fields', array( $this, 'add_rendered_content_as_search_field' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ), 10, 2 );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'search_rendered_post_content' ), 10, 2 );
 	}
 
 	/**
@@ -273,13 +275,29 @@ class ElasticPress {
 	 * @param array<array<string,mixed>> $weight_config
 	 * @return array<array<string,mixed>>
 	 */
-	public function search_rendered_content( array $weight_config ): array {
+	public function add_rendered_content_to_weighting_config( array $weight_config ): array {
 		foreach ( $weight_config as &$post_type_config ) {
 			if ( isset( $post_type_config['post_content'] ) ) {
 				$post_type_config['post_content_filtered'] = $post_type_config['post_content'];
+				unset( $post_type_config['post_content'] );
 			}
 		}
 		return $weight_config;
+	}
+
+	/**
+	 * Add the post_content_filtered to the search fields.
+	 * This will allow the rendered post content to be used when searching.
+	 *
+	 * @param array<string> $search_fields
+	 * @return array<string>
+	 */
+	public function add_rendered_content_as_search_field( array $search_fields ): array {
+		if ( ! in_array( 'post_content_filtered', $search_fields, true ) ) {
+			$search_fields[] = 'post_content_filtered';
+			unset( $search_fields[ array_search( 'post_content', $search_fields, true ) ] );
+		}
+		return $search_fields;
 	}
 
 	/**
@@ -297,6 +315,20 @@ class ElasticPress {
 		foreach ( $query['bool']['should'] as &$should ) {
 			if ( isset( $should['multi_match']['analyzer'] ) ) {
 				unset( $should['multi_match']['analyzer'] );
+			}
+		}
+		return $query;
+	}
+
+	public function search_rendered_post_content( array $query, array $query_vars ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		foreach ( $query['bool']['should'] as &$should ) {
+			if ( ! isset( $should['multi_match']['fields'] ) || ! in_array( 'post_content_filtered', $should['multi_match']['fields'], true ) ) {
+				$should['multi_match']['fields'] = array_diff( $should['multi_match']['fields'], array( 'post_content_filtered' ) );
+				$should['multi_match']['fields'][] = 'post_content';
 			}
 		}
 		return $query;
