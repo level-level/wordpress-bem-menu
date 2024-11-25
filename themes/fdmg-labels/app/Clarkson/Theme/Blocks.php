@@ -1,11 +1,15 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFBlocks\CTA;
+use Clarkson\Theme\ACFBlocks\HighlightedContent;
+use Clarkson\Theme\ACFBlocks\InlineLink;
 use WP_Block_Type_Registry;
 
 class Blocks {
 	public function register_hooks(): void {
 		add_filter( 'allowed_block_types_all', array( $this, 'allowed_gutenberg_blocks' ) );
+		add_filter( 'excerpt_allowed_blocks', array( $this, 'allowed_gutenberg_blocks_for_generating_excerpt' ) );
 		add_filter( 'block_categories_all', array( $this, 'create_custom_gutenberg_categories' ) );
 	}
 
@@ -85,5 +89,33 @@ class Blocks {
 		}
 
 		return array_merge( $allowed_blocks, $custom_blocks );
+	}
+
+	/**
+	 * Allow some extra blocks for generating excerpts.
+	 *
+	 * @param array<string> $allowed_blocks
+	 *
+	 * @return array<string>
+	 */
+	public function allowed_gutenberg_blocks_for_generating_excerpt( array $allowed_blocks ): array {
+		$custom_acf_block_names = array(
+			CTA::BLOCK_NAME,
+			HighlightedContent::BLOCK_NAME,
+			InlineLink::BLOCK_NAME,
+		);
+
+		$custom_blocks = array_map(
+			function ( $block_name ) {
+				return 'acf/block-' . $block_name;
+			},
+			$custom_acf_block_names
+		);
+
+		$allowed_blocks = array_merge(
+			$allowed_blocks,
+			$custom_blocks
+		);
+		return array_unique( $allowed_blocks );
 	}
 }
