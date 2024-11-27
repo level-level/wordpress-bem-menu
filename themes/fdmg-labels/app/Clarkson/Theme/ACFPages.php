@@ -10,6 +10,7 @@ use Clarkson\Theme\ACFPages\Selligent;
 use Clarkson\Theme\ACFPages\SEOOptions;
 use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson\Theme\ACFPages\ThemeOptions;
+use Clarkson\Theme\ACFPages\VacancyOptions;
 
 class ACFPages {
 
@@ -23,6 +24,7 @@ class ACFPages {
 		FDMGAPI::class,
 		FDMGContentAPI::class,
 		SEOOptions::class,
+		VacancyOptions::class,
 	);
 
 	public function register_hooks(): void {

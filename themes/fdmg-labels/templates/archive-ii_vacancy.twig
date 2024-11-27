@@ -1,0 +1,53 @@
+{% extends 'layouts/sidebar-layout-with-header.twig' %}
+
+{% block header_advertisement_area %}
+	{% if is_active_sidebar('widget-area-vacancy-header-ad') %}
+		<div class="top-adver print:hidden">
+			{{ sidebar.get_widgetarea('widget-area-vacancy-header-ad')|raw }}
+		</div>
+	{% endif %}
+{% endblock %}
+
+{% block header %}
+	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
+		<div class="container">
+			<div class="w-full md:w-[calc(100%-theme(space.sidebar-width)-theme(space.5))]">
+				<h1 class="pb-3 text-lg font-bold border-b-4 font-libre sm:text-3xl text-primary theme-energeia:text-base-500 theme-pensioen-pro:text-base-500 border-secondary-400 dark:text-primary-300 dark:border-primary-300">{{ archive.title ?: post_type.get_archive_title() }}</h1>
+
+				{% if archive.intro %}
+					<div class="pt-3 space-y-4">
+						{{ archive.intro|raw }}
+					</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block content %}
+	{% if objects %}
+		<div class="section">
+			<ul class="flex flex-col gap-3 sm:gap-6">
+				{% for object in objects %}
+					{% set image_id = object.get_thumbnail_id() %}
+					<li>
+						{% include 'styleguide/components/teasers/teaser-vacancy.twig' with {
+							image: image_id ? wp_get_attachment_image(image_id, 'medium', false, {alt: ''}),
+							title: object.get_alternative_title()|default(object.get_title()),
+							url: object.get_permalink(),
+							excerpt: object.get_excerpt(),
+						} %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+
+		{% include 'partials/components/pagination.twig' %}
+	{% endif %}
+{% endblock %}
+
+{% block sidebar %}
+	{% if is_active_sidebar('widget-area-vacancy') %}
+		{{ sidebar.get_widgetarea('widget-area-vacancy')|raw }}
+	{% endif %}
+{% endblock %}
