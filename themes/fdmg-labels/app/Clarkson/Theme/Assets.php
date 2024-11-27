@@ -46,6 +46,7 @@ class Assets {
 			$this->enqueue_development( 'clarkson_admin', array(), '/src/admin.js', true );
 		} else {
 			wp_enqueue_script( 'clarkson_admin', get_template_directory_uri() . '/dist/admin.js', array(), $this->version, true );
+			wp_enqueue_style( 'clarkson_admin', get_template_directory_uri() . '/dist/admin.css', array(), $this->version, 'all' );
 		}
 	}
 
