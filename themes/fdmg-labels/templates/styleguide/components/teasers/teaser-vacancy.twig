@@ -3,11 +3,11 @@
 		<div class="flex flex-wrap gap-3 sm:flex-nowrap">
 
 			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
-				<div class="max-w-[120px] mb-3 bg-transparent p-3 dark:bg-base-100 sm:mb-0">
-					{% if image %}
+				{% if image %}
+					<div class="max-w-[120px] mb-3 bg-transparent p-3 dark:bg-base-100 sm:mb-0">
 						{{ image|raw }}
-					{% endif %}
-				</div>
+					</div>
+				{% endif %}
 			</div>
 
 			<div class="basis-full sm:basis-auto">
