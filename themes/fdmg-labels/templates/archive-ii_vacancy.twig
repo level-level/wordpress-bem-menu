@@ -27,6 +27,7 @@
 {% block content %}
 	{% if objects %}
 		<div class="section">
+			<h2 class="sr-only">{{ _x('List of vacancies', 'Screen reader text', 'fdmg-labels') }}</h2>
 			<ul class="flex flex-col gap-3 sm:gap-6">
 				{% for object in objects %}
 					{% set image_id = object.get_thumbnail_id() %}
