@@ -32,14 +32,14 @@ class Post {
 				'key'      => self::FIELD_GROUP,
 				'title'    => _x( 'Article', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
-					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
-						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
 					Relationship::make( _x( 'Article author', 'Fields', 'fdmg-labels-admin' ), self::META_AUTHORS )
 						->instructions( _x( 'Select the author of this article.', 'Fields', 'fdmg-labels-admin' ) )
 						->postTypes( array( Team::POST_TYPE_NAME ) )
 						->filters( array( 'search' ) )
 						->returnFormat( 'object' )
 						->elements( array( 'featured_image' ) ),
+					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
+						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
 					Textarea::make( _x( 'Work instructions', 'Fields', 'fdmg-labels-admin' ), self::META_WORK_INSTRUCTIONS )
 						->instructions( _x( 'Use this field to add instructions or notes inside the backend of an article. This field is not shown publicly on the front-end.', 'Fields', 'fdmg-labels-admin' ) ),
 				),

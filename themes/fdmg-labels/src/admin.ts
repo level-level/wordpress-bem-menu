@@ -1,3 +1,6 @@
+import './styles/admin.scss';
+import './scripts/add-author';
+
 // Global variable provided by WordPress
 declare const wp: any;
 
