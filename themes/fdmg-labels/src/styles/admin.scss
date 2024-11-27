@@ -1,0 +1,33 @@
+.add-author-metabox {
+	& > * + * {
+		margin-top: 0.5rem;
+	}
+
+	&__form {
+		& > * + * {
+			margin-top: 0.5rem;
+		}
+	}
+
+	label {
+		display: block;
+		font-weight: bold;
+	}
+
+	input {
+		width: 100%;
+	}
+
+	&__success-message,
+	&__error-message {
+		padding: 0.5rem;
+		border: 1px solid #a3d851;
+		background-color: #f6ffe8;
+		border-radius: 5px;
+	}
+
+	&__error-message {
+		border-color: #d85151;
+		background-color: #ffe8e8;
+	}
+}
