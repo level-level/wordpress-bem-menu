@@ -4,6 +4,8 @@ declare const wpApiSettings: {
 	nonce: string;
 };
 
+declare const acf: any;
+
 class AddAuthor {
 	element: HTMLElement | null;
 	input: HTMLInputElement | null | undefined;
@@ -22,7 +24,7 @@ class AddAuthor {
 	}
 
 	addEventListeners() {
-		this.submit?.addEventListener('click', this.postAuthor.bind(this));
+		this.submit?.addEventListener('click', this.createAuthor.bind(this));
 		this.input?.addEventListener('keypress', (event) => {
 			if (event.target instanceof HTMLInputElement) {
 				this.hideAllMessages();
@@ -30,8 +32,12 @@ class AddAuthor {
 		});
 	}
 
-	postAuthor() {
+	createAuthor() {
 		const name = this.input?.value;
+
+		if (!name) {
+			return;
+		}
 
 		this.hideAllMessages();
 
@@ -47,14 +53,17 @@ class AddAuthor {
 			})
 		})
 		.then((response) => response.json())
-		.then((data) => {
-
+		.then((data: { id: number }) => {
 			// If the author was created successfully
 			if (data.id) {
+
+				// Clear the input field
 				if ( this.input ) {
 					this.input.value = '';
-					this.showSuccessMessage();
 				}
+
+				// Update the ACF relationship field
+				this.updateACFRelationshipFieldValue(data.id, name);
 			} else {
 				console.error('Error creating post:', data); // eslint-disable-line
 				this.showErrorMessage();
@@ -64,6 +73,29 @@ class AddAuthor {
 			console.error('Error:', error); // eslint-disable-line
 			this.showErrorMessage();
 		});
+	}
+
+	updateACFRelationshipFieldValue( value: number, label: string ) {
+		const field = acf.getField('field_148aff5f'); // The ACF field key
+		if ( ! field ) {
+			return;
+		}
+
+		const choice = field.$el.find( '.acf-relationship .choices .acf-rel-item[data-id="' + value + '"]' );
+		if ( choice ) {
+			choice.addClass( 'disabled' );
+		}
+
+		const html = field.newValue( {
+			id: value,
+			text: label
+		} );
+		field.$list( 'values' ).append( html );
+
+		// trigger change
+		field.$input().trigger( 'change' );
+
+		this.showSuccessMessage();
 	}
 
 	showSuccessMessage() {
