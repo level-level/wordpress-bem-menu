@@ -51,10 +51,20 @@ class ObjectConverter {
 		$author       = $post->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
+		$post_object  = $post->get_object();
+		$wp_time_zone = wp_timezone();
+
+		$published_date = new DateTime( $post_object->post_date, $wp_time_zone );
+		$modified_date  = new DateTime( $post_object->post_modified, $wp_time_zone );
+
+		if ( $published_date >= $modified_date ) {
+			$modified_date = $published_date;
+		}
+
 		$article = new Article();
 		$article->setId( $post->get_id() );
-		$article->setDate( new DateTime( $post->get_object()->post_date, wp_timezone() ) );
-		$article->setModified( new DateTime( $post->get_object()->post_modified, wp_timezone() ) );
+		$article->setDate( $published_date );
+		$article->setModified( $modified_date );
 		$article->setSlug( $post->get_post_name() );
 		$article->setStatus( $post->get_status() );
 		$article->setType( $post->get_post_type() );
