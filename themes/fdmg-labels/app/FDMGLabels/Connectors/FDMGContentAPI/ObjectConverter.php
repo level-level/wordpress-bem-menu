@@ -51,7 +51,7 @@ class ObjectConverter {
 		$author       = $post->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
-		$post_object = $post->get_object();
+		$post_object  = $post->get_object();
 		$wp_time_zone = wp_timezone();
 
 		$published_date = new DateTime( $post_object->post_date, $wp_time_zone );
