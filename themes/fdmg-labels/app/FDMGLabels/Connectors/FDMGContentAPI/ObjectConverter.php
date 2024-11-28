@@ -51,8 +51,11 @@ class ObjectConverter {
 		$author       = $post->get_author();
 		$author_model = $author instanceof user ? $this->user( $author ) : null;
 
-		$published_date = new DateTime( $post->get_object()->post_date, wp_timezone() );
-		$modified_date  = new DateTime( $post->get_object()->post_modified, wp_timezone() );
+		$post_object = $post->get_object();
+		$wp_time_zone = wp_timezone();
+
+		$published_date = new DateTime( $post_object->post_date, $wp_time_zone );
+		$modified_date  = new DateTime( $post_object->post_modified, $wp_time_zone );
 
 		if ( $published_date >= $modified_date ) {
 			$modified_date = $published_date;
