@@ -1,5 +1,7 @@
 {% extends 'layouts/sidebar-layout.twig' %}
 {% set object = objects|first %}
+{% set company_name = object.get_company_name() %}
+{% set location = object.get_location() %}
 
 {% block content %}
 	<div class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
@@ -7,6 +9,15 @@
 			title: object.get_title(),
 			label: _x('Vacancy', 'Label', 'fdmg-labels'),
 		} %}
+
+		{% if company_name or location %}
+			<div class="mb-4">
+				{% include 'styleguide/components/vacancy-metadata.twig' with {
+					company_name: company_name,
+					location: location,
+				} %}
+			</div>
+		{% endif %}
 
 		<div class="entry-content">
 			{{ object.get_content()|raw }}

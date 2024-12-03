@@ -1,11 +1,19 @@
 <?php
 namespace Clarkson\Theme\PostTypes;
 
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Location;
+
 class Vacancy {
 	public const POST_TYPE_NAME = 'ii_vacancy';
+	public const FIELD_GROUP    = 'ii_vacancy_group';
+
+	public const META_COMPANY  = 'company';
+	public const META_LOCATION = 'location';
 
 	public function register_hooks(): void {
 		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'acf/init', array( $this, 'register_fields' ) );
 	}
 
 	public function register(): void {
@@ -29,10 +37,10 @@ class Vacancy {
 			'show_ui'               => true,
 			'show_in_nav_menus'     => true,
 			'supports'              => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-			'has_archive'           => false,
+			'has_archive'           => true,
 			'rewrite'               => array( 'slug' => __( 'vacancies', 'fdmg-labels-slugs' ) ),
 			'query_var'             => true,
-			'menu_position'         => null,
+			'menu_position'         => 25,
 			'menu_icon'             => 'dashicons-money',
 			'show_in_rest'          => true,
 			'rest_base'             => self::POST_TYPE_NAME,
@@ -40,5 +48,22 @@ class Vacancy {
 		);
 
 		register_post_type( self::POST_TYPE_NAME, $args );
+	}
+
+	public function register_fields(): void {
+		register_extended_field_group(
+			array(
+				'key'      => self::FIELD_GROUP,
+				'title'    => _x( 'Article', 'Fields', 'fdmg-labels-admin' ),
+				'fields'   => array(
+					Text::make( _x( 'Company name', 'Fields', 'fdmg-labels-admin' ), self::META_COMPANY ),
+					Text::make( _x( 'Location', 'Fields', 'fdmg-labels-admin' ), self::META_LOCATION ),
+				),
+				'location' => array(
+					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),
+				),
+				'position' => 'side',
+			)
+		);
 	}
 }
