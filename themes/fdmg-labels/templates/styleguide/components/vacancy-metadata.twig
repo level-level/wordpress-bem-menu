@@ -1,0 +1,22 @@
+{% if company_name or location %}
+	<div class="text-base">
+		<ul class="flex flex-wrap gap-4">
+			{% if company_name %}
+				<li class="flex items-center gap-2">
+					<span class="icon-inline text-primary" aria-hidden="true">
+						{{ svg_icons.get('office')|raw }}
+					</span>
+					{{ company_name }}
+				</li>
+			{% endif %}
+			{% if location %}
+				<li class="flex items-center gap-2">
+					<span class="icon-inline text-primary" aria-hidden="true">
+						{{ svg_icons.get('location')|raw }}
+					</span>
+					{{ location }}
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+{% endif %}

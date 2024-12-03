@@ -4,7 +4,7 @@
 
 			<div class="basis-full sm:basis-auto sm:shrink-0 sm:order-2">
 				{% if image %}
-					<div class="max-w-[120px] mb-3 bg-transparent p-3 dark:bg-base-100 sm:mb-0">
+					<div class="max-w-[160px] lg:max-w-[220px] mb-3 bg-transparent p-3 dark:bg-base-100 sm:mb-0">
 						{{ image|raw }}
 					</div>
 				{% endif %}
@@ -15,6 +15,11 @@
 					<h3 class="font-bold text-md text-base-500 dark:text-base-100">
 						{{ title|raw }}
 					</h3>
+
+					{% include 'styleguide/components/vacancy-metadata.twig' with {
+						company_name: company_name,
+						location: location,
+					} %}
 
 					{% if excerpt %}
 						<div class="text-base">

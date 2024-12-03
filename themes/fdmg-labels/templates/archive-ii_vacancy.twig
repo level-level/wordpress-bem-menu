@@ -37,6 +37,8 @@
 							title: object.get_alternative_title()|default(object.get_title()),
 							url: object.get_permalink(),
 							excerpt: object.get_excerpt(),
+							company_name: object.get_company_name(),
+							location: object.get_location(),
 						} %}
 					</li>
 				{% endfor %}
