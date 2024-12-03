@@ -25,7 +25,7 @@ class Metabox {
 			array( $this, 'render_metabox' ),
 			PostTypesPost::POST_TYPE_NAME,
 			'side',
-			'high'
+			'low'
 		);
 	}
 
