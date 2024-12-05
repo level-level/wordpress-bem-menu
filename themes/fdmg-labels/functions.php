@@ -65,7 +65,7 @@
 // FDMG Labels Import
 ( new \FDMGLabels\Import\Init() )->register_hooks();
 
-add_filter( 
+add_filter(
 	'wp', function () {
 		if ( ! function_exists( 'gravity_form' ) ) {
 			function gravity_form( ...$args ) {
@@ -77,7 +77,7 @@ add_filter(
 				return '';
 			}
 		}
-        if ( ! function_exists( 'gtm4wp_the_gtm_tag' ) ) {
+		if ( ! function_exists( 'gtm4wp_the_gtm_tag' ) ) {
 			function yoast_breadcrumb( ...$args ) {
 				return '';
 			}
