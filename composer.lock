@@ -1759,11 +1759,11 @@
         },
         {
             "name": "ll-premium/wpai-acf-add-on",
-            "version": "3.3.8",
+            "version": "3.3.9",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wpai-acf-add-on/3.3.8",
-                "shasum": "2c787b8eb3de7601ebb99e9760d92a303e8317d0",
+                "url": "https://satispress.level-level.com/satispress/wpai-acf-add-on/3.3.9",
+                "shasum": "3e41b7d242c93e18460c364de34e25bf7fb23b8e",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
