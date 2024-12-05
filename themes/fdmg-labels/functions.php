@@ -78,7 +78,7 @@ add_filter(
 			}
 		}
 		if ( ! function_exists( 'gtm4wp_the_gtm_tag' ) ) {
-			function yoast_breadcrumb( ...$args ) {
+			function gtm4wp_the_gtm_tag( ...$args ) {
 				return '';
 			}
 		}
