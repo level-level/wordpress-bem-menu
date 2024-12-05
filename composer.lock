@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e3722039f9f26ec6b4967bc74285e1c2",
+    "content-hash": "d1c3fbf160dd05856950be27eee774f0",
     "packages": [
         {
             "name": "brick/math",
@@ -5220,15 +5220,15 @@
         },
         {
             "name": "wpackagist-plugin/download-monitor",
-            "version": "4.9.14",
+            "version": "5.0.14",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/download-monitor/",
-                "reference": "tags/4.9.14"
+                "reference": "tags/5.0.14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/download-monitor.4.9.14.zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.5.0.14.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",

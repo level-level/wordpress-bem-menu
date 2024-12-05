@@ -72,7 +72,7 @@
         "wpackagist-plugin/debug-bar": "^1.1",
         "wpackagist-plugin/debug-bar-elasticpress": "^3.1",
         "wpackagist-plugin/disable-emojis": "^1.7",
-        "wpackagist-plugin/download-monitor": "^4.9",
+        "wpackagist-plugin/download-monitor": "^5.0",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.16",
         "wpackagist-plugin/elasticpress": "^5.1",
         "wpackagist-plugin/koko-analytics": "^1.0",
