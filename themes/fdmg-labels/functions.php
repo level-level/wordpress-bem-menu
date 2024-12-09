@@ -64,3 +64,23 @@
 
 // FDMG Labels Import
 ( new \FDMGLabels\Import\Init() )->register_hooks();
+
+add_filter(
+	'wp', function () {
+		if ( ! function_exists( 'gravity_form' ) ) {
+			function gravity_form( ...$args ) {
+				return '';
+			}
+		}
+		if ( ! function_exists( 'yoast_breadcrumb' ) ) {
+			function yoast_breadcrumb( ...$args ) {
+				return '';
+			}
+		}
+		if ( ! function_exists( 'gtm4wp_the_gtm_tag' ) ) {
+			function gtm4wp_the_gtm_tag( ...$args ) {
+				return '';
+			}
+		}
+	}
+);
