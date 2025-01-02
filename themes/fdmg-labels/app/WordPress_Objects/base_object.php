@@ -148,12 +148,12 @@ class base_object extends Clarkson_Object {
 
 		// Setup variables needed to render comment form
 		// $twig                = Templates::get_instance();
-		$user                = wp_get_current_user();
+		$user = wp_get_current_user();
 		// $user_identity       = $user->exists() ? $user->display_name : '';
 		// $login_required_html = ( new Comments() )->get_subscription_required_html( $this );
 
-		$rules_page           = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_DISCUSSION_RULES_PAGE ), 'options' );
-		$rules_page_html      = $rules_page instanceof Clarkson_Object ? sprintf(
+		$rules_page      = get_field( sprintf( '%s_%s', ThemeOptions::OPTION_GROUP, ThemeOptions::OPTION_DISCUSSION_RULES_PAGE ), 'options' );
+		$rules_page_html = $rules_page instanceof Clarkson_Object ? sprintf(
 			_x( 'Comments must comply with our %s.', 'Comments', 'fdmg-labels' ),
 			sprintf(
 				'<a href="%s">%s</a>',
@@ -162,9 +162,9 @@ class base_object extends Clarkson_Object {
 			),
 		) : null;
 		// $comment_notes_before = array(
-		// 	_x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
-		// 	$rules_page_html,
-		// 	_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
+		//  _x( 'Your email address will not be published.', 'Comments', 'fdmg-labels' ),
+		//  $rules_page_html,
+		//  _x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
 		// );
 
 		// Temporary remove the code bellow
