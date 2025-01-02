@@ -146,7 +146,7 @@ class base_object extends Clarkson_Object {
 		setup_postdata( $this->_post );
 		$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
-		// Setup variables needed to render comment form
+		/* // Setup variables needed to render comment form
 		// $twig                = Templates::get_instance();
 		// $user = wp_get_current_user();
 		// $user_identity       = $user->exists() ? $user->display_name : '';
@@ -196,10 +196,12 @@ class base_object extends Clarkson_Object {
 		//      '<p class="comment-notes">%s</p>',
 		//      implode( '<br/>', array_filter( $comment_notes_before ) )
 		//  ),
-		// );
+		// ); */
 
 		ob_start();
-		// comment_form( $args, $this->_post );
+		/**
+		 * comment_form( $args, $this->_post );
+		 */
 		$html = ob_get_contents() ?: '';
 		ob_end_clean();
 
