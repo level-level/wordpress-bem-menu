@@ -146,7 +146,7 @@ class base_object extends Clarkson_Object {
 		setup_postdata( $this->_post );
 		$post = $this->_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
-		Setup variables needed to render comment form
+		// Setup variables needed to render comment form
 		$twig                = Templates::get_instance();
 		$user = wp_get_current_user();
 		$user_identity       = $user->exists() ? $user->display_name : '';
@@ -167,7 +167,7 @@ class base_object extends Clarkson_Object {
 		 _x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
 		);
 
-		Temporary remove the code bellow
+		// Temporary remove the code below
 
 		$must_log_in_as_notes = array_merge(
 		 array(
@@ -199,9 +199,9 @@ class base_object extends Clarkson_Object {
 		);
 
 		ob_start();
-		/**
-		 * comment_form( $args, $this->_post );
-		 */
+		
+		comment_form( $args, $this->_post );
+		
 		$html = ob_get_contents() ?: '';
 		ob_end_clean();
 
