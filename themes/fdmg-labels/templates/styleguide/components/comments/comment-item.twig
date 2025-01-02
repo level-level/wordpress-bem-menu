@@ -1,5 +1,6 @@
 <li class="border-b border-secondary-400 dark:border-base-800 last:border-none">
 	{% include 'styleguide/components/teasers/teaser-comment.twig' with {
+		author: object.comment_author,
 		time: _x('%s ago', 'Comments', 'fdmg-labels')|format(human_time_diff(get_comment_time('U'), current_time('timestamp'))),
 		content: object_text,
 	} %}
