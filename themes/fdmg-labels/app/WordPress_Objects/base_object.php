@@ -170,32 +170,32 @@ class base_object extends Clarkson_Object {
 		// Temporary remove the code bellow
 
 		// $must_log_in_as_notes = array_merge(
-		// 	array(
-		// 		sprintf(
-		// 			_x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
-		// 			$user_identity,
-		// 		),
-		// 	), $comment_notes_before
+		//  array(
+		//      sprintf(
+		//          _x( 'Logged in as %s.', 'Comments', 'fdmg-labels' ),
+		//          $user_identity,
+		//      ),
+		//  ), $comment_notes_before
 		// );
 
 		// $args = array(
-		// 	'class_form'           => 'form-group',
-		// 	'format'               => 'html5',
-		// 	'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
-		// 	'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
-		// 	'comment_field'        => $twig->render_twig(
-		// 		'styleguide/components/comments/form-fields/textarea.twig',
-		// 		array(), true
-		// 	),
-		// 	'must_log_in'          => $login_required_html,
-		// 	'logged_in_as'         => sprintf(
-		// 		'<p class="logged-in-as">%s</p>',
-		// 		implode( '<br/>', array_filter( $must_log_in_as_notes ) )
-		// 	),
-		// 	'comment_notes_before' => sprintf(
-		// 		'<p class="comment-notes">%s</p>',
-		// 		implode( '<br/>', array_filter( $comment_notes_before ) )
-		// 	),
+		//  'class_form'           => 'form-group',
+		//  'format'               => 'html5',
+		//  'label_submit'         => _x( 'Add comment', 'Comments', 'fdmg-labels' ),
+		//  'title_reply'          => _x( 'Leave a comment', 'Comments', 'fdmg-labels' ),
+		//  'comment_field'        => $twig->render_twig(
+		//      'styleguide/components/comments/form-fields/textarea.twig',
+		//      array(), true
+		//  ),
+		//  'must_log_in'          => $login_required_html,
+		//  'logged_in_as'         => sprintf(
+		//      '<p class="logged-in-as">%s</p>',
+		//      implode( '<br/>', array_filter( $must_log_in_as_notes ) )
+		//  ),
+		//  'comment_notes_before' => sprintf(
+		//      '<p class="comment-notes">%s</p>',
+		//      implode( '<br/>', array_filter( $comment_notes_before ) )
+		//  ),
 		// );
 
 		ob_start();
