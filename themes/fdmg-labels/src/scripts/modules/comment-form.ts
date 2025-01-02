@@ -46,7 +46,7 @@ class CommentForm implements IModule {
 	async fetchCommentForm(post_id: number) {
 		try {
 			const response = await fetch(`${restApi.root}fdmg-labels/v1/page-fragments/${post_id}`, {
-					method: "POST",
+				method: "POST",
 			} );
 
 			if (!response.ok) {
