@@ -8088,16 +8088,16 @@
         },
         {
             "name": "level-level/phpstan-config",
-            "version": "v1.0.0",
+            "version": "v1.1.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/phpstan-config.git",
-                "reference": "78188f875a606bb82b2c904c2064d722f0212da7"
+                "reference": "19d9347aa2e9718b5e9c4c7ce11e70f08d6c7bf9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/phpstan-config/zipball/78188f875a606bb82b2c904c2064d722f0212da7",
-                "reference": "78188f875a606bb82b2c904c2064d722f0212da7",
+                "url": "https://api.github.com/repos/level-level/phpstan-config/zipball/19d9347aa2e9718b5e9c4c7ce11e70f08d6c7bf9",
+                "reference": "19d9347aa2e9718b5e9c4c7ce11e70f08d6c7bf9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -8108,7 +8108,7 @@
             },
             "require": {
                 "phpstan/extension-installer": "^1",
-                "phpstan/phpstan": "^1"
+                "phpstan/phpstan": "^1|^2"
             },
             "type": "library",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
@@ -8120,10 +8120,10 @@
             ],
             "description": "PHPStan config files for projects",
             "support": {
-                "source": "https://github.com/level-level/phpstan-config/tree/v1.0.0",
+                "source": "https://github.com/level-level/phpstan-config/tree/v1.1.1",
                 "issues": "https://github.com/level-level/phpstan-config/issues"
             },
-            "time": "2022-07-15T14:31:48+00:00"
+            "time": "2024-12-23T16:07:35+00:00"
         },
         {
             "name": "lucatume/wp-browser",
