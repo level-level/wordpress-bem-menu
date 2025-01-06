@@ -5270,15 +5270,15 @@
         },
         {
             "name": "wpackagist-plugin/elasticpress",
-            "version": "5.1.3",
+            "version": "5.1.4",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/elasticpress/",
-                "reference": "tags/5.1.3"
+                "reference": "tags/5.1.4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/elasticpress.5.1.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/elasticpress.5.1.4.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
