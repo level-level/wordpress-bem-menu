@@ -18,7 +18,6 @@ class PageFragmentsController extends WP_REST_Controller {
 	public function __construct() {
 		$this->namespace = 'fdmg-labels/v1';
 		$this->rest_base = 'page-fragments';
-		$this->schema    = $this->get_item_schema();
 	}
 
 	public function register_hooks(): void {
