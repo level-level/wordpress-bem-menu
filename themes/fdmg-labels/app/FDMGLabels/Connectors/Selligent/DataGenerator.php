@@ -46,12 +46,13 @@ class DataGenerator {
 		$thumbnail_id = get_post_thumbnail_id( $post->get_object() );
 		if ( $thumbnail_id ) {
 			// Large image
-			$large_image_source = wp_get_attachment_image_src( $thumbnail_id, 'full' );
-			$large_image_source = is_array( $large_image_source ) ? $large_image_source[0] : '';
-			$data['img']        = substr( $large_image_source, 0, 255 );
+			$large_image = ( new Image() )->get_largest_aspect_ratio_image_size( $thumbnail_id, 720, 480, true );
+			if ( $large_image ) {
+				$data['img'] = substr( $large_image['source'], 0, 255 );
+			}
 
 			// Square image
-			$square_thumbnail = ( new Image() )->get_largest_aspect_ratio_image_size( $thumbnail_id, 1, 1, true );
+			$square_thumbnail = ( new Image() )->get_largest_aspect_ratio_image_size( $thumbnail_id, 256, 256, true );
 			if ( $square_thumbnail ) {
 				$data['img_square'] = substr( $square_thumbnail['source'], 0, 255 );
 			}

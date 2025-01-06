@@ -15,6 +15,10 @@ class ImageSizes {
 		// Used in the content of an article
 		add_image_size( 'content_medium', 345 );
 		add_image_size( 'content_small', 172 );
+
+		// Used in newsletters
+		add_image_size( 'newsletter_large', 720, 480, array( 'center', 'top' ) );
+		add_image_size( 'newsletter_thumbnail', 256, 256, array( 'center', 'top' ) );
 	}
 
 	/**

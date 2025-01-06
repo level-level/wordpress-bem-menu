@@ -143,11 +143,10 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 			)
 		);
 
-		// Generate data to use in test
 		$data = array(
-			array( 'recent', PHP_INT_MAX, PHP_INT_MAX, array( $post_1->get_id(), $post_2->get_id() ) ),
-			array( 'recent', 1, PHP_INT_MAX, array( $post_1->get_id() ) ),
-			array( 'recent', PHP_INT_MAX, 2, array( $post_1->get_id() ) ),
+			array( 'recent', 9999, 9999, array( $post_1->get_id(), $post_2->get_id() ) ),
+			array( 'recent', 1, 9999, array( $post_1->get_id() ) ),
+			array( 'recent', 9999, 2, array( $post_1->get_id() ) ),
 		);
 		return $data;
 	}
