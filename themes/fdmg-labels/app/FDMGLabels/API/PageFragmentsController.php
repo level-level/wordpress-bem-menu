@@ -33,7 +33,7 @@ class PageFragmentsController extends WP_REST_Controller {
 			$this->rest_base,
 			array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
+					'methods'             => 'GET, POST',
 					'callback'            => array( $this, 'get_item' ),
 					'permission_callback' => '__return_true',
 				),
@@ -45,7 +45,7 @@ class PageFragmentsController extends WP_REST_Controller {
 			$this->rest_base . '/(?P<post_id>[\d]+)',
 			array(
 				array(
-					'methods'             => WP_REST_Server::READABLE,
+					'methods'             => 'GET, POST',
 					'callback'            => array( $this, 'get_item' ),
 					'permission_callback' => '__return_true',
 				),

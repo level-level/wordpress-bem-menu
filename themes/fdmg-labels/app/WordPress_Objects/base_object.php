@@ -167,6 +167,8 @@ class base_object extends Clarkson_Object {
 			_x( 'Required fields are marked *.', 'Comments', 'fdmg-labels' ),
 		);
 
+		// Temporary remove the code below
+
 		$must_log_in_as_notes = array_merge(
 			array(
 				sprintf(
@@ -197,7 +199,9 @@ class base_object extends Clarkson_Object {
 		);
 
 		ob_start();
+
 		comment_form( $args, $this->_post );
+
 		$html = ob_get_contents() ?: '';
 		ob_end_clean();
 
