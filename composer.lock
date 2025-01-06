@@ -1107,16 +1107,16 @@
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
-            "version": "v1.0.4",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-wp-cli-twig-translations.git",
-                "reference": "1bcd53b5f2f61e48ea3f5a0e61f7f74f15fc9963"
+                "reference": "2bd3c8f16771e9de70a72bcfa732588b6d6a0932"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/1bcd53b5f2f61e48ea3f5a0e61f7f74f15fc9963",
-                "reference": "1bcd53b5f2f61e48ea3f5a0e61f7f74f15fc9963",
+                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/2bd3c8f16771e9de70a72bcfa732588b6d6a0932",
+                "reference": "2bd3c8f16771e9de70a72bcfa732588b6d6a0932",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1155,10 +1155,10 @@
             ],
             "description": "Smart WP-CLI command to cache the Twig templates so they can be read by PoEdit",
             "support": {
-                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.4",
+                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.6",
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
-            "time": "2024-11-12T09:10:19+00:00"
+            "time": "2025-01-02T14:02:02+00:00"
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
