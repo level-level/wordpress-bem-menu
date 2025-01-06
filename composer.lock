@@ -1733,11 +1733,11 @@
         },
         {
             "name": "ll-premium/wp-all-import-pro",
-            "version": "4.9.3",
+            "version": "4.9.5",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.9.3",
-                "shasum": "be7465a8e38722f4665b3f99f19076e310943482",
+                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.9.5",
+                "shasum": "44ba5f07f8a14df86ca7c7fbf4d9c4d31a7573f9",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
