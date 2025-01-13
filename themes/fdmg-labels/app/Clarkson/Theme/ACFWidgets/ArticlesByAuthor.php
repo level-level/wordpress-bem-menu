@@ -55,6 +55,7 @@ class ArticlesByAuthor {
 					Number::make( _x( 'Overwrite the default amount (4) of articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
 						->defaultValue( 4 )
 						->min( 1 )
+						->max( 20 )
 						->step( 1 )
 						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
 				),
