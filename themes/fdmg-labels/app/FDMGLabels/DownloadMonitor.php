@@ -47,6 +47,11 @@ class DownloadMonitor {
 		return time() + DAY_IN_SECONDS;
 	}
 
+	/**
+	 * Disable creating a session if a no access page is set.
+	 * This would result a session to be created on every page load.
+	 * And this would cause nginx to disable caching on every page load.
+	 */
 	public function disable_session_on_no_access_page(): void {
 		if ( function_exists( 'download_monitor' ) ) {
 			remove_action( 'wp', array( download_monitor(), 'set_no_access_session' ) );
