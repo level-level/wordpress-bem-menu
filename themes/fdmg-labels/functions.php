@@ -39,6 +39,7 @@
 // FDMG Labels
 ( new \FDMGLabels\API\Init() )->register_hooks();
 ( new \FDMGLabels\Comments\Comments() )->register_hooks();
+( new \FDMGLabels\DownloadMonitor() )->register_hooks();
 ( new \FDMGLabels\Search\Search() )->register_hooks();
 ( new \FDMGLabels\Search\Filter() )->register_hooks();
 ( new \FDMGLabels\Search\ElasticPress() )->register_hooks();
