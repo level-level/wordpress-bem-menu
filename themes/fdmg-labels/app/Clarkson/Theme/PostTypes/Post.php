@@ -37,7 +37,8 @@ class Post {
 						->postTypes( array( Team::POST_TYPE_NAME ) )
 						->filters( array( 'search' ) )
 						->returnFormat( 'object' )
-						->elements( array( 'featured_image' ) ),
+						->elements( array( 'featured_image' ) )
+						->required(),
 					Text::make( _x( 'Article title', 'Fields', 'fdmg-labels-admin' ), self::META_ALTERNATIVE_TITLE )
 						->instructions( _x( 'Use this field to overwrite the article title in the teaser.', 'Fields', 'fdmg-labels-admin' ) ),
 					Textarea::make( _x( 'Work instructions', 'Fields', 'fdmg-labels-admin' ), self::META_WORK_INSTRUCTIONS )
