@@ -54,7 +54,7 @@
         "level-level/logging": "^3.1",
         "level-level/wordpress-bem-menu": "^1.0",
         "level-level/wp-file-mods": "^1.0",
-        "ll-premium/gravityforms": "^2.6",
+        "ll-premium/gravityforms": "^2.9",
         "ll-premium/gravityformspolls": "^4.0",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",

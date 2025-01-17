@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14b94a079985798ee3cd59fd79a35057",
+    "content-hash": "202e55cc4b718f7997147c0eb1449a6c",
     "packages": [
         {
             "name": "brick/math",
@@ -1492,11 +1492,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.9.1.3",
+            "version": "2.9.2",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.1.3",
-                "shasum": "2c9adee59f5d252e0557593743049316c8ece24a",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.2",
+                "shasum": "e8cd1275e2a4919cab638a95fc24f4a96dfc00a6",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -14626,7 +14626,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -14634,6 +14634,6 @@
         "ext-libxml": "*",
         "ext-mbstring": "^7.1"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }
