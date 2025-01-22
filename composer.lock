@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "202e55cc4b718f7997147c0eb1449a6c",
+    "content-hash": "9160531beae449aad085fa8c71cb6210",
     "packages": [
         {
             "name": "brick/math",
@@ -1603,32 +1603,6 @@
             },
             "description": "The best WordPress search you can find",
             "homepage": "https://searchwp.com/"
-        },
-        {
-            "name": "ll-premium/wp-all-import-pro",
-            "version": "4.9.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wp-all-import-pro/4.9.5",
-                "shasum": "44ba5f07f8a14df86ca7c7fbf4d9c4d31a7573f9",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "Soflyy",
-                "homepage": ""
-            },
-            "description": "The most powerful solution for importing XML and CSV files to WordPress. Import to Posts, Pages, and Custom Post Types. Support for imports that run on a schedule, ability to update existing imports, and much more.",
-            "homepage": "http://www.wpallimport.com/"
         },
         {
             "name": "ll-premium/wpai-acf-add-on",
