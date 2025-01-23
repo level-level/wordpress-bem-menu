@@ -73,29 +73,29 @@ class SearchOptions {
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
 			$taxonomy_fields[] = Taxonomy::make( _x( 'Select the genres to use as a filter.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_GENRES )
-			->taxonomy( Genre::TAXONOMY_NAME )
-			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false );
+				->taxonomy( Genre::TAXONOMY_NAME )
+				->appearance( 'multi_select' )
+				->nullable()
+				->create( false )
+				->save( false )
+				->load( false );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many genres must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_GENRE_AMOUNT )
-			->defaultValue( 5 )
-			->min( 3 );
+				->default( 5 )
+				->min( 3 );
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
 			$taxonomy_fields[] = Taxonomy::make( _x( 'Select the sections to use as a filter.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_SECTIONS )
 			->taxonomy( Section::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many sections must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_SECTION_AMOUNT )
-			->defaultValue( 5 )
+			->default( 5 )
 			->min( 3 );
 		}
 
@@ -103,13 +103,13 @@ class SearchOptions {
 			$taxonomy_fields[] = Taxonomy::make( _x( 'Select the categories to use as a filter.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_CATEGORIES )
 			->taxonomy( Category::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many categories must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_CATEGORY_AMOUNT )
-			->defaultValue( 5 )
+			->default( 5 )
 			->min( 3 );
 		}
 
@@ -118,7 +118,7 @@ class SearchOptions {
 			Tab::make( _x( 'Filters', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_TAB_FILTERS )
 				->placement( 'left' ),
 			Message::make( _x( 'Filters on the search results page', 'Fields', 'fdmg-labels-admin' ) )
-				->message( _x( 'Define what filters to be used on the search results page.', 'Fields', 'fdmg-labels-admin' ) ),
+				->body( _x( 'Define what filters to be used on the search results page.', 'Fields', 'fdmg-labels-admin' ) ),
 			Relationship::make( _x( 'Select the authors to show as a filter option on the search results page.', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_AUTHORS )
 				->postTypes(
 					array(
@@ -131,7 +131,7 @@ class SearchOptions {
 					)
 				),
 			Number::make( _x( 'How many authors must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_AUTHOR_AMOUNT )
-				->defaultValue( 5 )
+				->default( 5 )
 				->min( 3 ),
 		);
 
@@ -139,7 +139,7 @@ class SearchOptions {
 			Tab::make( _x( 'Options', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_TAB_OPTIONS )
 				->placement( 'left' ),
 			Message::make( _x( 'Search result options', 'Fields', 'fdmg-labels-admin' ) )
-				->message( _x( 'Select the default sorting and minimum post date when a user does a new search query.', 'Fields', 'fdmg-labels-admin' ) ),
+				->body( _x( 'Select the default sorting and minimum post date when a user does a new search query.', 'Fields', 'fdmg-labels-admin' ) ),
 			Select::make( _x( 'Default sorting', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_DEFAULT_SORTING )
 				->choices(
 					array(
@@ -147,7 +147,7 @@ class SearchOptions {
 						'date'      => _x( 'Date', 'Fields', 'fdmg-labels-admin' ),
 					)
 				)
-				->defaultValue( 'relevance' ),
+				->default( 'relevance' ),
 			Select::make( _x( 'Default period', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_DEFAULT_MIN_POST_DATE )
 				->choices(
 					array(
@@ -158,7 +158,7 @@ class SearchOptions {
 						'2000-now' => _x( '2000 - now', 'Fields', 'fdmg-labels-admin' ),
 					)
 				)
-				->defaultValue( '3-years' ),
+				->default( '3-years' ),
 		);
 
 		register_extended_field_group(

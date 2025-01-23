@@ -43,9 +43,9 @@ class SEOOptions {
 						->fields(
 							array(
 								Textarea::make( _x( 'Copyright notice', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ROBOTS_COPYRIGHT_NOTICE )
-									->instructions( _x( 'You may add a copyright notice. This piece of text will be converted to a comment, and prepended to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
+									->helperText( _x( 'You may add a copyright notice. This piece of text will be converted to a comment, and prepended to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
 								Textarea::make( _x( 'Custom content', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ROBOTS_CUSTOM_CONTENT )
-									->instructions( _x( 'Add custom content to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
+									->helperText( _x( 'Add custom content to the robots.txt file.', 'Fields', 'fdmg-labels-admin' ) ),
 							)
 						),
 				),

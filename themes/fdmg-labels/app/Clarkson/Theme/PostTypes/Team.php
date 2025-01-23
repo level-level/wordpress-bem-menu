@@ -3,7 +3,7 @@ namespace Clarkson\Theme\PostTypes;
 
 use Extended\ACF\Fields\Email;
 use Extended\ACF\Fields\Text;
-use Extended\ACF\Fields\Url;
+use Extended\ACF\Fields\URL;
 use Extended\ACF\Location;
 
 class Team {
@@ -63,7 +63,7 @@ class Team {
 				'title'    => _x( 'Author', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Email::make( _x( 'E-mail address', 'Fields', 'fdmg-labels-admin' ), self::META_EMAIL ),
-					Url::make( _x( 'LinkedIn', 'Fields', 'fdmg-labels-admin' ), self::META_LINKEDIN )
+					URL::make( _x( 'LinkedIn', 'Fields', 'fdmg-labels-admin' ), self::META_LINKEDIN )
 					->placeholder( 'https://linkedin.com/' ),
 					Text::make( _x( 'Location', 'Fields', 'fdmg-labels-admin' ), self::META_LOCATION ),
 				),

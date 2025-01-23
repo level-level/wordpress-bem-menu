@@ -53,15 +53,15 @@ class Advertisement {
 				'title'    => _x( 'Advertisement', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Select::make( _x( 'Advertisement slot', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_ADVERTISEMENT_SLOT )
-						->instructions( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels-admin' ) )
+						->helperText( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels-admin' ) )
 						->choices(
 							array_combine(
 								$ad_slots,
 								$ad_slots
 							)
 						)
-						->returnFormat( 'value' )
-						->allowNull()
+						->format( 'value' )
+						->nullable()
 						->required(),
 				),
 				'location' => array(

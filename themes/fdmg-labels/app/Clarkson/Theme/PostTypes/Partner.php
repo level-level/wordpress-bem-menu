@@ -60,7 +60,7 @@ class Partner {
 				'title'    => _x( 'Partner', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Text::make( _x( 'Subtitle', 'Fields', 'fdmg-labels-admin' ), self::META_SUBTITLE )
-						->instructions( 'The subtitle that is displayed in the right sidebar underneath the logo.' ),
+						->helperText( 'The subtitle that is displayed in the right sidebar underneath the logo.' ),
 				),
 				'location' => array(
 					Location::where( 'post_type', '==', self::POST_TYPE_NAME ),

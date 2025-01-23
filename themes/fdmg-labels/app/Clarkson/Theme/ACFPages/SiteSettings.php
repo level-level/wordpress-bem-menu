@@ -60,7 +60,7 @@ class SiteSettings {
 										),
 									)
 									->required()
-									->defaultValue( 'impact-investor' ),
+									->default( 'impact-investor' ),
 							)
 						),
 				),

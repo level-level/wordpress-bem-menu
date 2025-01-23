@@ -6,7 +6,7 @@ use Extended\ACF\Fields\Image;
 use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Message;
 use Extended\ACF\Fields\Text;
-use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Fields\WYSIWYGEditor;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
 
@@ -62,7 +62,7 @@ class CTA {
 				'title'    => _x( 'Call to action', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
-						->message( _x( 'Add a call to action. Image, title, text and link are required fields.', 'Fields', 'fdmg-labels-admin' ) )
+						->body( _x( 'Add a call to action. Image, title, text and link are required fields.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
 					Group::make( _x( 'CTA', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_GROUP )
 					->fields(
@@ -71,17 +71,17 @@ class CTA {
 								->required(),
 							Image::make( _x( 'Image', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IMAGE )
 								->required()
-								->returnFormat( 'id' )
+								->format( 'id' )
 								->previewSize( 'medium' )
 								->library( 'all' ),
-							WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
+							WYSIWYGEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
 								->required()
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
-								->mediaUpload( false ),
+								->disableMediaUpload(),
 							Link::make( _x( 'Button', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_BUTTON )
 								->required()
-								->returnFormat( 'array' ),
+								->format( 'array' ),
 						),
 					),
 				),

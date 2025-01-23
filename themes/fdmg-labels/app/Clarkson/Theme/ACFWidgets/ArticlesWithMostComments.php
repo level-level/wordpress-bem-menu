@@ -55,10 +55,10 @@ class ArticlesWithMostComments {
 				'fields'   => array(
 					Text::make( _x( 'Use this field to overwrite the default "Articles with the most comments" title', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_TITLE ),
 					Number::make( _x( 'Overwrite the default amount (5) of articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
-						->defaultValue( 5 )
+						->default( 5 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+						->suffix( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

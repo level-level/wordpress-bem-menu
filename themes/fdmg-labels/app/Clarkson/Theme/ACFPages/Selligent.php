@@ -5,7 +5,7 @@ use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Password;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Text;
-use Extended\ACF\Fields\Url;
+use Extended\ACF\Fields\URL;
 use Extended\ACF\Location;
 
 class Selligent {
@@ -62,7 +62,7 @@ class Selligent {
 					Group::make( _x( 'Selligent options', 'Fields', 'fdmg-labels-admin' ), self::OPTION_GROUP )
 						->fields(
 							array(
-								Url::make( _x( 'Selligent base URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_BASE_URL )
+								URL::make( _x( 'Selligent base URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_BASE_URL )
 									->placeholder( 'https://messagent.fdmediagroep.nl' )
 									->required(),
 								Text::make( _x( 'Username', 'Fields', 'fdmg-labels-admin' ), self::OPTION_USERNAME )
@@ -91,7 +91,7 @@ class Selligent {
 									->fields(
 										array(
 											Repeater::make( _x( 'Publications', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_PUBLICATIONS )
-												->min( 1 )
+												->minRows( 1 )
 												->fields(
 													array(
 														Text::make( _x( 'Name', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_PUBLICATION_NAME )
@@ -101,7 +101,7 @@ class Selligent {
 												->collapsed( self::OPTION_NEWSLETTER_PUBLICATION_NAME )
 												->required(),
 											Repeater::make( _x( 'Types', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TYPES )
-												->min( 1 )
+												->minRows( 1 )
 												->fields(
 													array(
 														Text::make( _x( 'Type', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_TYPE_TYPE )

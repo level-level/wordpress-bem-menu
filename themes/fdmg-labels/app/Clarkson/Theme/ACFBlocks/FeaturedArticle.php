@@ -74,11 +74,11 @@ class FeaturedArticle {
 			)
 			->taxonomy( Genre::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
@@ -90,11 +90,11 @@ class FeaturedArticle {
 			)
 			->taxonomy( Section::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
@@ -106,17 +106,17 @@ class FeaturedArticle {
 			)
 			->taxonomy( Category::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		// Default fields
 		$fields = array(
 			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
-				->message( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
+				->body( _x( 'This block displays a single featured article based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 				->newLines( 'wpautop' ),
 			Relationship::make( _x( 'Select featured article to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SELECTED_POSTS )
 				->postTypes( array( Post::POST_TYPE_NAME ) )
@@ -131,11 +131,11 @@ class FeaturedArticle {
 						'featured_image',
 					)
 				)
-				->max( 1 )
-				->returnFormat( 'object' ),
+				->maxPosts( 1 )
+				->format( 'object' ),
 			TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IS_FILL_ENABLED )
-				->defaultValue( true )
-				->stylisedUi( _x( 'Yes', 'Fields', 'fdmg-labels-admin' ), _x( 'No', 'Fields', 'fdmg-labels-admin' ) ),
+				->default( true )
+				->stylized( _x( 'Yes', 'Fields', 'fdmg-labels-admin' ), _x( 'No', 'Fields', 'fdmg-labels-admin' ) ),
 		);
 
 		register_extended_field_group(

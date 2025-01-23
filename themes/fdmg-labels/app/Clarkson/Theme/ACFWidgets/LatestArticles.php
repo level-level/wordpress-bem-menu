@@ -53,10 +53,10 @@ class LatestArticles {
 				'title'    => _x( 'Latest articles', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Number::make( _x( 'Overwrite the default amount (5) of articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
-						->defaultValue( 5 )
+						->default( 5 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+						->suffix( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
 					Text::make( _x( 'Use this field to overwrite the default button title "More articles"', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_LATEST_BUTTON_TITLE ),
 				),
 				'location' => array(
