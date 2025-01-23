@@ -33,7 +33,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 				'redirect_url' => null,
 			)
 		);
-		exit;
 	}
 
 	// If no IDP alias was found, no need to redirect
@@ -44,7 +43,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 				'redirect_url' => null,
 			)
 		);
-		exit;
 	}
 
 	// Build the redirect URL
@@ -62,7 +60,6 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
 			'redirect_url' => $redirect_url,
 		)
 	);
-	exit;
 }
 
 wp_send_json_error(

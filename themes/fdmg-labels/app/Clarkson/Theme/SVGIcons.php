@@ -46,7 +46,7 @@ class SVGIcons {
 	 */
 	public function get_svgs(): array {
 		$path  = get_stylesheet_directory() . '/src/images/icons';
-		$icons = scandir( $path ) ?: array();
+		$icons = scandir( $path );
 		$svgs  = array();
 
 		foreach ( $icons as $file_name ) {

@@ -18,7 +18,6 @@ use GuzzleHttp\Client;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use WP_Post;
 
 class SendArticleToFDMGContentAPI implements CommandInterface, LoggerAwareInterface {
 
@@ -45,7 +44,7 @@ class SendArticleToFDMGContentAPI implements CommandInterface, LoggerAwareInterf
 	public function execute(): SuccessResponse|ErrorResponse {
 		// Make sure post exists
 		$post = get_post( $this->post_id );
-		if ( ! $post instanceof WP_Post ) {
+		if ( ! $post ) {
 			$error_message = 'SendArticleToFDMGContentAPI: Post does not exist.';
 			if ( $this->logger ) {
 				$this->logger->error(

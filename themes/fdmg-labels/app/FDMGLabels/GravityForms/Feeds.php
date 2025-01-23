@@ -16,7 +16,12 @@ class Feeds {
 	}
 
 	public function register_feeds(): void {
+		if ( ! method_exists( 'GFForms', 'include_feed_addon_framework' ) ) {
+			return;
+		}
+
 		GFForms::include_feed_addon_framework();
+
 		GFAddOn::register( SelligentFeed::class );
 	}
 }

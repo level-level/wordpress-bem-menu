@@ -195,7 +195,7 @@ class base_block extends Block_Type {
 			return null;
 		}
 		if ( file_exists( $filename ) ) {
-			$filename = str_replace( array( realpath( get_stylesheet_directory() ) ?: '', realpath( get_template_directory() ) ?: '' ), '', $filename );
+			$filename = str_replace( array( realpath( get_stylesheet_directory() ), realpath( get_template_directory() ) ), '', $filename );
 			$filename = get_stylesheet_directory_uri() . $filename;
 			return $filename;
 		}
