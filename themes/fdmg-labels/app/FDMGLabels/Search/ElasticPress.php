@@ -2,11 +2,17 @@
 namespace FDMGLabels\Search;
 
 use Clarkson\Theme\ACFBlocks\Advertisement;
+use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
+use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\Partners;
+use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson\Theme\PostTypes\Post;
 use DOMDocument;
 use DOMXPath;
 use ElasticPress\Feature\Search\Search;
 use ElasticPress\Features;
+use LevelLevel\Paywall\ACFBlock;
 use WP_Post;
 use WP_Query;
 
@@ -292,9 +298,21 @@ class ElasticPress {
 	 * @return array<string>
 	 */
 	private function get_excluded_blocks(): array {
-		return array(
+		$blocks = array(
 			sprintf( 'acf/block-%s', Advertisement::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', ArticlesInColumns::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', FeaturedArticle::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Partners::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
 		);
+
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
+			$blocks[] = ACFBlock::ACF_GENERATED_BLOCK_NAME;
+		}
+
+		return $blocks;
 	}
 
 	/**
