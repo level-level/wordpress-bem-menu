@@ -21,7 +21,6 @@ class ElasticPress {
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
 		add_filter( 'ep_post_sync_args_post_prepare_meta', array( $this, 'exclude_blocks_from_content' ) );
-		add_filter( 'ep_post_sync_args_post_prepare_meta', array( $this, 'exclude_blocks_from_rendered_content' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 	}
 
@@ -287,61 +286,45 @@ class ElasticPress {
 		return $weight_config;
 	}
 
+	/**
+	 * Get the blocks that should be excluded from the indexed content
+	 *
+	 * @return array<string>
+	 */
 	private function get_excluded_blocks(): array {
 		return array(
 			sprintf( 'acf/block-%s', Advertisement::BLOCK_NAME ),
 		);
 	}
 
+	/**
+	 * Exclude content blocks that should not be indexed in ElasticSearch
+	 *
+	 * @param array<string,mixed> $args
+	 * @return array<string,mixed>
+	 */
 	public function exclude_blocks_from_content( array $args ): array {
 		if ( empty( $args['post_content'] ) ) {
 			return $args;
 		}
 
+		// Loop blocks. If a block is excluded, remove it from the blocks list
 		$excluded_blocks = $this->get_excluded_blocks();
-		$parsed_blocks = parse_blocks( $args['post_content'] );
+		$parsed_blocks   = parse_blocks( $args['post_content'] );
 		foreach ( $parsed_blocks as $block_index => $block ) {
 			if ( in_array( $block['blockName'], $excluded_blocks, true ) ) {
 				unset( $parsed_blocks[ $block_index ] );
 			}
 		}
-		$serialized_blocks = serialize_blocks( $parsed_blocks );
+
+		// Rebuild the blocks list
+		$serialized_blocks    = serialize_blocks( $parsed_blocks );
 		$args['post_content'] = $serialized_blocks;
-		return $args;
-	}
 
-	public function exclude_blocks_from_rendered_content( array $args ): array {
-		if ( empty( $args['post_content_filtered'] ) ) {
-			return $args;
+		// If there is filtered content, regenerate it based on the new blocks
+		if ( ! empty( $args['post_content_filtered'] ) ) {
+			$args['post_content_filtered'] = apply_filters( 'the_content', $args['post_content'] );
 		}
-
-		// Load the content into a DOMDocument
-		$decoded_content = mb_encode_numericentity(
-			htmlspecialchars_decode(
-				htmlentities( $args['post_content_filtered'], ENT_NOQUOTES, 'UTF-8', false ),
-				ENT_NOQUOTES
-			), array( 0x80, 0x10FFFF, 0, ~0 ),
-			'UTF-8'
-		);
-		$dom                   = new DOMDocument();
-		$parsed                = @$dom->loadHTML( $decoded_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-		if ( ! $parsed ) {
-			return $args;
-		}
-
-		// Foreach exluded block, delete blocks of that type from the content
-		$excluded_blocks = $this->get_excluded_blocks();
-		foreach( $excluded_blocks as $excluded_block ) {
-			$xpath = new DOMXPath( $dom );
-			$nodes = $xpath->query( sprintf( '//*[@data-name="%s"]', $excluded_block ) );
-			foreach ( $nodes as $node ) {
-				$node->parentNode?->removeChild( $node );
-			}
-		}
-
-		// Overwrite the post_content_filtered with the stripped content
-		$stripped_content = $dom->saveHTML();
-		$args['post_content_filtered'] = $stripped_content !== false ? $stripped_content : $args['post_content_filtered'];
 		return $args;
 	}
 
