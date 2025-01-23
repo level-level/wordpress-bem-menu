@@ -5,6 +5,7 @@ use Clarkson\Theme\Taxonomies\Category;
 use Clarkson_Core\WordPress_Object\Clarkson_Object;
 use Clarkson_Core\WordPress_Object\Clarkson_Term;
 use Exception;
+use WP_Error;
 
 class DataLayer {
 	public function register_hooks(): void {
@@ -185,7 +186,7 @@ class DataLayer {
 	 */
 	public function get_teaser_config( $post, $component_subtype ): array {
 		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
-		if ( is_wp_error( $revisions ) ) {
+		if ( $revisions instanceof WP_Error ) {
 			$revisions = array( 'count' => 0 );
 		}
 		$categories = is_array( $post->get_terms( Category::TAXONOMY_NAME ) ) ? $post->get_terms( Category::TAXONOMY_NAME ) : array();
@@ -225,14 +226,9 @@ class DataLayer {
 	}
 
 	/**
-	 * Get config
-	 *
-	 * @param Clarkson_Object $post
-	 * @param string $type
-	 * @param string $component_subtype
-	 * @return void
+	 * Get configuration for the datalayer in the current context
 	 */
-	public function get_config( $post, $type, $component_subtype = '' ): void {
+	public function get_config( ?Clarkson_Object $post, string $type, string $component_subtype = '' ): void {
 		$config = array();
 
 		if ( ! $post instanceof Clarkson_Object ) {

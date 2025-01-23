@@ -85,11 +85,10 @@ class Image {
 				),
 			),
 		);
+
+		/** @var int[] */
 		$results = get_posts( $args );
-		if ( $results ) {
-			return (int) $results[0];
-		}
-		return 0;
+		return (int) array_shift( $results );
 	}
 
 	/**
