@@ -3,7 +3,7 @@
 {% set slot = data.advertisement_slot %}
 
 {% if slot and enable_advertisements %}
-	<div class="{{ align }}" data-name="{{ block.name }}" data-ep-no-index>
+	<div class="{{ align }}">
 		{% include 'partials/components/advertisement.twig' with {
 			slot: slot,
 			active_theme: active_theme,
