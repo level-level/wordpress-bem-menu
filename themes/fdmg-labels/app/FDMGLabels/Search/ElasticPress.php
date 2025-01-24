@@ -1,9 +1,18 @@
 <?php
 namespace FDMGLabels\Search;
 
+use Clarkson\Theme\ACFBlocks\Advertisement;
+use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
+use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\Partners;
+use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson\Theme\PostTypes\Post;
+use DOMDocument;
+use DOMXPath;
 use ElasticPress\Feature\Search\Search;
 use ElasticPress\Features;
+use LevelLevel\Paywall\ACFBlock;
 use WP_Post;
 use WP_Query;
 
@@ -19,7 +28,28 @@ class ElasticPress {
 		add_filter( 'ep_weighting_default_post_type_weights', array( $this, 'add_rendered_content_to_default_weighting_config' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
 		add_filter( 'ep_search_post_return_args', array( $this, 'return_rendered_content_from_query' ) );
+		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
+		add_filter( 'ep_post_sync_args_post_prepare_meta', array( $this, 'exclude_blocks_from_content' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
+		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+	}
+
+	/**
+	 * Remove the snowball stem filter from the default analyzer filters.
+	 *
+	 * See https://app.asana.com/0/1206507323673111/1208464277170192/f
+	 *
+	 * @param array<string> $filters
+	 * @return array<string>
+	 */
+	public function remove_snowball_stem( array $filters ): array {
+		$filters = array_filter(
+			$filters, function ( string $filter ): bool {
+				return $filter !== 'ewp_snowball';
+			}
+		);
+		return $filters;
 	}
 
 	/**
@@ -289,6 +319,60 @@ class ElasticPress {
 			}
 		}
 		return $weight_config;
+	}
+
+	/**
+	 * Get the blocks that should be excluded from the indexed content
+	 *
+	 * @return array<string>
+	 */
+	private function get_excluded_blocks(): array {
+		$blocks = array(
+			sprintf( 'acf/block-%s', Advertisement::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', ArticlesInColumns::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', FeaturedArticle::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Partners::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
+		);
+
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
+			$blocks[] = ACFBlock::ACF_GENERATED_BLOCK_NAME;
+		}
+
+		return $blocks;
+	}
+
+	/**
+	 * Exclude content blocks that should not be indexed in ElasticSearch
+	 *
+	 * @param array<string,mixed> $args
+	 * @return array<string,mixed>
+	 */
+	public function exclude_blocks_from_content( array $args ): array {
+		if ( empty( $args['post_content'] ) ) {
+			return $args;
+		}
+
+		// Loop blocks. If a block is excluded, remove it from the blocks list
+		$excluded_blocks = $this->get_excluded_blocks();
+		$parsed_blocks   = parse_blocks( $args['post_content'] );
+		foreach ( $parsed_blocks as $block_index => $block ) {
+			if ( in_array( $block['blockName'], $excluded_blocks, true ) ) {
+				unset( $parsed_blocks[ $block_index ] );
+			}
+		}
+
+		// Rebuild the blocks list
+		$serialized_blocks    = serialize_blocks( $parsed_blocks );
+		$args['post_content'] = $serialized_blocks;
+
+		// If there is filtered content, regenerate it based on the new blocks
+		if ( ! empty( $args['post_content_filtered'] ) ) {
+			$args['post_content_filtered'] = apply_filters( 'the_content', $args['post_content'] );
+		}
+		return $args;
 	}
 
 	/**
