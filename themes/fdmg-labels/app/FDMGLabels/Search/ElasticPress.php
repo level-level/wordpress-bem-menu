@@ -28,7 +28,6 @@ class ElasticPress {
 		add_filter( 'ep_weighting_default_post_type_weights', array( $this, 'add_rendered_content_to_default_weighting_config' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
 		add_filter( 'ep_search_post_return_args', array( $this, 'return_rendered_content_from_query' ) );
-		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
 		add_filter( 'ep_post_sync_args_post_prepare_meta', array( $this, 'exclude_blocks_from_content' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
