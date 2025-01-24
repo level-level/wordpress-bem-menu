@@ -18,6 +18,25 @@ class ElasticPress {
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
 		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
+		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+	}
+
+	/**
+	 * Remove the snowball stem filter from the default analyzer filters.
+	 *
+	 * See https://app.asana.com/0/1206507323673111/1208464277170192/f
+	 *
+	 * @param array<string> $filters
+	 * @return array<string>
+	 */
+	public function remove_snowball_stem( array $filters ): array {
+		$filters = array_filter(
+			$filters, function ( string $filter ): bool {
+				return $filter !== 'ewp_snowball';
+			}
+		);
+		return $filters;
 	}
 
 	/**
