@@ -32,6 +32,90 @@ class ElasticPress {
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
 		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
+		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
+		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
+	}
+
+	/**
+	 * Boost the phrase match in the search query.
+	 *
+	 * We want the phrase match results to always drift to the top,
+	 * as there are certain phrases that carry specific meaning.
+	 * @example: 'netto pensioen' should always be more relevant than 'netto' and 'pensioen' separately.
+	 *
+	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
+	 *
+	 * @param array<string,mixed> $query
+	 * @return array<string,mixed>
+	 */
+	public function boost_phrase_match( array $query ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		foreach ( $query['bool']['should'] as &$should ) {
+			if ( isset( $should['multi_match']['query'] ) && $should['multi_match']['type'] === 'phrase' ) {
+				$should['multi_match']['boost'] = 9999;
+			}
+		}
+		return $query;
+	}
+
+
+	/**
+	 * Remove non-phrase searches from the search query if we are ordering by date.
+	 *
+	 * If we are ordering by date, we do not use the relevance of the search results.
+	 * This causes slightly relevant results to be shown before the most relevant results if they are more recent.
+	 * Because of this, we want to limit date ordered searches to only phrase matches.
+	 *
+	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
+	 *
+	 * @param array<string,mixed> $query
+	 * @param array<string,mixed> $query_vars
+	 * @return array<string,mixed>
+	 */
+	public function maybe_remove_non_phrase_searches( array $query, array $query_vars ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		// Do not alter the query if the orderby is not date
+		if ( isset( $query_vars['orderby'] ) && 'date' !== $query_vars['orderby'] ) {
+			return $query;
+		}
+
+		// Only keep phrase match query
+		$query['bool']['should'] = array_filter(
+			$query['bool']['should'], function ( array $should ): bool {
+				return $should['multi_match']['type'] === 'phrase';
+			}
+		);
+		return $query;
+	}
+
+	/**
+	 * Set the offset for the search query.
+	 */
+	public function set_offset( string $offset ): string {
+		return '1d';
+	}
+
+	/**
+	 * Set the decay for the search query.
+	 */
+	public function set_decay( string $decay ): string {
+		return '0.5';
+	}
+
+	/**
+	 * Set the scale for the search query.
+	 */
+	public function set_scale( string $scale ): string {
+		return '90d';
 	}
 
 	/**
