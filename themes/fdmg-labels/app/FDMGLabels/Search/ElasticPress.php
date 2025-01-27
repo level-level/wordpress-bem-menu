@@ -1,9 +1,18 @@
 <?php
 namespace FDMGLabels\Search;
 
+use Clarkson\Theme\ACFBlocks\Advertisement;
+use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
+use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\Partners;
+use Clarkson\Theme\ACFBlocks\RelatedArticles;
+use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson\Theme\PostTypes\Post;
+use DOMDocument;
+use DOMXPath;
 use ElasticPress\Feature\Search\Search;
 use ElasticPress\Features;
+use LevelLevel\Paywall\ACFBlock;
 use WP_Post;
 use WP_Query;
 
@@ -14,10 +23,116 @@ class ElasticPress {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_elasticsearch_to_context' ), 10, 2 );
 		add_filter( 'ep_post_match_fuzziness', '__return_zero' );
-		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_alternative_title' ) );
+		add_filter( 'ep_highlighting_fields', array( $this, 'highlight_extra_fields' ) );
 		add_action( 'ep_highlighting_pre_add_highlight', array( $this, 'replace_post_content_excerpt_highlighting' ) );
-		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'search_rendered_content' ) );
+		add_filter( 'ep_weighting_default_post_type_weights', array( $this, 'add_rendered_content_to_default_weighting_config' ) );
+		add_filter( 'ep_weighting_configuration_for_search', array( $this, 'add_rendered_content_to_weighting_config' ) );
+		add_filter( 'ep_search_post_return_args', array( $this, 'return_rendered_content_from_query' ) );
+		add_filter( 'ep_post_sync_args_post_prepare_meta', array( $this, 'exclude_blocks_from_content' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
+		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
+		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
+		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
+		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
+	}
+
+	/**
+	 * Boost the phrase match in the search query.
+	 *
+	 * We want the phrase match results to always drift to the top,
+	 * as there are certain phrases that carry specific meaning.
+	 * @example: 'netto pensioen' should always be more relevant than 'netto' and 'pensioen' separately.
+	 *
+	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
+	 *
+	 * @param array<string,mixed> $query
+	 * @return array<string,mixed>
+	 */
+	public function boost_phrase_match( array $query ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		foreach ( $query['bool']['should'] as &$should ) {
+			if ( isset( $should['multi_match']['query'] ) && $should['multi_match']['type'] === 'phrase' ) {
+				$should['multi_match']['boost'] = 9999;
+			}
+		}
+		return $query;
+	}
+
+
+	/**
+	 * Remove non-phrase searches from the search query if we are ordering by date.
+	 *
+	 * If we are ordering by date, we do not use the relevance of the search results.
+	 * This causes slightly relevant results to be shown before the most relevant results if they are more recent.
+	 * Because of this, we want to limit date ordered searches to only phrase matches.
+	 *
+	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
+	 *
+	 * @param array<string,mixed> $query
+	 * @param array<string,mixed> $query_vars
+	 * @return array<string,mixed>
+	 */
+	public function maybe_remove_non_phrase_searches( array $query, array $query_vars ): array {
+		if ( empty( $query['bool']['should'] ) ) {
+			return $query;
+		}
+
+		// Do not alter the query if the orderby is not date
+		if ( ! isset( $query_vars['orderby'] ) || 'date' !== $query_vars['orderby'] ) {
+			return $query;
+		}
+
+		// Only keep phrase match query
+		$query['bool']['should'] = array_filter(
+			$query['bool']['should'], function ( array $should ): bool {
+				return $should['multi_match']['type'] === 'phrase';
+			}
+		);
+		return $query;
+	}
+
+	/**
+	 * Set the offset for the search query.
+	 */
+	public function set_offset( string $offset ): string {
+		return '1d';
+	}
+
+	/**
+	 * Set the decay for the search query.
+	 */
+	public function set_decay( string $decay ): string {
+		return '0.5';
+	}
+
+	/**
+	 * Set the scale for the search query.
+	 */
+	public function set_scale( string $scale ): string {
+		return '90d';
+	}
+
+	/**
+	 * Remove the snowball stem filter from the default analyzer filters.
+	 *
+	 * See https://app.asana.com/0/1206507323673111/1208464277170192/f
+	 *
+	 * @param array<string> $filters
+	 * @return array<string>
+	 */
+	public function remove_snowball_stem( array $filters ): array {
+		$filters = array_filter(
+			$filters, function ( string $filter ): bool {
+				return $filter !== 'ewp_snowball';
+			}
+		);
+		return $filters;
 	}
 
 	/**
@@ -38,13 +153,16 @@ class ElasticPress {
 	}
 
 	/**
-	 * Highlight the alternative title field in the search results.
+	 * Highlight extra fields in the search results.
+	 * - Alternative title
+	 * - Rendered post content
 	 *
 	 * @param array<string> $fields
 	 * @return array<string>
 	 */
-	public function highlight_alternative_title( array $fields ): array {
+	public function highlight_extra_fields( array $fields ): array {
 		$fields[] = Post::META_ALTERNATIVE_TITLE;
+		$fields[] = 'post_content_filtered';
 		return $fields;
 	}
 
@@ -206,20 +324,24 @@ class ElasticPress {
 		}
 
 		// Excerpt has nothing highlighted. Use the content instead.
-		$text = get_the_content( '', false, $post );
+		if ( property_exists( $post, 'post_content_filtered' ) ) {
+			// Use the filtered content if available
+			$text = $post->post_content_filtered;
+		} else {
+			// Use the excerpt generated by the content, which is the default that ElasticSearch does
+			$text = get_the_content( '', false, $post );
+			$text = strip_shortcodes( $text );
+			$text = excerpt_remove_blocks( $text );
+			$text = apply_filters( 'the_content', $text );
+		}
 
-		$text = strip_shortcodes( $text );
-		$text = excerpt_remove_blocks( $text );
-
-		$text = apply_filters( 'the_content', $text );
 		$text = str_replace( '\]\]\>', ']]&gt;', $text );
-
 		$text = strip_tags( $text, '<' . esc_html( $highlight_tag ) . '>' );
 
-		// use the defined length, if already applied...
+		// Use the defined length, if already applied...
 		$excerpt_length = apply_filters( 'excerpt_length', 55 );
 
-		// use defined excerpt_more filter if it is used
+		// Use defined excerpt_more filter if it is used
 		$excerpt_more = apply_filters( 'excerpt_more', $text );
 		$excerpt_more = $excerpt_more !== $text ? $excerpt_more : '[&hellip;]';
 
@@ -265,7 +387,7 @@ class ElasticPress {
 	}
 
 	/**
-	 * Add the post_content_filtered to the weight configuration.
+	 * Add the post_content_filtered to the custom weight configuration.
 	 * This will allow the rendered post content to be used when searching.
 	 *
 	 * @see https://www.elasticpress.io/documentation/article/how-to-search-using-rendered-content-shortcodes-and-reusable-blocks/
@@ -273,13 +395,95 @@ class ElasticPress {
 	 * @param array<array<string,mixed>> $weight_config
 	 * @return array<array<string,mixed>>
 	 */
-	public function search_rendered_content( array $weight_config ): array {
+	public function add_rendered_content_to_weighting_config( array $weight_config ): array {
 		foreach ( $weight_config as &$post_type_config ) {
 			if ( isset( $post_type_config['post_content'] ) ) {
 				$post_type_config['post_content_filtered'] = $post_type_config['post_content'];
 			}
 		}
 		return $weight_config;
+	}
+
+	/**
+	 * Get the blocks that should be excluded from the indexed content
+	 *
+	 * @return array<string>
+	 */
+	private function get_excluded_blocks(): array {
+		$blocks = array(
+			sprintf( 'acf/block-%s', Advertisement::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', ArticlesInColumns::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', FeaturedArticle::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Partners::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
+		);
+
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
+			$blocks[] = ACFBlock::ACF_GENERATED_BLOCK_NAME;
+		}
+
+		return $blocks;
+	}
+
+	/**
+	 * Exclude content blocks that should not be indexed in ElasticSearch
+	 *
+	 * @param array<string,mixed> $args
+	 * @return array<string,mixed>
+	 */
+	public function exclude_blocks_from_content( array $args ): array {
+		if ( empty( $args['post_content'] ) ) {
+			return $args;
+		}
+
+		// Loop blocks. If a block is excluded, remove it from the blocks list
+		$excluded_blocks = $this->get_excluded_blocks();
+		$parsed_blocks   = parse_blocks( $args['post_content'] );
+		foreach ( $parsed_blocks as $block_index => $block ) {
+			if ( in_array( $block['blockName'], $excluded_blocks, true ) ) {
+				unset( $parsed_blocks[ $block_index ] );
+			}
+		}
+
+		// Rebuild the blocks list
+		$serialized_blocks    = serialize_blocks( $parsed_blocks );
+		$args['post_content'] = $serialized_blocks;
+
+		// If there is filtered content, regenerate it based on the new blocks
+		if ( ! empty( $args['post_content_filtered'] ) ) {
+			$args['post_content_filtered'] = apply_filters( 'the_content', $args['post_content'] );
+		}
+		return $args;
+	}
+
+	/**
+	 * Add the post_content_filtered to the default weight configuration.
+	 * This will allow the rendered post content to be used when searching.
+	 *
+	 * @param array<string,mixed> $default_weighting_config
+	 * @return array<string,mixed>
+	 */
+	public function add_rendered_content_to_default_weighting_config( array $default_weighting_config ): array {
+		if ( ! isset( $default_weighting_config['post_content'] ) ) {
+			return $default_weighting_config;
+		}
+
+		$default_weighting_config['post_content_filtered'] = $default_weighting_config['post_content'];
+		return $default_weighting_config;
+	}
+
+	/**
+	 * Include the rendered post content in the search results posts objects.
+	 * This will allow the rendered post content to be used for highlighting.
+	 *
+	 * @param array<string> $args
+	 * @return array<string>
+	 */
+	public function return_rendered_content_from_query( array $args ): array {
+		$args[] = 'post_content_filtered';
+		return $args;
 	}
 
 	/**
