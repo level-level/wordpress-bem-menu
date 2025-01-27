@@ -53,11 +53,11 @@ class ArticlesByAuthor {
 				'title'    => _x( 'Articles by author', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Number::make( _x( 'Overwrite the default amount (4) of articles to be shown.', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
-						->defaultValue( 4 )
+						->default( 4 )
 						->min( 1 )
 						->max( 20 )
 						->step( 1 )
-						->append( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
+						->suffix( _x( 'articles', 'Fields', 'fdmg-labels-admin' ) ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

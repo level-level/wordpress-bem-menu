@@ -14,7 +14,7 @@ use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\Textarea;
 use Extended\ACF\Fields\TrueFalse;
-use Extended\ACF\Fields\Url;
+use Extended\ACF\Fields\URL;
 use Extended\ACF\Location;
 
 class ThemeOptions {
@@ -94,10 +94,10 @@ class ThemeOptions {
 										Textarea::make( _x( 'Text in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_CONTENT )
 											->newLines( 'wpautop' ),
 										Link::make( _x( 'Button', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_BUTTON )
-											->instructions( _x( 'This button will be used in the header of the site (when not using the compact header option) and in the newsletter block.', 'Fields', 'fdmg-labels-admin' ) )
-											->returnFormat( 'array' ),
+											->helperText( _x( 'This button will be used in the header of the site (when not using the compact header option) and in the newsletter block.', 'Fields', 'fdmg-labels-admin' ) )
+											->format( 'array' ),
 										Image::make( _x( 'Image in the newsletter block', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_IMAGE )
-											->returnFormat( 'id' )
+											->format( 'id' )
 											->previewSize( 'medium' )
 											->library( 'all' ),
 									)
@@ -105,9 +105,9 @@ class ThemeOptions {
 								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels-admin' ), self::OPTION_COOKIEWALL_TAB )
 										->placement( 'left' ),
 								TrueFalse::make( _x( 'Sourcepoint CMP', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENABLE )
-										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
-										->defaultValue( 1 )
-										->instructions( _x( 'Enables or disables the Sourcepoint CMP cookiewall.', 'Fields', 'fdmg-labels-admin' ) ),
+										->stylized( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
+										->default( 1 )
+										->helperText( _x( 'Enables or disables the Sourcepoint CMP cookiewall.', 'Fields', 'fdmg-labels-admin' ) ),
 								Group::make( _x( 'Sourcepoint settings', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_OPTIONS )
 									->conditionalLogic(
 										array(
@@ -116,16 +116,16 @@ class ThemeOptions {
 									)
 									->fields(
 										array(
-											Url::make( _x( 'Base endpoint URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENDPOINT_URL )
-												->defaultValue( 'https://consent.impact-investor.com' )
+											URL::make( _x( 'Base endpoint URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ENDPOINT_URL )
+												->default( 'https://consent.impact-investor.com' )
 												->required(),
 
-											Url::make( _x( 'Property Href URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_PROPERTY_HREF )
-												->defaultValue( 'https://impact-investor.com' )
+											URL::make( _x( 'Property Href URL', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_PROPERTY_HREF )
+												->default( 'https://impact-investor.com' )
 												->required(),
 
 											Number::make( _x( 'ID', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SOURCEPOINT_ID )
-												->defaultValue( 656244 )
+												->default( 656244 )
 												->required(),
 										)
 									),
@@ -133,34 +133,34 @@ class ThemeOptions {
 								Tab::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_TAB )
 										->placement( 'left' ),
 								TrueFalse::make( _x( 'Advertisements', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ADVERTISEMENTS_ENABLE )
-										->stylisedUi( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
-										->defaultValue( 1 )
-										->instructions( _x( 'Enables or disables the advertisements', 'Fields', 'fdmg-labels-admin' ) ),
+										->stylized( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), _x( 'Disabled', 'Fields', 'fdmg-labels-admin' ) )
+										->default( 1 )
+										->helperText( _x( 'Enables or disables the advertisements', 'Fields', 'fdmg-labels-admin' ) ),
 								Tab::make( _x( 'Subscribe', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_TAB )
 										->placement( 'left' ),
 								Link::make( _x( 'Subscribe page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_BUTTON )
-										->instructions( _x( 'Once set, will display a button next to the navigation. Only when using the compact header option.', 'Fields', 'fdmg-labels-admin' ) )
-										->returnFormat( 'array' ),
+										->helperText( _x( 'Once set, will display a button next to the navigation. Only when using the compact header option.', 'Fields', 'fdmg-labels-admin' ) )
+										->format( 'array' ),
 								Tab::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ) )
 										->placement( 'left' ),
 								Repeater::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS )
-									->instructions( _x( 'Add links to your social media channels', 'Fields', 'fdmg-labels-admin' ) )
+									->helperText( _x( 'Add links to your social media channels', 'Fields', 'fdmg-labels-admin' ) )
 									->fields(
 										array(
 											Socials::get_list( self::OPTIONS_SOCIALS_TYPE ),
-											Url::make( _x( 'URL', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS_URL )
+											URL::make( _x( 'URL', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS_URL )
 												->placeholder( 'https://' )
 												->required(),
 										)
 									)
-									->buttonLabel( _x( 'Add social media channel', 'Fields', 'fdmg-labels-admin' ) )
+									->button( _x( 'Add social media channel', 'Fields', 'fdmg-labels-admin' ) )
 									->layout( 'table' ),
 								Tab::make( _x( 'Discussion', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DISCUSSION_TAB )
 									->placement( 'left' ),
 								PostObject::make( _x( 'Rules page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DISCUSSION_RULES_PAGE )
 									->postTypes( array( Page::POST_TYPE_NAME ) )
-									->returnFormat( 'object' )
-									->allowNull()
+									->format( 'object' )
+									->nullable()
 									->required(),
 							)
 						),

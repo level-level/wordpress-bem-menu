@@ -32,13 +32,12 @@ class ACFFields {
 
 		$extra_fields = array(
 			TrueFalse::make( _x( 'Require user roles for access', 'Fields', 'fdmg-labels-admin' ), self::META_REQUIRE_ROLES_FOR_ACCESS )
-				->stylisedUi()
-				->defaultValue( true ),
+				->stylized()
+				->default( true ),
 			Select::make( _x( 'Allowed user roles', 'Fields', 'fdmg-labels-admin' ), self::META_ALLOWED_USER_ROLES )
 				->choices( $role_options )
-				->defaultValue( array( Capabilities::ROLE_FDMG_SUBSCRIBER ) )
-				->allowMultiple()
-				->stylisedUi( false )
+				->default( array( Capabilities::ROLE_FDMG_SUBSCRIBER ) )
+				->multiple()
 				->required()
 				->conditionalLogic(
 					array(

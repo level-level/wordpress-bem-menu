@@ -49,8 +49,9 @@ class Menu {
 
 					Select::make( _x( 'Select a menu', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_MENU )
 						->choices( $this->get_nav_menus() )
-						->allowNull()
-						->stylisedUi()
+						->nullable()
+						->stylized()
+						->lazyLoad()
 						->required(),
 				),
 				'location' => array(

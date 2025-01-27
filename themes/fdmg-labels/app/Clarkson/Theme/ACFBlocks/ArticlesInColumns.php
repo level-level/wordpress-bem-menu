@@ -80,11 +80,11 @@ class ArticlesInColumns {
 			)
 			->taxonomy( Genre::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
@@ -96,11 +96,11 @@ class ArticlesInColumns {
 			)
 			->taxonomy( Section::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
@@ -112,17 +112,17 @@ class ArticlesInColumns {
 			)
 			->taxonomy( Category::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		// Default fields
 		$fields = array(
 			Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USAGE )
-				->message( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
+				->body( _x( 'Displays a list of articles in a one (1), two (2) or three (3) column layout based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 				->newLines( 'wpautop' ),
 			Select::make( _x( 'Select amount of columns', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_COLUMNS )
 				->choices(
@@ -132,8 +132,8 @@ class ArticlesInColumns {
 						3 => _x( 'Three (3) columns', 'Fields', 'fdmg-labels-admin' ),
 					)
 				)
-				->defaultValue( 2 )
-				->returnFormat( 'value' )
+				->default( 2 )
+				->format( 'value' )
 				->required(),
 			Relationship::make( _x( 'Select articles to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SELECTED_POSTS )
 				->postTypes( array( Post::POST_TYPE_NAME ) )
@@ -149,8 +149,8 @@ class ArticlesInColumns {
 					)
 				),
 			TrueFalse::make( _x( 'Allow this block to automatically fill with the latest articles', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IS_FILL_ENABLED )
-				->stylisedUi()
-				->defaultValue( true ),
+				->stylized()
+				->default( true ),
 		);
 
 		// Fields after the conditional fields
@@ -161,11 +161,11 @@ class ArticlesInColumns {
 						ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
 					)
 				)
-				->defaultValue( 2 )
+				->default( 2 )
 				->min( 1 )
 				->max( 30 )
 				->step( 1 )
-				->append( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
+				->suffix( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
 				->required(),
 		);
 

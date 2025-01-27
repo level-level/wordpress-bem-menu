@@ -65,7 +65,7 @@ class Vacancies {
 				'title'    => _x( 'Vacancies/Jobs', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Message::make( _x( 'Usage', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_USAGE )
-						->message( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
+						->body( _x( 'Displays a list of vacancies/jobs based on multiple options.', 'Fields', 'fdmg-labels-admin' ) )
 						->newLines( 'wpautop' ),
 					Text::make( _x( 'Use this field to overwrite the default "Jobs" title', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_TITLE ),
 					Relationship::make( _x( 'Select vacancies to be sticky (optional)', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_SELECTED_POSTS )
@@ -75,23 +75,23 @@ class Vacancies {
 								'search',
 							)
 						)
-						->returnFormat( 'object' ),
+						->format( 'object' ),
 					TrueFalse::make( _x( 'Allow this block to automatically fill with the latest vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_IS_FILL_ENABLED )
-						->defaultValue( true )
-						->stylisedUi(),
+						->default( true )
+						->stylized(),
 					Number::make( _x( 'Select the maximum amount of vacancies to be shown', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_AMOUNT )
 						->conditionalLogic(
 							array(
 								ConditionalLogic::where( self::WIDGET_META_IS_FILL_ENABLED, '==', '1' ),
 							)
 						)
-						->defaultValue( 3 )
+						->default( 3 )
 						->min( 1 )
 						->step( 1 )
-						->append( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
+						->suffix( _x( 'vacancies', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
 					Link::make( _x( 'Link to all vacancies', 'Fields', 'fdmg-labels-admin' ), self::WIDGET_META_LINK )
-						->returnFormat( 'object' ),
+						->format( 'array' ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/widget-' . self::WIDGET_NAME ),

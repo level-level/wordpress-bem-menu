@@ -6,7 +6,7 @@ use Extended\ACF\Fields\Link;
 use Extended\ACF\Fields\Tab;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
-use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Fields\WYSIWYGEditor;
 use Extended\ACF\Location;
 
 class Paywall {
@@ -58,37 +58,37 @@ class Paywall {
 							Tab::make( _x( 'General options', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_GENERAL_OPTIONS )
 								->placement( 'left' ),
 							TrueFalse::make( _x( 'Disable the paywall for all articles', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_DISABLED )
-								->instructions( _x( 'By selecting this option, content after a paywall block can be viewed by anyone.', 'Fields', 'fdmg-labels-admin' ) )
-								->stylisedUi()
-								->defaultValue( false ),
+								->helperText( _x( 'By selecting this option, content after a paywall block can be viewed by anyone.', 'Fields', 'fdmg-labels-admin' ) )
+								->stylized()
+								->default( false ),
 							TrueFalse::make( _x( 'By default, all news articles are behind a paywall', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_DEFAULT_ACTIVE )
-								->instructions( _x( 'By enabling this option, all new articles are drafted with the paywall block included.', 'Fields', 'fdmg-labels-admin' ) )
-								->stylisedUi()
-								->defaultValue( true ),
+								->helperText( _x( 'By enabling this option, all new articles are drafted with the paywall block included.', 'Fields', 'fdmg-labels-admin' ) )
+								->stylized()
+								->default( true ),
 							Tab::make( _x( 'When logging in is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_NOT_LOGGED_IN )
 								->placement( 'left' ),
 							Text::make( _x( 'Title of the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TITLE )
-								->instructions( _x( 'The title of the paywall block', 'Fields', 'fdmg-labels-admin' ) )
+								->helperText( _x( 'The title of the paywall block', 'Fields', 'fdmg-labels-admin' ) )
 								->required(),
-							WysiwygEditor::make( _x( 'Content inside the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_CONTENT )
-								->instructions( _x( 'The content of the paywall block. Lists will be displayed as checkmark lists.', 'Fields', 'fdmg-labels-admin' ) )
+							WYSIWYGEditor::make( _x( 'Content inside the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_CONTENT )
+								->helperText( _x( 'The content of the paywall block. Lists will be displayed as checkmark lists.', 'Fields', 'fdmg-labels-admin' ) )
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
-								->mediaUpload( false )
+								->disableMediaUpload()
 								->required(),
 							Tab::make( _x( 'When a user role is required', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TAB_REQUIRED_ROLES )
 								->placement( 'left' ),
 							Text::make( _x( 'Title of the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_TITLE_REQUIRED_ROLE )
-								->instructions( _x( 'The title of the paywall block', 'Fields', 'fdmg-labels-admin' ) )
+								->helperText( _x( 'The title of the paywall block', 'Fields', 'fdmg-labels-admin' ) )
 								->required(),
-							WysiwygEditor::make( _x( 'Content inside the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_CONTENT_REQUIRED_ROLE )
-								->instructions( _x( 'The content of the paywall block. Lists will be displayed as checkmark lists.', 'Fields', 'fdmg-labels-admin' ) )
+							WYSIWYGEditor::make( _x( 'Content inside the paywall block', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_CONTENT_REQUIRED_ROLE )
+								->helperText( _x( 'The content of the paywall block. Lists will be displayed as checkmark lists.', 'Fields', 'fdmg-labels-admin' ) )
 								->tabs( 'visual' )
 								->toolbar( 'basic' )
-								->mediaUpload( false )
+								->disableMediaUpload()
 								->required(),
 							Link::make( _x( 'Choose subscription button', 'Fields', 'fdmg-labels-admin' ), self::META_PAYWALL_SUBSCRIPTION_BUTTON )
-								->instructions( _x( 'The link to the subscriptions page.', 'Fields', 'fdmg-labels-admin' ) )
+								->helperText( _x( 'The link to the subscriptions page.', 'Fields', 'fdmg-labels-admin' ) )
 								->required(),
 						),
 					),

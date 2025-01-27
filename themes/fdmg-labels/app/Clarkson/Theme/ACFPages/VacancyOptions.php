@@ -4,7 +4,7 @@ namespace Clarkson\Theme\ACFPages;
 use Clarkson\Theme\PostTypes\Vacancy;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Text;
-use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Fields\WYSIWYGEditor;
 use Extended\ACF\Location;
 
 class VacancyOptions {
@@ -55,8 +55,8 @@ class VacancyOptions {
 						->fields(
 							array(
 								Text::make( _x( 'Title', 'Fields', 'fdmg-labels-admin' ), self::POST_TYPE_GROUP_TITLE ),
-								WysiwygEditor::make( _x( 'Introduction text', 'Fields', 'fdmg-labels-admin' ), self::POST_TYPE_GROUP_INTRO )
-									->mediaUpload( false )
+								WYSIWYGEditor::make( _x( 'Introduction text', 'Fields', 'fdmg-labels-admin' ), self::POST_TYPE_GROUP_INTRO )
+									->disableMediaUpload()
 									->tabs( 'visual' )
 									->toolbar( 'simple' ),
 							),

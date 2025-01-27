@@ -63,7 +63,7 @@ class Partners {
 								'search',
 							)
 						)
-						->returnFormat( 'object' )
+						->format( 'object' )
 						->required(),
 				),
 				'location' => array(

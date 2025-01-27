@@ -21,8 +21,9 @@ class Socials {
 					'width' => '35',
 				)
 			)
-			->returnFormat( 'array' )
+			->format( 'array' )
 			->required()
-			->stylisedUi();
+			->stylized()
+			->lazyLoad();
 	}
 }

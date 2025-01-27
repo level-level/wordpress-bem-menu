@@ -2,7 +2,7 @@
 namespace Clarkson\Theme\ACFBlocks;
 
 use Extended\ACF\Fields\Text;
-use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Fields\WYSIWYGEditor;
 use Extended\ACF\Location;
 use FDMGLabels\FeatureManager;
 use Gutenberg\Blocks\base_block;
@@ -62,11 +62,10 @@ class HighlightedContent {
 				'title'    => _x( 'Highlighted content', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Text::make( $text_label, self::BLOCK_META_TITLE ),
-					WysiwygEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
+					WYSIWYGEditor::make( _x( 'Content', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_CONTENT )
 						->required()
 						->tabs( 'visual' )
-						->toolbar( 'basic' )
-						->mediaUpload( true ),
+						->toolbar( 'basic' ),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),

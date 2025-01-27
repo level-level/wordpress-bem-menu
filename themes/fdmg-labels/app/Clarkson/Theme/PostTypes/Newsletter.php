@@ -18,7 +18,7 @@ use Extended\ACF\Fields\Taxonomy;
 use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TimePicker;
 use Extended\ACF\Fields\TrueFalse;
-use Extended\ACF\Fields\WysiwygEditor;
+use Extended\ACF\Fields\WYSIWYGEditor;
 use Extended\ACF\Key;
 use Extended\ACF\Location;
 use FDMGLabels\Connectors\Selligent\Settings\NewsletterPublicationSettings;
@@ -126,7 +126,7 @@ class Newsletter {
 
 		$fields = array(
 			Message::make( __( 'Creating a newsletter', 'fdmg-labels-admin' ), self::META_MESSAGE )
-				->message( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
+				->body( _x( 'Fill in the required fields and select the posts that need to be included in the newsletter. Press \'Publish\' or \'Update\' to save the changes. If the \'Send the newsletter\' box is enabled, the newsletter will be sent to Selligent.', 'Fields', 'fdmg-labels-admin' ) ),
 		);
 
 		$publications        = Settings::get_instance()->get_newsletter()->get_publications();
@@ -150,19 +150,19 @@ class Newsletter {
 			->required();
 
 		$fields[] = Text::make( _x( 'Subject', 'Fields', 'fdmg-labels-admin' ), self::META_SUBJECT )
-			->instructions( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels-admin' ) )
-			->characterLimit( 255 )
+			->helperText( _x( 'The subject of the e-mail.', 'Fields', 'fdmg-labels-admin' ) )
+			->maxLength( 255 )
 			->required();
 
 		$fields[] = Text::make( _x( 'Pre header', 'Fields', 'fdmg-labels-admin' ), self::META_PRE_HEADER )
-			->instructions( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels-admin' ) )
-			->characterLimit( 255 );
+			->helperText( _x( 'The text that is shown in the list view of an e-mail client.', 'Fields', 'fdmg-labels-admin' ) )
+			->maxLength( 255 );
 
-		$fields[] = WysiwygEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels-admin' ), self::META_INTRODUCTION )
-			->instructions( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels-admin' ) )
+		$fields[] = WYSIWYGEditor::make( _x( 'Introduction', 'Fields', 'fdmg-labels-admin' ), self::META_INTRODUCTION )
+			->helperText( _x( 'The text that will be shown below the title.', 'Fields', 'fdmg-labels-admin' ) )
 			->toolbar( 'basic' )
 			->tabs( 'visual' )
-			->mediaUpload( false );
+			->disableMediaUpload();
 
 		foreach ( $types as $type ) {
 			$article_group_fields = $this->get_type_article_group_fields( $type );
@@ -180,7 +180,7 @@ class Newsletter {
 			->fields(
 				array(
 					TrueFalse::make( _x( 'Send preview', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_ACTION )
-						->stylisedUi(),
+						->stylized(),
 					Select::make( _x( 'Preview recipients', 'Fields', 'fdmg-labels-admin' ), self::META_PREVIEW_RECIPIENTS )
 						->choices(
 							array(
@@ -188,7 +188,7 @@ class Newsletter {
 								self::META_PREVIEW_RECIPIENTS_OPTION_DEVELOPERS => _x( 'Developer team', 'Fields', 'fdmg-labels-admin' ),
 							)
 						)
-						->defaultValue( self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS )
+						->default( self::META_PREVIEW_RECIPIENTS_OPTION_EDITORS )
 						->required()
 						->conditionalLogic(
 							array(
@@ -211,7 +211,7 @@ class Newsletter {
 			->fields(
 				array(
 					TrueFalse::make( _x( 'Send the newsletter', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ACTION )
-						->stylisedUi(),
+						->stylized(),
 					RadioButton::make( _x( 'Interval', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_INTERVAL )
 						->choices(
 							array(
@@ -219,7 +219,7 @@ class Newsletter {
 								self::META_SEND_INTERVAL_OPTION_REPETITIVE => _x( 'Repetitive', 'Fields', 'fdmg-labels-admin' ),
 							)
 						)
-						->defaultValue( self::META_SEND_INTERVAL_OPTION_ONCE )
+						->default( self::META_SEND_INTERVAL_OPTION_ONCE )
 						->required()
 						->layout( 'horizontal' )
 						->conditionalLogic(
@@ -231,12 +231,12 @@ class Newsletter {
 						->fields(
 							array(
 								TrueFalse::make( _x( 'Schedule in the future', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_FUTURE )
-									->instructions( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi()
-									->defaultValue( false ),
+									->helperText( _x( 'Enable this option to schedule a date in the future to send the newsletter. Leave disabled to schedule sending directly.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylized()
+									->default( false ),
 								DateTimePicker::make( _x( 'Sending date and time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_ONCE_DATE )
 									->required()
-									->returnFormat( 'Y-m-d H:i:s' )
+									->format( 'Y-m-d H:i:s' )
 									->displayFormat( sprintf( '%s %s', get_option( 'date_format' ), get_option( 'time_format' ) ) )
 									->conditionalLogic(
 										array(
@@ -255,12 +255,12 @@ class Newsletter {
 							array(
 								Checkbox::make( _x( 'Weekdays', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_WEEKDAYS )
 									->choices( $weekday_options )
-									->defaultValue( array() )
+									->default( array() )
 									->required()
 									->layout( 'horizontal' ),
 								TimePicker::make( _x( 'Time', 'Fields', 'fdmg-labels-admin' ), self::META_SEND_REPETITIVE_TIME )
 									->required()
-									->returnFormat( 'H:i:s' )
+									->format( 'H:i:s' )
 									->displayFormat( get_option( 'time_format' ) ),
 							)
 						)
@@ -303,19 +303,19 @@ class Newsletter {
 							ArticleGroup::SELECTION_TYPE_AUTOMATIC => _x( 'Automatic', 'Fields', 'fdmg-labels-admin' ),
 						)
 					)
-					->defaultValue( ArticleGroup::SELECTION_TYPE_MANUAL )
+					->default( ArticleGroup::SELECTION_TYPE_MANUAL )
 					->required(),
 				Repeater::make( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLES )
-					->instructions( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
-					->min( 0 )
-					->max( 10 )
+					->helperText( sprintf( _x( 'Add the articles that should be shown in the "%s" article group of the newsletter.', 'Fields', 'fdmg-labels-admin' ), $article_group->get_name() ) )
+					->minRows( 0 )
+					->maxRows( 10 )
 					->collapsed( 'article' )
-					->buttonLabel( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
+					->button( _x( 'Add article', 'Fields', 'fdmg-labels-admin' ) )
 					->fields(
 						array(
 							PostObject::make( _x( 'Article', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_ARTICLE )
 								->postTypes( array( Post::POST_TYPE_NAME ) )
-								->returnFormat( 'id' )
+								->format( 'id' )
 								->required(),
 						)
 					)
@@ -331,7 +331,7 @@ class Newsletter {
 							ArticleGroup::SORT_MOST_VIEWED => _x( 'Most viewed', 'Fields', 'fdmg-labels-admin' ),
 						)
 					)
-					->defaultValue( ArticleGroup::SORT_RECENT )
+					->default( ArticleGroup::SORT_RECENT )
 					->required()->conditionalLogic(
 						array(
 							ConditionalLogic::where( sprintf( '%s_%s', $article_group_key, self::META_ARTICLE_GROUP_SELECTION_TYPE ), '==', ArticleGroup::SELECTION_TYPE_AUTOMATIC ),
@@ -349,7 +349,7 @@ class Newsletter {
 				Number::make( _x( 'Maximum age of articles (in days)', 'Fields', 'fdmg-labels-admin' ), self::META_ARTICLE_GROUP_ARTICLE_AGE )
 					->min( 1 )
 					->max( 31 )
-					->append( _x( 'days', 'Fields', 'fdmg-labels-admin' ) )
+					->suffix( _x( 'days', 'Fields', 'fdmg-labels-admin' ) )
 					->required()
 					->conditionalLogic(
 						array(
@@ -369,11 +369,11 @@ class Newsletter {
 				)
 				->taxonomy( Genre::TAXONOMY_NAME )
 				->appearance( 'multi_select' )
-				->allowNull()
-				->addTerm( false )
-				->saveTerms( false )
-				->loadTerms( false )
-				->returnFormat( 'object' );
+				->nullable()
+				->create( false )
+				->save( false )
+				->load( false )
+				->format( 'object' );
 			}
 
 			if ( ( new FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
@@ -385,11 +385,11 @@ class Newsletter {
 				)
 				->taxonomy( Section::TAXONOMY_NAME )
 				->appearance( 'multi_select' )
-				->allowNull()
-				->addTerm( false )
-				->saveTerms( false )
-				->loadTerms( false )
-				->returnFormat( 'object' );
+				->nullable()
+				->create( false )
+				->save( false )
+				->load( false )
+				->format( 'object' );
 			}
 
 			if ( ! ( new FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
@@ -401,11 +401,11 @@ class Newsletter {
 				)
 				->taxonomy( Category::TAXONOMY_NAME )
 				->appearance( 'multi_select' )
-				->allowNull()
-				->addTerm( false )
-				->saveTerms( false )
-				->loadTerms( false )
-				->returnFormat( 'object' );
+				->nullable()
+				->create( false )
+				->save( false )
+				->load( false )
+				->format( 'object' );
 			}
 
 			$article_group_fields[] = Group::make( sprintf( _x( 'Article group %1$d: %2$s', 'Fields', 'fdmg-labels-admin' ), $index + 1, $article_group->get_name() ), $article_group_key )
