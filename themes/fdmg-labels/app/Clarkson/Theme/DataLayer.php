@@ -178,13 +178,9 @@ class DataLayer {
 	}
 
 	/**
-	 * get teaser config
-	 *
-	 * @param Clarkson_Object $post
-	 * @param string $component_subtype
-	 * @return array<mixed>
+	 * Get teaser config
 	 */
-	public function get_teaser_config( $post, $component_subtype ): array {
+	public function get_teaser_config( ?Clarkson_Object $post, ?string $component_subtype = null ): array {
 		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
 		if ( $revisions instanceof WP_Error ) {
 			$revisions = array( 'count' => 0 );
@@ -209,13 +205,11 @@ class DataLayer {
 	}
 
 	/**
-	 * get share config
+	 * Get share config
 	 *
-	 * @param Clarkson_Object $post
-	 * @param string $type
 	 * @return array<mixed>
 	 */
-	public function get_share_config( $post, $type ): array {
+	public function get_share_config( ?Clarkson_Object $post, ?string $type = null ): array {
 		$config = array(
 			'event'      => self::EVENT_SHARE,
 			'id'         => $post->get_id(),
@@ -228,7 +222,7 @@ class DataLayer {
 	/**
 	 * Get configuration for the datalayer in the current context
 	 */
-	public function get_config( ?Clarkson_Object $post, string $type, string $component_subtype = '' ): void {
+	public function get_config( ?Clarkson_Object $post, ?string $type, ?string $component_subtype = null ): void {
 		$config = array();
 
 		if ( ! $post instanceof Clarkson_Object ) {
