@@ -64,7 +64,7 @@ class Assets {
 	}
 
 	public function enqueue_editor(): void {
-		$deps = array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post' );
+		$deps = array( 'wp-blocks', 'wp-dom-ready', 'wp-edit-post', 'lodash' );
 
 		if ( $this->is_development_mode() ) {
 			$this->enqueue_development( 'clarkson_editor', $deps, '/src/editor.js', true );
