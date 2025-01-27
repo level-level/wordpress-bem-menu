@@ -73,7 +73,7 @@ class Image {
 	 *
 	 */
 	protected function get_attachment_id_by_external_id( string $external_id ): int {
-		$args    = array(
+		$args = array(
 			'post_type'      => 'attachment',
 			'posts_per_page' => 1,
 			'fields'         => 'ids',
