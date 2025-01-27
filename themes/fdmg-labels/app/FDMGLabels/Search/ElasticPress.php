@@ -84,7 +84,7 @@ class ElasticPress {
 		}
 
 		// Do not alter the query if the orderby is not date
-		if ( isset( $query_vars['orderby'] ) && 'date' !== $query_vars['orderby'] ) {
+		if ( ! isset( $query_vars['orderby'] ) || 'date' !== $query_vars['orderby'] ) {
 			return $query;
 		}
 
