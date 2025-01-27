@@ -218,8 +218,10 @@ class DataLayer {
 
 	/**
 	 * Get configuration for the datalayer in the current context
+	 *
+	 * @param mixed $post Any object to get the configuration for.
 	 */
-	public function get_config( ?Clarkson_Object $post, ?string $type, ?string $component_subtype = null ): void {
+	public function get_config( mixed $post, ?string $type, ?string $component_subtype = null ): void {
 		$config = array();
 
 		if ( ! $post instanceof Clarkson_Object ) {
