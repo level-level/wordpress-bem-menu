@@ -17,12 +17,11 @@ class DataLayer {
 	public const EVENT_SHARE    = 'SOCIAL_SHARE';
 
 	/**
-	 * get_post_config
+	 * Get post config
 	 *
-	 * @param Clarkson_Object $post
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_post_config( $post ): array {
+	public function get_post_config( Clarkson_Object $post ): array {
 		$config = array(
 			'event'        => self::EVENT_PAGEVIEW,
 			'id'           => $post->get_id(),
@@ -35,9 +34,9 @@ class DataLayer {
 	}
 
 	/**
-	 * get archive config
+	 * Get archive config
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
 	public function get_archive_config(): array {
 		$archive_title = single_cat_title( '', false ) ? single_cat_title( '', false ) : get_the_archive_title();
@@ -54,9 +53,9 @@ class DataLayer {
 	}
 
 	/**
-	 * get frontpage config
+	 * Get frontpage config
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
 	public function get_front_page_config(): array {
 		$config = array(
@@ -71,9 +70,9 @@ class DataLayer {
 	}
 
 	/**
-	 * get home config
+	 * Get home config
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
 	public function get_home_config(): array {
 		$config = array(
@@ -88,9 +87,9 @@ class DataLayer {
 	}
 
 	/**
-	 * get search config
+	 * Get search config
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
 	public function get_search_config(): array {
 		$query  = get_search_query();
@@ -106,12 +105,11 @@ class DataLayer {
 	}
 
 	/**
-	 * get page config
+	 * Get page config
 	 *
-	 * @param Clarkson_Object $post
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_page_config( $post ): array {
+	public function get_page_config( Clarkson_Object $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -124,12 +122,11 @@ class DataLayer {
 	}
 
 	/**
-	 * get partner config
+	 * Get partner config
 	 *
-	 * @param Clarkson_Object $post
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_partner_config( $post ): array {
+	public function get_partner_config( Clarkson_Object $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -142,12 +139,11 @@ class DataLayer {
 	}
 
 	/**
-	 * get vacancy config
+	 * Get vacancy config
 	 *
-	 * @param Clarkson_Object $post
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_vacancy_config( $post ): array {
+	public function get_vacancy_config( Clarkson_Object $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -160,12 +156,11 @@ class DataLayer {
 	}
 
 	/**
-	 * get team config
+	 * Get team config
 	 *
-	 * @param Clarkson_Object $post
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_team_config( $post ): array {
+	public function get_team_config( Clarkson_Object $post ): array {
 		$config = array(
 			'event'         => self::EVENT_PAGEVIEW,
 			'title'         => $post->get_title(),
@@ -179,8 +174,10 @@ class DataLayer {
 
 	/**
 	 * Get teaser config
+	 *
+	 * @return array<string,mixed>
 	 */
-	public function get_teaser_config( ?Clarkson_Object $post, ?string $component_subtype = null ): array {
+	public function get_teaser_config( Clarkson_Object $post, ?string $component_subtype = null ): array {
 		$revisions = wp_get_latest_revision_id_and_total_count( $post->get_id() );
 		if ( $revisions instanceof WP_Error ) {
 			$revisions = array( 'count' => 0 );
@@ -207,9 +204,9 @@ class DataLayer {
 	/**
 	 * Get share config
 	 *
-	 * @return array<mixed>
+	 * @return array<string,mixed>
 	 */
-	public function get_share_config( ?Clarkson_Object $post, ?string $type = null ): array {
+	public function get_share_config( Clarkson_Object $post, ?string $type = null ): array {
 		$config = array(
 			'event'      => self::EVENT_SHARE,
 			'id'         => $post->get_id(),
