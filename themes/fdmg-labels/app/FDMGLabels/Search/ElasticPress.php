@@ -324,7 +324,7 @@ class ElasticPress {
 		}
 
 		// Excerpt has nothing highlighted. Use the content instead.
-		if ( property_exists( $post, 'post_content_filtered' ) ) {
+		if ( ! empty( $post->post_content_filtered ) ) {
 			// Use the filtered content if available
 			$text = $post->post_content_filtered;
 		} else {
