@@ -8,11 +8,8 @@ use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson\Theme\PostTypes\Post;
-use DOMDocument;
-use DOMXPath;
 use ElasticPress\Feature\Search\Search;
 use ElasticPress\Features;
-use LevelLevel\Paywall\ACFBlock;
 use WP_Post;
 use WP_Query;
 
