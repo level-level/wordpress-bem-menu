@@ -419,11 +419,6 @@ class ElasticPress {
 			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
 		);
 
-		require_once ABSPATH . '/wp-admin/includes/plugin.php';
-		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
-			$blocks[] = ACFBlock::ACF_GENERATED_BLOCK_NAME;
-		}
-
 		return $blocks;
 	}
 
