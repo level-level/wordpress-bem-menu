@@ -10,6 +10,7 @@ use Clarkson\Theme\ACFBlocks\Team;
 use Clarkson\Theme\PostTypes\Post;
 use ElasticPress\Feature\Search\Search;
 use ElasticPress\Features;
+use LevelLevel\Paywall\ACFBlock;
 use WP_Post;
 use WP_Query;
 
@@ -112,7 +113,7 @@ class ElasticPress {
 	 * Set the scale for the search query.
 	 */
 	public function set_scale( string $scale ): string {
-		return '90d';
+		return '365d';
 	}
 
 	/**
@@ -415,6 +416,11 @@ class ElasticPress {
 			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
 			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
 		);
+
+		require_once ABSPATH . '/wp-admin/includes/plugin.php';
+		if ( is_plugin_active( 'll-paywall/ll-paywall.php' ) ) {
+			$blocks[] = ACFBlock::ACF_GENERATED_BLOCK_NAME;
+		}
 
 		return $blocks;
 	}
