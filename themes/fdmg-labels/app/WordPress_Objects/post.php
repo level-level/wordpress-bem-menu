@@ -8,6 +8,7 @@ use FDMGLabels\Comments\CommentWalker;
 use FDMGLabels\FeatureManager;
 use FDMGLabels\Search\ElasticPress;
 use LevelLevel\Paywall\ContentExtractor;
+use WP_Post;
 
 class post extends base_object {
 	public static $type = PostTypesPost::POST_TYPE_NAME;
@@ -28,7 +29,12 @@ class post extends base_object {
 			return false;
 		}
 
-		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
+		$real_post = get_post( $this->get_id() );
+		if ( ! $real_post instanceof WP_Post ) {
+			return false;
+		}
+
+		return ( new ContentExtractor() )->content_has_paywall_block( $real_post->post_content );
 	}
 
 	public function get_unpaywalled_content(): string {
