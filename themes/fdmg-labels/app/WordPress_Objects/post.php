@@ -25,16 +25,19 @@ class post extends base_object {
 	}
 
 	public function has_paywall_block(): bool {
+		global $wpdb;
 		if ( ! class_exists( ContentExtractor::class ) ) {
 			return false;
 		}
 
-		$real_post = get_post( $this->get_id() );
-		if ( ! $real_post instanceof WP_Post ) {
+		// Get post_content from the database directly, as cache may be poisoned by elasticsearch.
+		$post_content = $wpdb->get_var( $wpdb->prepare( "SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->get_id() ) );
+
+		if ( empty( $post_content ) ) {
 			return false;
 		}
 
-		return ( new ContentExtractor() )->content_has_paywall_block( $real_post->post_content );
+		return ( new ContentExtractor() )->content_has_paywall_block( $post_content );
 	}
 
 	public function get_unpaywalled_content(): string {
