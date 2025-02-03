@@ -4146,16 +4146,16 @@
         },
         {
             "name": "vinkla/extended-acf",
-            "version": "14.2.1",
+            "version": "14.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/extended-acf.git",
-                "reference": "8408044d4e699c2c21ad1d22771ad9c777e0b020"
+                "reference": "fd50308460f6d71e3366c87437c588e51ff489b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/8408044d4e699c2c21ad1d22771ad9c777e0b020",
-                "reference": "8408044d4e699c2c21ad1d22771ad9c777e0b020",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/fd50308460f6d71e3366c87437c588e51ff489b1",
+                "reference": "fd50308460f6d71e3366c87437c588e51ff489b1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4209,9 +4209,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/extended-acf/issues",
-                "source": "https://github.com/vinkla/extended-acf/tree/14.2.1"
+                "source": "https://github.com/vinkla/extended-acf/tree/14.2.2"
             },
-            "time": "2024-09-12T09:00:02+00:00"
+            "time": "2025-01-24T12:29:04+00:00"
         },
         {
             "name": "woocommerce/action-scheduler",
