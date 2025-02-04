@@ -10,6 +10,7 @@ use GF_Field_Email;
 use GFAPI;
 use GFCommon;
 use WP_Error;
+use WP_Post;
 
 class ConfirmationPageParams {
 
@@ -85,7 +86,7 @@ class ConfirmationPageParams {
 	public function get_entry_data_to_add( array $form, array $entry ): array {
 		$post_id          = url_to_postid( $entry['source_url'] );
 		$post             = get_post( $post_id );
-		$post_object      = $post ? Objects::get_instance()->get_object( $post ) : null;
+		$post_object      = $post instanceof WP_Post ? Objects::get_instance()->get_object( $post ) : null;
 		$post_title       = $post_object ? $post_object->get_title() : '';
 		$form_type        = ( new Type() )->get_value( $form );
 		$categories       = wp_get_post_categories( $post_id, array( 'fields' => 'names' ) );

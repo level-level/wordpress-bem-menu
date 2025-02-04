@@ -56,18 +56,18 @@ class LocalFocus {
 				'title'    => _x( 'LocalFocus embed', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Text::make( _x( 'Title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE )
-						->instructions( _x( 'For accessibility, it is important that the embed has a clear title. Only visible for screen readers.', 'Fields', 'fdmg-labels-admin' ) )
+						->helperText( _x( 'For accessibility, it is important that the embed has a clear title. Only visible for screen readers.', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
 
 					Text::make( _x( 'Embed ID', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_EMBED_ID )
-						->instructions( _x( 'The ID of the embed, for example: 650c463f26fb0.', 'Fields', 'fdmg-labels-admin' ) )
+						->helperText( _x( 'The ID of the embed, for example: 650c463f26fb0.', 'Fields', 'fdmg-labels-admin' ) )
 						->required(),
 					Textarea::make( _x( 'Text alternative', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TEXT_ALTERNATIVE )
-						->instructions( _x( 'Add a text alternative for the LocalFocus embed. This is used for screen reader software to tell a user what the content is about.', 'Fields', 'fdmg-labels-admin' ) ),
+						->helperText( _x( 'Add a text alternative for the LocalFocus embed. This is used for screen reader software to tell a user what the content is about.', 'Fields', 'fdmg-labels-admin' ) ),
 					Number::make( _x( 'Height of the widget', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_HEIGHT )
-						->instructions( _x( 'The height of the embed, by default it is set to 550px.', 'Fields', 'fdmg-labels-admin' ) )
-						->defaultValue( 550 )
-						->append( 'px' )
+						->helperText( _x( 'The height of the embed, by default it is set to 550px.', 'Fields', 'fdmg-labels-admin' ) )
+						->default( 550 )
+						->suffix( 'px' )
 						->required(),
 				),
 				'location' => array(

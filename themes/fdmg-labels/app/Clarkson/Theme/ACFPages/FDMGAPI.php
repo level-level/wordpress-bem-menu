@@ -61,12 +61,12 @@ class FDMGAPI {
 							array(
 								Select::make( _x( 'Environment', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ENVIRONMENT )
 									->choices( $environments )
-									->allowNull(),
+									->nullable(),
 								Text::make( _x( 'Client ID', 'Fields', 'fdmg-labels-admin' ), self::OPTION_CLIENT_ID ),
 								Password::make( _x( 'Client Secret', 'Fields', 'fdmg-labels-admin' ), self::OPTION_CLIENT_SECRET ),
 								Select::make( _x( 'Site connection', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SITE_CONNECTION )
 									->choices( $site_connections )
-									->allowNull(),
+									->nullable(),
 							)
 						),
 				),

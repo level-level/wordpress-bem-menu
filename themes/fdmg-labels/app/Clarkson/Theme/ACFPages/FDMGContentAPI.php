@@ -49,8 +49,8 @@ class FDMGContentAPI {
 						->fields(
 							array(
 								TrueFalse::make( _x( 'Enabled', 'Fields', 'fdmg-labels-admin' ), self::OPTION_ENABLED )
-									->instructions( _x( 'Enable sending articles to the FDMG Content API.', 'Fields', 'fdmg-labels-admin' ) )
-									->stylisedUi(),
+									->helperText( _x( 'Enable sending articles to the FDMG Content API.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylized(),
 
 								Select::make( _x( 'Domain', 'Fields', 'fdmg-labels-admin' ), self::OPTION_DOMAIN )
 									->choices(

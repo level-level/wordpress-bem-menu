@@ -73,11 +73,11 @@ class FeaturedItems {
 			)
 			->taxonomy( Genre::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_ENABLE_SECTION_TAXONOMY ) ) {
@@ -89,11 +89,11 @@ class FeaturedItems {
 			)
 			->taxonomy( Section::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		if ( ! ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_CATEGORY_TAXONOMY ) ) {
@@ -105,11 +105,11 @@ class FeaturedItems {
 			)
 			->taxonomy( Category::TAXONOMY_NAME )
 			->appearance( 'multi_select' )
-			->allowNull()
-			->addTerm( false )
-			->saveTerms( false )
-			->loadTerms( false )
-			->returnFormat( 'object' );
+			->nullable()
+			->create( false )
+			->save( false )
+			->load( false )
+			->format( 'object' );
 		}
 
 		// Default fields
@@ -127,10 +127,10 @@ class FeaturedItems {
 						'featured_image',
 					)
 				)
-				->returnFormat( 'object' ),
+				->format( 'object' ),
 			TrueFalse::make( _x( 'Allow this block to automatically fill', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_IS_FILL_ENABLED )
-				->defaultValue( true )
-				->stylisedUi(),
+				->default( true )
+				->stylized(),
 		);
 
 		// Fields after the conditional fields
@@ -141,11 +141,11 @@ class FeaturedItems {
 						ConditionalLogic::where( self::BLOCK_META_IS_FILL_ENABLED, '==', '1' ),
 					)
 				)
-				->defaultValue( 2 )
+				->default( 2 )
 				->min( 1 )
 				->max( 30 )
 				->step( 1 )
-				->append( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
+				->suffix( _x( 'Articles', 'Fields', 'fdmg-labels-admin' ) )
 				->required(),
 		);
 

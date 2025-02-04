@@ -91,8 +91,8 @@ class Navigation {
 						->choices(
 							SVGIcons::get_instance()->get_icon_list(),
 						)
-						->allowNull()
-						->stylisedUi(),
+						->nullable()
+						->stylized(),
 				),
 				'location' => $icon_menu_locations,
 			)

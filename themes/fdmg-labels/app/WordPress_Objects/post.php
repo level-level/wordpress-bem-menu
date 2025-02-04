@@ -8,6 +8,7 @@ use FDMGLabels\Comments\CommentWalker;
 use FDMGLabels\FeatureManager;
 use FDMGLabels\Search\ElasticPress;
 use LevelLevel\Paywall\ContentExtractor;
+use WP_Post;
 
 class post extends base_object {
 	public static $type = PostTypesPost::POST_TYPE_NAME;
@@ -24,11 +25,19 @@ class post extends base_object {
 	}
 
 	public function has_paywall_block(): bool {
+		global $wpdb;
 		if ( ! class_exists( ContentExtractor::class ) ) {
 			return false;
 		}
 
-		return ( new ContentExtractor() )->content_has_paywall_block( $this->get_object()->post_content );
+		// Get post_content from the database directly, as cache may be poisoned by elasticsearch.
+		$post_content = $wpdb->get_var( $wpdb->prepare( "SELECT post_content FROM $wpdb->posts WHERE ID = %d", $this->get_id() ) );
+
+		if ( empty( $post_content ) ) {
+			return false;
+		}
+
+		return ( new ContentExtractor() )->content_has_paywall_block( $post_content );
 	}
 
 	public function get_unpaywalled_content(): string {

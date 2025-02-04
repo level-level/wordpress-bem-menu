@@ -18,8 +18,8 @@
 							{% include 'styleguide/components/teasers/teaser-download.twig' with {
 								title: file.get_title(),
 								url: file.get_the_download_link(),
-								filetype: file.get_the_filetype(),
-								filesize: file.get_the_filesize(),
+								filetype: file.get_version().get_filetype(),
+								filesize: file.get_version().get_filesize_formatted(),
 							} %}
 						</li>
 					{% endif %}
