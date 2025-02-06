@@ -63,14 +63,14 @@
 
 	{% if authors or date.date and date.datetime and date.date_full %}
 		<div class="order-3 mt-3">
-			<div class="flex items-center gap-6 flex-wrap">
+			<div class="flex gap-4 sm:gap-6 flex-wrap sm:flex-nowrap justify-between">
 
-				{% if authors %}
-					<div>
+				<div class="flex gap-2 flex-wrap sm:gap-6 sm:flex-nowrap">
+					{% if authors %}
 						<span class="sr-only">
 							{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 						</span>
-						<ul class="flex gap-4 flex-wrap">
+						<ul class="flex gap-4 gap-y-2 flex-wrap">
 							{% for object in authors %}
 								<li class="flex gap-1 items-center">
 									{% include 'styleguide/components/buttons/button-link.twig' with {
@@ -90,13 +90,32 @@
 								</li>
 							{% endfor %}
 						</ul>
-					</div>
-				{% endif %}
+					{% endif %}
 
-				{% if date.date and date.datetime and date.date_full %}
-					<div class="flex">
-						<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
+					{% if date.date and date.datetime and date.date_full %}
+						<div class="flex items-center shrink-0">
+							<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
+						</div>
+					{% endif %}
+				</div>
+
+				{% if has_comments_enabled %}
+					<div class="flex shrink-0">
+						{% set button_label = _x('Add comment', 'Button text', 'fdmg-labels') %}
+						{% if comment_count > 1 %}
+							{% set button_label = _x('%s comments', 'Button text', 'fdmg-labels')|format(comment_count) %}
+						{% elseif comment_count == 1 %}
+							{% set button_label = _x('%s comment', 'Button text', 'fdmg-labels')|format(comment_count) %}
+						{% endif %}
+
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: button_label,
+							url: '#comment-form',
+							class: 'btn-secondary !p-0 !border-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 !underline',
+							icon: 'comment',
+							icon_left: true,
+						} %}
 					</div>
 				{% endif %}
 
@@ -107,16 +126,6 @@
 	{% if notice %}
 		<div class="order-last mt-2 text-base font-bold">
 			{{ notice|raw }}
-		</div>
-	{% endif %}
-
-	{% if has_comments_enabled %}
-		<div class="order-last mt-4">
-			{% include 'styleguide/components/buttons/button-link.twig' with {
-				text: _x('Add comment', 'Button text', 'fdmg-labels'),
-				url: '#comment-form',
-				class: 'btn-secondary !p-0 !border-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 hocus:!underline',
-			} %}
 		</div>
 	{% endif %}
 </div>

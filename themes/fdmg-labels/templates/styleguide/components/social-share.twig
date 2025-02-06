@@ -1,28 +1,19 @@
 {% set socials = [] %}
 
-{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_FACEBOOK', feature_manager)) %}
-	{% set socials = socials|merge([
-		{
-			title: 'Facebook',
-			type: 'facebook',
-		}
-	]) %}
-{% endif %}
-
-{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_TWITTER', feature_manager)) %}
-	{% set socials = socials|merge([
-		{
-			title: 'X',
-			type: 'x',
-		}
-	]) %}
-{% endif %}
-
 {% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_LINKEDIN', feature_manager)) %}
 	{% set socials = socials|merge([
 		{
 			title: 'LinkedIn',
 			type: 'linkedin',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_EMAIL', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'E-mail',
+			type: 'email',
 		}
 	]) %}
 {% endif %}
@@ -36,11 +27,20 @@
 	]) %}
 {% endif %}
 
-{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_EMAIL', feature_manager)) %}
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_TWITTER', feature_manager)) %}
 	{% set socials = socials|merge([
 		{
-			title: 'E-mail',
-			type: 'email',
+			title: 'X',
+			type: 'x',
+		}
+	]) %}
+{% endif %}
+
+{% if feature_manager.is_enabled(constant('FEATURE_SHARE_VIA_FACEBOOK', feature_manager)) %}
+	{% set socials = socials|merge([
+		{
+			title: 'Facebook',
+			type: 'facebook',
 		}
 	]) %}
 {% endif %}
