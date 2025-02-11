@@ -36,6 +36,7 @@ class ElasticPress {
 		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
 		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
+		add_filter( 'epwr_decay_function', [$this, 'set_decay_function'] );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
 		add_filter( 'ep_feature_settings_schema', array( $this, 'add_settings' ), 10, 2 );
@@ -138,8 +139,15 @@ class ElasticPress {
 	/**
 	 * Set the scale for the search query.
 	 */
-	public function set_scale( string $scale ): string {
-		return '365d';
+	public function set_scale(): string {
+		return Features::factory()->get_registered_feature( 'search' )->get_setting( 'fdmg_decay_scale' ) ?? self::DEFAULT_DECAY_SCALE;
+	}
+
+	/**
+	 * Set the decay function for the search query.
+	 */
+	public function set_decay_function(): string {
+		return 'linear';
 	}
 
 	/**
