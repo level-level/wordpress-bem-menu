@@ -17,6 +17,9 @@ use WP_Query;
 use function ElasticPress\Utils\is_integrated_request;
 
 class ElasticPress {
+
+	private const DEFAULT_DECAY_SCALE = '4y';
+
 	public function register_hooks(): void {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_elasticsearch_to_context' ), 10, 2 );
@@ -35,6 +38,7 @@ class ElasticPress {
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
+		add_filter( 'ep_feature_settings_schema', array( $this, 'add_settings' ), 10, 2 );
 	}
 
 	/**
@@ -94,6 +98,32 @@ class ElasticPress {
 		);
 		return $query;
 	}
+
+	/**
+	 * Add decay scale options to the ElasticPress settings.
+	 *
+	 * @param array<string,mixed> $schema
+	 * @return array<string,mixed>
+	 */
+	public function add_settings( array $schema, string $slug ): array {
+		if ( 'search' !== $slug ) {
+			return $schema;
+		}
+
+		$option = [
+			'default' => self::DEFAULT_DECAY_SCALE,
+			'type'    => 'string',
+			'key'     => 'fdmg_decay_scale',
+			'label'   => __('Decay scale', 'fdmg-labels'),
+			'help'    => __( 'How long it takes for a post to lose 50% of it\'s score. Examples: 365d, 2y. Default: 4y', 'fdmg-labels' ),
+		];
+
+		// Add into array at position 2
+		array_splice( $schema, 2, 0, [ $option ] );
+
+		return $schema;
+	}
+
 
 	/**
 	 * Set the offset for the search query.
