@@ -36,7 +36,7 @@ class ElasticPress {
 		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
 		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
-		add_filter( 'epwr_decay_function', [$this, 'set_decay_function'] );
+		add_filter( 'epwr_decay_function', array( $this, 'set_decay_function' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
 		add_filter( 'ep_feature_settings_schema', array( $this, 'add_settings' ), 10, 2 );
@@ -107,16 +107,15 @@ class ElasticPress {
 			return $schema;
 		}
 
-		$option = [
+		$option = array(
 			'default' => self::DEFAULT_DECAY_SCALE,
 			'type'    => 'string',
 			'key'     => 'fdmg_decay_scale',
-			'label'   => __('Decay scale', 'fdmg-labels'),
+			'label'   => __( 'Decay scale', 'fdmg-labels' ),
 			'help'    => __( 'How long it takes for a post to lose 50% of it\'s score. Examples: 365d, 2y. Default: 4y', 'fdmg-labels' ),
-		];
+		);
 
-		// Add into array at position 2
-		array_splice( $schema, 2, 0, [ $option ] );
+		array_splice( $schema, 2, 0, array( $option ) );
 
 		return $schema;
 	}
@@ -140,7 +139,20 @@ class ElasticPress {
 	 * Set the scale for the search query.
 	 */
 	public function set_scale(): string {
-		return Features::factory()->get_registered_feature( 'search' )->get_setting( 'fdmg_decay_scale' ) ?? self::DEFAULT_DECAY_SCALE;
+		if ( ! class_exists( Features::class ) ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+
+		$feature_factory = Features::factory();
+		if ( ! $feature_factory instanceof Features ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+
+		$feature = $feature_factory->get_registered_feature( 'search' );
+		if ( ! $feature instanceof Search ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+		return $feature->get_setting( 'fdmg_decay_scale' ) ?? self::DEFAULT_DECAY_SCALE;
 	}
 
 	/**
