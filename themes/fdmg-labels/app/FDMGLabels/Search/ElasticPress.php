@@ -68,11 +68,12 @@ class ElasticPress {
 
 
 	/**
-	 * Remove non-phrase searches from the search query if we are ordering by date.
+	 * Remove cross-fields searches from the query.
 	 *
-	 * If we are ordering by date, we do not use the relevance of the search results.
-	 * This causes slightly relevant results to be shown before the most relevant results if they are more recent.
-	 * Because of this, we want to limit date ordered searches to only phrase matches.
+	 * Cross-fields searches are searches that search for a phrase in multiple fields.
+	 * This is not desired, as it can lead to unexpected results.
+	 * For example, searching for 'netto pensioen' in the title and content fields
+	 * would also return results where 'netto' is in the title and 'pensioen' is in the content.
 	 *
 	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
 	 *
@@ -85,17 +86,12 @@ class ElasticPress {
 			return $query;
 		}
 
-		// Do not alter the query if the orderby is not date
-		if ( ! isset( $query_vars['orderby'] ) || 'date' !== $query_vars['orderby'] ) {
-			return $query;
-		}
-
-		// Only keep phrase match query
 		$query['bool']['should'] = array_filter(
 			$query['bool']['should'], function ( array $should ): bool {
-				return $should['multi_match']['type'] === 'phrase';
+				return $should['multi_match']['type'] !== 'cross_fields';
 			}
 		);
+
 		return $query;
 	}
 
