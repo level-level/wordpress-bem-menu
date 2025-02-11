@@ -124,14 +124,14 @@ class ElasticPress {
 	/**
 	 * Set the offset for the search query.
 	 */
-	public function set_offset( string $offset ): string {
+	public function set_offset(): string {
 		return '1d';
 	}
 
 	/**
 	 * Set the decay for the search query.
 	 */
-	public function set_decay( string $decay ): string {
+	public function set_decay(): string {
 		return '0.5';
 	}
 
