@@ -55,77 +55,97 @@
 {% endif %}
 
 {% if socials %}
-	<div data-component="social-share" class="relative {{ sticky ? 'hidden lg:block z-[2] mt-6 sticky top-[calc(theme(space.header-height)+theme(space.6)+theme(space.admin-bar))]' }}" {{ sticky ? 'aria-hidden="true"' }}>
-		<div class="flex flex-col gap-3">
+	{% if sticky %}
+		<div data-component="social-share" class="hidden lg:block z-[2] mt-6 sticky top-[calc(theme(space.header-height)+theme(space.6)+theme(space.admin-bar))]" aria-hidden="true">
+			<div class="flex flex-col gap-3">
 
-			{% if heading %}
-				<p class="text-base font-bold text-primary dark:text-primary-300 sm:text-md theme-energeia:text-base-800">{{ heading|raw }}</p>
-			{% endif %}
+				{% set trigger = uniqid('js-socials-') %}
+				{% set target = uniqid('js-socials-dropdown-') %}
+				{% set socials_toggle_config = {
+					trigger: '.' ~ trigger,
+					target: '.' ~ target,
+				}|json_encode(constant('JSON_HEX_QUOT')) %}
 
-			{% set trigger = uniqid('js-socials-') %}
-			{% set target = uniqid('js-socials-dropdown-') %}
-			{% set socials_toggle_config = {
-				trigger: '.' ~ trigger,
-				target: '.' ~ target,
-			}|json_encode(constant('JSON_HEX_QUOT')) %}
-
-			<div
-				data-component="socials-toggle"
-				data-module="socials-toggle"
-				data-config="{{ socials_toggle_config }}">
-				{% include 'styleguide/components/buttons/button-element.twig' with {
-					text: '',
-					aria_expanded_support: true,
-					class: trigger ~ ' btn-primary w-[45px] h-[45px] !p-0',
-					aria_label: _x('Open share article options', 'Screen reader text', 'fdmg-labels'),
-					aria_expanded_text: _x('Close share article options', 'Screen reader text', 'fdmg-labels'),
-					aria_collapsed_text: _x('Open share article options', 'Screen reader text', 'fdmg-labels'),
-					icon: 'share',
-				} %}
 				<div
-					class="aria-hidden:hidden flex flex-col mt-4 absolute top-full left-0 shadow-lg z-[1] bg-secondary-100 dark:bg-base-400 {{ not sticky ? 'p-4 pt-2' }} {{ target }}"
-					aria-hidden="true"
-				>
-					{% if not sticky %}
-						<div aria-hidden="true" class="absolute bg-secondary-100 w-6 h-6 content-[''] rotate-45 -top-[8px] left-6 -translate-x-1/2 dark:bg-base-400"></div>
-						<div class="ml-auto">
-							{% include 'styleguide/components/buttons/button-element.twig' with {
-								text: '',
-								aria_expanded_support: true,
-								class: trigger ~ ' btn-tertiary !pr-0',
-								aria_label: _x('Close share article options', 'Screen reader text', 'fdmg-labels'),
-								icon: 'close',
-							} %}
-						</div>
-					{% endif %}
+					data-component="socials-toggle"
+					data-module="socials-toggle"
+					data-config="{{ socials_toggle_config }}">
+					{% include 'styleguide/components/buttons/button-element.twig' with {
+						text: '',
+						aria_expanded_support: true,
+						class: trigger ~ ' btn-primary w-[45px] h-[45px] !p-0',
+						aria_label: _x('Open share article options', 'Screen reader text', 'fdmg-labels'),
+						aria_expanded_text: _x('Close share article options', 'Screen reader text', 'fdmg-labels'),
+						aria_collapsed_text: _x('Open share article options', 'Screen reader text', 'fdmg-labels'),
+						icon: 'share',
+					} %}
+					<div
+						class="aria-hidden:hidden flex flex-col mt-4 absolute top-full left-0 shadow-lg z-[1] bg-secondary-100 dark:bg-base-400 {{ target }}"
+						aria-hidden="true"
+					>
+						<ul class="flex gap-4 mt-1 lg:flex-col lg:mt-0 lg:gap-0" data-module="social-share">
+							{% for social in socials %}
+								<li class="relative">
+									{% set args = {
+										text: '',
+										class: 'btn-share btn-share-small js--share',
+										icon: social.type,
+										data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
+										aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
+										focusable: false,
+										data_share: true,
+									} %}
 
-					<ul class="flex gap-4 mt-1 {{ sticky ? 'lg:flex-col lg:mt-0 lg:gap-0' }}" data-module="social-share">
-						{% for social in socials %}
-							<li class="relative">
-								{% set args = {
-									text: '',
-									class: sticky ? 'btn-share btn-share-small js--share' : 'btn-share js--share',
-									icon: social.type,
-									data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
-									aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
-									focusable: sticky ? false,
-									data_share: true,
-								} %}
-
-								{% if social.type == 'email' %}
-									{% set args = args|merge({
-										url: 'javascript:void(0);',
-										aria_label: _x('%1$s share — This opens your e-mail client.', 'Screen reader text', 'fdmg-labels')|format(social.title),
-									}) %}
-									{% include 'styleguide/components/buttons/button-link.twig' with args %}
-								{% else %}
-									{% include 'styleguide/components/buttons/button-element.twig' with args %}
-								{% endif %}
-							</li>
-						{% endfor %}
-					</ul>
+									{% if social.type == 'email' %}
+										{% set args = args|merge({
+											url: 'javascript:void(0);',
+											aria_label: _x('%1$s share — This opens your e-mail client.', 'Screen reader text', 'fdmg-labels')|format(social.title),
+										}) %}
+										{% include 'styleguide/components/buttons/button-link.twig' with args %}
+									{% else %}
+										{% include 'styleguide/components/buttons/button-element.twig' with args %}
+									{% endif %}
+								</li>
+							{% endfor %}
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	{% else %}
+		<div data-component="social-share" class="relative">
+			<div class="flex flex-col gap-3">
+				{% if heading %}
+					<p class="text-base font-bold text-primary dark:text-primary-300 sm:text-md theme-energeia:text-base-800">{{ heading|raw }}</p>
+				{% endif %}
+
+				<ul class="flex gap-4" data-module="social-share">
+					{% for social in socials %}
+						<li class="relative">
+							{% set args = {
+								text: '',
+								class: 'btn-share js--share',
+								icon: social.type,
+								data_config: '{"type": "' ~ social.type ~ '", "shareText": "' ~ share_text ~ '"}',
+								aria_label: _x('%1$s share — This button opens a share-on-%1$s dialog in a new window.', 'Screen reader text', 'fdmg-labels')|format(social.title),
+								focusable: true,
+								data_share: true,
+							} %}
+
+							{% if social.type == 'email' %}
+								{% set args = args|merge({
+									url: 'javascript:void(0);',
+									aria_label: _x('%1$s share — This opens your e-mail client.', 'Screen reader text', 'fdmg-labels')|format(social.title),
+								}) %}
+								{% include 'styleguide/components/buttons/button-link.twig' with args %}
+							{% else %}
+								{% include 'styleguide/components/buttons/button-element.twig' with args %}
+							{% endif %}
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+	{% endif %}
+
 {% endif %}
