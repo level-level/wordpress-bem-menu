@@ -14,6 +14,7 @@ class Socials {
 					'instagram' => 'Instagram',
 					'linkedin'  => 'Linkedin',
 					'youtube'   => 'YouTube',
+					'bluesky'   => 'Bluesky',
 				)
 			)
 			->wrapper(
