@@ -17,7 +17,7 @@ class OpenIDConnectTest extends WPTestCase {
 			'organizationId'   => '3703147',
 			'lastName'         => 'de Level',
 			'firstName'        => 'L.',
-			'realmRoles'       => '[offline_access, default-roles-fd, uma_authorization]',
+			'realmRoles'       => '[default-roles-fd, uma_authorization]',
 			'email_verified'   => true,
 			'roles'            => array(
 				'manage-account',
