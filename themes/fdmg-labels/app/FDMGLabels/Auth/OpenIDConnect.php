@@ -271,6 +271,12 @@ class OpenIDConnect {
 	 * @return string
 	 */
 	public function handle_login_errors( string $location, int $status ): string {
+		// Determine if using OpenID connect
+		$is_openid_connect_request = filter_input( INPUT_GET, 'action' ) === 'openid-connect-authorize';
+		if ( ! $is_openid_connect_request ) {
+			return $location;
+		}
+
 		// If not redirecting to wp login url, do nothing
 		if ( ! str_starts_with( $location, wp_login_url() ) || $status !== 302 ) {
 			return $location;
@@ -282,45 +288,23 @@ class OpenIDConnect {
 			return $location;
 		}
 
-		// Bail if the OpenID Connect plugin is not active
-		if ( ! class_exists( '\\OpenID_Connect_Generic_Option_Settings' ) ) {
-			return $location;
-		}
-
-		// Determine if using OpenID connect, and get the exact errors if able
-		$is_from_openid_connect = true;
-		$wp_error_object        = new WP_Error( __( 'Unknown error code', 'fdmg-labels' ), __( 'Unknown error message', 'fdmg-labels' ) );
-		$backtrace              = debug_backtrace( 0, 10 );
-		foreach ( $backtrace as $trace ) {
-			$function = $trace['function'] ?? '';
-			$class    = $trace['class'] ?? '';
-
-			if ( $function === 'error_redirect' && $class === 'OpenID_Connect_Generic_Client_Wrapper' ) {
-				$is_from_openid_connect = true;
-				$wp_error_object        = isset( $trace['args'][0] ) && $trace['args'][0] instanceof WP_Error ? $trace['args'][0] : null;
-				break;
-			}
-		}
-
-		// If redirect is not caused by openID connect, do nothing
-		if ( ! $is_from_openid_connect ) {
-			return $location;
-		}
+		// Get errors from the url
+		$error_code    = $query['login-error'];
+		$error_message = $query['message'] ?? '';
 
 		// Log the error
 		Registry::wordpress()->warning(
 			'Error on OpenID Connect login attempt',
 			array(
-				'code'    => $wp_error_object->get_error_code(),
-				'message' => $wp_error_object->get_error_message(),
-				'data'    => $wp_error_object->get_error_data(),
+				'code'    => $error_code,
+				'message' => $error_message,
 			)
 		);
 
-		// Redirect to the error page
+		// Redirect to the error page with the error code and message
 		$redirect_url = ( new LoginController() )->get_login_error_permalink(
-			$wp_error_object->get_error_code(),
-			$wp_error_object->get_error_message(),
+			$error_code,
+			$error_message,
 		);
 		return $redirect_url;
 	}

@@ -101,14 +101,14 @@ class LoginController extends AbstractMainController {
 	}
 
 	/**
-	 * Show the user a login error page.
+	 * Show the user a login error page containing the provided error details.
 	 */
 	protected function handle_login_error_link(): void {
 		// Disable caching
 		nocache_headers();
 
-		$code      = $_GET['code'] ?? __( 'Unknown error code', 'fdmg-labels' );
-		$message   = $_GET['message'] ?? __( 'Unknown error message', 'fdmg-labels' );
+		$code      = filter_input( INPUT_GET, 'code' ) ?: __( 'Unknown error code', 'fdmg-labels' );
+		$message   = filter_input( INPUT_GET, 'message' ) ?: __( 'Unknown error message', 'fdmg-labels' );
 		$login_url = $this->get_login_permalink( false );
 		$home_url  = home_url();
 
