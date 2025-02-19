@@ -5,6 +5,8 @@ use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
+use FDMGLabels\StaticPages\LoginController;
+use Monolog\Registry;
 use WP_Error;
 use WP_User;
 
@@ -38,6 +40,8 @@ class OpenIDConnect {
 
 		add_action( 'openid-connect-generic-user-logged-in', array( $this, 'create_rememberme_cookie_after_login' ) );
 		add_action( 'wp_logout', array( $this, 'remove_rememberme_cookie_after_logout' ) );
+
+		add_filter( 'wp_redirect', array( $this, 'handle_login_errors' ), 10, 2 );
 	}
 
 	/**
@@ -257,5 +261,67 @@ class OpenIDConnect {
 	 */
 	public function remove_rememberme_cookie_after_logout(): void {
 		$this->cookie_helper->clear_cookie( self::REMEMBER_ME_COOKIE_NAME, false );
+	}
+
+	/**
+	 * Redirect to login URL on error.
+	 *
+	 * @param string $location
+	 * @param int $status
+	 * @return string
+	 */
+	public function handle_login_errors( string $location, int $status ): string {
+		// If not redirecting to wp login url, do nothing
+		if ( ! str_starts_with( $location, wp_login_url() ) || $status !== 302 ) {
+			return $location;
+		}
+
+		// If the redirect contains no login error, do nothing
+		$query = wp_parse_args( (string) wp_parse_url( $location, PHP_URL_QUERY ) );
+		if ( ! isset( $query['login-error'] ) ) {
+			return $location;
+		}
+
+		// Bail if the OpenID Connect plugin is not active
+		if ( ! class_exists( '\\OpenID_Connect_Generic_Option_Settings' ) ) {
+			return $location;
+		}
+
+		// Determine if using OpenID connect, and get the exact errors if able
+		$is_from_openid_connect = true;
+		$wp_error_object        = new WP_Error( __( 'Unknown error code', 'fdmg-labels' ), __( 'Unknown error message', 'fdmg-labels' ) );
+		$backtrace              = debug_backtrace( 0, 10 );
+		foreach ( $backtrace as $trace ) {
+			$function = $trace['function'] ?? '';
+			$class    = $trace['class'] ?? '';
+
+			if ( $function === 'error_redirect' && $class === 'OpenID_Connect_Generic_Client_Wrapper' ) {
+				$is_from_openid_connect = true;
+				$wp_error_object        = isset( $trace['args'][0] ) && $trace['args'][0] instanceof WP_Error ? $trace['args'][0] : null;
+				break;
+			}
+		}
+
+		// If redirect is not caused by openID connect, do nothing
+		if ( ! $is_from_openid_connect ) {
+			return $location;
+		}
+
+		// Log the error
+		Registry::wordpress()->warning(
+			'Error on OpenID Connect login attempt',
+			array(
+				'code'    => $wp_error_object->get_error_code(),
+				'message' => $wp_error_object->get_error_message(),
+				'data'    => $wp_error_object->get_error_data(),
+			)
+		);
+
+		// Redirect to the error page
+		$redirect_url = ( new LoginController() )->get_login_error_permalink(
+			$wp_error_object->get_error_code(),
+			$wp_error_object->get_error_message(),
+		);
+		return $redirect_url;
 	}
 }
