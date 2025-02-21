@@ -308,7 +308,7 @@ class ElasticPress {
 	 */
 	public function replace_post_content_excerpt_highlighting(): void {
 		// Check if the ElasticPress plugin is active
-		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+		if ( ! class_exists( Features::class ) ) {
 			return;
 		}
 
@@ -344,7 +344,7 @@ class ElasticPress {
 	 */
 	public function highlight_excerpt_from_content( string $excerpt, WP_Post $post ): string {
 		// Check if the ElasticPress plugin is active
-		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+		if ( ! class_exists( Features::class ) ) {
 			return $excerpt;
 		}
 
