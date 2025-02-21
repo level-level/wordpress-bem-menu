@@ -18,7 +18,7 @@ use function ElasticPress\Utils\is_integrated_request;
 
 class ElasticPress {
 
-	private const DEFAULT_DECAY_SCALE = '4y';
+	private const DEFAULT_DECAY_SCALE = '1460d';
 
 	public function register_hooks(): void {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
@@ -112,7 +112,7 @@ class ElasticPress {
 			'type'    => 'string',
 			'key'     => 'fdmg_decay_scale',
 			'label'   => __( 'Decay scale', 'fdmg-labels' ),
-			'help'    => __( 'How long it takes for a post to lose 50% of it\'s score. Examples: 365d, 2y. Default: 4y', 'fdmg-labels' ),
+			'help'    => __( 'How long it takes for a post to lose 50% of it\'s score. Examples: 365d. Default: 1460d', 'fdmg-labels' ),
 		);
 
 		array_splice( $schema, 2, 0, array( $option ) );
