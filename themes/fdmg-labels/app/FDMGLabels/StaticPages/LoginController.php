@@ -1,9 +1,13 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
+use Clarkson\Theme\Navigation\Navigation;
+use Clarkson_Core\Templates;
+
 class LoginController extends AbstractMainController {
 
 	public const PAGE_LOGIN = '';
+	public const PAGE_ERROR = 'login-error';
 	public function get_slug(): string {
 		return 'login';
 	}
@@ -16,6 +20,10 @@ class LoginController extends AbstractMainController {
 			case self::PAGE_LOGIN:
 				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
 				$this->handle_login_link();
+				break;
+			case self::PAGE_ERROR:
+				$this->set_page_title( __( 'Login error', 'fdmg-labels' ) );
+				$this->handle_login_error_link();
 				break;
 		}
 	}
@@ -89,6 +97,41 @@ class LoginController extends AbstractMainController {
 		}
 
 		$permalink = add_query_arg( 'redirect_to', rawurlencode( $redirect_to ), $permalink );
+		return $permalink;
+	}
+
+	/**
+	 * Show the user a login error page containing the provided error details.
+	 */
+	protected function handle_login_error_link(): void {
+		// Disable caching
+		nocache_headers();
+
+		$code      = filter_input( INPUT_GET, 'code' ) ?: __( 'Unknown error code', 'fdmg-labels' );
+		$message   = filter_input( INPUT_GET, 'message' ) ?: __( 'Unknown error message', 'fdmg-labels' );
+		$login_url = $this->get_login_permalink( false );
+		$home_url  = home_url();
+
+		Templates::get_instance()->echo_twig(
+			'static-pages/login-error.twig', array(
+				'navigation'    => new Navigation(),
+				'error_code'    => $code,
+				'error_message' => $message,
+				'login_url'     => $login_url,
+				'home_url'      => $home_url,
+			)
+		);
+		exit;
+	}
+
+	public function get_login_error_permalink( string $code, string $message ): string {
+		$permalink = $this->get_permalink( self::PAGE_ERROR );
+		$permalink = add_query_arg(
+			array(
+				'code'    => rawurlencode( $code ),
+				'message' => rawurlencode( $message ),
+			), $permalink
+		);
 		return $permalink;
 	}
 }
