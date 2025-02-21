@@ -4,6 +4,7 @@ namespace FDMGLabels\Search;
 use Clarkson\Theme\ACFBlocks\Advertisement;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\InlineLink;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\Team;
@@ -461,6 +462,7 @@ class ElasticPress {
 			sprintf( 'acf/block-%s', Partners::BLOCK_NAME ),
 			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
 			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', InlineLink::BLOCK_NAME ),
 		);
 
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
