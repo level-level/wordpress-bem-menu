@@ -75,7 +75,7 @@
         "wpackagist-plugin/download-monitor": "^5.0",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.16",
         "wpackagist-plugin/elasticpress": "^5.1",
-        "wpackagist-plugin/koko-analytics": "1.5.2",
+        "wpackagist-plugin/koko-analytics": "^1.7",
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/popup-maker": "^1.18",
         "wpackagist-plugin/post-smtp": "^3.0",
