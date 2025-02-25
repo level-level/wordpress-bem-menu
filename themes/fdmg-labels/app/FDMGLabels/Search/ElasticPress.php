@@ -34,6 +34,8 @@ class ElasticPress {
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
 		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_stopwords' ) );
+		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_stopwords' ) );
 		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
 		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
@@ -175,6 +177,25 @@ class ElasticPress {
 		$filters = array_filter(
 			$filters, function ( string $filter ): bool {
 				return $filter !== 'ewp_snowball';
+			}
+		);
+		return $filters;
+	}
+
+	/**
+	 * Remove the stopwords from the default analyzer filters.
+	 *
+	 * This way we won't remove words like 'van der meer' from the search query.
+	 *
+	 * See https://app.asana.com/0/0/1209349785420643/1209498218991258/f
+	 *
+	 * @param array<string> $filters
+	 * @return array<string>
+	 */
+	public function remove_stopwords( array $filters ): array {
+		$filters = array_filter(
+			$filters, function ( string $filter ): bool {
+				return $filter !== 'ep_stop';
 			}
 		);
 		return $filters;
