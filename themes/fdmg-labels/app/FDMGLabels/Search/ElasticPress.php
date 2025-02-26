@@ -34,7 +34,7 @@ class ElasticPress {
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
 		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
-		add_filter( 'ep_analyzer_language', array( $this, 'limit_stopwords_list' ), 10, 2 );
+		add_filter( 'ep_analyzer_language', array( $this, 'limit_stopwords_list' ), 11, 2 );
 		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
 		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
@@ -194,7 +194,7 @@ class ElasticPress {
 			return $language;
 		}
 
-		if ( $language !== 'dutch' ) {
+		if ( $language !== '_dutch_' ) {
 			return $language;
 		}
 
