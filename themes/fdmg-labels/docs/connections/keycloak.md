@@ -30,7 +30,7 @@ These settings need to be in your wp-config file.
 define( 'OIDC_LOGIN_TYPE', 'button' );
 // define( 'OIDC_CLIENT_ID', 'CLIENT_ID_HERE' ); // Only add on single sites.
 // define( 'OIDC_CLIENT_SECRET', 'CLIENT_SECRET_KEY_HERE' ); // Only add on single sites.
-define( 'OIDC_CLIENT_SCOPE', 'openid roles session offline_access wordpress_user' );
+define( 'OIDC_CLIENT_SCOPE', 'openid roles session wordpress_user' );
 define( 'OIDC_ENDPOINT_LOGIN_URL', 'AUTHORIZATION_ENDPOINT_HERE' );
 define( 'OIDC_ENDPOINT_USERINFO_URL', 'USERINFO_ENDPOINT_HERE' );
 define( 'OIDC_ENDPOINT_TOKEN_URL', 'TOKEN_ENDPOINT_HERE' );
@@ -47,7 +47,7 @@ These options need to be entered in the OpenID Connect Generic Client plugin as 
 
 - Client ID: Same as Client ID
 - Client Secret Key: Same as Client Secret Key
-- OpenID Scope: Set the value to `openid roles session offline_access wordpress_user`
+- OpenID Scope: Set the value to `openid roles session wordpress_user`
 - Login Endpoint URL: Same as authorization_endpoint
 - Userinfo Endpoint URL: Same as userinfo_endpoint
 - Token Validation Endpoint URL: Same as token_endpoint

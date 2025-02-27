@@ -1,0 +1,29 @@
+{% extends 'layouts/sidebar-layout.twig' %}
+
+{% block content %}
+	<div class="section">
+		<div class="entry-content">
+			<h1 class="text-lg font-bold break-words font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl">
+				{{ __('Login error', 'fdmg-labels') }}
+			</h1>
+
+			<p>{{ __('An error occured when attempting to login. Please try again or contact us.', 'fdmg-labels') }}</p>
+
+			<p>{{ __('Error', 'fdmg-labels') }}: {{ error_code }} - {{ error_message }}</p>
+
+			<div class="space-x-4 space-y-4">
+				{% include 'styleguide/components/buttons/button-link.twig' with {
+					text: _x('Retry to login', 'Profile', 'fdmg-labels'),
+					url: login_url,
+					class: 'btn-primary',
+				} %}
+
+				{% include 'styleguide/components/buttons/button-link.twig' with {
+					text: _x('Back to homepage', 'Profile', 'fdmg-labels'),
+					url: home_url,
+					class: 'btn-secondary',
+				} %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

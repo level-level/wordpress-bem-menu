@@ -5,6 +5,8 @@ use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
+use FDMGLabels\StaticPages\LoginController;
+use Monolog\Registry;
 use WP_Error;
 use WP_User;
 
@@ -38,6 +40,8 @@ class OpenIDConnect {
 
 		add_action( 'openid-connect-generic-user-logged-in', array( $this, 'create_rememberme_cookie_after_login' ) );
 		add_action( 'wp_logout', array( $this, 'remove_rememberme_cookie_after_logout' ) );
+
+		add_filter( 'wp_redirect', array( $this, 'handle_login_errors' ), 10, 2 );
 	}
 
 	/**
@@ -257,5 +261,51 @@ class OpenIDConnect {
 	 */
 	public function remove_rememberme_cookie_after_logout(): void {
 		$this->cookie_helper->clear_cookie( self::REMEMBER_ME_COOKIE_NAME, false );
+	}
+
+	/**
+	 * Redirect to login URL on error.
+	 *
+	 * @param string $location
+	 * @param int $status
+	 * @return string
+	 */
+	public function handle_login_errors( string $location, int $status ): string {
+		// Determine if using OpenID connect
+		$is_openid_connect_request = filter_input( INPUT_GET, 'action' ) === 'openid-connect-authorize';
+		if ( ! $is_openid_connect_request ) {
+			return $location;
+		}
+
+		// If not redirecting to wp login url, do nothing
+		if ( ! str_starts_with( $location, wp_login_url() ) || $status !== 302 ) {
+			return $location;
+		}
+
+		// If the redirect contains no login error, do nothing
+		$query = wp_parse_args( (string) wp_parse_url( $location, PHP_URL_QUERY ) );
+		if ( ! isset( $query['login-error'] ) ) {
+			return $location;
+		}
+
+		// Get errors from the url
+		$error_code    = $query['login-error'];
+		$error_message = $query['message'] ?? '';
+
+		// Log the error
+		Registry::wordpress()->warning(
+			'Error on OpenID Connect login attempt',
+			array(
+				'code'    => $error_code,
+				'message' => $error_message,
+			)
+		);
+
+		// Redirect to the error page with the error code and message
+		$redirect_url = ( new LoginController() )->get_login_error_permalink(
+			$error_code,
+			$error_message,
+		);
+		return $redirect_url;
 	}
 }
