@@ -1,14 +1,52 @@
 {% set enable_advertisements = options.enable_advertisements %}
 {% set active_theme = site.active_theme %}
 {% set slot = data.advertisement_slot %}
+{% set use_multiple_slots = data.use_multiple_slots %}
 
-{% if slot and enable_advertisements %}
-	<div class="{{ align }}">
-		{% include 'partials/components/advertisement.twig' with {
-			slot: slot,
-			active_theme: active_theme,
-		} only %}
-	</div>
+{% if slot or use_multiple_slots and enable_advertisements %}
+
+	{# Single advertisement #}
+	{% if slot %}
+		<div class="{{ align }}">
+			{% include 'partials/components/advertisement.twig' with {
+				slot: slot,
+				active_theme: active_theme,
+			} only %}
+		</div>
+	{% endif %}
+
+	{# Multiple advertisements selected #}
+	{% set slots = data.slots %}
+	{% if use_multiple_slots and slots %}
+
+		{% if amount is same as(1) %}
+			{% include 'partials/components/advertisement.twig' with {
+				slot: slots|first,
+				active_theme: active_theme,
+			} only %}
+		{% else %}
+			<div class="{{ align }}">
+				{% set amount = slots|length %}
+				{% set class = 'ii-messages' %}
+				{% if active_theme is same as('energeia') %}
+					{% set class = 'en-messages' %}
+				{% elseif active_theme is same as('pensioen-pro') %}
+					{% set class = 'pp-messages' %}
+				{% endif %}
+				<div class="grid gap-6 border-b-2 border-secondary-500 {{ class }} {{ amount is same as(1) ? 'grid-cols-1' }} {{ amount is same as(2) ? 'grid-cols-2' }} {{ amount is same as(3) ? 'grid-cols-3' }} {{ amount is same as(4) ? 'grid-cols-4' }}">
+					{% for item in slots %}
+						{% if item %}
+							{% include 'partials/components/inline-advertisement.twig' with {
+								slot: item.slot,
+								active_theme: active_theme,
+							} only %}
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+	{% endif %}
+
 {% elseif not enable_advertisements %}
 	{% include 'partials/components/block-placeholder.twig' with {
 		block_text: _x('Advertisements are currently <strong>disabled</strong>. Enable them in the theme options.', 'Block', 'fdmg-labels'),
