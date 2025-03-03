@@ -12059,16 +12059,16 @@
         },
         {
             "name": "ulrichsg/getopt-php",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/getopt-php/getopt-php.git",
-                "reference": "91c31c9bc0ff9bbe22b0b02c63c7f5ddb8d2a8d5"
+                "reference": "9313ecde04f7bed262716e3a4d32a5e2cea3ffad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/getopt-php/getopt-php/zipball/91c31c9bc0ff9bbe22b0b02c63c7f5ddb8d2a8d5",
-                "reference": "91c31c9bc0ff9bbe22b0b02c63c7f5ddb8d2a8d5",
+                "url": "https://api.github.com/repos/getopt-php/getopt-php/zipball/9313ecde04f7bed262716e3a4d32a5e2cea3ffad",
+                "reference": "9313ecde04f7bed262716e3a4d32a5e2cea3ffad",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -12110,9 +12110,9 @@
             "homepage": "http://getopt-php.github.io/getopt-php",
             "support": {
                 "issues": "https://github.com/getopt-php/getopt-php/issues",
-                "source": "https://github.com/getopt-php/getopt-php/tree/v4.0.3"
+                "source": "https://github.com/getopt-php/getopt-php/tree/v4.0.4"
             },
-            "time": "2022-12-13T20:37:45+00:00"
+            "time": "2025-02-11T14:42:04+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
