@@ -4,6 +4,7 @@ namespace FDMGLabels\Search;
 use Clarkson\Theme\ACFBlocks\Advertisement;
 use Clarkson\Theme\ACFBlocks\ArticlesInColumns;
 use Clarkson\Theme\ACFBlocks\FeaturedArticle;
+use Clarkson\Theme\ACFBlocks\InlineLink;
 use Clarkson\Theme\ACFBlocks\Partners;
 use Clarkson\Theme\ACFBlocks\RelatedArticles;
 use Clarkson\Theme\ACFBlocks\Team;
@@ -17,6 +18,9 @@ use WP_Query;
 use function ElasticPress\Utils\is_integrated_request;
 
 class ElasticPress {
+
+	private const DEFAULT_DECAY_SCALE = '1460d';
+
 	public function register_hooks(): void {
 		add_filter( 'ep_prepare_meta_allowed_keys', array( $this, 'index_meta' ), 10, 2 );
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_elasticsearch_to_context' ), 10, 2 );
@@ -30,11 +34,14 @@ class ElasticPress {
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'remove_analyzer_from_query' ) );
 		add_filter( 'ep_default_search_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
 		add_filter( 'ep_default_analyzer_filters', array( $this, 'remove_snowball_stem' ) );
+		add_filter( 'ep_analyzer_language', array( $this, 'limit_stopwords_list' ), 11, 2 );
 		add_filter( 'epwr_offset', array( $this, 'set_offset' ) );
 		add_filter( 'epwr_scale', array( $this, 'set_scale' ) );
 		add_filter( 'epwr_decay', array( $this, 'set_decay' ) );
+		add_filter( 'epwr_decay_function', array( $this, 'set_decay_function' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'boost_phrase_match' ) );
 		add_filter( 'ep_post_formatted_args_query', array( $this, 'maybe_remove_non_phrase_searches' ), 10, 2 );
+		add_filter( 'ep_feature_settings_schema', array( $this, 'add_settings' ), 10, 2 );
 	}
 
 	/**
@@ -64,11 +71,12 @@ class ElasticPress {
 
 
 	/**
-	 * Remove non-phrase searches from the search query if we are ordering by date.
+	 * Remove cross-fields searches from the query.
 	 *
-	 * If we are ordering by date, we do not use the relevance of the search results.
-	 * This causes slightly relevant results to be shown before the most relevant results if they are more recent.
-	 * Because of this, we want to limit date ordered searches to only phrase matches.
+	 * Cross-fields searches are searches that search for a phrase in multiple fields.
+	 * This is not desired, as it can lead to unexpected results.
+	 * For example, searching for 'netto pensioen' in the title and content fields
+	 * would also return results where 'netto' is in the title and 'pensioen' is in the content.
 	 *
 	 * @see https://app.asana.com/0/0/1208464277170192/1208517346683054/f
 	 *
@@ -81,39 +89,79 @@ class ElasticPress {
 			return $query;
 		}
 
-		// Do not alter the query if the orderby is not date
-		if ( ! isset( $query_vars['orderby'] ) || 'date' !== $query_vars['orderby'] ) {
-			return $query;
-		}
-
-		// Only keep phrase match query
 		$query['bool']['should'] = array_filter(
 			$query['bool']['should'], function ( array $should ): bool {
-				return $should['multi_match']['type'] === 'phrase';
+				return $should['multi_match']['type'] !== 'cross_fields';
 			}
 		);
+
 		return $query;
 	}
 
 	/**
+	 * Add decay scale options to the ElasticPress settings.
+	 *
+	 * @param array<string,mixed> $schema
+	 * @return array<string,mixed>
+	 */
+	public function add_settings( array $schema, string $slug ): array {
+		if ( 'search' !== $slug ) {
+			return $schema;
+		}
+
+		$option = array(
+			'default' => self::DEFAULT_DECAY_SCALE,
+			'type'    => 'string',
+			'key'     => 'fdmg_decay_scale',
+			'label'   => __( 'Decay scale', 'fdmg-labels' ),
+			'help'    => __( 'How long it takes for a post to lose 50% of it\'s score. Examples: 365d. Default: 1460d', 'fdmg-labels' ),
+		);
+
+		array_splice( $schema, 2, 0, array( $option ) );
+
+		return $schema;
+	}
+
+
+	/**
 	 * Set the offset for the search query.
 	 */
-	public function set_offset( string $offset ): string {
+	public function set_offset(): string {
 		return '1d';
 	}
 
 	/**
 	 * Set the decay for the search query.
 	 */
-	public function set_decay( string $decay ): string {
+	public function set_decay(): string {
 		return '0.5';
 	}
 
 	/**
 	 * Set the scale for the search query.
 	 */
-	public function set_scale( string $scale ): string {
-		return '365d';
+	public function set_scale(): string {
+		if ( ! class_exists( Features::class ) ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+
+		$feature_factory = Features::factory();
+		if ( ! $feature_factory instanceof Features ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+
+		$feature = $feature_factory->get_registered_feature( 'search' );
+		if ( ! $feature instanceof Search ) {
+			return self::DEFAULT_DECAY_SCALE;
+		}
+		return $feature->get_setting( 'fdmg_decay_scale' ) ?? self::DEFAULT_DECAY_SCALE;
+	}
+
+	/**
+	 * Set the decay function for the search query.
+	 */
+	public function set_decay_function(): string {
+		return 'linear';
 	}
 
 	/**
@@ -131,6 +179,46 @@ class ElasticPress {
 			}
 		);
 		return $filters;
+	}
+
+	/**
+	 * Limit the stopwords list for the search analyzer.
+	 *
+	 * @see https://www.elastic.co/guide/en/elasticsearch/guide/current/using-stopwords.html
+	 * @see https://app.asana.com/0/0/1209349785420643/1209506408269113/f
+	 *
+	 * @return string|string[] // Language or list of stopwords
+	 */
+	public function limit_stopwords_list( string $language, string $context ): mixed {
+		if ( $context !== 'filter_ep_stop' ) {
+			return $language;
+		}
+
+		if ( $language !== '_dutch_' ) {
+			return $language;
+		}
+
+		return array(
+			'de',
+			'en',
+			'van',
+			'te',
+			'dat',
+			'die',
+			'in',
+			'een',
+			'het',
+			'op',
+			'met',
+			'als',
+			'er',
+			'om',
+			'of',
+			'dit',
+			'tot',
+			'uit',
+			'der',
+		);
 	}
 
 	/**
@@ -262,7 +350,7 @@ class ElasticPress {
 	 */
 	public function replace_post_content_excerpt_highlighting(): void {
 		// Check if the ElasticPress plugin is active
-		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+		if ( ! class_exists( Features::class ) ) {
 			return;
 		}
 
@@ -298,7 +386,7 @@ class ElasticPress {
 	 */
 	public function highlight_excerpt_from_content( string $excerpt, WP_Post $post ): string {
 		// Check if the ElasticPress plugin is active
-		if ( ! class_exists( '\\ElasticPress\\Features' ) ) {
+		if ( ! class_exists( Features::class ) ) {
 			return $excerpt;
 		}
 
@@ -415,6 +503,7 @@ class ElasticPress {
 			sprintf( 'acf/block-%s', Partners::BLOCK_NAME ),
 			sprintf( 'acf/block-%s', RelatedArticles::BLOCK_NAME ),
 			sprintf( 'acf/block-%s', Team::BLOCK_NAME ),
+			sprintf( 'acf/block-%s', InlineLink::BLOCK_NAME ),
 		);
 
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
