@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f668b0c4191e8d42462dcad3f98c3b2d",
+    "content-hash": "a05f4d49f46d6cd64cf0da76556ec1f2",
     "packages": [
         {
             "name": "brick/math",
@@ -4467,15 +4467,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "1.5.2",
+            "version": "1.7.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/1.5.2"
+                "reference": "tags/1.7.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.5.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.1.7.0.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
