@@ -40,9 +40,12 @@
 
 @mixin textarea {
 	@include form-control;
-	height: 150px;
-	padding: $spacing-3;
-	line-height: inherit;
+
+	& {
+		height: 150px;
+		padding: $spacing-3;
+		line-height: inherit;
+	}
 
 	@include breakpoint(sm) {
 		height: 150px;
@@ -51,8 +54,8 @@
 }
 
 @mixin label {
-	font-weight: 700;
 	@include font-size(16px);
+	font-weight: 700;
 	display: block;
 	margin-bottom: 5px;
 	cursor: pointer;
@@ -165,14 +168,17 @@
 
 @mixin select {
 	@include form-control;
-	border: 2px solid var(--primary);
-	border-radius: 3px;
-	background: url('../images/icons/chevron-down.svg');
-	background-size: 14px;
-	background-position: calc(100% - #{$spacing-3}) calc(50%);
-	background-repeat: no-repeat;
-	background-color: var(--base-50);
-	padding-right: calc(#{$spacing-6} + #{$spacing-3});
+
+	& {
+		border: 2px solid var(--primary);
+		border-radius: 3px;
+		background: url('../images/icons/chevron-down.svg');
+		background-size: 14px;
+		background-position: calc(100% - #{$spacing-3}) calc(50%);
+		background-repeat: no-repeat;
+		background-color: var(--base-50);
+		padding-right: calc(#{$spacing-6} + #{$spacing-3});
+	}
 
 	@include dark-mode {
 		background-color: var(--base-700);
