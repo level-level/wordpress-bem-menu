@@ -7263,16 +7263,16 @@
         },
         {
             "name": "level-level/phpstan-config",
-            "version": "v1.1.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/phpstan-config.git",
-                "reference": "960f5246d6d87f1472c499bcbb74f16f65ae823e"
+                "reference": "8434d70e6e953fa165b52dee28f5fc63af49c519"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/phpstan-config/zipball/960f5246d6d87f1472c499bcbb74f16f65ae823e",
-                "reference": "960f5246d6d87f1472c499bcbb74f16f65ae823e",
+                "url": "https://api.github.com/repos/level-level/phpstan-config/zipball/8434d70e6e953fa165b52dee28f5fc63af49c519",
+                "reference": "8434d70e6e953fa165b52dee28f5fc63af49c519",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7295,10 +7295,10 @@
             ],
             "description": "PHPStan config files for projects",
             "support": {
-                "source": "https://github.com/level-level/phpstan-config/tree/v1.1.2",
+                "source": "https://github.com/level-level/phpstan-config/tree/v1.3.0",
                 "issues": "https://github.com/level-level/phpstan-config/issues"
             },
-            "time": "2025-01-14T13:20:40+00:00"
+            "time": "2025-02-28T15:14:09+00:00"
         },
         {
             "name": "lucatume/wp-browser",
