@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ddb4f6b9e7f5cc54303e503a3c538dc7",
+    "content-hash": "d4f13d8544681b82bf52be6cb5689b0e",
     "packages": [
         {
             "name": "brick/math",
@@ -980,16 +980,16 @@
         },
         {
             "name": "level-level/clarkson-wp-cli-twig-translations",
-            "version": "v1.0.3",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/level-level/clarkson-wp-cli-twig-translations.git",
-                "reference": "6509c1c52b986be06ca6d82a477e3d42d2ad8dfa"
+                "reference": "2bd3c8f16771e9de70a72bcfa732588b6d6a0932"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/6509c1c52b986be06ca6d82a477e3d42d2ad8dfa",
-                "reference": "6509c1c52b986be06ca6d82a477e3d42d2ad8dfa",
+                "url": "https://api.github.com/repos/level-level/clarkson-wp-cli-twig-translations/zipball/2bd3c8f16771e9de70a72bcfa732588b6d6a0932",
+                "reference": "2bd3c8f16771e9de70a72bcfa732588b6d6a0932",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1028,10 +1028,10 @@
             ],
             "description": "Smart WP-CLI command to cache the Twig templates so they can be read by PoEdit",
             "support": {
-                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.3",
+                "source": "https://github.com/level-level/clarkson-wp-cli-twig-translations/tree/v1.0.6",
                 "issues": "https://github.com/level-level/clarkson-wp-cli-twig-translations/issues"
             },
-            "time": "2024-05-03T11:51:32+00:00"
+            "time": "2025-01-02T14:02:02+00:00"
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
