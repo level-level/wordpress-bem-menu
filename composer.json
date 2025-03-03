@@ -64,7 +64,7 @@
         "mhcg/monolog-wp-cli": "^1.0",
         "psr/http-factory": "^1.1",
         "ramsey/uuid": "^4.7",
-        "twig/twig": "3.11.3",
+        "twig/twig": "^3.20",
         "vinkla/extended-acf": "^14.2",
         "woocommerce/action-scheduler": "^3.6",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
