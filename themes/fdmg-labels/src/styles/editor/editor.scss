@@ -55,13 +55,19 @@
 
 		*[data-type='core/quote'] {
 			@include blockquote;
-			margin-left: auto;
-			margin-right: auto;
+
+			& {
+				margin-left: auto;
+				margin-right: auto;
+			}
 		}
 
 		ol[data-type='core/list'] {
 			@include ordered-list-style;
-			margin: 0 auto;
+
+			& {
+				margin: 0 auto;
+			}
 
 			li {
 				margin-top: 0;
@@ -70,7 +76,10 @@
 
 		ul[data-type='core/list'] {
 			@include unordered-list-style;
-			margin: 0 auto;
+
+			& {
+				margin: 0 auto;
+			}
 
 			li {
 				margin-top: 0;
