@@ -23,6 +23,7 @@ import CommentForm from './modules/comment-form';
 import TagManager from './modules/tag-manager';
 import PaywallLoginButton from './modules/paywall-login-button';
 import dataLayer from './datalayer/datalayer';
+import SocialsToggle from './modules/socials-toggle';
 
 ModuleInitializer({
 	'navigation-advertisement': NavigationAdvertisement,
@@ -46,6 +47,7 @@ ModuleInitializer({
 	'comment-form': CommentForm,
 	'tag-manager': TagManager,
 	'paywall-login-button': PaywallLoginButton,
+	'socials-toggle': SocialsToggle,
 });
 
 dataLayer();
