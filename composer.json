@@ -47,7 +47,6 @@
         "fdmg-labels/fdmg-content-api-client": "^1.4",
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
-        "level-level/clarkson-wp-cli-twig-translations": "^1.0",
         "level-level/fdmg-server-side-tracking": "^1.2",
         "level-level/ll-paywall": "^1.0",
         "level-level/ll-plugin-autoloader": "^3.0",
@@ -64,7 +63,7 @@
         "mhcg/monolog-wp-cli": "^1.0",
         "psr/http-factory": "^1.1",
         "ramsey/uuid": "^4.7",
-        "twig/twig": "^3.20",
+        "timber/wp-i18n-twig": "^1.0",
         "vinkla/extended-acf": "^14.2",
         "woocommerce/action-scheduler": "^3.6",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
@@ -138,10 +137,9 @@
             "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
-            "wp clarkson-twig-translations --require=vendor/level-level/clarkson-wp-cli-twig-translations/clarkson-wp-cli-twig-translations.php --template-dir=./themes/fdmg-labels/templates --output-dir=./themes/fdmg-labels/dist/rendered-templates",
-            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
-            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
-            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
+            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
+            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
+            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
         ],
         "generate:fdmg-content-api": [
             "Composer\\Config::disableProcessTimeout",
