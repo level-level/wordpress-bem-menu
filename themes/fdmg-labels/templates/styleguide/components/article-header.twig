@@ -63,31 +63,59 @@
 
 	{% if authors or date.date and date.datetime and date.date_full %}
 		<div class="order-3 mt-3">
-			<div class="flex items-center gap-6">
+			<div class="flex gap-4 sm:gap-6 flex-wrap sm:flex-nowrap justify-between">
 
-				{% if authors %}
-					<div>
+				<div class="flex gap-2 flex-wrap sm:gap-6 sm:flex-nowrap">
+					{% if authors %}
 						<span class="sr-only">
 							{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 						</span>
-						<ul class="flex gap-3">
+						<ul class="flex gap-4 gap-y-2 flex-wrap">
 							{% for object in authors %}
-								<li>
+								<li class="flex gap-1 items-center">
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
-										class: 'btn-secondary !p-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
+										class: 'btn-secondary !p-0 !text-base !border-0 theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 hocus:!underline',
 									} %}
+									{% if object.email %}
+										{% include 'styleguide/components/buttons/button-link.twig' with {
+											text: '',
+											icon: 'email',
+											url: 'mailto:' ~ object.email,
+											class: 'btn-secondary !p-0 !border-0 !text-lg theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
+											aria_label: _x('Send an email to %s', 'Screen reader text', 'fdmg-labels')|format(object.name),
+										} %}
+									{% endif %}
 								</li>
 							{% endfor %}
 						</ul>
-					</div>
-				{% endif %}
+					{% endif %}
 
-				{% if date.date and date.datetime and date.date_full %}
-					<div>
-						<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-						<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
+					{% if date.date and date.datetime and date.date_full %}
+						<div class="flex items-center shrink-0">
+							<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
+						</div>
+					{% endif %}
+				</div>
+
+				{% if has_comments_enabled %}
+					<div class="flex shrink-0">
+						{% set button_label = _x('Add comment', 'Button text', 'fdmg-labels') %}
+						{% if comment_count > 1 %}
+							{% set button_label = _x('%s comments', 'Button text', 'fdmg-labels')|format(comment_count) %}
+						{% elseif comment_count == 1 %}
+							{% set button_label = _x('%s comment', 'Button text', 'fdmg-labels')|format(comment_count) %}
+						{% endif %}
+
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: button_label,
+							url: '#comment-form',
+							class: 'btn-secondary !p-0 !border-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 !underline',
+							icon: 'comment',
+							icon_left: true,
+						} %}
 					</div>
 				{% endif %}
 

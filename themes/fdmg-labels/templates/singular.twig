@@ -28,6 +28,7 @@
 			sections: sections,
 		} only %}
 	{% endif %}
+
 	<article class="section" {{ datalayer.get_config(object, 'PAGEVIEW') }}>
 		{% set authors = object.get_authors() %}
 		{% include 'styleguide/components/article-header.twig' with {
@@ -49,8 +50,11 @@
 				name: author.get_title(),
 				location: author.get_location(),
 				url: author.get_permalink(),
+				email: author.get_email_address(),
 			}),
-			notice: object.get_old_article_message()
+			notice: object.get_old_article_message(),
+			has_comments_enabled: object.has_comments_enabled(),
+			comment_count: object.get_comments_count(),
 		} %}
 
 		<div class="entry-content">
