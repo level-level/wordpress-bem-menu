@@ -4,6 +4,7 @@ namespace Clarkson\Theme\ACFBlocks;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Select;
+use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
@@ -17,6 +18,7 @@ class Advertisement {
 	public const BLOCK_META_USE_MULTIPLE_SLOTS = 'use_multiple_slots';
 	public const BLOCK_META_SLOTS              = 'slots';
 	public const BLOCK_META_SLOT               = 'slot';
+	public const BLOCK_META_TITLE              = 'title';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -76,6 +78,12 @@ class Advertisement {
 					TrueFalse::make( _x( 'Use multiple advertisement slots', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USE_MULTIPLE_SLOTS )
 						->helperText( _x( 'Check this box to select multple advertisement slots to render in this block.', 'Field', 'fdmg-labels-admin' ) )
 						->stylized(),
+					Text::make( _x( 'Optional title above the advertisement(s)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::BLOCK_META_USE_MULTIPLE_SLOTS, '==', '1' ),
+							)
+						),
 					Repeater::make( _x( 'Advertisement slots', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SLOTS )
 						->fields(
 							array(
