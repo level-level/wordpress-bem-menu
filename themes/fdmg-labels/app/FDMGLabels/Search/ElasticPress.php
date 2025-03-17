@@ -62,7 +62,8 @@ class ElasticPress {
 		}
 
 		foreach ( $query['bool']['should'] as &$should ) {
-			if ( isset( $should['multi_match']['query'] ) && $should['multi_match']['type'] === 'phrase' ) {
+			$type = $should['multi_match']['type'] ?? '';
+			if ( isset( $should['multi_match']['query'] ) && $type === 'phrase' ) {
 				$should['multi_match']['boost'] = 9999;
 			}
 		}
