@@ -5249,16 +5249,16 @@
         },
         {
             "name": "yoast/wordpress-seo",
-            "version": "24.5",
+            "version": "24.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Yoast-dist/wordpress-seo.git",
-                "reference": "74ac5d95490c7a229292b09c4299259a7fc0bbef"
+                "reference": "e41836371cede36c4151c1f67f72cb192c1a4170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/74ac5d95490c7a229292b09c4299259a7fc0bbef",
-                "reference": "74ac5d95490c7a229292b09c4299259a7fc0bbef",
+                "url": "https://api.github.com/repos/Yoast-dist/wordpress-seo/zipball/e41836371cede36c4151c1f67f72cb192c1a4170",
+                "reference": "e41836371cede36c4151c1f67f72cb192c1a4170",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5324,7 +5324,7 @@
                 "source": "https://github.com/Yoast/wordpress-seo",
                 "wiki": "https://github.com/Yoast/wordpress-seo/wiki"
             },
-            "time": "2025-02-18T09:18:37+00:00"
+            "time": "2025-03-18T09:09:13+00:00"
         }
     ],
     "packages-dev": [
