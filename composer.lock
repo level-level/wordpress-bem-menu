@@ -3998,16 +3998,16 @@
         },
         {
             "name": "twig/html-extra",
-            "version": "v3.12.0",
+            "version": "v3.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/html-extra.git",
-                "reference": "4cdfc6f419910ad6ef9c4c9fafbcd1d5793b4f4c"
+                "reference": "f7d54d4de1b64182af745cfb66777f699b599734"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/html-extra/zipball/4cdfc6f419910ad6ef9c4c9fafbcd1d5793b4f4c",
-                "reference": "4cdfc6f419910ad6ef9c4c9fafbcd1d5793b4f4c",
+                "url": "https://api.github.com/repos/twigphp/html-extra/zipball/f7d54d4de1b64182af745cfb66777f699b599734",
+                "reference": "f7d54d4de1b64182af745cfb66777f699b599734",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4017,10 +4017,10 @@
                 ]
             },
             "require": {
-                "php": ">=8.0.2",
+                "php": ">=8.1.0",
                 "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/mime": "^5.4|^6.4|^7.0",
-                "twig/twig": "^3.0"
+                "twig/twig": "^3.13|^4.0"
             },
             "require-dev": {
                 "symfony/phpunit-bridge": "^6.4|^7.0"
@@ -4056,7 +4056,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/twigphp/html-extra/tree/v3.12.0"
+                "source": "https://github.com/twigphp/html-extra/tree/v3.20.0"
             },
             "funding": [
                 {
@@ -4068,7 +4068,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-08-18T17:25:19+00:00"
+            "time": "2025-01-31T20:45:36+00:00"
         },
         {
             "name": "twig/intl-extra",
