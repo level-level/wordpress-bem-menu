@@ -215,7 +215,6 @@ class SendNewsletterScheduler {
 			return;
 		}
 
-		// Reschedule all newsletters that are scheduled
 		/** @var int[] */
 		$newsletter_ids = get_posts(
 			array(
@@ -226,17 +225,18 @@ class SendNewsletterScheduler {
 			)
 		);
 		foreach ( $newsletter_ids as $newsletter_id ) {
+			// If the newsletter is not scheduled, skip it
 			$was_scheduled = as_has_scheduled_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
 			if ( ! $was_scheduled ) {
 				continue;
 			}
 
+			// Reschedule the newsletter sending
 			$this->selligent_logger->add_post_log(
 				$newsletter_id,
 				'Newsletter will be rescheduled because the UTC timezone offset has changed.',
 				LogLine::LEVEL_INFO
 			);
-
 			$this->schedule_sync( $newsletter_id );
 		}
 
