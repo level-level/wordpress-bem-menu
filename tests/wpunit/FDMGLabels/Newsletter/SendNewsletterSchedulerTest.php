@@ -7,6 +7,7 @@ use Clarkson\Theme\PostTypes\Post as PostTypesPost;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
 use DateTimeImmutable;
+use DateTimeZone;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\Logging\Selligent\SelligentLogger;
 use lucatume\WPBrowser\TestCase\WPTestCase;
@@ -15,6 +16,8 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
+
+		$this->timezone_string_backup = get_option( 'timezone_string' );
 
 		$this->post = new post(
 			$this->factory()->post->create_and_get(
@@ -29,6 +32,9 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 
 	public function tearDown(): void {
 		parent::tearDown();
+
+		update_option( 'timezone_string', $this->timezone_string_backup );
+
 		wp_delete_post( $this->post->get_id(), true );
 	}
 
@@ -199,6 +205,63 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		$scheduler->maybe_sync( $newsletter->get_id() );
 
 		$this->assertNotEmpty( get_field( 'send', $newsletter->get_id() ) );
+	}
+
+	public function test_rescheduled_on_timezone_change(): void {
+		$date_3_days_from_now_utc_plus_one = ( new DateTimeImmutable( '+3 days', new DateTimeZone( 'Etc/GMT+1' ) ) )->setTime( 15, 0, 0, 0 );
+		$date_3_days_from_now_utc_plus_two = ( new DateTimeImmutable( '+3 days', new DateTimeZone( 'Etc/GMT+2' ) ) )->setTime( 15, 0, 0, 0 );
+
+		// Change timezone
+		update_option( 'timezone_string', 'Etc/GMT+1' );
+		update_option( 'gmt_offset', 1 );
+
+		// Set offset to current
+		update_option( 'fdmg_labels_newsletter_timezone_offset', $date_3_days_from_now_utc_plus_one->getOffset() );
+
+		// Create newsletter
+		$newsletter = new ii_newsletter(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'  => 'Test newsletter selligent',
+					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_status' => 'publish',
+				)
+			)
+		);
+
+		update_field(
+			'send', array(
+				'action'     => '1',
+				'interval'   => 'repetitive',
+				'repetitive' => array(
+					'weekdays' => array( $date_3_days_from_now_utc_plus_one->format( 'w' ) ),
+					'time'     => $date_3_days_from_now_utc_plus_one->format( 'H:i:s' ),
+				),
+			), $newsletter->get_id()
+		);
+		do_action( 'save_post', $newsletter->get_id(), $newsletter->get_object(), true );
+
+		// Test scheduled time
+		$scheduled_ts = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
+		$this->assertGreaterThanOrEqual( $date_3_days_from_now_utc_plus_one->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00 UTC+1' );
+		$this->assertLessThanOrEqual( $date_3_days_from_now_utc_plus_one->getTimestamp() + 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00 UTC+1' );
+
+		// Change timezone
+		update_option( 'timezone_string', 'Etc/GMT+2' );
+		update_option( 'gmt_offset', 2 );
+
+		// Call reschedule_syncs_on_timezone_offset_change
+		$service   = $this->createMock( NewsletterSenderService::class );
+		$scheduler = new SendNewsletterScheduler( $service );
+		$scheduler->maybe_reschedule_syncs_on_timezone_offset_change();
+
+		// Test new offset is stored
+		$this->assertEquals( $date_3_days_from_now_utc_plus_two->getOffset(), (int) get_option( 'fdmg_labels_newsletter_timezone_offset' ) );
+
+		// Test scheduled time
+		$scheduled_ts = as_next_scheduled_action( 'fdmg_labels_send_newsletter', array( $newsletter->get_id() ), 'fdmg_labels' );
+		$this->assertGreaterThanOrEqual( $date_3_days_from_now_utc_plus_two->getTimestamp() - 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00 UTC+2' );
+		$this->assertLessThanOrEqual( $date_3_days_from_now_utc_plus_two->getTimestamp() + 5, $scheduled_ts, 'Sync should be scheduled at the next occurance of 15:00:00 UTC+2' );
 	}
 
 	protected function assert_is_logged( ii_newsletter $newsletter, string $testmode = '0' ) {

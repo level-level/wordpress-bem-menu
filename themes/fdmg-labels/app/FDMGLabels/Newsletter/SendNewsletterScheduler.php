@@ -25,6 +25,7 @@ class SendNewsletterScheduler {
 	public function register_hooks(): void {
 		add_action( 'save_post', array( $this, 'schedule_sync' ) );
 		add_action( self::TRIGGER, array( $this, 'maybe_sync' ), 10, 1 );
+		add_action( 'init', array( $this, 'maybe_reschedule_syncs_on_timezone_offset_change' ) );
 	}
 
 	/**
@@ -194,5 +195,52 @@ class SendNewsletterScheduler {
 
 		// Actually send the newsletter
 		$this->sender_service->send( $newsletter_id, Newsletter::META_PREVIEW_RECIPIENTS_OPTION_ALL );
+	}
+
+	/**
+	 * Reschedule the syncs if the timezone UTC offset has changed.
+	 * For example, when switching between summer and winter time.
+	 * This is needed because the cron jobs are scheduled in UTC timezone.
+	 * If the offset changes, the scheduled time will be wrong.
+	 * This will reschedule all newsletters that are scheduled so they are
+	 * scheduled at the correct time.
+	 */
+	public function maybe_reschedule_syncs_on_timezone_offset_change(): void {
+		$current_timezone    = wp_timezone();
+		$current_utc_offset  = $current_timezone->getOffset( new DateTimeImmutable( 'now', $current_timezone ) );
+		$previous_utc_offset = (int) get_option( 'fdmg_labels_newsletter_timezone_offset', 0 );
+
+		// If the timezone offset has not changed, do nothing
+		if ( $current_utc_offset === $previous_utc_offset ) {
+			return;
+		}
+
+		// Reschedule all newsletters that are scheduled
+		/** @var int[] */
+		$newsletter_ids = get_posts(
+			array(
+				'post_type'      => Newsletter::POST_TYPE_NAME,
+				'posts_per_page' => 100, // If there are more than 100 newsletters, something is wrong
+				'post_status'    => 'any',
+				'fields'         => 'ids',
+			)
+		);
+		foreach ( $newsletter_ids as $newsletter_id ) {
+			$was_scheduled = as_has_scheduled_action( self::TRIGGER, array( $newsletter_id ), ActionSchedulerSetup::GROUP );
+			if ( ! $was_scheduled ) {
+				continue;
+			}
+
+			$this->selligent_logger->add_post_log(
+				$newsletter_id,
+				'Newsletter will be rescheduled because the UTC timezone offset has changed.',
+				LogLine::LEVEL_INFO
+			);
+
+			$this->schedule_sync( $newsletter_id );
+		}
+
+		// Update the timezone offset in the database
+		update_option( 'fdmg_labels_newsletter_timezone_offset', $current_utc_offset );
 	}
 }
