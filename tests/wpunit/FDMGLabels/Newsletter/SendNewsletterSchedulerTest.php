@@ -18,7 +18,7 @@ class SendNewsletterSchedulerTest extends WPTestCase {
 		parent::setUp();
 
 		$this->timezone_string_backup = get_option( 'timezone_string' );
-		$this->gmt_offset_backup     = get_option( 'gmt_offset' );
+		$this->gmt_offset_backup      = get_option( 'gmt_offset' );
 
 		$this->post = new post(
 			$this->factory()->post->create_and_get(
