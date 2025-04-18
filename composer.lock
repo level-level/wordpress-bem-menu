@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "411e8fe4b38562c454b3b28af4099a66",
+    "content-hash": "c97dd439772e56bedfbf04459b51d0a5",
     "packages": [
         {
             "name": "brick/math",
@@ -1865,16 +1865,16 @@
         },
         {
             "name": "mentosmenno2/image-crop-positioner",
-            "version": "v0.6.3",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mentosmenno2/image-crop-positioner.git",
-                "reference": "7964175640156b7e384b499a63b10321cd120fe9"
+                "reference": "3a6ff02b93c55d2e871312d7dca8e83e34491be1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/7964175640156b7e384b499a63b10321cd120fe9",
-                "reference": "7964175640156b7e384b499a63b10321cd120fe9",
+                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/3a6ff02b93c55d2e871312d7dca8e83e34491be1",
+                "reference": "3a6ff02b93c55d2e871312d7dca8e83e34491be1",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1884,14 +1884,14 @@
                 ]
             },
             "require": {
-                "php": ">=7.3"
+                "php": ">=8.0"
             },
             "require-dev": {
-                "mentosmenno2/coding-standards": "^1.0",
-                "niels-de-blaauw/php-doc-check": "^0.2.2",
+                "mentosmenno2/coding-standards": "^1.5",
+                "niels-de-blaauw/php-doc-check": "^0.4.0",
                 "phpstan/extension-installer": "^1.3",
-                "szepeviktor/phpstan-wordpress": "^1.3",
-                "wp-cli/wp-cli-bundle": "*"
+                "szepeviktor/phpstan-wordpress": "^2.0",
+                "wp-cli/wp-cli-bundle": "^2.11"
             },
             "type": "wordpress-plugin",
             "autoload": {
@@ -1911,9 +1911,9 @@
             "description": "Face recognition and hotspot selection for cropping images in WordPress.",
             "support": {
                 "issues": "https://github.com/mentosmenno2/image-crop-positioner/issues",
-                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v0.6.3"
+                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v1.0.0"
             },
-            "time": "2024-12-10T09:47:50+00:00"
+            "time": "2025-04-18T09:40:32+00:00"
         },
         {
             "name": "mhcg/monolog-wp-cli",
@@ -14663,7 +14663,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
@@ -14671,6 +14671,6 @@
         "ext-libxml": "*",
         "ext-mbstring": "^7.1"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

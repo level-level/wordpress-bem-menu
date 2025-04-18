@@ -59,7 +59,7 @@
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "ll-premium/searchwp": "^4.2",
         "ll-premium/wpai-acf-add-on": "^3.3",
-        "mentosmenno2/image-crop-positioner": "^0.6.0",
+        "mentosmenno2/image-crop-positioner": "^1.0",
         "mhcg/monolog-wp-cli": "^1.0",
         "psr/http-factory": "^1.1",
         "ramsey/uuid": "^4.7",
