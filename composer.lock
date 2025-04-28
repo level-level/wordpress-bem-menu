@@ -7585,16 +7585,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "4.4.2",
+            "version": "4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "01ac557ef3769651d488c466cc181e0f479e30be"
+                "reference": "cc96ba1977208474fbeedd3fc42c8985edebddf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/01ac557ef3769651d488c466cc181e0f479e30be",
-                "reference": "01ac557ef3769651d488c466cc181e0f479e30be",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/cc96ba1977208474fbeedd3fc42c8985edebddf0",
+                "reference": "cc96ba1977208474fbeedd3fc42c8985edebddf0",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7620,9 +7620,9 @@
                 "ext-pdo": "*",
                 "ext-zip": "*",
                 "php": "^8.0",
-                "phpunit/phpunit": "<=12.0.0",
-                "symfony/filesystem": ">=4.4.24 <7.0",
-                "symfony/process": ">=4.4.24 <7.0",
+                "phpunit/phpunit": "<12.0.0",
+                "symfony/filesystem": ">=4.4.24 <8.0",
+                "symfony/process": ">=4.4.24 <8.0",
                 "vlucas/phpdotenv": "^5.0"
             },
             "require-dev": {
@@ -7679,7 +7679,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/4.4.2"
+                "source": "https://github.com/lucatume/wp-browser/tree/4.5.2"
             },
             "funding": [
                 {
@@ -7687,7 +7687,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-22T12:28:52+00:00"
+            "time": "2025-04-25T21:34:31+00:00"
         },
         {
             "name": "masterminds/html5",
