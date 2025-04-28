@@ -1760,11 +1760,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.3.18",
+            "version": "4.4.0",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.3.18",
-                "shasum": "f1a36ecba6be081a1d0343cf09951de58d448fd3",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.4.0",
+                "shasum": "443228b77b5fb6a96219acc79541a14d774fd44b",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1777,10 +1777,12 @@
             },
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "SearchWP",
-                "homepage": "https://searchwp.com/"
-            },
+            "authors": [
+                {
+                    "name": "SearchWP",
+                    "homepage": "https://searchwp.com/"
+                }
+            ],
             "description": "The best WordPress search you can find",
             "homepage": "https://searchwp.com/"
         },
