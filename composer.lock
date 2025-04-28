@@ -1670,11 +1670,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.9.5",
+            "version": "2.9.7.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.5",
-                "shasum": "a39ab0fb437184b2504d7f3e610a01b4f2afd977",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.7.1",
+                "shasum": "e6605838b33bef814f224793dbc80d8abecc56e3",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1687,10 +1687,12 @@
             },
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "Gravity Forms",
-                "homepage": "https://gravityforms.com"
-            },
+            "authors": [
+                {
+                    "name": "Gravity Forms",
+                    "homepage": "https://gravityforms.com"
+                }
+            ],
             "description": "Easily create web forms and manage form entries within the WordPress admin.",
             "homepage": "https://gravityforms.com"
         },
