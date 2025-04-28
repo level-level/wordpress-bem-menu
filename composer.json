@@ -137,15 +137,26 @@
             "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
         ],
         "generate:fdmg-content-api": [
             "Composer\\Config::disableProcessTimeout",
             "sudo rm -rf themes/fdmg-labels/_generated/FDMGContentAPI",
             "mkdir -p themes/fdmg-labels/_generated/FDMGContentAPI",
             "FDMG_CONTENT_API_VERSION=$(cat themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml | docker run --rm -i evns/yq --raw-output \".info.version\") && docker run --rm -v $PWD/:/local openapitools/openapi-generator-cli:v7.6.0 generate -i /local/themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml -g php --additional-properties=invokerPackage=FDMGContentAPIClient --additional-properties=artifactVersion=$FDMG_CONTENT_API_VERSION --git-user-id=fdmg-labels --git-repo-id=fdmg-content-api-client -o /local/themes/fdmg-labels/_generated/FDMGContentAPI"
+        ],
+        "post-install-cmd": [
+            "@remove-wp-cli-binary"
+        ],
+        "post-update-cmd": [
+            "@remove-wp-cli-binary"
+        ],
+        "remove-wp-cli-binary": [
+            "echo \"Removing wp-cli binary installed by wp-browser, as this conflicts with local translation generation.\"",
+            "test -f vendor/bin/wp && rm ./vendor/bin/wp || echo \"WP-CLI not installed locally.\"",
+            "test -f vendor/bin/wp.bat && rm ./vendor/bin/wp.bat || echo \"WP-CLI not installed locally.\""
         ]
     },
     "extra": {
