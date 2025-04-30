@@ -27,7 +27,7 @@ class Downloads {
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
 				'title'       => _x( 'Downloads', 'Block', 'fdmg-labels-admin' ),
-				'description' => _x( 'Displays downloads from Download monitor.', 'Block', 'fdmg-labels-admin' ),
+				'description' => _x( 'Offer the reader downloadable files such as a PDF with this block. First add it yourself under Downloads in the WordPress menu. Then you can select it below.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'download',
 				'align'       => 'right', // full, wide, left, center, right
 				'keywords'    => array(
@@ -60,7 +60,7 @@ class Downloads {
 					Group::make( _x( 'Downloads', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_GROUP )
 					->fields(
 						array(
-							Text::make( _x( 'Title', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
+							Text::make( _x( 'Title of the downloads block', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE ),
 
 							Relationship::make( _x( 'Select downloads', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_DOWNLOADS )
 								->required()
