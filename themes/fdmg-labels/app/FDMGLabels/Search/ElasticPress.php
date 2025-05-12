@@ -92,7 +92,7 @@ class ElasticPress {
 
 		$query['bool']['should'] = array_filter(
 			$query['bool']['should'], function ( array $should ): bool {
-				return $should['multi_match']['type'] !== 'cross_fields';
+				return ( $should['multi_match']['type'] ?? '' ) !== 'cross_fields';
 			}
 		);
 
