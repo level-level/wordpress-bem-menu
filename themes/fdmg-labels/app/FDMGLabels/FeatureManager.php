@@ -34,6 +34,9 @@ class FeatureManager {
 	// Article options
 	public const FEATURE_ENABLE_MESSAGE_OLD_ARTICLES = 'enable_message_old_articles';
 
+	// Footer options
+	public const FEATURE_ENABLE_B_CORP_LOGO = 'enable_b_corp_logo';
+
 	public function register_hooks(): void {
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
 	}
