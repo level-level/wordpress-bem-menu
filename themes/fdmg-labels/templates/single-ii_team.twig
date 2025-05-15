@@ -102,7 +102,7 @@
 		{% include 'styleguide/components/bio.twig' with {
 			title: title,
 			excerpt: object.get_excerpt(),
-			image: image_id ? wp_get_attachment_image(image_id, 'thumbnail', false, {alt: ''}),
+			image: image_id ? wp_get_attachment_image(image_id, 'large', false, {alt: ''}),
 			email: object.get_email_address(),
 			linkedin: object.get_linkedin(),
 		} only %}
