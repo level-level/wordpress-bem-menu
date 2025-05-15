@@ -26,7 +26,7 @@ class Downloads {
 		acf_register_block_type(
 			array(
 				'name'        => 'block-' . self::BLOCK_NAME,
-				'title'       => _x( 'Downloads', 'Block', 'fdmg-labels-admin' ),
+				'title'       => _x( 'Downloads block', 'Block', 'fdmg-labels-admin' ),
 				'description' => _x( 'Offer the reader downloadable files such as a PDF with this block. First add it yourself under Downloads in the WordPress menu. Then you can select it below.', 'Block', 'fdmg-labels-admin' ),
 				'icon'        => 'download',
 				'align'       => 'right', // full, wide, left, center, right
@@ -55,7 +55,7 @@ class Downloads {
 		register_extended_field_group(
 			array(
 				'key'      => self::FIELD_GROUP,
-				'title'    => _x( 'Downloads', 'Fields', 'fdmg-labels-admin' ),
+				'title'    => _x( 'Downloads block', 'Fields', 'fdmg-labels-admin' ),
 				'fields'   => array(
 					Group::make( _x( 'Downloads', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_GROUP )
 					->fields(
