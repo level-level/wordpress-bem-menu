@@ -1,8 +1,9 @@
 	<footer class="print:hidden">
-		<div class="relative font-normal py-9 bg-secondary-300 dark:bg-base-400 theme-energeia:bg-secondary-200 theme-pensioen-pro:bg-secondary-200 lg:py-12">
-			<div class="container">
-				<div class="mb-6 max-w-[224px] sm:mb-12 lg:max-w-none">
-					<a
+		<div class="relative font-normal py-9 bg-secondary-300 dark:bg-base-400 theme-energeia:bg-secondary-200 theme-pensioen-pro:bg-secondary-200 lg:py-12 space-y-">
+			<div class="container mb-6 sm:mb-12">
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
+					<div class="max-w-[224px] lg:max-w-none">
+						<a
 							data-component="Logo"
 							href="{{ esc_url(home_url('/')) }}"
 							class="inline-block"
@@ -14,6 +15,14 @@
 							</span>
 						</a>
 
+					</div>
+					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_B_CORP_LOGO', feature_manager)) %}
+						<div class="md:col-start-4">
+							<a href="https://fdmg.nl/b-corp/" class="block svg:h-[90px] svg:w-auto text-secondary-700 dark:text-base-100">
+								{{ svg_icons.get('logo-b-corp')|raw }}
+							</a>
+						</div>
+					{% endif %}
 				</div>
 			</div>
 			<nav aria-labelledby="footer-heading">
