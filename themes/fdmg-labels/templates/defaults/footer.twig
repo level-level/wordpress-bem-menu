@@ -18,7 +18,7 @@
 					</div>
 					{% if feature_manager.is_enabled(constant('FEATURE_ENABLE_B_CORP_LOGO', feature_manager)) %}
 						<div class="md:col-start-4">
-							<a href="https://fdmg.nl/b-corp/" class="block svg:h-[90px] svg:w-auto text-secondary-700 dark:text-base-100">
+							<a href="https://fdmg.nl/b-corp/" class="block svg:h-[90px] svg:w-auto text-secondary-700 dark:text-base-100" aria-label="{{ _x('B Corp logo, go to the B Corp page', 'Screen reader text', 'fdmg-labels') }}">
 								{{ svg_icons.get('logo-b-corp')|raw }}
 							</a>
 						</div>
