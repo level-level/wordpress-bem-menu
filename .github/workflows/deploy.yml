@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        type: environment
+        required: true
+jobs:
+  setup_vars:
+    name: Setup vars
+    uses: level-level/build-workflows/.github/workflows/setup-servers.yml@v1.3.1
+    with:
+      environment: ${{ inputs.environment }}
+  build:
+    name: Build
+    uses: level-level/build-workflows/.github/workflows/deploy.yml@v1.3.1
+    secrets: inherit
+    needs: setup_vars
+    with:
+      php_version: ${{ needs.setup_vars.outputs.php_version }}
+  release:
+    name: Release
+    uses: level-level/build-workflows/.github/workflows/release.yml@v1.3.1
+    secrets: inherit
+    needs:
+      - build
+      - setup_vars
+    with:
+      servers: ${{ needs.setup_vars.outputs.servers }}
+      php_version: ${{ needs.setup_vars.outputs.php_version }}
+      deploy_timestamp: ${{ needs.setup_vars.outputs.deploy_timestamp }}

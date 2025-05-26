@@ -1,0 +1,9 @@
+[
+    {
+        "name": "test - vps-03.shared.lvl.li",
+        "hostname": "vps-03.shared.lvl.li",
+        "port": "2251",
+        "username": "devops",
+        "deploy_path": "/srv/http/shared/deploys"
+    }
+]
