@@ -4382,16 +4382,16 @@
         },
         {
             "name": "vinkla/extended-acf",
-            "version": "14.3.0",
+            "version": "14.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/extended-acf.git",
-                "reference": "9142fb37b39683fc1b5eeadaf32dcf4c0a1e4ba3"
+                "reference": "d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/9142fb37b39683fc1b5eeadaf32dcf4c0a1e4ba3",
-                "reference": "9142fb37b39683fc1b5eeadaf32dcf4c0a1e4ba3",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f",
+                "reference": "d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4404,7 +4404,7 @@
                 "php": "^8.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "^11.0",
+                "phpunit/phpunit": "^11.0 || ^12.0",
                 "symfony/var-dumper": "^7.0"
             },
             "suggest": {
@@ -4413,7 +4413,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "14.3-dev"
+                    "dev-master": "14.4-dev"
                 }
             },
             "autoload": {
@@ -4445,9 +4445,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/extended-acf/issues",
-                "source": "https://github.com/vinkla/extended-acf/tree/14.3.0"
+                "source": "https://github.com/vinkla/extended-acf/tree/14.4.0"
             },
-            "time": "2025-02-25T09:16:11+00:00"
+            "time": "2025-05-08T12:50:23+00:00"
         },
         {
             "name": "woocommerce/action-scheduler",
