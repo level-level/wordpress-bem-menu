@@ -1670,11 +1670,11 @@
         },
         {
             "name": "ll-premium/gravityforms",
-            "version": "2.9.7.1",
+            "version": "2.9.8",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.7.1",
-                "shasum": "e6605838b33bef814f224793dbc80d8abecc56e3",
+                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.8",
+                "shasum": "87ee3aaa25462271b70871cc2bf389fe125423ca",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
