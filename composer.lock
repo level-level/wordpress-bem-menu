@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c725738d5e91d9ed9485ea88c280bb35",
+    "content-hash": "e70ddf15fb2f645c0a4563634e8725bd",
     "packages": [
         {
             "name": "brick/math",
@@ -5480,16 +5480,16 @@
         },
         {
             "name": "cebe/php-openapi",
-            "version": "1.8.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cebe/php-openapi.git",
-                "reference": "893ab104be1f5dfe5a39766703f583584e43c6e1"
+                "reference": "020d72b8e3a9a60bc229953e93eda25c49f46f45"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cebe/php-openapi/zipball/893ab104be1f5dfe5a39766703f583584e43c6e1",
-                "reference": "893ab104be1f5dfe5a39766703f583584e43c6e1",
+                "url": "https://api.github.com/repos/cebe/php-openapi/zipball/020d72b8e3a9a60bc229953e93eda25c49f46f45",
+                "reference": "020d72b8e3a9a60bc229953e93eda25c49f46f45",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -5500,9 +5500,9 @@
             },
             "require": {
                 "ext-json": "*",
-                "justinrainbow/json-schema": "^5.2 || ^6.0",
+                "justinrainbow/json-schema": "^5.2",
                 "php": ">=7.1.0",
-                "symfony/yaml": "^3.4 || ^4 || ^5 || ^6 || ^7.0"
+                "symfony/yaml": "^3.4 || ^4 || ^5 || ^6"
             },
             "conflict": {
                 "symfony/yaml": "3.4.0 - 3.4.4 || 4.0.0 - 4.4.17 || 5.0.0 - 5.1.9 || 5.2.0"
@@ -5513,7 +5513,7 @@
                 "mermade/openapi3-examples": "1.0.0",
                 "nexmo/api-specification": "1.0.0",
                 "oai/openapi-specification": "3.0.3",
-                "phpstan/phpstan": "^0.12.0 || ^1.9",
+                "phpstan/phpstan": "^0.12.0",
                 "phpunit/phpunit": "^6.5 || ^7.5 || ^8.5 || ^9.4"
             },
             "bin": [
@@ -5551,7 +5551,7 @@
                 "issues": "https://github.com/cebe/php-openapi/issues",
                 "source": "https://github.com/cebe/php-openapi"
             },
-            "time": "2025-05-07T08:44:12+00:00"
+            "time": "2022-04-20T14:46:44+00:00"
         },
         {
             "name": "codeception/codeception",
@@ -12166,16 +12166,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v7.2.6",
+            "version": "v6.4.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "0feafffb843860624ddfd13478f481f4c3cd8b23"
+                "reference": "f01987f45676778b474468aa266fe2eda1f2bc7e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/0feafffb843860624ddfd13478f481f4c3cd8b23",
-                "reference": "0feafffb843860624ddfd13478f481f4c3cd8b23",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/f01987f45676778b474468aa266fe2eda1f2bc7e",
+                "reference": "f01987f45676778b474468aa266fe2eda1f2bc7e",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -12185,15 +12185,15 @@
                 ]
             },
             "require": {
-                "php": ">=8.2",
-                "symfony/deprecation-contracts": "^2.5|^3.0",
+                "php": ">=8.1",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<6.4"
+                "symfony/console": "<5.4"
             },
             "require-dev": {
-                "symfony/console": "^6.4|^7.0"
+                "symfony/console": "^5.4|^6.0|^7.0"
             },
             "bin": [
                 "Resources/bin/yaml-lint"
@@ -12224,7 +12224,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.2.6"
+                "source": "https://github.com/symfony/yaml/tree/v6.4.21"
             },
             "funding": [
                 {
@@ -12240,7 +12240,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-04T10:10:11+00:00"
+            "time": "2025-04-04T09:48:44+00:00"
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
