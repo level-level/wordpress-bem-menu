@@ -41,7 +41,7 @@ class AuthTest extends WPTestCase {
 		$this->assertStringContainsString( '_ga=5678', $this->redirects_helper->get_redirect_location() );
 		$this->assertStringContainsString( 'loginHint=anotherone%40example.test', $this->redirects_helper->get_redirect_location() );
 		$this->assertStringContainsString( 'method=ipBasedRedirect', $this->redirects_helper->get_redirect_location() );
-		$this->assertStringContainsString( 'scope=openid%20profile%20email', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'scope=openid%20profile%20email', $this->redirects_helper->get_redirect_location(), 'Parameters must be rawurlencoded, not urlencoded' );
 
 		remove_filter( 'openid-connect-generic-auth-url', array( $this, 'change_openid_login_url' ) );
 		remove_filter( 'shortcode_atts_openid_connect_generic_auth_url', array( $this, 'change_openid_scope' ) );
