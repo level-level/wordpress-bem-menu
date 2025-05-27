@@ -69,8 +69,18 @@ class LoginController extends AbstractMainController {
 			$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth OpenID Connect not enabled' );
 		}
 
-		// Redirect to the login url.
+		// Get the login url.
 		$login_url = add_query_arg( $add_url_params, oidcg_get_authentication_url() );
+
+		/**
+		 * Login url contains urlencoded parameters (from add_query_arg).
+		 * However, the OpenID Connect plugin expects the parameters to be rawurlencoded.
+		 * To make the parameters rawurlencoded, we need to replace plus (+) characters with %20.
+		 * This is the main difference between rawurlencode and urlencode.
+		 */
+		$login_url = str_replace( '+', '%20', $login_url );
+
+		// Redirect to the login url.
 		$this->redirect_and_exit( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect', false );
 	}
 
