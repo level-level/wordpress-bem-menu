@@ -1,0 +1,9 @@
+[
+    {
+        "name": "acc - acc-01.impact-investor.lvl.li",
+        "hostname": "acc-01.impact-investor.lvl.li",
+        "port": "2223",
+        "username": "devops",
+        "deploy_path": "/srv/http/shared/deploys"
+    }
+]
