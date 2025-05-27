@@ -142,6 +142,12 @@ class Features {
 											ConditionalLogic::where( FeatureManager::FEATURE_ENABLE_MESSAGE_OLD_ARTICLES, '==', '1' ),
 										)
 									),
+
+								Tab::make( _x( 'Footer options', 'Fields', 'fdmg-labels-admin' ), 'footer_options' )
+									->placement( 'left' ),
+								TrueFalse::make( _x( 'Enable B Corp logo', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_ENABLE_B_CORP_LOGO )
+									->stylized(),
+
 							)
 						),
 				),

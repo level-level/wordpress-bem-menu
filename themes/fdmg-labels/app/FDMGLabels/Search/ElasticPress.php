@@ -62,7 +62,8 @@ class ElasticPress {
 		}
 
 		foreach ( $query['bool']['should'] as &$should ) {
-			if ( isset( $should['multi_match']['query'] ) && $should['multi_match']['type'] === 'phrase' ) {
+			$type = $should['multi_match']['type'] ?? '';
+			if ( isset( $should['multi_match']['query'] ) && $type === 'phrase' ) {
 				$should['multi_match']['boost'] = 9999;
 			}
 		}
@@ -91,7 +92,7 @@ class ElasticPress {
 
 		$query['bool']['should'] = array_filter(
 			$query['bool']['should'], function ( array $should ): bool {
-				return $should['multi_match']['type'] !== 'cross_fields';
+				return ( $should['multi_match']['type'] ?? '' ) !== 'cross_fields';
 			}
 		);
 
