@@ -1,7 +1,11 @@
 <?php
 namespace Clarkson\Theme\ACFBlocks;
 
+use Extended\ACF\ConditionalLogic;
+use Extended\ACF\Fields\Repeater;
 use Extended\ACF\Fields\Select;
+use Extended\ACF\Fields\Text;
+use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Location;
 use Gutenberg\Blocks\base_block;
 
@@ -11,7 +15,10 @@ class Advertisement {
 	protected const FIELD_GROUP = 'block_advertisement';
 
 	public const BLOCK_META_ADVERTISEMENT_SLOT = 'advertisement_slot';
-
+	public const BLOCK_META_USE_MULTIPLE_SLOTS = 'use_multiple_slots';
+	public const BLOCK_META_SLOTS              = 'slots';
+	public const BLOCK_META_SLOT               = 'slot';
+	public const BLOCK_META_TITLE              = 'title';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -62,7 +69,44 @@ class Advertisement {
 						)
 						->format( 'value' )
 						->nullable()
-						->required(),
+						->required()
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::BLOCK_META_USE_MULTIPLE_SLOTS, '==', '0' ),
+							)
+						),
+					TrueFalse::make( _x( 'Use multiple advertisement slots', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_USE_MULTIPLE_SLOTS )
+						->helperText( _x( 'Check this box to select multple advertisement slots to render in this block.', 'Field', 'fdmg-labels-admin' ) )
+						->stylized(),
+					Text::make( _x( 'Optional title above the advertisement(s)', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_TITLE )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::BLOCK_META_USE_MULTIPLE_SLOTS, '==', '1' ),
+							)
+						),
+					Repeater::make( _x( 'Advertisement slots', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SLOTS )
+						->fields(
+							array(
+								Select::make( _x( 'Advertisement slot', 'Fields', 'fdmg-labels-admin' ), self::BLOCK_META_SLOT )
+									->helperText( _x( 'Select an advertisement slot from the list.', 'Field', 'fdmg-labels-admin' ) )
+									->choices(
+										array_combine(
+											$ad_slots,
+											$ad_slots
+										)
+									)
+										->format( 'value' )
+										->required(),
+							)
+						)
+						->minRows( 2 )
+						->button( _x( 'Add slot', 'Fields', 'fdmg-labels-admin' ) )
+						->layout( 'table' )
+						->conditionalLogic(
+							array(
+								ConditionalLogic::where( self::BLOCK_META_USE_MULTIPLE_SLOTS, '==', '1' ),
+							)
+						),
 				),
 				'location' => array(
 					Location::where( 'block', 'acf/block-' . self::BLOCK_NAME ),
@@ -91,6 +135,9 @@ class Advertisement {
 			'Home/Mid4',
 			'Home/Mid5',
 			'Home/Mid6',
+			'Home/Mid7',
+			'Home/Mid8',
+			'Home/Mid9',
 			'Page/Header',
 			'Page/Mid1',
 			'Page/Mid2',
