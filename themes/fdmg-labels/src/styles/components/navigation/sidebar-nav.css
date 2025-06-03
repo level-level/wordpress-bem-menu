@@ -37,6 +37,7 @@
 .sidebar-nav__item--active .sidebar-nav__link {
 	@apply bg-secondary-400 dark:bg-base-400 text-base-800;
 	@apply theme-fd:text-base-600 theme-fd:bg-paper-50;
+	@apply theme-bnr:text-primary theme-bnr:bg-transparent;
 }
 
 .sidebar-nav__link {
@@ -48,6 +49,7 @@
 	@apply focus:outline-base-50;
 	@apply rounded-[3px];
 	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:dark:hocus:text-base-600;
+	@apply theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:hocus:bg-transparent;
 }
 
 .sidebar-nav__link-icon {
@@ -71,6 +73,7 @@
 	@apply relative bg-secondary-700 pb-3 px-[18px] block dark:bg-base-400;
 	@apply aria-hidden:hidden sm:aria-hidden:invisible sm:aria-hidden:opacity-0;
 	@apply theme-fd:bg-transparent;
+	@apply theme-bnr:bg-transparent;
 }
 
 .sidebar-nav-sub .sidebar-nav-sub {
@@ -88,4 +91,5 @@
 	@apply sm:hocus:dark:text-base-50;
 	@apply text-base;
 	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
+	@apply theme-bnr:hocus:text-primary;
 }

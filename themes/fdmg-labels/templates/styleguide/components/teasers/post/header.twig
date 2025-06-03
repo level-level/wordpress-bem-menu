@@ -10,7 +10,7 @@
 <div data-component="post/header" class="flex flex-col">
 	<div class="order-2 mt-2 sm:mt-3">
 		<{{ useH3 ? 'h3' : 'h2' }} class="{{ title_style }}">
-			<a href="{{ url }}" class="no-underline break-words transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800 theme-fd:hocus:text-base-600 theme-fd:dark:text-paper-50 theme-fd:dark:group-focus-within/teaser:text-paper-50">
+			<a href="{{ url }}" class="no-underline break-words transition-colors absolute-link hocus:text-primary theme-energeia:hocus:text-base-800 hocus:underline hocus:dark:text-primary-300 group-focus-within/teaser:text-primary group-focus-within/teaser:underline dark:group-focus-within/teaser:text-primary-300 theme-energeia:group-focus-within/teaser:text-base-800 theme-fd:hocus:text-base-600 theme-fd:dark:text-paper-50 theme-fd:dark:group-focus-within/teaser:text-paper-50 theme-bnr:hocus:text-base-800 theme-bnr:group-focus-within/teaser:text-base-800">
 				{{ title|raw }}
 			</a>
 		</{{ useH3 ? 'h3' : 'h2' }}>
@@ -55,7 +55,7 @@
 
 				{% if date.datetime and date.date_full and date.readable %}
 					<div class="shrink-0">
-						<div class="text-[13px] text-secondary-700 dark:text-base-100 theme-fd:text-base-600 theme-fd:dark:text-paper-50">
+						<div class="text-[13px] text-secondary-700 dark:text-base-100 theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-bnr:text-base-800 theme-fd:font-proxima theme-bnr:font-jakarta">
 							<time datetime="{{ date.datetime|raw }}">{{ date.readable|raw }}</time>
 						</div>
 					</div>

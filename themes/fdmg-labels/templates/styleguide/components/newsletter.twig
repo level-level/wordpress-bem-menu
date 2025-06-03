@@ -1,16 +1,16 @@
 {% if title or image or content or button %}
-	<div data-component="newsletter" class="relative bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-300">
+	<div data-component="newsletter" class="relative bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-300 theme-bnr:bg-base-50 theme-bnr:border theme-bnr:border-base-200">
 		<div class="p-3 sm:p-4">
 			<div class="flex flex-col gap-6">
 
 				{% if title %}
-					<h3 class="text-base font-bold sm:text-md theme-fd:font-proxima">
+					<h3 class="text-base font-bold sm:text-md theme-fd:font-proxima theme-bnr:font-jakarta">
 						{{ title }}
 					</h3>
 				{% endif %}
 
 				{% if image %}
-					<div class="border-b border-secondary-400 -mx-3 dark:border-base-800 dark:bg-base-600 sm:-mx-3 image:mx-auto image:max-w-[92px] theme-fd:border-paper-50 theme-fd:dark:border-paper-600">
+					<div class="border-b border-secondary-400 -mx-3 dark:border-base-800 dark:bg-base-600 sm:-mx-3 image:mx-auto image:max-w-[92px] theme-fd:border-paper-50 theme-fd:dark:border-paper-600 theme-bnr:border-base-200">
 						{{ image|raw }}
 					</div>
 				{% endif %}

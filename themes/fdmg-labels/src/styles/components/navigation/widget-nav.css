@@ -16,6 +16,7 @@
 	@apply hocus:underline;
 	@apply py-1 focus:outline-base-50 sm:text-md;
 	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
+	@apply theme-bnr:hocus:text-primary;
 }
 
 .sidebar-nav-sub__link {

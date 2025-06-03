@@ -5,9 +5,9 @@
 			{% set comment_count = object.get_comments_count() %}
 			{% if comment_count > 0 %}
 				<div id="comments" class="pt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))] -mt-[calc(theme(space.header-height)+theme(space.admin-bar)+theme(space.6))]">
-					<div class="relative border-b-2 bg-secondary-100 border-secondary-400 dark:bg-base-600 dark:border-transparent theme-fd:bg-paper-50">
-						<div class="px-3 py-3 border-b border-secondary-400 dark:border-base-800 sm:px-6 theme-fd:border-paper-300">
-							<h2 class="font-bold font-figtree text-md text-primary dark:text-primary-300 sm:text-lg theme-energeia:text-base-800 theme-fd:font-proxima">
+					<div class="relative border-b-2 bg-secondary-100 border-secondary-400 dark:bg-base-600 dark:border-transparent theme-fd:bg-paper-50 theme-bnr:bg-base-50 theme-bnr:border theme-bnr:border-base-200">
+						<div class="px-3 py-3 border-b border-secondary-400 dark:border-base-800 sm:px-6 theme-fd:border-paper-300 theme-fd:dark:bg-paper-800 theme-bnr:border-base-200 theme-fd:dark:border-paper-600">
+							<h2 class="font-bold font-figtree text-md text-primary dark:text-primary-300 sm:text-lg theme-energeia:text-base-800 theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:text-base-800">
 								{{ _nx('%d comment', '%d comments', comment_count, 'Comment', 'fdmg-labels')|format(comment_count) }}
 							</h2>
 						</div>

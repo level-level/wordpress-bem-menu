@@ -2,7 +2,7 @@
 
 <div data-component="oembed" class="max-w-5xl print:hidden" data-module="oembed" data-source="consent_embed_{{ source }}" data-type="{{ embed_type }}" data-disable-notice="{{ disable_notice }}" {{ cmp_id ? "data-cmp-id=" ~ cmp_id }} data-theme="{{ site.active_theme }}">
 	<div data-oembed="content">
-		<div data-oembed="placeholder" class="flex flex-col items-center justify-center h-full text-center bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800">
+		<div data-oembed="placeholder" class="flex flex-col items-center justify-center h-full text-center bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-100">
 			<div class="p-8">
 				<p class="mb-7" id="{{ cookie_id }}">{{ notice_text }}</p>
 				{% include "styleguide/components/buttons/button-element.twig" with {

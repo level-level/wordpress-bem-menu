@@ -69,7 +69,7 @@
 
 	&:checked + label {
 		&:before {
-			@apply bg-secondary-600 dark:bg-primary-300 theme-fd:bg-secondary-400 theme-fd:dark:bg-secondary-400;
+			@apply bg-secondary-600 dark:bg-primary-300 theme-fd:bg-secondary-400 theme-fd:dark:bg-secondary-400 theme-bnr:bg-primary;
 		}
 
 		&:after {
@@ -87,14 +87,14 @@
 }
 
 @mixin radiobutton-label {
-	@apply font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
 	font-weight: 400;
 	position: relative;
 	padding-left: calc(18px + #{$spacing-2});
 	margin: 0;
 
 	&:before {
-		@apply border-2 border-secondary-600 dark:border-primary-300 theme-fd:border-secondary-400 theme-fd:dark:border-secondary-400;
+		@apply border-2 border-secondary-600 dark:border-primary-300 theme-fd:border-secondary-400 theme-fd:dark:border-secondary-400 theme-bnr:border-primary;
 		position: absolute;
 		left: 0;
 		top: 2px;

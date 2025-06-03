@@ -2,7 +2,7 @@
 
 	{% if comment_content %}
 		<div class="order-2 mb-2 text-base">
-			<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800 theme-fd:dark:text-paper-50">
+			<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800 theme-fd:dark:text-paper-50 theme-bnr:hocus:text-base-800">
 				<span class="block mb-2">{{ comment_author ? _x('%s commented on %s:', 'Comments', 'fdmg-labels')|format(comment_author, title)|raw }}</span>
 
 				{% set max_length = 80 %}
@@ -15,7 +15,7 @@
 			</a>
 		</div>
 	{% else %}
-		<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800 theme-fd:dark:text-paper-50">
+		<a href="{{ url }}" class="relative order-2 block pr-8 text-base no-underline break-words hocus:text-primary hocus:underline hocus:dark:text-primary-300 absolute-link theme-energeia:hocus:text-base-800 theme-fd:dark:text-paper-50 theme-bnr:hocus:text-base-800">
 			{{ title|raw }}
 
 			<div class="absolute right-0 -translate-y-1/2 top-1/2">
@@ -25,7 +25,7 @@
 	{% endif %}
 
 	{% if comment_count %}
-		<div class="order-2 mt-2 text-sm text-secondary-700 dark:text-base-100">
+		<div class="order-2 mt-2 text-sm text-secondary-700 dark:text-base-100 theme-bnr:text-base-800">
 			<div class="flex items-center gap-2 text-sm">
 				<span class="icon-inline" aria-hidden="true">{{ svg_icons.get('comment')|raw }}</span>
 				{% if comment_count is same as(1) %}
@@ -38,7 +38,7 @@
 	{% endif %}
 
 	{% if datetime and date or terms %}
-		<div class="text-sm text-secondary-700 mb-[5px] dark:text-base-100 theme-fd:dark:text-paper-50">
+		<div class="text-sm text-secondary-700 mb-[5px] dark:text-base-100 theme-fd:dark:text-paper-50 theme-bnr:text-base-800">
 			<div class="flex gap-6 flex-nowrap">
 
 				{% if terms %}

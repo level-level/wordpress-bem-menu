@@ -3,9 +3,9 @@
 
 {% if objects %}
 	<div class="{{ align }} print:hidden" data-name="{{ block.name }}">
-		<div class="relative border-b-2 border-secondary-400 bg-secondary-100 dark:bg-base-600 dark:border-transparent theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800">
+		<div class="relative border-b-2 border-secondary-400 bg-secondary-100 dark:bg-base-600 dark:border-transparent theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-50 theme-bnr:border theme-bnr:border-base-200">
 
-			<h2 class="p-3 text-lg font-bold border-b text-primary border-secondary-400 dark:border-base-800 sm:text-xl sm:py-3 sm:px-6 theme-energeia:text-base-800 dark:text-primary-300 theme-fd:font-proxima theme-fd:border-paper-300">{{ title|raw }}</h2>
+			<h2 class="p-3 text-lg font-bold border-b text-primary border-secondary-400 dark:border-base-800 sm:text-xl sm:py-3 sm:px-6 theme-energeia:text-base-800 dark:text-primary-300 theme-fd:font-proxima theme-fd:border-paper-300 theme-bnr:font-jakarta theme-bnr:border-base-200 theme-bnr:text-base-800 theme-fd:dark:border-paper-600">{{ title|raw }}</h2>
 
 			<ul class="py-3">
 				{% for object in objects %}
