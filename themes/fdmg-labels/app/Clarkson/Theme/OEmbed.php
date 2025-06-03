@@ -19,6 +19,10 @@ class OEmbed {
 	 * @return string
 	 */
 	public function rewrite_oembed( string $html, string $url ): string {
+		if ( str_starts_with( $url, home_url() ) ) {
+			return sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_attr( $url ) );
+		}
+
 		$oembed       = _wp_oembed_get_object();
 		$provider_url = $oembed->get_provider( $url ) ?: $url;
 		$source       = $this->get_source( $provider_url );
