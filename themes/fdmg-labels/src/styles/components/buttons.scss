@@ -23,18 +23,21 @@
 	@apply font-bold text-secondary-700 p-0 pr-3 rounded-[20px] dark:text-primary-300 sm:pr-[17px];
 	@apply btn-text:no-underline;
 	@apply hocus:bg-primary hocus:text-base-50 theme-energeia:hocus:text-base-800 theme-pensioen-pro:dark:hocus:text-base-800 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
+	@apply theme-fd:hocus:bg-primary theme-fd:btn-icon:bg-primary;
 }
 
 .btn-menu {
 	@apply text-lg flex flex-col items-center justify-center p-0 min-w-[32px] dark:text-base-100;
 	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] compact-header:btn-text:text-sm aria-expanded:text-base-50 aria-expanded:z-0 leading-none;
 	@apply compact-header:text-base-50;
+	@apply theme-fd:compact-header:btn-icon:text-base-600 theme-fd:text-base-600;
 }
 
 .btn-menu-close {
 	@apply btn-icon:text-xl btn-text:pl-2 text-lg flex items-center justify-center p-0 dark:text-base-100;
 	@apply btn-text:text-md aria-expanded:text-base-50 aria-expanded:z-0 leading-none;
 	@apply text-base-50;
+	@apply theme-fd:text-base-600;
 }
 
 .btn-header {
@@ -45,6 +48,7 @@
 	@apply compact-header:btn-icon:text-base-50 compact-header:btn-icon:hocus:text-base-800 compact-header:hocus:bg-secondary-400 compact-header:dark:hocus:bg-base-300 compact-header:hocus:text-base-800 compact-header:dark:hocus:text-base-50;
 	@apply compact-header:dark:btn-icon:hocus:text-base-50;
 	@apply compact-header:p-[10px] py-[14px];
+	@apply theme-fd:btn-icon:text-base-600;
 }
 
 .btn-share {

@@ -1,13 +1,13 @@
 {% if title and url %}
-	<a data-component="badge" href="{{ url }}" class="relative block text-sm font-bold border-2 sm:text-base hocus:text-base-800 hocus:dark:text-primary-300 bg-primary border-primary text-base-50 no-underline py-1 px-[10px] dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 hocus:bg-transparent hocus:dark:bg-transparent transition-[background,color] theme-energeia:text-base-800 theme-energeia:dark:text-base-700 hocus:theme-energeia:dark:text-base-50 text-nowrap">
+	<a data-component="badge" href="{{ url }}" class="relative block text-sm font-bold border-2 sm:text-base hocus:text-base-800 hocus:dark:text-primary-300 bg-primary border-primary text-base-50 no-underline py-1 px-[10px] dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 hocus:bg-transparent hocus:dark:bg-transparent transition-[background,color] theme-energeia:text-base-800 theme-energeia:dark:text-base-700 hocus:theme-energeia:dark:text-base-50 text-nowrap theme-fd:text-base-600">
 		{{ title|raw }}
 	</a>
 {% elseif title and rich %}
-	<div data-component="badge" class="relative block text-sm font-bold border-2 sm:text-base bg-primary border-primary text-base-50 no-underline py-1 px-[10px] theme-energeia:text-base-800 dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-energeia:dark:text-base-700 text-nowrap">
+	<div data-component="badge" class="relative block text-sm font-bold border-2 sm:text-base bg-primary border-primary text-base-50 no-underline py-1 px-[10px] theme-energeia:text-base-800 dark:bg-primary-300 dark:border-primary-300 dark:text-base-800 theme-energeia:dark:text-base-700 text-nowrap theme-fd:text-base-600">
 		{{ title|raw }}
 	</div>
 {% elseif title %}
-	<div data-component="badge" class="relative text-primary dark:text-primary-300 theme-energeia:dark:text-base-200 theme-energeia:text-secondary-700 theme-pensioen-pro:text-secondary-700 text-nowrap">
+	<div data-component="badge" class="relative text-primary dark:text-primary-300 theme-energeia:dark:text-base-200 theme-energeia:text-secondary-700 theme-pensioen-pro:text-secondary-700 text-nowrap theme-fd:text-base-600">
 		{{ title|raw }}
 	</div>
 {% endif %}

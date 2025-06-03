@@ -7,7 +7,7 @@
 
 {% if title and menu %}
 	<div data-name="{{ block.name }}">
-		<p class="mb-2 text-base uppercase font-bold {{ is_admin() ? 'text-base-800' : 'text-base-50' }}">{{ title|raw }}</p>
+		<p class="mb-2 text-base uppercase font-bold {{ is_admin() ? 'text-base-800' : 'text-base-50 theme-fd:text-base-600' }}">{{ title|raw }}</p>
 		{{ menu|raw }}
 	</div>
 {% else %}
@@ -18,4 +18,3 @@
 		]
 	} %}
 {% endif %}
-

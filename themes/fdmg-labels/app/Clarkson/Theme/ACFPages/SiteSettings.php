@@ -57,6 +57,8 @@ class SiteSettings {
 											'impact-investor' => 'Impact Investor',
 											'energeia'     => 'Energeia',
 											'pensioen-pro' => 'Pensioen Pro',
+											'fd'           => 'FD',
+											'bnr'          => 'BNR',
 										),
 									)
 									->required()
