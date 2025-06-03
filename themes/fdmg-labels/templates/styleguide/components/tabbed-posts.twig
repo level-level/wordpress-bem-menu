@@ -1,11 +1,11 @@
 {% if most_read or latest %}
-	<div data-component="tabbed-posts" class="border-b-2 border-secondary-400 dark:border-transparent theme-energeia:border-primary theme-pensioen-pro:border-primary theme-fd:border-secondary-400" data-module="tabs">
+	<div data-component="tabbed-posts" class="border-b-2 border-secondary-400 dark:border-transparent theme-energeia:border-primary theme-pensioen-pro:border-primary theme-fd:border-secondary-400 theme-fd:dark:border-secondary-400" data-module="tabs">
 		<ul class="flex flex-nowrap border-b border-[rgb(0,0,0,0.1)] dark:border-base-800" role="tablist">
 
 			{% set most_read_button_element %}
 				{% if most_read %}
 					<li role="presentation" class="grow js-item {{ show_latest_articles_first ? 'order-2' }}">
-						<a role="tab" href="#most-read" id="tab1" class="font-bold text-base text-center relative block py-4 px-4 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-100 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-base-800 aria-selected:cursor-auto hocus:z-[1] js-link theme-fd:bg-paper-50 theme-fd:font-proxima theme-fd:text-base-600 theme-fd:border-secondary-400" {{ not show_latest_articles_first ? 'aria-selected="true"' }}>
+						<a role="tab" href="#most-read" id="tab1" class="font-bold text-base text-center relative block py-4 px-4 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-100 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-base-800 aria-selected:cursor-auto hocus:z-[1] js-link theme-fd:bg-paper-50 theme-fd:font-proxima theme-fd:text-base-600 theme-fd:border-secondary-400 theme-fd:dark:text-paper-50 theme-fd:dark:bg-paper-800 theme-fd:aria-selected:dark:border-secondary-400" {{ not show_latest_articles_first ? 'aria-selected="true"' }}>
 							{{ most_read_posts_title|default(_x('Most read', 'Block', 'fdmg-labels')) }}
 						</a>
 					</li>
@@ -15,7 +15,7 @@
 			{% set latest_articles_button_element %}
 				{% if latest %}
 					<li role="presentation" class="grow js-item">
-						<a role="tab" href="#latest" id="tab2" class="font-bold text-base text-center relative block py-4 px-4 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-100 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-base-800 aria-selected:cursor-auto hocus:z-[1] js-link theme-fd:bg-paper-50 theme-fd:font-proxima theme-fd:text-base-600 theme-fd:border-secondary-400" {{ show_latest_articles_first or not most_read ? 'aria-selected="true"' }}>
+						<a role="tab" href="#latest" id="tab2" class="font-bold text-base text-center relative block py-4 px-4 pb-[calc(15px-4px)] bg-base-50 no-underline border-b-4 border-transparent text-primary transition-colors dark:text-primary-300 dark:bg-base-600 hocus:bg-secondary-100 hocus:underline hocus:dark:bg-base-400 hocus:dark:text-primary-300 aria-selected:border-primary aria-selected:text-primary aria-selected:dark:border-primary-300 aria-selected:dark:text-primary-300 aria-selected:hocus:bg-base-50 aria-selected:hocus:no-underline aria-selected:hocus:dark:bg-base-600 theme-energeia:text-base-800 aria-selected:cursor-auto hocus:z-[1] js-link theme-fd:bg-paper-50 theme-fd:font-proxima theme-fd:text-base-600 theme-fd:border-secondary-400 theme-fd:dark:text-paper-50 theme-fd:dark:bg-paper-800 theme-fd:aria-selected:dark:border-secondary-400" {{ show_latest_articles_first or not most_read ? 'aria-selected="true"' }}>
 							{{ latest_posts_title|default(_x('Latest articles', 'Block', 'fdmg-labels')) }}
 						</a>
 					</li>
@@ -33,7 +33,7 @@
 		</ul>
 
 		{% if most_read %}
-			<div id="most-read" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section theme-fd:bg-paper-50" {{ show_latest_articles_first ? 'aria-hidden="true"' }}>
+			<div id="most-read" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800" {{ show_latest_articles_first ? 'aria-hidden="true"' }}>
 				{% include 'styleguide/components/most-read-articles.twig' with {
 					objects: most_read ? most_read|map(post => {
 						title: post.get_alternative_title()|default(post.get_title()),
@@ -45,7 +45,7 @@
 		{% endif %}
 
 		{% if latest %}
-			<div id="latest" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section theme-fd:bg-paper-50" {{ show_latest_articles_first or not most_read ? 'aria-hidden="false"' : 'aria-hidden="true"' }}>
+			<div id="latest" class="block bg-base-50 dark:bg-base-600 aria-hidden:hidden js-section theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800" {{ show_latest_articles_first or not most_read ? 'aria-hidden="false"' : 'aria-hidden="true"' }}>
 				{% include 'styleguide/components/list-component.twig' with {
 					objects: latest ? latest|map(post => {
 						title: post.get_alternative_title()|default(post.get_title()),

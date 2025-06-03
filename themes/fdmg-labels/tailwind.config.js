@@ -131,6 +131,8 @@ module.exports = {
 			'paper-100': 'var(--paper-100)',
 			'paper-200': 'var(--paper-200)',
 			'paper-300': 'var(--paper-300)',
+			'paper-600': 'var(--paper-600)',
+			'paper-800': 'var(--paper-800)',
 		},
 		fontFamily: {
 			figtree: ['"Figtree Variable"', 'sans-serif'],

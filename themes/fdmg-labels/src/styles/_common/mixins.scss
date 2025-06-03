@@ -2,7 +2,7 @@
 
 @mixin heading {
 	@apply font-libre font-bold block m-0 p-0 text-base-700 dark:text-base-100;
-	@apply theme-fd:font-arnhem;
+	@apply theme-fd:font-arnhem theme-fd:dark:text-paper-50;
 	@apply theme-bnr:font-jakarta;
 }
 

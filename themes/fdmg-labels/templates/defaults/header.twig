@@ -2,7 +2,7 @@
 {% set navigation_ad_active = is_active_sidebar('widget-area-navigation-ad') %}
 
 <header class="{{ navigation_ad_active ? 'h-auto' : 'h-header-height items-center' }} sticky z-50 top-admin-bar left-0 right-0 shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex flex-col bg-secondary-600 text-base-50 theme-pensioen-pro:bg-primary' }} print:hidden
-theme-fd:bg-paper-200 theme-fd:border-b theme-fd:border-paper-300">
+theme-fd:bg-paper-200 theme-fd:border-b theme-fd:border-paper-300 theme-fd:dark:bg-base-600 theme-fd:dark:border-paper-600">
 
 	<!-- Skiplink -->
 	{% include 'partials/components/skiplink.twig' with {

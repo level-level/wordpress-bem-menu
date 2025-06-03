@@ -15,7 +15,7 @@
 	@apply sm:dark:text-base-50;
 	@apply hocus:underline;
 	@apply py-1 focus:outline-base-50 sm:text-md;
-	@apply theme-fd:text-base-600;
+	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
 }
 
 .sidebar-nav-sub__link {
