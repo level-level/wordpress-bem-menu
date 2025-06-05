@@ -114,6 +114,11 @@ class Features {
 									->stylized()
 									->default( false ),
 
+								TrueFalse::make( _x( 'Disable auto preview for post url embeds', 'Fields', 'fdmg-labels-admin' ), FeatureManager::FEATURE_DISABLE_EMBED_POST_URL_AUTO_PREVIEW )
+									->helperText( _x( 'This is only visible in the frontend of the website.', 'Fields', 'fdmg-labels-admin' ) )
+									->stylized()
+									->default( false ),
+
 								Tab::make( _x( 'Article options', 'Fields', 'fdmg-labels-admin' ) )
 									->placement( 'left' ),
 
