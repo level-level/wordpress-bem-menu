@@ -21,7 +21,7 @@ class OEmbed {
 	 */
 	public function rewrite_oembed( string $html, string $url ): string {
 		// Force the post embed to a plain url instead of a preview of the post.
-		if ( str_starts_with( $url, home_url() ) && (new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_EMBED_POST_URL_AUTO_PREVIEW ) ) {
+		if ( str_starts_with( $url, home_url() ) && ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_EMBED_POST_URL_AUTO_PREVIEW ) ) {
 			return sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_attr( $url ) );
 		}
 
