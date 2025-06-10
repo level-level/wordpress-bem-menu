@@ -40,13 +40,15 @@
 @mixin blockquote {
 	@apply relative border-0 mx-0 mb-5 py-5 flex flex-col gap-3;
 	@apply after:absolute after:bottom-0 after:right-0 sm:after:right-12 after:w-[71px] after:h-[58px] after:content-[''] after:z-[-1] after:bg-secondary-300 theme-energeia:after:bg-primary after:[mask-image:url('../images/quote.svg')] after:[-webkit-mask-image:url('../images/quote.svg')] after:dark:bg-base-300 theme-energeia:after:dark:bg-primary-300 theme-pensioen-pro:after:dark:bg-base-300;
+	@apply theme-bnr:after:bg-primary;
+	@apply theme-fd:after:bg-secondary-400;
 
 	p.has-regular-font-size,
 	p {
 		@apply font-libre italic text-primary dark:text-primary-300;
 		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-pensioen-pro:dark:text-base-50;
-		@apply theme-fd:font-arnhem;
-		@apply theme-bnr:font-jakarta;
+		@apply theme-fd:font-arnhem theme-fd:text-base-800 theme-fd:dark:text-paper-50;
+		@apply theme-bnr:font-jakarta theme-bnr:text-base-800;
 
 		// Overwrite wordpress default font sizes
 		font-size: 1.625rem !important;

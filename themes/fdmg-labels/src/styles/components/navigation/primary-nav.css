@@ -32,7 +32,7 @@
 
 .primary-nav__item--parent.primary-nav__item--active {
 	@apply bg-secondary-500 dark:bg-base-300 sm:dark:bg-base-300 compact-header:bg-secondary-400;
-	@apply theme-fd:bg-paper-50;
+	@apply theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800;
 	@apply theme-bnr:bg-transparent;
 }
 
@@ -42,7 +42,7 @@
 
 .primary-nav__item--active .primary-nav__link {
 	@apply text-base-50 sm:bg-secondary-500 sm:dark:bg-base-300 compact-header:bg-secondary-400 compact-header:text-base-800 compact-header:dark:text-base-50 compact-header:dark:bg-base-300;
-	@apply theme-fd:bg-paper-50 theme-fd:text-base-600 theme-fd:underline theme-fd:dark:text-paper-50 theme-fd:compact-header:dark:bg-paper-800;
+	@apply theme-fd:bg-paper-50 theme-fd:text-base-600 theme-fd:underline theme-fd:dark:text-paper-50 theme-fd:dark:bg-paper-800;
 	@apply theme-bnr:bg-transparent theme-bnr:text-primary theme-bnr:underline;
 }
 
@@ -61,7 +61,7 @@
 	@apply compact-header:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:hocus:text-base-800 compact-header:dark:hocus:bg-base-300 compact-header:dark:hocus:text-base-50 compact-header:rounded-[3px];
 	@apply compact-header:focus:outline-base-50;
 	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:compact-header:dark:hocus:bg-paper-800;
-	@apply theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-primary theme-bnr:hocus:underline;
+	@apply theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:text-base-50;
 }
 
 .primary-nav__toggle {
@@ -71,6 +71,7 @@
 	@apply compact-header:text-base-50;
 	@apply compact-header:focus:outline-base-50;
 	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
+	@apply theme-bnr:text-base-50;
 }
 
 .primary-nav-sub {

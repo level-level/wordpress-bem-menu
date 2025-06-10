@@ -34,6 +34,7 @@
 	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] compact-header:btn-text:text-sm aria-expanded:text-base-50 aria-expanded:z-0 leading-none;
 	@apply compact-header:text-base-50;
 	@apply theme-fd:compact-header:btn-icon:text-base-600 theme-fd:text-base-600 theme-fd:compact-header:dark:btn-icon:text-paper-50 theme-fd:dark:text-paper-50;
+	@apply theme-bnr:text-base-50;
 }
 
 .btn-menu-close {
