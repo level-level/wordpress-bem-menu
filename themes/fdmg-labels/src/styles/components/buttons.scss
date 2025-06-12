@@ -1,5 +1,7 @@
 .btn {
 	@apply font-figtree font-bold text-base relative inline-flex items-center py-[10px] px-3 bg-transparent no-underline border-2 border-transparent leading-none select-none text-base-800 cursor-pointer transition-colors appearance-none sm:py-3 sm:px-[17px];
+	@apply theme-fd:font-proxima;
+	@apply theme-bnr:font-jakarta;
 }
 
 .btn-primary {
@@ -8,7 +10,7 @@
 	@apply theme-energeia:dark:text-base-600;
 	@apply theme-energeia:text-base-800 theme-energeia:hocus:text-base-800;
 	@apply theme-fd:dark:text-paper-50 theme-fd:font-proxima;
-	@apply theme-bnr:text-base-800 theme-bnr:hocus:bg-base-50 theme-bnr:font-jakarta;
+	@apply theme-bnr:text-base-800 theme-bnr:hocus:bg-base-50 theme-bnr:font-jakarta theme-bnr:hocus:border-base-50;
 }
 
 // Used when a primary button is used in a dark context
@@ -26,15 +28,15 @@
 	@apply btn-text:no-underline;
 	@apply hocus:bg-primary hocus:text-base-50 theme-energeia:hocus:text-base-800 theme-pensioen-pro:dark:hocus:text-base-800 hocus:dark:bg-primary-300 theme-energeia:dark:hocus:text-base-700;
 	@apply theme-fd:hocus:bg-primary theme-fd:btn-icon:bg-primary theme-fd:dark:text-paper-50;
-	@apply theme-bnr:hocus:bg-secondary-400 theme-bnr:btn-icon:bg-secondary-400 theme-bnr:text-base-800 theme-bnr:hocus:text-base-50;
+	@apply theme-bnr:hocus:bg-secondary-400 theme-bnr:btn-icon:bg-secondary-400 theme-bnr:text-base-800 theme-bnr:hocus:text-base-50 theme-bnr:font-jakarta;
 }
 
 .btn-menu {
 	@apply text-lg flex flex-col items-center justify-center p-0 min-w-[32px] dark:text-base-100;
 	@apply btn-text:lowercase btn-text:pl-0 btn-text:text-[12px] compact-header:btn-text:text-sm aria-expanded:text-base-50 aria-expanded:z-0 leading-none;
 	@apply compact-header:text-base-50;
-	@apply theme-fd:compact-header:btn-icon:text-base-600 theme-fd:text-base-600 theme-fd:compact-header:dark:btn-icon:text-paper-50 theme-fd:dark:text-paper-50;
-	@apply theme-bnr:text-base-50;
+	@apply theme-fd:compact-header:btn-icon:text-base-600 theme-fd:text-base-600 theme-fd:compact-header:dark:btn-icon:text-paper-50 theme-fd:dark:text-paper-50 theme-fd:font-proxima;
+	@apply theme-bnr:text-base-50 theme-bnr:font-jakarta;
 }
 
 .btn-menu-close {
@@ -61,7 +63,7 @@
 	@apply hocus:bg-transparent hocus:text-base-500 hocus:dark:text-base-50 theme-pensioen-pro:hocus:dark:text-base-50 theme-energeia:hocus:dark:text-base-50;
 	@apply text-lg flex items-center btn-icon:text-lg theme-energeia:text-base-800;
 	@apply theme-fd:dark:text-paper-50;
-	@apply theme-bnr:text-base-800;
+	@apply theme-bnr:bg-base-800 theme-bnr:hocus:bg-base-50 theme-bnr:border-base-800;
 }
 
 .btn-share-small {
@@ -72,6 +74,7 @@
 	@apply bg-primary border-primary text-base-50 rounded-[3px] justify-center dark:bg-primary-300 dark:border-primary-300 theme-energeia:text-base-800 dark:text-base-800;
 	@apply hocus:bg-secondary-400 hocus:border-secondary-400 hocus:text-base-800 hocus:dark:text-primary-300;
 	@apply theme-energeia:dark:text-base-600 theme-pensioen-pro:dark:hocus:text-base-800;
+	@apply theme-bnr:btn-icon:text-base-800 theme-bnr:hocus:bg-base-50 theme-bnr:hocus:border-base-50;
 }
 
 .btn-quaternary {

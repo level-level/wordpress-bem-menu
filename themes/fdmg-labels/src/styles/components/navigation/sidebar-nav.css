@@ -48,8 +48,8 @@
 	@apply text-base-50 hocus:bg-secondary-400 hocus:text-base-800 dark:hocus:bg-base-400 dark:hocus:text-base-50;
 	@apply focus:outline-base-50;
 	@apply rounded-[3px];
-	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:dark:hocus:text-base-600;
-	@apply theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:hocus:bg-transparent;
+	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:dark:hocus:text-base-600 theme-fd:font-proxima;
+	@apply theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:hocus:bg-transparent theme-bnr:font-jakarta;
 }
 
 .sidebar-nav__link-icon {
@@ -90,6 +90,6 @@
 	@apply sm:text-md sm:h-auto sm:p-0;
 	@apply sm:hocus:dark:text-base-50;
 	@apply text-base;
-	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
-	@apply theme-bnr:hocus:text-primary;
+	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-fd:font-proxima;
+	@apply theme-bnr:hocus:text-primary theme-bnr:font-jakarta;
 }

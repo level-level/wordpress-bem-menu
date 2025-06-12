@@ -60,8 +60,8 @@
 	@apply sm:dark:text-base-50;
 	@apply compact-header:text-base-50 compact-header:hocus:bg-secondary-400 compact-header:hocus:text-base-800 compact-header:dark:hocus:bg-base-300 compact-header:dark:hocus:text-base-50 compact-header:rounded-[3px];
 	@apply compact-header:focus:outline-base-50;
-	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:compact-header:dark:hocus:bg-paper-800;
-	@apply theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:text-base-50;
+	@apply theme-fd:text-base-600 theme-fd:hocus:bg-paper-50 theme-fd:hocus:text-base-600 theme-fd:hocus:underline theme-fd:dark:text-paper-50 theme-fd:compact-header:dark:hocus:bg-paper-800 theme-fd:font-proxima;
+	@apply theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-primary theme-bnr:hocus:underline theme-bnr:text-base-50 theme-bnr:font-jakarta;
 }
 
 .primary-nav__toggle {

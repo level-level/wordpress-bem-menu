@@ -15,8 +15,8 @@
 	@apply sm:dark:text-base-50;
 	@apply hocus:underline;
 	@apply py-1 focus:outline-base-50 sm:text-md;
-	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50;
-	@apply theme-bnr:hocus:text-primary;
+	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-fd:font-proxima;
+	@apply theme-bnr:hocus:text-primary theme-bnr:font-jakarta;
 }
 
 .sidebar-nav-sub__link {
