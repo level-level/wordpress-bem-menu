@@ -7,6 +7,8 @@ The styling for the individual FDMG labels are implemented with a single class o
 | `-`                       | The default styling which is used for `Impact-investor` |
 | `theme-energeia`          | The styling for `Energeia`                              |
 | `theme-pensioen-pro`      | The styling for `Pensioen pro`                          |
+| `theme-fd`                | The styling for `FD Back up`                            |
+| `theme-bnr`               | The styling for `BNR Back up`                           |
 
 ## Color variables
 
