@@ -20,6 +20,7 @@
 // Post/Page title
 .editor-post-title {
 	@apply font-bold font-libre text-secondary-700 dark:text-primary-300 text-xl sm:text-3xl;
+	@apply theme-bnr:font-jakarta theme-fd:font-arnhem;
 }
 
 // Text styling in gutenberg core blocks
@@ -27,6 +28,7 @@
 	.editor-styles-wrapper {
 		@apply font-libre font-normal text-base sm:text-md text-base-500 bg-secondary-50 leading-6 sm:leading-8;
 		@apply dark:text-base-100 dark:bg-base-700;
+		@apply theme-bnr:font-jakarta theme-fd:font-arnhem;
 
 		h2[data-type='core/heading'] {
 			@include heading;
@@ -139,7 +141,8 @@
 .blocks-widgets-container {
 	.block-editor-block-list {
 		&__layout {
-			@apply font-figtree text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
+			@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+			@apply text-base text-base-500 dark:text-base-100 sm:text-lg bg-secondary-50;
 		}
 	}
 

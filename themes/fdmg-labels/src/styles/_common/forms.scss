@@ -2,7 +2,7 @@
 // @include form-control;
 // Applies default form styling
 @mixin form-control {
-	@apply font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
 	position: relative;
 	box-sizing: border-box;
 	display: block;

@@ -1,5 +1,6 @@
 .widget-nav {
-	@apply flex flex-col font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+	@apply flex flex-col;
 }
 
 .widget-nav__item {

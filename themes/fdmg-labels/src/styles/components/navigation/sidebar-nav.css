@@ -1,5 +1,6 @@
 .sidebar-nav {
-	@apply flex flex-col py-3 font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+	@apply flex flex-col py-3;
 }
 
 .sidebar-nav__item {
