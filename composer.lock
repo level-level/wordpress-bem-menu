@@ -7603,16 +7603,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "4.5.3",
+            "version": "4.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "fb157cd0ff7ab3bb01f333c4fa7862e9251c4513"
+                "reference": "82e713954afcea9b1515ba0c472fe5fab1f8bb91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/fb157cd0ff7ab3bb01f333c4fa7862e9251c4513",
-                "reference": "fb157cd0ff7ab3bb01f333c4fa7862e9251c4513",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/82e713954afcea9b1515ba0c472fe5fab1f8bb91",
+                "reference": "82e713954afcea9b1515ba0c472fe5fab1f8bb91",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -7697,7 +7697,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lucatume/wp-browser/issues",
-                "source": "https://github.com/lucatume/wp-browser/tree/4.5.3"
+                "source": "https://github.com/lucatume/wp-browser/tree/4.5.4"
             },
             "funding": [
                 {
@@ -7705,7 +7705,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-08T09:28:19+00:00"
+            "time": "2025-06-17T21:01:53+00:00"
         },
         {
             "name": "masterminds/html5",
