@@ -27,6 +27,6 @@ class acf_widget_latest_and_most_read_posts extends base_block {
 	public function get_most_read_articles(): array {
 		$amount = $this->content_attributes[ LatestAndMostReadPosts::BLOCK_META_MOST_READ_AMOUNT ] ?? 5;
 
-		return KokoAnalytics::get_most_viewed_articles( $amount );
+		return ( new KokoAnalytics() )->get_most_viewed_articles_published_in_last_x_days( 7, $amount );
 	}
 }
