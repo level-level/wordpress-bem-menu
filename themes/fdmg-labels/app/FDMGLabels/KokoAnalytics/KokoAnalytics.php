@@ -61,7 +61,7 @@ class KokoAnalytics {
 		 */
 		$allowed_post_ids = get_posts(
 			array(
-				'numberposts'         => 200, // For performance reasons, we limit the number of posts to check.
+				'numberposts'         => 200, // phpcs:ignore WordPress.WP.PostsPerPage.posts_per_page_numberposts
 				'post_type'           => PostTypePost::POST_TYPE_NAME,
 				'post_status'         => 'publish',
 				'fields'              => 'ids',
