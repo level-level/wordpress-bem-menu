@@ -8,9 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 class Advance_Shared_Helpers {
 
-    private static $base_api_url = constant( 'ADVANCE_BASE_URL' );
-    private static $access_token = constant( 'ADVANCE_ACCESS_TOKEN' );
-    private static $access_hash  = constant( 'ADVANCE_ACCESS_HASH' );
+    private static $base_api_url = 'xxxxxx';
+    private static $access_token = 'xxxxxx';
+    private static $access_hash  = 'xxxxxx';
     private static $user_agent   = 'Mozilla/5.0 (compatible; WP/1.0)';
 
     public static function get_config($key, $plugin_slug = 'abacus-conditional-wrapper', $constant_name = null, $fallback_defaults = []) {
