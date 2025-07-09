@@ -21,6 +21,11 @@ class Assets {
 		add_filter( 'clarkson_core_template_context', array( $this, 'add_context_args' ) );
 		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_editor' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin' ) );
+		add_filter( 'wp_img_tag_add_auto_sizes', array( $this, 'remove_auto_sizes_css_fix' ) );
+	}
+
+	public function remove_auto_sizes_css_fix(): bool {
+		return false;
 	}
 
 	public function set_theme_version(): void {
