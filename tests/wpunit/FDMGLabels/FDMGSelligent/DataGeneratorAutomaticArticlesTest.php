@@ -89,6 +89,7 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 	 * 1: Sort
 	 * 2: Count
 	 * 3: Age in days
+	 * 4: Expected post IDs
 	 */
 	public function autoPostSelectionProvider(): array {
 		// Create terms
