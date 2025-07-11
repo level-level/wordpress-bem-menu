@@ -79,7 +79,7 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		$generated_automatic_article_ids = array_map( 'intval', explode( ',', ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' )['articlegroup_1'] ) );
 		$this->assertSame( $automatic_article_ids, $generated_automatic_article_ids );
 
-		wp_delete_post( $newsletter->get_post()->ID );
+		wp_delete_post( $newsletter->get_post()->ID, true );
 	}
 
 	/**
