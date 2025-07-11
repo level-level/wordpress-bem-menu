@@ -48,56 +48,15 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 		string $sort,
 		int $count,
 		int $age,
-		array $automatic_article_ids
+		bool $post_1_expected,
+		bool $post_2_expected
 	): void {
-		// Create a newsletter
-		$newsletter = new ObjectsNewsletter(
-			$this->factory()->post->create_and_get(
-				array(
-					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => 'fdmg_sel_newsletter',
-					'post_status' => 'publish',
-				)
-			)
-		);
-
-		update_field( 'fdmg_selligent_publication', 'PUBLICATION_NAME', $newsletter->get_post()->ID );
-		update_field( 'fdmg_selligent_type', 'WEEKLY', $newsletter->get_post()->ID );
-		update_field( 'fdmg_selligent_subject', 'Subject', $newsletter->get_post()->ID );
-
-		update_field(
-			'fdmg_selligent_article_groups_weekly', array(
-				'article_group_0' => array(
-					'selection_type' => 'automatic',
-					'sort'           => $sort,
-					'article_count'  => $count,
-					'max_age'        => $age,
-				),
-			), $newsletter->get_post()->ID
-		);
-
-		$generated_automatic_article_ids = array_map( 'intval', explode( ',', ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' )['articlegroup_1'] ) );
-		$this->assertSame( $automatic_article_ids, $generated_automatic_article_ids );
-
-		wp_delete_post( $newsletter->get_post()->ID, true );
-	}
-
-	/**
-	 * @return array<mixed>
-	 *
-	 * Param order:
-	 * 1: Sort
-	 * 2: Count
-	 * 3: Age in days
-	 * 4: Expected post IDs
-	 */
-	public function autoPostSelectionProvider(): array {
 		// Create terms
 		$category = new category(
 			$this->factory()->term->create_and_get(
 				array(
 					'taxonomy' => 'category',
-					'name'     => 'Category for FDMG Selligent data generator auto post selection',
+					'name'     => 'Test category data generator automatic articles',
 				)
 			)
 		);
@@ -105,7 +64,7 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 			$this->factory()->term->create_and_get(
 				array(
 					'taxonomy' => 'fdmg_section',
-					'name'     => 'Section for FDMG Selligent data generator auto post selection',
+					'name'     => 'Test section data generator automatic articles',
 				)
 			)
 		);
@@ -113,7 +72,7 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 			$this->factory()->term->create_and_get(
 				array(
 					'taxonomy' => 'fdmg_genre',
-					'name'     => 'Genre for FDMG Selligent data generator auto post selection',
+					'name'     => 'Test genre data generator automatic articles',
 				)
 			)
 		);
@@ -140,11 +99,67 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 			)
 		);
 
-		$data = array(
-			array( 'recent', 9999, 9999, array( $post_1->get_id(), $post_2->get_id() ) ),
-			array( 'recent', 1, 9999, array( $post_1->get_id() ) ),
-			array( 'recent', 9999, 2, array( $post_1->get_id() ) ),
+		// Create a newsletter
+		$newsletter = new ObjectsNewsletter(
+			$this->factory()->post->create_and_get(
+				array(
+					'post_title'  => 'Test newsletter selligent',
+					'post_type'   => 'fdmg_sel_newsletter',
+					'post_status' => 'publish',
+				)
+			)
 		);
-		return $data;
+
+		update_field( 'fdmg_selligent_publication', 'PUBLICATION_NAME', $newsletter->get_post()->ID );
+		update_field( 'fdmg_selligent_type', 'WEEKLY', $newsletter->get_post()->ID );
+		update_field( 'fdmg_selligent_subject', 'Subject', $newsletter->get_post()->ID );
+
+		update_field(
+			'fdmg_selligent_article_groups_weekly', array(
+				'article_group_0' => array(
+					'selection_type' => 'automatic',
+					'sort'           => $sort,
+					'article_count'  => $count,
+					'max_age'        => $age,
+				),
+			), $newsletter->get_post()->ID
+		);
+
+		// Assertions
+		$generated_automatic_article_ids = array_map( 'intval', explode( ',', ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' )['articlegroup_1'] ) );
+		$this->assertEquals(
+			$post_1_expected,
+			in_array( $post_1->get_id(), $generated_automatic_article_ids, true ),
+		);
+		$this->assertEquals(
+			$post_2_expected,
+			in_array( $post_2->get_id(), $generated_automatic_article_ids, true ),
+		);
+
+		// Cleanup
+		wp_delete_post( $newsletter->get_post()->ID, true );
+		wp_delete_post( $post_1->get_id(), true );
+		wp_delete_post( $post_2->get_id(), true );
+		wp_delete_term( $category->get_id(), 'category' );
+		wp_delete_term( $section->get_id(), 'fdmg_section' );
+		wp_delete_term( $genre->get_id(), 'fdmg_genre' );
+	}
+
+	/**
+	 * @return array<mixed>
+	 *
+	 * Param order:
+	 * 1: Sort
+	 * 2: Count
+	 * 3: Age in days
+	 * 4: Post 1 expected
+	 * 5: Post 2 expected
+	 */
+	public function autoPostSelectionProvider(): array {
+		return array(
+			array( 'recent', 9999, 9999, true, true ),
+			array( 'recent', 1, 9999, true, false ),
+			array( 'recent', 9999, 2, true, false ),
+		);
 	}
 }
