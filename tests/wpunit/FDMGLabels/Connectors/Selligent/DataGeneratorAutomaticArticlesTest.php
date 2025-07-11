@@ -2,16 +2,11 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
-use Clarkson\Theme\PostTypes\Newsletter;
-use Clarkson\Theme\PostTypes\Post as PostTypesPost;
-use Clarkson\Utilities\Image;
-use Clarkson_Core\WordPress_Object\attachment;
 use Clarkson_Core\WordPress_Object\category;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\fdmg_section;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use DateTime;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use lucatume\WPBrowser\TestCase\WPTestCase;
 
@@ -59,7 +54,7 @@ class DataGeneratorAutomaticArticlesTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_type'   => 'ii_newsletter',
 					'post_status' => 'publish',
 				)
 			)

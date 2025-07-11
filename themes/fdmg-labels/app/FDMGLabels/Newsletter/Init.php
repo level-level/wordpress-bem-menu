@@ -9,5 +9,8 @@ class Init {
 		( new SendNewsletterScheduler( $newsletter_service ) )->register_hooks();
 
 		( new MergeTagsMetabox() )->register_hooks();
+
+		( new FDMGSelligent() )->register_hooks();
+
 	}
 }
