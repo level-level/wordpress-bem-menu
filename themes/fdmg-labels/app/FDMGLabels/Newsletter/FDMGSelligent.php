@@ -67,13 +67,13 @@ class FDMGSelligent {
 		$data['reading_time'] = $clarkson_object->get_reading_time_in_minutes();
 
 		// Set news section to genres
-		if ( $post instanceof post ) {
+		if ( $clarkson_object instanceof post ) {
 			$news_section = array();
 
 			// If genres are enabled and post has primary genre, add it to the article data in the news_section field.
 			// Please note that we should not use the Section taxonomy to fill the news_section field.
 			if ( $feature_manager->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
-				$primary_genre = $post->get_primary_term( Genre::TAXONOMY_NAME );
+				$primary_genre = $clarkson_object->get_primary_term( Genre::TAXONOMY_NAME );
 				if ( $primary_genre ) {
 					$news_section[] = $primary_genre->get_name();
 				}
