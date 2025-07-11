@@ -121,6 +121,8 @@ class DataGeneratorTest extends WPTestCase {
 		);
 
 		$this->assertSame( $expected, ( new DataGenerator() )->get_article_data( $this->post, $newsletter ) );
+
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_article_data_field_lengths(): void {
@@ -158,6 +160,7 @@ class DataGeneratorTest extends WPTestCase {
 		$this->assertLessThanOrEqual( 50, strlen( $generated_data['news_section'] ), 'News section may not exceed 50 characters' );
 
 		wp_delete_post( $post->get_id(), true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_newsletter_data(): void {
@@ -201,7 +204,7 @@ class DataGeneratorTest extends WPTestCase {
 
 		$this->assertSame( $expected, ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' ) );
 
-		wp_delete_post( $newsletter->get_id() );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_newsletter_data_field_lengths(): void {
@@ -234,6 +237,6 @@ class DataGeneratorTest extends WPTestCase {
 		$this->assertLessThanOrEqual( 255, strlen( $generated_data['preheader'] ), 'Preheader may not exceed 255 characters' );
 		$this->assertLessThanOrEqual( 2000, strlen( $generated_data['introduction'] ), 'Introduction may not exceed 2000 characters' );
 
-		wp_delete_post( $newsletter->get_id() );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 }

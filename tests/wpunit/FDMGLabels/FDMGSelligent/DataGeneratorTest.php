@@ -122,6 +122,8 @@ class DataGeneratorTest extends WPTestCase {
 		);
 
 		$this->assertSame( $expected, ( new DataGenerator() )->get_article_data( $this->post->get_object(), $newsletter ) );
+
+		wp_delete_post( $newsletter->get_post()->ID, true );
 	}
 
 	public function test_get_article_data_field_lengths(): void {
@@ -159,6 +161,7 @@ class DataGeneratorTest extends WPTestCase {
 		$this->assertLessThanOrEqual( 50, strlen( $generated_data['news_section'] ), 'News section may not exceed 50 characters' );
 
 		wp_delete_post( $post->get_id(), true );
+		wp_delete_post( $newsletter->get_post()->ID, true );
 	}
 
 	public function test_get_newsletter_data(): void {
