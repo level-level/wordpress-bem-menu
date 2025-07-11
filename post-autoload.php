@@ -1,9 +1,11 @@
 <?php
 
 use FDMGLabels\Logging\PSR3BaseLoggerAdapter;
+use LevelLevel\ActionScheduler\ActionSchedulerSetup;
 use MHCG\Monolog\Handler\WPCLIHandler;
 use Monolog\Handler\PsrHandler;
 use Monolog\Logger;
+use Monolog\Registry;
 
 add_filter(
 	'level_level_log_handlers', function ( array $handlers ) {
@@ -22,7 +24,9 @@ $logging->init();
 ( new \FDMGLabels\GravityForms\Feeds() )->register_hooks();
 
 if ( function_exists( 'is_blog_installed' ) && is_blog_installed() ) {
-	( new \FDMGLabels\ActionScheduler\ActionSchedulerSetup() )->register_hooks();
+	$action_scheduler_setup = new ActionSchedulerSetup();
+	$action_scheduler_setup->setLogger( Registry::wordpress() ); // Adding the logger
+	$action_scheduler_setup->register_hooks();
 }
 
 /**
