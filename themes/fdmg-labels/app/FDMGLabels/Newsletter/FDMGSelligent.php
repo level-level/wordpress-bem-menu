@@ -5,11 +5,11 @@ use Clarkson\Theme\Taxonomies\Category;
 use Clarkson\Theme\Taxonomies\Genre;
 use Clarkson\Theme\Taxonomies\Section;
 use Clarkson_Core\Objects;
+use Clarkson_Core\WordPress_Object\base_object;
 use Clarkson_Core\WordPress_Object\post;
 use FDMGLabels\FeatureManager;
 use LevelLevel\FDMGSelligent\Objects\Newsletter as FDMGSelligentNewsletterObject;
 use WP_Post;
-use Clarkson_Core\WordPress_Object\base_object;
 
 class FDMGSelligent {
 
@@ -26,7 +26,7 @@ class FDMGSelligent {
 	 */
 	public function set_taxonomies( array $taxonomies ): array {
 		$feature_manager = new FeatureManager();
-		$taxonomies = array();
+		$taxonomies      = array();
 
 		if ( $feature_manager->is_enabled( FeatureManager::FEATURE_ENABLE_GENRE_TAXONOMY ) ) {
 			$taxonomies[] = Genre::TAXONOMY_NAME;

@@ -11,6 +11,5 @@ class Init {
 		( new MergeTagsMetabox() )->register_hooks();
 
 		( new FDMGSelligent() )->register_hooks();
-
 	}
 }
