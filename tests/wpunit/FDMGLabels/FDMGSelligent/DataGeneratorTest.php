@@ -86,7 +86,9 @@ class DataGeneratorTest extends WPTestCase {
 	public function tearDown(): void {
 		parent::tearDown();
 		delete_field( 'features', 'options' );
+		delete_field( 'fdmg_selligent', 'options' );
 		wp_delete_post( $this->post->get_id(), true );
+		wp_delete_post( $this->post2->get_id(), true );
 		wp_delete_post( $this->thumbnail->get_id(), true );
 	}
 
