@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ff854161b41a7c2ab45e933bd657161e",
+    "content-hash": "0964cf2ca3077b92e41fa0ecca3670b0",
     "packages": [
         {
             "name": "brick/math",
@@ -1213,16 +1213,16 @@
         },
         {
             "name": "level-level/fdmg-selligent",
-            "version": "v0.1.1",
+            "version": "v0.1.2",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-selligent.git",
-                "reference": "d423f2f63284b86f9c3b631db098952cf4d104d5"
+                "reference": "1ef384cf2e628860834f49a71ebc78e099d85d4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-selligent/zipball/d423f2f63284b86f9c3b631db098952cf4d104d5",
-                "reference": "d423f2f63284b86f9c3b631db098952cf4d104d5",
+                "url": "https://api.github.com/repos/level-level/fdmg-selligent/zipball/1ef384cf2e628860834f49a71ebc78e099d85d4f",
+                "reference": "1ef384cf2e628860834f49a71ebc78e099d85d4f",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1342,9 +1342,9 @@
             ],
             "description": "A base WordPress plugin that can be used as a template for other WordPress plugins",
             "support": {
-                "source": "https://github.com/level-level/fdmg-selligent/tree/v0.1.1"
+                "source": "https://github.com/level-level/fdmg-selligent/tree/v0.1.2"
             },
-            "time": "2025-07-11T13:38:54+00:00"
+            "time": "2025-07-11T14:32:48+00:00"
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
