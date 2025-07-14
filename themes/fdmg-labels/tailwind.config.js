@@ -28,6 +28,21 @@ const customThemes = [
 			darkMode: '../images/logo-pensioen-pro-darkmode.svg',
 		},
 	},
+	{
+		theme: 'theme-fd',
+		name: 'fd',
+		logos: {
+			default: '../images/logo-fd.svg',
+			darkMode: '../images/logo-fd-darkmode.svg',
+		},
+	},
+	{
+		theme: 'theme-bnr',
+		name: 'bnr',
+		logos: {
+			default: '../images/logo-bnr.png',
+		},
+	}
 ];
 
 const themeLogos = {};
@@ -112,10 +127,20 @@ module.exports = {
 			'secondary-500': 'var(--secondary-500)',
 			'secondary-600': 'var(--secondary-600)',
 			'secondary-700': 'var(--secondary-700)',
+			'paper-50': 'var(--paper-50)',
+			'paper-100': 'var(--paper-100)',
+			'paper-200': 'var(--paper-200)',
+			'paper-300': 'var(--paper-300)',
+			'paper-600': 'var(--paper-600)',
+			'paper-800': 'var(--paper-800)',
+			'orange': 'var(--orange)',
 		},
 		fontFamily: {
 			figtree: ['"Figtree Variable"', 'sans-serif'],
 			libre: ['"Libre Caslon Text"', 'sans-serif'],
+			proxima: ['"Proxima Nova"', 'sans-serif'],
+			jakarta: ['"Plus Jakarta Sans"', 'sans-serif'],
+			arnhem: ['"Arnhem Pro"', 'serif'],
 		},
 		fontSize: {
 			sm: [

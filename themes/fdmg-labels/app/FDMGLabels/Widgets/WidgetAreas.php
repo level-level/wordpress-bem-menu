@@ -24,7 +24,7 @@ class WidgetAreas {
 					'name'          => _x( 'Menu', 'Widgets', 'fdmg-labels-admin' ),
 					'id'            => 'widget-area-sidebar',
 					'description'   => _x( 'Widgets added in this area are shown inside the sidebar menu area behind the Menu button.', 'Widgets', 'fdmg-labels-admin' ),
-					'before_widget' => '<div class="p-5 border-b border-secondary-700 dark:border-base-400">',
+					'before_widget' => '<div class="p-5 border-b border-secondary-700 dark:border-base-400 theme-fd:border-paper-300 theme-bnr:border-base-50">',
 					'after_widget'  => '</div>',
 				)
 			);

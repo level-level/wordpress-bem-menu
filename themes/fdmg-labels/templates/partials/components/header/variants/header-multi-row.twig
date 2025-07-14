@@ -1,12 +1,12 @@
-<div class="flex items-center bg-secondary-100 h-header-height dark:bg-base-600 sm:bg-base-50 sm:h-[var(--header-top-height)] sm:dark:bg-base-700">
+<div data-component="header-multi-row" class="flex items-center bg-secondary-100 h-header-height dark:bg-base-600 sm:bg-base-50 sm:h-[var(--header-top-height)] sm:dark:bg-base-700 theme-bnr:bg-base-800 sm:theme-bnr:bg-base-50 theme-fd:bg-paper-200 theme-fd:border-b theme-fd:border-paper-300 theme-fd:dark:bg-base-600 theme-fd:dark:border-paper-600">
 	<div class="container">
-		<div class="flex items-center justify-between">
+		<div class="flex items-center justify-between theme-bnr:justify-normal sm:theme-bnr:justify-between">
 			<div class="sm:hidden">
 				{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
 					{% include 'partials/components/header/header-menu.twig' %}
 				{% endif %}
 			</div>
-			<div class="grow sm:grow-0">
+			<div class="grow sm:grow-0 theme-bnr:grow-0">
 				{% include 'partials/components/header/logo.twig' %}
 			</div>
 
@@ -46,7 +46,7 @@
 
 {% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
 	<div class="hidden sm:block">
-		<div class="flex items-center bg-secondary-300 h-[var(--menu-height)] dark:bg-base-400">
+		<div class="flex items-center bg-secondary-300 h-[var(--menu-height)] dark:bg-base-400 theme-bnr:bg-base-800 theme-fd:bg-paper-200 theme-fd:dark:bg-base-600">
 			<div class="container">
 				{% include 'partials/components/header/header-menu.twig' %}
 			</div>

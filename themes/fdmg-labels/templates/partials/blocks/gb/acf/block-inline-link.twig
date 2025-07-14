@@ -3,9 +3,9 @@
 
 {% if link %}
 	<div class="{{ align }} print:hidden" data-name="{{ block.name }}">
-		<div class="flex flex-col gap-3 p-3 sm:p-4 bg-secondary-100 dark:bg-base-600">
-			<p class="font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800 text-md">{{ title }}</p>
-			<a href="{{ link.url }}" class="relative inline-flex gap-2 text-base no-underline font-figtree hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800" {{ link.target ? 'target="_blank" rel="noopener"' }}>
+		<div class="flex flex-col gap-3 p-3 sm:p-4 bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-100 theme-bnr:border-l-[5px] theme-bnr:border-primary">
+			<p class="font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800 text-md theme-fd:dark:text-paper-50 theme-bnr:text-base-800 theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:text-base">{{ title }}</p>
+			<a href="{{ link.url }}" class="relative inline-flex gap-2 text-base no-underline font-figtree hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:hocus:text-base-800 theme-bnr:text-[1rem] theme-fd:dark:text-paper-50 theme-fd:dark:hocus:text-paper-50" {{ link.target ? 'target="_blank" rel="noopener"' }}>
 				<span>
 					{{ link.title|raw }}
 				</span>

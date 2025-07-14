@@ -9,23 +9,23 @@
 
 #}
 {% if objects %}
-	<ul class="text-base sm:text-md
-		{{ style is same as('dark') ? 'bg-secondary-100 dark:bg-base-600' }}
-		{{ style is same as('light') ? 'border border-secondary-400 dark:border-base-600' }}
+	<ul data-component="list-component" class="text-base sm:text-md theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-50 theme-bnr:border theme-bnr:border-base-200
+		{{ style is same as('dark') ? 'bg-secondary-100 dark:bg-base-600 theme-fd:dark:bg-paper-800' }}
+		{{ style is same as('light') ? 'border border-secondary-400 dark:border-base-600 theme-fd:bg-paper-50 theme-fd:border-paper-300 theme-bnr:border theme-bnr:border-base-200' }}
 	">
 
 		{% if heading %}
 			<li class="p-3 sm:p-4">
-				<h3 class="text-base font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800">
+				<h3 class="text-base font-bold font-figtree text-primary dark:text-primary-300 theme-energeia:text-base-800 theme-fd:font-proxima theme-fd:text-base-600 theme-bnr:font-jakarta theme-bnr:text-base-800 theme-bnr:text-lg">
 					{{ heading }}
 				</h3>
 			</li>
 		{% endif %}
 
 		{% for object in objects %}
-			<li class="p-3 border-t sm:px-4 sm:py-[10px] border-[rgb(0,0,0,0.1)] dark:border-base-400
-			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800' }}
-			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600' }}">
+			<li class="p-3 border-t sm:px-4 sm:py-[10px] border-[rgb(0,0,0,0.1)] dark:border-base-400 theme-fd:border-paper-300 theme-fd:dark:border-paper-600 theme-fd:dark:bg-paper-800 theme-bnr:border-base-200
+			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800 ' }}
+			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600  theme-fd:border-paper-300' }}">
 				{% include 'styleguide/components/list-item.twig' with {
 					title: object.title,
 					url: object.url,
@@ -43,7 +43,7 @@
 		{% endfor %}
 
 		{% if button_text and button_link %}
-			<li class="p-3 border-t sm:py-2 sm:px-4 border-[rgb(0,0,0,0.1)] dark:border-base-400
+			<li class="p-3 border-t sm:py-2 sm:px-4 border-[rgb(0,0,0,0.1)] dark:border-base-400 theme-fd:border-paper-300 theme-fd:dark:border-paper-600 theme-bnr:border-base-200
 			{{ style is same as('dark') ? 'border-secondary-400 dark:border-base-800' }}
 			{{ style is same as('light') ? 'border-secondary-400 dark:border-base-600' }}">
 				{% include 'styleguide/components/buttons/button-link.twig' with {

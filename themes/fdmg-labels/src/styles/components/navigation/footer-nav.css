@@ -6,4 +6,6 @@
 	@apply block text-base no-underline font-figtree text-secondary-700;
 	@apply dark:text-base-100;
 	@apply hocus:underline;
+	@apply theme-fd:text-base-600 theme-fd:font-proxima theme-fd:dark:text-paper-50;
+	@apply theme-bnr:font-jakarta theme-bnr:text-base-50;
 }

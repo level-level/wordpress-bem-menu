@@ -1,7 +1,8 @@
 {% set use_compact_header = feature_manager.is_enabled(constant('FEATURE_ENABLE_COMPACT_HEADER', feature_manager)) %}
 {% set navigation_ad_active = is_active_sidebar('widget-area-navigation-ad') %}
 
-<header class="{{ navigation_ad_active ? 'h-auto' : 'h-header-height items-center' }} sticky z-50 top-admin-bar left-0 right-0 shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex flex-col bg-secondary-600 text-base-50 theme-pensioen-pro:bg-primary' }} print:hidden">
+<header class="{{ navigation_ad_active ? 'h-auto' : 'h-header-height items-center' }} sticky z-50 top-admin-bar left-0 right-0 shadow-header bg-base-50 dark:shadow-none dark:bg-base-700 theme-energeia:dark:bg-base-600 theme-pensioen-pro:dark:bg-base-600 {{ use_compact_header ? 'flex flex-col bg-secondary-600 text-base-50 theme-pensioen-pro:bg-primary' }} print:hidden
+theme-fd:bg-paper-200 theme-fd:border-b theme-fd:border-paper-300 theme-fd:dark:bg-base-600 theme-fd:dark:border-paper-600 theme-bnr:bg-base-800">
 
 	<!-- Skiplink -->
 	{% include 'partials/components/skiplink.twig' with {
@@ -12,7 +13,7 @@
 	{# Don't render this advertisement if on singular (except single vacancy) and other article header ads are active #}
 	{% set advertisement_is_active_on_single = (is_active_sidebar('widget-area-article-header-ad') or is_active_sidebar('widget-area-author-header-ad') or is_active_sidebar('widget-area-partner-header-ad')) and (is_single() and not is_singular('ii_vacancy')) %}
 	{% if navigation_ad_active and not advertisement_is_active_on_single %}
-		<div data-component="navigation-advertisement" class="bg-secondary-100 dark:bg-base-400" data-module="navigation-advertisement">
+		<div data-component="navigation-advertisement" class="bg-secondary-100 dark:bg-base-400 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800" data-module="navigation-advertisement">
 			<div class="container">
 				{{ sidebar.get_widgetarea('widget-area-navigation-ad')|raw }}
 			</div>
