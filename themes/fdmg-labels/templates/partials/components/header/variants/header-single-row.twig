@@ -1,4 +1,4 @@
-<div class="container">
+<div data-component="header-single-row" class="container">
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-3 sm:gap-4">
 			{% include 'partials/components/header/compact-header-menu.twig' %}
@@ -33,7 +33,7 @@
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
 							url: subscribe.url,
-							class: 'btn-primary theme-energeia:hocus:text-base-50 theme-pensioen-pro:hocus:text-base-50 focus:outline-base-50 theme-pensioen-pro:bg-secondary-400 theme-pensioen-pro:border-secondary-400 theme-pensioen-pro:text-base-600 theme-pensioen-pro:hocus:bg-transparent theme-pensioen-pro:dark:bg-primary-300 theme-pensioen-pro:dark:border-primary-300',
+							class: 'btn-primary theme-energeia:hocus:text-base-50 theme-pensioen-pro:hocus:text-base-50 focus:outline-base-50 theme-pensioen-pro:bg-secondary-400 theme-pensioen-pro:border-secondary-400 theme-pensioen-pro:text-base-600 theme-pensioen-pro:hocus:bg-transparent theme-pensioen-pro:dark:bg-primary-300 theme-pensioen-pro:dark:border-primary-300 theme-fd:bg-orange theme-fd:border-orange theme-bnr:bg-primary theme-bnr:text-base-800 theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-base-50 theme-bnr:border-primary',
 							is_external: subscribe.target ? true,
 						} %}
 					</li>

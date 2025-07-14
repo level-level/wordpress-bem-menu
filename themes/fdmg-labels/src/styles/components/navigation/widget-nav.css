@@ -1,5 +1,6 @@
 .widget-nav {
-	@apply font-figtree flex flex-col;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+	@apply flex flex-col;
 }
 
 .widget-nav__item {
@@ -11,10 +12,12 @@
 }
 
 .widget-nav__link {
-	@apply text-base inline-flex text-base-100 no-underline font-bold;
+	@apply inline-flex text-base font-bold no-underline text-base-100;
 	@apply sm:dark:text-base-50;
 	@apply hocus:underline;
-	@apply focus:outline-base-50 sm:text-md py-1;
+	@apply py-1 focus:outline-base-50 sm:text-md;
+	@apply theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-fd:font-proxima;
+	@apply theme-bnr:hocus:text-primary theme-bnr:font-jakarta;
 }
 
 .sidebar-nav-sub__link {

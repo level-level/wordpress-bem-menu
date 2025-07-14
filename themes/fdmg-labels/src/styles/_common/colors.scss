@@ -34,3 +34,34 @@
 	--primary: #2c3b60;
 	--primary-300: #d5f3ff;
 }
+
+.theme-fd {
+	--primary: #0F4B64;
+	--primary-300: #0F4B64;
+
+	// Secondary FD
+	--secondary-400: #379596;
+
+	// Orange FD
+	--orange: #F27211;
+
+	// Paper FD
+	--paper-50: #ffeadb;
+	--paper-100: #f1ded2;
+	--paper-200: #e5d1c6;
+	--paper-300: #cdbeb4;
+	--paper-600: #4C4641;
+	--paper-800: #332F2C;
+}
+
+.theme-bnr {
+	--primary: #FFD200;
+	--primary-300: #FFD200;
+
+	// Base BNR
+	--base-100: #f5f5f5;
+	--base-200: #e0e0e0;
+
+	// Secondary BNR
+	--secondary-400: #381974;
+}

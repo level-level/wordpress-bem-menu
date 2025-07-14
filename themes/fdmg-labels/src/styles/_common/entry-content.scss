@@ -52,6 +52,8 @@
 		@apply text-primary hyphens-auto sm:hyphens-none hocus:no-underline;
 		@apply dark:text-primary-300;
 		@apply theme-energeia:text-base-800 theme-energeia:dark:text-base-50 theme-energeia:dark:hocus:text-primary-300;
+		@apply theme-bnr:text-base-800;
+		@apply theme-fd:dark:text-paper-50;
 	}
 
 	ul,
@@ -63,12 +65,16 @@
 	ul:not([class]) {
 		@include unordered-list-style;
 		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
+		@apply theme-fd:font-arnhem;
+		@apply theme-bnr:font-jakarta;
 	}
 
 	ol.wp-block-list,
 	ol:not([class]) {
 		@include ordered-list-style;
 		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
+		@apply theme-fd:font-arnhem;
+		@apply theme-bnr:font-jakarta;
 	}
 
 	> p:not([class]),
@@ -76,6 +82,8 @@
 	> ul:not([class]),
 	> a:not([class]) {
 		@apply font-libre font-normal leading-7 sm:text-md sm:leading-8;
+		@apply theme-fd:font-arnhem;
+		@apply theme-bnr:font-jakarta;
 	}
 }
 

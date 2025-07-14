@@ -23,20 +23,22 @@
 			Also check all the radiobuttons with the active theme
 		#}
 		<script>
-			try {
-				var isDarkPreference = window.matchMedia("(prefers-color-scheme: dark)");
+			{% if not site.active_theme is same as('bnr') %}
+				try {
+					var isDarkPreference = window.matchMedia("(prefers-color-scheme: dark)");
 
-				if ( localStorage.getItem( 'theme-style' ) === null || localStorage.getItem( 'theme-style' ) === 'system' ) {
-					if (isDarkPreference.matches) {
-						localStorage.setItem( 'theme-style', 'dark' );
-					} else {
-						localStorage.setItem( 'theme-style', 'light' );
+					if ( localStorage.getItem( 'theme-style' ) === null || localStorage.getItem( 'theme-style' ) === 'system' ) {
+						if (isDarkPreference.matches) {
+							localStorage.setItem( 'theme-style', 'dark' );
+						} else {
+							localStorage.setItem( 'theme-style', 'light' );
+						}
 					}
-				}
 
-				var preference = localStorage.getItem( 'theme-style' );
-				document.documentElement.setAttribute( 'data-mode', preference );
+					var preference = localStorage.getItem( 'theme-style' );
+					document.documentElement.setAttribute( 'data-mode', preference );
 			} catch (e) {}
+			{% endif %}
 
 			document.addEventListener( 'DOMContentLoaded', function () {
 				if ( preference ) {

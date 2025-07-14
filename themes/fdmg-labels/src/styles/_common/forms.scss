@@ -2,7 +2,8 @@
 // @include form-control;
 // Applies default form styling
 @mixin form-control {
-	@apply font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+	@apply theme-bnr:border-base-800;
 	position: relative;
 	box-sizing: border-box;
 	display: block;
@@ -69,11 +70,7 @@
 
 	&:checked + label {
 		&:before {
-			background-color: var(--secondary-600);
-
-			@include dark-mode {
-				background-color: var(--primary-300);
-			}
+			@apply bg-secondary-600 dark:bg-primary-300 theme-fd:bg-secondary-400 theme-fd:dark:bg-secondary-400 theme-bnr:bg-base-800;
 		}
 
 		&:after {
@@ -91,19 +88,19 @@
 }
 
 @mixin radiobutton-label {
-	@apply font-figtree;
+	@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
 	font-weight: 400;
 	position: relative;
 	padding-left: calc(18px + #{$spacing-2});
 	margin: 0;
 
 	&:before {
+		@apply border-2 border-secondary-600 dark:border-primary-300 theme-fd:border-secondary-400 theme-fd:dark:border-secondary-400 theme-bnr:border-base-800;
 		position: absolute;
 		left: 0;
 		top: 2px;
 		width: 18px;
 		height: 18px;
-		border: 2px solid var(--secondary-600);
 		background-color: var(--base-50);
 		border-radius: 50%;
 		content: '';
@@ -113,7 +110,6 @@
 		}
 
 		@include dark-mode {
-			border-color: var(--primary-300);
 			background-color: transparent;
 		}
 	}

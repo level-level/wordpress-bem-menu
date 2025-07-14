@@ -8,6 +8,7 @@
 
 		a {
 			@apply block p-3 border-b-[3px] border-transparent cursor-pointer no-underline hocus:underline hocus:text-primary dark:hocus:text-primary-300;
+			@apply theme-bnr:hocus:text-base-800
 		}
 
 		span {
@@ -25,6 +26,7 @@
 			@apply flex items-center justify-center bg-primary text-base-50 w-[34px] h-[34px] p-0 rounded-full border-none transition-colors duration-300;
 			@apply dark:bg-primary-300;
 			@apply hocus:text-base-50 hocus:no-underline hocus:bg-secondary-400 hocus:dark:text-base-50 hocus:dark:bg-secondary-300 sm:text-md sm:leading-none;
+			@apply theme-bnr:bg-base-800 theme-bnr:hocus:bg-base-50;
 		}
 	}
 

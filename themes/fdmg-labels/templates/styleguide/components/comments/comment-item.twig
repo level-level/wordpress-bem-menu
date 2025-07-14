@@ -1,4 +1,4 @@
-<li class="border-b border-secondary-400 dark:border-base-800 last:border-none">
+<li class="border-b border-secondary-400 dark:border-base-800 last:border-none theme-fd:border-paper-300 theme-bnr:border-base-200 theme-fd:dark:border-paper-600">
 	{% include 'styleguide/components/teasers/teaser-comment.twig' with {
 		author: object.comment_author,
 		time: _x('%s ago', 'Comments', 'fdmg-labels')|format(human_time_diff(get_comment_time('U'), current_time('timestamp'))),
