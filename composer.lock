@@ -1760,11 +1760,11 @@
         },
         {
             "name": "ll-premium/searchwp",
-            "version": "4.4.0",
+            "version": "4.5.1",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/searchwp/4.4.0",
-                "shasum": "443228b77b5fb6a96219acc79541a14d774fd44b",
+                "url": "https://satispress.level-level.com/satispress/searchwp/4.5.1",
+                "shasum": "c7982ed98a103274a38bc1baf9a284d97d292acd",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
