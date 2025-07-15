@@ -2,7 +2,7 @@
 	<a
 		href="{{ url }}"
 		aria-label="{{ __('Download %s, (%s, %s)', 'fdmg-labels')|format(title, filetype, filesize)|raw }}"
-		class="relative inline-flex gap-2 no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 font-figtree"
+		class="relative inline-flex gap-2 no-underline hocus:text-primary hocus:underline hocus:dark:text-primary-300 theme-energeia:hocus:text-base-800 font-figtree theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:hocus:text-base-800 theme-fd:dark:hocus:text-paper-50 theme-fd:dark:text-paper-50"
 	>
 			{{ title }} {{ _x('[%s, %s]'|format(filetype, filesize), 'Download', 'fdmg-labels') }}
 	</a>

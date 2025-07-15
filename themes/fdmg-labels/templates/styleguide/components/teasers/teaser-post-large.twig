@@ -1,4 +1,4 @@
-<div data-teaser-post data-component="teaser-post-large" {{ datalayer.get_config(object, 'TEASER', component_subtype) }} class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser">
+<div data-teaser-post data-component="teaser-post-large" {{ datalayer.get_config(object, 'TEASER', component_subtype) }} class="relative flex flex-col h-full transition-shadow border-b-2 font-figtree bg-base-50 border-secondary-400 theme-energeia:border-primary theme-pensioen-pro:border-primary dark:border-transparent dark:bg-base-600 hocus:shadow-teaser group/teaser theme-fd:border-b theme-fd:bg-paper-50 theme-fd:border-paper-300 theme-fd:dark:text-paper-50 theme-fd:dark:border-paper-600 theme-bnr:border theme-bnr:border-base-200 theme-fd:font-proxima theme-bnr:font-jakarta">
 
 	{% if image %}
 		<div class="relative overflow-hidden aspect-video image:w-full image:h-full image:object-cover">
@@ -26,7 +26,7 @@
 		} only %}
 
 		{% if excerpt %}
-			<div class="mt-3 text-base sm:text-[17px] sm:leading-6">
+			<div class="mt-3 text-base sm:text-[17px] sm:leading-6 theme-bnr:text-base">
 				{{ excerpt|raw }}
 			</div>
 		{% endif %}

@@ -1,6 +1,7 @@
 [class*='pum-theme-'] {
 	.pum-container {
-		@apply font-figtree text-base text-base-500 dark:text-base-100 sm:text-lg;
+		@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
+		@apply text-base text-base-500 dark:text-base-100 sm:text-lg;
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -26,7 +27,7 @@
 		top: 0;
 		right: 0;
 		border: 2px solid transparent !important;
-		@apply font-figtree;
+		@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
 		padding: 5px 10px !important;
 		background-color: var(--primary) !important;
 		border-color: var(--primary) !important;
