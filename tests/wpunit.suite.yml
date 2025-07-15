@@ -26,10 +26,12 @@ modules:
             plugins: [
               'gravityforms/gravityforms.php',
               'll-paywall/ll-paywall.php',
-              'daggerhart-openid-connect-generic/openid-connect-generic.php'
+              'daggerhart-openid-connect-generic/openid-connect-generic.php',
+              'fdmg-selligent/init.php',
             ]
             activatePlugins: [
               'gravityforms/gravityforms.php',
               'll-paywall/ll-paywall.php',
-              'daggerhart-openid-connect-generic/openid-connect-generic.php'
+              'daggerhart-openid-connect-generic/openid-connect-generic.php',
+              'fdmg-selligent/init.php',
             ]
