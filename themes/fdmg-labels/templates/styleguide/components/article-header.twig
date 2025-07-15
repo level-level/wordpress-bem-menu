@@ -6,7 +6,7 @@
 	</div>
 
 	<div class="order-2">
-		<h1 class="text-lg font-bold break-words font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl" {{ has_paywall_block ? 'aria-describedby="a11y-paywall-description"' }}>
+		<h1 class="text-lg font-bold break-words font-libre text-secondary-700 theme-pensioen-pro:text-base-500 theme-energeia:text-base-500 dark:text-primary-300 sm:text-3xl theme-fd:font-arnhem theme-bnr:font-jakarta theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-bnr:text-base-800" {{ has_paywall_block ? 'aria-describedby="a11y-paywall-description"' }}>
 			{{ title|raw }}
 
 			{% if has_paywall_block %}
@@ -63,27 +63,27 @@
 
 	{% if authors or date.date and date.datetime and date.date_full %}
 		<div class="order-3 mt-3">
-			<div class="flex gap-4 sm:gap-6 flex-wrap sm:flex-nowrap justify-between">
+			<div class="flex flex-wrap justify-between gap-4 sm:gap-6 sm:flex-nowrap">
 
-				<div class="flex gap-2 flex-wrap sm:gap-6 sm:flex-nowrap">
+				<div class="flex flex-wrap gap-2 sm:gap-6 sm:flex-nowrap">
 					{% if authors %}
 						<span class="sr-only">
 							{{ _x('Written by:', 'Screen reader text', 'fdmg-labels') }}
 						</span>
-						<ul class="flex gap-4 gap-y-2 flex-wrap">
+						<ul class="flex flex-wrap gap-4 gap-y-2">
 							{% for object in authors %}
-								<li class="flex gap-1 items-center">
+								<li class="flex items-center gap-1">
 									{% include 'styleguide/components/buttons/button-link.twig' with {
 										text: object.name,
 										url: object.url,
-										class: 'btn-secondary !p-0 !text-base !border-0 theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 hocus:!underline',
+										class: 'btn-secondary !p-0 !text-base !border-0 theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 hocus:!underline theme-fd:dark:text-paper-50 theme-bnr:text-base-800 theme-bnr:font-jakarta theme-fd:font-proxima',
 									} %}
 									{% if object.email %}
 										{% include 'styleguide/components/buttons/button-link.twig' with {
 											text: '',
 											icon: 'email',
 											url: 'mailto:' ~ object.email,
-											class: 'btn-secondary !p-0 !border-0 !text-lg theme-energeia:text-base-800 theme-energeia:dark:text-primary-300',
+											class: 'btn-secondary !p-0 !border-0 !text-lg theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 theme-bnr:text-base-800 theme-fd:dark:text-paper-50',
 											aria_label: _x('Send an email to %s', 'Screen reader text', 'fdmg-labels')|format(object.name),
 										} %}
 									{% endif %}
@@ -95,7 +95,7 @@
 					{% if date.date and date.datetime and date.date_full %}
 						<div class="flex items-center shrink-0">
 							<span class="sr-only">{{ _x('Published: %s', 'Screen reader text', 'fdmg-labels')|format(date.date_full)|raw }}</span>
-							<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bold">{{ date.date_full|raw }}</time>
+							<time datetime="{{ date.datetime|raw }}" aria-hidden="true" class="text-base font-bol theme-bnr:text-base-800">{{ date.date_full|raw }}</time>
 						</div>
 					{% endif %}
 				</div>
@@ -112,7 +112,7 @@
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: button_label,
 							url: '#comment-form',
-							class: 'btn-secondary !p-0 !border-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 !underline',
+							class: 'btn-secondary !p-0 !border-0 !text-base theme-energeia:text-base-800 theme-energeia:dark:text-primary-300 !underline theme-bnr:text-base-800 theme-fd:dark:text-paper-50',
 							icon: 'comment',
 							icon_left: true,
 						} %}

@@ -18,6 +18,7 @@ class SiteSettings {
 		add_action( 'acf/init', array( $this, 'register' ) );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
+		add_filter( 'admin_body_class', array( $this, 'add_editor_theme_class' ) );
 	}
 
 	/**
@@ -27,6 +28,15 @@ class SiteSettings {
 	public function add_context_args( array $context ): array {
 		$context['site'] = get_field( self::OPTION_GROUP, 'options' ) ?: array();
 		return $context;
+	}
+
+	public function add_editor_theme_class( string $classes ): string {
+		$active_theme = self::get_active_theme();
+
+		// Append the active theme class to the current classes
+		$classes .= ' theme-' . $active_theme;
+
+		return $classes;
 	}
 
 	public function register(): void {
@@ -57,6 +67,8 @@ class SiteSettings {
 											'impact-investor' => 'Impact Investor',
 											'energeia'     => 'Energeia',
 											'pensioen-pro' => 'Pensioen Pro',
+											'fd'           => 'FD',
+											'bnr'          => 'BNR',
 										),
 									)
 									->required()
@@ -70,5 +82,9 @@ class SiteSettings {
 				),
 			)
 		);
+	}
+
+	public static function get_active_theme(): string {
+		return get_option( sprintf( 'options_%s_%s', self::OPTION_GROUP, self::OPTION_ACTIVE_THEME ), false );
 	}
 }

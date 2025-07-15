@@ -1,0 +1,87 @@
+/* proxima-nova - regular */
+@font-face {
+	font-family: 'Proxima Nova';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/proxima-nova-regular.woff');
+	src:
+		local(''),
+		url('../fonts/proxima-nova-regular.woff2') format('woff2'),
+		urrl('../fonts/proxima-nova-regular.woff') format('woff');
+}
+
+/* proxima-nova - regular italic */
+@font-face {
+	font-family: 'Proxima Nova';
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/proxima-nova-regularitalic.woff');
+	src:
+		local(''),
+		url('../fonts/proxima-nova-regularitalic.woff') format('woff');
+}
+
+/* proxima-nova - semibold */
+@font-face {
+	font-family: 'Proxima Nova';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/proxima-nova-semibold.woff');
+	src:
+		local(''),
+		url('../fonts/proxima-nova-semibold.woff') format('woff');
+}
+
+/* proxima-nova - semibold italic */
+@font-face {
+	font-family: 'Proxima Nova';
+	font-style: italic;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/proxima-nova-semibold-italic.woff');
+	src:
+		local(''),
+		url('../fonts/proxima-nova-semibold-italic.woff') format('woff');
+}
+
+/* proxima-nova - bold */
+@font-face {
+	font-family: 'Proxima Nova';
+	font-style: bold;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/proxima-nova-bold.woff');
+	src:
+		local(''),
+		url('../fonts/proxima-nova-bold.woff2') format('woff2'),
+		url('../fonts/proxima-nova-bold.woff') format('woff');
+}
+
+/* Plus Jakarta Sans - Variable */
+@font-face {
+	font-family: 'Plus Jakarta Sans';
+	font-display: swap;
+	font-weight: 400 700;
+	src: url('../fonts/plus-jakarta-sans-variable.woff2') format('woff2');
+}
+
+/* Arnhem Pro - bold */
+@font-face {
+	font-family: 'Arnhem Pro';
+	font-display: swap;
+	font-weight: 700;
+	font-style: normal;
+	src: url('../fonts/arnhempro-bold.woff2') format('woff2');
+}
+
+/* Arnhem Pro - blond */
+@font-face {
+	font-family: 'Arnhem Pro';
+	font-display: swap;
+	font-weight: 400;
+	font-style: normal;
+	src: url('../fonts/arnhempro-blond.woff2') format('woff2');
+}

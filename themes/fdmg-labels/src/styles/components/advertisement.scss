@@ -1,10 +1,6 @@
 .advertisement {
+	@apply bg-secondary-100 dark:bg-base-400 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-50;
 	position: relative;
-	background-color: var(--secondary-100);
-
-	@include dark-mode {
-		background-color: var(--base-400);
-	}
 
 	&__element {
 		display: block;
@@ -16,13 +12,8 @@
 			& > div {
 				& > div {
 					&:before {
-						@apply font-figtree;
+						@apply font-figtree text-secondary-700 dark:text-primary-300 theme-fd:text-base-600 theme-fd:dark:text-paper-50 theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:text-base-800;
 						@include font-size(14px, 16px);
-						color: var(--secondary-700);
-
-						@include dark-mode {
-							color: var(--primary-300);
-						}
 
 						@include breakpoint(sm) {
 							@include font-size(16px, 17px);

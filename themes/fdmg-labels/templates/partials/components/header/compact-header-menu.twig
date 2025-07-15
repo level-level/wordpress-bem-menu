@@ -10,7 +10,7 @@
 } %}
 
 <div
-	data-component="header-menu"
+	data-component="compact-header-menu"
 	class="relative"
 	data-module="header-menu"
 	data-config="{{ config|json_encode() }}">
@@ -22,9 +22,11 @@
 		icon: 'menu',
 		icon_left: true,
 	} %}
-	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] sm:w-[376px] bg-secondary-500 text-base-800 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-300 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
+	<div class="fixed inset-0 top-[theme(space.admin-bar)] w-[calc(100vw-theme(space.6))] sm:w-[376px] bg-secondary-500 text-base-800 z-10 translate-x-0 visible ease-theme-bezier duration-300 dark:bg-base-300 aria-hidden:invisible aria-hidden:-translate-x-full js-header-menu-dropdown
+	theme-fd:bg-paper-200 theme-bnr:bg-base-800
+	focus-visible:outline-base-50 {{ target }}" aria-hidden="true">
 
-		<div class="flex items-center px-3 border-b h-header-height border-secondary-700 dark:border-base-400">
+		<div class="flex items-center px-3 border-b h-header-height border-secondary-700 dark:border-base-400 theme-fd:border-paper-300 theme-bnr:border-base-50">
 			{% include 'styleguide/components/buttons/button-element.twig' with {
 				text: _x('Close', 'Menu', 'fdmg-labels'),
 				aria_expanded_support: false,
@@ -35,7 +37,7 @@
 			} %}
 		</div>
 
-		<div data-component="menu-dropdown" class="relative flex flex-col h-[calc(100%-theme(space.header-height))] outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-300">
+		<div data-component="menu-dropdown" class="relative flex flex-col h-[calc(100%-theme(space.header-height))] outline-base-50 -outline-offset-2 bg-secondary-500 text-base-50 dark:bg-base-300 theme-fd:bg-paper-200 theme-fd:dark:bg-base-600 theme-bnr:bg-base-800">
 			<div class="max-h-[calc(100vh-theme(space.header-height)+10px)] overflow-y-auto overflow-x-hidden {{ scrollarea }}">
 				<div class="pb-4">
 					{% set config = {
@@ -43,7 +45,7 @@
 					} %}
 
 					{% if has_nav_menu(constant('PRIMARY_NAV', navigation)) %}
-						<div class="border-b border-secondary-700 dark:border-base-400">
+						<div class="border-b border-secondary-700 dark:border-base-400 theme-fd:border-paper-300 theme-bnr:border-base-50">
 							<nav aria-label="{{ wp_get_nav_menu_name(constant('PRIMARY_NAV', navigation)) }}" data-module="primary-nav" data-config="{{ config|json_encode() }}">
 								{{ navigation.get_menu(constant('PRIMARY_NAV', navigation), 'sidebar-nav', 0, true)|raw }}
 							</nav>
@@ -58,13 +60,13 @@
 
 			{% set subscribe = options.subscribe_button %}
 			{% if subscribe.url %}
-				<div class="mt-auto border-t border-secondary-300 dark:border-base-400 sm:hidden">
+				<div class="mt-auto border-t border-secondary-300 dark:border-base-400 sm:hidden theme-fd:border-paper-300">
 					<ul class="flex justify-between h-full flex-nowrap">
-						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0">
+						<li class="flex items-center justify-center w-full border-r border-secondary-300 dark:border-base-400 last:border-r-0 theme-fd:border-paper-300">
 							{% include 'styleguide/components/buttons/button-link.twig' with {
 								text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
 								url: subscribe.url,
-								class: 'w-full justify-center h-full !text-base-50 !text-lg sm:hidden',
+								class: 'w-full justify-center h-full !text-base-50 !text-lg sm:hidden theme-fd:!text-base-600 theme-fd:dark:!text-paper-50',
 								is_external: subscribe.target ? true,
 							} %}
 						</li>
