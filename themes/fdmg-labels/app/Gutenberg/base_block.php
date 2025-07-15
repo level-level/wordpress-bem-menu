@@ -167,13 +167,7 @@ class base_block extends Block_Type {
 			$block_content = $cc_template->render_twig( $this->get_twig_template_path(), $block_args, true );
 
 			if ( is_admin() && $block === true ) {
-
-				/**
-				 * Get active theme from options
-				 */
-				$active_theme = 'theme-' . get_option( sprintf( 'options_%s_%s', SiteSettings::OPTION_GROUP, SiteSettings::OPTION_ACTIVE_THEME ) );
-
-				return '<div class="clarkson-acf-preview-block ' . $active_theme . ' ">' . $block_content . '</div>';
+				return '<div class="clarkson-acf-preview-block">' . $block_content . '</div>';
 			} else {
 				return $block_content;
 			}

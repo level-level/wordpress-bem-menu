@@ -2,6 +2,7 @@
 namespace Clarkson\Theme;
 
 use Clarkson_Core\Templates;
+use FDMGLabels\FeatureManager;
 
 class OEmbed {
 	public function register_hooks(): void {
@@ -19,6 +20,11 @@ class OEmbed {
 	 * @return string
 	 */
 	public function rewrite_oembed( string $html, string $url ): string {
+		// Force the post embed to a plain url instead of a preview of the post.
+		if ( str_starts_with( $url, home_url() ) && ( new \FDMGLabels\FeatureManager() )->is_enabled( FeatureManager::FEATURE_DISABLE_EMBED_POST_URL_AUTO_PREVIEW ) ) {
+			return sprintf( '<a href="%s">%s</a>', esc_url( $url ), esc_attr( $url ) );
+		}
+
 		$oembed       = _wp_oembed_get_object();
 		$provider_url = $oembed->get_provider( $url ) ?: $url;
 		$source       = $this->get_source( $provider_url );

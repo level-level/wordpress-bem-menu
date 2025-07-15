@@ -1,22 +1,17 @@
 .comment-form-container {
 	position: relative;
-	background-color: var(--secondary-100);
+	@apply bg-secondary-100 dark:bg-base-600 theme-fd:bg-paper-50 theme-fd:dark:bg-paper-800 theme-bnr:bg-base-100;
 
 	@include dark-mode {
-		background-color: var(--base-600);
 		border-color: transparent;
 	}
 
 	.comment-reply-title {
 		@include font-size(16px, 24px);
-		@apply text-primary theme-energeia:text-base-800 font-figtree font-bold;
-		padding: 11px $spacing-3;
-		border-bottom: 1px solid var(--secondary-400);
+		@apply text-primary theme-energeia:text-base-800 font-figtree font-bold theme-fd:font-proxima theme-bnr:font-jakarta;
+		@apply border-b border-secondary-400 dark:border-base-800 theme-fd:border-paper-300 theme-bnr:border-base-200 theme-bnr:text-base-800 theme-fd:dark:bg-paper-800 theme-fd:dark:border-paper-600;
 
-		@include dark-mode {
-			color: var(--primary-300);
-			border-color: var(--base-800);
-		}
+		padding: 11px $spacing-3;
 
 		@include breakpoint(sm) {
 			@include font-size(18px, 26px);
@@ -25,7 +20,7 @@
 	}
 
 	.form-group {
-		@apply font-figtree;
+		@apply font-figtree theme-fd:font-proxima theme-bnr:font-jakarta;
 		@include font-size(16px);
 		padding: 11px $spacing-3;
 		padding-bottom: $spacing-3;
@@ -38,6 +33,8 @@
 		input[type='submit'] {
 			width: 100%;
 			justify-content: center;
+
+			@apply theme-bnr:text-base-800 theme-fd:text-paper-50;
 
 			@include dark-mode {
 				background-color: var(--primary-300);
