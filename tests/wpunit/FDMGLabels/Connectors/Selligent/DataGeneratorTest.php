@@ -2,14 +2,11 @@
 
 namespace FDMGLabels\Connectors\Selligent;
 
-use Clarkson\Theme\PostTypes\Newsletter;
-use Clarkson\Theme\PostTypes\Post as PostTypesPost;
-use Clarkson\Utilities\Image;
 use Clarkson_Core\WordPress_Object\attachment;
 use Clarkson_Core\WordPress_Object\fdmg_genre;
 use Clarkson_Core\WordPress_Object\ii_newsletter;
 use Clarkson_Core\WordPress_Object\post;
-use DateTime;
+use DateTimeImmutable;
 use FDMGLabels\Connectors\Selligent\Settings\Settings;
 use FDMGLabels\FeatureManager;
 use lucatume\WPBrowser\TestCase\WPTestCase;
@@ -25,7 +22,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->term->create_and_get(
 				array(
 					'taxonomy' => 'fdmg_genre',
-					'name'     => 'Some genre',
+					'name'     => 'Test genre data generator',
 				)
 			)
 		);
@@ -34,7 +31,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'   => 'Test article selligent',
-					'post_type'    => PostTypesPost::POST_TYPE_NAME,
+					'post_type'    => 'post',
 					'post_content' => 'Some content here',
 					'post_excerpt' => "Some excerpt here\nWith newline\n\nAnd new paragraph",
 					'post_status'  => 'publish',
@@ -50,7 +47,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'   => 'Test article selligent 2',
-					'post_type'    => PostTypesPost::POST_TYPE_NAME,
+					'post_type'    => 'post',
 					'post_content' => 'Some content here',
 					'post_excerpt' => "Some excerpt here\nWith newline\n\nAnd new paragraph",
 					'post_status'  => 'publish',
@@ -88,7 +85,9 @@ class DataGeneratorTest extends WPTestCase {
 	public function tearDown(): void {
 		parent::tearDown();
 		delete_field( 'features', 'options' );
+		delete_field( 'selligent', 'options' );
 		wp_delete_post( $this->post->get_id(), true );
+		wp_delete_post( $this->post2->get_id(), true );
 		wp_delete_post( $this->thumbnail->get_id(), true );
 	}
 
@@ -100,7 +99,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_type'   => 'ii_newsletter',
 					'post_status' => 'publish',
 				)
 			)
@@ -113,15 +112,17 @@ class DataGeneratorTest extends WPTestCase {
 			'articleId'        => $this->post->get_id(),
 			'title'            => 'Test teaser title for Test article selligent',
 			'teaser'           => 'Some excerpt here<br />With newline<br /><br />And new paragraph',
-			'news_section'     => 'Some genre',
+			'news_section'     => 'Test genre data generator',
 			'img'              => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'newsletter_large' )[0],
 			'img_square'       => wp_get_attachment_image_src( $this->thumbnail->get_id(), 'newsletter_thumbnail' )[0],
 			'cta'              => $this->post->get_permalink(),
 			'reading_time'     => 1,
-			'publication_time' => ( new DateTime( $this->post->get_object()->post_date, wp_timezone() ) )->format( 'H:i' ),
+			'publication_time' => ( new DateTimeImmutable( $this->post->get_object()->post_date, wp_timezone() ) )->format( 'H:i' ),
 		);
 
 		$this->assertSame( $expected, ( new DataGenerator() )->get_article_data( $this->post, $newsletter ) );
+
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_article_data_field_lengths(): void {
@@ -129,7 +130,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_type'   => 'ii_newsletter',
 					'post_status' => 'publish',
 				)
 			)
@@ -141,7 +142,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'   => str_pad( '', 3000, 'A' ),
-					'post_type'    => PostTypesPost::POST_TYPE_NAME,
+					'post_type'    => 'post',
 					'post_content' => str_pad( '', 3000, 'A' ),
 					'post_excerpt' => str_pad( '', 3000, 'A' ),
 					'post_status'  => 'publish',
@@ -159,6 +160,7 @@ class DataGeneratorTest extends WPTestCase {
 		$this->assertLessThanOrEqual( 50, strlen( $generated_data['news_section'] ), 'News section may not exceed 50 characters' );
 
 		wp_delete_post( $post->get_id(), true );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_newsletter_data(): void {
@@ -166,7 +168,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'  => 'Test newsletter selligent',
-					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_type'   => 'ii_newsletter',
 					'post_status' => 'publish',
 				)
 			)
@@ -202,7 +204,7 @@ class DataGeneratorTest extends WPTestCase {
 
 		$this->assertSame( $expected, ( new DataGenerator() )->get_newsletter_data( $newsletter, '1' ) );
 
-		wp_delete_post( $newsletter->get_id() );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 
 	public function test_get_newsletter_data_field_lengths(): void {
@@ -210,7 +212,7 @@ class DataGeneratorTest extends WPTestCase {
 			$this->factory()->post->create_and_get(
 				array(
 					'post_title'  => str_pad( '', 3000, 'A' ),
-					'post_type'   => Newsletter::POST_TYPE_NAME,
+					'post_type'   => 'ii_newsletter',
 					'post_status' => 'publish',
 				)
 			)
@@ -235,6 +237,6 @@ class DataGeneratorTest extends WPTestCase {
 		$this->assertLessThanOrEqual( 255, strlen( $generated_data['preheader'] ), 'Preheader may not exceed 255 characters' );
 		$this->assertLessThanOrEqual( 2000, strlen( $generated_data['introduction'] ), 'Introduction may not exceed 2000 characters' );
 
-		wp_delete_post( $newsletter->get_id() );
+		wp_delete_post( $newsletter->get_id(), true );
 	}
 }
