@@ -6,7 +6,6 @@ use Clarkson\Theme\ACFPages\FDMGContentAPI;
 use Clarkson\Theme\ACFPages\Features;
 use Clarkson\Theme\ACFPages\Paywall;
 use Clarkson\Theme\ACFPages\SearchOptions;
-use Clarkson\Theme\ACFPages\Selligent;
 use Clarkson\Theme\ACFPages\SEOOptions;
 use Clarkson\Theme\ACFPages\SiteSettings;
 use Clarkson\Theme\ACFPages\ThemeOptions;
@@ -20,7 +19,6 @@ class ACFPages {
 		Features::class,
 		Paywall::class,
 		SearchOptions::class,
-		Selligent::class,
 		FDMGAPI::class,
 		FDMGContentAPI::class,
 		SEOOptions::class,
