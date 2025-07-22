@@ -96,7 +96,7 @@ class KokoAnalytics {
 			}
 
 			// Filter the most viewed posts to only include those that are in the allowed post IDs.
-			$filtered_post_ids = array_intersect( $allowed_post_ids, $most_viewed_post_ids );
+			$filtered_post_ids = array_intersect( $most_viewed_post_ids, $allowed_post_ids );
 			$filtered_post_ids = array_values( $filtered_post_ids );
 			$post_ids          = array_merge( $post_ids, $filtered_post_ids );
 
