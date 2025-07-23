@@ -4,5 +4,5 @@ namespace FDMGLabels\ActionScheduler;
 
 class ActionSchedulerSetup {
 
-	public const GROUP = 'fdmg_selligent';
+	public const GROUP = 'fdmg_labels';
 }
