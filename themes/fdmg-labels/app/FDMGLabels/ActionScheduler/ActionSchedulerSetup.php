@@ -1,6 +1,6 @@
 <?php
 
-namespace LevelLevel\FDMGSelligent\ActionScheduler;
+namespace FDMGLabels\ActionScheduler;
 
 class ActionSchedulerSetup {
 
