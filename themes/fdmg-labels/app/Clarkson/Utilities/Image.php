@@ -165,36 +165,6 @@ class Image {
 	}
 
 	/**
-	 * Get the largest available image size data in the given aspect ratio.
-	 * @param int $attachment_id
-	 * @param int $ratio_width
-	 * @param int $ratio_height
-	 * @param bool $fallback_to_original
-	 * @return array{source: string, width: int, height: int}|null
-	 */
-	public function get_largest_aspect_ratio_image_size( int $attachment_id, int $ratio_width, int $ratio_height, bool $fallback_to_original = false ): ?array {
-		$largest_size_data = null;
-		foreach ( $this->get_aspect_ratio_image_sizes( $attachment_id, $ratio_width, $ratio_height ) as $image_size_data ) {
-			if ( ! $largest_size_data || $image_size_data['width'] > $largest_size_data['width'] ) {
-				$largest_size_data = $image_size_data;
-			}
-		}
-
-		if ( $fallback_to_original && ! $largest_size_data ) {
-			$src = wp_get_attachment_image_src( $attachment_id, 'full' );
-			if ( $src ) {
-				$largest_size_data = array(
-					'source' => $src[0],
-					'width'  => $src[1],
-					'height' => $src[2],
-				);
-			}
-		}
-
-		return $largest_size_data;
-	}
-
-	/**
 	 * Get all available image sizes data in the given aspect ratio.
 	 *
 	 * @param int $attachment_id
