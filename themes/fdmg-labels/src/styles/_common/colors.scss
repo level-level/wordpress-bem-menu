@@ -36,8 +36,8 @@
 }
 
 .theme-fd {
-	--primary: #0F4B64;
-	--primary-300: #0F4B64;
+	--primary: #389596;
+	--primary-300: #389596;
 
 	// Secondary FD
 	--secondary-400: #379596;
@@ -52,16 +52,20 @@
 	--paper-300: #cdbeb4;
 	--paper-600: #4C4641;
 	--paper-800: #332F2C;
+
+	// Change 50 to 100 and 100 to 50 for single posts only
+	.single-post {
+		--paper-100: #ffeadb;
+		--paper-50: #f1ded2;
+	}
 }
 
 .theme-bnr {
 	--primary: #FFD200;
 	--primary-300: #FFD200;
+	--secondary-400: #FFD200;
 
 	// Base BNR
 	--base-100: #f5f5f5;
 	--base-200: #e0e0e0;
-
-	// Secondary BNR
-	--secondary-400: #381974;
 }
