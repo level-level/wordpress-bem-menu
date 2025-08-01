@@ -14,12 +14,12 @@ class ADvance {
 
 	public const MENU_SLUG = 'acf-advance-options';
 
-	public const OPTION_GROUP           = 'advance';
-	public const OPTION_ENABLED         = 'enabled';
-	public const OPTION_PAGES_BASE_URL  = 'pages_base_url';
-	public const OPTION_API_BASE_URL          = 'api_base_url';
-	public const OPTION_API_ACCESS_TOKEN         = 'api_access_token';
-	public const OPTION_API_ACCESS_HASH = 'api_access_hash';
+	public const OPTION_GROUP            = 'advance';
+	public const OPTION_ENABLED          = 'enabled';
+	public const OPTION_PAGES_BASE_URL   = 'pages_base_url';
+	public const OPTION_API_BASE_URL     = 'api_base_url';
+	public const OPTION_API_ACCESS_TOKEN = 'api_access_token';
+	public const OPTION_API_ACCESS_HASH  = 'api_access_hash';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
