@@ -1,6 +1,7 @@
 <?php
 namespace Clarkson\Theme;
 
+use Clarkson\Theme\ACFPages\ADvance;
 use Clarkson\Theme\ACFPages\FDMGAPI;
 use Clarkson\Theme\ACFPages\FDMGContentAPI;
 use Clarkson\Theme\ACFPages\Features;
@@ -25,6 +26,7 @@ class ACFPages {
 		FDMGContentAPI::class,
 		SEOOptions::class,
 		VacancyOptions::class,
+		ADvance::class,
 	);
 
 	public function register_hooks(): void {
