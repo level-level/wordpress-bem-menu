@@ -11,7 +11,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	public function register_hooks(): void {}
 
-	public function is_available(): bool {
+	public function is_enabled(): bool {
 		return false;
 	}
 }

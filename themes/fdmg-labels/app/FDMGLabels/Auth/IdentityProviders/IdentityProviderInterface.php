@@ -15,7 +15,7 @@ interface IdentityProviderInterface {
 	public function get_id(): string;
 
 	/**
-	 * Determines if the identity provider is enabled and configured.
+	 * Determines if the identity provider is enabled.
 	 */
-	public function is_available(): bool;
+	public function is_enabled(): bool;
 }

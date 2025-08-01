@@ -1,5 +1,5 @@
 <?php
-namespace FDMGLabels\Auth\IdentityProviders;
+namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;

@@ -15,8 +15,8 @@ class Init {
 	/**
 	 * @var IdentityProviderInterface[]
 	 *
-	 * This array holds the available identity providers.
-	 * Should not be read directly, use get_available_identity_providers() instead.
+	 * This array holds the all identity providers.
+	 * Should not be read directly, use $this->get_available_identity_providers() instead.
 	 */
 	private array $available_identity_providers = array();
 
@@ -30,6 +30,7 @@ class Init {
 		( new EditorCookie( $this->auth_cookie_helper ) )->register_hooks();
 		( new UserCookie( $this->auth_cookie_helper ) )->register_hooks();
 		( new SessionExpiration() )->register_hooks();
+		$this->get_identity_provider()?->register_hooks();
 
 		add_filter( 'show_admin_bar', array( $this, 'hide_admin_bar' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'localize_scripts' ) );
@@ -63,7 +64,7 @@ class Init {
 	public function get_identity_provider(): ?IdentityProviderInterface {
 		$identity_providers = $this->get_available_identity_providers();
 		foreach ( $identity_providers as $identity_provider ) {
-			if ( $identity_provider->is_available() ) {
+			if ( $identity_provider->is_enabled() ) {
 				return $identity_provider;
 			}
 		}
@@ -72,8 +73,7 @@ class Init {
 	}
 
 	/**
-	 * Returns an array of available identity providers.
-	 *
+	 * Returns an array of available identity providers in the project.
 	 * @return IdentityProviderInterface[]
 	 */
 	private function get_available_identity_providers(): array {
