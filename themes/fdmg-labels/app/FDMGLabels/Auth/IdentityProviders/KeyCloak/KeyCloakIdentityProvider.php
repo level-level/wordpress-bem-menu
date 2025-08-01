@@ -24,5 +24,4 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 	public function is_available(): bool {
 		return function_exists( 'oidcg_get_authentication_url' ) && ! empty( oidcg_get_authentication_url() );
 	}
-
 }

@@ -1,7 +1,6 @@
 <?php
 namespace FDMGLabels\Auth\IdentityProviders;
 
-
 interface IdentityProviderInterface {
 
 	/**
@@ -19,5 +18,4 @@ interface IdentityProviderInterface {
 	 * Determines if the identity provider is enabled and configured.
 	 */
 	public function is_available(): bool;
-
 }

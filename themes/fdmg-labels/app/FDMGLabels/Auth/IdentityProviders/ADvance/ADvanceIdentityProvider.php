@@ -14,5 +14,4 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	public function is_available(): bool {
 		return false;
 	}
-
 }
