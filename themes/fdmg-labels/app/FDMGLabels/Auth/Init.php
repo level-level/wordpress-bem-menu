@@ -20,9 +20,11 @@ class Init {
 	 */
 	private array $available_identity_providers = array();
 
-	public function __construct(
-		private AuthCookieHelper $auth_cookie_helper,
-	) {}
+	private AuthCookieHelper $auth_cookie_helper;
+
+	public function __construct() {
+		$this->auth_cookie_helper = new AuthCookieHelper();
+	}
 
 	public function register_hooks(): void {
 		( new EditorCookie( $this->auth_cookie_helper ) )->register_hooks();
