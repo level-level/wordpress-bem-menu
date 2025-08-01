@@ -1,16 +1,15 @@
 <?php
-namespace FDMGLabels\Auth;
+namespace FDMGLabels\Auth\IdentityProviders;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use FDMGLabels\CookieHelper;
-use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
 use FDMGLabels\StaticPages\LoginController;
 use Monolog\Registry;
 use WP_Error;
 use WP_User;
 
-class OpenIDConnect {
+class OpenIDConnectHooks {
 
 	public const META_FDMG_USER_ID         = 'fdmg_user_id';
 	public const META_FDMG_ORGANISATION_ID = 'fdmg_organisation_id';

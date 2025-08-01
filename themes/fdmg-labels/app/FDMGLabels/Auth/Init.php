@@ -6,11 +6,14 @@ use FDMGLabels\StaticPages\LoginController;
 
 class Init {
 
+	public function __construct(
+		private AuthCookieHelper $auth_cookie_helper,
+	) {}
+
 	public function register_hooks(): void {
-		$cookie_helper = new AuthCookieHelper();
-		( new EditorCookie( $cookie_helper ) )->register_hooks();
-		( new UserCookie( $cookie_helper ) )->register_hooks();
-		( new OpenIDConnect( $cookie_helper ) )->register_hooks();
+		( new EditorCookie( $this->auth_cookie_helper ) )->register_hooks();
+		( new UserCookie( $this->auth_cookie_helper ) )->register_hooks();
+		( new OpenIDConnect( $this->auth_cookie_helper ) )->register_hooks();
 		( new SessionExpiration() )->register_hooks();
 
 		add_filter( 'show_admin_bar', array( $this, 'hide_admin_bar' ) );
