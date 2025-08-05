@@ -1,19 +1,16 @@
 <?php
-namespace FDMGLabels\Auth;
+namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
+use FDMGLabels\Auth\Init as AuthInit;
 use FDMGLabels\CookieHelper;
-use FDMGLabels\ServerSideTracking\Init as ServerSideTrackingInit;
 use FDMGLabels\StaticPages\LoginController;
 use Monolog\Registry;
 use WP_Error;
 use WP_User;
 
-class OpenIDConnect {
-
-	public const META_FDMG_USER_ID         = 'fdmg_user_id';
-	public const META_FDMG_ORGANISATION_ID = 'fdmg_organisation_id';
+class OpenIDConnectHooks {
 
 	protected const REMEMBER_ME_COOKIE_NAME = 'fdmg_idp_remember_me';
 
@@ -146,8 +143,8 @@ class OpenIDConnect {
 
 		// Update FDMG User ID and Organisation ID
 		$user_data['meta_input'] = array(
-			self::META_FDMG_USER_ID         => $fdmg_user_id,
-			self::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
+			AuthInit::META_FDMG_USER_ID         => $fdmg_user_id,
+			AuthInit::META_FDMG_ORGANISATION_ID => (int) ( $openid_user_claim['organizationId'] ?? 0 ),
 		);
 		return $user_data;
 	}

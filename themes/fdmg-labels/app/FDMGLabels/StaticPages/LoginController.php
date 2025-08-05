@@ -29,7 +29,7 @@ class LoginController extends AbstractMainController {
 	}
 
 	/**
-	 * Redirect user to the keyclock login page.
+	 * Redirect user to the IDP login page.
 	 */
 	protected function handle_login_link(): void {
 		// Disable caching
