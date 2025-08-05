@@ -1,6 +1,7 @@
 <?php
 namespace FDMGLabels\Auth\IdentityProviders\ADvance;
 
+use Clarkson\Theme\ACFPages\ADvance;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
@@ -12,6 +13,6 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	public function register_hooks(): void {}
 
 	public function is_enabled(): bool {
-		return false;
+		return (bool) get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_ENABLED ) );
 	}
 }
