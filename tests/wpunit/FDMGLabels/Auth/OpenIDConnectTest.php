@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Auth;
 
+use FDMGLabels\Auth\IdentityProviders\KeyCloak\OpenIDConnectHooks;
 use FDMGLabels\CookieHelper;
 use lucatume\WPBrowser\TestCase\WPTestCase;
 use OpenID_Connect_Generic;
@@ -79,20 +80,20 @@ class OpenIDConnectTest extends WPTestCase {
 	}
 
 	public function test_set_account_holder_user_roles(): void {
-		$openid_connect = new OpenIDConnect( new CookieHelper() );
+		$openid_connect_hooks = new OpenIDConnectHooks( new CookieHelper() );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'fdmg_account_holder' ) );
-		$openid_connect->set_user_roles( $user, $this->openid_user_claim );
+		$openid_connect_hooks->set_user_roles( $user, $this->openid_user_claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'fdmg_account_holder' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'subscriber' ) );
-		$openid_connect->set_user_roles( $user, $this->openid_user_claim );
+		$openid_connect_hooks->set_user_roles( $user, $this->openid_user_claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'subscriber', 'fdmg_account_holder' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'administrator' ) );
-		$openid_connect->set_user_roles( $user, $this->openid_user_claim );
+		$openid_connect_hooks->set_user_roles( $user, $this->openid_user_claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'administrator', 'fdmg_account_holder' ), $user->roles );
 	}
@@ -102,20 +103,20 @@ class OpenIDConnectTest extends WPTestCase {
 		$claim            = $this->openid_user_claim;
 		$claim['roles'][] = 'VIEWER';
 
-		$openid_connect = new OpenIDConnect( new CookieHelper() );
+		$openid_connect_hooks = new OpenIDConnectHooks( new CookieHelper() );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'fdmg_account_holder' ) );
-		$openid_connect->set_user_roles( $user, $claim );
+		$openid_connect_hooks->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'fdmg_subscriber' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'subscriber' ) );
-		$openid_connect->set_user_roles( $user, $claim );
+		$openid_connect_hooks->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'subscriber', 'fdmg_subscriber' ), $user->roles );
 
 		$user = $this->factory()->user->create_and_get( array( 'role' => 'administrator' ) );
-		$openid_connect->set_user_roles( $user, $claim );
+		$openid_connect_hooks->set_user_roles( $user, $claim );
 		$user = get_user_by( 'id', $user->ID );
 		$this->assertEquals( array( 'administrator', 'fdmg_subscriber' ), $user->roles );
 	}
