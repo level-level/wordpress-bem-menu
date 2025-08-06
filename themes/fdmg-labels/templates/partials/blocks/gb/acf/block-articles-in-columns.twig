@@ -10,6 +10,7 @@
 	{% set teaser = 'styleguide/components/teasers/teaser-post-medium.twig' %}
 	{% set grid = 'gap-6 lg:grid-cols-3' %}
 	{% set image_size = 'teaser_medium' %}
+	{% set in_3_columns = true %}
 {% elseif columns is same as('1') %}
 	{% set teaser = 'styleguide/components/teasers/teaser-post-wide.twig' %}
 	{% set grid = 'sm:gap-6 lg:grid-cols-1' %}
@@ -63,6 +64,7 @@
 						show_paywall_label: not object.has_paywall_block() and feature_manager.is_enabled(constant('FEATURE_ENABLE_PAYWALL_LABEL', feature_manager)),
 						article_id: object.get_id(),
 						component_subtype: 'articles in columns',
+						in_3_columns: in_3_columns|default(false),
 					} %}
 				</li>
 			{% endfor %}
