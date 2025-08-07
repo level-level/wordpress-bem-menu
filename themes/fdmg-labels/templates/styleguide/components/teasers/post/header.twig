@@ -7,6 +7,10 @@
 	{% set title_style = 'text-md sm:text-lg' %}
 {% endif %}
 
+{% if in_3_columns %}
+	{% set title_style = 'text-lg' %}
+{% endif %}
+
 <div data-component="post/header" class="flex flex-col">
 	<div class="order-2 mt-2 sm:mt-3">
 		<{{ useH3 ? 'h3' : 'h2' }} class="{{ title_style }}">
