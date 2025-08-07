@@ -128,6 +128,11 @@ class LoginController extends AbstractMainController {
 		return $permalink;
 	}
 
+	/**
+	 * Handle the redirect after a successful login.
+	 *
+	 * @return void
+	 */
 	public function handle_after_login_redirect(): void {
 		// If no cookie is set, redirect to the login page.
 		$cookie_helper = new CookieHelper();
@@ -139,15 +144,14 @@ class LoginController extends AbstractMainController {
 		$args = array(
 			'headers' => array(
 				'ADAPI_RESPONSE_FORMAT' => 'json', // json or xml, from the advance postman collection
-				'ADAPI_ACCESS_TOKEN' => '',
-				'ADAPI_ACCESS_HASH' => '',
+				'ADAPI_ACCESS_TOKEN'    => '',
+				'ADAPI_ACCESS_HASH'     => '',
 			),
-			'body' => array(
-				'frontendCookie' => $cookie_helper->get_cookie( 'ADFEAuthCookie' ), // AKA ADFEAuthCookie in the users browser REQUIRED
+			'body'    => array(
+				'frontendCookie'    => $cookie_helper->get_cookie( 'ADFEAuthCookie' ), // AKA ADFEAuthCookie in the users browser REQUIRED
 				'concurrencyCookie' => '', // REQUIRED
 			),
 		);
-
 
 		$response = wp_remote_post( 'https://adtest-ipe-ipe.abasoftaws.co.uk/Login/AutoLogin/{{version}}', $args );
 
