@@ -22,7 +22,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$handle_login_url = add_query_arg( 'redirect_to', rawurlencode( $redirect_url_after_login ), $handle_login_url );
 
 		// Redirect to the login url.
-		wp_redirect( $handle_login_url, 302, 'FDMG Labels - Profile auth redirect to ADvance' );
+		wp_redirect( $handle_login_url, 302, 'FDMG Labels - Profile auth redirect to ADvance' ); // phpcs:ignore
 		wp_die();
 	}
 }
