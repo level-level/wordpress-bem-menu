@@ -11,7 +11,7 @@ class Section {
 	protected const POST_TYPES = array( Post::POST_TYPE_NAME );
 
 	public function register_hooks(): void {
-		add_action( 'init', array( $this, 'register' ) );
+		add_action( 'init', array( $this, 'register' ), 4 );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 	}
 
