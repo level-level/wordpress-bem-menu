@@ -136,6 +136,21 @@ class LoginController extends AbstractMainController {
 			return;
 		}
 
+		$args = array(
+			'headers' => array(
+				'ADAPI_RESPONSE_FORMAT' => '', // json or xml, from the advance postman collection
+				'ADAPI_ACCESS_TOKEN' => '',
+				'ADAPI_ACCESS_HASH' => '',
+			),
+			'body' => array(
+				'frontendCookie' => $cookie_helper->get_cookie( 'ADFEAuthCookie' ), // AKA ADFEAuthCookie in the users browser REQUIRED
+				'concurrencyCookie' => '', // REQUIRED
+			),
+		);
+
+
+		$response = wp_remote_post( 'https://adtest-ipe-ipe.abasoftaws.co.uk/Login/AutoLogin/{{version}}', $args );
+
 		$redirect_to = home_url();
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
