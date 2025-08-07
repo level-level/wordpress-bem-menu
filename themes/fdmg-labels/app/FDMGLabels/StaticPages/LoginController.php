@@ -138,7 +138,7 @@ class LoginController extends AbstractMainController {
 
 		$args = array(
 			'headers' => array(
-				'ADAPI_RESPONSE_FORMAT' => '', // json or xml, from the advance postman collection
+				'ADAPI_RESPONSE_FORMAT' => 'json', // json or xml, from the advance postman collection
 				'ADAPI_ACCESS_TOKEN' => '',
 				'ADAPI_ACCESS_HASH' => '',
 			),
@@ -150,6 +150,11 @@ class LoginController extends AbstractMainController {
 
 
 		$response = wp_remote_post( 'https://adtest-ipe-ipe.abasoftaws.co.uk/Login/AutoLogin/{{version}}', $args );
+
+		if ( $response instanceof \WP_Error || $response['body']['status'] !== 'OK' ) {
+			$redirect_url = home_url();
+			$this->redirect_and_exit( $redirect_url, 302, 'FDMG Labels - Profile auth after failed login redirect' );
+		}
 
 		$redirect_to = home_url();
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
