@@ -3,8 +3,11 @@ namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 use FDMGLabels\CookieHelper;
+use FDMGLabels\StaticPages\ResponseTrait;
 
 class KeyCloakIdentityProvider implements IdentityProviderInterface {
+
+	use ResponseTrait;
 
 	private CookieHelper $cookie_helper;
 
@@ -35,7 +38,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 			 * @param string $param_name
 			 * @return bool
 			 */
-			$_GET, function ( $param_value, string $param_name ): bool { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$_GET, function ( $param_value, string $param_name ): bool { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				return ! in_array( $param_name, array( 'response_type', 'scope', 'client_id', 'state', 'redirect_uri' ), true )
 				&& is_scalar( $param_value );
 			}, ARRAY_FILTER_USE_BOTH
@@ -58,7 +61,11 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		$login_url = str_replace( '+', '%20', $login_url );
 
 		// Redirect to the login url.
-		wp_safe_redirect( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
-		exit;
+		$this->redirect_and_exit(
+			$login_url,
+			302,
+			'FDMG Labels - Profile auth redirect to OpenID Connect',
+			false
+		);
 	}
 }
