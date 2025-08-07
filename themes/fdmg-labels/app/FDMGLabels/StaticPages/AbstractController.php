@@ -20,16 +20,6 @@ abstract class AbstractController {
 	abstract public function is_current_page( string $slug ): bool;
 
 	/**
-	 * Exits running code, except for when we are in a testing environment.
-	 */
-	protected function maybe_exit(): void {
-		if ( defined( 'WP_UNIT_TESTING' ) && constant( 'WP_UNIT_TESTING' ) ) {
-			return;
-		}
-		exit;
-	}
-
-	/**
 	 * Echo a twig template.
 	 * Then exits running code, except for when we are in a testing environment.
 	 *
@@ -39,7 +29,7 @@ abstract class AbstractController {
 	 */
 	protected function echo_twig_and_exit( string $template_file, array $objects = array() ): void {
 		Templates::get_instance()->echo_twig( $template_file, $objects, true );
-		$this->maybe_exit();
+		wp_die();
 	}
 
 	/**
@@ -52,7 +42,7 @@ abstract class AbstractController {
 		} else {
 			wp_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
 		}
-		$this->maybe_exit();
+		wp_die();
 	}
 
 	/**
