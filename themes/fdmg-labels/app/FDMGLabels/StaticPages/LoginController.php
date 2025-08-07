@@ -136,11 +136,6 @@ class LoginController extends AbstractMainController {
 			return;
 		}
 
-		wp_authenticate(
-			$cookie_helper->get_cookie( 'ADFEAuthCookie' ),
-			$cookie_helper->get_cookie( 'ADFEAuthCookie' )
-		);
-
 		$redirect_to = home_url();
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
