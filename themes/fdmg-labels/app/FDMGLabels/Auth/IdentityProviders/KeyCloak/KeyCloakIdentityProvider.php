@@ -3,8 +3,11 @@ namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 use FDMGLabels\CookieHelper;
+use FDMGLabels\StaticPages\ResponseTrait;
 
 class KeyCloakIdentityProvider implements IdentityProviderInterface {
+
+	use ResponseTrait;
 
 	private CookieHelper $cookie_helper;
 
@@ -58,7 +61,11 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		$login_url = str_replace( '+', '%20', $login_url );
 
 		// Redirect to the login url.
-		wp_redirect( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' ); // phpcs:ignore
-		wp_die();
+		$this->redirect_and_exit(
+			$login_url,
+			302,
+			'FDMG Labels - Profile auth redirect to OpenID Connect',
+			false
+		);
 	}
 }

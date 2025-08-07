@@ -3,8 +3,11 @@ namespace FDMGLabels\Auth\IdentityProviders\ADvance;
 
 use Clarkson\Theme\ACFPages\ADvance;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
+use FDMGLabels\StaticPages\ResponseTrait;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
+
+	use ResponseTrait;
 
 	public function get_id(): string {
 		return 'advance';
@@ -22,7 +25,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$handle_login_url = add_query_arg( 'redirect_to', rawurlencode( $redirect_url_after_login ), $handle_login_url );
 
 		// Redirect to the login url.
-		wp_redirect( $handle_login_url, 302, 'FDMG Labels - Profile auth redirect to ADvance' ); // phpcs:ignore
-		wp_die();
+		$this->redirect_and_exit(
+			$handle_login_url,
+			302,
+			'FDMG Labels - Profile auth redirect to ADvance',
+			false
+		);
 	}
 }
