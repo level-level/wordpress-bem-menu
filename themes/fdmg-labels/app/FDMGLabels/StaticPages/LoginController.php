@@ -33,7 +33,7 @@ class LoginController extends AbstractMainController {
 				break;
 			case self::PAGE_AFTER_LOGIN:
 				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
-				$this->handle_after_login_redirect();
+				$this->handle_after_login();
 				break;
 		}
 	}
@@ -128,45 +128,26 @@ class LoginController extends AbstractMainController {
 		return $permalink;
 	}
 
-	/**
-	 * Handle the redirect after a successful login.
-	 *
-	 * @return void
-	 */
-	public function handle_after_login_redirect(): void {
-		// If no cookie is set, redirect to the login page.
-		$cookie_helper = new CookieHelper();
-		if ( ! $cookie_helper->get_cookie( 'ADFEAuthCookie' ) ) {
-			$this->redirect_and_exit( $this->get_login_permalink( false ), 302, 'FDMG Labels - Profile auth after failed login redirect' );
-			return;
-		}
-
-		$args = array(
-			'headers' => array(
-				'ADAPI_RESPONSE_FORMAT' => 'json', // json or xml, from the advance postman collection
-				'ADAPI_ACCESS_TOKEN'    => '',
-				'ADAPI_ACCESS_HASH'     => '',
-			),
-			'body'    => array(
-				'frontendCookie'    => $cookie_helper->get_cookie( 'ADFEAuthCookie' ), // AKA ADFEAuthCookie in the users browser REQUIRED
-				'concurrencyCookie' => '', // REQUIRED
-			),
-		);
-
-		$response = wp_remote_post( 'https://adtest-ipe-ipe.abasoftaws.co.uk/Login/AutoLogin/{{version}}', $args );
-
-		if ( $response instanceof \WP_Error || $response['body']['status'] !== 'OK' ) {
-			$redirect_url = home_url();
-			$this->redirect_and_exit( $redirect_url, 302, 'FDMG Labels - Profile auth after failed login redirect' );
-		}
-
+	public function handle_after_login(): void {
+		// Determine redirect url.
 		$redirect_to = home_url();
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
 			$redirect_to = $_REQUEST['redirect_to'];
 		}
 
-		// Redirect to the page from the original request.
-		$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth after successful login redirect' );
+		// If already logged in, directly go to the redirect url.
+		if ( is_user_logged_in() ) {
+			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged in' );
+			return;
+		}
+
+		$identity_provider = ( new Init() )->get_identity_provider();
+		if ( $identity_provider ) {
+			$identity_provider->handle_after_login_page( $redirect_to );
+		}
+
+		// Redirect to the login url.
+		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 }

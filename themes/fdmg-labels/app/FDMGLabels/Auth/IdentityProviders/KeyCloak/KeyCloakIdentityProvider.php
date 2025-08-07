@@ -68,4 +68,8 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 			false
 		);
 	}
+
+	public function handle_after_login_page( string $redirect_url_after_login ): void {
+		// Handled by the OpenID Connect plugin.
+	}
 }
