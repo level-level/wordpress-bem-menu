@@ -11,6 +11,8 @@ use Clarkson_Core\Templates;
  */
 abstract class AbstractController {
 
+	use ResponseTrait;
+
 	public function __construct() {}
 
 	abstract public function get_permalink( string $sub_page = '' ): string;
@@ -18,42 +20,6 @@ abstract class AbstractController {
 	abstract public function handle_request( string $query_var ): void;
 
 	abstract public function is_current_page( string $slug ): bool;
-
-	/**
-	 * Exits running code, except for when we are in a testing environment.
-	 */
-	protected function maybe_exit(): void {
-		if ( defined( 'WP_UNIT_TESTING' ) && constant( 'WP_UNIT_TESTING' ) ) {
-			return;
-		}
-		exit;
-	}
-
-	/**
-	 * Echo a twig template.
-	 * Then exits running code, except for when we are in a testing environment.
-	 *
-	 * @param string $template_file
-	 * @param array<string, mixed> $objects
-	 * @return void
-	 */
-	protected function echo_twig_and_exit( string $template_file, array $objects = array() ): void {
-		Templates::get_instance()->echo_twig( $template_file, $objects, true );
-		$this->maybe_exit();
-	}
-
-	/**
-	 * Perform a redirect.
-	 * Then exits running code, except for when we are in a testing environment.
-	 */
-	public function redirect_and_exit( string $location, int $status, string $x_redirect_by, bool $safe = true ): void {
-		if ( $safe ) {
-			wp_safe_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
-		} else {
-			wp_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
-		}
-		$this->maybe_exit();
-	}
 
 	/**
 	 * Get the ID from the query var, or 0 if not exists.

@@ -18,4 +18,9 @@ interface IdentityProviderInterface {
 	 * Determines if the identity provider is enabled.
 	 */
 	public function is_enabled(): bool;
+
+	/**
+	 * Handles how the login page should be displayed.
+	 */
+	public function handle_login_page( string $redirect_url_after_login ): void;
 }
