@@ -35,7 +35,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 			 * @param string $param_name
 			 * @return bool
 			 */
-			$_GET, function ( $param_value, string $param_name ): bool {
+			$_GET, function ( $param_value, string $param_name ): bool { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				return ! in_array( $param_name, array( 'response_type', 'scope', 'client_id', 'state', 'redirect_uri' ), true )
 				&& is_scalar( $param_value );
 			}, ARRAY_FILTER_USE_BOTH
@@ -47,7 +47,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		// Add parameters to the OpenID Connect login url.
 		$add_url_params = array_map( 'strval', $add_url_params );
 		$add_url_params = array_map( 'rawurlencode', $add_url_params );
-		$login_url = add_query_arg( $add_url_params, oidcg_get_authentication_url() );
+		$login_url      = add_query_arg( $add_url_params, oidcg_get_authentication_url() );
 
 		/**
 		 * Login url contains urlencoded parameters (from add_query_arg).
@@ -58,7 +58,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		$login_url = str_replace( '+', '%20', $login_url );
 
 		// Redirect to the login url.
-		wp_redirect( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
-		wp_die();
+		wp_safe_redirect( $login_url, 302, 'FDMG Labels - Profile auth redirect to OpenID Connect' );
+		exit;
 	}
 }

@@ -4,11 +4,16 @@ namespace FDMGLabels\StaticPages;
 use Clarkson\Theme\Navigation\Navigation;
 use Clarkson_Core\Templates;
 use FDMGLabels\Auth\Init;
+use FDMGLabels\Connectors\FDMGAPI\GuzzleClientFactory;
+use FDMGLabels\CookieHelper;
+use GuzzleHttp\Client;
+use WPChill\DownloadMonitor\Shop\Session\Cookie;
 
 class LoginController extends AbstractMainController {
 
-	public const PAGE_LOGIN = '';
-	public const PAGE_ERROR = 'login-error';
+	public const PAGE_LOGIN       = '';
+	public const PAGE_ERROR       = 'login-error';
+	public const PAGE_AFTER_LOGIN = 'after-login';
 	public function get_slug(): string {
 		return 'login';
 	}
@@ -25,6 +30,10 @@ class LoginController extends AbstractMainController {
 			case self::PAGE_ERROR:
 				$this->set_page_title( __( 'Login error', 'fdmg-labels' ) );
 				$this->handle_login_error_link();
+				break;
+			case self::PAGE_AFTER_LOGIN:
+				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
+				$this->handle_after_login_redirect();
 				break;
 		}
 	}
@@ -117,5 +126,28 @@ class LoginController extends AbstractMainController {
 			), $permalink
 		);
 		return $permalink;
+	}
+
+	public function handle_after_login_redirect(): void {
+		// If no cookie is set, redirect to the login page.
+		$cookie_helper = new CookieHelper();
+		if ( ! $cookie_helper->get_cookie( 'ADFEAuthCookie' ) ) {
+			$this->redirect_and_exit( $this->get_login_permalink( false ), 302, 'FDMG Labels - Profile auth after failed login redirect' );
+			return;
+		}
+
+		wp_authenticate(
+			$cookie_helper->get_cookie( 'ADFEAuthCookie' ),
+			$cookie_helper->get_cookie( 'ADFEAuthCookie' )
+		);
+
+		$redirect_to = home_url();
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
+			$redirect_to = $_REQUEST['redirect_to'];
+		}
+
+		// Redirect to the page from the original request.
+		$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth after successful login redirect' );
 	}
 }
