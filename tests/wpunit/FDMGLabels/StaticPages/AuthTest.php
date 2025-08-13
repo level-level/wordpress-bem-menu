@@ -4,6 +4,7 @@ namespace FDMGLabels\StaticPages;
 
 use FDMGLabels\Tests\Helpers\Redirects;
 use lucatume\WPBrowser\TestCase\WPTestCase;
+use WPDieException;
 
 class AuthTest extends WPTestCase {
 
@@ -29,7 +30,9 @@ class AuthTest extends WPTestCase {
 		$_GET['loginHint']   = 'anotherone@example.test';
 		$_GET['method']      = 'ipBasedRedirect';
 		$controller          = new LoginController();
+
 		$this->redirects_helper->start();
+		$this->expectException( WPDieException::class );
 		$controller->handle_request( '' );
 		$this->redirects_helper->stop();
 
@@ -54,6 +57,7 @@ class AuthTest extends WPTestCase {
 		$_REQUEST['redirect_to'] = 'https://example-after-logout-redirect.test';
 		$controller              = new LogoutController();
 		$this->redirects_helper->start();
+		$this->expectException( WPDieException::class );
 		$controller->handle_request( '' );
 		$this->redirects_helper->stop();
 
