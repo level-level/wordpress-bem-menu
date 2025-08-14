@@ -10,7 +10,9 @@ use FDMGLabels\Connectors\ADvance\LoginAPI;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
 use FDMGLabels\StaticPages\ResponseTrait;
+use Psr\Http\Message\ResponseInterface;
 use Ramsey\Uuid\Uuid;
+use WP_Error;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
 
@@ -34,7 +36,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	public function handle_login_page( string $redirect_url_after_login ): void {
 		// Set concurrency cookie
-		if( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
+		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
 			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
 		}
 
@@ -44,7 +46,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$handle_login_url = add_query_arg( 'redirect_to', rawurlencode( $redirect_url_after_login ), $handle_login_url );
 
 		// Pass handle url to ADvance login page to get redirectred back to our platform and handle the login
-		$idp_base_url = get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
+		$idp_base_url  = get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
 		$idp_login_url = sprintf( '%s/login', untrailingslashit( $idp_base_url ) );
 		$idp_login_url = add_query_arg( 'returl', rawurlencode( $handle_login_url ), $idp_login_url );
 
@@ -58,9 +60,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	}
 
 	public function handle_after_login_page( string $redirect_url_after_login ): void {
-		$login_controller = new LoginController();
-		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' );
-		if (! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
+		$login_controller     = new LoginController();
+		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
+		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'no_frontend_cookie',
@@ -70,7 +72,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' );
+		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
 		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
@@ -82,14 +84,14 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		}
 
 		$client = ( new ClientFactory() )->get_client();
-		$api = new LoginAPI( $client );
+		$api    = new LoginAPI( $client );
 		try {
 			$response = $api->auto_login(
 				$frontend_auth_cookie,
 				$concurrency_cookie,
 				( new IPAddress() )->get_visitor_ip_address()
 			);
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -99,9 +101,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		try{
+		try {
 			$body = $api->parse_response_to_json( $response );
-		} catch (Exception $e) {
+		} catch ( Exception $e ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -111,7 +113,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		if( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
+		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -132,28 +134,37 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		);
 	}
 
+	/**
+	 * Creates or updates a user from the api.
+	 *
+	 * @param array<string,mixed> $response
+	 * @return int
+	*/
 	public function create_or_update_user( array $response ): int {
 		$login_details = $response['data']['LoginDetails'];
 
 		$wp_user_data = array(
-			'user_email' => $login_details['Username'],
-			'user_login' => $login_details['Username'],
+			'user_email'   => $login_details['Username'],
+			'user_login'   => $login_details['Username'],
 			'display_name' => $login_details['FirstName'] . ' ' . $login_details['Surname'],
-			'first_name' => $login_details['FirstName'],
-			'last_name' => $login_details['Surname'],
-			'meta_input' => array(
-				'party_id' => $login_details['PartyID']
-			)
+			'first_name'   => $login_details['FirstName'],
+			'last_name'    => $login_details['Surname'],
+			'meta_input'   => array(
+				'party_id' => $login_details['PartyID'],
+			),
 		);
 
 		$user = get_user_by( 'email', $login_details['Username'] );
-		if( $user ) {
+		if ( $user ) {
 			$wp_user_data['ID'] = $user->ID;
-			wp_update_user( $wp_user_data );
-			return $user->ID;
+			$user_id            = wp_update_user( $wp_user_data );
+			if ( $user_id instanceof WP_Error ) {
+				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
+			}
+			return $user_id;
 		} else {
 			$user_id = wp_insert_user( $wp_user_data );
-			if ( is_wp_error( $user_id ) ) {
+			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
 			}
 			return $user_id;

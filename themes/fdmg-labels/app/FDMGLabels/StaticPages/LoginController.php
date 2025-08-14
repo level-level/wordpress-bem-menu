@@ -55,7 +55,6 @@ class LoginController extends AbstractMainController {
 		// If already logged in, directly go to the redirect url.
 		if ( is_user_logged_in() ) {
 			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged in' );
-			return;
 		}
 
 		$identity_provider = ( new Init() )->get_identity_provider();
@@ -139,7 +138,6 @@ class LoginController extends AbstractMainController {
 		// If already logged in, directly go to the redirect url.
 		if ( is_user_logged_in() ) {
 			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged in' );
-			return;
 		}
 
 		$identity_provider = ( new Init() )->get_identity_provider();
