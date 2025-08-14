@@ -17,6 +17,11 @@ class ClientFactory {
 
 	private const REQUEST_TIMEOUT = 10;
 
+	/**
+	 * Creates a Guzzle HTTP client from the ADvance API configuration.
+	 *
+	 * @return ClientInterface
+	 */
 	public function get_client(): ClientInterface {
 		$stack = HandlerStack::create();
 

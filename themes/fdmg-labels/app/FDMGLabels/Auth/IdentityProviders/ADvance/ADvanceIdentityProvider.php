@@ -62,6 +62,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		);
 	}
 
+	/**
+	 * Handles the after login page. And logs the user in if the credentials are correct from the api.
+	 *
+	 * @param string $redirect_url_after_login
+	 * @return void
+	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): void {
 		$login_controller     = new LoginController();
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
