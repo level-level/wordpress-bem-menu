@@ -10,19 +10,19 @@ on:
 jobs:
   setup_vars:
     name: Setup vars
-    uses: level-level/build-workflows/.github/workflows/setup-servers.yml@v1.3.1
+    uses: level-level/build-workflows/.github/workflows/setup-servers.yml@v1
     with:
       environment: ${{ inputs.environment }}
   build:
     name: Build
-    uses: level-level/build-workflows/.github/workflows/deploy.yml@v1.3.1
+    uses: level-level/build-workflows/.github/workflows/deploy.yml@v1
     secrets: inherit
     needs: setup_vars
     with:
       php_version: ${{ needs.setup_vars.outputs.php_version }}
   release:
     name: Release
-    uses: level-level/build-workflows/.github/workflows/release.yml@v1.3.1
+    uses: level-level/build-workflows/.github/workflows/release.yml@v1
     secrets: inherit
     needs:
       - build
