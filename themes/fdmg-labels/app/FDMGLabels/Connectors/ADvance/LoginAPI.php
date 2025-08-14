@@ -9,11 +9,11 @@ class LoginAPI extends AbstractAPI {
 
 	public function auto_login( string $frontend_cookie, string $concurrency_cookie, ?string $ip_address ): ResponseInterface {
 		$params = array(
-			'frontend_cookie'    => $frontend_cookie,
-			'concurrency_cookie' => $concurrency_cookie,
+			'frontendCookie'    => $frontend_cookie,
+			'concurrencyCookie' => $concurrency_cookie,
 		);
 		if ( $ip_address !== null ) {
-			$params['ip_address'] = $ip_address;
+			$params['ipAddress'] = $ip_address;
 		}
 
 		$response = $this->client->request(
@@ -25,5 +25,12 @@ class LoginAPI extends AbstractAPI {
 		);
 
 		return $response;
+	}
+
+	public function parse_response_to_json( ResponseInterface $response ): array {
+		$body = (string) $response->getBody();
+		$body = trim( $body, "\xEF\xBB\xBF" ); // Remove BOM (Byte Order Mark) because we don't get valid json back.
+		$body = trim( $body );
+		return json_decode( $body, true, 512, JSON_THROW_ON_ERROR );
 	}
 }

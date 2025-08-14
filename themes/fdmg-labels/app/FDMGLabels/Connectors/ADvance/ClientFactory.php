@@ -57,7 +57,7 @@ class ClientFactory {
 			Middleware::mapRequest(
 				function ( RequestInterface $r ) use ( $access_token, $access_hash ) {
 					return $r->withHeader( 'ADAPI_ACCESS_TOKEN', $access_token )
-						->withHeader( 'DAPI_ACCESS_HASH', $access_hash );
+						->withHeader( 'ADAPI_ACCESS_HASH', $access_hash );
 				}
 			), 'auth'
 		);

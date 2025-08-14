@@ -8,7 +8,6 @@ use Psr\Http\Message\ResponseInterface;
 
 abstract class AbstractAPI {
 	protected ClientInterface $client;
-	protected int $version = 1;
 
 	public function __construct( ClientInterface $client ) {
 		$this->client = $client;
@@ -20,9 +19,9 @@ abstract class AbstractAPI {
 			'/Login/AutoLogin/1/',
 			array(
 				RequestOptions::FORM_PARAMS => array(
-					'frontend_cookie'    => $frontend_cookie,
-					'concurrency_cookie' => $concurrency_cookie,
-					'ip_address'         => $ip_address,
+					'frontendCookie'    => $frontend_cookie,
+					'concurrencyCookie' => $concurrency_cookie,
+					'ipAddress'         => $ip_address,
 				),
 			)
 		);
