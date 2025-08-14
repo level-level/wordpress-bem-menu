@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Auth;
 
+use Clarkson\WPadmin\Capabilities;
 use FDMGLabels\Auth\IdentityProviders\ADvance\ADvanceIdentityProvider;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 use FDMGLabels\Auth\IdentityProviders\KeyCloak\KeyCloakIdentityProvider;
@@ -11,6 +12,15 @@ class Init {
 
 	public const META_FDMG_USER_ID         = 'fdmg_user_id';
 	public const META_FDMG_ORGANISATION_ID = 'fdmg_organisation_id';
+	/**
+	 * Defines all roles that can be granted to a user by KeyCloak
+	 *
+	 * @var array<string>
+	 */
+	public const MANAGEABLE_ROLES = array(
+		Capabilities::ROLE_FDMG_ACCOUNT_HOLDER,
+		Capabilities::ROLE_FDMG_SUBSCRIBER,
+	);
 
 	/**
 	 * @var IdentityProviderInterface[]

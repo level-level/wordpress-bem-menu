@@ -3,8 +3,11 @@ namespace FDMGLabels\Auth\IdentityProviders\ADvance;
 
 use Clarkson\Theme\ACFPages\ADvance;
 use Clarkson\Utilities\IPAddress;
+use Clarkson\WPadmin\Capabilities;
+use Clarkson_Core\WordPress_Object\user;
 use Exception;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
+use FDMGLabels\Auth\Init as AuthInit;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\LoginAPI;
 use FDMGLabels\CookieHelper;
@@ -161,13 +164,33 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
 			}
-			return $user_id;
 		} else {
-			$user_id = wp_insert_user( $wp_user_data );
+			$wp_user_data['role'] = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
+			$user_id              = wp_insert_user( $wp_user_data );
 			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
 			}
-			return $user_id;
 		}
+		$grant_roles   = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
+		$clarkson_user = user::get( $user_id );
+
+		if( ! $clarkson_user ) {
+			return 0;
+		}
+
+		// Grant roles that need to be granted
+		foreach ( $grant_roles as $role ) {
+			$clarkson_user->get_user()->add_role( $role );
+		}
+
+		// Remove roles the user should not have
+		$user_roles = $clarkson_user->get_roles();
+		foreach ( $user_roles as $user_role ) {
+			if ( in_array( $user_role, AuthInit::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
+				$clarkson_user->get_user()->remove_role( $user_role );
+			}
+		}
+
+		return $user_id;
 	}
 }

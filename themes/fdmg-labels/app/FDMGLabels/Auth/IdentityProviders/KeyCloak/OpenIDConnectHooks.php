@@ -20,16 +20,6 @@ class OpenIDConnectHooks {
 		$this->cookie_helper = $cookie_helper;
 	}
 
-	/**
-	 * Defines all roles that can be granted to a user by KeyCloak
-	 *
-	 * @var array<string>
-	 */
-	public const MANAGEABLE_ROLES = array(
-		Capabilities::ROLE_FDMG_ACCOUNT_HOLDER,
-		Capabilities::ROLE_FDMG_SUBSCRIBER,
-	);
-
 	public function register_hooks(): void {
 		add_filter( 'openid-connect-generic-alter-user-data', array( $this, 'change_new_user_data' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'set_user_roles' ), 10, 2 );
@@ -174,7 +164,7 @@ class OpenIDConnectHooks {
 		// Remove roles the user should not have
 		$user_roles = $clarkson_user->get_roles();
 		foreach ( $user_roles as $user_role ) {
-			if ( in_array( $user_role, self::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
+			if ( in_array( $user_role, AuthInit::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
 				$clarkson_user->get_user()->remove_role( $user_role );
 			}
 		}
