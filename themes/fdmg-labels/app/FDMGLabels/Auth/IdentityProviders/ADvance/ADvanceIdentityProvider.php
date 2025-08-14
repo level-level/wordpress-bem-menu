@@ -174,7 +174,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$grant_roles   = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
 		$clarkson_user = user::get( $user_id );
 
-		if( ! $clarkson_user ) {
+		if ( ! $clarkson_user ) {
 			return 0;
 		}
 
