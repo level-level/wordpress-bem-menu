@@ -109,6 +109,17 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		$status_code = $response->getStatusCode();
+		if ( $status_code !== 200 ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'api_error',
+					sprintf( 'API response returned failed status code %s', $status_code )
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
 		try {
 			$body = $api->parse_response_to_json( $response );
 		} catch ( Exception $e ) {
@@ -121,11 +132,17 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
+		if ( $body['response']['status']['code'] === 'ERROR' ) {
+			$messages = array_map(
+				function ( array $message ): string {
+					return sprintf( '%s: %s', $message['type'] ?? 'unknown', $message['msg'] ?? 'unknown' );
+				},
+				$body['response']['status']['messages'] ?? array()
+			);
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
-					$body['message']
+					implode( ', ', $messages )
 				),
 				302, 'FDMG Labels - Profile auth API error',
 			);
