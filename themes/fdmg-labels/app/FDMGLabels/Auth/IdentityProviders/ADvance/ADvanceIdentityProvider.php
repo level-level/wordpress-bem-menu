@@ -11,7 +11,6 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	use ResponseTrait;
 
 	public function __construct( private CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
 	}
 
 	public function get_id(): string {
