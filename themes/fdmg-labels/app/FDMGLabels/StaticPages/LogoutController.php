@@ -1,6 +1,8 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
+use FDMGLabels\Auth\Init as AuthInit;
+
 class LogoutController extends AbstractMainController {
 
 	public const PAGE_LOGOUT = '';
@@ -35,6 +37,11 @@ class LogoutController extends AbstractMainController {
 			$redirect_to = $_REQUEST['redirect_to'];
 		}
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+		$identity_provider = ( new AuthInit() )->get_identity_provider();
+		if ( $identity_provider ) {
+			$identity_provider->handle_login_page( $redirect_to );
+		}
 
 		// Redirect to the WP logout url. Your current login status does not matter.
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_to ) );

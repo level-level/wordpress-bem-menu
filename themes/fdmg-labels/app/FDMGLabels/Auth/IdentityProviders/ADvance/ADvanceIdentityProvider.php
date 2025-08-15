@@ -34,13 +34,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	}
 
 	/**
-	 * Handles the after login page. And logs the user in if the credentials are correct from the api.
-	 *
-	 * @param string $redirect_url_after_login
-	 * @return never
+	 * Redirect to the WordPress logout page.
 	 */
-	public function handle_after_login_page( string $redirect_url_after_login ): never {
-		// Custom handling should be added here
-		exit;
+	public function handle_logout_page( string $redirect_url_after_logout ): never {
+		// Redirect to the WP logout url. Your current login status does not matter.
+		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
+		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
 }

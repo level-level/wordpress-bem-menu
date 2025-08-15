@@ -28,4 +28,9 @@ interface IdentityProviderInterface {
 	 * Handles actions to do after login at the identity provider.
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never;
+
+	/**
+	 * Handles the logout page should be displayed.
+	 */
+	public function handle_logout_page( string $redirect_url_after_logout ): never;
 }
