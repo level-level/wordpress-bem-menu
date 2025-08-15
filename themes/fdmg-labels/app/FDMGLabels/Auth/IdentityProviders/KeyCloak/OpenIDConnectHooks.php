@@ -98,7 +98,7 @@ class OpenIDConnectHooks {
 
 		// If the user is new, or user_login of user_claim is different and username does not exist yet, update username of user.
 		$fdmg_user_id = (int) ( $openid_user_claim['customerNumber'] ?? 0 );
-		$username     = ( new AuthInit() )->generate_username_from_customer_id( 'customer', $fdmg_user_id ); // 'customer' as a prefix for backward compatibility
+		$username     = ( new AuthInit() )->generate_username_from_customer_id( 'customer', (string) $fdmg_user_id ); // 'customer' as a prefix for backward compatibility
 		if ( ! $user && ! username_exists( $username ) ) {
 			$user_data['user_login'] = $username;
 		}
@@ -161,7 +161,7 @@ class OpenIDConnectHooks {
 	 * Should always at least return one role.
 	 *
 	 * @param array<string,mixed> $openid_user_claim
-	 * @return non-empty-array<string>
+	 * @return non-empty-array<value-of<AuthInit::MANAGEABLE_ROLES>>
 	 */
 	protected function determine_roles_to_grant_from_claim( array $openid_user_claim ): array {
 		$fdmg_roles = $openid_user_claim['roles'] ?? array();

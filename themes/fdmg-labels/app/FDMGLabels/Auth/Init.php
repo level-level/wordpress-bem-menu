@@ -131,7 +131,7 @@ class Init {
 	}
 
 	public function generate_username_from_customer_id( string $prefix, string $customer_id ): string {
-		$username = sprintf( '%s-%d', $prefix, $customer_id ); // Make username based on a prefixed customer ID, to prevent conflicts with WP user ids.
+		$username = sprintf( '%s-%s', $prefix, $customer_id ); // Make username based on a prefixed customer ID, to prevent conflicts with WP user ids.
 		$username = sanitize_user( $username, true ); // Sanitize username
 		$username = substr( $username, 0, 60 ); // Make sure username does not exceed 60 characters
 		return $username;

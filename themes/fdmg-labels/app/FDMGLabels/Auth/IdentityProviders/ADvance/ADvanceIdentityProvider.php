@@ -239,8 +239,8 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			}
 		} else {
 			$wp_user_data['user_login'] = $auth_init->generate_username_from_customer_id( 'advance-customer', $login_details['PartyID'] );
-			$wp_user_data['role'] = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
-			$user_id              = wp_insert_user( $wp_user_data );
+			$wp_user_data['role']       = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
+			$user_id                    = wp_insert_user( $wp_user_data );
 			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
 			}
