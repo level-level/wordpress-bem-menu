@@ -217,11 +217,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return int
 	*/
 	public function create_or_update_user( array $response ): int {
+		$auth_init     = new AuthInit();
 		$login_details = $response['data']['LoginDetails'];
 
 		$wp_user_data = array(
 			'user_email'   => $login_details['Username'],
-			'user_login'   => $login_details['Username'],
 			'display_name' => $login_details['FirstName'] . ' ' . $login_details['Surname'],
 			'first_name'   => $login_details['FirstName'],
 			'last_name'    => $login_details['Surname'],
@@ -238,32 +238,21 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
 			}
 		} else {
+			$wp_user_data['user_login'] = $auth_init->generate_username_from_customer_id( 'advance-customer', $login_details['PartyID'] );
 			$wp_user_data['role'] = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
 			$user_id              = wp_insert_user( $wp_user_data );
 			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
 			}
 		}
-		$grant_roles   = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
-		$clarkson_user = user::get( $user_id );
 
+		$clarkson_user = user::get( $user_id );
 		if ( ! $clarkson_user ) {
 			return 0;
 		}
 
-		// Grant roles that need to be granted
-		foreach ( $grant_roles as $role ) {
-			$clarkson_user->get_user()->add_role( $role );
-		}
-
-		// Remove roles the user should not have
-		$user_roles = $clarkson_user->get_roles();
-		foreach ( $user_roles as $user_role ) {
-			if ( in_array( $user_role, AuthInit::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
-				$clarkson_user->get_user()->remove_role( $user_role );
-			}
-		}
-
+		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
+		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
 		return $user_id;
 	}
 }

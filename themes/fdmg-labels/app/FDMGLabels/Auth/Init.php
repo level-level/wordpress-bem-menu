@@ -7,6 +7,7 @@ use FDMGLabels\Auth\IdentityProviders\ADvance\ADvanceIdentityProvider;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 use FDMGLabels\Auth\IdentityProviders\KeyCloak\KeyCloakIdentityProvider;
 use FDMGLabels\StaticPages\LoginController;
+use WP_User;
 
 class Init {
 
@@ -96,5 +97,43 @@ class Init {
 			new ADvanceIdentityProvider( $this->auth_cookie_helper ),
 		);
 		return $this->available_identity_providers;
+	}
+
+	/**
+	 * Updates a users roles from the identity provider.
+	 * Only manageable roles are updated.
+	 *
+	 * Roles provided in $grant_roles will be added.
+	 * All other roles provided that are not managable by the IDP will be deleted.
+	 *
+	 * @param WP_User $user
+	 * @param array<value-of<self::MANAGEABLE_ROLES>> $grant_roles
+	 * @return void
+	 */
+	public function update_user_roles_from_idp( WP_User $user, array $grant_roles ): void {
+		// Grant roles that need to be granted
+		foreach ( $grant_roles as $role ) {
+			if ( ! in_array( $role, self::MANAGEABLE_ROLES, true ) ) {
+				continue;
+			}
+
+			$user->add_role( $role );
+		}
+
+		// Remove roles the user should not have
+		$user_roles = $user->roles;
+		foreach ( $user_roles as $user_role ) {
+			if ( ! in_array( $user_role, self::MANAGEABLE_ROLES, true ) || in_array( $user_role, $grant_roles, true ) ) {
+				continue;
+			}
+			$user->remove_role( $user_role );
+		}
+	}
+
+	public function generate_username_from_customer_id( string $prefix, string $customer_id ): string {
+		$username = sprintf( '%s-%d', $prefix, $customer_id ); // Make username based on a prefixed customer ID, to prevent conflicts with WP user ids.
+		$username = sanitize_user( $username, true ); // Sanitize username
+		$username = substr( $username, 0, 60 ); // Make sure username does not exceed 60 characters
+		return $username;
 	}
 }
