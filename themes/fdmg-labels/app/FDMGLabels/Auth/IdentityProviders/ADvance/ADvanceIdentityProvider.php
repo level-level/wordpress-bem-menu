@@ -13,7 +13,6 @@ use FDMGLabels\Connectors\ADvance\LoginAPI;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
 use FDMGLabels\StaticPages\ResponseTrait;
-use Psr\Http\Message\ResponseInterface;
 use Ramsey\Uuid\Uuid;
 use WP_Error;
 
@@ -37,7 +36,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		return (bool) get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_ENABLED ) );
 	}
 
-	public function handle_login_page( string $redirect_url_after_login ): void {
+	public function handle_login_page( string $redirect_url_after_login ): never {
 		// Set concurrency cookie
 		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
 			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
@@ -66,9 +65,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * Handles the after login page. And logs the user in if the credentials are correct from the api.
 	 *
 	 * @param string $redirect_url_after_login
-	 * @return void
+	 * @return never
 	 */
-	public function handle_after_login_page( string $redirect_url_after_login ): void {
+	public function handle_after_login_page( string $redirect_url_after_login ): never {
 		$login_controller     = new LoginController();
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
 		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
