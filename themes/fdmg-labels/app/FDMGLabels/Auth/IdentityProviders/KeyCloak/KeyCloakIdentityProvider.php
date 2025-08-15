@@ -12,7 +12,6 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 	private CookieHelper $cookie_helper;
 
 	public function __construct( CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
 	}
 
 	public function get_id(): string {
