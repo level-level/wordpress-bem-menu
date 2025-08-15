@@ -19,6 +19,9 @@ use WP_Error;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
 
+	public const META_ADVANCE_USER_ID = 'advance_user_id';
+	public const META_USER_TOKEN      = 'advance_user_token';
+
 	use ResponseTrait;
 
 	public function __construct( private CookieHelper $cookie_helper ) {
@@ -67,7 +70,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return never
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never {
-		$login_controller     = new LoginController();
+		$login_controller = new LoginController();
+
+		// Validate frontend auth cookie is set
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
 		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
 			$this->redirect_and_exit(
@@ -79,6 +84,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Validate concurrency cookie is set
 		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
 		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
 			$this->redirect_and_exit(
@@ -90,6 +96,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Login user in ADvance
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
 		try {
@@ -115,6 +122,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Handle error response code
 		$status_code = $response->getStatusCode();
 		if ( $status_code !== 200 ) {
 			Registry::wordpress()->warning(
@@ -134,6 +142,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Parse response to JSON
 		try {
 			$body = $api->parse_response_to_json( $response );
 		} catch ( Exception $e ) {
@@ -155,6 +164,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Handle success response, but still an error occurred in processing
 		if ( $body['response']['status']['code'] === 'ERROR' ) {
 			Registry::wordpress()->warning(
 				'ADvance login API returned error response',
@@ -178,6 +188,18 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Handle unactivated users
+		if ( ! $body['response']['data']['LoginDetails']['Activated'] ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'activation_error',
+					'User account is not activated.'
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		// Create or update WP user
 		try {
 			$user_id = $this->create_or_update_user( $body['response'] );
 		} catch ( Exception $e ) {
@@ -198,9 +220,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Login user in WordPress
 		wp_clear_auth_cookie();
 		wp_set_current_user( $user_id );
 		wp_set_auth_cookie( $user_id, false, '' );
+
+		// Redirect back to where user came from
 		$this->redirect_and_exit(
 			$redirect_url_after_login,
 			302,
@@ -224,7 +249,8 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			'first_name'   => $login_details['FirstName'],
 			'last_name'    => $login_details['Surname'],
 			'meta_input'   => array(
-				'party_id' => $login_details['PartyID'],
+				self::META_ADVANCE_USER_ID => $login_details['PartyID'],
+				self::META_USER_TOKEN      => $login_details['UserToken'],
 			),
 		);
 
