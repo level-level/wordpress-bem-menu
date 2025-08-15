@@ -61,7 +61,7 @@ class LoginController extends AbstractMainController {
 			$identity_provider->handle_login_page( $redirect_to );
 		}
 
-		// Redirect to the login url.
+		// Redirect to the home url if no IDP handles the request
 		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 
@@ -146,7 +146,7 @@ class LoginController extends AbstractMainController {
 			$identity_provider->handle_after_login_page( $redirect_to );
 		}
 
-		// Redirect to the login url.
+		// Redirect to the home url if no IDP handles the request
 		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 }
