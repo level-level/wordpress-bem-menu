@@ -3,11 +3,16 @@ namespace FDMGLabels\Auth\IdentityProviders\ADvance;
 
 use Clarkson\Theme\ACFPages\ADvance;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
+use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\ResponseTrait;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
+
+	public function __construct( private CookieHelper $cookie_helper ) {
+		$this->cookie_helper = $cookie_helper;
+	}
 
 	public function get_id(): string {
 		return 'advance';
@@ -37,6 +42,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * Redirect to the WordPress logout page.
 	 */
 	public function handle_logout_page( string $redirect_url_after_logout ): never {
+		// Delete the Frontend Auth Cookie
+		$this->cookie_helper->clear_cookie( 'ADFEAuthCookie' );
+
 		// Redirect to the WP logout url. Your current login status does not matter.
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
