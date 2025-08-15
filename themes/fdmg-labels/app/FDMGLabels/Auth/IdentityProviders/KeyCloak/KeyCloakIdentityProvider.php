@@ -9,9 +9,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
 
-	private CookieHelper $cookie_helper;
-
-	public function __construct( CookieHelper $cookie_helper ) {
+	public function __construct( private CookieHelper $cookie_helper ) {
 	}
 
 	public function get_id(): string {
