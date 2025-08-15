@@ -34,6 +34,7 @@ class Init {
 
 		add_filter( 'show_admin_bar', array( $this, 'hide_admin_bar' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'localize_scripts' ) );
+		add_filter( 'clarkson_context_args', array( $this, 'add_context_args' ) );
 	}
 
 	public function hide_admin_bar( bool $show ): bool {
@@ -56,6 +57,19 @@ class Init {
 				'loginUrl' => ( new LoginController() )->get_login_permalink( true ),
 			)
 		);
+	}
+
+	/**
+	 * @param array<string,mixed> $args
+	 * @return array<string,mixed>
+	 */
+	public function add_context_args( array $args ): array {
+		$args['auth'] = $this;
+		return $args;
+	}
+
+	public function is_available(): bool {
+		return ! empty( $this->get_identity_provider() );
 	}
 
 	/**
