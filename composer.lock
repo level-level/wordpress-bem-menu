@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0ebc7f0d4fd3fca79d454697cd695c0",
+    "content-hash": "ac3910f139ea89e27270a32cdd5d35f7",
     "packages": [
         {
             "name": "brick/math",
@@ -510,6 +510,44 @@
                 }
             ],
             "time": "2025-03-19T11:14:02+00:00"
+        },
+        {
+            "name": "gravity/gravityforms",
+            "version": "2.9.15.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.gravity.io/downloads/?plugin=gravityforms&version=2.9.15.2",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/"
+        },
+        {
+            "name": "gravity/gravityformspolls",
+            "version": "4.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.gravity.io/downloads/?plugin=gravityformspolls&version=4.3.0",
+                "mirrors": [
+                    {
+                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "notification-url": "https://repo.packagist.com/level-level/downloads/"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -1929,60 +1967,6 @@
                 "source": "https://github.com/level-level/wp-file-mods/tree/v1.0.0"
             },
             "time": "2023-08-17T08:05:06+00:00"
-        },
-        {
-            "name": "ll-premium/gravityforms",
-            "version": "2.9.15",
-            "dist": {
-                "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityforms/2.9.15",
-                "shasum": "c05bd9cf5b23b1e917536f2ef6c5916b59131ee7",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": [
-                {
-                    "name": "Gravity Forms",
-                    "homepage": "https://gravityforms.com"
-                }
-            ],
-            "description": "Easily create web forms and manage form entries within the WordPress admin.",
-            "homepage": "https://gravityforms.com"
-        },
-        {
-            "name": "ll-premium/gravityformspolls",
-            "version": "4.3.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/gravityformspolls/4.3.0",
-                "shasum": "49bd7932e5e4c5109cfe3ca7c8a0d84ef175754a",
-                "mirrors": [
-                    {
-                        "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "composer/installers": "^1.0 || ^2.0"
-            },
-            "type": "wordpress-plugin",
-            "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "Gravity Forms",
-                "homepage": "https://gravityforms.com"
-            },
-            "description": "Allows you to quickly and easily deploy Polls on your web site using the power of Gravity Forms.",
-            "homepage": "https://gravityforms.com"
         },
         {
             "name": "ll-premium/popup-maker-advanced-targeting-conditions",
