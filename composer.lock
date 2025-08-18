@@ -4496,16 +4496,16 @@
         },
         {
             "name": "vinkla/extended-acf",
-            "version": "14.4.0",
+            "version": "14.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/extended-acf.git",
-                "reference": "d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f"
+                "reference": "6b50666a791ae39a839e25c35a2567d7c0306410"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f",
-                "reference": "d60eef4cdf8b8154d1c65e10d3da0d47fb7d778f",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/6b50666a791ae39a839e25c35a2567d7c0306410",
+                "reference": "6b50666a791ae39a839e25c35a2567d7c0306410",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4527,7 +4527,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "14.4-dev"
+                    "dev-master": "14.5-dev"
                 }
             },
             "autoload": {
@@ -4559,9 +4559,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/extended-acf/issues",
-                "source": "https://github.com/vinkla/extended-acf/tree/14.4.0"
+                "source": "https://github.com/vinkla/extended-acf/tree/14.5.0"
             },
-            "time": "2025-05-08T12:50:23+00:00"
+            "time": "2025-08-11T12:15:51+00:00"
         },
         {
             "name": "wp-cli/i18n-command",
