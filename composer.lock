@@ -4884,15 +4884,15 @@
         },
         {
             "name": "wpackagist-plugin/action-scheduler",
-            "version": "3.9.2",
+            "version": "3.9.3",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/action-scheduler/",
-                "reference": "tags/3.9.2"
+                "reference": "tags/3.9.3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/action-scheduler.3.9.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/action-scheduler.3.9.3.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
