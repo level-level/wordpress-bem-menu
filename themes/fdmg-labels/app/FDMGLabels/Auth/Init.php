@@ -97,7 +97,7 @@ class Init {
 
 		$this->available_identity_providers = array(
 			new KeyCloakIdentityProvider( $this->auth_cookie_helper ),
-			new ADvanceIdentityProvider(),
+			new ADvanceIdentityProvider( $this->auth_cookie_helper ),
 		);
 		return $this->available_identity_providers;
 	}
