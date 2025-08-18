@@ -9,10 +9,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
 
-	private CookieHelper $cookie_helper;
-
-	public function __construct( CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
+	public function __construct( private CookieHelper $cookie_helper ) {
 	}
 
 	public function get_id(): string {
@@ -27,7 +24,12 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		return function_exists( 'oidcg_get_authentication_url' );
 	}
 
-	public function handle_login_page( string $redirect_url_after_login ): void {
+	/**
+	 * Redirect to the OpenID Connect authentication page.
+	 * URL parameters passed to this page will also be passed along to the
+	 * OpenID Connect login page.
+	 */
+	public function handle_login_page( string $redirect_url_after_login ): never {
 
 		// Include url parameters passed to the login page.
 		$add_url_params = array_filter(
@@ -67,5 +69,23 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 			'FDMG Labels - Profile auth redirect to OpenID Connect',
 			false
 		);
+	}
+
+	/**
+	 * The OpenID Connect plugin will handle the login.
+	 */
+	public function handle_after_login_page( string $redirect_url_after_login ): never {
+		// Handled by the OpenID Connect plugin.
+		exit;
+	}
+
+	/**
+	 * Redirect to the WordPress logout page.
+	 * The OpenID Connect plugin will handle the logout.
+	 */
+	public function handle_logout_page( string $redirect_url_after_logout ): never {
+		// Redirect to the WP logout url. Your current login status does not matter.
+		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
+		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
 }

@@ -22,14 +22,16 @@
 					</div>
 
 					<div class="flex gap-4 mt-3">
-						{# Login button, if logged in this element is removed via JS #}
-						<div data-module="paywall-login-button">
-							{% include 'styleguide/components/buttons/button-link.twig' with {
-								text: _x('Login', 'Profile', 'fdmg-labels'),
-								url: static_pages.login.get_login_permalink(true),
-								class: 'btn-primary btn-primary-light-hover',
-							} %}
-						</div>
+						{% if auth.is_available() %}
+							{# Login button, if logged in this element is removed via JS #}
+							<div data-module="paywall-login-button">
+								{% include 'styleguide/components/buttons/button-link.twig' with {
+									text: _x('Login', 'Profile', 'fdmg-labels'),
+									url: static_pages.login.get_login_permalink(true),
+									class: 'btn-primary btn-primary-light-hover',
+								} %}
+							</div>
+						{% endif %}
 
 						{# Subscribe button #}
 						{% if button %}

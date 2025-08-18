@@ -5,8 +5,9 @@ use Clarkson_Core\Templates;
 
 trait ResponseTrait {
 
-	protected function exit( int $status ): void {
+	protected function exit( int $status ): never {
 		wp_die( '', $status ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		exit;
 	}
 
 	/**
@@ -15,9 +16,9 @@ trait ResponseTrait {
 	 *
 	 * @param string $template_file
 	 * @param array<string, mixed> $objects
-	 * @return void
+	 * @return never
 	 */
-	protected function echo_twig_and_exit( string $template_file, array $objects = array(), int $status = 200 ): void {
+	protected function echo_twig_and_exit( string $template_file, array $objects = array(), int $status = 200 ): never {
 		Templates::get_instance()->echo_twig( $template_file, $objects, true );
 		$this->exit( $status );
 	}
@@ -26,7 +27,7 @@ trait ResponseTrait {
 	 * Perform a redirect.
 	 * Then exits running code, except for when we are in a testing environment.
 	 */
-	protected function redirect_and_exit( string $location, int $status, string $x_redirect_by, bool $safe = true ): void {
+	protected function redirect_and_exit( string $location, int $status, string $x_redirect_by, bool $safe = true ): never {
 		if ( $safe ) {
 			wp_safe_redirect( $location, $status, $x_redirect_by ); // phpcs:ignore
 		} else {
