@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f783fe8c42a3f7721ba2a4163ed0b0b9",
+    "content-hash": "0027f86cab37359c161b51986ec66c41",
     "packages": [
         {
             "name": "brick/math",
@@ -1915,11 +1915,11 @@
         },
         {
             "name": "ll-premium/wpai-acf-add-on",
-            "version": "3.3.9",
+            "version": "4.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://satispress.level-level.com/satispress/wpai-acf-add-on/3.3.9",
-                "shasum": "3e41b7d242c93e18460c364de34e25bf7fb23b8e",
+                "url": "https://satispress.level-level.com/satispress/wpai-acf-add-on/4.0.0",
+                "shasum": "2d96a166f5ae8ff7fcfade9884c478df7d0c1986",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -1932,11 +1932,13 @@
             },
             "type": "wordpress-plugin",
             "notification-url": "https://repo.packagist.com/level-level/downloads/",
-            "authors": {
-                "name": "Soflyy",
-                "homepage": ""
-            },
-            "description": "Import to Advanced Custom Fields. Requires WP All Import & Advanced Custom Fields.",
+            "authors": [
+                {
+                    "name": "Soflyy",
+                    "homepage": ""
+                }
+            ],
+            "description": "Import to Advanced Custom Fields. Requires WP All Import, ACF Import Add-On Free, & Advanced Custom Fields.",
             "homepage": "http://www.wpallimport.com/"
         },
         {
