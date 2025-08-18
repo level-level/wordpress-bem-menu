@@ -65,7 +65,6 @@
         "mhcg/monolog-wp-cli": "^1.0",
         "psr/http-factory": "^1.1",
         "ramsey/uuid": "^4.7",
-        "timber/wp-i18n-twig": "^1.0",
         "vinkla/extended-acf": "^14.2",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
         "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.10",
