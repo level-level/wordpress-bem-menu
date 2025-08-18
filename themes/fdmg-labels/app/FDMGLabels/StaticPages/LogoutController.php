@@ -1,6 +1,8 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
+use FDMGLabels\Auth\Init as AuthInit;
+
 class LogoutController extends AbstractMainController {
 
 	public const PAGE_LOGOUT = '';
@@ -36,7 +38,12 @@ class LogoutController extends AbstractMainController {
 		}
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-		// Redirect to the WP logout url. Your current login status does not matter.
+		$identity_provider = ( new AuthInit() )->get_identity_provider();
+		if ( $identity_provider ) {
+			$identity_provider->handle_login_page( $redirect_to );
+		}
+
+		// Redirect to the WP logout url if no IDP handles the request
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_to ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
