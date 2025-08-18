@@ -17,14 +17,14 @@ class LogoutController extends AbstractMainController {
 			case self::PAGE_LOGOUT:
 				$this->set_page_title( __( 'Logout', 'fdmg-labels' ) );
 				$this->handle_logout_link();
-				break;
+				break; // @phpstan-ignore deadCode.unreachable
 		}
 	}
 
 	/**
 	 * Redirect to the WordPress logout page.
 	 */
-	protected function handle_logout_link(): void {
+	protected function handle_logout_link(): never {
 		// Disable caching
 		nocache_headers();
 

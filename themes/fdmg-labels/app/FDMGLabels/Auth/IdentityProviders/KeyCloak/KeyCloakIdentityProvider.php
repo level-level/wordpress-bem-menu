@@ -9,10 +9,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
 
-	private CookieHelper $cookie_helper;
-
-	public function __construct( CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
+	public function __construct( private CookieHelper $cookie_helper ) {
 	}
 
 	public function get_id(): string {
@@ -27,7 +24,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		return function_exists( 'oidcg_get_authentication_url' );
 	}
 
-	public function handle_login_page( string $redirect_url_after_login ): void {
+	public function handle_login_page( string $redirect_url_after_login ): never {
 
 		// Include url parameters passed to the login page.
 		$add_url_params = array_filter(
@@ -67,5 +64,10 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 			'FDMG Labels - Profile auth redirect to OpenID Connect',
 			false
 		);
+	}
+
+	public function handle_after_login_page( string $redirect_url_after_login ): never {
+		// Handled by the OpenID Connect plugin.
+		exit;
 	}
 }
