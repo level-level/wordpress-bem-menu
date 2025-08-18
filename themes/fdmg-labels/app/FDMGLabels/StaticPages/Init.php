@@ -13,6 +13,7 @@ class Init {
 		$this->main_static_page_controllers = array(
 			'login'  => new LoginController(),
 			'logout' => new LogoutController(),
+			'register' => new RegistrationController(),
 		);
 	}
 

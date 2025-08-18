@@ -12,8 +12,8 @@ use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\LoginAPI;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
+use FDMGLabels\StaticPages\RegistrationController;
 use FDMGLabels\StaticPages\ResponseTrait;
-use Psr\Http\Message\ResponseInterface;
 use Ramsey\Uuid\Uuid;
 use WP_Error;
 
@@ -23,7 +23,10 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	private CookieHelper $cookie_helper;
 
+	private LoginController $login_controller;
+
 	public function __construct( CookieHelper $cookie_helper ) {
+		$this->login_controller = new LoginController();
 		$this->cookie_helper = $cookie_helper;
 	}
 
@@ -69,78 +72,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return void
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): void {
-		$login_controller     = new LoginController();
-		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
-		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'no_frontend_cookie',
-					'No frontend cookie.'
-				),
-				302, 'FDMG Labels - Profile auth no frontend cookie',
-			);
-		}
-
-		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
-		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'no_concurrency_cookie',
-					'No concurrency cookie.'
-				),
-				302, 'FDMG Labels - Profile auth no concurrency cookie',
-			);
-		}
-
-		$client = ( new ClientFactory() )->get_client();
-		$api    = new LoginAPI( $client );
-		try {
-			$response = $api->auto_login(
-				$frontend_auth_cookie,
-				$concurrency_cookie,
-				( new IPAddress() )->get_visitor_ip_address()
-			);
-		} catch ( Exception $e ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'api_error',
-					$e->getMessage()
-				),
-				302, 'FDMG Labels - Profile auth API error',
-			);
-		}
-
-		try {
-			$body = $api->parse_response_to_json( $response );
-		} catch ( Exception $e ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'api_error',
-					'Failed to parse API response: ' . $e->getMessage()
-				),
-				302, 'FDMG Labels - Profile auth API error',
-			);
-		}
-
-		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'api_error',
-					$body['message']
-				),
-				302, 'FDMG Labels - Profile auth API error',
-			);
-		}
-
-		$user_id = $this->create_or_update_user( $body['response'] );
-		wp_clear_auth_cookie();
-		wp_set_current_user( $user_id );
-		wp_set_auth_cookie( $user_id, false, '' );
-		$this->redirect_and_exit(
-			$redirect_url_after_login,
-			302,
-			'FDMG Labels - Profile auth successful',
-		);
+		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_login );
 	}
 
 	/**
@@ -198,5 +130,114 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		}
 
 		return $user_id;
+	}
+
+	public function handle_registration_page( string $redirect_url_after_registration ): void {
+		// Set concurrency cookie
+		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
+			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
+		}
+
+		// Determine our handle login url, including the url to redirect to after the login
+		$registration_controller = new RegistrationController();
+		$handle_register_url = $registration_controller->get_permalink( RegistrationController::PAGE_AFTER_REGISTER );
+
+		// Pass handle url to ADvance login page to get redirectred back to our platform and handle the login
+		$idp_base_url  = get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
+		$idp_login_url = sprintf( '%s/register', untrailingslashit( $idp_base_url ) );
+		$idp_login_url = add_query_arg( 'returl', rawurlencode( $handle_register_url ), $idp_login_url );
+
+		// Redirect to the login url.
+		$this->redirect_and_exit(
+			$idp_login_url,
+			302,
+			'FDMG Labels - Profile auth redirect to ADvance',
+			false
+		);
+	}
+
+	public function handle_after_registration_page(string $redirect_url_after_registration): void {
+		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_registration );
+	}
+
+	public function get_advance_cookies() {
+		$login_controller = $this->login_controller;
+		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
+		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'no_frontend_cookie',
+					'No frontend cookie.'
+				),
+				302, 'FDMG Labels - Profile auth no frontend cookie',
+			);
+		}
+
+		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
+		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'no_concurrency_cookie',
+					'No concurrency cookie.'
+				),
+				302, 'FDMG Labels - Profile auth no concurrency cookie',
+			);
+		}
+		return array(
+			'frontend_auth_cookie' => $frontend_auth_cookie,
+			'concurrency_cookie'   => $concurrency_cookie,
+		);
+	}
+
+	public function auto_login( array $cookies, string $redirect_url_after_login ): void {
+		$client = ( new ClientFactory() )->get_client();
+		$api    = new LoginAPI( $client );
+		try {
+			$response = $api->auto_login(
+				$cookies['frontend_auth_cookie'],
+				$cookies['concurrency_cookie'],
+				( new IPAddress() )->get_visitor_ip_address()
+			);
+		} catch ( Exception $e ) {
+			$this->redirect_and_exit(
+				$this->login_controller->get_login_error_permalink(
+					'api_error',
+					$e->getMessage()
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		try {
+			$body = $api->parse_response_to_json( $response );
+		} catch ( Exception $e ) {
+			$this->redirect_and_exit(
+				$this->login_controller->get_login_error_permalink(
+					'api_error',
+					'Failed to parse API response: ' . $e->getMessage()
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
+			$this->redirect_and_exit(
+				$this->login_controller->get_login_error_permalink(
+					'api_error',
+					$body['message']
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		$user_id = $this->create_or_update_user( $body['response'] );
+		wp_clear_auth_cookie();
+		wp_set_current_user( $user_id );
+		wp_set_auth_cookie( $user_id, false, '' );
+		$this->redirect_and_exit(
+			$redirect_url_after_login,
+			302,
+			'FDMG Labels - Profile auth successful',
+		);
 	}
 }

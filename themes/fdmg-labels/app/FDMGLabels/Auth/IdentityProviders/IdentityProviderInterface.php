@@ -28,4 +28,14 @@ interface IdentityProviderInterface {
 	 * Handles actions to do after login at the identity provider.
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): void;
+
+	/**
+	 * Handles how the registration page should be displayed.
+	 */
+	public function handle_registration_page( string $redirect_url_after_registration ): void;
+
+	/**
+	 * Handles actions to do after registration at the identity provider.
+	 */
+	public function handle_after_registration_page( string $redirect_url_after_registration ): void;
 }

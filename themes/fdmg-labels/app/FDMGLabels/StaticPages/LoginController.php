@@ -4,10 +4,6 @@ namespace FDMGLabels\StaticPages;
 use Clarkson\Theme\Navigation\Navigation;
 use Clarkson_Core\Templates;
 use FDMGLabels\Auth\Init;
-use FDMGLabels\Connectors\FDMGAPI\GuzzleClientFactory;
-use FDMGLabels\CookieHelper;
-use GuzzleHttp\Client;
-use WPChill\DownloadMonitor\Shop\Session\Cookie;
 
 class LoginController extends AbstractMainController {
 
