@@ -138,9 +138,9 @@
             "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
         ],
         "generate:fdmg-content-api": [
             "Composer\\Config::disableProcessTimeout",
