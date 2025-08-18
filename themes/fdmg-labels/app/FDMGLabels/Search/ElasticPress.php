@@ -103,7 +103,7 @@ class ElasticPress {
 	 * Add decay scale options to the ElasticPress settings.
 	 *
 	 * @param array<string,mixed> $schema
-	 * @return array<string,mixed>
+	 * @return array<int|string,mixed>
 	 */
 	public function add_settings( array $schema, string $slug ): array {
 		if ( 'search' !== $slug ) {
