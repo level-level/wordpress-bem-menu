@@ -70,7 +70,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return never
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never {
-		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_login );
+		$this->auto_login( $redirect_url_after_login );
 		exit;
 	}
 
@@ -146,42 +146,8 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	}
 
 	public function handle_after_registration_page( string $redirect_url_after_registration ): never {
-		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_registration );
+		$this->auto_login( $redirect_url_after_registration );
 		exit;
-	}
-
-	/**
-	 * Get the ADvance cookies. For authentication with the ADvance API.
-	 *
-	 * @return array<string,string>
-	 */
-	public function get_advance_cookies() {
-		$login_controller     = $this->login_controller;
-		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
-		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'no_frontend_cookie',
-					'No frontend cookie.'
-				),
-				302, 'FDMG Labels - Profile auth no frontend cookie',
-			);
-		}
-
-		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
-		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'no_concurrency_cookie',
-					'No concurrency cookie.'
-				),
-				302, 'FDMG Labels - Profile auth no concurrency cookie',
-			);
-		}
-		return array(
-			'frontend_auth_cookie' => $frontend_auth_cookie,
-			'concurrency_cookie'   => $concurrency_cookie,
-		);
 	}
 
 	/**
@@ -191,13 +157,13 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @param string $redirect_url_after_login
 	 * @return void
 	 */
-	public function auto_login( array $cookies, string $redirect_url_after_login ): void {
+	public function auto_login( string $redirect_url_after_login ): void {
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
 		try {
 			$response = $api->auto_login(
-				$cookies['frontend_auth_cookie'],
-				$cookies['concurrency_cookie'],
+				$this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '',
+				$this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '',
 				( new IPAddress() )->get_visitor_ip_address()
 			);
 		} catch ( Exception $e ) {
