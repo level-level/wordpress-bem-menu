@@ -33,11 +33,8 @@ class Init {
 
 	private AuthCookieHelper $auth_cookie_helper;
 
-	private LoginController $login_controller;
-
 	public function __construct() {
 		$this->auth_cookie_helper = new AuthCookieHelper();
-		$this->login_controller   = new LoginController();
 	}
 
 	public function register_hooks(): void {
@@ -111,7 +108,7 @@ class Init {
 
 		$this->available_identity_providers = array(
 			new KeyCloakIdentityProvider( $this->auth_cookie_helper ),
-			new ADvanceIdentityProvider( $this->auth_cookie_helper, $this->login_controller ),
+			new ADvanceIdentityProvider( $this->auth_cookie_helper ),
 		);
 		return $this->available_identity_providers;
 	}

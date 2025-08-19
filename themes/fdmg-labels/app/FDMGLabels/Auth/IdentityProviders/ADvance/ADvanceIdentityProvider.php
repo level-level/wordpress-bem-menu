@@ -25,7 +25,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
 
-	public function __construct( private CookieHelper $cookie_helper, private LoginController $login_controller ) {
+	public function __construct( private CookieHelper $cookie_helper ) {
 	}
 
 	public function get_id(): string {
@@ -153,22 +153,46 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	/**
 	 * Run autologin on ADvance API. This is run both on login and on register because we want to immediately log someone in.
 	 *
-	 * @param array<string,string> $cookies
 	 * @param string $redirect_url_after_login
 	 * @return void
 	 */
 	public function auto_login( string $redirect_url_after_login ): void {
+		$login_controller = new LoginController();
+		// Validate frontend auth cookie is set
+		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
+		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'no_frontend_cookie',
+					'No frontend cookie.'
+				),
+				302, 'FDMG Labels - Profile auth no frontend cookie',
+			);
+		}
+
+		// Validate concurrency cookie is set
+		$concurrency_cookie = $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '';
+		if ( ! is_string( $concurrency_cookie ) || empty( $concurrency_cookie ) ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'no_concurrency_cookie',
+					'No concurrency cookie.'
+				),
+				302, 'FDMG Labels - Profile auth no concurrency cookie',
+			);
+		}
+
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
 		try {
 			$response = $api->auto_login(
-				$this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '',
-				$this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ?: '',
+				$frontend_auth_cookie,
+				$concurrency_cookie,
 				( new IPAddress() )->get_visitor_ip_address()
 			);
 		} catch ( Exception $e ) {
 			$this->redirect_and_exit(
-				$this->login_controller->get_login_error_permalink(
+				$login_controller->get_login_error_permalink(
 					'api_error',
 					$e->getMessage()
 				),
@@ -176,11 +200,32 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Handle error response code
+		$status_code = $response->getStatusCode();
+		if ( $status_code !== 200 ) {
+			Registry::wordpress()->warning(
+				'ADvance login API returned unexpected status code',
+				array(
+					'status_code' => $status_code,
+					'response'    => (string) $response->getBody(),
+				)
+			);
+
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'api_error',
+					sprintf( 'API response returned unexpected status code %s', $status_code )
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		// Parse response to JSON
 		try {
 			$body = $api->parse_response_to_json( $response );
 		} catch ( Exception $e ) {
 			$this->redirect_and_exit(
-				$this->login_controller->get_login_error_permalink(
+				$login_controller->get_login_error_permalink(
 					'api_error',
 					'Failed to parse API response: ' . $e->getMessage()
 				),
@@ -190,18 +235,73 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
 			$this->redirect_and_exit(
-				$this->login_controller->get_login_error_permalink(
+				$login_controller->get_login_error_permalink(
 					'api_error',
 					$body['message']
 				),
 				302, 'FDMG Labels - Profile auth API error',
 			);
 		}
+		// Handle success response, but still an error occurred in processing
+		if ( $body['response']['status']['code'] === 'ERROR' ) {
+			Registry::wordpress()->warning(
+				'ADvance login API returned error response',
+				array(
+					'response' => (string) $response->getBody(),
+				)
+			);
 
-		$user_id = $this->create_or_update_user( $body['response'] );
+			$messages = array_map(
+				function ( array $message ): string {
+					return sprintf( '%s: %s', $message['type'] ?? 'unknown', $message['msg'] ?? 'unknown' );
+				},
+				$body['response']['status']['messages'] ?? array()
+			);
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'api_error',
+					implode( ', ', $messages )
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		// Handle unactivated users
+		if ( ! $body['response']['data']['LoginDetails']['Activated'] ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'activation_error',
+					'User account is not activated.'
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
+
+		// Create or update WP user
+		try {
+			$user_id = $this->create_or_update_user( $body['response'] );
+		} catch ( Exception $e ) {
+			Registry::wordpress()->warning(
+				'ADvance login API user creation/update failed',
+				array(
+					'code'    => $e->getCode(),
+					'message' => $e->getMessage(),
+				)
+			);
+
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'user_creation_error',
+					$e->getMessage()
+				),
+				302, 'FDMG Labels - Profile auth user creation error',
+			);
+		}
+
 		wp_clear_auth_cookie();
 		wp_set_current_user( $user_id );
 		wp_set_auth_cookie( $user_id, false, '' );
+
 		$this->redirect_and_exit(
 			$redirect_url_after_login,
 			302,

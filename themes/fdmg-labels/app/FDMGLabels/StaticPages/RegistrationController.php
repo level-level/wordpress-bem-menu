@@ -29,10 +29,6 @@ class RegistrationController extends AbstractMainController {
 				$this->set_page_title( __( 'Registration Complete', 'fdmg-labels' ) );
 				$this->handle_after_registration();
 				break;
-			case self::PAGE_ERROR:
-				$this->set_page_title( __( 'Registration Error', 'fdmg-labels' ) );
-				$this->handle_registration_error();
-				break;
 		}
 	}
 
