@@ -233,7 +233,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		if ( $body['status']['code'] === 'ERROR' || $response->getStatusCode() !== 200 ) {
+		if ( $body['status']['code'] === 'ERROR' ) {
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
