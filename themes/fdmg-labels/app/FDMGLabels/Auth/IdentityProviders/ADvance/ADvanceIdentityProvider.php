@@ -145,8 +145,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		);
 	}
 
-	public function handle_after_registration_page( string $redirect_url_after_registration ): void {
+	public function handle_after_registration_page( string $redirect_url_after_registration ): never {
 		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_registration );
+		exit;
 	}
 
 	/**
