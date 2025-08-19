@@ -1,6 +1,8 @@
 <?php
 namespace FDMGLabels\StaticPages;
 
+use FDMGLabels\Auth\Init as AuthInit;
+
 class LogoutController extends AbstractMainController {
 
 	public const PAGE_LOGOUT = '';
@@ -17,14 +19,14 @@ class LogoutController extends AbstractMainController {
 			case self::PAGE_LOGOUT:
 				$this->set_page_title( __( 'Logout', 'fdmg-labels' ) );
 				$this->handle_logout_link();
-				break;
+				break; // @phpstan-ignore deadCode.unreachable
 		}
 	}
 
 	/**
 	 * Redirect to the WordPress logout page.
 	 */
-	protected function handle_logout_link(): void {
+	protected function handle_logout_link(): never {
 		// Disable caching
 		nocache_headers();
 
@@ -36,7 +38,12 @@ class LogoutController extends AbstractMainController {
 		}
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-		// Redirect to the WP logout url. Your current login status does not matter.
+		$identity_provider = ( new AuthInit() )->get_identity_provider();
+		if ( $identity_provider ) {
+			$identity_provider->handle_login_page( $redirect_to );
+		}
+
+		// Redirect to the WP logout url if no IDP handles the request
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_to ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}

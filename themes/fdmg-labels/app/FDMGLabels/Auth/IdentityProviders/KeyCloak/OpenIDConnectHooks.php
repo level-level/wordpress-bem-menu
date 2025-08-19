@@ -98,9 +98,7 @@ class OpenIDConnectHooks {
 
 		// If the user is new, or user_login of user_claim is different and username does not exist yet, update username of user.
 		$fdmg_user_id = (int) ( $openid_user_claim['customerNumber'] ?? 0 );
-		$username     = sprintf( 'customer-%d', $fdmg_user_id ); // Make username based on a prefixed FDMG customer ID, to prevent conflicts with WP user ids.
-		$username     = sanitize_user( $username, true ); // Sanitize username
-		$username     = substr( $username, 0, 60 ); // Make sure username does not exceed 60 characters
+		$username     = ( new AuthInit() )->generate_username_from_customer_id( 'customer', (string) $fdmg_user_id ); // 'customer' as a prefix for backward compatibility
 		if ( ! $user && ! username_exists( $username ) ) {
 			$user_data['user_login'] = $username;
 		}
@@ -155,19 +153,7 @@ class OpenIDConnectHooks {
 
 		$clarkson_user = Objects::get_instance()->get_user( $user );
 		$grant_roles   = $this->determine_roles_to_grant_from_claim( $openid_user_claim );
-
-		// Grant roles that need to be granted
-		foreach ( $grant_roles as $role ) {
-			$clarkson_user->get_user()->add_role( $role );
-		}
-
-		// Remove roles the user should not have
-		$user_roles = $clarkson_user->get_roles();
-		foreach ( $user_roles as $user_role ) {
-			if ( in_array( $user_role, AuthInit::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
-				$clarkson_user->get_user()->remove_role( $user_role );
-			}
-		}
+		( new AuthInit() )->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
 	}
 
 	/**
@@ -175,7 +161,7 @@ class OpenIDConnectHooks {
 	 * Should always at least return one role.
 	 *
 	 * @param array<string,mixed> $openid_user_claim
-	 * @return non-empty-array<string>
+	 * @return non-empty-array<value-of<AuthInit::MANAGEABLE_ROLES>>
 	 */
 	protected function determine_roles_to_grant_from_claim( array $openid_user_claim ): array {
 		$fdmg_roles = $openid_user_claim['roles'] ?? array();

@@ -14,20 +14,18 @@ use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
 use FDMGLabels\StaticPages\RegistrationController;
 use FDMGLabels\StaticPages\ResponseTrait;
+use Monolog\Registry;
 use Ramsey\Uuid\Uuid;
 use WP_Error;
 
 class ADvanceIdentityProvider implements IdentityProviderInterface {
 
+	public const META_ADVANCE_USER_ID = 'advance_user_id';
+	public const META_USER_TOKEN      = 'advance_user_token';
+
 	use ResponseTrait;
 
-	private CookieHelper $cookie_helper;
-
-	private LoginController $login_controller;
-
-	public function __construct( CookieHelper $cookie_helper ) {
-		$this->login_controller = new LoginController();
-		$this->cookie_helper    = $cookie_helper;
+	public function __construct( private CookieHelper $cookie_helper, private LoginController $login_controller ) {
 	}
 
 	public function get_id(): string {
@@ -40,7 +38,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		return (bool) get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_ENABLED ) );
 	}
 
-	public function handle_login_page( string $redirect_url_after_login ): void {
+	public function handle_login_page( string $redirect_url_after_login ): never {
 		// Set concurrency cookie
 		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
 			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
@@ -69,10 +67,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * Handles the after login page. And logs the user in if the credentials are correct from the api.
 	 *
 	 * @param string $redirect_url_after_login
-	 * @return void
+	 * @return never
 	 */
-	public function handle_after_login_page( string $redirect_url_after_login ): void {
+	public function handle_after_login_page( string $redirect_url_after_login ): never {
 		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_login );
+		exit;
 	}
 
 	/**
@@ -82,16 +81,17 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return int
 	*/
 	public function create_or_update_user( array $response ): int {
+		$auth_init     = new AuthInit();
 		$login_details = $response['data']['LoginDetails'];
 
 		$wp_user_data = array(
 			'user_email'   => $login_details['Username'],
-			'user_login'   => $login_details['Username'],
 			'display_name' => $login_details['FirstName'] . ' ' . $login_details['Surname'],
 			'first_name'   => $login_details['FirstName'],
 			'last_name'    => $login_details['Surname'],
 			'meta_input'   => array(
-				'party_id' => $login_details['PartyID'],
+				self::META_ADVANCE_USER_ID => $login_details['PartyID'],
+				self::META_USER_TOKEN      => $login_details['UserToken'],
 			),
 		);
 
@@ -103,32 +103,21 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
 			}
 		} else {
-			$wp_user_data['role'] = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
-			$user_id              = wp_insert_user( $wp_user_data );
+			$wp_user_data['user_login'] = $auth_init->generate_username_from_customer_id( 'advance-customer', $login_details['PartyID'] );
+			$wp_user_data['role']       = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
+			$user_id                    = wp_insert_user( $wp_user_data );
 			if ( $user_id instanceof WP_Error ) {
 				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
 			}
 		}
-		$grant_roles   = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
-		$clarkson_user = user::get( $user_id );
 
+		$clarkson_user = user::get( $user_id );
 		if ( ! $clarkson_user ) {
 			return 0;
 		}
 
-		// Grant roles that need to be granted
-		foreach ( $grant_roles as $role ) {
-			$clarkson_user->get_user()->add_role( $role );
-		}
-
-		// Remove roles the user should not have
-		$user_roles = $clarkson_user->get_roles();
-		foreach ( $user_roles as $user_role ) {
-			if ( in_array( $user_role, AuthInit::MANAGEABLE_ROLES, true ) && ! in_array( $user_role, $grant_roles, true ) ) {
-				$clarkson_user->get_user()->remove_role( $user_role );
-			}
-		}
-
+		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
+		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
 		return $user_id;
 	}
 
@@ -251,5 +240,16 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			302,
 			'FDMG Labels - Profile auth successful',
 		);
+	}
+	/**
+	 * Redirect to the WordPress logout page.
+	 */
+	public function handle_logout_page( string $redirect_url_after_logout ): never {
+		// Delete the Frontend Auth Cookie
+		$this->cookie_helper->clear_cookie( 'ADFEAuthCookie' );
+
+		// Redirect to the WP logout url. Your current login status does not matter.
+		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
+		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
 }
