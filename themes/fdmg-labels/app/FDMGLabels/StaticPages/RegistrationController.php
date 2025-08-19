@@ -124,18 +124,18 @@ class RegistrationController extends AbstractMainController {
 		// Disable caching
 		nocache_headers();
 
-		$code      = filter_input( INPUT_GET, 'code' ) ?: __( 'Unknown error code', 'fdmg-labels' );
-		$message   = filter_input( INPUT_GET, 'message' ) ?: __( 'Unknown error message', 'fdmg-labels' );
+		$code             = filter_input( INPUT_GET, 'code' ) ?: __( 'Unknown error code', 'fdmg-labels' );
+		$message          = filter_input( INPUT_GET, 'message' ) ?: __( 'Unknown error message', 'fdmg-labels' );
 		$registration_url = $this->get_registration_permalink( false );
-		$home_url  = home_url();
+		$home_url         = home_url();
 
 		$this->echo_twig_and_exit(
 			'static-pages/registration-error.twig', array(
-				'navigation'    => new Navigation(),
-				'error_code'    => $code,
-				'error_message' => $message,
-				'registration_url'     => $registration_url,
-				'home_url'      => $home_url,
+				'navigation'       => new Navigation(),
+				'error_code'       => $code,
+				'error_message'    => $message,
+				'registration_url' => $registration_url,
+				'home_url'         => $home_url,
 			)
 		);
 	}
