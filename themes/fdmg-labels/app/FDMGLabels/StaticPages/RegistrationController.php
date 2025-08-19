@@ -7,9 +7,9 @@ use FDMGLabels\StaticPages\AbstractMainController;
 
 class RegistrationController extends AbstractMainController {
 
-	public const PAGE_REGISTER		 = '';
+	public const PAGE_REGISTER       = '';
 	public const PAGE_AFTER_REGISTER = 'after-register';
-	public const PAGE_ERROR       	 = 'registration-error';
+	public const PAGE_ERROR          = 'registration-error';
 
 	public function get_slug(): string {
 		return 'register';
@@ -93,5 +93,4 @@ class RegistrationController extends AbstractMainController {
 	protected function handle_registration_error(): void {
 		// Logic for handling registration errors goes here
 	}
-
 }

@@ -27,7 +27,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	public function __construct( CookieHelper $cookie_helper ) {
 		$this->login_controller = new LoginController();
-		$this->cookie_helper = $cookie_helper;
+		$this->cookie_helper    = $cookie_helper;
 	}
 
 	public function get_id(): string {
@@ -140,7 +140,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 		// Determine our handle login url, including the url to redirect to after the login
 		$registration_controller = new RegistrationController();
-		$handle_register_url = $registration_controller->get_permalink( RegistrationController::PAGE_AFTER_REGISTER );
+		$handle_register_url     = $registration_controller->get_permalink( RegistrationController::PAGE_AFTER_REGISTER );
 
 		// Pass handle url to ADvance login page to get redirectred back to our platform and handle the login
 		$idp_base_url  = get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
@@ -156,12 +156,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		);
 	}
 
-	public function handle_after_registration_page(string $redirect_url_after_registration): void {
+	public function handle_after_registration_page( string $redirect_url_after_registration ): void {
 		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_registration );
 	}
 
 	public function get_advance_cookies() {
-		$login_controller = $this->login_controller;
+		$login_controller     = $this->login_controller;
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
 		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
 			$this->redirect_and_exit(
