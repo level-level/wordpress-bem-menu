@@ -40,7 +40,7 @@ class LogoutController extends AbstractMainController {
 
 		$identity_provider = ( new AuthInit() )->get_identity_provider();
 		if ( $identity_provider ) {
-			$identity_provider->handle_login_page( $redirect_to );
+			$identity_provider->handle_logout_page( $redirect_to );
 		}
 
 		// Redirect to the WP logout url if no IDP handles the request
