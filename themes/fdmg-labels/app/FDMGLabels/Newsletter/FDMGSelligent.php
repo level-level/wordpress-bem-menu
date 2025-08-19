@@ -14,7 +14,7 @@ use WP_Post;
 class FDMGSelligent {
 
 	public function register_hooks(): void {
-		add_filter( 'fdmg_selligent_newsletter_taxomies', array( $this, 'set_taxonomies' ) );
+		add_filter( 'fdmg_selligent_newsletter_taxonomies', array( $this, 'set_taxonomies' ) );
 		add_filter( 'fdmg_selligent_generated_article_data', array( $this, 'set_article_data' ), 10, 3 );
 	}
 

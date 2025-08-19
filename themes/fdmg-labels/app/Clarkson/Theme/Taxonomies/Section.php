@@ -11,7 +11,9 @@ class Section {
 	protected const POST_TYPES = array( Post::POST_TYPE_NAME );
 
 	public function register_hooks(): void {
-		add_action( 'init', array( $this, 'register' ) );
+		// We have to create the taxonomies at priority 4 to ensure that the taxonomies are registered before ACF is initialized.
+		// For the Selligent newsletter plugin to work correctly.
+		add_action( 'init', array( $this, 'register' ), 4 );
 		add_action( 'acf/init', array( $this, 'register_fields' ) );
 	}
 

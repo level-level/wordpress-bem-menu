@@ -25,7 +25,6 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	use ResponseTrait;
 
 	public function __construct( private CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
 	}
 
 	public function get_id(): string {
@@ -278,5 +277,17 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
 		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
 		return $user_id;
+	}
+
+	/**
+	 * Redirect to the WordPress logout page.
+	 */
+	public function handle_logout_page( string $redirect_url_after_logout ): never {
+		// Delete the Frontend Auth Cookie
+		$this->cookie_helper->clear_cookie( 'ADFEAuthCookie' );
+
+		// Redirect to the WP logout url. Your current login status does not matter.
+		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
+		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
 }
