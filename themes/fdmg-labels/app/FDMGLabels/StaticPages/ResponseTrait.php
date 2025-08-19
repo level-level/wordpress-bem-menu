@@ -5,8 +5,11 @@ use Clarkson_Core\Templates;
 
 trait ResponseTrait {
 
-	protected function exit( int $status ): never {
-		wp_die( '', $status ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	protected function exit( int $status_code ): never {
+		if ( defined( 'WP_UNIT_TESTING' ) && constant( 'WP_UNIT_TESTING' ) ) {
+			wp_die( '', $status_code ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
+		status_header( $status_code );
 		exit;
 	}
 
