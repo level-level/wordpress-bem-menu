@@ -160,6 +160,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$this->auto_login( $this->get_advance_cookies(), $redirect_url_after_registration );
 	}
 
+	/**
+	 * Get the ADvance cookies. For authentication with the ADvance API.
+	 *
+	 * @return array<string,string>
+	 */
 	public function get_advance_cookies() {
 		$login_controller     = $this->login_controller;
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
@@ -189,6 +194,13 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		);
 	}
 
+	/**
+	 * Run autologin on ADvance API. This is run both on login and on register because we want to immediately log someone in.
+	 *
+	 * @param array<string,string> $cookies
+	 * @param string $redirect_url_after_login
+	 * @return void
+	 */
 	public function auto_login( array $cookies, string $redirect_url_after_login ): void {
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
