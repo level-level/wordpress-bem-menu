@@ -37,7 +37,7 @@ class Init {
 
 	public function __construct() {
 		$this->auth_cookie_helper = new AuthCookieHelper();
-		$this->login_controller = new LoginController();
+		$this->login_controller   = new LoginController();
 	}
 
 	public function register_hooks(): void {
