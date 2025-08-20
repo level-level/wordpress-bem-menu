@@ -1019,16 +1019,16 @@
         },
         {
             "name": "level-level/fdmg-selligent",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "git@github.com:level-level/fdmg-selligent.git",
-                "reference": "b711a61ef0c5adccc21fb4d4a1bae63ed3d5f57d"
+                "reference": "98e7c826a8ff323552a8580ded4297adcc2472cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/level-level/fdmg-selligent/zipball/b711a61ef0c5adccc21fb4d4a1bae63ed3d5f57d",
-                "reference": "b711a61ef0c5adccc21fb4d4a1bae63ed3d5f57d",
+                "url": "https://api.github.com/repos/level-level/fdmg-selligent/zipball/98e7c826a8ff323552a8580ded4297adcc2472cf",
+                "reference": "98e7c826a8ff323552a8580ded4297adcc2472cf",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1149,9 +1149,9 @@
             ],
             "description": "A base WordPress plugin that can be used as a template for other WordPress plugins",
             "support": {
-                "source": "https://github.com/level-level/fdmg-selligent/tree/v1.0.0"
+                "source": "https://github.com/level-level/fdmg-selligent/tree/v1.0.1"
             },
-            "time": "2025-08-07T13:34:26+00:00"
+            "time": "2025-08-20T11:48:58+00:00"
         },
         {
             "name": "level-level/fdmg-server-side-tracking",
