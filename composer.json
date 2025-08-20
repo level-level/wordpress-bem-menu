@@ -45,9 +45,11 @@
         "ext-libxml": "*",
         "ext-mbstring": "^7.1",
         "fdmg-labels/fdmg-content-api-client": "^1.4",
+        "gravity/gravityforms": "^2.9",
+        "gravity/gravityformspolls": "^4.3",
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
-        "level-level/fdmg-selligent": "^0.1.2",
+        "level-level/fdmg-selligent": "0.1.2",
         "level-level/fdmg-server-side-tracking": "^1.2",
         "level-level/ll-actionscheduler": "*",
         "level-level/ll-paywall": "^1.0",
@@ -55,17 +57,14 @@
         "level-level/logging": "^3.1",
         "level-level/wordpress-bem-menu": "^1.0",
         "level-level/wp-file-mods": "^1.0",
-        "ll-premium/gravityforms": "^2.9",
-        "ll-premium/gravityformspolls": "^4.0",
         "ll-premium/popup-maker-advanced-targeting-conditions": "^1.4",
         "ll-premium/popup-maker-exit-intent-popups": "^1.4",
         "ll-premium/searchwp": "^4.2",
-        "ll-premium/wpai-acf-add-on": "^3.3",
+        "ll-premium/wpai-acf-add-on": "^4.0",
         "mentosmenno2/image-crop-positioner": "^1.0",
         "mhcg/monolog-wp-cli": "^1.0",
         "psr/http-factory": "^1.1",
         "ramsey/uuid": "^4.7",
-        "timber/wp-i18n-twig": "^1.0",
         "vinkla/extended-acf": "^14.2",
         "wpackagist-plugin/acf-content-analysis-for-yoast-seo": "^3.0",
         "wpackagist-plugin/daggerhart-openid-connect-generic": "^3.10",
@@ -84,7 +83,7 @@
         "wpackagist-plugin/user-switching": "^1.7",
         "wpackagist-plugin/wordfence": "^8.0",
         "wpengine/advanced-custom-fields-pro": "^6.3",
-        "yoast/wordpress-seo": "^24.1"
+        "yoast/wordpress-seo": "^25.7"
     },
     "scripts": {
         "post-autoload-dump": [
@@ -138,9 +137,9 @@
             "php-openapi validate themes/fdmg-labels/docs/connections/fdmg-content-api/spec.yaml"
         ],
         "make-pot": [
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
-            "./vendor/wp-cli/wp-cli/bin/wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-slugs --domain=fdmg-labels-slugs",
+            "wp i18n make-pot ./themes/fdmg-labels --path=./themes/fdmg-labels/ --slug=fdmg-labels-admin --domain=fdmg-labels-admin"
         ],
         "generate:fdmg-content-api": [
             "Composer\\Config::disableProcessTimeout",

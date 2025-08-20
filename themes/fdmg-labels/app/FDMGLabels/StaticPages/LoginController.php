@@ -2,13 +2,13 @@
 namespace FDMGLabels\StaticPages;
 
 use Clarkson\Theme\Navigation\Navigation;
-use Clarkson_Core\Templates;
 use FDMGLabels\Auth\Init;
 
 class LoginController extends AbstractMainController {
 
-	public const PAGE_LOGIN = '';
-	public const PAGE_ERROR = 'login-error';
+	public const PAGE_LOGIN       = '';
+	public const PAGE_ERROR       = 'login-error';
+	public const PAGE_AFTER_LOGIN = 'after-login';
 	public function get_slug(): string {
 		return 'login';
 	}
@@ -21,18 +21,22 @@ class LoginController extends AbstractMainController {
 			case self::PAGE_LOGIN:
 				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
 				$this->handle_login_link();
-				break;
+				break; // @phpstan-ignore deadCode.unreachable
 			case self::PAGE_ERROR:
 				$this->set_page_title( __( 'Login error', 'fdmg-labels' ) );
 				$this->handle_login_error_link();
-				break;
+				break; // @phpstan-ignore deadCode.unreachable
+			case self::PAGE_AFTER_LOGIN:
+				$this->set_page_title( __( 'Login', 'fdmg-labels' ) );
+				$this->handle_after_login();
+				break; // @phpstan-ignore deadCode.unreachable
 		}
 	}
 
 	/**
 	 * Redirect user to the IDP login page.
 	 */
-	protected function handle_login_link(): void {
+	protected function handle_login_link(): never {
 		// Disable caching
 		nocache_headers();
 
@@ -46,7 +50,6 @@ class LoginController extends AbstractMainController {
 		// If already logged in, directly go to the redirect url.
 		if ( is_user_logged_in() ) {
 			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged in' );
-			return;
 		}
 
 		$identity_provider = ( new Init() )->get_identity_provider();
@@ -54,7 +57,7 @@ class LoginController extends AbstractMainController {
 			$identity_provider->handle_login_page( $redirect_to );
 		}
 
-		// Redirect to the login url.
+		// Redirect to the home URL if no IDP handles the request
 		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 
@@ -87,7 +90,7 @@ class LoginController extends AbstractMainController {
 	/**
 	 * Show the user a login error page containing the provided error details.
 	 */
-	protected function handle_login_error_link(): void {
+	protected function handle_login_error_link(): never {
 		// Disable caching
 		nocache_headers();
 
@@ -96,7 +99,7 @@ class LoginController extends AbstractMainController {
 		$login_url = $this->get_login_permalink( false );
 		$home_url  = home_url();
 
-		Templates::get_instance()->echo_twig(
+		$this->echo_twig_and_exit(
 			'static-pages/login-error.twig', array(
 				'navigation'    => new Navigation(),
 				'error_code'    => $code,
@@ -105,7 +108,6 @@ class LoginController extends AbstractMainController {
 				'home_url'      => $home_url,
 			)
 		);
-		exit;
 	}
 
 	public function get_login_error_permalink( string $code, string $message ): string {
@@ -117,5 +119,30 @@ class LoginController extends AbstractMainController {
 			), $permalink
 		);
 		return $permalink;
+	}
+
+	public function handle_after_login(): never {
+		// Disable caching
+		nocache_headers();
+
+		// Determine redirect url.
+		$redirect_to = home_url();
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_REQUEST['redirect_to'] ) ) {
+			$redirect_to = $_REQUEST['redirect_to'];
+		}
+
+		// If already logged in, directly go to the redirect url.
+		if ( is_user_logged_in() ) {
+			$this->redirect_and_exit( $redirect_to, 302, 'FDMG Labels - Profile auth already logged in' );
+		}
+
+		$identity_provider = ( new Init() )->get_identity_provider();
+		if ( $identity_provider ) {
+			$identity_provider->handle_after_login_page( $redirect_to );
+		}
+
+		// Redirect to the home URL if no IDP handles the request
+		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 }
