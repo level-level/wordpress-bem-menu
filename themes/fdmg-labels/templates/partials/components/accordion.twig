@@ -1,0 +1,18 @@
+<ul data-component="accordion" class="">
+	{% for item in items %}
+		<li class="border-t last:border-b border-neutral-400 dark:border-neutral-900">
+			<details {{ loop.first and expand_first ? 'open' }} class="group bg-white dark:bg-neutral-800 py-4 md:py-6">
+				<summary class="flex gap-4 items-center list-none cursor-pointer">
+					<span class="icon-inline transition group-open:rotate-90" aria-hidden="true">{{ svg_icons.get('chevron-right')|raw }}</span>
+					<h3 class="font-bold md:text-md">
+						{{ item.title|raw }}
+					</h3>
+				</summary>
+
+				<div class="pt-4 pl-8 sm:pl-9 entry-content">
+					{{ item.content|raw }}
+				</div>
+			</details>
+		</li>
+	{% endfor %}
+</ul>
