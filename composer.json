@@ -49,7 +49,7 @@
         "gravity/gravityformspolls": "^4.3",
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
-        "level-level/fdmg-selligent": "^1.0",
+        "level-level/fdmg-selligent": "^1.1",
         "level-level/fdmg-server-side-tracking": "^1.2",
         "level-level/ll-actionscheduler": "*",
         "level-level/ll-paywall": "^1.0",
