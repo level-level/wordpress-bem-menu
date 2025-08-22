@@ -90,10 +90,8 @@ class ACF {
 					return $this->core_objects->get_terms( $value );
 				}
 				return $value;
-			} else {
-				if ( $value instanceof WP_Term ) {
+			} elseif ( $value instanceof WP_Term ) {
 					return $this->core_objects->get_term( $value );
-				}
 			}
 		}
 
