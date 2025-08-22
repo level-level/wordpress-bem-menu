@@ -43,7 +43,7 @@
     "require": {
         "ext-dom": "*",
         "ext-libxml": "*",
-        "ext-mbstring": "^7.1",
+        "ext-mbstring": "*",
         "fdmg-labels/fdmg-content-api-client": "^1.4",
         "gravity/gravityforms": "^2.9",
         "gravity/gravityformspolls": "^4.3",
