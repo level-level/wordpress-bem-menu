@@ -84,25 +84,14 @@ class ACF {
 	 * @return mixed
 	 */
 	public function convert_taxonomy_objects( $value ) {
-
 		if ( ! empty( $value ) ) {
 			if ( is_array( $value ) ) {
-				$terms = array();
-				foreach ( $value as $term ) {
-					$term = get_term( $term );
-
-					if ( $term instanceof WP_Term ) {
-						$terms[] = $this->core_objects->get_term( $term );
-					}
+				if ( ! empty( $value[0] ) && $value[0] instanceof WP_Term ) {
+					return $this->core_objects->get_terms( $value );
 				}
-
-				return $terms;
-			} else {
-				$term = get_term( $value );
-
-				if ( $term instanceof WP_Term ) {
-					return $this->core_objects->get_term( $term );
-				}
+				return $value;
+			} elseif ( $value instanceof WP_Term ) {
+					return $this->core_objects->get_term( $value );
 			}
 		}
 
