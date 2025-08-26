@@ -34,17 +34,17 @@ class ADvanceAuthTest extends WPTestCase {
 			$this->fail( 'Expected WPDieException to be thrown' );
 		} catch ( WPDieException $e ) {
 			// Expected exception - continue with assertions
-			$this->redirects_helper->stop();
-
-			$this->redirects_helper->assert_redirected( true );
-			$this->redirects_helper->assert_redirect_status( 302 );
-			$this->assertStringContainsString( '/login', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( 'returl=http%3A%2F%2F', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( '%2Flogin%2Fafter-login', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( 'redirect_to%3Dhttps%253A%252F%252Fexample.com', $this->redirects_helper->get_redirect_location() );
-
-			$this->assertNotEmpty( $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) );
 		}
+		$this->redirects_helper->stop();
+
+		$this->redirects_helper->assert_redirected( true );
+		$this->redirects_helper->assert_redirect_status( 302 );
+		$this->assertStringContainsString( '/login', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'returl=http%3A%2F%2F', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( '%2Flogin%2Fafter-login', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'redirect_to%3Dhttps%253A%252F%252Fexample.com', $this->redirects_helper->get_redirect_location() );
+
+		$this->assertNotEmpty( $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) );
 	}
 
 	public function test_handle_logout_redirect() {
@@ -57,15 +57,15 @@ class ADvanceAuthTest extends WPTestCase {
 			$this->fail( 'Expected WPDieException to be thrown' );
 		} catch ( WPDieException $e ) {
 			// Expected exception - continue with assertions
-			$this->redirects_helper->stop();
-
-			$this->redirects_helper->assert_redirected( true );
-			$this->redirects_helper->assert_redirect_status( 302 );
-			$this->assertStringContainsString( '/wp-login.php?action=logout', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( 'redirect_to=https%3A%2F%2Fexample.com', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( '_wpnonce=', $this->redirects_helper->get_redirect_location() );
-
-			$this->assertEmpty( $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) );
 		}
+		$this->redirects_helper->stop();
+
+		$this->redirects_helper->assert_redirected( true );
+		$this->redirects_helper->assert_redirect_status( 302 );
+		$this->assertStringContainsString( '/wp-login.php?action=logout', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'redirect_to=https%3A%2F%2Fexample.com', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( '_wpnonce=', $this->redirects_helper->get_redirect_location() );
+
+		$this->assertEmpty( $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) );
 	}
 }
