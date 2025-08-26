@@ -76,7 +76,7 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never {
 		// Handled by the OpenID Connect plugin.
-		exit;
+		$this->exit( 400 );
 	}
 
 	/**
@@ -89,12 +89,13 @@ class KeyCloakIdentityProvider implements IdentityProviderInterface {
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
 	}
 
-	public function handle_registration_page( string $redirect_url_after_registration ): void {
+	public function handle_registration_page( string $redirect_url_after_registration ): never {
 		// Handled by the OpenID Connect plugin.
+		$this->handle_login_page( $redirect_url_after_registration );
 	}
 
 	public function handle_after_registration_page( string $redirect_url_after_registration ): never {
 		// Handled by the OpenID Connect plugin.
-		exit;
+		$this->exit( 400 );
 	}
 }

@@ -32,7 +32,7 @@ interface IdentityProviderInterface {
 	/**
 	 * Handles how the registration page should be displayed.
 	 */
-	public function handle_registration_page( string $redirect_url_after_registration ): void;
+	public function handle_registration_page( string $redirect_url_after_registration ): never;
 
 	/**
 	 * Handles actions to do after registration at the identity provider.

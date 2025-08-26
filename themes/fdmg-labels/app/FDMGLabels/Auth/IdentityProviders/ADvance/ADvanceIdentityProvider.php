@@ -71,10 +71,9 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never {
 		$this->auto_login( $redirect_url_after_login );
-		exit;
 	}
 
-	public function handle_registration_page( string $redirect_url_after_registration ): void {
+	public function handle_registration_page( string $redirect_url_after_registration ): never {
 		// Set concurrency cookie
 		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
 			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
@@ -100,16 +99,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 	public function handle_after_registration_page( string $redirect_url_after_registration ): never {
 		$this->auto_login( $redirect_url_after_registration );
-		exit;
 	}
 
 	/**
 	 * Run autologin on ADvance API. This is run both on login and on register because we want to immediately log someone in.
-	 *
-	 * @param string $redirect_url_after_login
-	 * @return void
 	 */
-	public function auto_login( string $redirect_url_after_login ): void {
+	public function auto_login( string $redirect_url_after_login ): never {
 		$login_controller = new LoginController();
 		// Validate frontend auth cookie is set
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
