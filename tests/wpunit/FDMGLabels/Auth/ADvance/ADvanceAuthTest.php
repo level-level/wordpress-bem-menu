@@ -10,18 +10,19 @@ use FDMGLabels\Tests\Helpers\Redirects;
 use lucatume\WPBrowser\TestCase\WPTestCase;
 use WPDieException;
 
-class HandleLoginTest extends WPTestCase {
+class ADvanceAuthTest extends WPTestCase {
 
 	public function setUp(): void {
-		$this->cookie_helper = new CookieHelper();
+		$this->cookie_helper    = new CookieHelper();
 		$this->redirects_helper = new Redirects();
-		$this->Login_controller = new LoginController();
 		update_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ), 'https://fdmg-labels.test' );
 		parent::setUp();
 	}
 
 	public function tearDown(): void {
-
+		delete_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
+		$_GET     = array();
+		$_REQUEST = array();
 		parent::tearDown();
 	}
 
@@ -47,14 +48,13 @@ class HandleLoginTest extends WPTestCase {
 		}
 	}
 
-	public function test_handle_after_login_redirect() {
+	public function test_handle_logout_redirect() {
 		$login = new ADvanceIdentityProvider( $this->cookie_helper );
 		$this->redirects_helper->start();
-		$this->cookie_helper->set_cookie( 'ADFEAuthCookie', 'test_value', time() + HOUR_IN_SECONDS, true ); // to make sure we get the correct call from the api to redirect us to the correct place.
-		$this->cookie_helper->set_cookie( 'ADConCtrlCookie', 'test_value', time() + HOUR_IN_SECONDS, true ); // to make sure we get the correct call from the api to redirect us to the correct place.
+		$this->cookie_helper->set_cookie( 'ADFEAuthCookie', 'somevalue', time() + 3600, true ); // tests if cookie gets cleared on logout.
 
 		try {
-			$login->handle_after_login_page( 'https://example.com' );
+			$login->handle_logout_page( 'https://example.com' );
 			$this->fail( 'Expected WPDieException to be thrown' );
 		} catch ( WPDieException $e ) {
 			// Expected exception - continue with assertions
@@ -62,11 +62,12 @@ class HandleLoginTest extends WPTestCase {
 
 			$this->redirects_helper->assert_redirected( true );
 			$this->redirects_helper->assert_redirect_status( 302 );
-
 			$this->assertStringContainsString( 'https://fdmg-labels.test', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( '/login', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( '%2FLogin%2FAutoLogin%2F1%2F', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( 'redirect_to%3Dhttps%253A%252F%252Fexample.com', $this->redirects_helper->get_redirect_location() );
+			$this->assertStringContainsString( '/wp-login.php?action=logout', $this->redirects_helper->get_redirect_location() );
+			$this->assertStringContainsString( 'redirect_to=https%3A%2F%2Fexample.com', $this->redirects_helper->get_redirect_location() );
+			$this->assertStringContainsString( '_wpnonce=', $this->redirects_helper->get_redirect_location() );
+
+			$this->assertEmpty( $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) );
 		}
 	}
 }
