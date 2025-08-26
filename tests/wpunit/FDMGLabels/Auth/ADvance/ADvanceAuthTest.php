@@ -20,8 +20,6 @@ class ADvanceAuthTest extends WPTestCase {
 
 	public function tearDown(): void {
 		delete_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
-		$_GET     = array();
-		$_REQUEST = array();
 		parent::tearDown();
 	}
 
