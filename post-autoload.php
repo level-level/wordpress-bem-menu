@@ -21,9 +21,6 @@ add_filter(
 $logging = new \LevelLevel\Logging\Log();
 $logging->init();
 
-// Gravity Forms feeds
-( new \FDMGLabels\GravityForms\Feeds() )->register_hooks();
-
 // Action Scheduler
 if ( function_exists( 'is_blog_installed' ) && is_blog_installed() ) {
 	$action_scheduler_setup = new ActionSchedulerSetup();

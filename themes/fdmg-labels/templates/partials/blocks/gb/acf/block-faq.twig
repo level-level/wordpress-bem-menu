@@ -1,0 +1,23 @@
+{% set title = data.title|default(_x('FAQ\'s', 'Block', 'fdmg-labels')) %}
+{% set items = data.items ? data.items|filter(item => not item.title is empty) %}
+{% set expand_first = data.expand_first_item %}
+
+{% if items %}
+	<div class="{{ align }}" data-name="{{ block.name }}">
+		<div class="space-y-4">
+			<h2 class="text-lg font-bold text-primary sm:text-xl theme-energeia:text-base-800 dark:text-primary-300 theme-fd:font-proxima theme-bnr:font-jakarta theme-bnr:text-base-800">{{ title|raw }}</h2>
+
+			{% include 'partials/components/accordion.twig' with {
+				items: items ? items|map(item => {
+					title: item.title,
+					content: item.content,
+				}),
+				expand_first: expand_first,
+			} %}
+		</div>
+	</div>
+{% else %}
+	{% include 'partials/components/block-placeholder.twig' with {
+		required_fields: [_x('FAQ\'s', 'Block', 'fdmg-labels-admin')]
+	} %}
+{% endif %}

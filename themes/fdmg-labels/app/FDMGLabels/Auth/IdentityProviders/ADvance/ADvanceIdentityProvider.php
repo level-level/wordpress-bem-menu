@@ -74,53 +74,6 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		exit;
 	}
 
-	/**
-	 * Creates or updates a user from the api.
-	 *
-	 * @param array<string,mixed> $response
-	 * @return int
-	*/
-	public function create_or_update_user( array $response ): int {
-		$auth_init     = new AuthInit();
-		$login_details = $response['data']['LoginDetails'];
-
-		$wp_user_data = array(
-			'user_email'   => $login_details['Username'],
-			'display_name' => $login_details['FirstName'] . ' ' . $login_details['Surname'],
-			'first_name'   => $login_details['FirstName'],
-			'last_name'    => $login_details['Surname'],
-			'meta_input'   => array(
-				self::META_ADVANCE_USER_ID => $login_details['PartyID'],
-				self::META_USER_TOKEN      => $login_details['UserToken'],
-			),
-		);
-
-		$user = get_user_by( 'email', $login_details['Username'] );
-		if ( $user ) {
-			$wp_user_data['ID'] = $user->ID;
-			$user_id            = wp_update_user( $wp_user_data );
-			if ( $user_id instanceof WP_Error ) {
-				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
-			}
-		} else {
-			$wp_user_data['user_login'] = $auth_init->generate_username_from_customer_id( 'advance-customer', $login_details['PartyID'] );
-			$wp_user_data['role']       = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
-			$user_id                    = wp_insert_user( $wp_user_data );
-			if ( $user_id instanceof WP_Error ) {
-				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
-			}
-		}
-
-		$clarkson_user = user::get( $user_id );
-		if ( ! $clarkson_user ) {
-			return 0;
-		}
-
-		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
-		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
-		return $user_id;
-	}
-
 	public function handle_registration_page( string $redirect_url_after_registration ): void {
 		// Set concurrency cookie
 		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
@@ -308,6 +261,54 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			'FDMG Labels - Profile auth successful',
 		);
 	}
+
+	/**
+	 * Creates or updates a user from the api.
+	 *
+	 * @param array<string,mixed> $response
+	 * @return int
+	*/
+	public function create_or_update_user( array $response ): int {
+		$auth_init     = new AuthInit();
+		$login_details = $response['data']['LoginDetails'];
+
+		$wp_user_data = array(
+			'user_email'   => $login_details['Username'],
+			'display_name' => $login_details['FirstName'] . ' ' . $login_details['Surname'],
+			'first_name'   => $login_details['FirstName'],
+			'last_name'    => $login_details['Surname'],
+			'meta_input'   => array(
+				self::META_ADVANCE_USER_ID => $login_details['PartyID'],
+				self::META_USER_TOKEN      => $login_details['UserToken'],
+			),
+		);
+
+		$user = get_user_by( 'email', $login_details['Username'] );
+		if ( $user ) {
+			$wp_user_data['ID'] = $user->ID;
+			$user_id            = wp_update_user( $wp_user_data );
+			if ( $user_id instanceof WP_Error ) {
+				throw new Exception( 'Failed to update user: ' . $user_id->get_error_message() );
+			}
+		} else {
+			$wp_user_data['user_login'] = $auth_init->generate_username_from_customer_id( 'advance-customer', $login_details['PartyID'] );
+			$wp_user_data['role']       = Capabilities::ROLE_FDMG_ACCOUNT_HOLDER;
+			$user_id                    = wp_insert_user( $wp_user_data );
+			if ( $user_id instanceof WP_Error ) {
+				throw new Exception( 'Failed to create user: ' . $user_id->get_error_message() );
+			}
+		}
+
+		$clarkson_user = user::get( $user_id );
+		if ( ! $clarkson_user ) {
+			throw new Exception( 'Created user cannot be found: ' . $user_id );
+		}
+
+		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
+		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
+		return $user_id;
+	}
+
 	/**
 	 * Redirect to the WordPress logout page.
 	 */

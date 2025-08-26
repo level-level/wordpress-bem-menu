@@ -46,7 +46,6 @@
 ( new \FDMGLabels\Widgets\WidgetAreas() )->register_hooks();
 ( new \FDMGLabels\GravityForms\Init() )->register_hooks();
 ( new \FDMGLabels\Logging\Init() )->register_hooks();
-( new \FDMGLabels\Newsletter\Init() )->register_hooks();
 ( new \FDMGLabels\FeatureManager() )->register_hooks();
 ( new \FDMGLabels\Auth\Init() )->register_hooks();
 ( new \FDMGLabels\Paywall\Init() )->register_hooks();
@@ -59,6 +58,7 @@
 ( new \FDMGLabels\EmbedCacheRemover() )->register_hooks();
 ( new \FDMGLabels\RSSFeed\MediaItemRSSFeed() )->register_hooks();
 ( new \FDMGLabels\Author\Metabox() )->register_hooks();
+( new \FDMGLabels\Newsletter\FDMGSelligent() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();

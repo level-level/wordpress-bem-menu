@@ -78,7 +78,8 @@ class SearchOptions {
 				->nullable()
 				->create( false )
 				->save( false )
-				->load( false );
+				->load( false )
+				->format( 'object' );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many genres must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_GENRE_AMOUNT )
 				->default( 5 )
@@ -92,7 +93,8 @@ class SearchOptions {
 			->nullable()
 			->create( false )
 			->save( false )
-			->load( false );
+			->load( false )
+			->format( 'object' );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many sections must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_SECTION_AMOUNT )
 			->default( 5 )
@@ -106,7 +108,8 @@ class SearchOptions {
 			->nullable()
 			->create( false )
 			->save( false )
-			->load( false );
+			->load( false )
+			->format( 'object' );
 
 			$taxonomy_fields[] = Number::make( _x( 'How many categories must be shown by default before a "Show more" button appears?', 'Fields', 'fdmg-labels-admin' ), self::META_SEARCH_RESULTS_CATEGORY_AMOUNT )
 			->default( 5 )
