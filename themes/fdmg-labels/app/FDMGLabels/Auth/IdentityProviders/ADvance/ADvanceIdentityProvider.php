@@ -271,7 +271,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 		$clarkson_user = user::get( $user_id );
 		if ( ! $clarkson_user ) {
-		throw new Exception( 'Created user cannot be found: ' . $user_id;
+		throw new Exception( 'Created user cannot be found: ' . $user_id );
 		}
 
 		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
