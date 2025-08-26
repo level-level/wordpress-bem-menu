@@ -130,6 +130,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Login user in ADvance
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
 		try {
@@ -139,6 +140,14 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 				( new IPAddress() )->get_visitor_ip_address()
 			);
 		} catch ( Exception $e ) {
+			Registry::wordpress()->warning(
+				'Error on Advance login attempt',
+				array(
+					'code'    => $e->getCode(),
+					'message' => $e->getMessage(),
+				)
+			);
+
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -172,6 +181,15 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		try {
 			$body = $api->parse_response_to_json( $response );
 		} catch ( Exception $e ) {
+			Registry::wordpress()->warning(
+				'ADvance login API response could not be parsed',
+				array(
+					'code'     => $e->getCode(),
+					'message'  => $e->getMessage(),
+					'response' => (string) $response->getBody(),
+				)
+			);
+
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -246,10 +264,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		// Login user in WordPress
 		wp_clear_auth_cookie();
 		wp_set_current_user( $user_id );
 		wp_set_auth_cookie( $user_id, false, '' );
 
+		// Redirect back to where user came from
 		$this->redirect_and_exit(
 			$redirect_url_after_login,
 			302,
