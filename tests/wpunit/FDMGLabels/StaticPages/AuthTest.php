@@ -35,7 +35,7 @@ class AuthTest extends WPTestCase {
 		try {
 			$controller->handle_request( '' );
 			$this->fail( 'Expected WPDieException to be thrown' );
-		} catch ( WPDieException $e ) {
+		} catch ( WPDieException $e ) { // phpcs:ignore
 			// Expected exception - continue with assertions
 		}
 		$this->redirects_helper->stop();
@@ -64,7 +64,7 @@ class AuthTest extends WPTestCase {
 		try {
 			$controller->handle_request( '' );
 			$this->fail( 'Expected WPDieException to be thrown' );
-		} catch ( WPDieException $e ) {
+		} catch ( WPDieException $e ) { // phpcs:ignore
 			// Expected exception - continue with assertions
 		}
 		$this->redirects_helper->stop();

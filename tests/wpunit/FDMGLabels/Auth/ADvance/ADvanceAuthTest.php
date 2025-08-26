@@ -32,7 +32,7 @@ class ADvanceAuthTest extends WPTestCase {
 		try {
 			$login->handle_login_page( 'https://example.com' );
 			$this->fail( 'Expected WPDieException to be thrown' );
-		} catch ( WPDieException $e ) {
+		} catch ( WPDieException $e ) { // phpcs:ignore
 			// Expected exception - continue with assertions
 		}
 		$this->redirects_helper->stop();
@@ -55,7 +55,7 @@ class ADvanceAuthTest extends WPTestCase {
 		try {
 			$login->handle_logout_page( 'https://example.com' );
 			$this->fail( 'Expected WPDieException to be thrown' );
-		} catch ( WPDieException $e ) {
+		} catch ( WPDieException $e ) { // phpcs:ignore
 			// Expected exception - continue with assertions
 		}
 		$this->redirects_helper->stop();
