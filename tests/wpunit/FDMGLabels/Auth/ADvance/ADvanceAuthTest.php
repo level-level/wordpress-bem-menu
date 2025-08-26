@@ -5,7 +5,6 @@ namespace FDMGLabels\Auth\ADvance;
 use Clarkson\Theme\ACFPages\ADvance;
 use FDMGLabels\Auth\IdentityProviders\ADvance\ADvanceIdentityProvider;
 use FDMGLabels\CookieHelper;
-use FDMGLabels\StaticPages\LoginController;
 use FDMGLabels\Tests\Helpers\Redirects;
 use lucatume\WPBrowser\TestCase\WPTestCase;
 use WPDieException;
