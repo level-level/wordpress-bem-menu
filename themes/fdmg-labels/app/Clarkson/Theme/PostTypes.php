@@ -14,7 +14,6 @@ class PostTypes {
 		Partner::class,
 		Team::class,
 		Vacancy::class,
-		Newsletter::class,
 		Post::class,
 		Event::class,
 	);
