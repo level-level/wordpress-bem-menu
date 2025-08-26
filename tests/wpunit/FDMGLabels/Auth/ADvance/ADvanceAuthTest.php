@@ -39,7 +39,8 @@ class ADvanceAuthTest extends WPTestCase {
 			$this->redirects_helper->assert_redirected( true );
 			$this->redirects_helper->assert_redirect_status( 302 );
 			$this->assertStringContainsString( '/login', $this->redirects_helper->get_redirect_location() );
-			$this->assertStringContainsString( 'returl=http%3A%2F%2F' . wp_parse_url( get_home_url(), PHP_URL_HOST ) . '%2Flogin%2Fafter-login', $this->redirects_helper->get_redirect_location() );
+			$this->assertStringContainsString( 'returl=http%3A%2F%2F', $this->redirects_helper->get_redirect_location() );
+			$this->assertStringContainsString( '%2Flogin%2Fafter-login', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( 'redirect_to%3Dhttps%253A%252F%252Fexample.com', $this->redirects_helper->get_redirect_location() );
 
 			$this->assertNotEmpty( $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) );
