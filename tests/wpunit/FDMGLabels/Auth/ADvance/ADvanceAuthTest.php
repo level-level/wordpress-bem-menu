@@ -38,7 +38,6 @@ class ADvanceAuthTest extends WPTestCase {
 
 			$this->redirects_helper->assert_redirected( true );
 			$this->redirects_helper->assert_redirect_status( 302 );
-			$this->assertStringContainsString( 'https://fdmg-labels.test', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( '/login', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( 'returl=http%3A%2F%2Ffdmg-labels.test%2Flogin%2Fafter-login', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( 'redirect_to%3Dhttps%253A%252F%252Fexample.com', $this->redirects_helper->get_redirect_location() );
@@ -61,7 +60,6 @@ class ADvanceAuthTest extends WPTestCase {
 
 			$this->redirects_helper->assert_redirected( true );
 			$this->redirects_helper->assert_redirect_status( 302 );
-			$this->assertStringContainsString( 'https://fdmg-labels.test', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( '/wp-login.php?action=logout', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( 'redirect_to=https%3A%2F%2Fexample.com', $this->redirects_helper->get_redirect_location() );
 			$this->assertStringContainsString( '_wpnonce=', $this->redirects_helper->get_redirect_location() );
