@@ -11,8 +11,9 @@ class Init {
 
 	public function __construct() {
 		$this->main_static_page_controllers = array(
-			'login'  => new LoginController(),
-			'logout' => new LogoutController(),
+			'login'    => new LoginController(),
+			'logout'   => new LogoutController(),
+			'register' => new RegistrationController(),
 		);
 	}
 
