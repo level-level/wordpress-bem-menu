@@ -23,10 +23,10 @@ class Configuration {
 		'pensioen_pro' => array(
 			'article' => 'PPR',
 		),
-		'backup_fd' => array(
+		'backup_fd'    => array(
 			'article' => 'HFD',
 		),
-		'backup_bnr' => array(
+		'backup_bnr'   => array(
 			'article' => 'BNR',
 		),
 	);
