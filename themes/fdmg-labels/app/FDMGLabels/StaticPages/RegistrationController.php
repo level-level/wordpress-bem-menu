@@ -63,6 +63,9 @@ class RegistrationController extends AbstractMainController {
 		if ( $identity_provider ) {
 			$identity_provider->handle_registration_page( $redirect_to );
 		}
+
+		// Redirect to the home URL if no IDP handles the request
+		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 
 	protected function handle_after_registration(): void {
@@ -83,7 +86,7 @@ class RegistrationController extends AbstractMainController {
 			$identity_provider->handle_after_registration_page( $redirect_to );
 		}
 
-		// Redirect to the login url.
+		// Redirect to the home URL if no IDP handles the request
 		$this->redirect_and_exit( home_url(), 302, 'FDMG Labels - Profile auth not handled by identity provider', false );
 	}
 
