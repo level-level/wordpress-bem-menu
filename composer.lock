@@ -281,10 +281,10 @@
         },
         {
             "name": "gravity/gravityforms",
-            "version": "2.9.15.2",
+            "version": "2.9.17.1",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.gravity.io/downloads/?plugin=gravityforms&version=2.9.15.2",
+                "url": "https://composer.gravity.io/downloads/?plugin=gravityforms&version=2.9.17.1",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
