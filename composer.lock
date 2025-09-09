@@ -4252,15 +4252,15 @@
         },
         {
             "name": "wpackagist-plugin/download-monitor",
-            "version": "5.0.33",
+            "version": "5.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/download-monitor/",
-                "reference": "tags/5.0.33"
+                "reference": "tags/5.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/download-monitor.5.0.33.zip",
+                "url": "https://downloads.wordpress.org/plugin/download-monitor.5.1.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
