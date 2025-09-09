@@ -73,7 +73,7 @@
         "wpackagist-plugin/download-monitor": "^5.0",
         "wpackagist-plugin/duracelltomi-google-tag-manager": "^1.16",
         "wpackagist-plugin/elasticpress": "^5.1",
-        "wpackagist-plugin/koko-analytics": "^1.7",
+        "wpackagist-plugin/koko-analytics": "^2.0",
         "wpackagist-plugin/loco-translate": "^2.4",
         "wpackagist-plugin/popup-maker": "^1.18",
         "wpackagist-plugin/post-smtp": "^3.1",
@@ -173,7 +173,7 @@
         }
     },
     "require-dev": {
-        "cebe/php-openapi": "1.7.0",
+        "cebe/php-openapi": "^1.8",
         "codeception/codeception": "^5.0",
         "codeception/module-asserts": "^3.0",
         "codeception/module-cli": "^2.0",
