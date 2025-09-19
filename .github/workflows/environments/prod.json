@@ -1,7 +1,7 @@
 [
     {
-        "name": "prod - prod-01.impact-investor.lvl.li",
-        "hostname": "prod-01.impact-investor.lvl.li",
+        "name": "prod - prod-01.fdmg-labels.lvl.li",
+        "hostname": "prod-01.fdmg-labels.lvl.li",
         "port": "2223",
         "username": "devops",
         "deploy_path": "/srv/http/shared/deploys"
