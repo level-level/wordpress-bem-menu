@@ -23,6 +23,12 @@ class Configuration {
 		'pensioen_pro' => array(
 			'article' => 'PPR',
 		),
+		'backup_fd'    => array(
+			'article' => 'HFD',
+		),
+		'backup_bnr'   => array(
+			'article' => 'BNR',
+		),
 	);
 
 	public function get_configuration(): FDMGContentAPIClientConfiguration {
