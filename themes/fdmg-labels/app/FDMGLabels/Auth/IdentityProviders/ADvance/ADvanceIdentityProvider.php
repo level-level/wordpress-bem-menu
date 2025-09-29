@@ -12,6 +12,7 @@ use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\LoginAPI;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
+use FDMGLabels\StaticPages\RegistrationController;
 use FDMGLabels\StaticPages\ResponseTrait;
 use Monolog\Registry;
 use Ramsey\Uuid\Uuid;
@@ -40,7 +41,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	public function handle_login_page( string $redirect_url_after_login ): never {
 		// Set concurrency cookie
 		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
-			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true );
+			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true, $this->get_cookie_domain() );
 		}
 
 		// Determine our handle login url, including the url to redirect to after the login
@@ -69,8 +70,42 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * @return never
 	 */
 	public function handle_after_login_page( string $redirect_url_after_login ): never {
-		$login_controller = new LoginController();
+		$this->auto_login( $redirect_url_after_login );
+	}
 
+	public function handle_registration_page( string $redirect_url_after_registration ): never {
+		// Set concurrency cookie
+		if ( ! $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) ) {
+			$this->cookie_helper->set_cookie( 'ADConCtrlCookie', Uuid::uuid7()->toString(), time() + YEAR_IN_SECONDS, true, $this->get_cookie_domain() );
+		}
+
+		// Determine our handle login url, including the url to redirect to after the login
+		$registration_controller = new RegistrationController();
+		$handle_register_url     = $registration_controller->get_permalink( RegistrationController::PAGE_AFTER_REGISTER );
+
+		// Pass handle url to ADvance login page to get redirectred back to our platform and handle the login
+		$idp_base_url  = get_option( sprintf( 'options_%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_PAGES_BASE_URL ) );
+		$idp_login_url = sprintf( '%s/register', untrailingslashit( $idp_base_url ) );
+		$idp_login_url = add_query_arg( 'returl', rawurlencode( $handle_register_url ), $idp_login_url );
+
+		// Redirect to the login url.
+		$this->redirect_and_exit(
+			$idp_login_url,
+			302,
+			'FDMG Labels - Profile auth redirect to ADvance',
+			false
+		);
+	}
+
+	public function handle_after_registration_page( string $redirect_url_after_registration ): never {
+		$this->auto_login( $redirect_url_after_registration );
+	}
+
+	/**
+	 * Run autologin on ADvance API. This is run both on login and on register because we want to immediately log someone in.
+	 */
+	public function auto_login( string $redirect_url_after_login ): never {
+		$login_controller = new LoginController();
 		// Validate frontend auth cookie is set
 		$frontend_auth_cookie = $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) ?: '';
 		if ( ! is_string( $frontend_auth_cookie ) || empty( $frontend_auth_cookie ) ) {
@@ -112,6 +147,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 					'message' => $e->getMessage(),
 				)
 			);
+
 			$this->redirect_and_exit(
 				$login_controller->get_login_error_permalink(
 					'api_error',
@@ -163,6 +199,15 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
+		if ( $body['status']['code'] === 'ERROR' ) {
+			$this->redirect_and_exit(
+				$login_controller->get_login_error_permalink(
+					'api_error',
+					$body['message']
+				),
+				302, 'FDMG Labels - Profile auth API error',
+			);
+		}
 		// Handle success response, but still an error occurred in processing
 		if ( $body['response']['status']['code'] === 'ERROR' ) {
 			Registry::wordpress()->warning(
@@ -284,10 +329,49 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 */
 	public function handle_logout_page( string $redirect_url_after_logout ): never {
 		// Delete the Frontend Auth Cookie
-		$this->cookie_helper->clear_cookie( 'ADFEAuthCookie' );
+		$this->cookie_helper->clear_cookie( 'ADFEAuthCookie', true, $this->get_cookie_domain() );
 
 		// Redirect to the WP logout url. Your current login status does not matter.
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
+	}
+
+	/**
+	 * Get ADvance cookie domain.
+	 * The ADvance cookie domain is the root domain of the WordPress domain,
+	 * without any subdomain prefix.
+	 * It is then prefixed with a dot, to also support older browsers.
+	 *
+	 * @see https://www.php.net/manual/en/function.setcookie.php
+	 *
+	 * @return string
+	 */
+	private function get_cookie_domain(): string {
+		$cookie_domain = defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : null;
+		if ( ! $cookie_domain ) {
+			$cookie_domain = wp_parse_url( home_url(), PHP_URL_HOST );
+		}
+		if ( ! $cookie_domain ) {
+			return '';
+		}
+
+		// Get domain parts
+		$domain_parts = explode( '.', $cookie_domain );
+		if ( count( $domain_parts ) < 2 ) {
+			return $cookie_domain;
+		}
+
+		// Determine the root domain and tld.
+		$tld                     = array_pop( $domain_parts );
+		$root_domain_without_tld = array_pop( $domain_parts );
+		$check_double_tld        = sprintf( '%s.%s', $root_domain_without_tld, $tld );
+		$double_tlds             = array( 'co.uk', 'org.uk', 'gov.uk', 'ac.uk', 'net.uk' );
+		if ( count( $domain_parts ) && in_array( $check_double_tld, $double_tlds, true ) ) {
+			$tld                     = $check_double_tld;
+			$root_domain_without_tld = array_pop( $domain_parts );
+		}
+
+		// Return the cookie domain.
+		return sprintf( '.%s.%s', $root_domain_without_tld, $tld );
 	}
 }

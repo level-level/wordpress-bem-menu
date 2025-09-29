@@ -30,6 +30,16 @@ interface IdentityProviderInterface {
 	public function handle_after_login_page( string $redirect_url_after_login ): never;
 
 	/**
+	 * Handles how the registration page should be displayed.
+	 */
+	public function handle_registration_page( string $redirect_url_after_registration ): never;
+
+	/**
+	 * Handles actions to do after registration at the identity provider.
+	 */
+	public function handle_after_registration_page( string $redirect_url_after_registration ): never;
+
+	/**
 	 * Handles the logout page should be displayed.
 	 */
 	public function handle_logout_page( string $redirect_url_after_logout ): never;
