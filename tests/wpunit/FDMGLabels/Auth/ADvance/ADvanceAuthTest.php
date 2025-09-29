@@ -66,4 +66,25 @@ class ADvanceAuthTest extends WPTestCase {
 
 		$this->assertEmpty( $this->cookie_helper->get_cookie( 'ADFEAuthCookie' ) );
 	}
+
+	public function test_handle_registration_redirect() {
+		$login = new ADvanceIdentityProvider( $this->cookie_helper );
+		$this->redirects_helper->start();
+
+		try {
+			$login->handle_registration_page( 'https://example.com' );
+			$this->fail( 'Expected WPDieException to be thrown' );
+		} catch ( WPDieException $e ) { // phpcs:ignore
+			// Expected exception - continue with assertions
+		}
+		$this->redirects_helper->stop();
+
+		$this->redirects_helper->assert_redirected( true );
+		$this->redirects_helper->assert_redirect_status( 302 );
+		$this->assertStringContainsString( '/register', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( 'returl=http%3A%2F%2F', $this->redirects_helper->get_redirect_location() );
+		$this->assertStringContainsString( '%2Fregister%2Fafter-register', $this->redirects_helper->get_redirect_location() );
+
+		$this->assertNotEmpty( $this->cookie_helper->get_cookie( 'ADConCtrlCookie' ) );
+	}
 }
