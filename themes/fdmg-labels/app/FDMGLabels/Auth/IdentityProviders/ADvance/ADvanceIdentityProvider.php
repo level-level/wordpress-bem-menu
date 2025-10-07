@@ -5,11 +5,13 @@ use Clarkson\Theme\ACFPages\ADvance;
 use Clarkson\Utilities\IPAddress;
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\WordPress_Object\user;
+use DateTimeImmutable;
 use Exception;
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
 use FDMGLabels\Auth\Init as AuthInit;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\LoginAPI;
+use FDMGLabels\Connectors\ADvance\UserAPI;
 use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
 use FDMGLabels\StaticPages\RegistrationController;
@@ -134,7 +136,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		$client = ( new ClientFactory() )->get_client();
 		$api    = new LoginAPI( $client );
 		try {
-			$response = $api->auto_login(
+			$login_response = $api->auto_login(
 				$frontend_auth_cookie,
 				$concurrency_cookie,
 				( new IPAddress() )->get_visitor_ip_address()
@@ -158,13 +160,13 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		}
 
 		// Handle error response code
-		$status_code = $response->getStatusCode();
+		$status_code = $login_response->getStatusCode();
 		if ( $status_code !== 200 ) {
 			Registry::wordpress()->warning(
 				'ADvance login API returned unexpected status code',
 				array(
 					'status_code' => $status_code,
-					'response'    => (string) $response->getBody(),
+					'response'    => (string) $login_response->getBody(),
 				)
 			);
 
@@ -179,14 +181,14 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 
 		// Parse response to JSON
 		try {
-			$body = $api->parse_response_to_json( $response );
+			$body = $api->parse_response_to_json( $login_response );
 		} catch ( Exception $e ) {
 			Registry::wordpress()->warning(
 				'ADvance login API response could not be parsed',
 				array(
 					'code'     => $e->getCode(),
 					'message'  => $e->getMessage(),
-					'response' => (string) $response->getBody(),
+					'response' => (string) $login_response->getBody(),
 				)
 			);
 
@@ -199,21 +201,12 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			);
 		}
 
-		if ( $body['status']['code'] === 'ERROR' ) {
-			$this->redirect_and_exit(
-				$login_controller->get_login_error_permalink(
-					'api_error',
-					$body['message']
-				),
-				302, 'FDMG Labels - Profile auth API error',
-			);
-		}
 		// Handle success response, but still an error occurred in processing
 		if ( $body['response']['status']['code'] === 'ERROR' ) {
 			Registry::wordpress()->warning(
 				'ADvance login API returned error response',
 				array(
-					'response' => (string) $response->getBody(),
+					'response' => (string) $login_response->getBody(),
 				)
 			);
 
@@ -248,10 +241,11 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			$user_id = $this->create_or_update_user( $body['response'] );
 		} catch ( Exception $e ) {
 			Registry::wordpress()->warning(
-				'ADvance login API user creation/update failed',
+				'ADvance user creation/update failed',
 				array(
 					'code'    => $e->getCode(),
 					'message' => $e->getMessage(),
+					'trace'   => $e->getTraceAsString(),
 				)
 			);
 
@@ -281,6 +275,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 	 * Creates or updates a user from the api.
 	 *
 	 * @param array<string,mixed> $response
+	 * @throws Exception
 	 * @return int
 	*/
 	public function create_or_update_user( array $response ): int {
@@ -319,7 +314,7 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 			throw new Exception( 'Created user cannot be found: ' . $user_id );
 		}
 
-		$grant_roles = array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER ); // Always account holder, no subscriptions
+		$grant_roles = $this->get_roles_to_grant_to_user( $login_details['UserToken'] );
 		$auth_init->update_user_roles_from_idp( $clarkson_user->get_user(), $grant_roles );
 		return $user_id;
 	}
@@ -334,6 +329,130 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		// Redirect to the WP logout url. Your current login status does not matter.
 		$url = wp_specialchars_decode( wp_logout_url( $redirect_url_after_logout ) );
 		$this->redirect_and_exit( $url, 302, 'FDMG Labels - Profile logout' );
+	}
+
+	/**
+	 * Determines the roles a user should be granted based on the subscriptions returned from the api.
+	 *
+	 * @param string $user_token
+	 * @throws Exception
+	 * @return array<value-of<AuthInit::MANAGEABLE_ROLES>>
+	*/
+	private function get_roles_to_grant_to_user( string $user_token ): array {
+		$client = ( new ClientFactory() )->get_client();
+		$api    = new UserAPI( $client );
+
+		try {
+			$user_subscriptions_response = $api->get_user_subscriptions(
+				$user_token,
+				null,
+				( new IPAddress() )->get_visitor_ip_address()
+			);
+		} catch ( Exception $e ) {
+			Registry::wordpress()->warning(
+				'Error on Advance get user subscriptions attempt',
+				array(
+					'code'    => $e->getCode(),
+					'message' => $e->getMessage(),
+					'trace'   => $e->getTraceAsString(),
+				)
+			);
+			throw new Exception(
+				'Failed to get user subscriptions',
+				$e->getCode(),
+				$e
+			);
+		}
+
+		// Handle error response code
+		$status_code = $user_subscriptions_response->getStatusCode();
+		if ( $status_code !== 200 ) {
+			Registry::wordpress()->warning(
+				'ADvance user API returned unexpected status code',
+				array(
+					'status_code' => $status_code,
+					'response'    => (string) $user_subscriptions_response->getBody(),
+				)
+			);
+
+			throw new Exception(
+				sprintf( 'API response returned unexpected status code: %s', $status_code ),
+				$status_code
+			);
+		}
+
+		// Parse response to JSON
+		try {
+			$body = $api->parse_response_to_json( $user_subscriptions_response );
+		} catch ( Exception $e ) {
+			Registry::wordpress()->warning(
+				'ADvance user API response could not be parsed',
+				array(
+					'code'     => $e->getCode(),
+					'message'  => $e->getMessage(),
+					'response' => (string) $user_subscriptions_response->getBody(),
+				)
+			);
+
+			throw new Exception(
+				'Failed to parse API response: ' . $e->getMessage(),
+				$e->getCode(),
+				$e
+			);
+		}
+
+		// Handle success response, but still an error occurred in processing
+		if ( $body['response']['status']['code'] === 'ERROR' ) {
+			Registry::wordpress()->warning(
+				'ADvance user API returned error response',
+				array(
+					'code'     => $body['response']['status']['code'],
+					'messages' => $body['response']['status']['messages'],
+					'response' => (string) $user_subscriptions_response->getBody(),
+				)
+			);
+
+			$messages = array_map(
+				function ( array $message ): string {
+					return sprintf( '%s: %s', $message['type'] ?? 'unknown', $message['msg'] ?? 'unknown' );
+				},
+				$body['response']['status']['messages'] ?? array()
+			);
+			throw new Exception(
+				'API returned error response: ' . implode( ', ', $messages )
+			);
+		}
+
+		// Loop subscriptions and if a subscription is valid, return subscriber role
+		$configuration                    = get_field( ADvance::OPTION_GROUP, 'option' ) ?: array();
+		$subscription_product_rows        = $configuration[ ADvance::OPTION_SUBSCRIPTION_PRODUCTS ] ?? array();
+		$allowed_subscription_product_ids = array_map(
+			function ( array $product ): string {
+				return (string) ( $product[ ADvance::OPTION_SUBSCRIPTION_PRODUCT_ID ] ?? '' );
+			},
+			$subscription_product_rows
+		);
+		foreach ( $body['response']['data']['list'] as $subscription ) {
+			if ( ! in_array( $subscription['ProductID'], $allowed_subscription_product_ids, true ) ) {
+				continue;
+			}
+
+			if ( $subscription['SubscriptionStatus'] !== 'Live' ) {
+				continue;
+			}
+
+			$now                     = new DateTimeImmutable( 'now', wp_timezone() );
+			$subscription_start_date = new DateTimeImmutable( $subscription['StartDateTime'] );
+			$subscription_end_date   = new DateTimeImmutable( $subscription['GraceEndDateTime'] ?: $subscription['EndDateTime'] );
+			if ( $subscription_start_date > $now || $subscription_end_date < $now ) {
+				continue;
+			}
+
+			return array( Capabilities::ROLE_FDMG_SUBSCRIBER );
+		}
+
+		// No valid subscriptions found, return account holder role
+		return array( Capabilities::ROLE_FDMG_ACCOUNT_HOLDER );
 	}
 
 	/**

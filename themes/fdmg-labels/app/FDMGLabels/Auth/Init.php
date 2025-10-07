@@ -40,7 +40,6 @@ class Init {
 	public function register_hooks(): void {
 		( new EditorCookie( $this->auth_cookie_helper ) )->register_hooks();
 		( new UserCookie( $this->auth_cookie_helper ) )->register_hooks();
-		( new SessionExpiration() )->register_hooks();
 		$this->get_identity_provider()?->register_hooks();
 
 		add_filter( 'show_admin_bar', array( $this, 'hide_admin_bar' ) );
@@ -107,7 +106,7 @@ class Init {
 		}
 
 		$this->available_identity_providers = array(
-			new KeyCloakIdentityProvider( $this->auth_cookie_helper ),
+			new KeyCloakIdentityProvider(),
 			new ADvanceIdentityProvider( $this->auth_cookie_helper ),
 		);
 		return $this->available_identity_providers;

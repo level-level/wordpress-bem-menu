@@ -4,7 +4,6 @@ namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 use Clarkson\WPadmin\Capabilities;
 use Clarkson_Core\Objects;
 use FDMGLabels\Auth\Init as AuthInit;
-use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\LoginController;
 use Monolog\Registry;
 use WP_Error;
@@ -12,23 +11,14 @@ use WP_User;
 
 class OpenIDConnectHooks {
 
-	protected const REMEMBER_ME_COOKIE_NAME = 'fdmg_idp_remember_me';
-
-	protected CookieHelper $cookie_helper;
-
-	public function __construct( CookieHelper $cookie_helper ) {
-		$this->cookie_helper = $cookie_helper;
-	}
-
 	public function register_hooks(): void {
 		add_filter( 'openid-connect-generic-alter-user-data', array( $this, 'change_new_user_data' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'set_user_roles' ), 10, 2 );
 		add_action( 'openid-connect-generic-update-user-using-current-claim', array( $this, 'update_user_data' ), 10, 2 );
 
-		add_action( 'openid-connect-generic-user-logged-in', array( $this, 'create_rememberme_cookie_after_login' ) );
-		add_action( 'wp_logout', array( $this, 'remove_rememberme_cookie_after_logout' ) );
-
 		add_filter( 'wp_redirect', array( $this, 'handle_login_errors' ), 10, 2 );
+		add_filter( 'openid-connect-generic-remember-me', array( $this, 'maybe_use_remember_me' ), 10, 4 );
+		add_filter( 'openid-connect-generic-use-token-refresh-expiration', '__return_true' );
 	}
 
 	/**
@@ -173,35 +163,6 @@ class OpenIDConnectHooks {
 	}
 
 	/**
-	 * After a user is successfully logged in using openid connect, set a cookie
-	 * on the user indicating that the user should be remembered. This is
-	 * then used in JavaScript to redirect the user to the login page when the
-	 * user is not logged in and the cookie is present.
-	 */
-	public function create_rememberme_cookie_after_login( WP_User $user ): void {
-		$token_response = get_user_meta( $user->ID, 'openid-connect-generic-last-token-response', true );
-		if ( ! is_array( $token_response ) ) {
-			return;
-		}
-
-		$access_token      = $token_response['access_token'] ?? '';
-		$access_token_data = $this->parse_access_token( $access_token );
-
-		$remember_me   = (bool) ( $access_token_data['rememberMe'] ?? false );
-		$seconds_valid = (int) ( $token_response['refresh_expires_in'] ?? 0 );
-		if ( ! $remember_me ) {
-			return;
-		}
-
-		$this->cookie_helper->set_cookie(
-			self::REMEMBER_ME_COOKIE_NAME,
-			'1',
-			time() + $seconds_valid,
-			false,
-		);
-	}
-
-	/**
 	 * Parses the access token and returns the data inside it.
 	 *
 	 * @param string $access_token
@@ -227,13 +188,6 @@ class OpenIDConnectHooks {
 			return array();
 		}
 		return $extracted_access_token_data;
-	}
-
-	/**
-	 * When a user logs out by it's own choice, remove the remember me cookie.
-	 */
-	public function remove_rememberme_cookie_after_logout(): void {
-		$this->cookie_helper->clear_cookie( self::REMEMBER_ME_COOKIE_NAME, false );
 	}
 
 	/**
@@ -280,5 +234,25 @@ class OpenIDConnectHooks {
 			$error_message,
 		);
 		return $redirect_url;
+	}
+
+	/**
+	 * Determines if the "remember me" functionality of OpenID Connect should be used based on the ID token claim.
+	 * This will allow the token refresh expiration to be used as the expiration of the WordPress cookie.
+	 *
+	 * It checks if rememberMe is defined in the ID token claim.
+	 *
+	 * @param bool $use_remember_me
+	 * @param WP_User $user
+	 * @param array<string,mixed> $token_response
+	 * @param array<string,mixed> $id_token_claim
+	 * @return bool
+	 */
+	public function maybe_use_remember_me( bool $use_remember_me, WP_User $user, array $token_response, array $id_token_claim ): bool {
+		if ( ! array_key_exists( 'rememberMe', $id_token_claim ) ) {
+			return $use_remember_me;
+		}
+
+		return (bool) $id_token_claim['rememberMe'];
 	}
 }

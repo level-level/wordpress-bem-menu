@@ -2,22 +2,18 @@
 namespace FDMGLabels\Auth\IdentityProviders\KeyCloak;
 
 use FDMGLabels\Auth\IdentityProviders\IdentityProviderInterface;
-use FDMGLabels\CookieHelper;
 use FDMGLabels\StaticPages\ResponseTrait;
 
 class KeyCloakIdentityProvider implements IdentityProviderInterface {
 
 	use ResponseTrait;
 
-	public function __construct( private CookieHelper $cookie_helper ) {
-	}
-
 	public function get_id(): string {
 		return 'keycloak';
 	}
 
 	public function register_hooks(): void {
-		( new OpenIDConnectHooks( $this->cookie_helper ) )->register_hooks();
+		( new OpenIDConnectHooks() )->register_hooks();
 	}
 
 	public function is_enabled(): bool {

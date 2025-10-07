@@ -4,6 +4,8 @@ namespace Clarkson\Theme\ACFPages;
 use Extended\ACF\ConditionalLogic;
 use Extended\ACF\Fields\Group;
 use Extended\ACF\Fields\Password;
+use Extended\ACF\Fields\Repeater;
+use Extended\ACF\Fields\Text;
 use Extended\ACF\Fields\TrueFalse;
 use Extended\ACF\Fields\URL;
 use Extended\ACF\Location;
@@ -14,12 +16,14 @@ class ADvance {
 
 	public const MENU_SLUG = 'acf-advance-options';
 
-	public const OPTION_GROUP            = 'advance';
-	public const OPTION_ENABLED          = 'enabled';
-	public const OPTION_PAGES_BASE_URL   = 'pages_base_url';
-	public const OPTION_API_BASE_URL     = 'api_base_url';
-	public const OPTION_API_ACCESS_TOKEN = 'api_access_token';
-	public const OPTION_API_ACCESS_HASH  = 'api_access_hash';
+	public const OPTION_GROUP                   = 'advance';
+	public const OPTION_ENABLED                 = 'enabled';
+	public const OPTION_PAGES_BASE_URL          = 'pages_base_url';
+	public const OPTION_API_BASE_URL            = 'api_base_url';
+	public const OPTION_API_ACCESS_TOKEN        = 'api_access_token';
+	public const OPTION_API_ACCESS_HASH         = 'api_access_hash';
+	public const OPTION_SUBSCRIPTION_PRODUCTS   = 'subscription_products';
+	public const OPTION_SUBSCRIPTION_PRODUCT_ID = 'product_id';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -74,6 +78,21 @@ class ADvance {
 									),
 								Password::make( _x( 'API access hash', 'Fields', 'fdmg-labels-admin' ), self::OPTION_API_ACCESS_HASH )
 									->required()
+									->conditionalLogic(
+										array(
+											ConditionalLogic::where( self::OPTION_GROUP . '_' . self::OPTION_ENABLED, '==', '1' ),
+										)
+									),
+								Repeater::make( _x( 'Abonnementsproducten', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIPTION_PRODUCTS )
+									->helperText( _x( 'Gebruikers met een abonnement op een van deze producten worden beschouwd als iemand met een geldig abonnement.', 'Fields', 'fdmg-labels-admin' ) )
+									->button( _x( 'Abonnementsproduct toevoegen', 'Fields', 'fdmg-labels-admin' ) )
+									->minRows( 1 )
+									->fields(
+										array(
+											Text::make( _x( 'Product ID', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIPTION_PRODUCT_ID )
+												->required(),
+										)
+									)
 									->conditionalLogic(
 										array(
 											ConditionalLogic::where( self::OPTION_GROUP . '_' . self::OPTION_ENABLED, '==', '1' ),
