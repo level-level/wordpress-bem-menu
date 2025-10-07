@@ -424,7 +424,19 @@ class ADvanceIdentityProvider implements IdentityProviderInterface {
 		}
 
 		// Loop subscriptions and if a subscription is valid, return subscriber role
+		$configuration                    = get_field( ADvance::OPTION_GROUP, 'option' ) ?: array();
+		$subscription_product_rows        = $configuration[ ADvance::OPTION_SUBSCRIPTION_PRODUCTS ] ?? array();
+		$allowed_subscription_product_ids = array_map(
+			function ( array $product ): string {
+				return (string) ( $product[ ADvance::OPTION_SUBSCRIPTION_PRODUCT_ID ] ?? '' );
+			},
+			$subscription_product_rows
+		);
 		foreach ( $body['response']['data']['list'] as $subscription ) {
+			if ( ! in_array( $subscription['ProductID'], $allowed_subscription_product_ids, true ) ) {
+				continue;
+			}
+
 			if ( $subscription['SubscriptionStatus'] !== 'Live' ) {
 				continue;
 			}
