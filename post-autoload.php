@@ -28,6 +28,8 @@ if ( function_exists( 'is_blog_installed' ) && is_blog_installed() ) {
 	$action_scheduler_setup->register_hooks();
 }
 
+( new \FDMGLabels\GravityForms\Feeds() )->register_hooks();
+
 /**
  * This solves a conflict between Yoast and KokoAnalytics.
  * Yoast uses the shutdown hook to perform some stuff, using WP functions.
