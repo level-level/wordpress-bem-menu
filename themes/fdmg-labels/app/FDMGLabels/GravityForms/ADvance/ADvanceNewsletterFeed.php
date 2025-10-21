@@ -1,7 +1,9 @@
 <?php
 
-namespace FDMGLabels\GravityForms;
+namespace FDMGLabels\GravityForms\ADvance;
 
+use Clarkson\Theme\ACFPages\ADvance;
+use GFAPI;
 use GFFeedAddOn;
 
 class ADvanceNewsletterFeed extends GFFeedAddOn {
@@ -73,6 +75,15 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	 * @return array<mixed>
 	 */
 	public function feed_settings_fields() {
+		foreach( get_field( sprintf( '%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_SUBSCRIPTION_PRODUCTS ), 'option' ) as $newsletter_ids ) {
+			$populate_newsletter_choices[] = array(
+				'name'       => self::META_FIELD_MAP_OPTIN_NEWSLETTER . (string) $newsletter_ids['product_id'],
+				'label'      => __( sprintf( 'Newsletter optin %s', (string) $newsletter_ids['product_id'] ), 'fdmg--admin' ),
+				'field_type' => array( 'consent' ),
+				'required'   => false,
+			);
+		}
+
 		$fields = array(
 			array(
 				'name'          => self::META_ENABLED,
@@ -85,14 +96,7 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 				'type'       => 'field_map',
 				'label'      => __( 'Connect fields', 'fdmg--admin' ),
 				'tooltip'    => __( 'Connect fields that should be sent to ADvance.', 'fdmg--admin' ),
-				'field_map'  => array(
-					array(
-						'name'       => self::META_FIELD_MAP_OPTIN_NEWSLETTER,
-						'label'      => __( 'Newsletter optin', 'fdmg--admin' ),
-						'field_type' => array( 'consent' ),
-						'required'   => false,
-					),
-				),
+				'field_map'  => $populate_newsletter_choices,
 				'dependency' => array(
 					'live'   => true,
 					'fields' => array(
@@ -148,6 +152,18 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 			return $default_null;
 		}
 		return $feed['meta'][ $meta_key ] ?? $default_null;
+	}
+
+	/**
+	 * Get the current feed data of the provided form
+	 * @return array<string,mixed>|null
+	 */
+	public function get_feed_of_form( int $form_id ): ?array {
+		$feeds = GFAPI::get_feeds( null, $form_id, self::FEED_SLUG, true );
+		if ( is_array( $feeds ) && isset( $feeds[0] ) ) {
+			return $feeds[0];
+		}
+		return null;
 	}
 
 }

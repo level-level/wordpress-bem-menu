@@ -2,9 +2,9 @@
 
 namespace FDMGLabels\GravityForms;
 
+use FDMGLabels\GravityForms\ADvance\ADvanceNewsletterFeed;
 use GFAddOn;
 use GFForms;
-use FDMGLabels\GravityForms\ADvanceNewsletterFeed;
 
 /**
  * This class registers all feeds.
