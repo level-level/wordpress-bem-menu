@@ -3,6 +3,8 @@
 namespace FDMGLabels\GravityForms\ADvance;
 
 use Clarkson\Theme\ACFPages\ADvance;
+use FDMGLabels\Connectors\ADvance\ClientFactory;
+use FDMGLabels\Connectors\ADvance\NewsletterAPI;
 use GFAPI;
 use GFFeedAddOn;
 
@@ -13,8 +15,8 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public const META_ENABLED = 'fdmg_advance_enabled';
 
 	// Field map
+	public const META_EMAIL_ADDRESS              = 'fdmg_advance_email_address';
 	public const META_FIELD_MAP                  = 'fdmg_advance_field_map';
-	public const META_FIELD_MAP_OPTIN_NEWSLETTER = 'optin_newsletter';
 
 	// Automatically set meta
 	public const META_IS_ADVANCE_ENTRY = 'is_fdmg_advance_entry';
@@ -56,8 +58,8 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	// phpcs:enable PSR2.Classes.PropertyDeclaration.Underscore
 
 	public function __construct() {
-		$this->_title       = 'FDMG Advance'; // Cannot use translation because of load order
-		$this->_short_title = 'FDMG Advance'; // Cannot use translation because of load order
+		$this->_title       = 'FDMG ADvance'; // Cannot use translation because of load order
+		$this->_short_title = 'FDMG ADvance'; // Cannot use translation because of load order
 		parent::__construct();
 	}
 
@@ -75,28 +77,30 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	 * @return array<mixed>
 	 */
 	public function feed_settings_fields() {
-		foreach( get_field( sprintf( '%s_%s', ADvance::OPTION_GROUP, ADvance::OPTION_SUBSCRIPTION_PRODUCTS ), 'option' ) as $newsletter_ids ) {
-			$populate_newsletter_choices[] = array(
-				'name'       => self::META_FIELD_MAP_OPTIN_NEWSLETTER . (string) $newsletter_ids['product_id'],
-				'label'      => __( sprintf( 'Newsletter optin %s', (string) $newsletter_ids['product_id'] ), 'fdmg--admin' ),
-				'field_type' => array( 'consent' ),
-				'required'   => false,
-			);
-		}
-
 		$fields = array(
 			array(
 				'name'          => self::META_ENABLED,
 				'type'          => 'toggle',
-				'label'         => __( 'Send entries to ADvance as an opt-in', 'fdmg--admin' ),
+				'label'         => __( 'Send entries to ADvance as an opt-in', 'fdmg-admin' ),
 				'default_value' => 0,
 			),
 			array(
 				'name'       => self::META_FIELD_MAP,
 				'type'       => 'field_map',
-				'label'      => __( 'Connect fields', 'fdmg--admin' ),
-				'tooltip'    => __( 'Connect fields that should be sent to ADvance.', 'fdmg--admin' ),
-				'field_map'  => $populate_newsletter_choices,
+				'label'      => __( 'Connect fields', 'fdmg-admin' ),
+				'tooltip'    => __( 'Connect fields that should be sent to ADvance. These can be bundled into one Gravity Forms field. By just selected the same field for multiple newsletters, you can easily manage subscriptions.', 'fdmg-admin' ),
+				'field_map'  => array_merge(
+					array(
+						array(
+							'name'       => self::META_EMAIL_ADDRESS,
+							'label'      => __( 'Email Address', 'fdmg-admin' ),
+							'value'      => 'email_address',
+							'field_type' => array( 'email', 'text' ),
+							'required'   => true,
+						),
+					),
+					$this->get_newsletter_choices()
+				),
 				'dependency' => array(
 					'live'   => true,
 					'fields' => array(
@@ -166,4 +170,74 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 		return null;
 	}
 
+	/**
+	 * Gets the input's advance field. It attempts to extract it from the ADvance feed settings.
+	 *
+	 * @param array<string,mixed> $feed
+	 * @param string $input_id
+	 * @return string|null $advance_field For example 13, 14.2, 15.1
+	 */
+	public function get_advance_field_by_input_id( array $feed, string $input_id ): ?string {
+		$map = $this->get_map( $feed );
+		foreach ( $map as $map_field_name => $map_input_id ) {
+			if ( ( (string) $map_input_id ) === ( (string) $input_id ) ) {
+				return $map_field_name;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get the complete field mapping as a advance_field => input_id array.
+	 * @param array<string,mixed> $feed
+	 * @return array<string,string>
+	 */
+	public function get_map( array $feed ): array {
+		$map = array();
+		if ( empty( $feed['meta'] ) ) {
+			return $map; // No feed meta equals no field map fields. Quit early to prevent GF from erroring.
+		}
+
+		$field_map = self::get_instance()->get_field_map_fields( $feed, self::META_FIELD_MAP );
+		return $field_map;
+	}
+
+	/**
+	 * Get newsletter choices from ADvance API.
+	 *
+	 * @return array<array{name: string, label: string, value: string, field_type: array<string>, required: bool}>
+	 */
+	public function get_newsletter_choices(): array {
+		try {
+			$newsletter_api = new NewsletterAPI( ( new ClientFactory() )->get_client() );
+			$response       = $newsletter_api->get_newsletters_for_brand( true );
+
+			$newsletters = array();
+			$body        = $newsletter_api->parse_response_to_json( $response );
+
+			if ( isset( $body['response']['data']['list'] ) && is_array( $body['response']['data']['list'] ) ) {
+				foreach ( $body['response']['data']['list'] as $newsletter ) {
+					$name = $newsletter['Name'] ?? '';
+					$code = $newsletter['Code'] ?? '';
+
+					if ( ! empty( $name ) && ! empty( $code ) ) {
+						$newsletters[] = array(
+							'name'       => $code,
+							'label'      => $name,
+							'value'      => $code,
+							'field_type' => array( 'checkbox', 'radio', 'select', 'consent' ),
+							'required'   => false,
+						);
+					}
+				}
+			}
+
+			return $newsletters;
+		} catch ( \Exception $e ) {
+			// Log error and return empty array if API call fails
+			error_log( 'ADvance Newsletter API Error: ' . $e->getMessage() );
+			return array();
+		}
+	}
 }
