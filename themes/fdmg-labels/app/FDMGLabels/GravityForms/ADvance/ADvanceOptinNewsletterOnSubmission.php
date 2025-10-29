@@ -2,15 +2,19 @@
 namespace FDMGLabels\GravityForms\ADvance;
 
 use Exception;
+use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\UserAPI;
 use FDMGLabels\Logging\ADvanceLogger;
 use FDMGLabels\Logging\LogLine;
+use FDMGLabels\StaticPages\ResponseTrait;
 use GF_Field;
 use GFAPI;
-use GuzzleHttp\Client;
+use Monolog\Registry;
 use RGFormsModel;
 
 class ADvanceOptinNewsletterOnSubmission {
+
+	use ResponseTrait;
 
 	private ADvanceLogger $advance_logger;
 
@@ -41,23 +45,37 @@ class ADvanceOptinNewsletterOnSubmission {
 			$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'ADvance feed is disabled for this form.', LogLine::LEVEL_INFO );
 			return;
 		}
-		$map = $feed_class->get_map( $feed );
-		$field_email_value = $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_EMAIL_ADDRESS );
-		$choices = ( new ADvanceNewsletterFeed() )->get_newsletter_choices();
-		$field_newsletter_value = [];
-		foreach( $choices as $choice ) {
+		$map                    = $feed_class->get_map( $feed );
+		$field_email_value      = $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_EMAIL_ADDRESS );
+		$choices                = ( new ADvanceNewsletterFeed() )->get_newsletter_choices();
+		$field_newsletter_value = array();
+
+		foreach ( $choices as $choice ) {
 			$field_newsletter_value[] = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, $choice['name'] ) ? sprintf( '%s', $choice['value'] ) : '';
 		}
 
+		$is_optin = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_OPTIN_ENABLED );
+
 		try {
-			$user_api = new UserAPI( new Client() );
+			$user_api = new UserAPI( ( new ClientFactory() )->get_client() );
 			$response = $user_api->update_newsletter_subscription_by_email_address(
 				$field_email_value,
 				implode( ',', $field_newsletter_value ),
-				$this->is_optin_form(),
+				$is_optin,
 			);
 
 			if ( $response->getStatusCode() === 200 ) {
+				$body = $user_api->parse_response_to_json( $response );
+				// Handle success response, but still an error occurred in processing
+				if ( $body['response']['status']['code'] === 'ERROR' ) {
+					Registry::wordpress()->warning(
+						'ADvance login API returned error response',
+						array(
+							'response' => (string) $response->getBody(),
+						)
+					);
+					return;
+				}
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_INFO );
 			} else {
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Failed to update newsletter subscriptions in ADvance. Status code: %d', $response->getStatusCode() ), LogLine::LEVEL_ERROR );

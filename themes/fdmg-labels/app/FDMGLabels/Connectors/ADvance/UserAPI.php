@@ -47,12 +47,9 @@ class UserAPI extends AbstractAPI {
 	/**
 	 * Activates newsletter subscriptions for a user.
 	 *
-	 * @param string|null $user_token User token or party ID is required.
-	 * @param string|null $party_id User token or party ID is required.
-	 * @param array<int,string> $newsletter_ids Array of newsletter IDs to activate or deactivate.
+	 * @param string|null $email_address User emailaddress for which to update subscriptions.
+	 * @param string $newsletter_ids Array of newsletter IDs to activate or deactivate.
 	 * @param bool $activate True to activate, false to deactivate.
-	 * @param string|null $response_date_time OPTIONAL - date to which the preference should be attributed. Format: yyyy-MM-dd hh:mm:ss
-	 * @throws InvalidArgumentException If both $user_token and $party_id are null.
 	 * @return ResponseInterface
 	 */
 	public function update_newsletter_subscription_by_email_address( ?string $email_address, string $newsletter_ids, bool $activate = true ): ResponseInterface {
@@ -61,7 +58,7 @@ class UserAPI extends AbstractAPI {
 		}
 
 		$params = array();
-		if ( $email_address !== null ) {
+		if ( $email_address ) {
 			$params['emailAddress'] = $email_address;
 		}
 
@@ -74,7 +71,7 @@ class UserAPI extends AbstractAPI {
 
 		$response = $this->client->request(
 			'POST',
-			'/User/UpdateNewsletterSubscriptionByEmailAddress/1/',
+			'/User/UpdateNewsletterSubscriptionsByEmailAddress/1/',
 			array(
 				RequestOptions::FORM_PARAMS => $params,
 			)

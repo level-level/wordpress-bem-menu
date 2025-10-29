@@ -2,7 +2,6 @@
 
 namespace FDMGLabels\GravityForms\ADvance;
 
-use Clarkson\Theme\ACFPages\ADvance;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\NewsletterAPI;
 use GFAPI;
@@ -15,8 +14,9 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public const META_ENABLED = 'fdmg_advance_enabled';
 
 	// Field map
-	public const META_EMAIL_ADDRESS              = 'fdmg_advance_email_address';
-	public const META_FIELD_MAP                  = 'fdmg_advance_field_map';
+	public const META_EMAIL_ADDRESS = 'fdmg_advance_email_address';
+	public const META_FIELD_MAP     = 'fdmg_advance_field_map';
+	public const META_OPTIN_ENABLED = 'fdmg_advance_optin_enabled';
 
 	// Automatically set meta
 	public const META_IS_ADVANCE_ENTRY = 'is_fdmg_advance_entry';
@@ -97,6 +97,13 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 							'value'      => 'email_address',
 							'field_type' => array( 'email', 'text' ),
 							'required'   => true,
+						),
+						array(
+							'name'       => self::META_OPTIN_ENABLED,
+							'label'      => __( 'Opt-in Enabled', 'fdmg-admin' ),
+							'value'      => 'optin_enabled',
+							'field_type' => array( 'checkbox', 'radio', 'select', 'consent' ),
+							'required'   => false,
 						),
 					),
 					$this->get_newsletter_choices()
@@ -236,7 +243,6 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 			return $newsletters;
 		} catch ( \Exception $e ) {
 			// Log error and return empty array if API call fails
-			error_log( 'ADvance Newsletter API Error: ' . $e->getMessage() );
 			return array();
 		}
 	}
