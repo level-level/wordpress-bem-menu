@@ -91,6 +91,7 @@
 	ul:not([class]),
 	ol:not([class]) {
 		@apply font-figtree;
+		@include font-size(17px, 22px)
 	}
 
 	.alignleft {
