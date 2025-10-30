@@ -80,6 +80,8 @@ class UserAPI extends AbstractAPI {
 			$params['inactivateNewsletterCode_CSV'] = $newsletter_codes;
 		}
 
+		$params['requestSource'] = $request_source;
+
 		$response = $this->client->request(
 			'POST',
 			'/User/UpdateNewsletterSubscriptionsByEmailAddress/1/',
