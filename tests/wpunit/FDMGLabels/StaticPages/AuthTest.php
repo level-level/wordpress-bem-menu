@@ -32,8 +32,12 @@ class AuthTest extends WPTestCase {
 		$controller          = new LoginController();
 
 		$this->redirects_helper->start();
-		$this->expectException( WPDieException::class );
-		$controller->handle_request( '' );
+		try {
+			$controller->handle_request( '' );
+			$this->fail( 'Expected WPDieException to be thrown' );
+		} catch ( WPDieException $e ) { // phpcs:ignore
+			// Expected exception - continue with assertions
+		}
 		$this->redirects_helper->stop();
 
 		$this->redirects_helper->assert_redirected( true );
@@ -57,8 +61,12 @@ class AuthTest extends WPTestCase {
 		$_REQUEST['redirect_to'] = 'https://example-after-logout-redirect.test';
 		$controller              = new LogoutController();
 		$this->redirects_helper->start();
-		$this->expectException( WPDieException::class );
-		$controller->handle_request( '' );
+		try {
+			$controller->handle_request( '' );
+			$this->fail( 'Expected WPDieException to be thrown' );
+		} catch ( WPDieException $e ) { // phpcs:ignore
+			// Expected exception - continue with assertions
+		}
 		$this->redirects_helper->stop();
 
 		$this->redirects_helper->assert_redirected( true );
