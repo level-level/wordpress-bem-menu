@@ -76,11 +76,11 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public function feed_settings_fields() {
 		$fields = array(
 			array(
-				'name'       => self::META_FIELD_MAP,
-				'type'       => 'field_map',
-				'label'      => __( 'Connect fields', 'fdmg-admin' ),
-				'tooltip'    => __( 'Connect fields that should be sent to ADvance. These can be bundled into one Gravity Forms field. By just selected the same field for multiple newsletters, you can easily manage subscriptions.', 'fdmg-admin' ),
-				'field_map'  => array_merge(
+				'name'      => self::META_FIELD_MAP,
+				'type'      => 'field_map',
+				'label'     => __( 'Connect fields', 'fdmg-admin' ),
+				'tooltip'   => __( 'Connect fields that should be sent to ADvance. These can be bundled into one Gravity Forms field. By just selected the same field for multiple newsletters, you can easily manage subscriptions.', 'fdmg-admin' ),
+				'field_map' => array_merge(
 					array(
 						array(
 							'name'       => self::META_EMAIL_ADDRESS,

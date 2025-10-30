@@ -65,11 +65,11 @@ class UserAPI extends AbstractAPI {
 			$params['emailAddress'] = $email_address;
 		}
 
-		if( $create_party ) {
+		if ( $create_party ) {
 			$params['createParty'] = true;
 		}
 
-		if( $response_date_time ) {
+		if ( $response_date_time ) {
 			$params['responseDateTime'] = $response_date_time; // FORMAT: yyyy-MM-dd hh:mm:ss
 		}
 
