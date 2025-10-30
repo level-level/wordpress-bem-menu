@@ -6,7 +6,13 @@ use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 
 class NewsletterAPI extends AbstractAPI {
-	public function get_newsletters_for_brand( ?bool $use_shared_brands = true ): ResponseInterface {
+	/**
+	 * Gets a list of Brands from FDMG-labels
+	 *
+	 * @param boolean $use_shared_brands
+	 * @return ResponseInterface
+	 */
+	public function get_newsletters_for_brand( bool $use_shared_brands = false ): ResponseInterface {
 		$params = array(
 			'UseSharedBrands' => $use_shared_brands, // optional
 		);

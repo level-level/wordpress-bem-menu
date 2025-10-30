@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\Connectors\ADvance;
 
+use DateTimeImmutable;
 use GuzzleHttp\RequestOptions;
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
@@ -48,14 +49,14 @@ class UserAPI extends AbstractAPI {
 	 * Activates newsletter subscriptions for a user.
 	 *
 	 * @param string $email_address User emailaddress for which to update subscriptions.
-	 * @param array<string> $newsletter_codes Array of newsletter IDs to activate or deactivate.
+	 * @param array<string> $newsletter_codes Array of newsletter codes to activate or deactivate.
 	 * @param bool $activate True to activate, false to deactivate.
 	 * @param bool $create_party Whether to create a party if it does not exist. OPTIONAL.
-	 * @param string $response_date_time Optional date time string for the response. OPTIONAL.
+	 * @param DateTimeImmutable $response_date_time Optional date time string for the response. OPTIONAL.
 	 * @param string $request_source Optional request source. OPTIONAL.
 	 * @return ResponseInterface
 	 */
-	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = false, string $response_date_time = '', string $request_source = '' ): ResponseInterface {
+	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = false, ?DateTimeImmutable $response_date_time = null, string $request_source = '' ): ResponseInterface {
 		if ( ! $email_address ) {
 			throw new InvalidArgumentException( 'Email address must be provided.' );
 		}
@@ -68,7 +69,7 @@ class UserAPI extends AbstractAPI {
 		}
 
 		if ( $response_date_time ) {
-			$params['responseDateTime'] = $response_date_time; // FORMAT: yyyy-MM-dd hh:mm:ss
+			$params['responseDateTime'] = $response_date_time->format( 'Y-m-d H:i:s' ); // FORMAT: yyyy-MM-dd hh:mm:ss
 		}
 
 		$newsletter_codes = implode( ',', $newsletter_codes );

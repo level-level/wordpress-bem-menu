@@ -125,6 +125,7 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 		// Stores if entry needs to be sent to ADvance.
 		gform_update_meta( $entry['id'], self::META_IS_ADVANCE_ENTRY, true, $form['id'] );
 		$entry[ self::META_IS_ADVANCE_ENTRY ] = true;
+		( new ADvanceOptinNewsletterOnSubmission( $form, $entry, $feed ) )->execute();
 
 		return $entry;
 	}

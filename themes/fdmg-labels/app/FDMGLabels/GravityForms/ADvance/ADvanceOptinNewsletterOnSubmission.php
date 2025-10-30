@@ -2,6 +2,7 @@
 namespace FDMGLabels\GravityForms\ADvance;
 
 use Exception;
+use FDMGLabels\Commands\CommandInterface;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\UserAPI;
 use FDMGLabels\Logging\ADvanceLogger;
@@ -12,37 +13,63 @@ use GFAPI;
 use Monolog\Registry;
 use RGFormsModel;
 
-class ADvanceOptinNewsletterOnSubmission {
+class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 
 	use ResponseTrait;
 
 	private ADvanceLogger $advance_logger;
+	/**
+	 * @var array<string,mixed>
+	 */
+	private array $form;
 
-	public function __construct() {
+	/**
+	 * @var array<mixed>
+	 */
+	private array $entry;
+
+	/**
+	 * @var array<string,mixed>
+	 */
+	private array $feed;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param array<string,mixed> $form The form object currently being processed.
+	 * @param array<mixed> $entry The entry object currently being processed.
+	 * @param array<string,mixed> $feed The feed object currently being processed.
+	 */
+	public function __construct( array $form, array $entry, array $feed ) {
 		$this->advance_logger = new ADvanceLogger();
+		$this->form           = $form;
+		$this->entry          = $entry;
+		$this->feed           = $feed;
 	}
 
-	public function register_hooks(): void {
-		add_action( 'gform_after_submission', array( $this, 'update_user_subscription_by_email_address' ), 10, 2 );
+	public function execute(): mixed {
+		$this->update_user_subscription_by_email_address( $this->entry, $this->form, $this->feed );
+		return '';
 	}
 
 	/**
 	 * Update user newsletter subscription in ADvance.
 	 * @param array<int|string,mixed> $entry The entry object currently being processed.
 	 * @param array<string,mixed> $form The form object currently being processed.
+	 * @param array<string,mixed> $feed The feed object currently being processed.
 	 * @return void
 	 */
-	public function update_user_subscription_by_email_address( array $entry, array $form ): void {
-		$feed_class = ADvanceNewsletterFeed::get_instance();
-		$feed       = $feed_class->get_feed_of_form( (int) $form['id'] );
+	private function update_user_subscription_by_email_address( array $entry, array $form, array $feed ): void {
 		if ( ! $feed ) {
 			$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'No ADvance feed found for this form.', LogLine::LEVEL_INFO );
 			return;
 		}
 
-		$map                    = $feed_class->get_map( $feed );
+		$advance_newsletter_feed = new ADvanceNewsletterFeed();
+
+		$map                    = $advance_newsletter_feed->get_map( $feed );
 		$field_email_value      = $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_EMAIL_ADDRESS );
-		$choices                = ( new ADvanceNewsletterFeed() )->get_newsletter_choices();
+		$choices                = $advance_newsletter_feed->get_newsletter_choices();
 		$field_newsletter_value = array();
 
 		foreach ( $choices as $choice ) {
@@ -58,7 +85,7 @@ class ADvanceOptinNewsletterOnSubmission {
 				$field_newsletter_value,
 				$is_optin,
 				false,
-				'',
+				null,
 				sprintf( 'GravityForms on site: %s, with GF entry id: %d', get_current_site()->site_name, (int) $entry['id'] )
 			);
 
@@ -83,10 +110,6 @@ class ADvanceOptinNewsletterOnSubmission {
 		}
 	}
 
-	public function is_optin_form(): bool {
-		return true;
-	}
-
 	/**
 	 * Gets the value of a field from an entry.
 	 * The field can be selected from the mapped fields of the form.
@@ -97,7 +120,7 @@ class ADvanceOptinNewsletterOnSubmission {
 	 * @param string $mapped_field_name
 	 * @return mixed
 	 */
-	protected function get_mapped_field_value_from_entry( array $form, array $entry, array $map, string $mapped_field_name ): mixed {
+	private function get_mapped_field_value_from_entry( array $form, array $entry, array $map, string $mapped_field_name ): mixed {
 		// Get the field input id
 		$email_input_id = $map[ $mapped_field_name ] ?? null;
 		if ( ! $email_input_id ) {
