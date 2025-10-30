@@ -47,9 +47,9 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 		$this->feed           = $feed;
 	}
 
-	public function execute(): mixed {
+	public function execute(): bool {
 		$this->update_user_subscription_by_email_address( $this->entry, $this->form, $this->feed );
-		return '';
+		return true;
 	}
 
 	/**
