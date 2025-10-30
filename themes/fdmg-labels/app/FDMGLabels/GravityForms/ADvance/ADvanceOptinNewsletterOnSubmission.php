@@ -40,11 +40,6 @@ class ADvanceOptinNewsletterOnSubmission {
 			return;
 		}
 
-		$is_enabled = (bool) $feed_class->get_meta_of_feed( $feed, ADvanceNewsletterFeed::META_ENABLED, false );
-		if ( ! $is_enabled ) {
-			$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'ADvance feed is disabled for this form.', LogLine::LEVEL_INFO );
-			return;
-		}
 		$map                    = $feed_class->get_map( $feed );
 		$field_email_value      = $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_EMAIL_ADDRESS );
 		$choices                = ( new ADvanceNewsletterFeed() )->get_newsletter_choices();
@@ -60,14 +55,14 @@ class ADvanceOptinNewsletterOnSubmission {
 			$user_api = new UserAPI( ( new ClientFactory() )->get_client() );
 			$response = $user_api->update_newsletter_subscription_by_email_address(
 				$field_email_value,
-				implode( ',', $field_newsletter_value ),
+				$field_newsletter_value,
 				$is_optin,
 			);
 
 			if ( $response->getStatusCode() === 200 ) {
 				$body = $user_api->parse_response_to_json( $response );
 				// Handle success response, but still an error occurred in processing
-				if ( $body['response']['status']['code'] === 'ERROR' ) {
+				if ( $body['response']['status']['code'] === 'WARNING' || $body['response']['status']['messages']['type'] === 'warn' ) {
 					Registry::wordpress()->warning(
 						'ADvance login API returned error response',
 						array(

@@ -47,13 +47,16 @@ class UserAPI extends AbstractAPI {
 	/**
 	 * Activates newsletter subscriptions for a user.
 	 *
-	 * @param string|null $email_address User emailaddress for which to update subscriptions.
-	 * @param string $newsletter_ids Array of newsletter IDs to activate or deactivate.
+	 * @param string $email_address User emailaddress for which to update subscriptions.
+	 * @param string $newsletter_codes Array of newsletter IDs to activate or deactivate.
 	 * @param bool $activate True to activate, false to deactivate.
+	 * @param bool $create_party Whether to create a party if it does not exist. OPTIONAL.
+	 * @param string $response_date_time Optional date time string for the response. OPTIONAL.
+	 * @param mixed $request_source Optional request source. OPTIONAL.
 	 * @return ResponseInterface
 	 */
-	public function update_newsletter_subscription_by_email_address( ?string $email_address, string $newsletter_ids, bool $activate = true ): ResponseInterface {
-		if ( $email_address === null ) {
+	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = false, string $response_date_time = '', string $request_source = '' ): ResponseInterface {
+		if ( ! $email_address ) {
 			throw new InvalidArgumentException( 'Email address must be provided.' );
 		}
 
@@ -62,11 +65,19 @@ class UserAPI extends AbstractAPI {
 			$params['emailAddress'] = $email_address;
 		}
 
+		if( $create_party ) {
+			$params['createParty'] = true;
+		}
+
+		if( $response_date_time ) {
+			$params['responseDateTime'] = $response_date_time; // FORMAT: yyyy-MM-dd hh:mm:ss
+		}
+
 		// One of these two parameters is required.
 		if ( $activate ) {
-			$params['activateNewsletterCode_CSV'] = $newsletter_ids;
+			$params['activateNewsletterCode_CSV'] = $newsletter_codes;
 		} else {
-			$params['inactivateNewsletterCode_CSV'] = $newsletter_ids;
+			$params['inactivateNewsletterCode_CSV'] = $newsletter_codes;
 		}
 
 		$response = $this->client->request(

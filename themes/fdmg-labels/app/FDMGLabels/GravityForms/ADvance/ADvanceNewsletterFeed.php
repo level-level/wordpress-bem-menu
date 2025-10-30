@@ -10,9 +10,6 @@ use GFFeedAddOn;
 class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public const FEED_SLUG = 'fdmg_advance_newsletter';
 
-	// Changable fields
-	public const META_ENABLED = 'fdmg_advance_enabled';
-
 	// Field map
 	public const META_EMAIL_ADDRESS = 'fdmg_advance_email_address';
 	public const META_FIELD_MAP     = 'fdmg_advance_field_map';
@@ -22,7 +19,7 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public const META_IS_ADVANCE_ENTRY = 'is_fdmg_advance_entry';
 
 	// phpcs:disable PSR2.Classes.PropertyDeclaration.Underscore
-	protected $_multiple_feeds           = false;
+	protected $_multiple_feeds           = true;
 	protected $_version                  = '1.0';
 	protected $_min_gravityforms_version = '2.6';
 	protected $_slug                     = self::FEED_SLUG;
@@ -79,12 +76,6 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public function feed_settings_fields() {
 		$fields = array(
 			array(
-				'name'          => self::META_ENABLED,
-				'type'          => 'toggle',
-				'label'         => __( 'Send entries to ADvance as an opt-in', 'fdmg-admin' ),
-				'default_value' => 0,
-			),
-			array(
 				'name'       => self::META_FIELD_MAP,
 				'type'       => 'field_map',
 				'label'      => __( 'Connect fields', 'fdmg-admin' ),
@@ -107,14 +98,6 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 						),
 					),
 					$this->get_newsletter_choices()
-				),
-				'dependency' => array(
-					'live'   => true,
-					'fields' => array(
-						array(
-							'field' => self::META_ENABLED,
-						),
-					),
 				),
 			),
 		);
@@ -139,10 +122,6 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	 * @return null|array<string|mixed> Modified entry what's going to be updated by GravityForms
 	 */
 	public function process_feed( $feed, $entry, $form ) {
-		if ( ! self::get_meta_of_feed( $feed, self::META_ENABLED, false ) ) {
-			return null;
-		}
-
 		// Stores if entry needs to be sent to ADvance.
 		gform_update_meta( $entry['id'], self::META_IS_ADVANCE_ENTRY, true, $form['id'] );
 		$entry[ self::META_IS_ADVANCE_ENTRY ] = true;
@@ -206,7 +185,7 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 			return $map; // No feed meta equals no field map fields. Quit early to prevent GF from erroring.
 		}
 
-		$field_map = self::get_instance()->get_field_map_fields( $feed, self::META_FIELD_MAP );
+		$field_map = $this->get_field_map_fields( $feed, self::META_FIELD_MAP );
 		return $field_map;
 	}
 
