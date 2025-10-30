@@ -48,11 +48,11 @@ class UserAPI extends AbstractAPI {
 	 * Activates newsletter subscriptions for a user.
 	 *
 	 * @param string $email_address User emailaddress for which to update subscriptions.
-	 * @param string $newsletter_codes Array of newsletter IDs to activate or deactivate.
+	 * @param array<string> $newsletter_codes Array of newsletter IDs to activate or deactivate.
 	 * @param bool $activate True to activate, false to deactivate.
 	 * @param bool $create_party Whether to create a party if it does not exist. OPTIONAL.
 	 * @param string $response_date_time Optional date time string for the response. OPTIONAL.
-	 * @param mixed $request_source Optional request source. OPTIONAL.
+	 * @param string $request_source Optional request source. OPTIONAL.
 	 * @return ResponseInterface
 	 */
 	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = false, string $response_date_time = '', string $request_source = '' ): ResponseInterface {
@@ -60,10 +60,8 @@ class UserAPI extends AbstractAPI {
 			throw new InvalidArgumentException( 'Email address must be provided.' );
 		}
 
-		$params = array();
-		if ( $email_address ) {
-			$params['emailAddress'] = $email_address;
-		}
+		$params                 = array();
+		$params['emailAddress'] = $email_address;
 
 		if ( $create_party ) {
 			$params['createParty'] = true;
@@ -72,6 +70,8 @@ class UserAPI extends AbstractAPI {
 		if ( $response_date_time ) {
 			$params['responseDateTime'] = $response_date_time; // FORMAT: yyyy-MM-dd hh:mm:ss
 		}
+
+		$newsletter_codes = implode( ',', $newsletter_codes );
 
 		// One of these two parameters is required.
 		if ( $activate ) {
