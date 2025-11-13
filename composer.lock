@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5f139aaefabb95fd36b0f116ec08cba8",
+    "content-hash": "6528c9214dc7138409ae7d56c9bd66e1",
     "packages": [
         {
             "name": "brick/math",
@@ -281,10 +281,10 @@
         },
         {
             "name": "gravity/gravityforms",
-            "version": "2.9.17.1",
+            "version": "2.9.21",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.gravity.io/downloads/?plugin=gravityforms&version=2.9.17.1",
+                "url": "https://composer.gravity.io/downloads/?plugin=gravityforms&version=2.9.21",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
@@ -4559,15 +4559,15 @@
         },
         {
             "name": "wpackagist-plugin/post-smtp",
-            "version": "3.4.2",
+            "version": "3.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/post-smtp/",
-                "reference": "tags/3.4.2"
+                "reference": "tags/3.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/post-smtp.3.4.2.zip",
+                "url": "https://downloads.wordpress.org/plugin/post-smtp.3.6.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
