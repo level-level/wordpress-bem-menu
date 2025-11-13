@@ -39,6 +39,18 @@
 					</li>
 				{% endif %}
 
+				{% set newsletter = options.newsletter %}
+					{% if newsletter.newsletter_button_in_header and newsletter.button.title and newsletter.button.url %}
+					<li class="hidden sm:block">
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: newsletter.button.title,
+							url: newsletter.button.url,
+							class: 'btn-primary',
+							is_external: newsletter.button.target ? true,
+							aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
+						} %}
+					</li>
+				{% endif %}
 			</ul>
 		</div>
 	</div>

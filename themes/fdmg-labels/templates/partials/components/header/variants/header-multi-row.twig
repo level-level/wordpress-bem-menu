@@ -17,13 +17,22 @@
 			<div class="hidden shrink-0 sm:block">
 				<div class="flex items-center gap-2">
 					{% set newsletter = options.newsletter %}
-					{% if newsletter.button.title and newsletter.button.url %}
+					{% if newsletter.newsletter_button_in_header and newsletter.button.title and newsletter.button.url %}
 						{% include 'styleguide/components/buttons/button-link.twig' with {
 							text: newsletter.button.title,
 							url: newsletter.button.url,
 							class: 'btn-primary',
 							is_external: newsletter.button.target ? true,
 							aria_label: _x('Sign up to our weekly newsletter', 'Newsletter', 'fdmg-labels'),
+						} %}
+					{% endif %}
+					{% set subscribe = options.subscribe_button %}
+					{% if subscribe.url and options.subscribe_button_in_header %}
+						{% include 'styleguide/components/buttons/button-link.twig' with {
+							text: _x('Subscribe', 'Subscribe', 'fdmg-labels'),
+							url: subscribe.url,
+							class: 'btn-primary theme-energeia:hocus:text-base-50 theme-pensioen-pro:hocus:text-base-50 focus:outline-base-50 theme-pensioen-pro:bg-secondary-400 theme-pensioen-pro:border-secondary-400 theme-pensioen-pro:text-base-600 theme-pensioen-pro:hocus:bg-transparent theme-pensioen-pro:dark:bg-primary-300 theme-pensioen-pro:dark:border-primary-300 theme-fd:bg-orange theme-fd:border-orange theme-bnr:bg-primary theme-bnr:text-base-800 theme-bnr:hocus:bg-transparent theme-bnr:hocus:text-base-50 theme-bnr:border-primary',
+							is_external: subscribe.target ? true,
 						} %}
 					{% endif %}
 					<ul class="flex flex-wrap items-center">
