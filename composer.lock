@@ -4497,15 +4497,15 @@
         },
         {
             "name": "wpackagist-plugin/restricted-site-access",
-            "version": "7.5.3",
+            "version": "7.6.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/restricted-site-access/",
-                "reference": "tags/7.5.3"
+                "reference": "tags/7.6.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/restricted-site-access.7.5.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/restricted-site-access.7.6.1.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
