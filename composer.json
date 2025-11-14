@@ -49,6 +49,7 @@
         "gravity/gravityformspolls": "^4.3",
         "level-level/clarkson-404": "^1.0",
         "level-level/clarkson-core": "^1.0",
+        "level-level/fdmg-selligent": "^1.1",
         "level-level/fdmg-server-side-tracking": "^1.2",
         "level-level/ll-actionscheduler": "*",
         "level-level/ll-paywall": "^1.0",
@@ -176,7 +177,7 @@
     "require-dev": {
         "cebe/php-openapi": "1.7.0",
         "codeception/codeception": "^5.0",
-        "codeception/module-asserts": "^3.0",
+        "codeception/module-asserts": "3.2.0",
         "codeception/module-cli": "^2.0",
         "codeception/module-db": "^3.1",
         "codeception/module-filesystem": "^3.0",
@@ -189,7 +190,7 @@
         "lucatume/wp-browser": "^4.2",
         "niels-de-blaauw/php-doc-check": "^0.4.0",
         "phpstan/extension-installer": "^1.1",
-        "szepeviktor/phpstan-wordpress": "^2.0",
+        "szepeviktor/phpstan-wordpress": "2.0.2",
         "wp-cli/wp-cli-bundle": "^2.10"
     },
     "config": {
