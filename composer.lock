@@ -4053,16 +4053,16 @@
         },
         {
             "name": "vinkla/extended-acf",
-            "version": "14.5.0",
+            "version": "14.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vinkla/extended-acf.git",
-                "reference": "6b50666a791ae39a839e25c35a2567d7c0306410"
+                "reference": "d31879bfed17ef0c4ebbd3e5658ba307c46e41c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/6b50666a791ae39a839e25c35a2567d7c0306410",
-                "reference": "6b50666a791ae39a839e25c35a2567d7c0306410",
+                "url": "https://api.github.com/repos/vinkla/extended-acf/zipball/d31879bfed17ef0c4ebbd3e5658ba307c46e41c9",
+                "reference": "d31879bfed17ef0c4ebbd3e5658ba307c46e41c9",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -4084,7 +4084,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "14.5-dev"
+                    "dev-master": "14.6-dev"
                 }
             },
             "autoload": {
@@ -4116,9 +4116,9 @@
             ],
             "support": {
                 "issues": "https://github.com/vinkla/extended-acf/issues",
-                "source": "https://github.com/vinkla/extended-acf/tree/14.5.0"
+                "source": "https://github.com/vinkla/extended-acf/tree/14.6.1"
             },
-            "time": "2025-08-11T12:15:51+00:00"
+            "time": "2025-11-13T12:39:47+00:00"
         },
         {
             "name": "wpackagist-plugin/acf-content-analysis-for-yoast-seo",
