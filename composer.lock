@@ -4547,15 +4547,15 @@
         },
         {
             "name": "wpackagist-plugin/wordfence",
-            "version": "8.1.0",
+            "version": "8.1.2",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordfence/",
-                "reference": "tags/8.1.0"
+                "reference": "tags/8.1.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordfence.8.1.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordfence.8.1.2.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
