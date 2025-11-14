@@ -1695,16 +1695,16 @@
         },
         {
             "name": "mentosmenno2/image-crop-positioner",
-            "version": "v1.0.0",
+            "version": "v1.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mentosmenno2/image-crop-positioner.git",
-                "reference": "3a6ff02b93c55d2e871312d7dca8e83e34491be1"
+                "reference": "93773df2e92f418036c22b653188086f6b33dce0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/3a6ff02b93c55d2e871312d7dca8e83e34491be1",
-                "reference": "3a6ff02b93c55d2e871312d7dca8e83e34491be1",
+                "url": "https://api.github.com/repos/mentosmenno2/image-crop-positioner/zipball/93773df2e92f418036c22b653188086f6b33dce0",
+                "reference": "93773df2e92f418036c22b653188086f6b33dce0",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -1741,9 +1741,9 @@
             "description": "Face recognition and hotspot selection for cropping images in WordPress.",
             "support": {
                 "issues": "https://github.com/mentosmenno2/image-crop-positioner/issues",
-                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v1.0.0"
+                "source": "https://github.com/mentosmenno2/image-crop-positioner/tree/v1.0.1"
             },
-            "time": "2025-04-18T09:40:32+00:00"
+            "time": "2025-10-02T08:54:03+00:00"
         },
         {
             "name": "mhcg/monolog-wp-cli",
