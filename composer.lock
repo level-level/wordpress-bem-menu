@@ -300,10 +300,10 @@
         },
         {
             "name": "gravity/gravityformspolls",
-            "version": "4.3.1",
+            "version": "4.4.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.gravity.io/downloads/?plugin=gravityformspolls&version=4.3.1",
+                "url": "https://composer.gravity.io/downloads/?plugin=gravityformspolls&version=4.4.0",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
