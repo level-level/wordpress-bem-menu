@@ -18,20 +18,10 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 	use ResponseTrait;
 
 	private ADvanceLogger $advance_logger;
-	/**
-	 * @var array<string,mixed>
-	 */
-	private array $form;
 
-	/**
-	 * @var array<mixed>
-	 */
-	private array $entry;
+	private int $entry_id;
 
-	/**
-	 * @var array<string,mixed>
-	 */
-	private array $feed;
+	private int $feed_id;
 
 	/**
 	 * Constructor.
@@ -40,15 +30,32 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 	 * @param array<mixed> $entry The entry object currently being processed.
 	 * @param array<string,mixed> $feed The feed object currently being processed.
 	 */
-	public function __construct( array $form, array $entry, array $feed ) {
+	public function __construct( int $entry_id, int $feed_id ) {
 		$this->advance_logger = new ADvanceLogger();
-		$this->form           = $form;
-		$this->entry          = $entry;
-		$this->feed           = $feed;
+		$this->entry_id          = $entry_id;
+		$this->feed_id           = $feed_id;
 	}
 
 	public function execute(): bool {
-		$this->update_user_subscription_by_email_address( $this->entry, $this->form, $this->feed );
+		$entry = GFAPI::get_entry( $this->entry_id );
+		if( $entry instanceof \WP_Error ) {
+			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, 'Failed to retrieve GravityForms entry.', LogLine::LEVEL_ERROR );
+			return false;
+		}
+
+		$feed = GFAPI::get_feed( $this->feed_id );
+		if( $feed instanceof \WP_Error ) {
+			$this->advance_logger->add_gravityforms_entry_log( $this->feed_id, 'Failed to retrieve GravityForms feed.', LogLine::LEVEL_ERROR );
+			return false;
+		}
+
+		$form = GFAPI::get_form( (int) $entry['form_id'] );
+		if( $form instanceof \WP_Error ) {
+			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, sprintf( 'Failed to retrieve GravityForms form. On entry id %d', $this->entry_id ), LogLine::LEVEL_ERROR );
+			return false;
+		}
+
+		$this->update_user_subscription_by_email_address( $entry, $form, $feed );
 		return true;
 	}
 
