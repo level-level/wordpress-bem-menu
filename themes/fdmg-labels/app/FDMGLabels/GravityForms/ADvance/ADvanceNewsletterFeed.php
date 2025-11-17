@@ -12,6 +12,7 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public const FEED_SLUG = 'fdmg_advance_newsletter';
 
 	// Field map
+	public const META_FEED_NAME     = 'feed_name';
 	public const META_EMAIL_ADDRESS = 'fdmg_advance_email_address';
 	public const META_FIELD_MAP     = 'fdmg_advance_field_map';
 	public const META_OPTIN_ENABLED = 'fdmg_advance_optin_enabled';
@@ -77,6 +78,32 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 	public function feed_settings_fields() {
 		$fields = array(
 			array(
+				'name'     => self::META_FEED_NAME,
+				'type'     => 'text',
+				'class'    => 'medium',
+				'label'    => __( 'Feed Name', 'fdmg-admin' ),
+				'tooltip'  => __( 'Enter a name to identify this feed.', 'fdmg-admin' ),
+				'required' => true,
+			),
+			array(
+				'name'          => self::META_OPTIN_ENABLED,
+				'type'          => 'radio',
+				'label'         => __( 'Subscription Type', 'fdmg-admin' ),
+				'tooltip'       => __( 'Select whether this feed should handle opt-in or opt-out subscriptions.', 'fdmg-admin' ),
+				'choices'       => array(
+					array(
+						'label' => __( 'Opt-in (user chooses to subscribe)', 'fdmg-admin' ),
+						'value' => true,
+					),
+					array(
+						'label' => __( 'Opt-out (user is subscribed by default)', 'fdmg-admin' ),
+						'value' => false,
+					),
+				),
+				'default_value' => true,
+				'horizontal'    => true,
+			),
+			array(
 				'name'      => self::META_FIELD_MAP,
 				'type'      => 'field_map',
 				'label'     => __( 'Connect fields', 'fdmg-admin' ),
@@ -89,13 +116,6 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 							'value'      => 'email_address',
 							'field_type' => array( 'email', 'text' ),
 							'required'   => true,
-						),
-						array(
-							'name'       => self::META_OPTIN_ENABLED,
-							'label'      => __( 'Opt-in Enabled', 'fdmg-admin' ),
-							'value'      => 'optin_enabled',
-							'field_type' => array( 'checkbox', 'radio', 'select', 'consent' ),
-							'required'   => false,
 						),
 					),
 					$this->get_newsletter_choices()
@@ -198,6 +218,34 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 
 		$field_map = $this->get_field_map_fields( $feed, self::META_FIELD_MAP );
 		return $field_map;
+	}
+
+	/**
+	 * Configures the columns displayed on the feed list page.
+	 *
+	 * @return array<string,string>
+	 */
+	public function feed_list_columns() {
+		return array(
+			'feed_name' => __( 'Name', 'fdmg-admin' ),
+		);
+	}
+
+	/**
+	 * Returns the value to be displayed in the specified column.
+	 *
+	 * @param array<string,mixed> $feed The feed being included in the feed list.
+	 * @param string $column_name The name of the column being displayed.
+	 *
+	 * @return string
+	 */
+	public function get_column_value( $feed, $column_name ) {
+		switch ( $column_name ) {
+			case 'feed_name':
+				return $this->get_meta_of_feed( $feed, self::META_FEED_NAME, '' );
+			default:
+				return '';
+		}
 	}
 
 	/**

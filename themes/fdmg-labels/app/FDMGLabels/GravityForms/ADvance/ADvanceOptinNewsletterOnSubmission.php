@@ -75,14 +75,27 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 
 		$map                    = $advance_newsletter_feed->get_map( $feed );
 		$field_email_value      = $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_EMAIL_ADDRESS );
-		$choices                = $advance_newsletter_feed->get_newsletter_choices();
 		$field_newsletter_value = array();
 
-		foreach ( $choices as $choice ) {
-			$field_newsletter_value[] = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, $choice['name'] ) ? sprintf( '%s', $choice['value'] ) : '';
-		}
+		// Get the opt-in setting from the feed (not from form field)
+		$is_optin = (bool) $advance_newsletter_feed->get_meta_of_feed( $feed, ADvanceNewsletterFeed::META_OPTIN_ENABLED, true );
 
-		$is_optin = (bool) $this->get_mapped_field_value_from_entry( $form, $entry, $map, ADvanceNewsletterFeed::META_OPTIN_ENABLED );
+		// Only process newsletters that are actually mapped in this feed
+		// phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable
+		foreach ( $map as $mapped_field_name => $input_id ) {
+			// Skip the email field as it's not a newsletter
+			if ( $mapped_field_name === ADvanceNewsletterFeed::META_EMAIL_ADDRESS ) {
+				continue;
+			}
+
+			// Get the field value for this mapped newsletter
+			$field_value = $this->get_mapped_field_value_from_entry( $form, $entry, $map, $mapped_field_name );
+
+			// If the field has a value (user selected/checked it), add the newsletter code
+			if ( ! empty( $field_value ) ) {
+				$field_newsletter_value[] = $mapped_field_name;
+			}
+		}
 
 		try {
 			$user_api = new UserAPI( ( new ClientFactory() )->get_client() );
