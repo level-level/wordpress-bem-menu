@@ -26,31 +26,30 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 	/**
 	 * Constructor.
 	 *
-	 * @param array<string,mixed> $form The form object currently being processed.
-	 * @param array<mixed> $entry The entry object currently being processed.
-	 * @param array<string,mixed> $feed The feed object currently being processed.
+	 * @param int $entry_id The entry object currently being processed.
+	 * @param int $feed_id The feed object currently being processed.
 	 */
 	public function __construct( int $entry_id, int $feed_id ) {
 		$this->advance_logger = new ADvanceLogger();
-		$this->entry_id          = $entry_id;
-		$this->feed_id           = $feed_id;
+		$this->entry_id       = $entry_id;
+		$this->feed_id        = $feed_id;
 	}
 
 	public function execute(): bool {
 		$entry = GFAPI::get_entry( $this->entry_id );
-		if( $entry instanceof \WP_Error ) {
+		if ( $entry instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, 'Failed to retrieve GravityForms entry.', LogLine::LEVEL_ERROR );
 			return false;
 		}
 
 		$feed = GFAPI::get_feed( $this->feed_id );
-		if( $feed instanceof \WP_Error ) {
+		if ( $feed instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->feed_id, 'Failed to retrieve GravityForms feed.', LogLine::LEVEL_ERROR );
 			return false;
 		}
 
 		$form = GFAPI::get_form( (int) $entry['form_id'] );
-		if( $form instanceof \WP_Error ) {
+		if ( $form instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, sprintf( 'Failed to retrieve GravityForms form. On entry id %d', $this->entry_id ), LogLine::LEVEL_ERROR );
 			return false;
 		}

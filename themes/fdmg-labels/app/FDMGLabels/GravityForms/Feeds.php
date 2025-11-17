@@ -11,7 +11,7 @@ use GFForms;
  * Should be registered via post-autoload.php
  */
 class Feeds {
-	const ADVANCE_OPTIN_NEWSLETTER_HOOK = 'fdmg_advance_optin_newsletter_on_submission';
+	public const ADVANCE_OPTIN_NEWSLETTER_HOOK = 'fdmg_advance_optin_newsletter_on_submission';
 
 	public function register_hooks(): void {
 		add_action( 'gform_loaded', array( $this, 'register_feeds' ) );

@@ -130,7 +130,12 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 		gform_update_meta( $entry_id, self::META_IS_ADVANCE_ENTRY, true, $form['id'] );
 		$entry[ self::META_IS_ADVANCE_ENTRY ] = true;
 
-		as_schedule_single_action( ( time() + MINUTE_IN_SECONDS / 2 ), Feeds::ADVANCE_OPTIN_NEWSLETTER_HOOK, array( 'entry_id' => (int) $entry_id, 'feed_id' => (int) $feed_id ) );
+		as_schedule_single_action(
+			( time() + MINUTE_IN_SECONDS / 2 ), Feeds::ADVANCE_OPTIN_NEWSLETTER_HOOK, array(
+				'entry_id' => (int) $entry_id,
+				'feed_id'  => (int) $feed_id,
+			)
+		);
 
 		return $entry;
 	}
