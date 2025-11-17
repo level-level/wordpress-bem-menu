@@ -23,28 +23,30 @@ class ThemeOptions {
 
 	public const MENU_SLUG = 'acf-options';
 
-	public const OPTION_GROUP                     = 'theme_options';
-	public const OPTION_NEWSLETTER_TAB            = 'newsletter_tab';
-	public const OPTION_NEWSLETTER_GROUP          = 'newsletter';
-	public const OPTION_NEWSLETTER_TITLE          = 'title';
-	public const OPTION_NEWSLETTER_CONTENT        = 'content';
-	public const OPTION_NEWSLETTER_BUTTON         = 'button';
-	public const OPTION_NEWSLETTER_IMAGE          = 'image';
-	public const OPTION_COOKIEWALL_TAB            = 'cookiewall_tab';
-	public const OPTION_SOURCEPOINT_ENABLE        = 'enable_sourcepoint_cmp';
-	public const OPTION_SOURCEPOINT_OPTIONS       = 'sourcepoint_options';
-	public const OPTION_SOURCEPOINT_ENDPOINT_URL  = 'sourcepoint_endpoint_url';
-	public const OPTION_SOURCEPOINT_PROPERTY_HREF = 'sourcepoint_property_href';
-	public const OPTION_SOURCEPOINT_ID            = 'sourcepoint_id';
-	public const OPTION_ADVERTISEMENTS_TAB        = 'advertisements_tab';
-	public const OPTION_ADVERTISEMENTS_ENABLE     = 'enable_advertisements';
-	public const OPTION_SUBSCRIBE_TAB             = 'subscribe_tab';
-	public const OPTION_SUBSCRIBE_BUTTON          = 'subscribe_button';
-	public const OPTIONS_SOCIALS                  = 'socials';
-	public const OPTIONS_SOCIALS_TYPE             = 'type';
-	public const OPTIONS_SOCIALS_URL              = 'url';
-	public const OPTION_DISCUSSION_TAB            = 'discussion_tab';
-	public const OPTION_DISCUSSION_RULES_PAGE     = 'discussion_rules_page';
+	public const OPTION_GROUP                       = 'theme_options';
+	public const OPTION_NEWSLETTER_TAB              = 'newsletter_tab';
+	public const OPTION_NEWSLETTER_GROUP            = 'newsletter';
+	public const OPTION_NEWSLETTER_TITLE            = 'title';
+	public const OPTION_NEWSLETTER_CONTENT          = 'content';
+	public const OPTION_NEWSLETTER_BUTTON           = 'button';
+	public const OPTION_NEWSLETTER_IMAGE            = 'image';
+	public const OPTION_NEWSLETTER_BUTTON_IN_HEADER = 'newsletter_button_in_header';
+	public const OPTION_COOKIEWALL_TAB              = 'cookiewall_tab';
+	public const OPTION_SOURCEPOINT_ENABLE          = 'enable_sourcepoint_cmp';
+	public const OPTION_SOURCEPOINT_OPTIONS         = 'sourcepoint_options';
+	public const OPTION_SOURCEPOINT_ENDPOINT_URL    = 'sourcepoint_endpoint_url';
+	public const OPTION_SOURCEPOINT_PROPERTY_HREF   = 'sourcepoint_property_href';
+	public const OPTION_SOURCEPOINT_ID              = 'sourcepoint_id';
+	public const OPTION_ADVERTISEMENTS_TAB          = 'advertisements_tab';
+	public const OPTION_ADVERTISEMENTS_ENABLE       = 'enable_advertisements';
+	public const OPTION_SUBSCRIBE_TAB               = 'subscribe_tab';
+	public const OPTION_SUBSCRIBE_BUTTON            = 'subscribe_button';
+	public const OPTION_SUBSCRIBE_BUTTON_IN_HEADER  = 'subscribe_button_in_header';
+	public const OPTIONS_SOCIALS                    = 'socials';
+	public const OPTIONS_SOCIALS_TYPE               = 'type';
+	public const OPTIONS_SOCIALS_URL                = 'url';
+	public const OPTION_DISCUSSION_TAB              = 'discussion_tab';
+	public const OPTION_DISCUSSION_RULES_PAGE       = 'discussion_rules_page';
 
 	public function register_hooks(): void {
 		add_action( 'acf/init', array( $this, 'register' ) );
@@ -100,6 +102,8 @@ class ThemeOptions {
 											->format( 'id' )
 											->previewSize( 'medium' )
 											->library( 'all' ),
+										TrueFalse::make( _x( 'Show newsletter CTA in header', 'Fields', 'fdmg-labels-admin' ), self::OPTION_NEWSLETTER_BUTTON_IN_HEADER )
+											->stylized(),
 									)
 								),
 								Tab::make( _x( 'Cookiewall', 'Fields', 'fdmg-labels-admin' ), self::OPTION_COOKIEWALL_TAB )
@@ -141,6 +145,9 @@ class ThemeOptions {
 								Link::make( _x( 'Subscribe page', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_BUTTON )
 										->helperText( _x( 'Once set, will display a button next to the navigation. Only when using the compact header option.', 'Fields', 'fdmg-labels-admin' ) )
 										->format( 'array' ),
+								TrueFalse::make( _x( 'Show subscribe CTA in header', 'Fields', 'fdmg-labels-admin' ), self::OPTION_SUBSCRIBE_BUTTON_IN_HEADER )
+										->stylized(),
+
 								Tab::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ) )
 										->placement( 'left' ),
 								Repeater::make( _x( 'Social Media', 'Fields', 'fdmg-labels-admin' ), self::OPTIONS_SOCIALS )
