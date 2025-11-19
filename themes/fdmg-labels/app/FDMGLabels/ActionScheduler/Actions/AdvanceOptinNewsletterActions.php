@@ -7,7 +7,7 @@ use LevelLevel\ActionScheduler\Actions\AbstractSingleAction;
 
 class AdvanceOptinNewsletterActions extends AbstractSingleAction {
 
-	public const ADVANCE_OPTIN_NEWSLETTER_HOOK = 'fdmg_advance_optin_newsletter_on_submission';
+	public const ADVANCE_OPTIN_NEWSLETTER_HOOK  = 'fdmg_advance_optin_newsletter_on_submission';
 	public const ADVANCE_OPTIN_NEWSLETTER_GROUP = 'fdmg_advance_optin_newsletter_actions';
 
 	/**
