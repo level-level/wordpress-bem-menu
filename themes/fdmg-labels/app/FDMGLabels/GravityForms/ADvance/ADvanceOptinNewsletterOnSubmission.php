@@ -122,9 +122,11 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 							'response' => (string) $response->getBody(),
 						)
 					);
+					$warning_message = $body['response']['status']['messages']['message'] ?? 'Unknown warning';
+					$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Newsletter subscription completed with warning: %s', $warning_message ), LogLine::LEVEL_WARNING );
 					return;
 				}
-				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_INFO );
+				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_SUCCESS );
 			} else {
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Failed to update newsletter subscriptions in ADvance. Status code: %d', $response->getStatusCode() ), LogLine::LEVEL_ERROR );
 			}
