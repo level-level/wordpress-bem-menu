@@ -80,11 +80,15 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 		// Get the opt-in setting from the feed (not from form field)
 		$is_optin = (bool) $advance_newsletter_feed->get_meta_of_feed( $feed, ADvanceNewsletterFeed::META_OPTIN_ENABLED, true );
 
+		$newsletter_codes = array();
+		foreach ( $advance_newsletter_feed->get_newsletter_choices() as $newsletter ) {
+			$newsletter_codes[] = $newsletter['name'];
+		}
 		// Only process newsletters that are actually mapped in this feed
 		// phpcs:ignore SlevomatCodingStandard.Variables.UnusedVariable.UnusedVariable
 		foreach ( $map as $mapped_field_name => $input_id ) {
 			// Skip the email field as it's not a newsletter
-			if ( $mapped_field_name === ADvanceNewsletterFeed::META_EMAIL_ADDRESS ) {
+			if ( ! in_array( $mapped_field_name, $newsletter_codes, true ) ) {
 				continue;
 			}
 

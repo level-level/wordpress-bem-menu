@@ -2,6 +2,7 @@
 
 namespace FDMGLabels\GravityForms\ADvance;
 
+use FDMGLabels\ActionScheduler\Actions\AdvanceOptinNewsletterActions;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\NewsletterAPI;
 use FDMGLabels\GravityForms\Feeds;
@@ -149,9 +150,9 @@ class ADvanceNewsletterFeed extends GFFeedAddOn {
 
 		gform_update_meta( $entry_id, self::META_IS_ADVANCE_ENTRY, true, $form['id'] );
 		$entry[ self::META_IS_ADVANCE_ENTRY ] = true;
-
-		as_schedule_single_action(
-			( time() + MINUTE_IN_SECONDS / 2 ), Feeds::ADVANCE_OPTIN_NEWSLETTER_HOOK, array(
+		( new AdvanceOptinNewsletterActions() )->schedule(
+			time() + MINUTE_IN_SECONDS / 2,
+			array(
 				'entry_id' => (int) $entry_id,
 				'feed_id'  => (int) $feed_id,
 			)
