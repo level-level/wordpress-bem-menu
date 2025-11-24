@@ -56,7 +56,7 @@ class UserAPI extends AbstractAPI {
 	 * @param string $request_source Optional request source. OPTIONAL.
 	 * @return ResponseInterface
 	 */
-	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = false, ?DateTimeImmutable $response_date_time = null, ?string $request_source = null ): ResponseInterface {
+	public function update_newsletter_subscription_by_email_address( string $email_address, array $newsletter_codes, bool $activate = true, bool $create_party = true, ?DateTimeImmutable $response_date_time = null, ?string $request_source = null ): ResponseInterface {
 		if ( ! $email_address ) {
 			throw new InvalidArgumentException( 'Email address must be provided.' );
 		}
