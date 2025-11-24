@@ -84,6 +84,7 @@ class Capabilities {
 
 		$role->add_cap( 'gform_full_access' );
 		$role->add_cap( 'gravityforms_selligent' );
+		$role->add_cap( 'gravityforms_advance' );
 		$role->add_cap( self::CAP_WRITE_COMMENTS );
 	}
 

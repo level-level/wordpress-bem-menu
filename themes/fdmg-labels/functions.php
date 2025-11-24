@@ -59,6 +59,7 @@
 ( new \FDMGLabels\RSSFeed\MediaItemRSSFeed() )->register_hooks();
 ( new \FDMGLabels\Author\Metabox() )->register_hooks();
 ( new \FDMGLabels\Newsletter\FDMGSelligent() )->register_hooks();
+( new \FDMGLabels\ActionScheduler\Actions\AdvanceOptinNewsletterActions() )->register_hooks();
 
 // FDMG Labels CLI
 ( new \FDMGLabels\CLI\Init() )->register_commands();
