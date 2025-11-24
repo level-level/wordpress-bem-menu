@@ -131,7 +131,13 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 					$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Newsletter subscription completed with warning: %s', $warning_message ), LogLine::LEVEL_WARNING );
 					throw new Exception( sprintf( 'ADvance login API returned error response: %s', $warning_message ) );
 				}
-				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_SUCCESS );
+
+				$party_id = $body['response']['data']['PartyURN'] ?? '';
+				$this->advance_logger->add_gravityforms_entry_log(
+					(int) $entry['id'],
+					sprintf( 'Successfully updated newsletter subscriptions in ADvance for Party ID %s.', $party_id ),
+					LogLine::LEVEL_SUCCESS
+				);
 			} else {
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Failed to update newsletter subscriptions in ADvance. Status code: %d', $response->getStatusCode() ), LogLine::LEVEL_ERROR );
 				throw new Exception( 'Failed to update newsletter subscriptions in ADvance.' );
