@@ -112,7 +112,7 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 				$field_email_value,
 				$field_newsletter_value,
 				$is_optin,
-				false,
+				true,
 				null,
 				sprintf( 'GravityForms on site: %s, with GF entry id: %d', get_current_site()->site_name, (int) $entry['id'] )
 			);
