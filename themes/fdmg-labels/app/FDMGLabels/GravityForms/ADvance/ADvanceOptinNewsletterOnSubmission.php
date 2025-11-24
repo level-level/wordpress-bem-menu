@@ -5,7 +5,7 @@ use Exception;
 use FDMGLabels\Commands\CommandInterface;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\UserAPI;
-use FDMGLabels\Logging\ADvanceLogger;
+use FDMGLabels\Logging\ADvance\ADvanceLogger;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\StaticPages\ResponseTrait;
 use GF_Field;

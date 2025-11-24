@@ -1,5 +1,7 @@
 <?php
-namespace FDMGLabels\Logging;
+namespace FDMGLabels\Logging\ADvance;
+
+use FDMGLabels\Logging\BaseLogger;
 
 class ADvanceLogger extends BaseLogger {
 
