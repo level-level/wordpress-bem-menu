@@ -5,7 +5,7 @@ use Exception;
 use FDMGLabels\Commands\CommandInterface;
 use FDMGLabels\Connectors\ADvance\ClientFactory;
 use FDMGLabels\Connectors\ADvance\UserAPI;
-use FDMGLabels\Logging\ADvanceLogger;
+use FDMGLabels\Logging\ADvance\ADvanceLogger;
 use FDMGLabels\Logging\LogLine;
 use FDMGLabels\StaticPages\ResponseTrait;
 use GF_Field;
@@ -35,23 +35,27 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 		$this->feed_id        = $feed_id;
 	}
 
+	/**
+	 * @return bool True on success
+	 * @throws Exception
+	 */
 	public function execute(): bool {
 		$entry = GFAPI::get_entry( $this->entry_id );
 		if ( $entry instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, 'Failed to retrieve GravityForms entry.', LogLine::LEVEL_ERROR );
-			return false;
+			throw new Exception( 'Failed to retrieve GravityForms entry.' );
 		}
 
 		$feed = GFAPI::get_feed( $this->feed_id );
 		if ( $feed instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->feed_id, 'Failed to retrieve GravityForms feed.', LogLine::LEVEL_ERROR );
-			return false;
+			throw new Exception( 'Failed to retrieve GravityForms feed.' );
 		}
 
 		$form = GFAPI::get_form( (int) $entry['form_id'] );
 		if ( $form instanceof \WP_Error ) {
 			$this->advance_logger->add_gravityforms_entry_log( $this->entry_id, sprintf( 'Failed to retrieve GravityForms form. On entry id %d', $this->entry_id ), LogLine::LEVEL_ERROR );
-			return false;
+			throw new Exception( 'Failed to retrieve GravityForms form.' );
 		}
 
 		$this->update_user_subscription_by_email_address( $entry, $form, $feed );
@@ -64,11 +68,12 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 	 * @param array<string,mixed> $form The form object currently being processed.
 	 * @param array<string,mixed> $feed The feed object currently being processed.
 	 * @return void
+	 * @throws Exception
 	 */
 	private function update_user_subscription_by_email_address( array $entry, array $form, array $feed ): void {
 		if ( ! $feed ) {
 			$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'No ADvance feed found for this form.', LogLine::LEVEL_INFO );
-			return;
+			throw new Exception( 'No ADvance feed found for this form.' );
 		}
 
 		$advance_newsletter_feed = new ADvanceNewsletterFeed();
@@ -124,14 +129,16 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 					);
 					$warning_message = $body['response']['status']['messages']['message'] ?? 'Unknown warning';
 					$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Newsletter subscription completed with warning: %s', $warning_message ), LogLine::LEVEL_WARNING );
-					return;
+					throw new Exception( sprintf( 'ADvance login API returned error response: %s', $warning_message ) );
 				}
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_SUCCESS );
 			} else {
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Failed to update newsletter subscriptions in ADvance. Status code: %d', $response->getStatusCode() ), LogLine::LEVEL_ERROR );
+				throw new Exception( 'Failed to update newsletter subscriptions in ADvance.' );
 			}
 		} catch ( Exception $e ) {
 			$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Exception occurred while updating newsletter subscriptions in ADvance: %s', $e->getMessage() ), LogLine::LEVEL_ERROR );
+			throw new Exception( 'Exception occurred while updating newsletter subscriptions in ADvance: ' . $e->getMessage(), $e->getCode(), $e );
 		}
 	}
 

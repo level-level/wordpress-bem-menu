@@ -3,7 +3,6 @@ namespace FDMGLabels\Logging;
 
 use FDMGLabels\Logging\ADvance\MetaBoxes as ADvanceMetaBoxes;
 use FDMGLabels\Logging\FDMGContentAPI\MetaBoxes as FDMGContentAPIMetaBoxes;
-use FDMGLabels\Logging\Selligent\MetaBoxes as SelligentMetaBoxes;
 
 class Init {
 

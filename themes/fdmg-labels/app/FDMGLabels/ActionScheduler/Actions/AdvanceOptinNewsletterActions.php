@@ -35,30 +35,11 @@ class AdvanceOptinNewsletterActions extends AbstractSingleAction {
 	 * @throws Exception
 	 */
 	public function handle( array $data, int $attempt = 1 ): void {
-		$success = $this->handle_optin_newsletter_on_submission( $data );
-		if ( $success ) {
-			return;
-		}
-
-		$retry_action_id = $this->maybe_schedule_retry( $data, $attempt );
-		if ( $retry_action_id ) {
-			throw new Exception( 'Failed to do something, retry was scheduled' );
-		} else {
-			throw new Exception( 'Failed to do something, retry was not scheduled' );
-		}
-	}
-
-	/**
-	 *
-	 *
-	 * @param array<int> $data
-	 * @return boolean
-	 */
-	public function handle_optin_newsletter_on_submission( array $data ): bool {
 		if ( empty( $data['entry_id'] ) && empty( $data['feed_id'] ) ) {
-			return false;
+			throw new Exception( 'Invalid data provided to action.' );
 		}
+
 		$command = new \FDMGLabels\GravityForms\ADvance\ADvanceOptinNewsletterOnSubmission( $data['entry_id'], $data['feed_id'] );
-		return $command->execute();
+		$command->execute();
 	}
 }
