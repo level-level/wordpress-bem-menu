@@ -3,7 +3,9 @@ namespace FDMGLabels\Logging\ADvance;
 
 use Clarkson\Utilities\I18n;
 use Clarkson_Core\Templates;
+use FDMGLabels\GravityForms\ADvance\ADvanceNewsletterFeed;
 use FDMGLabels\Logging\ADvance\ADvanceLogger;
+use GFAPI;
 
 class MetaBoxes {
 
@@ -18,6 +20,12 @@ class MetaBoxes {
 	 * @return array<string,array<string,mixed>>
 	 */
 	public function add_gravityforms_entry_meta_box( array $boxes, array $entry, array $form ): array {
+		// Check if this entry has an ADvance feed
+		$feeds = GFAPI::get_feeds( null, $form['id'], ADvanceNewsletterFeed::FEED_SLUG, true );
+		if ( empty( $feeds ) ) {
+			return $boxes;
+		}
+
 		$boxes['fdmg_advance_log'] = array(
 			'title'    => _x( 'ADvance information', 'ADvance', 'fdmg-advance-admin' ),
 			'callback' => array( $this, 'render_gravityforms_entry_meta_box' ),

@@ -127,8 +127,9 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 							'response' => (string) $response->getBody(),
 						)
 					);
-					$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'ADvance login API returned warning response.', LogLine::LEVEL_WARNING );
-					throw new Exception( 'ADvance login API returned error response' );
+					$warning_message = $body['response']['status']['messages']['message'] ?? 'Unknown warning';
+					$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Newsletter subscription completed with warning: %s', $warning_message ), LogLine::LEVEL_WARNING );
+					throw new Exception( sprintf( 'ADvance login API returned error response: %s', $warning_message ) );
 				}
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_SUCCESS );
 			} else {
