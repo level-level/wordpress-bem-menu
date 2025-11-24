@@ -81,7 +81,7 @@ class UserAPI extends AbstractAPI {
 			$params['inactivateNewsletterCode_CSV'] = $newsletter_codes;
 		}
 
-		if ( $$request_source ) {
+		if ( $request_source ) {
 			$params['requestSource'] = $request_source;
 		}
 
