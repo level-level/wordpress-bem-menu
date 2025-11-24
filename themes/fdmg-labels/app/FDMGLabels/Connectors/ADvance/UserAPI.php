@@ -65,7 +65,7 @@ class UserAPI extends AbstractAPI {
 		$params['emailAddress'] = $email_address;
 
 		if ( $create_party ) {
-			$params['createParty'] = true;
+			$params['createParty'] = 'true'; // Booleans must be passed as a string
 		}
 
 		if ( $response_date_time ) {
