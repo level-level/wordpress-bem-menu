@@ -111,7 +111,7 @@ abstract class BaseLogger {
 		}
 
 		$messages   = $this->get_gravityforms_entry_logs( $entry_id );
-		$messages[] = new LogLine( time(), $message, $level );
+		$messages[] = new LogLine( time(), $message, $level, $extra );
 		$messages   = array_slice( $messages, -$this->get_meta_log_limit() );
 		$messages   = array_map(
 			function ( LogLine $log_line ): array {
