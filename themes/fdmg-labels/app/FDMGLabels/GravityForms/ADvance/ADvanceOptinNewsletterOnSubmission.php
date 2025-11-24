@@ -117,6 +117,16 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 				sprintf( 'GravityForms on site: %s, with GF entry id: %d', get_current_site()->site_name, (int) $entry['id'] )
 			);
 
+			$this->advance_logger->add_gravityforms_entry_log(
+				(int) $entry['id'],
+				'Response from API received.',
+				LogLine::LEVEL_INFO,
+				array(
+					'status_code' => $response->getStatusCode(),
+					'body'        => (string) $response->getBody(),
+				)
+			);
+
 			if ( $response->getStatusCode() === 200 ) {
 				$body = $user_api->parse_response_to_json( $response );
 				// Handle success response, but still an error occurred in processing
@@ -132,12 +142,7 @@ class ADvanceOptinNewsletterOnSubmission implements CommandInterface {
 					throw new Exception( sprintf( 'ADvance login API returned error response: %s', $warning_message ) );
 				}
 
-				$party_id = $body['response']['data']['PartyURN'] ?? '';
-				$this->advance_logger->add_gravityforms_entry_log(
-					(int) $entry['id'],
-					sprintf( 'Successfully updated newsletter subscriptions in ADvance for Party ID %s.', $party_id ),
-					LogLine::LEVEL_SUCCESS
-				);
+				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], 'Successfully updated newsletter subscriptions in ADvance.', LogLine::LEVEL_SUCCESS );
 			} else {
 				$this->advance_logger->add_gravityforms_entry_log( (int) $entry['id'], sprintf( 'Failed to update newsletter subscriptions in ADvance. Status code: %d', $response->getStatusCode() ), LogLine::LEVEL_ERROR );
 				throw new Exception( 'Failed to update newsletter subscriptions in ADvance.' );
