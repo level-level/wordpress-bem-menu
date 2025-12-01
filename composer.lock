@@ -4349,15 +4349,15 @@
         },
         {
             "name": "wpackagist-plugin/koko-analytics",
-            "version": "2.0.20",
+            "version": "2.0.22",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/koko-analytics/",
-                "reference": "tags/2.0.20"
+                "reference": "tags/2.0.22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/koko-analytics.2.0.20.zip",
+                "url": "https://downloads.wordpress.org/plugin/koko-analytics.2.0.22.zip",
                 "mirrors": [
                     {
                         "url": "https://repo.packagist.com/level-level/dists/%package%/%version%/r%reference%.%type%",
